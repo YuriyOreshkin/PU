@@ -29,160 +29,160 @@
         private void InitializeComponent()
         {
             Telerik.WinControls.UI.TableViewDefinition tableViewDefinition1 = new Telerik.WinControls.UI.TableViewDefinition();
-            this.radButton2 = new Telerik.WinControls.UI.RadButton();
-            this.radButton3 = new Telerik.WinControls.UI.RadButton();
-            this.radButton4 = new Telerik.WinControls.UI.RadButton();
-            this.radButton1 = new Telerik.WinControls.UI.RadButton();
-            this.radGridView1 = new Telerik.WinControls.UI.RadGridView();
-            this.radButton5 = new Telerik.WinControls.UI.RadButton();
-            this.radButton6 = new Telerik.WinControls.UI.RadButton();
-            this.radButton7 = new Telerik.WinControls.UI.RadButton();
-            this.btnPrint = new Telerik.WinControls.UI.RadButton();
-            ((System.ComponentModel.ISupportInitialize)(this.radButton2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radButton3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radButton4)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radButton1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radGridView1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radGridView1.MasterTemplate)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radButton5)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radButton6)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radButton7)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnPrint)).BeginInit();
+            this.editBtn = new Telerik.WinControls.UI.RadButton();
+            this.delBtn = new Telerik.WinControls.UI.RadButton();
+            this.closeBtn = new Telerik.WinControls.UI.RadButton();
+            this.addBtn = new Telerik.WinControls.UI.RadButton();
+            this.insurerGrid = new Telerik.WinControls.UI.RadGridView();
+            this.departmentBtn = new Telerik.WinControls.UI.RadButton();
+            this.staffBtn = new Telerik.WinControls.UI.RadButton();
+            this.selectBtn = new Telerik.WinControls.UI.RadButton();
+            this.printBtn = new Telerik.WinControls.UI.RadButton();
+            ((System.ComponentModel.ISupportInitialize)(this.editBtn)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.delBtn)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.closeBtn)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.addBtn)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.insurerGrid)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.insurerGrid.MasterTemplate)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.departmentBtn)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.staffBtn)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.selectBtn)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.printBtn)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             this.SuspendLayout();
             // 
-            // radButton2
+            // editBtn
             // 
-            this.radButton2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.radButton2.Location = new System.Drawing.Point(803, 302);
-            this.radButton2.Name = "radButton2";
-            this.radButton2.Size = new System.Drawing.Size(105, 24);
-            this.radButton2.TabIndex = 1;
-            this.radButton2.Text = "Изменить";
-            this.radButton2.ThemeName = "Office2013Light";
-            this.radButton2.Click += new System.EventHandler(this.radButton2_Click);
+            this.editBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.editBtn.Location = new System.Drawing.Point(803, 302);
+            this.editBtn.Name = "editBtn";
+            this.editBtn.Size = new System.Drawing.Size(105, 24);
+            this.editBtn.TabIndex = 1;
+            this.editBtn.Text = "Изменить";
+            this.editBtn.ThemeName = "Office2013Light";
+            this.editBtn.Click += new System.EventHandler(this.editBtn_Click);
             // 
-            // radButton3
+            // delBtn
             // 
-            this.radButton3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.radButton3.Location = new System.Drawing.Point(803, 332);
-            this.radButton3.Name = "radButton3";
-            this.radButton3.Size = new System.Drawing.Size(105, 24);
-            this.radButton3.TabIndex = 2;
-            this.radButton3.Text = "Удалить";
-            this.radButton3.ThemeName = "Office2013Light";
-            this.radButton3.Click += new System.EventHandler(this.radButton3_Click);
+            this.delBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.delBtn.Location = new System.Drawing.Point(803, 332);
+            this.delBtn.Name = "delBtn";
+            this.delBtn.Size = new System.Drawing.Size(105, 24);
+            this.delBtn.TabIndex = 2;
+            this.delBtn.Text = "Удалить";
+            this.delBtn.ThemeName = "Office2013Light";
+            this.delBtn.Click += new System.EventHandler(this.delBtn_Click);
             // 
-            // radButton4
+            // closeBtn
             // 
-            this.radButton4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.radButton4.Location = new System.Drawing.Point(803, 399);
-            this.radButton4.Name = "radButton4";
-            this.radButton4.Size = new System.Drawing.Size(105, 24);
-            this.radButton4.TabIndex = 3;
-            this.radButton4.Text = "Закрыть";
-            this.radButton4.ThemeName = "Office2013Light";
-            this.radButton4.Click += new System.EventHandler(this.radButton4_Click);
+            this.closeBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.closeBtn.Location = new System.Drawing.Point(803, 399);
+            this.closeBtn.Name = "closeBtn";
+            this.closeBtn.Size = new System.Drawing.Size(105, 24);
+            this.closeBtn.TabIndex = 3;
+            this.closeBtn.Text = "Закрыть";
+            this.closeBtn.ThemeName = "Office2013Light";
+            this.closeBtn.Click += new System.EventHandler(this.closeBtn_Click);
             // 
-            // radButton1
+            // addBtn
             // 
-            this.radButton1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.radButton1.Location = new System.Drawing.Point(803, 272);
-            this.radButton1.Name = "radButton1";
-            this.radButton1.Size = new System.Drawing.Size(105, 24);
-            this.radButton1.TabIndex = 0;
-            this.radButton1.Text = "Добавить";
-            this.radButton1.ThemeName = "Office2013Light";
-            this.radButton1.Click += new System.EventHandler(this.radButton1_Click);
+            this.addBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.addBtn.Location = new System.Drawing.Point(803, 272);
+            this.addBtn.Name = "addBtn";
+            this.addBtn.Size = new System.Drawing.Size(105, 24);
+            this.addBtn.TabIndex = 0;
+            this.addBtn.Text = "Добавить";
+            this.addBtn.ThemeName = "Office2013Light";
+            this.addBtn.Click += new System.EventHandler(this.addBtn_Click);
             // 
-            // radGridView1
+            // insurerGrid
             // 
-            this.radGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.insurerGrid.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.radGridView1.Location = new System.Drawing.Point(11, 12);
+            this.insurerGrid.Location = new System.Drawing.Point(11, 12);
             // 
             // 
             // 
-            this.radGridView1.MasterTemplate.AllowAddNewRow = false;
-            this.radGridView1.MasterTemplate.AllowColumnHeaderContextMenu = false;
-            this.radGridView1.MasterTemplate.AllowColumnReorder = false;
-            this.radGridView1.MasterTemplate.AllowDeleteRow = false;
-            this.radGridView1.MasterTemplate.AllowDragToGroup = false;
-            this.radGridView1.MasterTemplate.EnableFiltering = true;
-            this.radGridView1.MasterTemplate.EnableGrouping = false;
-            this.radGridView1.MasterTemplate.ShowRowHeaderColumn = false;
-            this.radGridView1.MasterTemplate.ViewDefinition = tableViewDefinition1;
-            this.radGridView1.Name = "radGridView1";
-            this.radGridView1.ShowRowErrors = false;
-            this.radGridView1.Size = new System.Drawing.Size(786, 411);
-            this.radGridView1.TabIndex = 4;
-            this.radGridView1.ThemeName = "Office2013Light";
-            this.radGridView1.CellDoubleClick += new Telerik.WinControls.UI.GridViewCellEventHandler(this.radGridView1_CellDoubleClick);
-            this.radGridView1.ContextMenuOpening += new Telerik.WinControls.UI.ContextMenuOpeningEventHandler(this.radGridView1_ContextMenuOpening);
-            this.radGridView1.FilterChanged += new Telerik.WinControls.UI.GridViewCollectionChangedEventHandler(this.radGridView1_FilterChanged);
-            this.radGridView1.SizeChanged += new System.EventHandler(this.radGridView1_SizeChanged);
-            this.radGridView1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.radGridView1_KeyPress);
+            this.insurerGrid.MasterTemplate.AllowAddNewRow = false;
+            this.insurerGrid.MasterTemplate.AllowColumnHeaderContextMenu = false;
+            this.insurerGrid.MasterTemplate.AllowColumnReorder = false;
+            this.insurerGrid.MasterTemplate.AllowDeleteRow = false;
+            this.insurerGrid.MasterTemplate.AllowDragToGroup = false;
+            this.insurerGrid.MasterTemplate.EnableFiltering = true;
+            this.insurerGrid.MasterTemplate.EnableGrouping = false;
+            this.insurerGrid.MasterTemplate.ShowRowHeaderColumn = false;
+            this.insurerGrid.MasterTemplate.ViewDefinition = tableViewDefinition1;
+            this.insurerGrid.Name = "insurerGrid";
+            this.insurerGrid.ShowRowErrors = false;
+            this.insurerGrid.Size = new System.Drawing.Size(786, 411);
+            this.insurerGrid.TabIndex = 4;
+            this.insurerGrid.ThemeName = "Office2013Light";
+            this.insurerGrid.CellDoubleClick += new Telerik.WinControls.UI.GridViewCellEventHandler(this.insurerGrid_CellDoubleClick);
+            this.insurerGrid.ContextMenuOpening += new Telerik.WinControls.UI.ContextMenuOpeningEventHandler(this.insurerGrid_ContextMenuOpening);
+            this.insurerGrid.FilterChanged += new Telerik.WinControls.UI.GridViewCollectionChangedEventHandler(this.insurerGrid_FilterChanged);
+            this.insurerGrid.SizeChanged += new System.EventHandler(this.insurerGrid_SizeChanged);
+            this.insurerGrid.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.insurerGrid_KeyPress);
             // 
-            // radButton5
+            // departmentBtn
             // 
-            this.radButton5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.radButton5.Location = new System.Drawing.Point(803, 68);
-            this.radButton5.Name = "radButton5";
-            this.radButton5.Size = new System.Drawing.Size(105, 24);
-            this.radButton5.TabIndex = 5;
-            this.radButton5.Text = "Отделы";
-            this.radButton5.ThemeName = "Office2013Light";
-            this.radButton5.Click += new System.EventHandler(this.radButton5_Click);
+            this.departmentBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.departmentBtn.Location = new System.Drawing.Point(803, 68);
+            this.departmentBtn.Name = "departmentBtn";
+            this.departmentBtn.Size = new System.Drawing.Size(105, 24);
+            this.departmentBtn.TabIndex = 5;
+            this.departmentBtn.Text = "Отделы";
+            this.departmentBtn.ThemeName = "Office2013Light";
+            this.departmentBtn.Click += new System.EventHandler(this.departmentBtn_Click);
             // 
-            // radButton6
+            // staffBtn
             // 
-            this.radButton6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.radButton6.Location = new System.Drawing.Point(803, 120);
-            this.radButton6.Name = "radButton6";
-            this.radButton6.Size = new System.Drawing.Size(105, 24);
-            this.radButton6.TabIndex = 6;
-            this.radButton6.Text = "Сотрудники";
-            this.radButton6.ThemeName = "Office2013Light";
-            this.radButton6.Click += new System.EventHandler(this.radButton6_Click);
+            this.staffBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.staffBtn.Location = new System.Drawing.Point(803, 120);
+            this.staffBtn.Name = "staffBtn";
+            this.staffBtn.Size = new System.Drawing.Size(105, 24);
+            this.staffBtn.TabIndex = 6;
+            this.staffBtn.Text = "Сотрудники";
+            this.staffBtn.ThemeName = "Office2013Light";
+            this.staffBtn.Click += new System.EventHandler(this.staffBtn_Click);
             // 
-            // radButton7
+            // selectBtn
             // 
-            this.radButton7.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.radButton7.Location = new System.Drawing.Point(803, 182);
-            this.radButton7.Name = "radButton7";
-            this.radButton7.Size = new System.Drawing.Size(105, 24);
-            this.radButton7.TabIndex = 7;
-            this.radButton7.Text = "Выбрать";
-            this.radButton7.ThemeName = "Office2013Light";
-            this.radButton7.Visible = false;
-            this.radButton7.Click += new System.EventHandler(this.radButton7_Click);
+            this.selectBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.selectBtn.Location = new System.Drawing.Point(803, 182);
+            this.selectBtn.Name = "selectBtn";
+            this.selectBtn.Size = new System.Drawing.Size(105, 24);
+            this.selectBtn.TabIndex = 7;
+            this.selectBtn.Text = "Выбрать";
+            this.selectBtn.ThemeName = "Office2013Light";
+            this.selectBtn.Visible = false;
+            this.selectBtn.Click += new System.EventHandler(this.selectBtn_Click);
             // 
-            // btnPrint
+            // printBtn
             // 
-            this.btnPrint.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnPrint.Location = new System.Drawing.Point(803, 12);
-            this.btnPrint.Name = "btnPrint";
-            this.btnPrint.Size = new System.Drawing.Size(105, 24);
-            this.btnPrint.TabIndex = 8;
-            this.btnPrint.Text = "Печать";
-            this.btnPrint.ThemeName = "Office2013Light";
-            this.btnPrint.Click += new System.EventHandler(this.btnPrint_Click);
+            this.printBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.printBtn.Location = new System.Drawing.Point(803, 12);
+            this.printBtn.Name = "printBtn";
+            this.printBtn.Size = new System.Drawing.Size(105, 24);
+            this.printBtn.TabIndex = 8;
+            this.printBtn.Text = "Печать";
+            this.printBtn.ThemeName = "Office2013Light";
+            this.printBtn.Click += new System.EventHandler(this.printBtn_Click);
             // 
             // InsurerFrm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(920, 433);
-            this.Controls.Add(this.btnPrint);
-            this.Controls.Add(this.radButton7);
-            this.Controls.Add(this.radButton6);
-            this.Controls.Add(this.radButton5);
-            this.Controls.Add(this.radButton2);
-            this.Controls.Add(this.radButton3);
-            this.Controls.Add(this.radButton4);
-            this.Controls.Add(this.radButton1);
-            this.Controls.Add(this.radGridView1);
+            this.Controls.Add(this.printBtn);
+            this.Controls.Add(this.selectBtn);
+            this.Controls.Add(this.staffBtn);
+            this.Controls.Add(this.departmentBtn);
+            this.Controls.Add(this.editBtn);
+            this.Controls.Add(this.delBtn);
+            this.Controls.Add(this.closeBtn);
+            this.Controls.Add(this.addBtn);
+            this.Controls.Add(this.insurerGrid);
             this.KeyPreview = true;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
@@ -199,16 +199,16 @@
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.InsurerFrm_FormClosed);
             this.Load += new System.EventHandler(this.Insurer_Load);
             this.Shown += new System.EventHandler(this.InsurerFrm_Shown);
-            ((System.ComponentModel.ISupportInitialize)(this.radButton2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radButton3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radButton4)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radButton1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radGridView1.MasterTemplate)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radGridView1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radButton5)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radButton6)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radButton7)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnPrint)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.editBtn)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.delBtn)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.closeBtn)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.addBtn)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.insurerGrid.MasterTemplate)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.insurerGrid)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.departmentBtn)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.staffBtn)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.selectBtn)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.printBtn)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
             this.ResumeLayout(false);
 
@@ -216,14 +216,14 @@
 
         #endregion
 
-        private Telerik.WinControls.UI.RadButton radButton2;
-        private Telerik.WinControls.UI.RadButton radButton3;
-        private Telerik.WinControls.UI.RadButton radButton4;
-        private Telerik.WinControls.UI.RadButton radButton1;
-        private Telerik.WinControls.UI.RadGridView radGridView1;
-        private Telerik.WinControls.UI.RadButton radButton5;
-        private Telerik.WinControls.UI.RadButton radButton6;
-        private Telerik.WinControls.UI.RadButton radButton7;
-        private Telerik.WinControls.UI.RadButton btnPrint;
+        private Telerik.WinControls.UI.RadButton editBtn;
+        private Telerik.WinControls.UI.RadButton delBtn;
+        private Telerik.WinControls.UI.RadButton closeBtn;
+        private Telerik.WinControls.UI.RadButton addBtn;
+        private Telerik.WinControls.UI.RadGridView insurerGrid;
+        private Telerik.WinControls.UI.RadButton departmentBtn;
+        private Telerik.WinControls.UI.RadButton staffBtn;
+        private Telerik.WinControls.UI.RadButton selectBtn;
+        private Telerik.WinControls.UI.RadButton printBtn;
     }
 }

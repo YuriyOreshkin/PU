@@ -90,13 +90,8 @@ namespace PU.FormsADW2.Report
             this.textBox37 = new Telerik.Reporting.TextBox();
             this.kem_vyd = new Telerik.Reporting.TextBox();
             this.textBox24 = new Telerik.Reporting.TextBox();
-            this.pageFooterSection1 = new Telerik.Reporting.PageFooterSection();
-            this.textBox34 = new Telerik.Reporting.TextBox();
-            this.dateFilling = new Telerik.Reporting.TextBox();
-            this.textBox36 = new Telerik.Reporting.TextBox();
-            this.textBox38 = new Telerik.Reporting.TextBox();
-            this.SNILS = new Telerik.Reporting.TextBox();
             this.textBox40 = new Telerik.Reporting.TextBox();
+            this.SNILS = new Telerik.Reporting.TextBox();
             this.textBox39 = new Telerik.Reporting.TextBox();
             this.textBox41 = new Telerik.Reporting.TextBox();
             this.LNnew = new Telerik.Reporting.TextBox();
@@ -105,6 +100,11 @@ namespace PU.FormsADW2.Report
             this.textBox45 = new Telerik.Reporting.TextBox();
             this.MNnew = new Telerik.Reporting.TextBox();
             this.textBox47 = new Telerik.Reporting.TextBox();
+            this.pageFooterSection1 = new Telerik.Reporting.PageFooterSection();
+            this.textBox34 = new Telerik.Reporting.TextBox();
+            this.dateFilling = new Telerik.Reporting.TextBox();
+            this.textBox36 = new Telerik.Reporting.TextBox();
+            this.textBox38 = new Telerik.Reporting.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             // 
             // pageHeaderSection1
@@ -786,7 +786,7 @@ namespace PU.FormsADW2.Report
             // 
             this.list1.Body.Columns.Add(new Telerik.Reporting.TableBodyColumn(Telerik.Reporting.Drawing.Unit.Cm(4.98436975479126D)));
             this.list1.Body.Columns.Add(new Telerik.Reporting.TableBodyColumn(Telerik.Reporting.Drawing.Unit.Cm(0.26458349823951721D)));
-            this.list1.Body.Columns.Add(new Telerik.Reporting.TableBodyColumn(Telerik.Reporting.Drawing.Unit.Cm(0.65062475204467773D)));
+            this.list1.Body.Columns.Add(new Telerik.Reporting.TableBodyColumn(Telerik.Reporting.Drawing.Unit.Cm(0.650624692440033D)));
             this.list1.Body.Columns.Add(new Telerik.Reporting.TableBodyColumn(Telerik.Reporting.Drawing.Unit.Cm(0.26458349823951721D)));
             this.list1.Body.Columns.Add(new Telerik.Reporting.TableBodyColumn(Telerik.Reporting.Drawing.Unit.Cm(2.1587507724761963D)));
             this.list1.Body.Columns.Add(new Telerik.Reporting.TableBodyColumn(Telerik.Reporting.Drawing.Unit.Cm(0.26458349823951721D)));
@@ -950,65 +950,17 @@ namespace PU.FormsADW2.Report
             this.textBox24.Style.VerticalAlign = Telerik.Reporting.Drawing.VerticalAlign.Middle;
             this.textBox24.Value = "Кем выдан";
             // 
-            // pageFooterSection1
+            // textBox40
             // 
-            this.pageFooterSection1.Height = Telerik.Reporting.Drawing.Unit.Cm(1.3999978303909302D);
-            this.pageFooterSection1.Items.AddRange(new Telerik.Reporting.ReportItemBase[] {
-            this.textBox34,
-            this.dateFilling,
-            this.textBox36,
-            this.textBox38});
-            this.pageFooterSection1.Name = "pageFooterSection1";
-            // 
-            // textBox34
-            // 
-            this.textBox34.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(0D), Telerik.Reporting.Drawing.Unit.Cm(0.00010012308484874666D));
-            this.textBox34.Name = "textBox34";
-            this.textBox34.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(5D), Telerik.Reporting.Drawing.Unit.Cm(0.60000002384185791D));
-            this.textBox34.Style.Font.Size = Telerik.Reporting.Drawing.Unit.Point(9D);
-            this.textBox34.Style.Padding.Left = Telerik.Reporting.Drawing.Unit.Point(2D);
-            this.textBox34.Style.TextAlign = Telerik.Reporting.Drawing.HorizontalAlign.Left;
-            this.textBox34.Style.VerticalAlign = Telerik.Reporting.Drawing.VerticalAlign.Middle;
-            this.textBox34.StyleName = "";
-            this.textBox34.Value = "Дата заполнения";
-            // 
-            // dateFilling
-            // 
-            this.dateFilling.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(0D), Telerik.Reporting.Drawing.Unit.Cm(0.60030084848403931D));
-            this.dateFilling.Name = "dateFilling";
-            this.dateFilling.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(5D), Telerik.Reporting.Drawing.Unit.Cm(0.59999996423721313D));
-            this.dateFilling.Style.BorderStyle.Bottom = Telerik.Reporting.Drawing.BorderType.Solid;
-            this.dateFilling.Style.BorderWidth.Default = Telerik.Reporting.Drawing.Unit.Pixel(1D);
-            this.dateFilling.Style.Font.Bold = false;
-            this.dateFilling.Style.Font.Size = Telerik.Reporting.Drawing.Unit.Point(9D);
-            this.dateFilling.Style.TextAlign = Telerik.Reporting.Drawing.HorizontalAlign.Left;
-            this.dateFilling.Style.VerticalAlign = Telerik.Reporting.Drawing.VerticalAlign.Middle;
-            this.dateFilling.Value = "";
-            // 
-            // textBox36
-            // 
-            this.textBox36.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(14.09999942779541D), Telerik.Reporting.Drawing.Unit.Cm(0.60030084848403931D));
-            this.textBox36.Name = "textBox36";
-            this.textBox36.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(3.8738639354705811D), Telerik.Reporting.Drawing.Unit.Cm(0.59999996423721313D));
-            this.textBox36.Style.BorderStyle.Bottom = Telerik.Reporting.Drawing.BorderType.Solid;
-            this.textBox36.Style.BorderWidth.Default = Telerik.Reporting.Drawing.Unit.Pixel(1D);
-            this.textBox36.Style.Font.Bold = false;
-            this.textBox36.Style.Font.Size = Telerik.Reporting.Drawing.Unit.Point(9D);
-            this.textBox36.Style.TextAlign = Telerik.Reporting.Drawing.HorizontalAlign.Left;
-            this.textBox36.Style.VerticalAlign = Telerik.Reporting.Drawing.VerticalAlign.Middle;
-            this.textBox36.Value = "";
-            // 
-            // textBox38
-            // 
-            this.textBox38.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(10.399999618530273D), Telerik.Reporting.Drawing.Unit.Cm(0D));
-            this.textBox38.Name = "textBox38";
-            this.textBox38.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(3.6998000144958496D), Telerik.Reporting.Drawing.Unit.Cm(1.200300931930542D));
-            this.textBox38.Style.Font.Size = Telerik.Reporting.Drawing.Unit.Point(9D);
-            this.textBox38.Style.Padding.Left = Telerik.Reporting.Drawing.Unit.Point(2D);
-            this.textBox38.Style.TextAlign = Telerik.Reporting.Drawing.HorizontalAlign.Left;
-            this.textBox38.Style.VerticalAlign = Telerik.Reporting.Drawing.VerticalAlign.Bottom;
-            this.textBox38.StyleName = "";
-            this.textBox38.Value = "Личная подпись застрахованного лица";
+            this.textBox40.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(0.025933492928743362D), Telerik.Reporting.Drawing.Unit.Cm(0.19990058243274689D));
+            this.textBox40.Name = "textBox40";
+            this.textBox40.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(3.9950037002563477D), Telerik.Reporting.Drawing.Unit.Cm(0.59999996423721313D));
+            this.textBox40.Style.Font.Bold = false;
+            this.textBox40.Style.Font.Size = Telerik.Reporting.Drawing.Unit.Point(9D);
+            this.textBox40.Style.Padding.Left = Telerik.Reporting.Drawing.Unit.Point(20D);
+            this.textBox40.Style.TextAlign = Telerik.Reporting.Drawing.HorizontalAlign.Left;
+            this.textBox40.Style.VerticalAlign = Telerik.Reporting.Drawing.VerticalAlign.Middle;
+            this.textBox40.Value = "Страховой номер";
             // 
             // SNILS
             // 
@@ -1025,18 +977,6 @@ namespace PU.FormsADW2.Report
             this.SNILS.Style.VerticalAlign = Telerik.Reporting.Drawing.VerticalAlign.Middle;
             this.SNILS.Value = "";
             // 
-            // textBox40
-            // 
-            this.textBox40.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(0.025933492928743362D), Telerik.Reporting.Drawing.Unit.Cm(0.19990058243274689D));
-            this.textBox40.Name = "textBox40";
-            this.textBox40.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(3.9950037002563477D), Telerik.Reporting.Drawing.Unit.Cm(0.59999996423721313D));
-            this.textBox40.Style.Font.Bold = false;
-            this.textBox40.Style.Font.Size = Telerik.Reporting.Drawing.Unit.Point(9D);
-            this.textBox40.Style.Padding.Left = Telerik.Reporting.Drawing.Unit.Point(20D);
-            this.textBox40.Style.TextAlign = Telerik.Reporting.Drawing.HorizontalAlign.Left;
-            this.textBox40.Style.VerticalAlign = Telerik.Reporting.Drawing.VerticalAlign.Middle;
-            this.textBox40.Value = "Страховой номер";
-            // 
             // textBox39
             // 
             this.textBox39.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(0D), Telerik.Reporting.Drawing.Unit.Cm(0.99000000953674316D));
@@ -1047,7 +987,7 @@ namespace PU.FormsADW2.Report
             this.textBox39.Style.Padding.Left = Telerik.Reporting.Drawing.Unit.Point(20D);
             this.textBox39.Style.TextAlign = Telerik.Reporting.Drawing.HorizontalAlign.Left;
             this.textBox39.Style.VerticalAlign = Telerik.Reporting.Drawing.VerticalAlign.Middle;
-            this.textBox39.Value = "Ф.И.О., указанные в страховом свидельстве";
+            this.textBox39.Value = "Ф.И.О., указанные в страховом свидетельстве";
             // 
             // textBox41
             // 
@@ -1135,6 +1075,66 @@ namespace PU.FormsADW2.Report
             this.textBox47.Style.TextAlign = Telerik.Reporting.Drawing.HorizontalAlign.Left;
             this.textBox47.Style.VerticalAlign = Telerik.Reporting.Drawing.VerticalAlign.Middle;
             this.textBox47.Value = "Отчество";
+            // 
+            // pageFooterSection1
+            // 
+            this.pageFooterSection1.Height = Telerik.Reporting.Drawing.Unit.Cm(1.3999978303909302D);
+            this.pageFooterSection1.Items.AddRange(new Telerik.Reporting.ReportItemBase[] {
+            this.textBox34,
+            this.dateFilling,
+            this.textBox36,
+            this.textBox38});
+            this.pageFooterSection1.Name = "pageFooterSection1";
+            // 
+            // textBox34
+            // 
+            this.textBox34.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(0D), Telerik.Reporting.Drawing.Unit.Cm(0.00010012308484874666D));
+            this.textBox34.Name = "textBox34";
+            this.textBox34.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(5D), Telerik.Reporting.Drawing.Unit.Cm(0.60000002384185791D));
+            this.textBox34.Style.Font.Size = Telerik.Reporting.Drawing.Unit.Point(9D);
+            this.textBox34.Style.Padding.Left = Telerik.Reporting.Drawing.Unit.Point(2D);
+            this.textBox34.Style.TextAlign = Telerik.Reporting.Drawing.HorizontalAlign.Left;
+            this.textBox34.Style.VerticalAlign = Telerik.Reporting.Drawing.VerticalAlign.Middle;
+            this.textBox34.StyleName = "";
+            this.textBox34.Value = "Дата заполнения";
+            // 
+            // dateFilling
+            // 
+            this.dateFilling.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(0D), Telerik.Reporting.Drawing.Unit.Cm(0.60030084848403931D));
+            this.dateFilling.Name = "dateFilling";
+            this.dateFilling.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(5D), Telerik.Reporting.Drawing.Unit.Cm(0.59999996423721313D));
+            this.dateFilling.Style.BorderStyle.Bottom = Telerik.Reporting.Drawing.BorderType.Solid;
+            this.dateFilling.Style.BorderWidth.Default = Telerik.Reporting.Drawing.Unit.Pixel(1D);
+            this.dateFilling.Style.Font.Bold = false;
+            this.dateFilling.Style.Font.Size = Telerik.Reporting.Drawing.Unit.Point(9D);
+            this.dateFilling.Style.TextAlign = Telerik.Reporting.Drawing.HorizontalAlign.Left;
+            this.dateFilling.Style.VerticalAlign = Telerik.Reporting.Drawing.VerticalAlign.Middle;
+            this.dateFilling.Value = "";
+            // 
+            // textBox36
+            // 
+            this.textBox36.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(14.09999942779541D), Telerik.Reporting.Drawing.Unit.Cm(0.60030084848403931D));
+            this.textBox36.Name = "textBox36";
+            this.textBox36.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(3.8738639354705811D), Telerik.Reporting.Drawing.Unit.Cm(0.59999996423721313D));
+            this.textBox36.Style.BorderStyle.Bottom = Telerik.Reporting.Drawing.BorderType.Solid;
+            this.textBox36.Style.BorderWidth.Default = Telerik.Reporting.Drawing.Unit.Pixel(1D);
+            this.textBox36.Style.Font.Bold = false;
+            this.textBox36.Style.Font.Size = Telerik.Reporting.Drawing.Unit.Point(9D);
+            this.textBox36.Style.TextAlign = Telerik.Reporting.Drawing.HorizontalAlign.Left;
+            this.textBox36.Style.VerticalAlign = Telerik.Reporting.Drawing.VerticalAlign.Middle;
+            this.textBox36.Value = "";
+            // 
+            // textBox38
+            // 
+            this.textBox38.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(10.399999618530273D), Telerik.Reporting.Drawing.Unit.Cm(0D));
+            this.textBox38.Name = "textBox38";
+            this.textBox38.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(3.6998000144958496D), Telerik.Reporting.Drawing.Unit.Cm(1.200300931930542D));
+            this.textBox38.Style.Font.Size = Telerik.Reporting.Drawing.Unit.Point(9D);
+            this.textBox38.Style.Padding.Left = Telerik.Reporting.Drawing.Unit.Point(2D);
+            this.textBox38.Style.TextAlign = Telerik.Reporting.Drawing.HorizontalAlign.Left;
+            this.textBox38.Style.VerticalAlign = Telerik.Reporting.Drawing.VerticalAlign.Bottom;
+            this.textBox38.StyleName = "";
+            this.textBox38.Value = "Личная подпись застрахованного лица";
             // 
             // ADW2_Report
             // 

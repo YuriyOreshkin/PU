@@ -10,7 +10,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("ГУ ОПФР по Республике Коми")]
 [assembly: AssemblyProduct("Документы ПУ-6")]
-[assembly: AssemblyCopyright("Copyright © ГУ ОПФР по РК 2018")]
+[assembly: AssemblyCopyright("Copyright © ГУ ОПФР по РК 2019")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -31,5 +31,5 @@ using System.Runtime.InteropServices;
 //
 // You can specify all the values or you can default the Build and Revision Numbers 
 // by using the '*' as shown below:
-[assembly: AssemblyVersion("1.1.1.969")]
-[assembly: AssemblyFileVersion("1.1.1.969")]
+[assembly: AssemblyVersion("1.1.19.1037")]
+[assembly: AssemblyFileVersion("1.1.19.1037")]

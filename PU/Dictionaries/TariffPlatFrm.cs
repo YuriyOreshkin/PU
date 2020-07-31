@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
+using System.Data.Entity;
 using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
@@ -153,7 +153,7 @@ namespace PU.FormsRSW2014
             {
                 if (!db.TariffPlat.Any(x => x.Year == tp.Year && x.PlatCategoryID == PlatCat.ID))
                 {
-                    db.TariffPlat.AddObject(tp);
+                    db.TariffPlat.Add(tp);
                     db.SaveChanges();
                     dataGrid_upd();
                     radGridView1.Rows[rowindex].IsCurrent = true;
@@ -191,7 +191,7 @@ namespace PU.FormsRSW2014
                     TarPlat.FFOMS_Percent = tp.FFOMS_Percent.Value;
                     TarPlat.TFOMS_Percent = tp.TFOMS_Percent.Value;
 
-                    db.ObjectStateManager.ChangeObjectState(TarPlat, EntityState.Modified);
+                    db.Entry(TarPlat).State = EntityState.Modified;
                     db.SaveChanges();
                     dataGrid_upd();
                     radGridView1.Rows[rowindex].IsCurrent = true;
@@ -251,7 +251,7 @@ namespace PU.FormsRSW2014
                         rowindex = rowindex + 1 == radGridView1.RowCount ? rowindex - 1 : rowindex;
 
                         TariffPlat TarPlat = db.TariffPlat.FirstOrDefault(x => x.ID == id);
-                        db.TariffPlat.DeleteObject(TarPlat);
+                        db.TariffPlat.Remove(TarPlat);
                         db.SaveChanges();
                         dataGrid_upd();
 
@@ -314,7 +314,7 @@ namespace PU.FormsRSW2014
                             TFOMS_Percent = tp.TFOMS_Percent
                         };
 
-                        db.TariffPlat.AddObject(tp_new);
+                        db.TariffPlat.Add(tp_new);
                         db.SaveChanges();
                         dataGrid_upd();
                         radGridView1.Rows.FirstOrDefault(x => x.Cells["Year"].Value.ToString() == copySpin.Value.ToString()).IsCurrent = true;

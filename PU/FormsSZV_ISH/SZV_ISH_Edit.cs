@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
+using System.Data.Entity;
 using System.Drawing;
 using System.Text;
 using System.Linq;
@@ -196,7 +196,9 @@ namespace PU.FormsSZV_ISH
 
             }
 
-            var avail_periods = Options.RaschetPeriodInternal.Where(x => x.Year <= 2017).OrderBy(x => x.Year);
+            int year = DateTime.Now.Year;
+
+            var avail_periods = Options.RaschetPeriodInternal.Where(x => x.Year < year).OrderBy(x => x.Year);
             foreach (var item in avail_periods)
             {
                 avail_periods_all.Add(item);
@@ -333,6 +335,8 @@ namespace PU.FormsSZV_ISH
                         SumFeePFR_Base.EditValue = SZV_ISH.SumFeePFR_Base.HasValue ? SZV_ISH.SumFeePFR_Base.Value : (decimal)0;
                         SumPayPFR_Strah.EditValue = SZV_ISH.SumPayPFR_Strah.HasValue ? SZV_ISH.SumPayPFR_Strah.Value : (decimal)0;
                         SumPayPFR_Nakop.EditValue = SZV_ISH.SumPayPFR_Nakop.HasValue ? SZV_ISH.SumPayPFR_Nakop.Value : (decimal)0;
+
+                        DismissedCheckBox.Checked = SZV_ISH.Dismissed.HasValue ? SZV_ISH.Dismissed.Value : false;
 
                         //Информация о сотруднике
                         staff = SZV_ISH.Staff;
@@ -572,7 +576,7 @@ namespace PU.FormsSZV_ISH
                 child.Owner = this;
                 child.ThemeName = this.ThemeName;
                 child.ShowInTaskbar = false;
-                child.ParentFormName = "SZV_KORR_Edit";
+                child.ParentFormName = "SZV_ISH_Edit";
                 child.dateControl = dateControlCheckBox.Checked;
                 child.action = "edit";
                 var y = short.Parse(Year.Text);
@@ -1174,6 +1178,7 @@ namespace PU.FormsSZV_ISH
                 SZV_ISH.Staff = staff;
                 SZV_ISH.DateFilling = DateFilling.Value.Date;
                 SZV_ISH.ContractType = ContractType.SelectedItem != null ? byte.Parse(ContractType.SelectedItem.Tag.ToString()) : (byte)0;
+                SZV_ISH.Dismissed = DismissedCheckBox.Checked;
 
                 if (ContractDate.Value != ContractDate.NullDate)
                 {
@@ -1198,7 +1203,7 @@ namespace PU.FormsSZV_ISH
                 switch (action)
                 {
                     case "add":
-                            db.AddToFormsSZV_ISH_2017(SZV_ISH);
+                            db.FormsSZV_ISH_2017.Add(SZV_ISH);
                             db.SaveChanges();
                                                 try
                         {
@@ -1224,7 +1229,7 @@ namespace PU.FormsSZV_ISH
 
                                 }
 
-                                db.AddToFormsSZV_ISH_4_2017(r);
+                                db.FormsSZV_ISH_4_2017.Add(r);
                             }
 
                             foreach (var item in FormsSZV_ISH_7_2017_List)
@@ -1249,7 +1254,7 @@ namespace PU.FormsSZV_ISH
 
                                 }
 
-                                db.AddToFormsSZV_ISH_7_2017(r);
+                                db.FormsSZV_ISH_7_2017.Add(r);
                             }
 
                             var fields_lgot = typeof(StajLgot).GetFields(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance);
@@ -1277,7 +1282,7 @@ namespace PU.FormsSZV_ISH
                                         }
 
                                     }
-                                    db.StajOsn.AddObject(r);
+                                    db.StajOsn.Add(r);
                                     try
                                     {
                                         flag_ok = false;
@@ -1310,7 +1315,7 @@ namespace PU.FormsSZV_ISH
 
                                         }
 
-                                        db.AddToStajLgot(r_);
+                                        db.StajLgot.Add(r_);
                                     }
 
                                 }
@@ -1369,7 +1374,7 @@ namespace PU.FormsSZV_ISH
 
 
                             // сохраняем модифицированную запись обратно в бд
-                            db.ObjectStateManager.ChangeObjectState(r6, EntityState.Modified);
+                            db.Entry(r6).State =  EntityState.Modified;
                             db.SaveChanges();
                             flag_ok = true;
 
@@ -1388,7 +1393,7 @@ namespace PU.FormsSZV_ISH
 
                                     foreach (var item in list_for_del)
                                     {
-                                        db.FormsSZV_ISH_4_2017.DeleteObject(item);
+                                        db.FormsSZV_ISH_4_2017.Remove(item);
                                     }
 
                                     if (list_for_del.Count() != 0)
@@ -1445,7 +1450,7 @@ namespace PU.FormsSZV_ISH
                                             if (flag_edited) // если записи отличаются
                                             {
 
-                                                db.ObjectStateManager.ChangeObjectState(szv4_temp, EntityState.Modified);
+                                                db.Entry(szv4_temp).State = EntityState.Modified;
 
                                             }
 
@@ -1471,7 +1476,7 @@ namespace PU.FormsSZV_ISH
 
                                             }
 
-                                            db.AddToFormsSZV_ISH_4_2017(r);
+                                            db.FormsSZV_ISH_4_2017.Add(r);
                                         }
 
 
@@ -1498,7 +1503,7 @@ namespace PU.FormsSZV_ISH
 
                                     foreach (var item in list_for_del)
                                     {
-                                        db.FormsSZV_ISH_7_2017.DeleteObject(item);
+                                        db.FormsSZV_ISH_7_2017.Remove(item);
                                     }
 
                                     if (list_for_del.Count() != 0)
@@ -1555,7 +1560,7 @@ namespace PU.FormsSZV_ISH
                                             if (flag_edited) // если записи отличаются
                                             {
 
-                                                db.ObjectStateManager.ChangeObjectState(szv7, EntityState.Modified);
+                                                db.Entry(szv7).State = EntityState.Modified;
 
                                             }
 
@@ -1581,7 +1586,7 @@ namespace PU.FormsSZV_ISH
 
                                             }
 
-                                            db.AddToFormsSZV_ISH_7_2017(r);
+                                            db.FormsSZV_ISH_7_2017.Add(r);
                                         }
 
 
@@ -1614,11 +1619,11 @@ namespace PU.FormsSZV_ISH
                                                 foreach (var stl in l_id)
                                                 {
                                                     StajLgot l = db.StajLgot.FirstOrDefault(x => x.ID == stl);
-                                                    db.StajLgot.DeleteObject(l);
+                                                    db.StajLgot.Remove(l);
                                                 }
                                             }
 
-                                            db.StajOsn.DeleteObject(item);
+                                            db.StajOsn.Remove(item);
                                         }
 
                                         if (list_for_del.Count() != 0)
@@ -1658,7 +1663,7 @@ namespace PU.FormsSZV_ISH
 
                                                     foreach (var item_lgot in list_for_del_lgot)
                                                     {
-                                                        db.StajLgot.DeleteObject(item_lgot);
+                                                        db.StajLgot.Remove(item_lgot);
                                                     }
 
                                                     if (list_for_del_lgot.Count() != 0)
@@ -1713,7 +1718,7 @@ namespace PU.FormsSZV_ISH
                                                             if (flag_lgot_edited) // если записи отличаются
                                                             {
 
-                                                                db.ObjectStateManager.ChangeObjectState(lgot_temp, EntityState.Modified);
+                                                                db.Entry(lgot_temp).State = EntityState.Modified;
 
                                                             }
 
@@ -1740,7 +1745,7 @@ namespace PU.FormsSZV_ISH
 
                                                             }
 
-                                                            db.AddToStajLgot(r);
+                                                            db.StajLgot.Add(r);
                                                         }
 
 
@@ -1794,7 +1799,7 @@ namespace PU.FormsSZV_ISH
                                                     if (flag_edited) // если записи отличаются
                                                     {
 
-                                                        db.ObjectStateManager.ChangeObjectState(rsw_temp, EntityState.Modified);
+                                                        db.Entry(rsw_temp).State = EntityState.Modified;
 
                                                     }
                                                 }
@@ -1821,7 +1826,7 @@ namespace PU.FormsSZV_ISH
 
                                                 }
 
-                                                db.AddToStajOsn(r);
+                                                db.StajOsn.Add(r);
                                                 try
                                                 {
                                                     flag_ok = false;
@@ -1855,7 +1860,7 @@ namespace PU.FormsSZV_ISH
 
                                                     }
 
-                                                    db.AddToStajLgot(r_);
+                                                    db.StajLgot.Add(r_);
                                                 }
 
                                             }

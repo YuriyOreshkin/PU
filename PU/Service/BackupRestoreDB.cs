@@ -188,7 +188,7 @@ namespace PU
         private void delRecordFromDB(string idlist)
         {
             string query = "DELETE FROM BackupDB_Info WHERE ID in (" + idlist + ")";
-            db.ExecuteStoreCommand(query);
+            db.Database.ExecuteSqlCommand(query);
 
             backupDBGridView_upd();
         }
@@ -259,7 +259,7 @@ namespace PU
                     Description = currentDB.name + ". Архив Базы данных программы " + AssemblyTitle + String.Format(" Версия: {0}", AssemblyVersion) + " от " + dt.ToString("dd.MM.yyyy HH:mm")
                 };
 
-                db.AddToBackupDB_Info(backup_new);
+                db.BackupDB_Info.Add(backup_new);
                 db.SaveChanges();
 
                 var dblist = props.Fields.DBList;
@@ -483,7 +483,7 @@ namespace PU
                         Description = description
                     };
 
-                    db.AddToBackupDB_Info(backup_new);
+                    db.BackupDB_Info.Add(backup_new);
                     db.SaveChanges();
 
                     backupDBGridView_upd();

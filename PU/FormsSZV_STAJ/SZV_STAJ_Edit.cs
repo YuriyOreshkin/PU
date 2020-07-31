@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
+using System.Data.Entity;
 using System.Drawing;
 using System.Text;
 using System.Linq;
@@ -130,7 +130,7 @@ namespace PU.FormsSZV_STAJ
 
                             }
 
-                            db.AddToFormsSZV_STAJ_2017(SZV_STAJ);
+                            db.FormsSZV_STAJ_2017.Add(SZV_STAJ);
                             db.SaveChanges();
                             szvID = SZV_STAJ.ID;
 
@@ -161,7 +161,7 @@ namespace PU.FormsSZV_STAJ
                                     }
 
                                 }
-                                db.StajOsn.AddObject(r);
+                                db.StajOsn.Add(r);
                                 try
                                 {
                                     flag_ok = false;
@@ -194,7 +194,7 @@ namespace PU.FormsSZV_STAJ
 
                                     }
 
-                                    db.AddToStajLgot(r_);
+                                    db.StajLgot.Add(r_);
                                 }
 
                             }
@@ -244,7 +244,7 @@ namespace PU.FormsSZV_STAJ
 
 
                             // сохраняем модифицированную запись обратно в бд
-                            db.ObjectStateManager.ChangeObjectState(szvstaj, EntityState.Modified);
+                            db.Entry(szvstaj).State = EntityState.Modified;
                             db.SaveChanges();
 
                             szvID = szvstaj.ID;
@@ -269,7 +269,7 @@ namespace PU.FormsSZV_STAJ
 
                             foreach (var item in list_for_del)
                             {
-                                db.FormsSZV_STAJ_4_2017.DeleteObject(item);
+                                db.FormsSZV_STAJ_4_2017.Remove(item);
                             }
 
                             if (list_for_del.Count() != 0)
@@ -306,9 +306,9 @@ namespace PU.FormsSZV_STAJ
                                 }
 
                                 if (!exist)
-                                    db.AddToFormsSZV_STAJ_4_2017(r);
+                                    db.FormsSZV_STAJ_4_2017.Add(r);
                                 else
-                                    db.ObjectStateManager.ChangeObjectState(r, EntityState.Modified);
+                                    db.Entry(r).State = EntityState.Modified;
 
                             }
 
@@ -342,11 +342,11 @@ namespace PU.FormsSZV_STAJ
                                         foreach (var stl in l_id)
                                         {
                                             StajLgot l = db.StajLgot.FirstOrDefault(x => x.ID == stl);
-                                            db.StajLgot.DeleteObject(l);
+                                            db.StajLgot.Remove(l);
                                         }
                                     }
 
-                                    db.StajOsn.DeleteObject(item);
+                                    db.StajOsn.Remove(item);
                                 }
 
                                 if (list_for_del.Count() != 0)
@@ -386,7 +386,7 @@ namespace PU.FormsSZV_STAJ
 
                                             foreach (var item_lgot in list_for_del_lgot)
                                             {
-                                                db.StajLgot.DeleteObject(item_lgot);
+                                                db.StajLgot.Remove(item_lgot);
                                             }
 
                                             if (list_for_del_lgot.Count() != 0)
@@ -441,7 +441,7 @@ namespace PU.FormsSZV_STAJ
                                                     if (flag_lgot_edited) // если записи отличаются
                                                     {
 
-                                                        db.ObjectStateManager.ChangeObjectState(lgot_temp, EntityState.Modified);
+                                                        db.Entry(lgot_temp).State = EntityState.Modified;
 
                                                     }
 
@@ -468,7 +468,7 @@ namespace PU.FormsSZV_STAJ
 
                                                     }
 
-                                                    db.AddToStajLgot(r);
+                                                    db.StajLgot.Add(r);
                                                 }
 
 
@@ -522,7 +522,7 @@ namespace PU.FormsSZV_STAJ
                                             if (flag_edited) // если записи отличаются
                                             {
 
-                                                db.ObjectStateManager.ChangeObjectState(rsw_temp, EntityState.Modified);
+                                                db.Entry(rsw_temp).State = EntityState.Modified;
 
                                             }
                                         }
@@ -549,7 +549,7 @@ namespace PU.FormsSZV_STAJ
 
                                         }
 
-                                        db.AddToStajOsn(r);
+                                        db.StajOsn.Add(r);
                                         try
                                         {
                                             flag_ok = false;
@@ -583,7 +583,7 @@ namespace PU.FormsSZV_STAJ
 
                                             }
 
-                                            db.AddToStajLgot(r_);
+                                            db.StajLgot.Add(r_);
                                         }
 
                                     }
@@ -642,7 +642,7 @@ namespace PU.FormsSZV_STAJ
 
                             foreach (var t in item.FormsSZV_STAJ_4_2017.ToList())
                             {
-                                db2.DeleteObject(t);
+                                db2.FormsSZV_STAJ_4_2017.Remove(t);
                             }
 
 

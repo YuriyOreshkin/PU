@@ -373,7 +373,7 @@ namespace PU.FormsADW2
 
                     try
                     {
-                        db.ExecuteStoreCommand(String.Format("DELETE FROM FormsADW_2 WHERE ([StaffID] = {0})", id));
+                        db.Database.ExecuteSqlCommand(String.Format("DELETE FROM FormsADW_2 WHERE ([StaffID] = {0})", id));
                     }
                     catch (Exception ex)
                     {
@@ -602,7 +602,7 @@ namespace PU.FormsADW2
                 child.ShowDialog();
                 if (child.adw_2 != null)
                 {
-                    db.DetectChanges();
+                    db.ChangeTracker.DetectChanges();
                     db = new pu6Entities();
                     adw2Grid_upd();
                 }
@@ -628,7 +628,7 @@ namespace PU.FormsADW2
                 child.ShowDialog();
                 if (child.adw_2 != null)
                 {
-                    db.DetectChanges();
+                    db.ChangeTracker.DetectChanges();
                     db = new pu6Entities();
                     adw2Grid_upd();
                 }
@@ -650,7 +650,7 @@ namespace PU.FormsADW2
 
                     try
                     {
-                        db.ExecuteStoreCommand(String.Format("DELETE FROM FormsADW_2 WHERE ([ID] = {0})", id));
+                        db.Database.ExecuteSqlCommand(String.Format("DELETE FROM FormsADW_2 WHERE ([ID] = {0})", id));
                     }
                     catch (Exception ex)
                     {

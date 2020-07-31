@@ -108,7 +108,6 @@
             // 
             // selectBDBtn
             // 
-            this.selectBDBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.selectBDBtn.Location = new System.Drawing.Point(490, 12);
             this.selectBDBtn.Name = "selectBDBtn";
             this.selectBDBtn.Size = new System.Drawing.Size(110, 24);
@@ -119,7 +118,6 @@
             // 
             // addBDBtn
             // 
-            this.addBDBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.addBDBtn.Location = new System.Drawing.Point(490, 62);
             this.addBDBtn.Name = "addBDBtn";
             this.addBDBtn.Size = new System.Drawing.Size(110, 24);
@@ -130,7 +128,6 @@
             // 
             // editBDBtn
             // 
-            this.editBDBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.editBDBtn.Location = new System.Drawing.Point(490, 92);
             this.editBDBtn.Name = "editBDBtn";
             this.editBDBtn.Size = new System.Drawing.Size(110, 24);
@@ -141,7 +138,6 @@
             // 
             // closeBtn
             // 
-            this.closeBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.closeBtn.Location = new System.Drawing.Point(490, 277);
             this.closeBtn.Name = "closeBtn";
             this.closeBtn.Size = new System.Drawing.Size(110, 24);
@@ -152,7 +148,6 @@
             // 
             // DelBDBtn
             // 
-            this.DelBDBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.DelBDBtn.DisplayStyle = Telerik.WinControls.DisplayStyle.Text;
             this.DelBDBtn.Items.AddRange(new Telerik.WinControls.RadItem[] {
             this.delFromListBtn,
@@ -243,7 +238,6 @@
             // 
             // updateDictBtn
             // 
-            this.updateDictBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.updateDictBtn.Location = new System.Drawing.Point(490, 212);
             this.updateDictBtn.Name = "updateDictBtn";
             this.updateDictBtn.Size = new System.Drawing.Size(110, 50);
@@ -255,7 +249,6 @@
             // 
             // radButton1
             // 
-            this.radButton1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.radButton1.Location = new System.Drawing.Point(490, 152);
             this.radButton1.Name = "radButton1";
             this.radButton1.Size = new System.Drawing.Size(110, 24);
@@ -266,7 +259,6 @@
             // 
             // radButton2
             // 
-            this.radButton2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.radButton2.Location = new System.Drawing.Point(490, 182);
             this.radButton2.Name = "radButton2";
             this.radButton2.Size = new System.Drawing.Size(110, 24);
@@ -281,12 +273,12 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(612, 390);
+            this.Controls.Add(this.closeBtn);
             this.Controls.Add(this.radButton2);
             this.Controls.Add(this.radButton1);
             this.Controls.Add(this.updateDictBtn);
             this.Controls.Add(this.radPanel1);
             this.Controls.Add(this.DelBDBtn);
-            this.Controls.Add(this.closeBtn);
             this.Controls.Add(this.editBDBtn);
             this.Controls.Add(this.addBDBtn);
             this.Controls.Add(this.selectBDBtn);

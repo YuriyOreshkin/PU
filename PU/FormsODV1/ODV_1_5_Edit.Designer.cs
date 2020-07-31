@@ -28,10 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn13 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn14 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn15 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition5 = new Telerik.WinControls.UI.TableViewDefinition();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn1 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn2 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn3 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition1 = new Telerik.WinControls.UI.TableViewDefinition();
             this.radLabel1 = new Telerik.WinControls.UI.RadLabel();
             this.Num = new Telerik.WinControls.UI.RadSpinEditor();
             this.radLabel2 = new Telerik.WinControls.UI.RadLabel();
@@ -195,7 +195,6 @@
             // 
             this.Department.Location = new System.Drawing.Point(294, 40);
             this.Department.Name = "Department";
-            this.Department.ReadOnly = true;
             this.Department.Size = new System.Drawing.Size(238, 21);
             this.Department.TabIndex = 1;
             this.Department.TabStop = false;
@@ -235,6 +234,7 @@
             // 
             // StaffCountShtat
             // 
+            this.StaffCountShtat.DecimalPlaces = 2;
             this.StaffCountShtat.Location = new System.Drawing.Point(294, 102);
             this.StaffCountShtat.Maximum = new decimal(new int[] {
             150000,
@@ -262,6 +262,11 @@
             this.StaffCountFakt.Location = new System.Drawing.Point(294, 132);
             this.StaffCountFakt.Maximum = new decimal(new int[] {
             150000,
+            0,
+            0,
+            0});
+            this.StaffCountFakt.Minimum = new decimal(new int[] {
+            1,
             0,
             0,
             0});
@@ -345,32 +350,31 @@
             this.OUT_Grid.MasterTemplate.AllowEditRow = false;
             this.OUT_Grid.MasterTemplate.AllowRowHeaderContextMenu = false;
             this.OUT_Grid.MasterTemplate.AutoSizeColumnsMode = Telerik.WinControls.UI.GridViewAutoSizeColumnsMode.Fill;
-            gridViewTextBoxColumn13.HeaderText = "column1";
-            gridViewTextBoxColumn13.IsVisible = false;
-            gridViewTextBoxColumn13.Name = "ID";
-            gridViewTextBoxColumn13.VisibleInColumnChooser = false;
-            gridViewTextBoxColumn13.Width = 46;
-            gridViewTextBoxColumn14.HeaderText = "Код особых условий труда/выслуги лет по Классификатору";
-            gridViewTextBoxColumn14.Name = "OsobUslTrudaCode";
-            gridViewTextBoxColumn14.Width = 234;
-            gridViewTextBoxColumn15.HeaderText = "Код позиции Списков    № 1 и 2, \"малого\" списка";
-            gridViewTextBoxColumn15.Name = "CodePosition";
-            gridViewTextBoxColumn15.Width = 233;
+            gridViewTextBoxColumn1.HeaderText = "column1";
+            gridViewTextBoxColumn1.IsVisible = false;
+            gridViewTextBoxColumn1.Name = "ID";
+            gridViewTextBoxColumn1.VisibleInColumnChooser = false;
+            gridViewTextBoxColumn1.Width = 46;
+            gridViewTextBoxColumn2.HeaderText = "Код особых условий труда/выслуги лет по Классификатору";
+            gridViewTextBoxColumn2.Name = "OsobUslTrudaCode";
+            gridViewTextBoxColumn2.Width = 234;
+            gridViewTextBoxColumn3.HeaderText = "Код позиции Списков    № 1 и 2, \"малого\" списка";
+            gridViewTextBoxColumn3.Name = "CodePosition";
+            gridViewTextBoxColumn3.Width = 233;
             this.OUT_Grid.MasterTemplate.Columns.AddRange(new Telerik.WinControls.UI.GridViewDataColumn[] {
-            gridViewTextBoxColumn13,
-            gridViewTextBoxColumn14,
-            gridViewTextBoxColumn15});
+            gridViewTextBoxColumn1,
+            gridViewTextBoxColumn2,
+            gridViewTextBoxColumn3});
             this.OUT_Grid.MasterTemplate.EnableCustomSorting = true;
             this.OUT_Grid.MasterTemplate.EnableGrouping = false;
             this.OUT_Grid.MasterTemplate.ShowRowHeaderColumn = false;
-            this.OUT_Grid.MasterTemplate.ViewDefinition = tableViewDefinition5;
+            this.OUT_Grid.MasterTemplate.ViewDefinition = tableViewDefinition1;
             this.OUT_Grid.Name = "OUT_Grid";
             this.OUT_Grid.Padding = new System.Windows.Forms.Padding(0, 2, 0, 0);
             this.OUT_Grid.ReadOnly = true;
             this.OUT_Grid.ShowRowErrors = false;
             this.OUT_Grid.Size = new System.Drawing.Size(467, 114);
             this.OUT_Grid.TabIndex = 20;
-            this.OUT_Grid.Text = "radGridView4";
             this.OUT_Grid.ThemeName = "Office2013Light";
             // 
             // OUT_addBtn
@@ -484,7 +488,6 @@
         #endregion
 
         private Telerik.WinControls.UI.RadLabel radLabel1;
-        private Telerik.WinControls.UI.RadSpinEditor Num;
         private Telerik.WinControls.UI.RadLabel radLabel2;
         private Telerik.WinControls.UI.RadLabel radLabel3;
         private Telerik.WinControls.UI.RadLabel radLabel4;
@@ -508,5 +511,6 @@
         public Telerik.WinControls.UI.RadButton OUT_addBtn;
         public Telerik.WinControls.UI.RadButton OUT_editBtn;
         public Telerik.WinControls.UI.RadButton OUT_delBtn;
+        public Telerik.WinControls.UI.RadSpinEditor Num;
     }
 }

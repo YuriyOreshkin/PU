@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
+using System.Data.Entity;
 using System.Drawing;
 using System.Text;
 using System.Linq;
@@ -34,6 +34,7 @@ namespace PU.FormsSZV_KORR
         private List<string> errMessBox = new List<string>();
 
         public byte period { get; set; }
+        public byte periodKorr { get; set; }
         public byte CorrNum { get; set; }
         bool allowClose = false;
 
@@ -198,6 +199,7 @@ namespace PU.FormsSZV_KORR
             INN.Text = ins.INN;
             KPP.Text = ins.KPP;
             NameShort.Text = ins.NameShort;
+            int year = DateTime.Now.Year;
 
             this.PlatCategory.Items.Clear();
 
@@ -209,7 +211,7 @@ namespace PU.FormsSZV_KORR
             }
 
 
-            var avail_periods = Options.RaschetPeriodInternal.Where(x => x.Year <= 2018).OrderBy(x => x.Year);
+            var avail_periods = Options.RaschetPeriodInternal.Where(x => x.Year <= year).OrderBy(x => x.Year);
             foreach (var item in avail_periods)
             {
                 avail_periods_all.Add(item);
@@ -425,6 +427,8 @@ namespace PU.FormsSZV_KORR
                         KorrKPP.Text = SZV_KORR.KPPKorr;
                         KorrNameShort.Text = SZV_KORR.ShortNameKorr;
 
+                        DismissedCheckBox.Checked = SZV_KORR.Dismissed.HasValue ? SZV_KORR.Dismissed.Value : false;
+
 
                         //Информация о сотруднике
                         staff = SZV_KORR.Staff;
@@ -444,6 +448,7 @@ namespace PU.FormsSZV_KORR
                 updateStaffInfo();
 
                 this.Quarter.SelectedIndexChanged += (s, с) => Quarter_SelectedIndexChanged();
+                this.KorrQuarter.SelectedIndexChanged += (s, с) => KorrQuarter_SelectedIndexChanged();
                 this.Year.SelectedIndexChanged += (s, с) => Year_SelectedIndexChanged();
                 this.KorrYear.SelectedIndexChanged += (s, с) => KorrYear_SelectedIndexChanged();
 
@@ -610,6 +615,29 @@ namespace PU.FormsSZV_KORR
 
         }
 
+        private void KorrQuarter_SelectedIndexChanged()
+        {
+            if (KorrQuarter.SelectedItem != null)
+            {
+                setKorrPeriod();
+            }
+        }
+
+        private void setKorrPeriod()
+        {
+            short y;
+            if (short.TryParse(KorrYear.SelectedItem.Text, out y))
+            {
+                byte q;
+                if (byte.TryParse(KorrQuarter.SelectedItem.Value.ToString(), out q))
+                {
+                    periodKorr = q;
+                }
+            }
+
+        }
+
+        
         #region Основной стаж
 
         /// <summary>
@@ -630,6 +658,7 @@ namespace PU.FormsSZV_KORR
                     rowInfo.Cells["Number"].Value = item.Number;
                     rowInfo.Cells["DateBegin"].Value = item.DateBegin.Value.ToShortDateString();
                     rowInfo.Cells["DateEnd"].Value = item.DateEnd.Value.ToShortDateString();
+                    rowInfo.Cells["codeBEZR"].Value = item.CodeBEZR.HasValue ? item.CodeBEZR.Value : false;
                     stajOsnGrid.Rows.Add(rowInfo);
                 }
             }
@@ -656,10 +685,10 @@ namespace PU.FormsSZV_KORR
             child.dateControl = dateControlCheckBox.Checked;
             child.formData = new StajOsn();
             child.rowindex = -1;
-            var y = short.Parse(Year.Text);
-            var q = period;
+            var y = short.Parse(KorrYear.Text);
+            var q = periodKorr;
 
-            child.period = Options.RaschetPeriodInternal.FirstOrDefault(x => x.Kvartal == q && x.Year == y);
+            child.period = avail_periods_all.FirstOrDefault(x => x.Kvartal == q && x.Year == y);
             if (StajOsn_List.Count == 0)
             {
                 child.StajBeginDate.Value = child.period.DateBegin;
@@ -1116,6 +1145,8 @@ namespace PU.FormsSZV_KORR
                 SZV_KORR.DateFilling = DateFilling.Value.Date;
                 SZV_KORR.ContractType = ContractType.SelectedItem != null ? byte.Parse(ContractType.SelectedItem.Tag.ToString()) : (byte)0;
                 SZV_KORR.TypeInfo = byte.Parse(TypeInfo.SelectedItem.Tag.ToString());
+                SZV_KORR.Dismissed = DismissedCheckBox.Checked;
+
 
                 if (!String.IsNullOrEmpty(PlatCategory.Text))
                     SZV_KORR.PlatCategoryID = long.Parse(PlatCategory.SelectedItem.Value.ToString());
@@ -1166,7 +1197,7 @@ namespace PU.FormsSZV_KORR
                 switch (action)
                 {
                     case "add":
-                        db.AddToFormsSZV_KORR_2017(SZV_KORR);
+                        db.FormsSZV_KORR_2017.Add(SZV_KORR);
                         db.SaveChanges();
                         try
                         {
@@ -1192,7 +1223,7 @@ namespace PU.FormsSZV_KORR
 
                                 }
 
-                                db.AddToFormsSZV_KORR_4_2017(r);
+                                db.FormsSZV_KORR_4_2017.Add(r);
                             }
 
                             foreach (var item in FormsSZV_KORR_5_2017_List)
@@ -1217,7 +1248,7 @@ namespace PU.FormsSZV_KORR
 
                                 }
 
-                                db.AddToFormsSZV_KORR_5_2017(r);
+                                db.FormsSZV_KORR_5_2017.Add(r);
                             }
 
                             var fields_lgot = typeof(StajLgot).GetFields(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance);
@@ -1245,7 +1276,7 @@ namespace PU.FormsSZV_KORR
                                     }
 
                                 }
-                                db.StajOsn.AddObject(r);
+                                db.StajOsn.Add(r);
                                 try
                                 {
                                     flag_ok = false;
@@ -1278,7 +1309,7 @@ namespace PU.FormsSZV_KORR
 
                                     }
 
-                                    db.AddToStajLgot(r_);
+                                    db.StajLgot.Add(r_);
                                 }
 
                             }
@@ -1338,7 +1369,7 @@ namespace PU.FormsSZV_KORR
 
 
                             // сохраняем модифицированную запись обратно в бд
-                            db.ObjectStateManager.ChangeObjectState(r6, EntityState.Modified);
+                            db.Entry(r6).State = EntityState.Modified;
                             db.SaveChanges();
                             flag_ok = true;
 
@@ -1357,7 +1388,7 @@ namespace PU.FormsSZV_KORR
 
                                     foreach (var item in list_for_del)
                                     {
-                                        db.FormsSZV_KORR_4_2017.DeleteObject(item);
+                                        db.FormsSZV_KORR_4_2017.Remove(item);
                                     }
 
                                     if (list_for_del.Count() != 0)
@@ -1413,8 +1444,7 @@ namespace PU.FormsSZV_KORR
 
                                             if (flag_edited) // если записи отличаются
                                             {
-
-                                                db.ObjectStateManager.ChangeObjectState(szv4_temp, EntityState.Modified);
+                                                db.Entry(szv4_temp).State = EntityState.Modified;
 
                                             }
 
@@ -1440,7 +1470,7 @@ namespace PU.FormsSZV_KORR
 
                                             }
 
-                                            db.AddToFormsSZV_KORR_4_2017(r);
+                                            db.FormsSZV_KORR_4_2017.Add(r);
                                         }
 
 
@@ -1467,7 +1497,7 @@ namespace PU.FormsSZV_KORR
 
                                     foreach (var item in list_for_del)
                                     {
-                                        db.FormsSZV_KORR_5_2017.DeleteObject(item);
+                                        db.FormsSZV_KORR_5_2017.Remove(item);
                                     }
 
                                     if (list_for_del.Count() != 0)
@@ -1523,8 +1553,7 @@ namespace PU.FormsSZV_KORR
 
                                             if (flag_edited) // если записи отличаются
                                             {
-
-                                                db.ObjectStateManager.ChangeObjectState(szv7, EntityState.Modified);
+                                                db.Entry(szv7).State = EntityState.Modified;
 
                                             }
 
@@ -1550,7 +1579,7 @@ namespace PU.FormsSZV_KORR
 
                                             }
 
-                                            db.AddToFormsSZV_KORR_5_2017(r);
+                                            db.FormsSZV_KORR_5_2017.Add(r);
                                         }
 
 
@@ -1583,11 +1612,11 @@ namespace PU.FormsSZV_KORR
                                             foreach (var stl in l_id)
                                             {
                                                 StajLgot l = db.StajLgot.FirstOrDefault(x => x.ID == stl);
-                                                db.StajLgot.DeleteObject(l);
+                                                db.StajLgot.Remove(l);
                                             }
                                         }
 
-                                        db.StajOsn.DeleteObject(item);
+                                        db.StajOsn.Remove(item);
                                     }
 
                                     if (list_for_del.Count() != 0)
@@ -1627,7 +1656,7 @@ namespace PU.FormsSZV_KORR
 
                                                 foreach (var item_lgot in list_for_del_lgot)
                                                 {
-                                                    db.StajLgot.DeleteObject(item_lgot);
+                                                    db.StajLgot.Remove(item_lgot);
                                                 }
 
                                                 if (list_for_del_lgot.Count() != 0)
@@ -1682,7 +1711,7 @@ namespace PU.FormsSZV_KORR
                                                         if (flag_lgot_edited) // если записи отличаются
                                                         {
 
-                                                            db.ObjectStateManager.ChangeObjectState(lgot_temp, EntityState.Modified);
+                                                            db.Entry(lgot_temp).State =  EntityState.Modified;
 
                                                         }
 
@@ -1709,7 +1738,7 @@ namespace PU.FormsSZV_KORR
 
                                                         }
 
-                                                        db.AddToStajLgot(r);
+                                                        db.StajLgot.Add(r);
                                                     }
 
 
@@ -1763,7 +1792,7 @@ namespace PU.FormsSZV_KORR
                                                 if (flag_edited) // если записи отличаются
                                                 {
 
-                                                    db.ObjectStateManager.ChangeObjectState(rsw_temp, EntityState.Modified);
+                                                    db.Entry(rsw_temp).State = EntityState.Modified;
 
                                                 }
                                             }
@@ -1790,7 +1819,8 @@ namespace PU.FormsSZV_KORR
 
                                             }
 
-                                            db.AddToStajOsn(r);
+                                            db.StajOsn.Add(r);
+
                                             try
                                             {
                                                 flag_ok = false;
@@ -1824,7 +1854,7 @@ namespace PU.FormsSZV_KORR
 
                                                 }
 
-                                                db.AddToStajLgot(r_);
+                                                db.StajLgot.Add(r_);
                                             }
 
                                         }
@@ -1866,7 +1896,7 @@ namespace PU.FormsSZV_KORR
                         }
                         catch (Exception ex)
                         {
-                            RadMessageBox.Show("При сохранение данных Раздела 6.1 произошла ошибка. Код ошибки: " + ex.Message);
+                            RadMessageBox.Show("При сохранение данных произошла ошибка. Код ошибки: " + ex.Message);
                         }
 
                         break;
@@ -2044,7 +2074,7 @@ namespace PU.FormsSZV_KORR
         {
             if (TypeInfo.SelectedItem != null)
             {
-                radGroupBox9.Enabled = TypeInfo.SelectedItem.Tag != "1";
+                //radGroupBox9.Enabled = TypeInfo.SelectedItem.Tag != "1";
                 radPageView1.Pages[1].Enabled = TypeInfo.SelectedItem.Tag != "1";
             }
         }

@@ -193,7 +193,7 @@
             this.radPageView1.Location = new System.Drawing.Point(12, 12);
             this.radPageView1.Name = "radPageView1";
             this.radPageView1.SelectedPage = this.radPageViewPage1;
-            this.radPageView1.Size = new System.Drawing.Size(723, 480);
+            this.radPageView1.Size = new System.Drawing.Size(723, 476);
             this.radPageView1.TabIndex = 0;
             this.radPageView1.ThemeName = "Office2013Light";
             this.radPageView1.ViewMode = Telerik.WinControls.UI.PageViewMode.Backstage;
@@ -220,7 +220,7 @@
             this.radPageViewPage1.ItemSize = new System.Drawing.SizeF(137F, 33F);
             this.radPageViewPage1.Location = new System.Drawing.Point(143, 6);
             this.radPageViewPage1.Name = "radPageViewPage1";
-            this.radPageViewPage1.Size = new System.Drawing.Size(574, 468);
+            this.radPageViewPage1.Size = new System.Drawing.Size(574, 464);
             this.radPageViewPage1.Text = "Основное";
             // 
             // loadRukBtn
@@ -239,7 +239,7 @@
             // DismissedCheckBox
             // 
             this.DismissedCheckBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.DismissedCheckBox.Location = new System.Drawing.Point(12, 446);
+            this.DismissedCheckBox.Location = new System.Drawing.Point(12, 442);
             this.DismissedCheckBox.Margin = new System.Windows.Forms.Padding(0, 3, 3, 3);
             this.DismissedCheckBox.Name = "DismissedCheckBox";
             this.DismissedCheckBox.Size = new System.Drawing.Size(131, 19);
@@ -391,7 +391,6 @@
             this.SZV_STAJ_4_Grid.ShowRowErrors = false;
             this.SZV_STAJ_4_Grid.Size = new System.Drawing.Size(432, 84);
             this.SZV_STAJ_4_Grid.TabIndex = 12;
-            this.SZV_STAJ_4_Grid.Text = "radGridView4";
             this.SZV_STAJ_4_Grid.ThemeName = "Office2013Light";
             // 
             // TypeInfo
@@ -507,7 +506,6 @@
             this.radLabel5.Size = new System.Drawing.Size(457, 24);
             this.radLabel5.TabIndex = 9;
             this.radLabel5.Text = "Страховые взносы по дополнительному тарифу, начислены";
-            this.radLabel5.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
             this.radLabel5.ThemeName = "Office2013Light";
             // 
             // radLabel4
@@ -519,7 +517,6 @@
             this.radLabel4.Size = new System.Drawing.Size(457, 24);
             this.radLabel4.TabIndex = 8;
             this.radLabel4.Text = "Страховые взносы на ОПС за период, начислены (уплачены)";
-            this.radLabel4.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
             this.radLabel4.ThemeName = "Office2013Light";
             // 
             // radLabel6
@@ -535,7 +532,7 @@
             // DateFillingMaskedEditBox
             // 
             this.DateFillingMaskedEditBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.DateFillingMaskedEditBox.Location = new System.Drawing.Point(466, 445);
+            this.DateFillingMaskedEditBox.Location = new System.Drawing.Point(466, 441);
             this.DateFillingMaskedEditBox.Mask = "00/00/0000";
             this.DateFillingMaskedEditBox.MaskType = Telerik.WinControls.UI.MaskType.Standard;
             this.DateFillingMaskedEditBox.Name = "DateFillingMaskedEditBox";
@@ -552,7 +549,7 @@
             this.DateFilling.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.DateFilling.CustomFormat = "dd.MM.yyyy";
             this.DateFilling.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.DateFilling.Location = new System.Drawing.Point(466, 445);
+            this.DateFilling.Location = new System.Drawing.Point(466, 441);
             this.DateFilling.MinDate = new System.DateTime(1900, 1, 1, 0, 0, 0, 0);
             this.DateFilling.Name = "DateFilling";
             this.DateFilling.NullDate = new System.DateTime(1900, 1, 1, 0, 0, 0, 0);
@@ -566,7 +563,7 @@
             // radLabel17
             // 
             this.radLabel17.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.radLabel17.Location = new System.Drawing.Point(357, 445);
+            this.radLabel17.Location = new System.Drawing.Point(357, 441);
             this.radLabel17.Name = "radLabel17";
             this.radLabel17.Size = new System.Drawing.Size(103, 19);
             this.radLabel17.TabIndex = 36;
@@ -716,7 +713,7 @@
             this.radPageViewPage5.ItemSize = new System.Drawing.SizeF(137F, 33F);
             this.radPageViewPage5.Location = new System.Drawing.Point(143, 6);
             this.radPageViewPage5.Name = "radPageViewPage5";
-            this.radPageViewPage5.Size = new System.Drawing.Size(574, 468);
+            this.radPageViewPage5.Size = new System.Drawing.Size(574, 464);
             this.radPageViewPage5.Text = "Данные о стаже";
             // 
             // radGroupBox8
@@ -730,7 +727,7 @@
             this.radGroupBox8.HeaderText = "Периоды работы за отчетный период";
             this.radGroupBox8.Location = new System.Drawing.Point(3, 3);
             this.radGroupBox8.Name = "radGroupBox8";
-            this.radGroupBox8.Size = new System.Drawing.Size(562, 462);
+            this.radGroupBox8.Size = new System.Drawing.Size(562, 458);
             this.radGroupBox8.TabIndex = 17;
             this.radGroupBox8.Text = "Периоды работы за отчетный период";
             this.radGroupBox8.ThemeName = "Office2013Light";
@@ -750,11 +747,14 @@
             this.tableLayoutPanel4.RowCount = 2;
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 55.25114F));
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 44.74886F));
-            this.tableLayoutPanel4.Size = new System.Drawing.Size(560, 438);
+            this.tableLayoutPanel4.Size = new System.Drawing.Size(560, 434);
             this.tableLayoutPanel4.TabIndex = 17;
             // 
             // panel1
             // 
+            this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.panel1.Controls.Add(this.dateControlCheckBox);
             this.panel1.Controls.Add(this.moveStajAUTO);
             this.panel1.Controls.Add(this.moveStajDOWN);
@@ -764,18 +764,17 @@
             this.panel1.Controls.Add(this.radLabel15);
             this.panel1.Controls.Add(this.radButton13);
             this.panel1.Controls.Add(this.radButton14);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Margin = new System.Windows.Forms.Padding(0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(560, 241);
+            this.panel1.Size = new System.Drawing.Size(560, 239);
             this.panel1.TabIndex = 0;
             // 
             // dateControlCheckBox
             // 
             this.dateControlCheckBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.dateControlCheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.dateControlCheckBox.Location = new System.Drawing.Point(3, 220);
+            this.dateControlCheckBox.Location = new System.Drawing.Point(3, 218);
             this.dateControlCheckBox.Margin = new System.Windows.Forms.Padding(0, 3, 3, 3);
             this.dateControlCheckBox.Name = "dateControlCheckBox";
             this.dateControlCheckBox.Size = new System.Drawing.Size(499, 19);
@@ -787,7 +786,7 @@
             // moveStajAUTO
             // 
             this.moveStajAUTO.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.moveStajAUTO.Location = new System.Drawing.Point(102, 191);
+            this.moveStajAUTO.Location = new System.Drawing.Point(102, 189);
             this.moveStajAUTO.Name = "moveStajAUTO";
             this.moveStajAUTO.Size = new System.Drawing.Size(43, 24);
             this.moveStajAUTO.TabIndex = 17;
@@ -798,7 +797,7 @@
             // moveStajDOWN
             // 
             this.moveStajDOWN.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.moveStajDOWN.Location = new System.Drawing.Point(53, 191);
+            this.moveStajDOWN.Location = new System.Drawing.Point(53, 189);
             this.moveStajDOWN.Name = "moveStajDOWN";
             this.moveStajDOWN.Size = new System.Drawing.Size(43, 24);
             this.moveStajDOWN.TabIndex = 16;
@@ -809,7 +808,7 @@
             // moveStajUP
             // 
             this.moveStajUP.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.moveStajUP.Location = new System.Drawing.Point(4, 191);
+            this.moveStajUP.Location = new System.Drawing.Point(4, 189);
             this.moveStajUP.Name = "moveStajUP";
             this.moveStajUP.Size = new System.Drawing.Size(43, 24);
             this.moveStajUP.TabIndex = 15;
@@ -867,7 +866,7 @@
             this.stajOsnGrid.Name = "stajOsnGrid";
             this.stajOsnGrid.Padding = new System.Windows.Forms.Padding(0, 2, 0, 0);
             this.stajOsnGrid.ShowRowErrors = false;
-            this.stajOsnGrid.Size = new System.Drawing.Size(557, 161);
+            this.stajOsnGrid.Size = new System.Drawing.Size(557, 159);
             this.stajOsnGrid.TabIndex = 10;
             this.stajOsnGrid.ThemeName = "Office2013Light";
             this.stajOsnGrid.CurrentRowChanged += new Telerik.WinControls.UI.CurrentRowChangedEventHandler(this.radGridView4_CurrentRowChanged);
@@ -876,7 +875,7 @@
             // radButton15
             // 
             this.radButton15.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.radButton15.Location = new System.Drawing.Point(214, 191);
+            this.radButton15.Location = new System.Drawing.Point(214, 189);
             this.radButton15.Name = "radButton15";
             this.radButton15.Size = new System.Drawing.Size(110, 24);
             this.radButton15.TabIndex = 12;
@@ -900,7 +899,7 @@
             // radButton13
             // 
             this.radButton13.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.radButton13.Location = new System.Drawing.Point(446, 191);
+            this.radButton13.Location = new System.Drawing.Point(446, 189);
             this.radButton13.Name = "radButton13";
             this.radButton13.Size = new System.Drawing.Size(110, 24);
             this.radButton13.TabIndex = 14;
@@ -911,7 +910,7 @@
             // radButton14
             // 
             this.radButton14.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.radButton14.Location = new System.Drawing.Point(330, 191);
+            this.radButton14.Location = new System.Drawing.Point(330, 189);
             this.radButton14.Name = "radButton14";
             this.radButton14.Size = new System.Drawing.Size(110, 24);
             this.radButton14.TabIndex = 13;
@@ -927,10 +926,10 @@
             this.panel2.Controls.Add(this.radButton17);
             this.panel2.Controls.Add(this.radButton18);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel2.Location = new System.Drawing.Point(0, 241);
+            this.panel2.Location = new System.Drawing.Point(0, 239);
             this.panel2.Margin = new System.Windows.Forms.Padding(0);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(560, 197);
+            this.panel2.Size = new System.Drawing.Size(560, 195);
             this.panel2.TabIndex = 1;
             // 
             // stajLgotGrid
@@ -1009,7 +1008,7 @@
             this.stajLgotGrid.Name = "stajLgotGrid";
             this.stajLgotGrid.Padding = new System.Windows.Forms.Padding(0, 2, 0, 0);
             this.stajLgotGrid.ShowRowErrors = false;
-            this.stajLgotGrid.Size = new System.Drawing.Size(557, 137);
+            this.stajLgotGrid.Size = new System.Drawing.Size(557, 135);
             this.stajLgotGrid.TabIndex = 15;
             this.stajLgotGrid.ThemeName = "Office2013Light";
             this.stajLgotGrid.CellDoubleClick += new Telerik.WinControls.UI.GridViewCellEventHandler(this.stajLgotGrid_CellDoubleClick);
@@ -1018,7 +1017,7 @@
             // radButton16
             // 
             this.radButton16.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.radButton16.Location = new System.Drawing.Point(214, 167);
+            this.radButton16.Location = new System.Drawing.Point(214, 165);
             this.radButton16.Name = "radButton16";
             this.radButton16.Size = new System.Drawing.Size(110, 24);
             this.radButton16.TabIndex = 12;
@@ -1042,7 +1041,7 @@
             // radButton17
             // 
             this.radButton17.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.radButton17.Location = new System.Drawing.Point(446, 167);
+            this.radButton17.Location = new System.Drawing.Point(446, 165);
             this.radButton17.Name = "radButton17";
             this.radButton17.Size = new System.Drawing.Size(110, 24);
             this.radButton17.TabIndex = 14;
@@ -1053,7 +1052,7 @@
             // radButton18
             // 
             this.radButton18.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.radButton18.Location = new System.Drawing.Point(330, 167);
+            this.radButton18.Location = new System.Drawing.Point(330, 165);
             this.radButton18.Name = "radButton18";
             this.radButton18.Size = new System.Drawing.Size(110, 24);
             this.radButton18.TabIndex = 13;
@@ -1064,7 +1063,7 @@
             // radButton1
             // 
             this.radButton1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.radButton1.Location = new System.Drawing.Point(489, 498);
+            this.radButton1.Location = new System.Drawing.Point(489, 494);
             this.radButton1.Name = "radButton1";
             this.radButton1.Size = new System.Drawing.Size(110, 24);
             this.radButton1.TabIndex = 1;
@@ -1075,7 +1074,7 @@
             // radButton2
             // 
             this.radButton2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.radButton2.Location = new System.Drawing.Point(605, 498);
+            this.radButton2.Location = new System.Drawing.Point(605, 494);
             this.radButton2.Name = "radButton2";
             this.radButton2.Size = new System.Drawing.Size(110, 24);
             this.radButton2.TabIndex = 2;
@@ -1087,7 +1086,7 @@
             // 
             this.radLabel7.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.radLabel7.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold);
-            this.radLabel7.Location = new System.Drawing.Point(12, 501);
+            this.radLabel7.Location = new System.Drawing.Point(12, 497);
             this.radLabel7.Name = "radLabel7";
             this.radLabel7.Size = new System.Drawing.Size(401, 18);
             this.radLabel7.TabIndex = 3;
@@ -1100,18 +1099,20 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(737, 533);
+            this.ClientSize = new System.Drawing.Size(737, 529);
             this.Controls.Add(this.radLabel7);
             this.Controls.Add(this.radButton2);
             this.Controls.Add(this.radButton1);
             this.Controls.Add(this.radPageView1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.SizableToolWindow;
-            this.MinimumSize = new System.Drawing.Size(745, 563);
+            this.MaximumSize = new System.Drawing.Size(800, 600);
+            this.MinimumSize = new System.Drawing.Size(745, 560);
             this.Name = "SZV_STAJ_Edit";
             // 
             // 
             // 
             this.RootElement.ApplyShapeToControl = true;
+            this.RootElement.MaxSize = new System.Drawing.Size(800, 600);
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Сведения о страховом стаже застрахованного лица";
             this.ThemeName = "Office2013Light";

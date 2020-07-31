@@ -272,7 +272,6 @@ namespace PU.FormsRSW2014
                 {
                     foreach (var item in param.windowData)
                     {
-                        int i = 0;
 
                         switch (item.control)
                         {

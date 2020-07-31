@@ -280,4 +280,23 @@ namespace PU.Models
 
     }
 
+    public class SPPVObject
+    {
+        public string Дата { get; set; }
+        public int Орган { get; set; }
+        public string Фамилия { get; set; }
+        public string Имя { get; set; }
+        public string Отчество { get; set; }
+        public string ДатаРождения { get; set; }
+        public string СНИЛС { get; set; }
+        public string НормативныйДокумент { get; set; }
+        public string Статья { get; set; }
+        public int ЯвляетсяГражданиномПредпенсионногоВозраста { get; set; }
+        public string ДатаС { get; set; }
+        public string ДФамилия { get; set; }
+        public string ДИмя { get; set; }
+        public string ДОтчество { get; set; }
+        public string Должность { get; set; }
+    }
+
 }

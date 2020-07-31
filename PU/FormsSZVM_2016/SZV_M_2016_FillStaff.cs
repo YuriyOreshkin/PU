@@ -585,7 +585,7 @@ namespace PU.FormsSZVM_2016
                     string list = String.Join(",", list_for_del.Select(x => x.ID).ToArray());
                     try
                     {
-                        db.ExecuteStoreCommand(String.Format("DELETE FROM FormsSZV_M_2016_Staff WHERE ([ID] IN ({0}))", list));
+                        db.Database.ExecuteSqlCommand(String.Format("DELETE FROM FormsSZV_M_2016_Staff WHERE ([ID] IN ({0}))", list));
                         Updated = true;
 
                     }
@@ -605,7 +605,7 @@ namespace PU.FormsSZVM_2016
 
                 foreach (var item in staffSelectedIDList)
                 {
-                    db.AddToFormsSZV_M_2016_Staff(new FormsSZV_M_2016_Staff { StaffID = item, FormsSZV_M_2016_ID = SZVMData.ID });
+                    db.FormsSZV_M_2016_Staff.Add(new FormsSZV_M_2016_Staff { StaffID = item, FormsSZV_M_2016_ID = SZVMData.ID });
                 }
 
                 try
@@ -628,7 +628,7 @@ namespace PU.FormsSZVM_2016
             {
                 try
                 {
-                    db.ExecuteStoreCommand(String.Format("DELETE FROM FormsSZV_M_2016_Staff WHERE ([FormsSZV_M_2016_ID] = {0})", SZVMData.ID));
+                    db.Database.ExecuteSqlCommand(String.Format("DELETE FROM FormsSZV_M_2016_Staff WHERE ([FormsSZV_M_2016_ID] = {0})", SZVMData.ID));
                     Updated = true;
                 }
                 catch (Exception ex)

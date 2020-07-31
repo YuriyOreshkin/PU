@@ -103,7 +103,7 @@ namespace PU.FormsSZVM_2016
                     SZVMnew.FormsSZV_M_2016_Staff.Add(new FormsSZV_M_2016_Staff { StaffID = staffID });
                 }
 
-                db.AddToFormsSZV_M_2016(SZVMnew);
+                db.FormsSZV_M_2016.Add(SZVMnew);
                 db.SaveChanges();
                 Methods.showAlert("Успех", "Форма СЗВ-М успешно скопирована!", this.ThemeName);
                 this.Close();

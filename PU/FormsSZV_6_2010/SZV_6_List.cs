@@ -376,6 +376,7 @@ namespace PU.FormsSZV_6_2010
                 child.InsID = Options.InsID;
                 child.ShowDialog();
                 child.Dispose();
+                db = new pu6Entities();
                 staffGrid_upd();
             }
         }
@@ -458,7 +459,7 @@ namespace PU.FormsSZV_6_2010
                 child.staff = db.Staff.FirstOrDefault(x => x.ID == id);
                 child.ShowDialog();
                 child.Dispose();
-                db.DetectChanges();
+                db.ChangeTracker.DetectChanges();
                 db = new pu6Entities();
 
                 indSvedGrid_upd();
@@ -506,7 +507,7 @@ namespace PU.FormsSZV_6_2010
                 child.action = "edit";
                 child.ShowDialog();
                 child.Dispose();
-                db.DetectChanges();
+                db.ChangeTracker.DetectChanges();
                 db = new pu6Entities();
 
                 indSvedGrid_upd();
@@ -530,7 +531,7 @@ namespace PU.FormsSZV_6_2010
 
                     try
                     {
-                        db.ExecuteStoreCommand(String.Format("DELETE FROM FormsSZV_6 WHERE ([ID] = {0})", id));
+                        db.Database.ExecuteSqlCommand(String.Format("DELETE FROM FormsSZV_6 WHERE ([ID] = {0})", id));
                     }
                     catch (Exception ex)
                     {

@@ -138,7 +138,7 @@ namespace PU.ZAGS.Zags_Born
             child.action = "add";
             child.ShowDialog();
             child.Dispose();
-            db.DetectChanges();
+            db.ChangeTracker.DetectChanges();
             db = new pu6Entities();
             bornGrid_upd();
         }
@@ -172,7 +172,7 @@ namespace PU.ZAGS.Zags_Born
 
                     try
                     {
-                        db.ExecuteStoreCommand(String.Format("DELETE FROM ZAGS_Born WHERE ([ID] = {0})", id));
+                        db.Database.ExecuteSqlCommand(String.Format("DELETE FROM ZAGS_Born WHERE ([ID] = {0})", id));
                         db = new pu6Entities();
                         bornGrid_upd();
                     }

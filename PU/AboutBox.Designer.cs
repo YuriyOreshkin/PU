@@ -107,7 +107,6 @@
             this.radLabelProductName.Size = new System.Drawing.Size(85, 17);
             this.radLabelProductName.TabIndex = 19;
             this.radLabelProductName.Text = "Product Name";
-            this.radLabelProductName.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
             this.radLabelProductName.ThemeName = "Office2013Light";
             // 
             // radLabelVersion
@@ -124,7 +123,6 @@
             this.radLabelVersion.Size = new System.Drawing.Size(47, 17);
             this.radLabelVersion.TabIndex = 0;
             this.radLabelVersion.Text = "Version";
-            this.radLabelVersion.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
             this.radLabelVersion.ThemeName = "Office2013Light";
             // 
             // radLabelCopyright
@@ -141,7 +139,6 @@
             this.radLabelCopyright.Size = new System.Drawing.Size(60, 17);
             this.radLabelCopyright.TabIndex = 21;
             this.radLabelCopyright.Text = "Copyright";
-            this.radLabelCopyright.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
             this.radLabelCopyright.ThemeName = "Office2013Light";
             // 
             // radTextBoxDescription
@@ -174,7 +171,6 @@
             this.radLabelCompanyName.Size = new System.Drawing.Size(95, 17);
             this.radLabelCompanyName.TabIndex = 22;
             this.radLabelCompanyName.Text = "Company Name";
-            this.radLabelCompanyName.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
             this.radLabelCompanyName.ThemeName = "Office2013Light";
             // 
             // radPanel1
@@ -230,7 +226,6 @@
             this.radLabel1.Size = new System.Drawing.Size(131, 17);
             this.radLabel1.TabIndex = 26;
             this.radLabel1.Text = "Сайт ОПФР по РК:";
-            this.radLabel1.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
             this.radLabel1.ThemeName = "Office2013Light";
             // 
             // radLabelContact1
@@ -242,7 +237,6 @@
             this.radLabelContact1.Size = new System.Drawing.Size(131, 17);
             this.radLabelContact1.TabIndex = 25;
             this.radLabelContact1.Text = "E-mail разработчика:";
-            this.radLabelContact1.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
             this.radLabelContact1.ThemeName = "Office2013Light";
             // 
             // pictureBox1

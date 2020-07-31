@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
+using System.Data.Entity;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -96,7 +96,7 @@ namespace PU.Dictionaries
                 {
                     if (!db.CodeBaseRW3_2015.Any(x => x.Year == child.formData.Year))
                     {
-                        db.CodeBaseRW3_2015.AddObject(child.formData);
+                        db.CodeBaseRW3_2015.Add(child.formData);
                         db.SaveChanges();
                         dataGrid_upd();
                     }
@@ -137,7 +137,7 @@ namespace PU.Dictionaries
                             tempData.Tar21 = child.formData.Tar21;
                             tempData.Tar22 = child.formData.Tar22;
 
-                            db.ObjectStateManager.ChangeObjectState(tempData, EntityState.Modified);
+                            db.Entry(tempData).State = EntityState.Modified;
                             db.SaveChanges();
                             dataGrid_upd();
                         }
@@ -169,7 +169,7 @@ namespace PU.Dictionaries
 
                 try
                 {
-                    db.DeleteObject(tempData);
+                    db.CodeBaseRW3_2015.Remove(tempData);
                     db.SaveChanges();
                     dataGrid_upd();
                 }

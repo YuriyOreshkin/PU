@@ -147,7 +147,6 @@ namespace PU.FormsRSW2014
         {
             radGridView1.Rows.Clear();
 
-            int i = 0;
             svedNachVznos_list = new List<svedNachVznos_container>();
 //            rsw61List = rsw61List.OrderBy(x => x.Staff.LastName).ThenBy(x => x.Staff.FirstName).ThenBy(x => x.Staff.MiddleName).ToList();
 

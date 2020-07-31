@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
+using System.Data.Entity;
 using System.Drawing;
 using System.Text;
 using System.Linq;
@@ -289,7 +289,7 @@ namespace PU.FormsDSW3
                             else
                                 newStaff.TabelNumber = null;
 
-                            db.AddToStaff(newStaff);
+                            db.Staff.Add(newStaff);
                             db.SaveChanges();
 
                         }
@@ -319,7 +319,7 @@ namespace PU.FormsDSW3
                                 SUMFEEPFR_PAYER = (decimal)SUMFEEPFR_PAYER.EditValue
                             };
 
-                            db.AddToFormsDSW_3_Staff(dsw3staffNew);
+                            db.FormsDSW_3_Staff.Add(dsw3staffNew);
                             try
                             {
                                 db.SaveChanges();
@@ -340,10 +340,10 @@ namespace PU.FormsDSW3
                         {
                             DSW3StaffData.SUMFEEPFR_EMPLOYERS = (decimal)SUMFEEPFR_EMPLOYERS.EditValue;
                             DSW3StaffData.SUMFEEPFR_PAYER = (decimal)SUMFEEPFR_PAYER.EditValue;
-                            db.ObjectStateManager.ChangeObjectState(DSW3StaffData, EntityState.Modified);
+                            db.Entry(DSW3StaffData).State = EntityState.Modified;
                             try
                             {
-                                db.ObjectStateManager.ChangeObjectState(DSW3StaffData, EntityState.Modified);
+                                db.Entry(DSW3StaffData).State = EntityState.Modified;
                                 db.SaveChanges();
                                 cleanData = false;
                                 this.Close();

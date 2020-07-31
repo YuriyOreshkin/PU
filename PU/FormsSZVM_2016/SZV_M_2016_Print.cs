@@ -79,6 +79,7 @@ namespace PU.FormsSZVM_2016
 
                 (SZVMRep.Items.Find("Month", true)[0] as Telerik.Reporting.TextBox).Value = SZVM.MONTH.ToString().PadLeft(2, '0');
                 (SZVMRep.Items.Find("Year", true)[0] as Telerik.Reporting.TextBox).Value = SZVM.YEAR.ToString();
+
                 (SZVMRep.Items.Find("DateFilling", true)[0] as Telerik.Reporting.TextBox).Value = SZVM.DateFilling.ToShortDateString();
 
                 string typeInfo = "";

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
+using System.Data.Entity;
 using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
@@ -82,8 +82,10 @@ namespace PU.FormsSPW2_2014
                 TypeInfo.Items.Add(new RadListDataItem(item.Name.ToString(), item.ID.ToString()));
             }
 
+            int year = DateTime.Now.Year;
+
             this.Year.Items.Clear();
-            var avail_periods = Options.RaschetPeriodInternal.Where(x => x.Year >= 2014 && x.Year <= 2018).OrderBy(x => x.Year);
+            var avail_periods = Options.RaschetPeriodInternal.Where(x => x.Year >= 2014 && x.Year <= year).OrderBy(x => x.Year);
             foreach (var item in avail_periods.Select(x => x.Year).ToList().Distinct())
             {
                 Year.Items.Add(new RadListDataItem(item.ToString(), item.ToString()));
@@ -358,7 +360,7 @@ namespace PU.FormsSPW2_2014
 
                             try
                             {
-                                db.AddToFormsSPW2(formData);
+                                db.FormsSPW2.Add(formData);
                                 db.SaveChanges();
                                 cleanData = false;
                                 this.Close();
@@ -393,7 +395,7 @@ namespace PU.FormsSPW2_2014
 
 
                                 // сохраняем модифицированную запись обратно в бд
-                                db.ObjectStateManager.ChangeObjectState(r1, System.Data.EntityState.Modified);
+                                db.Entry(r1).State = EntityState.Modified;
                                 db.SaveChanges();
                                 cleanData = false;
                                 this.Close();
@@ -471,7 +473,7 @@ namespace PU.FormsSPW2_2014
                 errMessBox.Add(new ErrList { name = "Необходимо указать дату заполнения" });
 
             if (PlatCat == null)
-                errMessBox.Add(new ErrList { name = "Необходимо выбрать Ккатегорию плательщика" });
+                errMessBox.Add(new ErrList { name = "Необходимо выбрать Категорию плательщика" });
 
             long TypeInfoID = long.Parse(TypeInfo.SelectedItem.Value.ToString());
             short y = 0;

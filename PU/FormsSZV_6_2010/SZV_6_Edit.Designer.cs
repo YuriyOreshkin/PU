@@ -267,10 +267,9 @@
             this.radPageView1.ItemSizeMode = ((Telerik.WinControls.UI.PageViewItemSizeMode)((Telerik.WinControls.UI.PageViewItemSizeMode.EqualWidth | Telerik.WinControls.UI.PageViewItemSizeMode.EqualHeight)));
             this.radPageView1.Location = new System.Drawing.Point(0, 36);
             this.radPageView1.Name = "radPageView1";
-            this.radPageView1.SelectedPage = this.radPageViewPage1;
+            this.radPageView1.SelectedPage = this.radPageViewPage3;
             this.radPageView1.Size = new System.Drawing.Size(700, 415);
             this.radPageView1.TabIndex = 0;
-            this.radPageView1.Text = "radPageView1";
             this.radPageView1.ThemeName = "Office2013Light";
             this.radPageView1.ViewMode = Telerik.WinControls.UI.PageViewMode.Backstage;
             ((Telerik.WinControls.UI.RadPageViewBackstageElement)(this.radPageView1.GetChildAt(0))).ItemSizeMode = ((Telerik.WinControls.UI.PageViewItemSizeMode)((Telerik.WinControls.UI.PageViewItemSizeMode.EqualWidth | Telerik.WinControls.UI.PageViewItemSizeMode.EqualHeight)));
@@ -917,7 +916,7 @@
             this.tableLayoutPanel1.ColumnCount = 3;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 178F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 181F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 182F));
             this.tableLayoutPanel1.Controls.Add(this.radLabel71, 0, 14);
             this.tableLayoutPanel1.Controls.Add(this.panel2, 1, 0);
             this.tableLayoutPanel1.Controls.Add(this.s_4_1, 2, 5);
@@ -992,7 +991,7 @@
             this.radLabel71.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
             this.radLabel71.Location = new System.Drawing.Point(4, 370);
             this.radLabel71.Name = "radLabel71";
-            this.radLabel71.Size = new System.Drawing.Size(123, 20);
+            this.radLabel71.Size = new System.Drawing.Size(122, 20);
             this.radLabel71.TabIndex = 41;
             this.radLabel71.Text = "Итого:";
             this.radLabel71.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
@@ -1002,10 +1001,10 @@
             this.tableLayoutPanel1.SetColumnSpan(this.panel2, 2);
             this.panel2.Controls.Add(this.radLabel23);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel2.Location = new System.Drawing.Point(131, 1);
+            this.panel2.Location = new System.Drawing.Point(130, 1);
             this.panel2.Margin = new System.Windows.Forms.Padding(0);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(360, 20);
+            this.panel2.Size = new System.Drawing.Size(361, 20);
             this.panel2.TabIndex = 3;
             // 
             // radLabel23
@@ -1014,7 +1013,7 @@
             this.radLabel23.Dock = System.Windows.Forms.DockStyle.Fill;
             this.radLabel23.Location = new System.Drawing.Point(0, 0);
             this.radLabel23.Name = "radLabel23";
-            this.radLabel23.Size = new System.Drawing.Size(360, 20);
+            this.radLabel23.Size = new System.Drawing.Size(361, 20);
             this.radLabel23.TabIndex = 1;
             this.radLabel23.Text = "Суммы выплат и вознаграждений";
             this.radLabel23.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
@@ -1029,7 +1028,7 @@
             0,
             131072});
             this.s_4_1.EnterMoveNextControl = true;
-            this.s_4_1.Location = new System.Drawing.Point(350, 127);
+            this.s_4_1.Location = new System.Drawing.Point(349, 127);
             this.s_4_1.Margin = new System.Windows.Forms.Padding(40, 3, 40, 3);
             this.s_4_1.Name = "s_4_1";
             this.s_4_1.Properties.AllowMouseWheel = false;
@@ -1042,7 +1041,7 @@
             this.s_4_1.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric;
             this.s_4_1.Properties.Mask.UseMaskAsDisplayFormat = true;
             this.s_4_1.Properties.NullText = "0,00";
-            this.s_4_1.Size = new System.Drawing.Size(101, 20);
+            this.s_4_1.Size = new System.Drawing.Size(102, 20);
             this.s_4_1.TabIndex = 15;
             // 
             // s_4_0
@@ -1054,7 +1053,7 @@
             0,
             131072});
             this.s_4_0.EnterMoveNextControl = true;
-            this.s_4_0.Location = new System.Drawing.Point(171, 127);
+            this.s_4_0.Location = new System.Drawing.Point(170, 127);
             this.s_4_0.Margin = new System.Windows.Forms.Padding(40, 3, 40, 3);
             this.s_4_0.Name = "s_4_0";
             this.s_4_0.Properties.AllowMouseWheel = false;
@@ -1077,7 +1076,7 @@
             this.radLabel20.Dock = System.Windows.Forms.DockStyle.Fill;
             this.radLabel20.Location = new System.Drawing.Point(4, 127);
             this.radLabel20.Name = "radLabel20";
-            this.radLabel20.Size = new System.Drawing.Size(123, 20);
+            this.radLabel20.Size = new System.Drawing.Size(122, 20);
             this.radLabel20.TabIndex = 4;
             this.radLabel20.Text = "Апрель";
             this.radLabel20.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
@@ -1089,7 +1088,7 @@
             this.radLabel19.Dock = System.Windows.Forms.DockStyle.Fill;
             this.radLabel19.Location = new System.Drawing.Point(4, 100);
             this.radLabel19.Name = "radLabel19";
-            this.radLabel19.Size = new System.Drawing.Size(123, 20);
+            this.radLabel19.Size = new System.Drawing.Size(122, 20);
             this.radLabel19.TabIndex = 3;
             this.radLabel19.Text = "Март";
             this.radLabel19.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
@@ -1101,7 +1100,7 @@
             this.radLabel18.Dock = System.Windows.Forms.DockStyle.Fill;
             this.radLabel18.Location = new System.Drawing.Point(4, 73);
             this.radLabel18.Name = "radLabel18";
-            this.radLabel18.Size = new System.Drawing.Size(123, 20);
+            this.radLabel18.Size = new System.Drawing.Size(122, 20);
             this.radLabel18.TabIndex = 2;
             this.radLabel18.Text = "Февраль";
             this.radLabel18.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
@@ -1113,7 +1112,7 @@
             this.radLabel16.Dock = System.Windows.Forms.DockStyle.Fill;
             this.radLabel16.Location = new System.Drawing.Point(4, 46);
             this.radLabel16.Name = "radLabel16";
-            this.radLabel16.Size = new System.Drawing.Size(123, 20);
+            this.radLabel16.Size = new System.Drawing.Size(122, 20);
             this.radLabel16.TabIndex = 0;
             this.radLabel16.Text = "Январь";
             this.radLabel16.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
@@ -1128,7 +1127,7 @@
             0,
             131072});
             this.s_3_0.EnterMoveNextControl = true;
-            this.s_3_0.Location = new System.Drawing.Point(171, 100);
+            this.s_3_0.Location = new System.Drawing.Point(170, 100);
             this.s_3_0.Margin = new System.Windows.Forms.Padding(40, 3, 40, 3);
             this.s_3_0.Name = "s_3_0";
             this.s_3_0.Properties.AllowMouseWheel = false;
@@ -1154,7 +1153,7 @@
             0,
             131072});
             this.s_3_1.EnterMoveNextControl = true;
-            this.s_3_1.Location = new System.Drawing.Point(350, 100);
+            this.s_3_1.Location = new System.Drawing.Point(349, 100);
             this.s_3_1.Margin = new System.Windows.Forms.Padding(40, 3, 40, 3);
             this.s_3_1.Name = "s_3_1";
             this.s_3_1.Properties.AllowMouseWheel = false;
@@ -1167,7 +1166,7 @@
             this.s_3_1.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric;
             this.s_3_1.Properties.Mask.UseMaskAsDisplayFormat = true;
             this.s_3_1.Properties.NullText = "0,00";
-            this.s_3_1.Size = new System.Drawing.Size(101, 20);
+            this.s_3_1.Size = new System.Drawing.Size(102, 20);
             this.s_3_1.TabIndex = 14;
             // 
             // s_2_1
@@ -1179,7 +1178,7 @@
             0,
             131072});
             this.s_2_1.EnterMoveNextControl = true;
-            this.s_2_1.Location = new System.Drawing.Point(350, 73);
+            this.s_2_1.Location = new System.Drawing.Point(349, 73);
             this.s_2_1.Margin = new System.Windows.Forms.Padding(40, 3, 40, 3);
             this.s_2_1.Name = "s_2_1";
             this.s_2_1.Properties.AllowMouseWheel = false;
@@ -1192,7 +1191,7 @@
             this.s_2_1.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric;
             this.s_2_1.Properties.Mask.UseMaskAsDisplayFormat = true;
             this.s_2_1.Properties.NullText = "0,00";
-            this.s_2_1.Size = new System.Drawing.Size(101, 20);
+            this.s_2_1.Size = new System.Drawing.Size(102, 20);
             this.s_2_1.TabIndex = 13;
             // 
             // s_2_0
@@ -1204,7 +1203,7 @@
             0,
             131072});
             this.s_2_0.EnterMoveNextControl = true;
-            this.s_2_0.Location = new System.Drawing.Point(171, 73);
+            this.s_2_0.Location = new System.Drawing.Point(170, 73);
             this.s_2_0.Margin = new System.Windows.Forms.Padding(40, 3, 40, 3);
             this.s_2_0.Name = "s_2_0";
             this.s_2_0.Properties.AllowMouseWheel = false;
@@ -1231,7 +1230,7 @@
             131072});
             this.s_1_0.Enabled = false;
             this.s_1_0.EnterMoveNextControl = true;
-            this.s_1_0.Location = new System.Drawing.Point(171, 46);
+            this.s_1_0.Location = new System.Drawing.Point(170, 46);
             this.s_1_0.Margin = new System.Windows.Forms.Padding(40, 3, 40, 3);
             this.s_1_0.Name = "s_1_0";
             this.s_1_0.Properties.AllowMouseWheel = false;
@@ -1258,7 +1257,7 @@
             131072});
             this.s_1_1.Enabled = false;
             this.s_1_1.EnterMoveNextControl = true;
-            this.s_1_1.Location = new System.Drawing.Point(350, 46);
+            this.s_1_1.Location = new System.Drawing.Point(349, 46);
             this.s_1_1.Margin = new System.Windows.Forms.Padding(40, 3, 40, 3);
             this.s_1_1.Name = "s_1_1";
             this.s_1_1.Properties.AllowMouseWheel = false;
@@ -1271,14 +1270,14 @@
             this.s_1_1.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric;
             this.s_1_1.Properties.Mask.UseMaskAsDisplayFormat = true;
             this.s_1_1.Properties.NullText = "0,00";
-            this.s_1_1.Size = new System.Drawing.Size(101, 20);
+            this.s_1_1.Size = new System.Drawing.Size(102, 20);
             this.s_1_1.TabIndex = 12;
             // 
             // radLabel22
             // 
             this.radLabel22.AutoSize = false;
             this.radLabel22.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.radLabel22.Location = new System.Drawing.Point(134, 25);
+            this.radLabel22.Location = new System.Drawing.Point(133, 25);
             this.radLabel22.Name = "radLabel22";
             this.radLabel22.Size = new System.Drawing.Size(172, 14);
             this.radLabel22.TabIndex = 6;
@@ -1290,9 +1289,9 @@
             // 
             this.radLabel25.AutoSize = false;
             this.radLabel25.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.radLabel25.Location = new System.Drawing.Point(313, 25);
+            this.radLabel25.Location = new System.Drawing.Point(312, 25);
             this.radLabel25.Name = "radLabel25";
-            this.radLabel25.Size = new System.Drawing.Size(175, 14);
+            this.radLabel25.Size = new System.Drawing.Size(176, 14);
             this.radLabel25.TabIndex = 8;
             this.radLabel25.Text = "не подлежащие обложению";
             this.radLabel25.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
@@ -1305,7 +1304,7 @@
             this.panel39.Margin = new System.Windows.Forms.Padding(0);
             this.panel39.Name = "panel39";
             this.tableLayoutPanel1.SetRowSpan(this.panel39, 2);
-            this.panel39.Size = new System.Drawing.Size(129, 41);
+            this.panel39.Size = new System.Drawing.Size(128, 41);
             this.panel39.TabIndex = 2;
             // 
             // s_5_0
@@ -1317,7 +1316,7 @@
             0,
             131072});
             this.s_5_0.EnterMoveNextControl = true;
-            this.s_5_0.Location = new System.Drawing.Point(171, 154);
+            this.s_5_0.Location = new System.Drawing.Point(170, 154);
             this.s_5_0.Margin = new System.Windows.Forms.Padding(40, 3, 40, 3);
             this.s_5_0.Name = "s_5_0";
             this.s_5_0.Properties.AllowMouseWheel = false;
@@ -1343,7 +1342,7 @@
             0,
             131072});
             this.s_5_1.EnterMoveNextControl = true;
-            this.s_5_1.Location = new System.Drawing.Point(350, 154);
+            this.s_5_1.Location = new System.Drawing.Point(349, 154);
             this.s_5_1.Margin = new System.Windows.Forms.Padding(40, 3, 40, 3);
             this.s_5_1.Name = "s_5_1";
             this.s_5_1.Properties.AllowMouseWheel = false;
@@ -1356,7 +1355,7 @@
             this.s_5_1.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric;
             this.s_5_1.Properties.Mask.UseMaskAsDisplayFormat = true;
             this.s_5_1.Properties.NullText = "0,00";
-            this.s_5_1.Size = new System.Drawing.Size(101, 20);
+            this.s_5_1.Size = new System.Drawing.Size(102, 20);
             this.s_5_1.TabIndex = 16;
             // 
             // s_6_0
@@ -1368,7 +1367,7 @@
             0,
             131072});
             this.s_6_0.EnterMoveNextControl = true;
-            this.s_6_0.Location = new System.Drawing.Point(171, 181);
+            this.s_6_0.Location = new System.Drawing.Point(170, 181);
             this.s_6_0.Margin = new System.Windows.Forms.Padding(40, 3, 40, 3);
             this.s_6_0.Name = "s_6_0";
             this.s_6_0.Properties.AllowMouseWheel = false;
@@ -1394,7 +1393,7 @@
             0,
             131072});
             this.s_6_1.EnterMoveNextControl = true;
-            this.s_6_1.Location = new System.Drawing.Point(350, 181);
+            this.s_6_1.Location = new System.Drawing.Point(349, 181);
             this.s_6_1.Margin = new System.Windows.Forms.Padding(40, 3, 40, 3);
             this.s_6_1.Name = "s_6_1";
             this.s_6_1.Properties.AllowMouseWheel = false;
@@ -1407,7 +1406,7 @@
             this.s_6_1.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric;
             this.s_6_1.Properties.Mask.UseMaskAsDisplayFormat = true;
             this.s_6_1.Properties.NullText = "0,00";
-            this.s_6_1.Size = new System.Drawing.Size(101, 20);
+            this.s_6_1.Size = new System.Drawing.Size(102, 20);
             this.s_6_1.TabIndex = 17;
             // 
             // s_7_0
@@ -1419,7 +1418,7 @@
             0,
             131072});
             this.s_7_0.EnterMoveNextControl = true;
-            this.s_7_0.Location = new System.Drawing.Point(171, 208);
+            this.s_7_0.Location = new System.Drawing.Point(170, 208);
             this.s_7_0.Margin = new System.Windows.Forms.Padding(40, 3, 40, 3);
             this.s_7_0.Name = "s_7_0";
             this.s_7_0.Properties.AllowMouseWheel = false;
@@ -1445,7 +1444,7 @@
             0,
             131072});
             this.s_7_1.EnterMoveNextControl = true;
-            this.s_7_1.Location = new System.Drawing.Point(350, 208);
+            this.s_7_1.Location = new System.Drawing.Point(349, 208);
             this.s_7_1.Margin = new System.Windows.Forms.Padding(40, 3, 40, 3);
             this.s_7_1.Name = "s_7_1";
             this.s_7_1.Properties.AllowMouseWheel = false;
@@ -1458,7 +1457,7 @@
             this.s_7_1.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric;
             this.s_7_1.Properties.Mask.UseMaskAsDisplayFormat = true;
             this.s_7_1.Properties.NullText = "0,00";
-            this.s_7_1.Size = new System.Drawing.Size(101, 20);
+            this.s_7_1.Size = new System.Drawing.Size(102, 20);
             this.s_7_1.TabIndex = 18;
             // 
             // s_8_0
@@ -1470,7 +1469,7 @@
             0,
             131072});
             this.s_8_0.EnterMoveNextControl = true;
-            this.s_8_0.Location = new System.Drawing.Point(171, 235);
+            this.s_8_0.Location = new System.Drawing.Point(170, 235);
             this.s_8_0.Margin = new System.Windows.Forms.Padding(40, 3, 40, 3);
             this.s_8_0.Name = "s_8_0";
             this.s_8_0.Properties.AllowMouseWheel = false;
@@ -1496,7 +1495,7 @@
             0,
             131072});
             this.s_8_1.EnterMoveNextControl = true;
-            this.s_8_1.Location = new System.Drawing.Point(350, 235);
+            this.s_8_1.Location = new System.Drawing.Point(349, 235);
             this.s_8_1.Margin = new System.Windows.Forms.Padding(40, 3, 40, 3);
             this.s_8_1.Name = "s_8_1";
             this.s_8_1.Properties.AllowMouseWheel = false;
@@ -1509,7 +1508,7 @@
             this.s_8_1.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric;
             this.s_8_1.Properties.Mask.UseMaskAsDisplayFormat = true;
             this.s_8_1.Properties.NullText = "0,00";
-            this.s_8_1.Size = new System.Drawing.Size(101, 20);
+            this.s_8_1.Size = new System.Drawing.Size(102, 20);
             this.s_8_1.TabIndex = 19;
             // 
             // s_9_0
@@ -1521,7 +1520,7 @@
             0,
             131072});
             this.s_9_0.EnterMoveNextControl = true;
-            this.s_9_0.Location = new System.Drawing.Point(171, 262);
+            this.s_9_0.Location = new System.Drawing.Point(170, 262);
             this.s_9_0.Margin = new System.Windows.Forms.Padding(40, 3, 40, 3);
             this.s_9_0.Name = "s_9_0";
             this.s_9_0.Properties.AllowMouseWheel = false;
@@ -1547,7 +1546,7 @@
             0,
             131072});
             this.s_9_1.EnterMoveNextControl = true;
-            this.s_9_1.Location = new System.Drawing.Point(350, 262);
+            this.s_9_1.Location = new System.Drawing.Point(349, 262);
             this.s_9_1.Margin = new System.Windows.Forms.Padding(40, 3, 40, 3);
             this.s_9_1.Name = "s_9_1";
             this.s_9_1.Properties.AllowMouseWheel = false;
@@ -1560,7 +1559,7 @@
             this.s_9_1.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric;
             this.s_9_1.Properties.Mask.UseMaskAsDisplayFormat = true;
             this.s_9_1.Properties.NullText = "0,00";
-            this.s_9_1.Size = new System.Drawing.Size(101, 20);
+            this.s_9_1.Size = new System.Drawing.Size(102, 20);
             this.s_9_1.TabIndex = 20;
             // 
             // s_10_0
@@ -1572,7 +1571,7 @@
             0,
             131072});
             this.s_10_0.EnterMoveNextControl = true;
-            this.s_10_0.Location = new System.Drawing.Point(171, 289);
+            this.s_10_0.Location = new System.Drawing.Point(170, 289);
             this.s_10_0.Margin = new System.Windows.Forms.Padding(40, 3, 40, 3);
             this.s_10_0.Name = "s_10_0";
             this.s_10_0.Properties.AllowMouseWheel = false;
@@ -1598,7 +1597,7 @@
             0,
             131072});
             this.s_10_1.EnterMoveNextControl = true;
-            this.s_10_1.Location = new System.Drawing.Point(350, 289);
+            this.s_10_1.Location = new System.Drawing.Point(349, 289);
             this.s_10_1.Margin = new System.Windows.Forms.Padding(40, 3, 40, 3);
             this.s_10_1.Name = "s_10_1";
             this.s_10_1.Properties.AllowMouseWheel = false;
@@ -1611,7 +1610,7 @@
             this.s_10_1.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric;
             this.s_10_1.Properties.Mask.UseMaskAsDisplayFormat = true;
             this.s_10_1.Properties.NullText = "0,00";
-            this.s_10_1.Size = new System.Drawing.Size(101, 20);
+            this.s_10_1.Size = new System.Drawing.Size(102, 20);
             this.s_10_1.TabIndex = 21;
             // 
             // s_11_0
@@ -1623,7 +1622,7 @@
             0,
             131072});
             this.s_11_0.EnterMoveNextControl = true;
-            this.s_11_0.Location = new System.Drawing.Point(171, 316);
+            this.s_11_0.Location = new System.Drawing.Point(170, 316);
             this.s_11_0.Margin = new System.Windows.Forms.Padding(40, 3, 40, 3);
             this.s_11_0.Name = "s_11_0";
             this.s_11_0.Properties.AllowMouseWheel = false;
@@ -1649,7 +1648,7 @@
             0,
             131072});
             this.s_11_1.EnterMoveNextControl = true;
-            this.s_11_1.Location = new System.Drawing.Point(350, 316);
+            this.s_11_1.Location = new System.Drawing.Point(349, 316);
             this.s_11_1.Margin = new System.Windows.Forms.Padding(40, 3, 40, 3);
             this.s_11_1.Name = "s_11_1";
             this.s_11_1.Properties.AllowMouseWheel = false;
@@ -1662,7 +1661,7 @@
             this.s_11_1.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric;
             this.s_11_1.Properties.Mask.UseMaskAsDisplayFormat = true;
             this.s_11_1.Properties.NullText = "0,00";
-            this.s_11_1.Size = new System.Drawing.Size(101, 20);
+            this.s_11_1.Size = new System.Drawing.Size(102, 20);
             this.s_11_1.TabIndex = 22;
             // 
             // s_12_0
@@ -1674,7 +1673,7 @@
             0,
             131072});
             this.s_12_0.EnterMoveNextControl = true;
-            this.s_12_0.Location = new System.Drawing.Point(171, 343);
+            this.s_12_0.Location = new System.Drawing.Point(170, 343);
             this.s_12_0.Margin = new System.Windows.Forms.Padding(40, 3, 40, 3);
             this.s_12_0.Name = "s_12_0";
             this.s_12_0.Properties.AllowMouseWheel = false;
@@ -1700,7 +1699,7 @@
             0,
             131072});
             this.s_12_1.EnterMoveNextControl = true;
-            this.s_12_1.Location = new System.Drawing.Point(350, 343);
+            this.s_12_1.Location = new System.Drawing.Point(349, 343);
             this.s_12_1.Margin = new System.Windows.Forms.Padding(40, 3, 40, 3);
             this.s_12_1.Name = "s_12_1";
             this.s_12_1.Properties.AllowMouseWheel = false;
@@ -1713,7 +1712,7 @@
             this.s_12_1.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric;
             this.s_12_1.Properties.Mask.UseMaskAsDisplayFormat = true;
             this.s_12_1.Properties.NullText = "0,00";
-            this.s_12_1.Size = new System.Drawing.Size(101, 20);
+            this.s_12_1.Size = new System.Drawing.Size(102, 20);
             this.s_12_1.TabIndex = 23;
             // 
             // radLabel8
@@ -1722,7 +1721,7 @@
             this.radLabel8.Dock = System.Windows.Forms.DockStyle.Fill;
             this.radLabel8.Location = new System.Drawing.Point(4, 154);
             this.radLabel8.Name = "radLabel8";
-            this.radLabel8.Size = new System.Drawing.Size(123, 20);
+            this.radLabel8.Size = new System.Drawing.Size(122, 20);
             this.radLabel8.TabIndex = 33;
             this.radLabel8.Text = "Май";
             this.radLabel8.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
@@ -1734,7 +1733,7 @@
             this.radLabel12.Dock = System.Windows.Forms.DockStyle.Fill;
             this.radLabel12.Location = new System.Drawing.Point(4, 181);
             this.radLabel12.Name = "radLabel12";
-            this.radLabel12.Size = new System.Drawing.Size(123, 20);
+            this.radLabel12.Size = new System.Drawing.Size(122, 20);
             this.radLabel12.TabIndex = 34;
             this.radLabel12.Text = "Июнь";
             this.radLabel12.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
@@ -1746,7 +1745,7 @@
             this.radLabel13.Dock = System.Windows.Forms.DockStyle.Fill;
             this.radLabel13.Location = new System.Drawing.Point(4, 208);
             this.radLabel13.Name = "radLabel13";
-            this.radLabel13.Size = new System.Drawing.Size(123, 20);
+            this.radLabel13.Size = new System.Drawing.Size(122, 20);
             this.radLabel13.TabIndex = 35;
             this.radLabel13.Text = "Июль";
             this.radLabel13.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
@@ -1758,7 +1757,7 @@
             this.radLabel14.Dock = System.Windows.Forms.DockStyle.Fill;
             this.radLabel14.Location = new System.Drawing.Point(4, 235);
             this.radLabel14.Name = "radLabel14";
-            this.radLabel14.Size = new System.Drawing.Size(123, 20);
+            this.radLabel14.Size = new System.Drawing.Size(122, 20);
             this.radLabel14.TabIndex = 36;
             this.radLabel14.Text = "Август";
             this.radLabel14.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
@@ -1770,7 +1769,7 @@
             this.radLabel15.Dock = System.Windows.Forms.DockStyle.Fill;
             this.radLabel15.Location = new System.Drawing.Point(4, 262);
             this.radLabel15.Name = "radLabel15";
-            this.radLabel15.Size = new System.Drawing.Size(123, 20);
+            this.radLabel15.Size = new System.Drawing.Size(122, 20);
             this.radLabel15.TabIndex = 37;
             this.radLabel15.Text = "Сентябрь";
             this.radLabel15.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
@@ -1782,7 +1781,7 @@
             this.radLabel21.Dock = System.Windows.Forms.DockStyle.Fill;
             this.radLabel21.Location = new System.Drawing.Point(4, 289);
             this.radLabel21.Name = "radLabel21";
-            this.radLabel21.Size = new System.Drawing.Size(123, 20);
+            this.radLabel21.Size = new System.Drawing.Size(122, 20);
             this.radLabel21.TabIndex = 38;
             this.radLabel21.Text = "Октябрь";
             this.radLabel21.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
@@ -1794,7 +1793,7 @@
             this.radLabel26.Dock = System.Windows.Forms.DockStyle.Fill;
             this.radLabel26.Location = new System.Drawing.Point(4, 316);
             this.radLabel26.Name = "radLabel26";
-            this.radLabel26.Size = new System.Drawing.Size(123, 20);
+            this.radLabel26.Size = new System.Drawing.Size(122, 20);
             this.radLabel26.TabIndex = 39;
             this.radLabel26.Text = "Ноябрь";
             this.radLabel26.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
@@ -1806,7 +1805,7 @@
             this.radLabel27.Dock = System.Windows.Forms.DockStyle.Fill;
             this.radLabel27.Location = new System.Drawing.Point(4, 343);
             this.radLabel27.Name = "radLabel27";
-            this.radLabel27.Size = new System.Drawing.Size(123, 20);
+            this.radLabel27.Size = new System.Drawing.Size(122, 20);
             this.radLabel27.TabIndex = 40;
             this.radLabel27.Text = "Декабрь";
             this.radLabel27.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
@@ -1817,7 +1816,7 @@
             this.OPSLabel_All.AutoSize = false;
             this.OPSLabel_All.Dock = System.Windows.Forms.DockStyle.Fill;
             this.OPSLabel_All.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
-            this.OPSLabel_All.Location = new System.Drawing.Point(134, 370);
+            this.OPSLabel_All.Location = new System.Drawing.Point(133, 370);
             this.OPSLabel_All.Name = "OPSLabel_All";
             this.OPSLabel_All.Padding = new System.Windows.Forms.Padding(0, 0, 38, 0);
             this.OPSLabel_All.Size = new System.Drawing.Size(172, 20);
@@ -1830,10 +1829,10 @@
             this.OPSLabel_MoreBase.AutoSize = false;
             this.OPSLabel_MoreBase.Dock = System.Windows.Forms.DockStyle.Fill;
             this.OPSLabel_MoreBase.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
-            this.OPSLabel_MoreBase.Location = new System.Drawing.Point(313, 370);
+            this.OPSLabel_MoreBase.Location = new System.Drawing.Point(312, 370);
             this.OPSLabel_MoreBase.Name = "OPSLabel_MoreBase";
             this.OPSLabel_MoreBase.Padding = new System.Windows.Forms.Padding(0, 0, 38, 0);
-            this.OPSLabel_MoreBase.Size = new System.Drawing.Size(175, 20);
+            this.OPSLabel_MoreBase.Size = new System.Drawing.Size(176, 20);
             this.OPSLabel_MoreBase.TabIndex = 43;
             this.OPSLabel_MoreBase.Text = "0.00";
             this.OPSLabel_MoreBase.TextAlignment = System.Drawing.ContentAlignment.MiddleRight;

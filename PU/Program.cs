@@ -21,6 +21,9 @@ namespace PU
             string path = Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles);
             string path86 = Environment.GetFolderPath(Environment.SpecialFolder.ProgramFilesX86);
             OperatingSystem OS = Environment.OSVersion;
+
+
+
             if ((Application.StartupPath.Contains(path) || Application.StartupPath.Contains(path86)) && OS.Version.Major > 5)  // если программа запускается из системного каталога Program Files и версия больше Windows XP
             {
                 WindowsPrincipal pricipal = new WindowsPrincipal(WindowsIdentity.GetCurrent());
@@ -44,6 +47,8 @@ namespace PU
                 else //имеем права администратора, значит, стартуем
                 {
 
+                    //SetProcessDPIAware();
+
                     if (args.Count() > 0)
                         readArgs(args);
                     Application.EnableVisualStyles();
@@ -53,6 +58,7 @@ namespace PU
             }
             else
             {
+                //SetProcessDPIAware();
                 if (args.Count() > 0)
                     readArgs(args);
                 Application.EnableVisualStyles();
@@ -63,6 +69,9 @@ namespace PU
 
 
         }
+
+        //[System.Runtime.InteropServices.DllImport("user32.dll")]
+        //private static extern bool SetProcessDPIAware();
 
         static void readArgs(string[] args)
         {

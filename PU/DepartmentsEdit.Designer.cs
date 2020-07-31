@@ -67,7 +67,7 @@
             // 
             this.radTextBox2.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.radTextBox2.Location = new System.Drawing.Point(123, 35);
-            this.radTextBox2.MaxLength = 40;
+            this.radTextBox2.MaxLength = 1000;
             this.radTextBox2.Name = "radTextBox2";
             this.radTextBox2.Size = new System.Drawing.Size(269, 21);
             this.radTextBox2.TabIndex = 1;
@@ -77,7 +77,7 @@
             // 
             this.radTextBox1.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.radTextBox1.Location = new System.Drawing.Point(123, 10);
-            this.radTextBox1.MaxLength = 6;
+            this.radTextBox1.MaxLength = 20;
             this.radTextBox1.Name = "radTextBox1";
             this.radTextBox1.Size = new System.Drawing.Size(57, 21);
             this.radTextBox1.TabIndex = 0;

@@ -3,7 +3,7 @@ using PU.UserAccess;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
+using System.Data.Entity;
 using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
@@ -210,14 +210,14 @@ namespace PU.Service
                     {
                         itemFromDB.AccessLevelID = item.AccessLevelID.Value;
 
-                        xaccessDB.ObjectStateManager.ChangeObjectState(itemFromDB, EntityState.Modified);
+                        xaccessDB.Entry(itemFromDB).State = EntityState.Modified;
                     }
 
 
                 }
                 else  // если такого объекта еще нет то добавляем его
                 {
-                    xaccessDB.AddToUsersAccessLevelToObjects(item);
+                    xaccessDB.UsersAccessLevelToObjects.Add(item);
                 }
             }
 

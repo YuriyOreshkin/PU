@@ -370,7 +370,7 @@ namespace PU.FormsDSW3
                 child.ShowDialog();
                 if (child.DSW3Data != null)
                 {
-                    db.DetectChanges();
+                    db.ChangeTracker.DetectChanges();
                     db = new pu6Entities();
                     dsw3Grid_upd();
                     string num = child.DSW3Data.NUMBERPAYMENT;
@@ -394,7 +394,7 @@ namespace PU.FormsDSW3
                 child.ShowDialog();
                 if (child.DSW3Data != null)
                 {
-                    db.DetectChanges();
+                    db.ChangeTracker.DetectChanges();
                     db = new pu6Entities();
                     dsw3Grid_upd();
                 }
@@ -415,12 +415,13 @@ namespace PU.FormsDSW3
                     string id = dsw3GridView.CurrentRow.Cells[0].Value.ToString();
                     try
                     {
-                        db.ExecuteStoreCommand(String.Format("DELETE FROM FormsDSW_3 WHERE ([ID] = {0})", id));
+                        db.Database.ExecuteSqlCommand(String.Format("DELETE FROM FormsDSW_3 WHERE ([ID] = {0})", id));
                     }
                     catch (Exception ex)
                     {
                         RadMessageBox.Show(this, "При удалении записи произошла ошибка! Код ошибки: " + ex.Message, "Ошибка", MessageBoxButtons.OK, RadMessageIcon.Error, MessageBoxDefaultButton.Button1);
                     }
+                    db = new pu6Entities();
                     dsw3Grid_upd();
                     this.Cursor = Cursors.Default;
                 }
@@ -493,7 +494,7 @@ namespace PU.FormsDSW3
                 child.ShowDialog();
                 if (child.DSW3StaffData != null)
                 {
-                    db.DetectChanges();
+                    db.ChangeTracker.DetectChanges();
                     db = new pu6Entities();
                     staffGrid_upd();
                 }
@@ -518,7 +519,7 @@ namespace PU.FormsDSW3
                 child.ShowDialog();
                 if (child.DSW3StaffData != null)
                 {
-                    db.DetectChanges();
+                    db.ChangeTracker.DetectChanges();
                     db = new pu6Entities();
                     staffGrid_upd();
                 }
@@ -539,12 +540,13 @@ namespace PU.FormsDSW3
 
                     try
                     {
-                        db.ExecuteStoreCommand(String.Format("DELETE FROM FormsDSW_3_Staff WHERE ([ID] = {0})", id));
+                        db.Database.ExecuteSqlCommand(String.Format("DELETE FROM FormsDSW_3_Staff WHERE ([ID] = {0})", id));
                     }
                     catch (Exception ex)
                     {
                         RadMessageBox.Show(this, "При удалении записи произошла ошибка! Код ошибки: " + ex.Message, "Ошибка", MessageBoxButtons.OK, RadMessageIcon.Error, MessageBoxDefaultButton.Button1);
                     }
+                    db = new pu6Entities();
                     staffGrid_upd();
 
                 }
@@ -629,7 +631,7 @@ namespace PU.FormsDSW3
                 child.ThemeName = this.ThemeName;
                 child.dsw3ID = dsw3ID;
                 child.ShowDialog();
-                db.DetectChanges();
+                db.ChangeTracker.DetectChanges();
                 db = new pu6Entities();
                 dsw3Grid_upd();
             }

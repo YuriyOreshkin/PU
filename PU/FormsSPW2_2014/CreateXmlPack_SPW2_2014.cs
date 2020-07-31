@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
+using System.Data.Entity;
 using System.Drawing;
 using System.Text;
 using System.Linq;
@@ -340,7 +340,7 @@ namespace PU.FormsSPW2_2014
                         byte q_;
                         if (byte.TryParse(Quarter.SelectedItem.Value.ToString(), out q_))
                         {
-                            dbxml.ExecuteStoreCommand(String.Format("DELETE FROM xmlInfo WHERE ([Year] = {0} AND [Quarter] = {1} AND [InsurerID] = {2} AND [FormatType] = 'spw2_2014')", y_, q_, Options.InsID));
+                            dbxml.Database.ExecuteSqlCommand(String.Format("DELETE FROM xmlInfo WHERE ([Year] = {0} AND [Quarter] = {1} AND [InsurerID] = {2} AND [FormatType] = 'spw2_2014')", y_, q_, Options.InsID));
                         }
                     }
                 }
@@ -446,7 +446,7 @@ namespace PU.FormsSPW2_2014
                             xml_info.QuarterKorr = spw2List_work.First().QuarterKorr;
                         }
 
-                        dbxml.AddToxmlInfo(xml_info);
+                        dbxml.xmlInfo.Add(xml_info);
                         dbxml.SaveChanges();
 
 
@@ -477,12 +477,12 @@ namespace PU.FormsSPW2_2014
                                 FormsRSW_6_1_ID = spw2Item.ID
                             };
 
-                            dbxml.AddToStaffList(staffListNewItem);
+                            dbxml.StaffList.Add(staffListNewItem);
 
 
                         }
 
-                        dbxml.ObjectStateManager.ChangeObjectState(xml_info, EntityState.Modified);
+                        dbxml.Entry(xml_info).State = EntityState.Modified;
                         dbxml.SaveChanges();
                     }
 
@@ -502,7 +502,7 @@ namespace PU.FormsSPW2_2014
                 //        XmlInfoID = item.ID
                 //    };
 
-                //    dbxml.xmlFile.AddObject(xmlFile_);
+                //    dbxml.xmlFile.Add(xmlFile_);
                 //    dbxml.SaveChanges();
                 //}
             }
@@ -532,7 +532,7 @@ namespace PU.FormsSPW2_2014
                                             new XElement("ТипФайла", "ВНЕШНИЙ"),
                                             new XElement("ПрограммаПодготовкиДанных",
                                                 new XElement("НазваниеПрограммы", Application.ProductName.ToUpper()),
-                                                new XElement("Версия", Application.ProductVersion)),
+                                                new XElement("Версия", Application.ProductVersion.Substring(2, Application.ProductVersion.Length - 2))),
                                             new XElement("ИсточникДанных", "СТРАХОВАТЕЛЬ")),
                                         new XElement("ПачкаВходящихДокументов", new XAttribute("Окружение", "В составе файла"), new XAttribute("Стадия", "До обработки"))));
 

@@ -57,6 +57,10 @@
             this.INN_ = new Telerik.WinControls.UI.RadTextBox();
             this.radPageView1 = new Telerik.WinControls.UI.RadPageView();
             this.radPageViewPage1 = new Telerik.WinControls.UI.RadPageViewPage();
+            this.findDolgnBtn = new Telerik.WinControls.UI.RadButton();
+            this.cleanDolgnBtn = new Telerik.WinControls.UI.RadButton();
+            this.DolgnTextBox = new Telerik.WinControls.UI.RadTextBox();
+            this.DolgnLabel = new Telerik.WinControls.UI.RadLabel();
             this.radPageViewPage2 = new Telerik.WinControls.UI.RadPageViewPage();
             this.dateWorkGrid = new Telerik.WinControls.UI.RadGridView();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).BeginInit();
@@ -89,6 +93,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.radPageView1)).BeginInit();
             this.radPageView1.SuspendLayout();
             this.radPageViewPage1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.findDolgnBtn)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cleanDolgnBtn)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DolgnTextBox)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DolgnLabel)).BeginInit();
             this.radPageViewPage2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dateWorkGrid)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dateWorkGrid.MasterTemplate)).BeginInit();
@@ -137,7 +145,7 @@
             this.TabelNumber_.MaskType = Telerik.WinControls.UI.MaskType.Numeric;
             this.TabelNumber_.Name = "TabelNumber_";
             this.TabelNumber_.Size = new System.Drawing.Size(100, 21);
-            this.TabelNumber_.TabIndex = 1;
+            this.TabelNumber_.TabIndex = 2;
             this.TabelNumber_.TabStop = false;
             this.TabelNumber_.Text = "0";
             this.TabelNumber_.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
@@ -159,7 +167,7 @@
             this.Dismissed_.Margin = new System.Windows.Forms.Padding(3, 10, 3, 3);
             this.Dismissed_.Name = "Dismissed_";
             this.Dismissed_.Size = new System.Drawing.Size(127, 19);
-            this.Dismissed_.TabIndex = 13;
+            this.Dismissed_.TabIndex = 1;
             this.Dismissed_.Text = "Сотрудник уволен";
             this.Dismissed_.ThemeName = "Office2013Light";
             // 
@@ -220,7 +228,7 @@
             this.DateBirth_.Name = "DateBirth_";
             this.DateBirth_.NullDate = new System.DateTime(1900, 1, 1, 0, 0, 0, 0);
             this.DateBirth_.Size = new System.Drawing.Size(106, 21);
-            this.DateBirth_.TabIndex = 9;
+            this.DateBirth_.TabIndex = 10;
             this.DateBirth_.TabStop = false;
             this.DateBirth_.ThemeName = "Office2013Light";
             this.DateBirth_.Value = new System.DateTime(1900, 1, 1, 0, 0, 0, 0);
@@ -235,11 +243,11 @@
             this.radGroupBox1.Controls.Add(this.DepCode_);
             this.radGroupBox1.GroupBoxStyle = Telerik.WinControls.UI.RadGroupBoxStyle.Office;
             this.radGroupBox1.HeaderText = "Структурное подразделение, отдел";
-            this.radGroupBox1.Location = new System.Drawing.Point(3, 239);
+            this.radGroupBox1.Location = new System.Drawing.Point(3, 297);
             this.radGroupBox1.Margin = new System.Windows.Forms.Padding(3, 20, 3, 3);
             this.radGroupBox1.Name = "radGroupBox1";
             this.radGroupBox1.Size = new System.Drawing.Size(371, 70);
-            this.radGroupBox1.TabIndex = 10;
+            this.radGroupBox1.TabIndex = 14;
             this.radGroupBox1.Text = "Структурное подразделение, отдел";
             this.radGroupBox1.ThemeName = "Office2013Light";
             // 
@@ -248,7 +256,7 @@
             this.cleanDepBtn.Location = new System.Drawing.Point(304, 30);
             this.cleanDepBtn.Name = "cleanDepBtn";
             this.cleanDepBtn.Size = new System.Drawing.Size(28, 21);
-            this.cleanDepBtn.TabIndex = 3;
+            this.cleanDepBtn.TabIndex = 2;
             this.cleanDepBtn.Text = "Х";
             this.cleanDepBtn.ThemeName = "Office2013Light";
             this.cleanDepBtn.Click += new System.EventHandler(this.cleanDepBtn_Click);
@@ -258,7 +266,7 @@
             this.radButton1.Location = new System.Drawing.Point(338, 30);
             this.radButton1.Name = "radButton1";
             this.radButton1.Size = new System.Drawing.Size(28, 21);
-            this.radButton1.TabIndex = 2;
+            this.radButton1.TabIndex = 3;
             this.radButton1.Text = ". . .";
             this.radButton1.ThemeName = "Office2013Light";
             this.radButton1.Click += new System.EventHandler(this.radButton1_Click);
@@ -286,11 +294,11 @@
             // radButton2
             // 
             this.radButton2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.radButton2.Location = new System.Drawing.Point(295, 379);
+            this.radButton2.Location = new System.Drawing.Point(295, 442);
             this.radButton2.Margin = new System.Windows.Forms.Padding(3, 20, 3, 3);
             this.radButton2.Name = "radButton2";
             this.radButton2.Size = new System.Drawing.Size(110, 24);
-            this.radButton2.TabIndex = 12;
+            this.radButton2.TabIndex = 2;
             this.radButton2.Text = "Отмена";
             this.radButton2.ThemeName = "Office2013Light";
             this.radButton2.Click += new System.EventHandler(this.radButton2_Click);
@@ -298,41 +306,38 @@
             // radButton3
             // 
             this.radButton3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.radButton3.Location = new System.Drawing.Point(167, 379);
+            this.radButton3.Location = new System.Drawing.Point(167, 442);
             this.radButton3.Margin = new System.Windows.Forms.Padding(3, 20, 3, 3);
             this.radButton3.Name = "radButton3";
             this.radButton3.Size = new System.Drawing.Size(110, 24);
-            this.radButton3.TabIndex = 11;
+            this.radButton3.TabIndex = 1;
             this.radButton3.Text = "Сохранить";
             this.radButton3.ThemeName = "Office2013Light";
             this.radButton3.Click += new System.EventHandler(this.radButton3_Click);
             // 
             // MiddleName_
             // 
-            this.MiddleName_.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.MiddleName_.Location = new System.Drawing.Point(119, 132);
             this.MiddleName_.Name = "MiddleName_";
             this.MiddleName_.Size = new System.Drawing.Size(255, 21);
-            this.MiddleName_.TabIndex = 5;
+            this.MiddleName_.TabIndex = 6;
             this.MiddleName_.ThemeName = "Office2013Light";
             // 
             // LastName_
             // 
-            this.LastName_.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.LastName_.Location = new System.Drawing.Point(119, 78);
             this.LastName_.Margin = new System.Windows.Forms.Padding(3, 15, 3, 3);
             this.LastName_.Name = "LastName_";
             this.LastName_.Size = new System.Drawing.Size(255, 21);
-            this.LastName_.TabIndex = 3;
+            this.LastName_.TabIndex = 4;
             this.LastName_.ThemeName = "Office2013Light";
             // 
             // FirstName_
             // 
-            this.FirstName_.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.FirstName_.Location = new System.Drawing.Point(119, 105);
             this.FirstName_.Name = "FirstName_";
             this.FirstName_.Size = new System.Drawing.Size(255, 21);
-            this.FirstName_.TabIndex = 4;
+            this.FirstName_.TabIndex = 5;
             this.FirstName_.ThemeName = "Office2013Light";
             // 
             // SexMRadioButton
@@ -340,7 +345,7 @@
             this.SexMRadioButton.Location = new System.Drawing.Point(119, 170);
             this.SexMRadioButton.Name = "SexMRadioButton";
             this.SexMRadioButton.Size = new System.Drawing.Size(35, 19);
-            this.SexMRadioButton.TabIndex = 6;
+            this.SexMRadioButton.TabIndex = 7;
             this.SexMRadioButton.Text = "М";
             this.SexMRadioButton.ThemeName = "Office2013Light";
             // 
@@ -349,7 +354,7 @@
             this.SexFRadioButton.Location = new System.Drawing.Point(160, 170);
             this.SexFRadioButton.Name = "SexFRadioButton";
             this.SexFRadioButton.Size = new System.Drawing.Size(34, 19);
-            this.SexFRadioButton.TabIndex = 7;
+            this.SexFRadioButton.TabIndex = 8;
             this.SexFRadioButton.Text = "Ж";
             this.SexFRadioButton.ThemeName = "Office2013Light";
             // 
@@ -361,7 +366,7 @@
             this.DateBirth_MaskedEditBox.Name = "DateBirth_MaskedEditBox";
             this.DateBirth_MaskedEditBox.NullText = "__.__.____";
             this.DateBirth_MaskedEditBox.Size = new System.Drawing.Size(85, 21);
-            this.DateBirth_MaskedEditBox.TabIndex = 8;
+            this.DateBirth_MaskedEditBox.TabIndex = 9;
             this.DateBirth_MaskedEditBox.TabStop = false;
             this.DateBirth_MaskedEditBox.Text = "__.__.____";
             this.DateBirth_MaskedEditBox.ThemeName = "Office2013Light";
@@ -375,26 +380,32 @@
             this.INN_.MaxLength = 12;
             this.INN_.Name = "INN_";
             this.INN_.Size = new System.Drawing.Size(98, 21);
-            this.INN_.TabIndex = 2;
+            this.INN_.TabIndex = 3;
             this.INN_.ThemeName = "Office2013Light";
             this.INN_.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.INN__KeyPress);
             this.INN_.Leave += new System.EventHandler(this.INN__Leave);
             // 
             // radPageView1
             // 
+            this.radPageView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.radPageView1.Controls.Add(this.radPageViewPage1);
             this.radPageView1.Controls.Add(this.radPageViewPage2);
             this.radPageView1.Location = new System.Drawing.Point(13, 13);
             this.radPageView1.Name = "radPageView1";
             this.radPageView1.SelectedPage = this.radPageViewPage1;
-            this.radPageView1.Size = new System.Drawing.Size(392, 356);
-            this.radPageView1.TabIndex = 14;
-            this.radPageView1.Text = "radPageView1";
+            this.radPageView1.Size = new System.Drawing.Size(392, 406);
+            this.radPageView1.TabIndex = 0;
             this.radPageView1.ThemeName = "Office2013Light";
             ((Telerik.WinControls.UI.RadPageViewStripElement)(this.radPageView1.GetChildAt(0))).StripButtons = Telerik.WinControls.UI.StripViewButtons.None;
             // 
             // radPageViewPage1
             // 
+            this.radPageViewPage1.Controls.Add(this.findDolgnBtn);
+            this.radPageViewPage1.Controls.Add(this.cleanDolgnBtn);
+            this.radPageViewPage1.Controls.Add(this.DolgnTextBox);
+            this.radPageViewPage1.Controls.Add(this.DolgnLabel);
             this.radPageViewPage1.Controls.Add(this.radLabel1);
             this.radPageViewPage1.Controls.Add(this.INN_);
             this.radPageViewPage1.Controls.Add(this.Snils_);
@@ -418,8 +429,50 @@
             this.radPageViewPage1.ItemSize = new System.Drawing.SizeF(135F, 27F);
             this.radPageViewPage1.Location = new System.Drawing.Point(5, 31);
             this.radPageViewPage1.Name = "radPageViewPage1";
-            this.radPageViewPage1.Size = new System.Drawing.Size(382, 320);
+            this.radPageViewPage1.Size = new System.Drawing.Size(382, 370);
             this.radPageViewPage1.Text = "Карточка сотрудника";
+            // 
+            // findDolgnBtn
+            // 
+            this.findDolgnBtn.Location = new System.Drawing.Point(341, 255);
+            this.findDolgnBtn.Name = "findDolgnBtn";
+            this.findDolgnBtn.Size = new System.Drawing.Size(28, 21);
+            this.findDolgnBtn.TabIndex = 13;
+            this.findDolgnBtn.Text = ". . .";
+            this.findDolgnBtn.ThemeName = "Office2013Light";
+            this.findDolgnBtn.Click += new System.EventHandler(this.findDolgnBtn_Click);
+            // 
+            // cleanDolgnBtn
+            // 
+            this.cleanDolgnBtn.Location = new System.Drawing.Point(307, 255);
+            this.cleanDolgnBtn.Name = "cleanDolgnBtn";
+            this.cleanDolgnBtn.Size = new System.Drawing.Size(28, 21);
+            this.cleanDolgnBtn.TabIndex = 12;
+            this.cleanDolgnBtn.Text = "Х";
+            this.cleanDolgnBtn.ThemeName = "Office2013Light";
+            this.cleanDolgnBtn.Click += new System.EventHandler(this.cleanDolgnBtn_Click);
+            // 
+            // DolgnTextBox
+            // 
+            this.DolgnTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.DolgnTextBox.Location = new System.Drawing.Point(13, 255);
+            this.DolgnTextBox.MaxLength = 1000;
+            this.DolgnTextBox.Name = "DolgnTextBox";
+            this.DolgnTextBox.Size = new System.Drawing.Size(288, 21);
+            this.DolgnTextBox.TabIndex = 11;
+            this.DolgnTextBox.ThemeName = "Office2013Light";
+            // 
+            // DolgnLabel
+            // 
+            this.DolgnLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.DolgnLabel.AutoSize = false;
+            this.DolgnLabel.Location = new System.Drawing.Point(3, 222);
+            this.DolgnLabel.Name = "DolgnLabel";
+            this.DolgnLabel.Size = new System.Drawing.Size(222, 27);
+            this.DolgnLabel.TabIndex = 14;
+            this.DolgnLabel.Text = "Профессия, должность";
+            this.DolgnLabel.ThemeName = "Office2013Light";
             // 
             // radPageViewPage2
             // 
@@ -457,7 +510,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(417, 415);
+            this.ClientSize = new System.Drawing.Size(417, 478);
             this.Controls.Add(this.radPageView1);
             this.Controls.Add(this.radButton2);
             this.Controls.Add(this.radButton3);
@@ -506,6 +559,10 @@
             this.radPageView1.ResumeLayout(false);
             this.radPageViewPage1.ResumeLayout(false);
             this.radPageViewPage1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.findDolgnBtn)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cleanDolgnBtn)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DolgnTextBox)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DolgnLabel)).EndInit();
             this.radPageViewPage2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dateWorkGrid.MasterTemplate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dateWorkGrid)).EndInit();
@@ -546,5 +603,9 @@
         private Telerik.WinControls.UI.RadPageViewPage radPageViewPage1;
         private Telerik.WinControls.UI.RadPageViewPage radPageViewPage2;
         private Telerik.WinControls.UI.RadGridView dateWorkGrid;
+        private Telerik.WinControls.UI.RadLabel DolgnLabel;
+        private Telerik.WinControls.UI.RadButton cleanDolgnBtn;
+        private Telerik.WinControls.UI.RadTextBox DolgnTextBox;
+        private Telerik.WinControls.UI.RadButton findDolgnBtn;
     }
 }

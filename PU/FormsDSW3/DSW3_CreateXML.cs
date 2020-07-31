@@ -94,7 +94,7 @@ namespace PU.FormsDSW3
                 }
             }
 
-            dbxml.ExecuteStoreCommand(String.Format("DELETE FROM xmlInfo WHERE ([Year] = {0} AND [InsurerID] = {1} AND [FormatType] = 'dsw3')", dsw3Data.YEAR, Options.InsID));
+            dbxml.Database.ExecuteSqlCommand(String.Format("DELETE FROM xmlInfo WHERE ([Year] = {0} AND [InsurerID] = {1} AND [FormatType] = 'dsw3')", dsw3Data.YEAR, Options.InsID));
 
 
             var dsw3StaffList = db.FormsDSW_3_Staff.Where(x => x.FormsDSW_3_ID == dsw3Data.ID);
@@ -197,7 +197,7 @@ namespace PU.FormsDSW3
                     {
                         xml_info.StaffList.Add(item);
                     }
-                    dbxmlTemp.AddToxmlInfo(xml_info);
+                    dbxmlTemp.xmlInfo.Add(xml_info);
                     dbxmlTemp.SaveChanges();
                     v++;
                 }
@@ -215,7 +215,7 @@ namespace PU.FormsDSW3
                 //            XmlInfoID = item.ID
                 //        };
 
-                //        dbxml.xmlFile.AddObject(xmlFile_);
+                //        dbxml.xmlFile.Add(xmlFile_);
                 //        dbxml.SaveChanges();
                 //    }
                 //}
@@ -274,7 +274,7 @@ namespace PU.FormsDSW3
                                             new XElement("ТипФайла", "ВНЕШНИЙ"),
                                             new XElement("ПрограммаПодготовкиДанных",
                                                 new XElement("НазваниеПрограммы", Application.ProductName.ToUpper()),
-                                                new XElement("Версия", Application.ProductVersion)),
+                                                new XElement("Версия", Application.ProductVersion.Substring(2, Application.ProductVersion.Length - 2))),
                                             new XElement("ИсточникДанных", "СТРАХОВАТЕЛЬ")),
                                         new XElement("ПачкаВходящихДокументов", new XAttribute("Окружение", "В составе файла"), new XAttribute("Стадия", "До обработки"), new XAttribute("ДобровольныеПравоотношения", "ДСВ"))));
 

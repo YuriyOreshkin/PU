@@ -143,35 +143,35 @@ namespace PU.FormsRSW2014
             bool result = true;
             FormsRSW2014_1_1 rsw = db.FormsRSW2014_1_1.First(x => x.ID == id);
 
-            db.FormsRSW2014_1_1.DeleteObject(rsw);
+            db.FormsRSW2014_1_1.Remove(rsw);
 
             foreach (var item in db.FormsRSW2014_1_Razd_2_1.Where(x => x.InsurerID == rsw.InsurerID && x.Year == rsw.Year && x.Quarter == rsw.Quarter && x.CorrectionNum == rsw.CorrectionNum))
             {
-                db.FormsRSW2014_1_Razd_2_1.DeleteObject(item);
+                db.FormsRSW2014_1_Razd_2_1.Remove(item);
             }
             foreach (var item in db.FormsRSW2014_1_Razd_2_4.Where(x => x.InsurerID == rsw.InsurerID && x.Year == rsw.Year && x.Quarter == rsw.Quarter && x.CorrectionNum == rsw.CorrectionNum))
             {
-                db.FormsRSW2014_1_Razd_2_4.DeleteObject(item);
+                db.FormsRSW2014_1_Razd_2_4.Remove(item);
             }
             foreach (var item in db.FormsRSW2014_1_Razd_2_5_1.Where(x => x.InsurerID == rsw.InsurerID && x.Year == rsw.Year && x.Quarter == rsw.Quarter && x.CorrectionNum == rsw.CorrectionNum))
             {
-                db.FormsRSW2014_1_Razd_2_5_1.DeleteObject(item);
+                db.FormsRSW2014_1_Razd_2_5_1.Remove(item);
             }
             foreach (var item in db.FormsRSW2014_1_Razd_2_5_2.Where(x => x.InsurerID == rsw.InsurerID && x.Year == rsw.Year && x.Quarter == rsw.Quarter && x.CorrectionNum == rsw.CorrectionNum))
             {
-                db.FormsRSW2014_1_Razd_2_5_2.DeleteObject(item);
+                db.FormsRSW2014_1_Razd_2_5_2.Remove(item);
             }
             foreach (var item in db.FormsRSW2014_1_Razd_3_4.Where(x => x.InsurerID == rsw.InsurerID && x.Year == rsw.Year && x.Quarter == rsw.Quarter && x.CorrectionNum == rsw.CorrectionNum))
             {
-                db.FormsRSW2014_1_Razd_3_4.DeleteObject(item);
+                db.FormsRSW2014_1_Razd_3_4.Remove(item);
             }
             foreach (var item in db.FormsRSW2014_1_Razd_4.Where(x => x.InsurerID == rsw.InsurerID && x.Year == rsw.Year && x.Quarter == rsw.Quarter && x.CorrectionNum == rsw.CorrectionNum))
             {
-                db.FormsRSW2014_1_Razd_4.DeleteObject(item);
+                db.FormsRSW2014_1_Razd_4.Remove(item);
             }
             foreach (var item in db.FormsRSW2014_1_Razd_5.Where(x => x.InsurerID == rsw.InsurerID && x.Year == rsw.Year && x.Quarter == rsw.Quarter && x.CorrectionNum == rsw.CorrectionNum))
             {
-                db.FormsRSW2014_1_Razd_5.DeleteObject(item);
+                db.FormsRSW2014_1_Razd_5.Remove(item);
             }
 
             try
@@ -1414,7 +1414,7 @@ namespace PU.FormsRSW2014
             db = null;
             db = new pu6Entities();
 
-            db.AddToFormsRSW2014_1_1(RSW);
+            db.FormsRSW2014_1_1.Add(RSW);
             foreach (var item in RSW_2_1_List)
             {
                 /*          item.CorrectionNum = RSWdata.CorrectionNum;
@@ -1456,7 +1456,7 @@ namespace PU.FormsRSW2014
 
                 }
 
-                db.AddToFormsRSW2014_1_Razd_2_1(r);
+                db.FormsRSW2014_1_Razd_2_1.Add(r);
             }
 
             foreach (var item in RSW_2_4_List.Where(x => x.InsurerID != null))
@@ -1494,7 +1494,7 @@ namespace PU.FormsRSW2014
 
                 }
 
-                db.AddToFormsRSW2014_1_Razd_2_4(r);
+                db.FormsRSW2014_1_Razd_2_4.Add(r);
             }
 
             try {
@@ -1570,7 +1570,7 @@ namespace PU.FormsRSW2014
         {
             Telerik.WinControls.RadMessageBox.SetThemeName(this.ThemeName);
             ThemeResolutionService.ApplyThemeToControlTree(this, this.ThemeName);
-            var avail_periods = Options.RaschetPeriodInternal.Where(x => x.Year >= 2014 && x.Year < 2017).OrderBy(x => x.Year);
+            var avail_periods = Options.RaschetPeriodInternal.Where(x => x.Year >= 2014 && x.Year < 2019).OrderBy(x => x.Year);
             identifier = new Identifier
             {
                 InsurerID = Options.InsID
@@ -1712,6 +1712,7 @@ namespace PU.FormsRSW2014
         {
             db.Dispose();
         }
+
 
     }
 }

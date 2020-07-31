@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
+using System.Data.Entity;
 using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
@@ -28,6 +28,8 @@ namespace PU.Staj
         public int rowindex { get; set; }
         private bool setNull = true;
         public bool dateControl = true;
+        public List<string> formNames = new List<string> { "SZV_STAJ_Edit", "SZV_KORR_Edit" };
+
 
 
         public StajOsnFrm()
@@ -91,7 +93,7 @@ namespace PU.Staj
                                 {
                                     try
                                     {
-                                        db.AddToStajOsn(formData);
+                                        db.StajOsn.Add(formData);
                                         db.SaveChanges();
                                         setNull = false;
                                         this.Close();
@@ -134,7 +136,7 @@ namespace PU.Staj
 
 
                                         // сохраняем модифицированную запись обратно в бд
-                                        db.ObjectStateManager.ChangeObjectState(r1, System.Data.EntityState.Modified);
+                                        db.Entry(r1).State = EntityState.Modified;
                                         db.SaveChanges();
                                         setNull = false;
                                         this.Close();
@@ -179,7 +181,7 @@ namespace PU.Staj
                                 {
                                     try
                                     {
-                                        db.AddToStajOsn(formData);
+                                        db.StajOsn.Add(formData);
                                         db.SaveChanges();
                                         setNull = false;
                                         this.Close();
@@ -222,7 +224,7 @@ namespace PU.Staj
 
 
                                         // сохраняем модифицированную запись обратно в бд
-                                        db.ObjectStateManager.ChangeObjectState(r1, System.Data.EntityState.Modified);
+                                        db.Entry(r1).State = EntityState.Modified;
                                         db.SaveChanges();
                                         setNull = false;
                                         this.Close();
@@ -267,7 +269,7 @@ namespace PU.Staj
                                 {
                                     try
                                     {
-                                        db.AddToStajOsn(formData);
+                                        db.StajOsn.Add(formData);
                                         db.SaveChanges();
                                         setNull = false;
                                         this.Close();
@@ -310,7 +312,7 @@ namespace PU.Staj
 
 
                                         // сохраняем модифицированную запись обратно в бд
-                                        db.ObjectStateManager.ChangeObjectState(r1, System.Data.EntityState.Modified);
+                                        db.Entry(r1).State = EntityState.Modified;
                                         db.SaveChanges();
                                         setNull = false;
                                         this.Close();
@@ -352,7 +354,7 @@ namespace PU.Staj
             if (StajEndDate.Text != "")
                 formData.DateEnd = StajEndDate.Value;
 
-            if (ParentFormName == "SZV_STAJ_Edit")
+            if (formNames.Contains(ParentFormName))
             {
                 formData.CodeBEZR = codeBEZRCheckBox.Checked;
             }
@@ -367,7 +369,7 @@ namespace PU.Staj
 
             StajEndDate.Value = formData.DateEnd.Value;
 
-            if (ParentFormName == "SZV_STAJ_Edit")
+            if (formNames.Contains(ParentFormName))
             {
                 codeBEZRCheckBox.Checked = formData.CodeBEZR.HasValue ? formData.CodeBEZR.Value : false;
             }
@@ -568,6 +570,39 @@ namespace PU.Staj
                             }
                         }
                         break;
+                    case "SZV_KORR_Edit":
+                        PU.FormsSZV_KORR.SZV_KORR_Edit main_5 = this.Owner as PU.FormsSZV_KORR.SZV_KORR_Edit;
+                        if (main_5 != null)
+                        {
+                            if (main_5.StajOsn_List.Count != 0)
+                            {
+                                List<StajOsn> StajOsn_List_ = new List<StajOsn> { };
+                                foreach (var item in main_5.StajOsn_List)
+                                {
+                                    StajOsn_List_.Add(item);
+                                }
+
+                                if (rowindex >= 0)
+                                    StajOsn_List_.RemoveAt(rowindex);
+
+                                if (StajOsn_List_.Any(x => x.Number == (long)NumberSpin.Value))
+                                {
+                                    ErrorList.Add(new ErrList { name = "Дублирование ключу уникальности. Исправьте порядковый номер.", control = "NumberSpin" });
+                                }
+
+                                if (dateControl)
+                                {
+                                    foreach (var item in StajOsn_List_)
+                                    {
+                                        if (!((StajBeginDate.Value > item.DateEnd.Value) || (StajEndDate.Value < item.DateBegin.Value)))
+                                        {
+                                            ErrorList.Add(new ErrList { name = "Ошибка! Диапазон дат записи о стаже, не может пересекаться с периодами предыдуших записей о стаже. Необходимо исправить!", control = "StajBeginDate" });
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        break;
                 }
             }
 
@@ -608,7 +643,7 @@ namespace PU.Staj
 
             checkAccessLevel();
 
-            if (ParentFormName == "SZV_STAJ_Edit")
+            if (formNames.Contains(ParentFormName))
             {
                 codeBEZRCheckBox.Visible = true;
             }

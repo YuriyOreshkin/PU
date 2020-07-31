@@ -304,7 +304,7 @@ namespace PU.FormsADW1
 
                     try
                     {
-                        db.ExecuteStoreCommand(String.Format("DELETE FROM FormsADW_1 WHERE ([StaffID] = {0})", id));
+                        db.Database.ExecuteSqlCommand(String.Format("DELETE FROM FormsADW_1 WHERE ([StaffID] = {0})", id));
                     }
                     catch (Exception ex)
                     {

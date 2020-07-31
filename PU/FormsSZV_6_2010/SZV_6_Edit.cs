@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
+using System.Data.Entity;
 using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
@@ -183,6 +183,7 @@ namespace PU.FormsSZV_6_2010
         private void setPeriod()
         {
             for (int i = 1; i <= 12; i++)
+
             {
                 for (int j = 0; j <= 1; j++)
                 {
@@ -208,26 +209,26 @@ namespace PU.FormsSZV_6_2010
                 byte q;
                 if (Quarter.SelectedItem != null && byte.TryParse(Quarter.SelectedItem.Value.ToString(), out q))
                 {
-                    if (TypeInfo.SelectedIndex != 0)
-                    {
-                        y = 0;
-                        if (KorrYear.SelectedItem != null && short.TryParse(KorrYear.SelectedItem.Text, out y))
-                        {
-                            q = 20;
-                            if (KorrQuarter.SelectedItem != null && byte.TryParse(KorrQuarter.SelectedItem.Value.ToString(), out q))
-                            {
-                            }
-                            else
-                            {
-                                Methods.showAlert("Внимание!", "Не указан корректируемый период!", this.ThemeName);
-                            }
-                        }
-                        else
-                        {
-                            Methods.showAlert("Внимание!", "Не указан корректируемый период!", this.ThemeName);
-                        }
+                    //if (TypeInfo.SelectedIndex != 0)
+                    //{
+                    //    y = 0;
+                    //    if (KorrYear.SelectedItem != null && short.TryParse(KorrYear.SelectedItem.Text, out y))
+                    //    {
+                    //        q = 20;
+                    //        if (KorrQuarter.SelectedItem != null && byte.TryParse(KorrQuarter.SelectedItem.Value.ToString(), out q))
+                    //        {
+                    //        }
+                    //        else
+                    //        {
+                    //            Methods.showAlert("Внимание!", "Не указан корректируемый период!", this.ThemeName);
+                    //        }
+                    //    }
+                    //    else
+                    //    {
+                    //        Methods.showAlert("Внимание!", "Не указан корректируемый период!", this.ThemeName);
+                    //    }
 
-                    }
+                    //}
 
                     period = q;
                     RaschetPeriodContainer rp = avail_periods_all.FirstOrDefault(x => x.Year == y && x.Kvartal == q);
@@ -610,7 +611,7 @@ namespace PU.FormsSZV_6_2010
                         {
                             flag_ok = false;
                             #region Сохранение новой записи
-                            db.FormsSZV_6.AddObject(SZV_6);
+                            db.FormsSZV_6.Add(SZV_6);
                             db.SaveChanges();
 
                             flag_ok = true;
@@ -649,7 +650,7 @@ namespace PU.FormsSZV_6_2010
 
 
                             // сохраняем модифицированную запись обратно в бд
-                            db.ObjectStateManager.ChangeObjectState(r1, System.Data.EntityState.Modified);
+                            db.Entry(r1).State = EntityState.Modified;
                             //                                db.SaveChanges();
                             flag_ok = true;
 

@@ -150,7 +150,7 @@ namespace PU.FormsRW_3_2015
                 child.RWdata = new FormsRW3_2015();
                 child.ShowDialog();
                 child.Dispose();
-                db.DetectChanges();
+                db.ChangeTracker.DetectChanges();
                 db = new pu6Entities();
                 rw3Grid_upd();
             }
@@ -174,7 +174,7 @@ namespace PU.FormsRW_3_2015
                 child.RW_3_3_List = rw_data.FormsRW3_2015_Razd_3.OrderBy(x => x.ID).ToList();
                 child.ShowDialog();
                 child.Dispose();
-                db.DetectChanges();
+                db.ChangeTracker.DetectChanges();
                 db = new pu6Entities();
                 rw3Grid_upd();
             }
@@ -198,7 +198,7 @@ namespace PU.FormsRW_3_2015
 
                     try
                     {
-                        db.ExecuteStoreCommand(String.Format("DELETE FROM FormsRW3_2015 WHERE ([ID] = {0})", id));
+                        db.Database.ExecuteSqlCommand(String.Format("DELETE FROM FormsRW3_2015 WHERE ([ID] = {0})", id));
                         db = new pu6Entities();
                         rw3Grid_upd();
                     }

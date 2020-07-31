@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
+using System.Data.Entity;
 using System.Drawing;
 using System.Text;
 using System.Linq;
@@ -11,6 +11,7 @@ using PU.Classes;
 using Telerik.WinControls;
 using Telerik.WinControls.Enumerations;
 using Telerik.WinControls.UI;
+using PU.FormsRSW2014;
 
 namespace PU
 {
@@ -137,6 +138,8 @@ namespace PU
                 {
                     staff.DepartmentID = null;
                 }
+
+
             if (!String.IsNullOrEmpty(DateBirth_.Text))
             {
                 staff.DateBirth = DateBirth_.Value;
@@ -145,6 +148,41 @@ namespace PU
             {
                 staff.DateBirth = null;
             }
+
+
+            // Профессия
+            if (DolgnTextBox.Text != "")
+            {
+
+                if (db.Dolgn.Any(x => x.Name == DolgnTextBox.Text.Trim())) // если такая профессия уже есть в справочнике, то берем ее ИД
+                {
+                    staff.DolgnID = db.Dolgn.FirstOrDefault(x => x.Name == DolgnTextBox.Text.Trim()).ID;
+                }
+                else // если такой профессии нет, то добавляем ее
+                {
+                    try
+                    {
+                        Dolgn newItem = new Dolgn
+                        {
+                            Name = DolgnTextBox.Text.Trim()
+                        };
+                        db.Dolgn.Add(newItem);
+                        db.SaveChanges();
+
+                        staff.DolgnID = newItem.ID;
+                    }
+                    catch(Exception ex)
+                    {
+                        RadMessageBox.Show("Не удалось сохранить должность сотрудника в справочник! Код ошибки - " + ex.Message);
+                    }
+                }
+            }
+            else
+            {
+                staff.DolgnID = null;
+            }
+
+
 
         }
 
@@ -193,7 +231,7 @@ namespace PU
                                 return;
                             }
 
-                            db.AddToStaff(staff);
+                            db.Staff.Add(staff);
                             db.SaveChanges();
                             this.Close();
                         }
@@ -225,7 +263,7 @@ namespace PU
                             //staff.Sex = staffData.Sex;
                             //staff.TabelNumber = staffData.TabelNumber;
 
-                            db.ObjectStateManager.ChangeObjectState(staff, EntityState.Modified);
+                            db.Entry(staff).State = EntityState.Modified;
                             db.SaveChanges();
                             this.Close();
                         }
@@ -283,6 +321,16 @@ namespace PU
 
                     DepCode_.Text = dep.Code;
                     DepName_.Text = dep.Name;
+                }
+
+                // Профессия
+                if (staff.DolgnID.HasValue)
+                {
+                    DolgnTextBox.Text = db.Dolgn.First(x => x.ID == staff.DolgnID).Name;
+                }
+                else
+                {
+                    DolgnTextBox.ResetText();
                 }
 
                 dateWorkGridUpdate();
@@ -344,6 +392,7 @@ namespace PU
             child.ThemeName = this.ThemeName;
             child.ShowInTaskbar = false;
             child.DepID = DepID;
+            child.InsID = InsID;
             child.action = "selection";
             child.ShowDialog();
             DepID = child.DepID;
@@ -433,7 +482,28 @@ namespace PU
 
         private void dateWorkGrid_UserDeletingRow(object sender, GridViewRowCancelEventArgs e)
         {
-            db.DeleteObject((StaffDateWork)e.Rows[0].DataBoundItem);
+            db.StaffDateWork.Remove((StaffDateWork)e.Rows[0].DataBoundItem);
+        }
+
+        private void findDolgnBtn_Click(object sender, EventArgs e)
+        {
+            DolgnFrm child = new DolgnFrm();
+            child.Owner = this;
+            child.ThemeName = this.ThemeName;
+            child.ShowInTaskbar = false;
+            child.action = "selection";
+            child.btnSelection.Visible = true;
+            child.ShowDialog();
+            if (child.dolgn != null)
+            {
+                this.DolgnTextBox.Text = child.dolgn.Name;
+            }
+            child = null;
+        }
+
+        private void cleanDolgnBtn_Click(object sender, EventArgs e)
+        {
+            this.DolgnTextBox.Text = "";
         }
 
 

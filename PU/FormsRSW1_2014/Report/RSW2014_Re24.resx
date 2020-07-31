@@ -123,7 +123,7 @@
   <data name="textBox6.Value" xml:space="preserve">
     <value>2 - в отношении выплат и иных вознаграждений в пользу физических лиц, занятых на видах работ, указанных в подпунктах 2-18 пункта 1 статьи 27 Федерального закона от  17 декабря 2001 г. № 173-ФЗ "О трудовых пенсиях в Российской Федерации".</value>
   </data>
-  <assembly alias="Telerik.Reporting" name="Telerik.Reporting, Version=10.0.16.204, Culture=neutral, PublicKeyToken=a9d7983dfcc261be" />
+  <assembly alias="Telerik.Reporting" name="Telerik.Reporting, Version=13.1.19.514, Culture=neutral, PublicKeyToken=a9d7983dfcc261be" />
   <data name="$this.SnapGridSize" type="Telerik.Reporting.Drawing.Unit, Telerik.Reporting">
     <value>0.1cm</value>
   </data>

@@ -9,7 +9,7 @@ using System.Windows.Forms;
 using System.IO;
 using System.Text.RegularExpressions;
 using System.Drawing;
-using System.Data;
+using System.Data.Entity;
 using System.ComponentModel;
 using System.Net;
 using System.Reflection;
@@ -114,9 +114,9 @@ namespace PU.Models
                 pu6Entities db = new pu6Entities();
 
                 if (setWal)
-                    db.ExecuteStoreCommand(@"PRAGMA journal_mode = 'WAL';PRAGMA cache_size = 20000;PRAGMA page_size = 4096;");
+                    db.Database.ExecuteSqlCommand(@"PRAGMA journal_mode = 'WAL';PRAGMA cache_size = 20000;PRAGMA page_size = 4096;");
                 else
-                    db.ExecuteStoreCommand(@"PRAGMA journal_mode = 'delete';PRAGMA cache_size = 20000;PRAGMA page_size = 4096;");
+                    db.Database.ExecuteSqlCommand(@"PRAGMA journal_mode = 'delete';PRAGMA cache_size = 20000;PRAGMA page_size = 4096;");
             }
             catch (Exception ex)
             {
@@ -238,13 +238,13 @@ namespace PU.Models
             string list = String.Join(",", id.ToArray());
             try
             {
-                List<string> tableList = new List<string> { "FormsRSW", "FormsRSW2014_1_Razd_6_1", "FormsSPW2", "FormsSZV_6_4", "FormsSZV_6", "FormsSZV_M_2016_Staff", "FormsSZV_ISH_2017", "FormsSZV_KORR_2017", "FormsSZV_STAJ_2017", "FormsADW_1", "FormsADW_2" };
+                List<string> tableList = new List<string> { "FormsRSW", "FormsRSW2014_1_Razd_6_1", "FormsSPW2", "FormsSZV_6_4", "FormsSZV_6", "FormsSZV_M_2016_Staff", "FormsSZV_ISH_2017", "FormsSZV_KORR_2017", "FormsSZV_STAJ_2017", "FormsADW_1", "FormsADW_2", "FormsSZV_TD_2020_Staff" };
 
-                db.ExecuteStoreCommand(String.Format("DELETE FROM Staff WHERE ([ID] IN ({0}))", list));
+                db.Database.ExecuteSqlCommand(String.Format("DELETE FROM Staff WHERE ([ID] IN ({0}))", list));
 
                 foreach (var table in tableList)
                 {
-                    db.ExecuteStoreCommand(String.Format("DELETE FROM " + table + " WHERE ([StaffID] IN ({0}))", list));
+                    db.Database.ExecuteSqlCommand(String.Format("DELETE FROM " + table + " WHERE ([StaffID] IN ({0}))", list));
                 }
 
             }
@@ -286,21 +286,30 @@ namespace PU.Models
             string list = String.Join(",", id.ToArray());
             try
             {
-                db.ExecuteStoreCommand(String.Format("PRAGMA foreign_keys=off;DELETE FROM Insurer WHERE ([ID] IN ({0}));PRAGMA foreign_keys=on;", list));
+                db.Database.ExecuteSqlCommand(String.Format("PRAGMA foreign_keys=off;DELETE FROM Insurer WHERE ([ID] IN ({0}));PRAGMA foreign_keys=on;", list));
 
-                db.ExecuteStoreCommand(String.Format("DELETE FROM FormsRSW2014_1_Razd_2_1 WHERE ([InsurerID] IN ({0}))", list));
+                db.Database.ExecuteSqlCommand(String.Format("DELETE FROM FormsRSW2014_1_Razd_2_1 WHERE ([InsurerID] IN ({0}))", list));
                 
-                db.ExecuteStoreCommand(String.Format("DELETE FROM FormsRSW2014_1_Razd_2_4 WHERE ([InsurerID] IN ({0}))", list));
+                db.Database.ExecuteSqlCommand(String.Format("DELETE FROM FormsRSW2014_1_Razd_2_4 WHERE ([InsurerID] IN ({0}))", list));
                 
-                db.ExecuteStoreCommand(String.Format("DELETE FROM FormsRSW2014_1_Razd_3_4 WHERE ([InsurerID] IN ({0}))", list));
+                db.Database.ExecuteSqlCommand(String.Format("DELETE FROM FormsRSW2014_1_Razd_3_4 WHERE ([InsurerID] IN ({0}))", list));
                 
-                db.ExecuteStoreCommand(String.Format("DELETE FROM FormsRSW2014_1_Razd_2_5_1 WHERE ([InsurerID] IN ({0}))", list));
+                db.Database.ExecuteSqlCommand(String.Format("DELETE FROM FormsRSW2014_1_Razd_2_5_1 WHERE ([InsurerID] IN ({0}))", list));
                 
-                db.ExecuteStoreCommand(String.Format("DELETE FROM FormsRSW2014_1_Razd_2_5_2 WHERE ([InsurerID] IN ({0}))", list));
+                db.Database.ExecuteSqlCommand(String.Format("DELETE FROM FormsRSW2014_1_Razd_2_5_2 WHERE ([InsurerID] IN ({0}))", list));
                 
-                db.ExecuteStoreCommand(String.Format("DELETE FROM FormsRSW2014_1_Razd_4 WHERE ([InsurerID] IN ({0}))", list));
+                db.Database.ExecuteSqlCommand(String.Format("DELETE FROM FormsRSW2014_1_Razd_4 WHERE ([InsurerID] IN ({0}))", list));
 
-                db.ExecuteStoreCommand(String.Format("DELETE FROM FormsRSW2014_1_Razd_5 WHERE ([InsurerID] IN ({0}))", list));
+                db.Database.ExecuteSqlCommand(String.Format("DELETE FROM FormsRSW2014_1_Razd_5 WHERE ([InsurerID] IN ({0}))", list));
+
+
+                List<string> tables = new List<string> { "FormsSZV_M_2016", "FormsODV_1_2017", "FormsSZV_KORR_2017", "FormsSZV_STAJ_2017", "FormsSZV_ISH_2017", "FormsPredPens_Zapros", "FormsSZV_TD_2020", "Staff" };
+
+                foreach (var item in tables)
+                {
+                    db.Database.ExecuteSqlCommand(String.Format("DELETE FROM " + item + " WHERE ([InsurerID] IN ({0}))", list));
+                }
+
 
             }
             catch (Exception ex)
@@ -319,38 +328,38 @@ namespace PU.Models
 
             foreach (var item in db.FormsRSW2014_1_Razd_2_1.Where(x => x.InsurerID == rsw_.InsurerID && x.Year == rsw_.Year && x.Quarter == rsw_.Quarter && x.CorrectionNum == rsw_.CorrectionNum))
             {
-                db.FormsRSW2014_1_Razd_2_1.DeleteObject(item);
+                db.FormsRSW2014_1_Razd_2_1.Remove(item);
             }
             foreach (var item in db.FormsRSW2014_1_Razd_2_4.Where(x => x.InsurerID == rsw_.InsurerID && x.Year == rsw_.Year && x.Quarter == rsw_.Quarter && x.CorrectionNum == rsw_.CorrectionNum))
             {
-                db.FormsRSW2014_1_Razd_2_4.DeleteObject(item);
+                db.FormsRSW2014_1_Razd_2_4.Remove(item);
             }
             foreach (var item in db.FormsRSW2014_1_Razd_2_5_1.Where(x => x.InsurerID == rsw_.InsurerID && x.Year == rsw_.Year && x.Quarter == rsw_.Quarter && x.CorrectionNum == rsw_.CorrectionNum))
             {
-                db.FormsRSW2014_1_Razd_2_5_1.DeleteObject(item);
+                db.FormsRSW2014_1_Razd_2_5_1.Remove(item);
             }
             foreach (var item in db.FormsRSW2014_1_Razd_2_5_2.Where(x => x.InsurerID == rsw_.InsurerID && x.Year == rsw_.Year && x.Quarter == rsw_.Quarter && x.CorrectionNum == rsw_.CorrectionNum))
             {
-                db.FormsRSW2014_1_Razd_2_5_2.DeleteObject(item);
+                db.FormsRSW2014_1_Razd_2_5_2.Remove(item);
             }
             foreach (var item in db.FormsRSW2014_1_Razd_3_4.Where(x => x.InsurerID == rsw_.InsurerID && x.Year == rsw_.Year && x.Quarter == rsw_.Quarter && x.CorrectionNum == rsw_.CorrectionNum))
             {
-                db.FormsRSW2014_1_Razd_3_4.DeleteObject(item);
+                db.FormsRSW2014_1_Razd_3_4.Remove(item);
             }
             foreach (var item in db.FormsRSW2014_1_Razd_4.Where(x => x.InsurerID == rsw_.InsurerID && x.Year == rsw_.Year && x.Quarter == rsw_.Quarter && x.CorrectionNum == rsw_.CorrectionNum))
             {
-                db.FormsRSW2014_1_Razd_4.DeleteObject(item);
+                db.FormsRSW2014_1_Razd_4.Remove(item);
             }
             foreach (var item in db.FormsRSW2014_1_Razd_5.Where(x => x.InsurerID == rsw_.InsurerID && x.Year == rsw_.Year && x.Quarter == rsw_.Quarter && x.CorrectionNum == rsw_.CorrectionNum))
             {
-                db.FormsRSW2014_1_Razd_5.DeleteObject(item);
+                db.FormsRSW2014_1_Razd_5.Remove(item);
             }
 
 
             if (db.FormsRSW2014_1_1.Any(x => x.ID == rsw_.ID))
             {
                 FormsRSW2014_1_1 rsw = db.FormsRSW2014_1_1.FirstOrDefault(x => x.ID == rsw_.ID);
-                db.FormsRSW2014_1_1.DeleteObject(rsw);
+                db.FormsRSW2014_1_1.Remove(rsw);
             }
 
             try
@@ -382,7 +391,7 @@ namespace PU.Models
                 userWork.LastAccessDate = DateTime.Now;
                 userWork.SysAdmin = user.SysAdmin.HasValue ? user.SysAdmin.Value : (byte)0;
 
-                db.ObjectStateManager.ChangeObjectState(userWork, EntityState.Modified);
+                db.Entry(userWork).State = EntityState.Modified;
                 db.SaveChanges();
             }
             else // если такой пользователь в рабочей базе не найден, то добавляем его
@@ -399,14 +408,14 @@ namespace PU.Models
                 userWork.LastAccessDate = DateTime.Now;
                 userWork.SysAdmin = user.SysAdmin.HasValue ? user.SysAdmin.Value : (byte)0;
 
-                db.Users.AddObject(userWork);
+                db.Users.Add(userWork);
                 db.SaveChanges();
             }
 
             UserAccess.xaccessEntities xaccessdb = new UserAccess.xaccessEntities();
             var u = xaccessdb.Users.FirstOrDefault(x => x.ID == user.ID);
             u.LastAccessDate = DateTime.Now;
-            xaccessdb.ObjectStateManager.ChangeObjectState(u, EntityState.Modified);
+            xaccessdb.Entry(u).State = EntityState.Modified;
             xaccessdb.SaveChanges();
 
         }
@@ -475,6 +484,14 @@ namespace PU.Models
                 if (form is FormsODV1.ODV1_List)
                 {
                     (form as FormsODV1.ODV1_List).HeaderChange();
+                }
+                if (form is FormsPredPens.PredPensZapros_List)
+                {
+                    (form as FormsPredPens.PredPensZapros_List).HeaderChange();
+                }
+                if (form is FormsSZV_TD.SZV_TD_List)
+                {
+                    (form as FormsSZV_TD.SZV_TD_List).HeaderChange();
                 }
             }
 

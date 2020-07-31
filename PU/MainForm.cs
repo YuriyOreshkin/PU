@@ -45,6 +45,7 @@ namespace PU
         public MainForm()
         {
             InitializeComponent();
+
             this.IsMdiContainer = true;
             //Find the MdiClient and hold it by a variable
             client = Controls.OfType<MdiClient>().First();
@@ -408,7 +409,19 @@ INSERT INTO Users (Name, Login, Password, RoleID, SysAdmin ) VALUES ('Админ
         {
             if (!loginFormExit)
             {
+                ThemeResolutionService.ApplyThemeToControlTree(this, this.ThemeName);
                 Telerik.WinControls.RadMessageBox.SetThemeName(this.ThemeName);
+
+
+                //RadMessageBox.Instance.FormElement.TitleBar.Font = new Font("Calibri", 20f);
+
+                //// I added this additional check for safety, if Telerik modifies the name of the control.
+                //if (RadMessageBox.Instance.Controls.ContainsKey("radLabel1"))
+                //{
+                //    RadMessageBox.Instance.Controls["radLabel1"].Font = new Font("Calibri", 25f, FontStyle.Regular);
+                //}
+
+
                 if (RadMessageBox.Show("Вы уверены, что хотите завершить работу с программой?", "Внимание!", MessageBoxButtons.YesNo) != DialogResult.Yes)
                 {
                     e.Cancel = true;
@@ -476,7 +489,7 @@ INSERT INTO Users (Name, Login, Password, RoleID, SysAdmin ) VALUES ('Админ
                                         Description = currentDB.name + ". Архив Базы данных программы " + AssemblyTitle + String.Format(" Версия: {0}", AssemblyVersion) + " от " + dt.ToString("dd.MM.yyyy HH:mm")
                                     };
 
-                                    db.AddToBackupDB_Info(backup_new);
+                                    db.BackupDB_Info.Add(backup_new);
                                     db.SaveChanges();
 
                                     bool updateProps = false;
@@ -545,7 +558,7 @@ INSERT INTO Users (Name, Login, Password, RoleID, SysAdmin ) VALUES ('Админ
                                                 if (sList.Count() != 0)
                                                 {
                                                     string query = "DELETE FROM BackupDB_Info WHERE ID in (" + string.Join(", ", sList) + ")";
-                                                    db.ExecuteStoreCommand(query);
+                                                    db.Database.ExecuteSqlCommand(query);
                                                 }
                                             }
                                         }
@@ -1221,18 +1234,25 @@ INSERT INTO Users (Name, Login, Password, RoleID, SysAdmin ) VALUES ('Админ
 
         private void preLoadOperation1(object sender, DoWorkEventArgs e)
         {
+
+            int year = DateTime.Now.Year;
+
             Options.RaschetPeriodInternal = new List<RaschetPeriodContainer>();
-            for (short y = 2014; y <= 2018; y++)
+
+            for (short y = 2014; y <= year; y++)
             {
                 Options.RaschetPeriodInternal.Add(new RaschetPeriodContainer() { Year = y, Kvartal = 3, Name = "3 месяца " + y, DateBegin = DateTime.Parse("01.01." + y), DateEnd = DateTime.Parse("31.03." + y) });
                 Options.RaschetPeriodInternal.Add(new RaschetPeriodContainer() { Year = y, Kvartal = 6, Name = "полугодие " + y, DateBegin = DateTime.Parse("01.04." + y), DateEnd = DateTime.Parse("30.06." + y) });
                 Options.RaschetPeriodInternal.Add(new RaschetPeriodContainer() { Year = y, Kvartal = 9, Name = "9 месяцев " + y, DateBegin = DateTime.Parse("01.07." + y), DateEnd = DateTime.Parse("30.09." + y) });
                 Options.RaschetPeriodInternal.Add(new RaschetPeriodContainer() { Year = y, Kvartal = 0, Name = "12 месяцев " + y, DateBegin = DateTime.Parse("01.10." + y), DateEnd = DateTime.Parse("31.12." + y) });
+                Options.RaschetPeriodInternal.Add(new RaschetPeriodContainer() { Year = y, Kvartal = 4, Name = "Год " + y, DateBegin = DateTime.Parse("01.01." + y), DateEnd = DateTime.Parse("31.12." + y) });
             }
 
             Options.RaschetPeriodInternal2017 = new List<RaschetPeriodContainer>();
-            Options.RaschetPeriodInternal2017.Add(new RaschetPeriodContainer() { Year = 2017, Kvartal = 0, Name = "в целом за год 2017", DateBegin = DateTime.Parse("01.01.2017"), DateEnd = DateTime.Parse("31.12.2017") });
-            Options.RaschetPeriodInternal2017.Add(new RaschetPeriodContainer() { Year = 2018, Kvartal = 0, Name = "в целом за год 2018", DateBegin = DateTime.Parse("01.01.2018"), DateEnd = DateTime.Parse("31.12.2018") });
+            for (short y = 2017; y <= year; y++)
+            {
+                Options.RaschetPeriodInternal2017.Add(new RaschetPeriodContainer() { Year = y, Kvartal = 0, Name = "в целом за год " + y, DateBegin = DateTime.Parse("01.01." + y), DateEnd = DateTime.Parse("31.12." + y) });
+            }
 
 
             Options.RaschetPeriodInternal2010_2013 = new List<RaschetPeriodContainer>();
@@ -1329,19 +1349,52 @@ INSERT INTO Users (Name, Login, Password, RoleID, SysAdmin ) VALUES ('Админ
         {
             // Синхронизация МРОТ и Тарифы доп. выплат за 2016 год
             pu6Entities db = new pu6Entities();
+
             List<string> tables = new List<string> { "FormsSZV_ISH_2017", "FormsSZV_KORR_2017", "FormsSZV_STAJ_2017" };
 
             foreach (var item in tables)
             {
                 try
                 {
-                    db.ExecuteStoreCommand(String.Format("DELETE FROM " + item + " WHERE (FormsODV_1_2017_ID NOT IN (SELECT ID FROM FormsODV_1_2017))"));
+                    db.Database.ExecuteSqlCommand(String.Format("DELETE FROM " + item + " WHERE (FormsODV_1_2017_ID NOT IN (SELECT ID FROM FormsODV_1_2017))"));
                 }
                 catch (Exception ex)
                 {
                     Methods.showAlert("Внимание!", "Во время очистки таблицы " + item + " произошла ошибка. Код ошибки: " + ex.Message, this.ThemeName);
                 }
             }
+
+            try
+            {
+                db.Database.ExecuteSqlCommand(String.Format("UPDATE FormsSZV_KORR_2017 SET Dismissed = 0 where Dismissed <> 1"));
+            }
+            catch (Exception ex)
+            {
+                Methods.showAlert("Внимание!", "Во время обновления поля Dismissed таблицы FormsSZV_KORR_2017 произошла ошибка. Код ошибки: " + ex.Message, this.ThemeName);
+            }
+
+            try
+            {
+                db.Database.ExecuteSqlCommand(String.Format("UPDATE FormsSZV_ISH_2017 SET Dismissed = 0 where Dismissed <> 1"));
+            }
+            catch (Exception ex)
+            {
+                Methods.showAlert("Внимание!", "Во время обновления поля Dismissed таблицы FormsSZV_ISH_2017 произошла ошибка. Код ошибки: " + ex.Message, this.ThemeName);
+            }
+
+
+            /* Справочник видов формы СЗВ-ТД  */
+
+            string path = Path.Combine(Application.StartupPath, "Base_emp\\pu6_emp.db3");
+
+            if (!UpdateDictionaries.updateTable("FormsSZV_TD_2020_TypesOfEvents", path, this.ThemeName, this))
+            {
+                Methods.showAlert("Внимание!", "Во время обновления Справочника видов мероприятий Формы СЗВ-ТД произошла ошибка!", this.ThemeName);
+            }
+
+
+
+            
 
             if (!db.MROT.Any(x => x.Year == 2017)) // если нет данных за 2016 год, то синхронизируем справочник
             {
@@ -1361,13 +1414,14 @@ INSERT INTO Users (Name, Login, Password, RoleID, SysAdmin ) VALUES ('Админ
                 child.synchBtn_Click(null, null);
             }
 
-            if (!db.TariffPlat.Any(x => x.Year == 2016) || (!db.PlatCategory.Where(x => x.Code == "ТОР").Any(x => x.TariffPlat.Any(c => c.Year == 2016))) || !db.PlatCategory.Any(x => x.Code == "СПВЛ" || x.Code == "ВЖВЛ" || x.Code == "ВПВЛ")) // если нет данных за 2016 год, то синхронизируем справочник или если нет категорий По свободному порту Владивиосток (СПВЛ, ВЖВЛ, ВПВЛ)
+            if (!db.TariffPlat.Any(x => x.Year == 2016) || (!db.PlatCategory.Where(x => x.Code == "ТОР").Any(x => x.TariffPlat.Any(c => c.Year == 2016))) || !db.PlatCategory.Any(x => x.Code == "СПВЛ" || x.Code == "ВЖВЛ" || x.Code == "ВПВЛ") || !db.PlatCategory.Any(x => x.Code == "МС" || x.Code == "ВЖМС" || x.Code == "ВПМС")) // если нет данных за 2016 год, то синхронизируем справочник или если нет категорий По свободному порту Владивиосток (СПВЛ, ВЖВЛ, ВПВЛ)
             {
                 PlatCategoryFrm child = new PlatCategoryFrm();
                 child.synchBtn_Click(null, null);
+                System.Threading.Thread.Sleep(4000);
             }
 
-            System.Threading.Thread.Sleep(4000);
+
             if (!db.TariffCode.Any(x => x.Code == "25")) // если нет данных за 2016 год, то синхронизируем справочник
             {
                 TariffCodeFrm child = new TariffCodeFrm();
@@ -1378,7 +1432,7 @@ INSERT INTO Users (Name, Login, Password, RoleID, SysAdmin ) VALUES ('Админ
             {
                 try
                 {
-                    db.ExecuteStoreCommand(@"DELETE FROM DocumentTypes WHERE ID = 0;");
+                    db.Database.ExecuteSqlCommand(@"DELETE FROM DocumentTypes WHERE ID = 0;");
                 }
                 catch { }
 
@@ -1412,7 +1466,7 @@ INSERT INTO Users (Name, Login, Password, RoleID, SysAdmin ) VALUES ('Админ
                             ";
                             try
                             {
-                                db.ExecuteStoreCommand(fillSpecOcenkaUslTrudaDopTariff);
+                                db.Database.ExecuteSqlCommand(fillSpecOcenkaUslTrudaDopTariff);
                             }
                             catch
                             {
@@ -1438,7 +1492,7 @@ INSERT INTO Users (Name, Login, Password, RoleID, SysAdmin ) VALUES ('Админ
 
                         try
                         {
-                            db.ExecuteStoreCommand(query);
+                            db.Database.ExecuteSqlCommand(query);
                         }
                         catch
                         {
@@ -1535,7 +1589,7 @@ INSERT INTO Users (Name, Login, Password, RoleID, SysAdmin ) VALUES ('Админ
 
         private void radTileElement2_Click(object sender, EventArgs e)
         {
-            radMenuItem43_Click(null, null);
+            radMenuItem69_Click(null, null);
         }
 
         private void radTileElement3_Click(object sender, EventArgs e)
@@ -1890,10 +1944,38 @@ INSERT INTO Users (Name, Login, Password, RoleID, SysAdmin ) VALUES ('Админ
             ShowForm(child);
         }
 
-        private void radMenuItem61_Click(object sender, EventArgs e)
+        private void radMenuItem67_Click(object sender, EventArgs e)
+        {
+            PU.FormsPredPens.PredPensZapros_List child = new PU.FormsPredPens.PredPensZapros_List();
+            child.ThemeName = this.ThemeName;
+            ShowForm(child);
+        }
+
+        private void radMenuItem20_Click(object sender, EventArgs e)
         {
 
         }
+
+        private void radMenuItem68_Click(object sender, EventArgs e)
+        {
+            PU.FormsPredPens.PredPensSpravka_ImportXML child = new PU.FormsPredPens.PredPensSpravka_ImportXML();
+            child.Owner = this;
+            child.ThemeName = this.ThemeName;
+            child.MaximumSize = child.Size;
+            child.ShowDialog();
+            child.WindowState = FormWindowState.Normal;
+            child.Dispose();
+
+        }
+
+        private void radMenuItem69_Click(object sender, EventArgs e)
+        {
+            PU.FormsSZV_TD.SZV_TD_List child = new PU.FormsSZV_TD.SZV_TD_List();
+            child.ThemeName = this.ThemeName;
+            ShowForm(child);
+        }
+
+
 
 
 

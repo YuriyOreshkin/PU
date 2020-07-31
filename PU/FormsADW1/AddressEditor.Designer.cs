@@ -50,7 +50,16 @@
             this.radLabel8 = new Telerik.WinControls.UI.RadLabel();
             this.Kvart = new Telerik.WinControls.UI.RadTextBox();
             this.radLabel9 = new Telerik.WinControls.UI.RadLabel();
-            this.addAbbr = new Telerik.WinControls.UI.RadCheckBox();
+            this.radLabel10 = new Telerik.WinControls.UI.RadLabel();
+            this.Dom_short = new Telerik.WinControls.UI.RadTextBox();
+            this.Korp_short = new Telerik.WinControls.UI.RadTextBox();
+            this.Kvart_short = new Telerik.WinControls.UI.RadTextBox();
+            this.radLabel11 = new Telerik.WinControls.UI.RadLabel();
+            this.Street_short = new Telerik.WinControls.UI.RadDropDownList();
+            this.Punkt_short = new Telerik.WinControls.UI.RadDropDownList();
+            this.City_short = new Telerik.WinControls.UI.RadDropDownList();
+            this.Raion_short = new Telerik.WinControls.UI.RadDropDownList();
+            this.Region_short = new Telerik.WinControls.UI.RadDropDownList();
             ((System.ComponentModel.ISupportInitialize)(this.radButton2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radButton3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel14)).BeginInit();
@@ -73,18 +82,27 @@
             ((System.ComponentModel.ISupportInitialize)(this.radLabel8)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Kvart)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel9)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.addAbbr)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel10)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Dom_short)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Korp_short)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Kvart_short)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel11)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Street_short)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Punkt_short)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.City_short)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Raion_short)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Region_short)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             this.SuspendLayout();
             // 
             // radButton2
             // 
             this.radButton2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.radButton2.Location = new System.Drawing.Point(277, 313);
+            this.radButton2.Location = new System.Drawing.Point(395, 344);
             this.radButton2.Margin = new System.Windows.Forms.Padding(3, 20, 3, 3);
             this.radButton2.Name = "radButton2";
             this.radButton2.Size = new System.Drawing.Size(110, 24);
-            this.radButton2.TabIndex = 12;
+            this.radButton2.TabIndex = 19;
             this.radButton2.Text = "Отмена";
             this.radButton2.ThemeName = "Office2013Light";
             this.radButton2.Click += new System.EventHandler(this.radButton2_Click);
@@ -92,11 +110,11 @@
             // radButton3
             // 
             this.radButton3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.radButton3.Location = new System.Drawing.Point(149, 313);
+            this.radButton3.Location = new System.Drawing.Point(267, 344);
             this.radButton3.Margin = new System.Windows.Forms.Padding(3, 20, 3, 3);
             this.radButton3.Name = "radButton3";
             this.radButton3.Size = new System.Drawing.Size(110, 24);
-            this.radButton3.TabIndex = 11;
+            this.radButton3.TabIndex = 18;
             this.radButton3.Text = "Сохранить";
             this.radButton3.ThemeName = "Office2013Light";
             this.radButton3.Click += new System.EventHandler(this.radButton3_Click);
@@ -114,6 +132,7 @@
             // Country
             // 
             this.Country.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.Country.Enabled = false;
             this.Country.Location = new System.Drawing.Point(149, 12);
             this.Country.Name = "Country";
             this.Country.Size = new System.Drawing.Size(238, 21);
@@ -144,15 +163,15 @@
             // Region
             // 
             this.Region.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
-            this.Region.Location = new System.Drawing.Point(149, 66);
+            this.Region.Location = new System.Drawing.Point(267, 95);
             this.Region.Name = "Region";
             this.Region.Size = new System.Drawing.Size(238, 21);
-            this.Region.TabIndex = 2;
+            this.Region.TabIndex = 3;
             this.Region.ThemeName = "Office2013Light";
             // 
             // radLabel2
             // 
-            this.radLabel2.Location = new System.Drawing.Point(12, 68);
+            this.radLabel2.Location = new System.Drawing.Point(12, 97);
             this.radLabel2.Margin = new System.Windows.Forms.Padding(3, 5, 3, 3);
             this.radLabel2.Name = "radLabel2";
             this.radLabel2.Size = new System.Drawing.Size(46, 19);
@@ -163,15 +182,15 @@
             // Raion
             // 
             this.Raion.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
-            this.Raion.Location = new System.Drawing.Point(149, 93);
+            this.Raion.Location = new System.Drawing.Point(267, 122);
             this.Raion.Name = "Raion";
             this.Raion.Size = new System.Drawing.Size(238, 21);
-            this.Raion.TabIndex = 3;
+            this.Raion.TabIndex = 5;
             this.Raion.ThemeName = "Office2013Light";
             // 
             // radLabel3
             // 
-            this.radLabel3.Location = new System.Drawing.Point(12, 95);
+            this.radLabel3.Location = new System.Drawing.Point(12, 124);
             this.radLabel3.Margin = new System.Windows.Forms.Padding(3, 5, 3, 3);
             this.radLabel3.Name = "radLabel3";
             this.radLabel3.Size = new System.Drawing.Size(41, 19);
@@ -182,15 +201,15 @@
             // City
             // 
             this.City.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
-            this.City.Location = new System.Drawing.Point(149, 120);
+            this.City.Location = new System.Drawing.Point(267, 149);
             this.City.Name = "City";
             this.City.Size = new System.Drawing.Size(238, 21);
-            this.City.TabIndex = 4;
+            this.City.TabIndex = 7;
             this.City.ThemeName = "Office2013Light";
             // 
             // radLabel4
             // 
-            this.radLabel4.Location = new System.Drawing.Point(12, 122);
+            this.radLabel4.Location = new System.Drawing.Point(12, 151);
             this.radLabel4.Margin = new System.Windows.Forms.Padding(3, 5, 3, 3);
             this.radLabel4.Name = "radLabel4";
             this.radLabel4.Size = new System.Drawing.Size(41, 19);
@@ -201,15 +220,15 @@
             // Punkt
             // 
             this.Punkt.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
-            this.Punkt.Location = new System.Drawing.Point(149, 147);
+            this.Punkt.Location = new System.Drawing.Point(267, 176);
             this.Punkt.Name = "Punkt";
             this.Punkt.Size = new System.Drawing.Size(238, 21);
-            this.Punkt.TabIndex = 5;
+            this.Punkt.TabIndex = 9;
             this.Punkt.ThemeName = "Office2013Light";
             // 
             // radLabel5
             // 
-            this.radLabel5.Location = new System.Drawing.Point(12, 149);
+            this.radLabel5.Location = new System.Drawing.Point(12, 178);
             this.radLabel5.Margin = new System.Windows.Forms.Padding(3, 5, 3, 3);
             this.radLabel5.Name = "radLabel5";
             this.radLabel5.Size = new System.Drawing.Size(112, 19);
@@ -220,15 +239,15 @@
             // Street
             // 
             this.Street.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
-            this.Street.Location = new System.Drawing.Point(149, 174);
+            this.Street.Location = new System.Drawing.Point(267, 203);
             this.Street.Name = "Street";
             this.Street.Size = new System.Drawing.Size(238, 21);
-            this.Street.TabIndex = 6;
+            this.Street.TabIndex = 11;
             this.Street.ThemeName = "Office2013Light";
             // 
             // radLabel6
             // 
-            this.radLabel6.Location = new System.Drawing.Point(12, 176);
+            this.radLabel6.Location = new System.Drawing.Point(12, 205);
             this.radLabel6.Margin = new System.Windows.Forms.Padding(3, 5, 3, 3);
             this.radLabel6.Name = "radLabel6";
             this.radLabel6.Size = new System.Drawing.Size(41, 19);
@@ -239,15 +258,15 @@
             // Dom
             // 
             this.Dom.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.Dom.Location = new System.Drawing.Point(149, 202);
+            this.Dom.Location = new System.Drawing.Point(267, 231);
             this.Dom.Name = "Dom";
-            this.Dom.Size = new System.Drawing.Size(89, 21);
-            this.Dom.TabIndex = 7;
+            this.Dom.Size = new System.Drawing.Size(238, 21);
+            this.Dom.TabIndex = 13;
             this.Dom.ThemeName = "Office2013Light";
             // 
             // radLabel7
             // 
-            this.radLabel7.Location = new System.Drawing.Point(12, 203);
+            this.radLabel7.Location = new System.Drawing.Point(12, 232);
             this.radLabel7.Margin = new System.Windows.Forms.Padding(3, 5, 3, 3);
             this.radLabel7.Name = "radLabel7";
             this.radLabel7.Size = new System.Drawing.Size(31, 19);
@@ -258,15 +277,15 @@
             // Korp
             // 
             this.Korp.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.Korp.Location = new System.Drawing.Point(149, 229);
+            this.Korp.Location = new System.Drawing.Point(267, 258);
             this.Korp.Name = "Korp";
-            this.Korp.Size = new System.Drawing.Size(89, 21);
-            this.Korp.TabIndex = 8;
+            this.Korp.Size = new System.Drawing.Size(238, 21);
+            this.Korp.TabIndex = 15;
             this.Korp.ThemeName = "Office2013Light";
             // 
             // radLabel8
             // 
-            this.radLabel8.Location = new System.Drawing.Point(12, 230);
+            this.radLabel8.Location = new System.Drawing.Point(12, 259);
             this.radLabel8.Margin = new System.Windows.Forms.Padding(3, 5, 3, 3);
             this.radLabel8.Name = "radLabel8";
             this.radLabel8.Size = new System.Drawing.Size(47, 19);
@@ -277,15 +296,15 @@
             // Kvart
             // 
             this.Kvart.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.Kvart.Location = new System.Drawing.Point(149, 256);
+            this.Kvart.Location = new System.Drawing.Point(267, 285);
             this.Kvart.Name = "Kvart";
-            this.Kvart.Size = new System.Drawing.Size(89, 21);
-            this.Kvart.TabIndex = 9;
+            this.Kvart.Size = new System.Drawing.Size(238, 21);
+            this.Kvart.TabIndex = 17;
             this.Kvart.ThemeName = "Office2013Light";
             // 
             // radLabel9
             // 
-            this.radLabel9.Location = new System.Drawing.Point(12, 257);
+            this.radLabel9.Location = new System.Drawing.Point(12, 286);
             this.radLabel9.Margin = new System.Windows.Forms.Padding(3, 5, 3, 3);
             this.radLabel9.Name = "radLabel9";
             this.radLabel9.Size = new System.Drawing.Size(60, 19);
@@ -293,24 +312,120 @@
             this.radLabel9.Text = "Квартира";
             this.radLabel9.ThemeName = "Office2013Light";
             // 
-            // addAbbr
+            // radLabel10
             // 
-            this.addAbbr.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.addAbbr.Location = new System.Drawing.Point(12, 289);
-            this.addAbbr.Margin = new System.Windows.Forms.Padding(3, 10, 3, 3);
-            this.addAbbr.Name = "addAbbr";
-            this.addAbbr.Size = new System.Drawing.Size(311, 18);
-            this.addAbbr.TabIndex = 10;
-            this.addAbbr.Text = "При сохранении вносить аббревиатуру Д., КОРП., КВ.";
-            this.addAbbr.ThemeName = "Office2013Light";
-            this.addAbbr.ToggleState = Telerik.WinControls.Enumerations.ToggleState.On;
+            this.radLabel10.AutoSize = false;
+            this.radLabel10.Location = new System.Drawing.Point(149, 72);
+            this.radLabel10.Margin = new System.Windows.Forms.Padding(3, 5, 3, 3);
+            this.radLabel10.Name = "radLabel10";
+            this.radLabel10.Size = new System.Drawing.Size(114, 19);
+            this.radLabel10.TabIndex = 46;
+            this.radLabel10.Text = "Сокращение";
+            this.radLabel10.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+            this.radLabel10.ThemeName = "Office2013Light";
+            // 
+            // Dom_short
+            // 
+            this.Dom_short.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.Dom_short.Location = new System.Drawing.Point(149, 231);
+            this.Dom_short.Name = "Dom_short";
+            this.Dom_short.Size = new System.Drawing.Size(112, 21);
+            this.Dom_short.TabIndex = 12;
+            this.Dom_short.Text = "Д";
+            this.Dom_short.ThemeName = "Office2013Light";
+            // 
+            // Korp_short
+            // 
+            this.Korp_short.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.Korp_short.Location = new System.Drawing.Point(149, 258);
+            this.Korp_short.Name = "Korp_short";
+            this.Korp_short.Size = new System.Drawing.Size(112, 21);
+            this.Korp_short.TabIndex = 14;
+            this.Korp_short.Text = "КОРП";
+            this.Korp_short.ThemeName = "Office2013Light";
+            // 
+            // Kvart_short
+            // 
+            this.Kvart_short.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.Kvart_short.Location = new System.Drawing.Point(149, 285);
+            this.Kvart_short.Name = "Kvart_short";
+            this.Kvart_short.Size = new System.Drawing.Size(112, 21);
+            this.Kvart_short.TabIndex = 16;
+            this.Kvart_short.Text = "КВ";
+            this.Kvart_short.ThemeName = "Office2013Light";
+            // 
+            // radLabel11
+            // 
+            this.radLabel11.AutoSize = false;
+            this.radLabel11.Location = new System.Drawing.Point(267, 72);
+            this.radLabel11.Margin = new System.Windows.Forms.Padding(3, 5, 3, 3);
+            this.radLabel11.Name = "radLabel11";
+            this.radLabel11.Size = new System.Drawing.Size(238, 19);
+            this.radLabel11.TabIndex = 47;
+            this.radLabel11.Text = "Название";
+            this.radLabel11.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+            this.radLabel11.ThemeName = "Office2013Light";
+            // 
+            // Street_short
+            // 
+            this.Street_short.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.Street_short.Location = new System.Drawing.Point(149, 203);
+            this.Street_short.Name = "Street_short";
+            this.Street_short.Size = new System.Drawing.Size(114, 21);
+            this.Street_short.TabIndex = 10;
+            this.Street_short.ThemeName = "Office2013Light";
+            // 
+            // Punkt_short
+            // 
+            this.Punkt_short.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.Punkt_short.Location = new System.Drawing.Point(149, 176);
+            this.Punkt_short.Name = "Punkt_short";
+            this.Punkt_short.Size = new System.Drawing.Size(114, 21);
+            this.Punkt_short.TabIndex = 8;
+            this.Punkt_short.ThemeName = "Office2013Light";
+            // 
+            // City_short
+            // 
+            this.City_short.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.City_short.Location = new System.Drawing.Point(149, 149);
+            this.City_short.Name = "City_short";
+            this.City_short.Size = new System.Drawing.Size(114, 21);
+            this.City_short.TabIndex = 6;
+            this.City_short.ThemeName = "Office2013Light";
+            // 
+            // Raion_short
+            // 
+            this.Raion_short.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.Raion_short.Location = new System.Drawing.Point(149, 122);
+            this.Raion_short.Name = "Raion_short";
+            this.Raion_short.Size = new System.Drawing.Size(114, 21);
+            this.Raion_short.TabIndex = 4;
+            this.Raion_short.ThemeName = "Office2013Light";
+            // 
+            // Region_short
+            // 
+            this.Region_short.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.Region_short.Location = new System.Drawing.Point(149, 95);
+            this.Region_short.Name = "Region_short";
+            this.Region_short.Size = new System.Drawing.Size(114, 21);
+            this.Region_short.TabIndex = 2;
+            this.Region_short.ThemeName = "Office2013Light";
             // 
             // AddressEditor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(399, 349);
-            this.Controls.Add(this.addAbbr);
+            this.ClientSize = new System.Drawing.Size(517, 380);
+            this.Controls.Add(this.Street_short);
+            this.Controls.Add(this.Punkt_short);
+            this.Controls.Add(this.City_short);
+            this.Controls.Add(this.Raion_short);
+            this.Controls.Add(this.Region_short);
+            this.Controls.Add(this.radLabel11);
+            this.Controls.Add(this.Kvart_short);
+            this.Controls.Add(this.Korp_short);
+            this.Controls.Add(this.Dom_short);
+            this.Controls.Add(this.radLabel10);
             this.Controls.Add(this.Kvart);
             this.Controls.Add(this.radLabel9);
             this.Controls.Add(this.Korp);
@@ -367,7 +482,16 @@
             ((System.ComponentModel.ISupportInitialize)(this.radLabel8)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Kvart)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel9)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.addAbbr)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel10)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Dom_short)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Korp_short)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Kvart_short)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel11)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Street_short)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Punkt_short)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.City_short)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Raion_short)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Region_short)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -398,6 +522,15 @@
         private Telerik.WinControls.UI.RadLabel radLabel8;
         private Telerik.WinControls.UI.RadTextBox Kvart;
         private Telerik.WinControls.UI.RadLabel radLabel9;
-        private Telerik.WinControls.UI.RadCheckBox addAbbr;
+        private Telerik.WinControls.UI.RadLabel radLabel10;
+        private Telerik.WinControls.UI.RadTextBox Dom_short;
+        private Telerik.WinControls.UI.RadTextBox Korp_short;
+        private Telerik.WinControls.UI.RadTextBox Kvart_short;
+        private Telerik.WinControls.UI.RadLabel radLabel11;
+        private Telerik.WinControls.UI.RadDropDownList Street_short;
+        private Telerik.WinControls.UI.RadDropDownList Punkt_short;
+        private Telerik.WinControls.UI.RadDropDownList City_short;
+        private Telerik.WinControls.UI.RadDropDownList Raion_short;
+        private Telerik.WinControls.UI.RadDropDownList Region_short;
     }
 }

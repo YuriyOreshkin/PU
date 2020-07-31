@@ -669,7 +669,7 @@ namespace PU
                 odv1ID = Convert.ToInt64(odv1GridView.CurrentRow.Cells[0].Value);
             }
 
-            FormsODV_1_2017 odv1 = db.FormsODV_1_2017.First(x => x.ID == odv1ID);
+            FormsODV_1_2017 odv1 = db.FormsODV_1_2017.FirstOrDefault(x => x.ID == odv1ID);
 
             foreach (var item in exportList)
             {
@@ -755,6 +755,8 @@ namespace PU
                         break;
 
                     case "SZV_STAJ":
+                        if (odv1 == null)
+                            break;
                         if (Export_SZV_STAJ(odv1))
                         {
                             cnt++;
@@ -764,6 +766,8 @@ namespace PU
                         }
                         break;
                     case "SZV_STAJ5":
+                        if (odv1 == null)
+                            break;
                         if (Export_SZV_STAJ5(odv1))
                         {
                             cnt++;
@@ -773,6 +777,8 @@ namespace PU
                         }
                         break;
                     case "SZV_STAJ_S":
+                        if (odv1 == null)
+                            break;
                         if (Export_SZV_STAJ_S(odv1))
                         {
                             cnt++;
@@ -782,6 +788,8 @@ namespace PU
                         }
                         break;
                     case "SZV_STAJ_SL":
+                        if (odv1 == null)
+                            break;
                         if (Export_SZV_STAJ_SL(odv1))
                         {
                             cnt++;

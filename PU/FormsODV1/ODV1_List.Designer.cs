@@ -50,6 +50,7 @@
             this.SzvStajDDLBtn = new Telerik.WinControls.UI.RadDropDownButton();
             this.fillSzvStajBtn = new Telerik.WinControls.UI.RadMenuItem();
             this.copyToSzvKorrBtn = new Telerik.WinControls.UI.RadMenuItem();
+            this.copyToSzvStajDBtn = new Telerik.WinControls.UI.RadMenuItem();
             this.printSZVSTAJBtn = new Telerik.WinControls.UI.RadButton();
             this.szv_stajAddBtn = new Telerik.WinControls.UI.RadButton();
             this.szv_stajDelBtn = new Telerik.WinControls.UI.RadButton();
@@ -268,7 +269,6 @@
             this.radPageView1.SelectedPage = this.szvStajradPageViewPage;
             this.radPageView1.Size = new System.Drawing.Size(905, 310);
             this.radPageView1.TabIndex = 18;
-            this.radPageView1.Text = "radPageView1";
             this.radPageView1.ThemeName = "Office2013Light";
             ((Telerik.WinControls.UI.RadPageViewStripElement)(this.radPageView1.GetChildAt(0))).ShowItemPinButton = false;
             ((Telerik.WinControls.UI.RadPageViewStripElement)(this.radPageView1.GetChildAt(0))).StripButtons = Telerik.WinControls.UI.StripViewButtons.None;
@@ -293,7 +293,8 @@
             this.SzvStajDDLBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.SzvStajDDLBtn.Items.AddRange(new Telerik.WinControls.RadItem[] {
             this.fillSzvStajBtn,
-            this.copyToSzvKorrBtn});
+            this.copyToSzvKorrBtn,
+            this.copyToSzvStajDBtn});
             this.SzvStajDDLBtn.Location = new System.Drawing.Point(790, 109);
             this.SzvStajDDLBtn.Name = "SzvStajDDLBtn";
             this.SzvStajDDLBtn.Size = new System.Drawing.Size(105, 24);
@@ -312,6 +313,12 @@
             this.copyToSzvKorrBtn.Name = "copyToSzvKorrBtn";
             this.copyToSzvKorrBtn.Text = "Сформировать СЗВ-КОРР";
             this.copyToSzvKorrBtn.Click += new System.EventHandler(this.copyToSzvKorrBtn_Click);
+            // 
+            // copyToSzvStajDBtn
+            // 
+            this.copyToSzvStajDBtn.Name = "copyToSzvStajDBtn";
+            this.copyToSzvStajDBtn.Text = "Сформировать СЗВ-СТАЖ (дополняющая)";
+            this.copyToSzvStajDBtn.Click += new System.EventHandler(this.copyToSzvStajDBtn_Click);
             // 
             // printSZVSTAJBtn
             // 
@@ -723,5 +730,6 @@
         private Telerik.WinControls.UI.RadDropDownButton SzvStajDDLBtn;
         private Telerik.WinControls.UI.RadMenuItem fillSzvStajBtn;
         private Telerik.WinControls.UI.RadMenuItem copyToSzvKorrBtn;
+        private Telerik.WinControls.UI.RadMenuItem copyToSzvStajDBtn;
     }
 }

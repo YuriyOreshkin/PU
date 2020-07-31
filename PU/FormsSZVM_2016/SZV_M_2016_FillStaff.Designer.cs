@@ -115,7 +115,6 @@
             this.radLabel1.TabIndex = 2;
             this.radLabel1.Text = "Переместите сотрудников, которых необходимо добавить в форму СЗВ-М, в ПРАВЫЙ спис" +
     "ок";
-            this.radLabel1.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
             this.radLabel1.ThemeName = "Office2013Light";
             // 
             // staffSELECTEDGridView
@@ -213,7 +212,6 @@
             this.radLayoutControl1.Name = "radLayoutControl1";
             this.radLayoutControl1.Size = new System.Drawing.Size(952, 451);
             this.radLayoutControl1.TabIndex = 15;
-            this.radLayoutControl1.Text = "radLayoutControl1";
             this.radLayoutControl1.ThemeName = "Office2013Light";
             // 
             // panel1
@@ -360,7 +358,6 @@
             this.radLabel2.Size = new System.Drawing.Size(150, 21);
             this.radLabel2.TabIndex = 18;
             this.radLabel2.Text = "Количество сотрудников:";
-            this.radLabel2.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
             this.radLabel2.ThemeName = "Office2013Light";
             // 
             // radLabel3
@@ -373,7 +370,6 @@
             this.radLabel3.Size = new System.Drawing.Size(149, 21);
             this.radLabel3.TabIndex = 19;
             this.radLabel3.Text = "Количество сотрудников:";
-            this.radLabel3.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
             this.radLabel3.ThemeName = "Office2013Light";
             // 
             // staffALLcnt
@@ -385,7 +381,6 @@
             this.staffALLcnt.Size = new System.Drawing.Size(15, 21);
             this.staffALLcnt.TabIndex = 20;
             this.staffALLcnt.Text = "0";
-            this.staffALLcnt.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
             this.staffALLcnt.ThemeName = "Office2013Light";
             // 
             // staffSELECTEDcnt
@@ -398,7 +393,6 @@
             this.staffSELECTEDcnt.Size = new System.Drawing.Size(65, 21);
             this.staffSELECTEDcnt.TabIndex = 21;
             this.staffSELECTEDcnt.Text = "0";
-            this.staffSELECTEDcnt.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
             this.staffSELECTEDcnt.ThemeName = "Office2013Light";
             // 
             // radButton5

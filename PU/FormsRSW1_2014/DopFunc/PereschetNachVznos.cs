@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
+using System.Data.Entity;
 using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
@@ -154,7 +154,7 @@ namespace PU.FormsRSW2014
                 if (rsw6 != null && rsw6.FormsRSW2014_1_Razd_6_4.Count > 0)
                 {
                     rsw6.SumFeePFR = methods.UpdateSumFeePFR(false, rsw6.FormsRSW2014_1_Razd_6_4.ToList(), year);
-                    db.ObjectStateManager.ChangeObjectState(rsw6, EntityState.Modified);
+                    db.Entry(rsw6).State = EntityState.Modified;
                 }
                 decimal temp = (decimal)k / (decimal)staffList.Count();
                 int proc = (int)Math.Round((temp * 100), 0);

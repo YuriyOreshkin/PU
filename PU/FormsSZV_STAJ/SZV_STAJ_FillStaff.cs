@@ -221,7 +221,7 @@ namespace PU.FormsSZV_STAJ
                             if (updateODV1_DDL.SelectedItem.Tag.ToString() == "0")  // заменять
                             {
                                 var t = db.FormsSZV_STAJ_2017.FirstOrDefault(x => x.StaffID == id && x.TypeInfo == ti && x.Year == y);
-                                db.FormsSZV_STAJ_2017.DeleteObject(t);
+                                db.FormsSZV_STAJ_2017.Remove(t);
                             }
 
                         }
@@ -279,7 +279,7 @@ namespace PU.FormsSZV_STAJ
 
                         }
 
-                        db.AddToFormsSZV_STAJ_2017(newItem);
+                        db.FormsSZV_STAJ_2017.Add(newItem);
 
                         if (i % 100 == 0)
                         {
@@ -293,7 +293,7 @@ namespace PU.FormsSZV_STAJ
 
                     odv1.StaffCount = odv1.FormsSZV_STAJ_2017.Count();
 
-                    db.ObjectStateManager.ChangeObjectState(odv1, EntityState.Modified);
+                    db.Entry(odv1).State =System.Data.Entity.EntityState.Modified;
                     db.SaveChanges();
 
 

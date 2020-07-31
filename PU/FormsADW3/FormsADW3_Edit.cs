@@ -1,15 +1,10 @@
 ﻿using PU.FormsRSW2014;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Text;
+using System.Data.Entity;
 using System.Windows.Forms;
 using Telerik.WinControls;
 using System.Linq;
 using PU.Models;
-using PU.Classes;
 using Telerik.WinControls.UI;
 
 namespace PU.FormsADW3
@@ -326,7 +321,6 @@ namespace PU.FormsADW3
             {
                 adw_3 = new FormsADW_3();
                 DateUnderwrite.Value = DateTime.Now;
-                radPageView1.Pages["radPageViewPage2"].Enabled = false;
             }
 
 
@@ -362,7 +356,7 @@ namespace PU.FormsADW3
                             return;
                         }
 
-                        db.FormsADW_3.AddObject(adw_3);
+                        db.FormsADW_3.Add(adw_3);
                         db.SaveChanges();
                         this.Close();
                     }
@@ -382,7 +376,7 @@ namespace PU.FormsADW3
                         }
 
 
-                        db.ObjectStateManager.ChangeObjectState(adw_3, EntityState.Modified);
+                        db.Entry(adw_3).State = EntityState.Modified;
                         db.SaveChanges();
                         this.Close();
                     }

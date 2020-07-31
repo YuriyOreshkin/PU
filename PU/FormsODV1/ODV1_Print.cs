@@ -73,10 +73,7 @@ namespace PU.FormsODV1
             InitializeComponent();
         }
 
-        private void FormsODV1_Print_Load(object sender, EventArgs e)
-        {
-            reportViewer1.RefreshReport();
-        }
+
 
         public void createReport(object sender, DoWorkEventArgs e)
         {
@@ -450,10 +447,6 @@ namespace PU.FormsODV1
             if (ODV1_Data != null)
                 SZV_STAJ_List = db.FormsSZV_STAJ_2017.Where(x => x.FormsODV_1_2017_ID == ODV1_Data.ID).OrderBy(x => x.Staff.LastName).ThenBy(x => x.Staff.FirstName).ThenBy(x => x.Staff.MiddleName).ToList();
 
-
-            (SZVSTAJ.Items.Find("RegNum", true)[0] as Telerik.Reporting.TextBox).Value = regNum;
-            (SZVSTAJ.Items.Find("INN", true)[0] as Telerik.Reporting.TextBox).Value = ins.INN != null ? ins.INN.ToString() : "";
-            (SZVSTAJ.Items.Find("KPP", true)[0] as Telerik.Reporting.TextBox).Value = ins.KPP != null ? ins.KPP.ToString() : "";
 
             (SZVSTAJ.Items.Find("RegNum2", true)[0] as Telerik.Reporting.TextBox).Value = regNum;
             (SZVSTAJ.Items.Find("INN2", true)[0] as Telerik.Reporting.TextBox).Value = ins.INN != null ? ins.INN.ToString() : "";
@@ -839,10 +832,6 @@ namespace PU.FormsODV1
 
             Staff staff = db.Staff.Single(x => x.ID == item.StaffID);
 
-            (SZVISH.Items.Find("RegNum", true)[0] as Telerik.Reporting.TextBox).Value = regNum;
-            (SZVISH.Items.Find("INN", true)[0] as Telerik.Reporting.TextBox).Value = ins.INN != null ? ins.INN.ToString() : "";
-            (SZVISH.Items.Find("KPP", true)[0] as Telerik.Reporting.TextBox).Value = ins.KPP != null ? ins.KPP.ToString() : "";
-
             (SZVISH.Items.Find("RegNum2", true)[0] as Telerik.Reporting.TextBox).Value = regNum;
             (SZVISH.Items.Find("INN2", true)[0] as Telerik.Reporting.TextBox).Value = ins.INN != null ? ins.INN.ToString() : "";
             (SZVISH.Items.Find("KPP2", true)[0] as Telerik.Reporting.TextBox).Value = ins.KPP != null ? ins.KPP.ToString() : "";
@@ -891,6 +880,11 @@ namespace PU.FormsODV1
             (SZVISH.Items.Find("FirstName", true)[0] as Telerik.Reporting.TextBox).Value = staff.FirstName;
             (SZVISH.Items.Find("MiddleName", true)[0] as Telerik.Reporting.TextBox).Value = staff.MiddleName;
             (SZVISH.Items.Find("SNILS", true)[0] as Telerik.Reporting.TextBox).Value = !String.IsNullOrEmpty(staff.InsuranceNumber) ? Utils.ParseSNILS(staff.InsuranceNumber.ToString(), (staff.ControlNumber.HasValue ? staff.ControlNumber.Value : (short)0)) : "";
+
+            if (item.Dismissed.HasValue && item.Dismissed.Value)
+            {
+                (SZVISH.Items.Find("Dismissed", true)[0] as Telerik.Reporting.TextBox).Value = item.Year.ToString() + "-12-31";
+            }
 
             (SZVISH.Items.Find("ContractNum", true)[0] as Telerik.Reporting.TextBox).Value = item.ContractNum;
             (SZVISH.Items.Find("ContractDate", true)[0] as Telerik.Reporting.TextBox).Value = item.ContractDate.HasValue ? item.ContractDate.Value.ToString("dd.MM.yyyy") : "";
@@ -1469,10 +1463,6 @@ namespace PU.FormsODV1
 
             Staff staff = db.Staff.Single(x => x.ID == item.StaffID);
 
-            (SZVKORR.Items.Find("RegNum", true)[0] as Telerik.Reporting.TextBox).Value = regNum;
-            (SZVKORR.Items.Find("INN", true)[0] as Telerik.Reporting.TextBox).Value = ins.INN != null ? ins.INN.ToString() : "";
-            (SZVKORR.Items.Find("KPP", true)[0] as Telerik.Reporting.TextBox).Value = ins.KPP != null ? ins.KPP.ToString() : "";
-
             (SZVKORR.Items.Find("RegNum2", true)[0] as Telerik.Reporting.TextBox).Value = regNum;
             (SZVKORR.Items.Find("INN2", true)[0] as Telerik.Reporting.TextBox).Value = ins.INN != null ? ins.INN.ToString() : "";
             (SZVKORR.Items.Find("KPP2", true)[0] as Telerik.Reporting.TextBox).Value = ins.KPP != null ? ins.KPP.ToString() : "";
@@ -1513,7 +1503,7 @@ namespace PU.FormsODV1
             myStyleRule.Style.BorderStyle.Default = BorderType.Solid;
             myStyleRule.Style.BorderWidth.Default = new Unit(1.0, UnitType.Pixel);
             myStyleRule.Style.Font.Name = "Arial";
-            myStyleRule.Style.Font.Size = new Unit(8.0, UnitType.Point);
+            myStyleRule.Style.Font.Size = new Unit(6.0, UnitType.Point);
             myStyleRule.Style.TextAlign = HorizontalAlign.Center;
             myStyleRule.Style.VerticalAlign = VerticalAlign.Middle;
 
@@ -1726,13 +1716,17 @@ namespace PU.FormsODV1
 
             var szv_6_List = db.StajOsn.Where(x => x.FormsSZV_KORR_2017_ID == item.ID).ToList();
 
-            Telerik.Reporting.Table table_Re6 = SZVKORR.Items.Find("table12", true)[0] as Telerik.Reporting.Table;
+            Telerik.Reporting.Table table_Re6 = SZVKORR.Items.Find("table_r6_szv_korr", true)[0] as Telerik.Reporting.Table;
             TableGroup detailGrouptable_Re6 = new TableGroup();
 
             j = 1;
 
+            int cntSt = 0;
+
             foreach (var szv6 in szv_6_List.OrderBy(x => x.Number.Value))
             {
+                cntSt++;
+
                 Telerik.Reporting.TextBox textBox = new Telerik.Reporting.TextBox
                 {
                     StyleName = "TableStyle",
@@ -1745,6 +1739,33 @@ namespace PU.FormsODV1
                     Value = Convert.ToDateTime(szv6.DateEnd).ToString("dd/MM/yyyy")
                 };
                 table_Re6.Body.SetCellContent(j, 1, textBox);
+
+                bool print3112 = false;
+
+                if (cntSt == szv_6_List.Count && szv6.DateEnd == new DateTime(item.YearKorr.Value, 12, 31))  // Проверяем последняя ли запись в списке стажа и последняя дата стажа 31,12,год
+                {
+                    print3112 = true;
+                }
+
+
+                string col9 = "";
+
+                if (item.Dismissed.HasValue && item.Dismissed.Value && print3112)
+                {
+                    col9 = item.Dismissed.HasValue ? (item.Dismissed.Value ? (item.YearKorr.Value.ToString() + "-12-31") : "") : "";
+                }
+                else if (szv6.CodeBEZR.HasValue && szv6.CodeBEZR.Value)
+                {
+                    col9 = szv6.CodeBEZR.HasValue ? (szv6.CodeBEZR.Value ? "БЕЗР" : "") : "";
+                }
+
+                textBox = new Telerik.Reporting.TextBox
+                {
+                    StyleName = "TableStyle",
+                    Value = col9
+                };
+                table_Re6.Body.SetCellContent(j, 8, textBox);
+
 
                 if (szv6.StajLgot.Count() > 0)
                 {
@@ -1767,6 +1788,13 @@ namespace PU.FormsODV1
                             };
                             table_Re6.Body.SetCellContent(j, 1, textBox);
 
+
+                            textBox = new Telerik.Reporting.TextBox
+                            {
+                                StyleName = "TableStyle",
+                                Value = ""
+                            };
+                            table_Re6.Body.SetCellContent(j, 8, textBox);
                         }
 
                         if (szv6_dop.TerrUslID != null && szv6_dop.TerrUslID.Value.ToString() != "" && TerrUsl_list.Any(x => x.ID == szv6_dop.TerrUslID))
@@ -1895,7 +1923,7 @@ namespace PU.FormsODV1
                             }
 
 
-                            for (int m = 0; m <= 7; m++)
+                            for (int m = 0; m <= 8; m++)
                             {
                                 if (m != 3 && m != 4)
                                 {
@@ -1965,6 +1993,11 @@ namespace PU.FormsODV1
 
 
             return SZVKORR;
+        }
+
+        private void ODV1_Print_Load(object sender, EventArgs e)
+        {
+            reportViewer1.RefreshReport();
         }
 
 

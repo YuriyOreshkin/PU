@@ -2,7 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
+using System.Data.Entity;
 using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
@@ -328,7 +328,7 @@ namespace PU
 
         private void dateWorkGrid_UserDeletingRow(object sender, GridViewRowCancelEventArgs e)
         {
-            db.DeleteObject((StaffDateWork)e.Rows[0].DataBoundItem);
+            db.StaffDateWork.Remove((StaffDateWork)e.Rows[0].DataBoundItem);
         }
 
         private void StaffAnketaEdit_Load(object sender, EventArgs e)
@@ -497,7 +497,7 @@ namespace PU
 
                             staff.FormsADW_1.Add(adw1);
 
-                            db.AddToStaff(staff);
+                            db.Staff.Add(staff);
                             db.SaveChanges();
                             this.Close();
                         }
@@ -522,7 +522,7 @@ namespace PU
                             }
                             else
                             {
-                                db.ObjectStateManager.ChangeObjectState(adw1, EntityState.Modified);
+                                db.Entry(adw1).State =EntityState.Modified;
                             }
 
                             //staff.DepartmentID = staffData.DepartmentID;
@@ -537,7 +537,7 @@ namespace PU
                             //staff.Sex = staffData.Sex;
                             //staff.TabelNumber = staffData.TabelNumber;
 
-                            db.ObjectStateManager.ChangeObjectState(staff, EntityState.Modified);
+                            db.Entry(staff).State = EntityState.Modified;
                             db.SaveChanges();
                             this.Close();
                         }
@@ -561,8 +561,8 @@ namespace PU
             bool result = true;
             errMessBox.Clear();
 
-            if (Snils_.Value.ToString() == "___-___-___ __")
-                errMessBox.Add(new ErrList { name = "Поле СНИЛС обязательно к заполнению!", control = "Snils_" });
+   //         if (Snils_.Value.ToString() == "___-___-___ __")
+   //             errMessBox.Add(new ErrList { name = "Поле СНИЛС обязательно к заполнению!", control = "Snils_" });
             if (String.IsNullOrEmpty(LastName_.Text))
                 errMessBox.Add(new ErrList { name = "Поле Фамилия обязательно к заполнению!", control = "LastName_" });
             if (String.IsNullOrEmpty(FirstName_.Text))

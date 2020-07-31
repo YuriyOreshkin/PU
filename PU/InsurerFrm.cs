@@ -12,6 +12,8 @@ using Telerik.WinControls;
 using Telerik.WinControls.UI.Localization;
 using Telerik.WinControls.UI;
 using PU.Reports;
+using Telerik.WinControls.Data;
+using System.Threading.Tasks;
 
 namespace PU
 {
@@ -43,8 +45,8 @@ namespace PU
             switch (level)
             {
                 case 2:
-                    radButton1.Enabled = false;
-                    radButton3.Enabled = false;
+                    addBtn.Enabled = false;
+                    delBtn.Enabled = false;
                     break;
                 case 3:
                     RadMessageBox.Show("Доступ запрещен!");
@@ -92,69 +94,127 @@ namespace PU
         public void dataGrid_upd()
         {
 
-            RadGridLocalizationProvider.CurrentProvider = new MyRussianRadGridLocalizationProvider();
-            var ins = db.Insurer;
-            radGridView1.Rows.Clear(); // If dgv is bound to datatable
-            //            radGridView1.DataSource = null;
+            long insID = 0;
+
+            if (insurerGrid.RowCount > 0)
+            {
+                insID = Convert.ToInt64(insurerGrid.CurrentRow.Cells[0].Value);
+            }
+
+
+            int rowindex = 0;
+            string currId = "";
+            if (insurerGrid.ChildRows.Count > 0 && insurerGrid.CurrentRow.Cells[0].Value != null && insurerGrid.CurrentRow.Index >= 0)
+            {
+                rowindex = insurerGrid.CurrentRow.Index;
+                currId = insurerGrid.CurrentRow.Cells[0].Value.ToString();
+            }
+
+
+            SortDescriptor descriptor = new SortDescriptor();
+
+            if (insurerGrid.MasterTemplate.SortDescriptors.Any())
+            {
+                descriptor = insurerGrid.MasterTemplate.SortDescriptors.First();
+            }
+            else
+            {
+                descriptor.PropertyName = "Name";
+                descriptor.Direction = ListSortDirection.Ascending;
+            }
+
+
+
+            var insList = db.Insurer.ToList();
+            this.insurerGrid.TableElement.BeginUpdate();
+
 
             List<insListTemp> insL = new List<insListTemp>();
-            if (ins.Count() != 0)
-            {
-                foreach (var item in ins)
-                {
-                    insL.Add(new insListTemp
-                    {
-                        ID = item.ID,
-                        CheckBox = false,
-                        Name = item.TypePayer == 0 ? (item.NameShort != null ? item.NameShort : (item.Name != null ? item.Name : "")) : (item.LastName + " " + item.FirstName + " " + (item.MiddleName != null ? item.MiddleName : "")),
-                        RegNum = !String.IsNullOrEmpty(item.RegNum) ? Utils.ParseRegNum(item.RegNum) : "",
-                        INN = item.INN != null ? item.INN : "",
-                        Dolgn = item.BossDolgn != null ? item.BossDolgn : "",
-                        DolgnFIO = item.BossFIO != null ? item.BossFIO : ""
-                    });
 
+
+            foreach (var item in insList)
+            {
+                insL.Add(new insListTemp
+                {
+                    ID = item.ID,
+                    CheckBox = false,
+                    Name = item.TypePayer == 0 ? (item.NameShort != null ? item.NameShort : (item.Name != null ? item.Name : "")) : (item.LastName + " " + item.FirstName + " " + (item.MiddleName != null ? item.MiddleName : "")),
+                    RegNum = !String.IsNullOrEmpty(item.RegNum) ? Utils.ParseRegNum(item.RegNum) : "",
+                    INN = item.INN != null ? item.INN : "",
+                    Dolgn = item.BossDolgn != null ? item.BossDolgn : "",
+                    DolgnFIO = item.BossFIO != null ? item.BossFIO : ""
+                });
+
+            }
+
+
+            insurerGrid.DataSource = insL.OrderBy(x => x.Name);
+
+            if (descriptor != null)
+            {
+                this.insurerGrid.MasterTemplate.SortDescriptors.Add(descriptor);
+            }
+
+            if (insL.Count > 0)
+            {
+                insurerGrid.Columns["ID"].IsVisible = false;
+                insurerGrid.Columns["CheckBox"].HeaderText = "";
+                insurerGrid.Columns["CheckBox"].TextAlignment = ContentAlignment.MiddleCenter;
+                (insurerGrid.Columns["CheckBox"] as GridViewCheckBoxColumn).EnableHeaderCheckBox = true;
+                (insurerGrid.Columns["CheckBox"] as GridViewCheckBoxColumn).Checked = Telerik.WinControls.Enumerations.ToggleState.Indeterminate;
+                insurerGrid.Columns["Name"].HeaderText = "Наименование";
+                insurerGrid.Columns["RegNum"].HeaderText = "Рег.№ в ПФР";
+                insurerGrid.Columns["RegNum"].TextAlignment = ContentAlignment.MiddleCenter;
+                insurerGrid.Columns["INN"].HeaderText = "ИНН";
+                insurerGrid.Columns["Dolgn"].HeaderText = "Должность руководителя";
+                insurerGrid.Columns["DolgnFIO"].HeaderText = "ФИО руководителя";
+
+                foreach (GridViewDataColumn column in this.insurerGrid.Columns)
+                {
+                    column.ReadOnly = (column.Name != "CheckBox");
                 }
             }
 
 
-            radGridView1.DataSource = insL;
-
-
-            radGridView1.Columns["ID"].IsVisible = false;
-            radGridView1.Columns["CheckBox"].HeaderText = "";
-            radGridView1.Columns["CheckBox"].TextAlignment = ContentAlignment.MiddleCenter;
-            (radGridView1.Columns["CheckBox"] as GridViewCheckBoxColumn).EnableHeaderCheckBox = true;
-            (radGridView1.Columns["CheckBox"] as GridViewCheckBoxColumn).Checked = Telerik.WinControls.Enumerations.ToggleState.Indeterminate;
-            radGridView1.Columns["Name"].HeaderText = "Наименование";
-            radGridView1.Columns["RegNum"].HeaderText = "Рег.№ в ПФР";
-            radGridView1.Columns["RegNum"].TextAlignment = ContentAlignment.MiddleCenter;
-            radGridView1.Columns["INN"].HeaderText = "ИНН";
-            radGridView1.Columns["Dolgn"].HeaderText = "Должность руководителя";
-            radGridView1.Columns["DolgnFIO"].HeaderText = "ФИО руководителя";
-
-
-            foreach (GridViewDataColumn column in this.radGridView1.Columns)
+            foreach (var item in insurerGrid.Rows)
             {
-                column.ReadOnly = (column.Name != "CheckBox");
+                item.MinHeight = 22;
             }
 
+            this.insurerGrid.TableElement.EndUpdate();
 
-            radGridView1.Refresh();
-
-            if (radGridView1.RowCount > 0)
+            if (insurerGrid.ChildRows.Count > 0)
             {
-                if (!String.IsNullOrEmpty(currentReg) && (radGridView1.Rows.Any(x => x.Cells["RegNum"].Value.ToString() == currentReg)))
+                if (insurerGrid.Rows.Any(x => x.Cells[0].Value.ToString() == currId))
                 {
-                    radGridView1.TableElement.ScrollToRow(radGridView1.Rows.First(x => x.Cells["RegNum"].Value.ToString() == currentReg));
-                    radGridView1.Rows.First(x => x.Cells["RegNum"].Value.ToString() == currentReg).IsCurrent = true;
+                    insurerGrid.Rows.First(x => x.Cells[0].Value.ToString() == currId).IsCurrent = true;
                 }
                 else
                 {
-                    radGridView1.TableElement.ScrollToRow(radGridView1.Rows[0]);
-                    this.radGridView1.GridNavigator.SelectFirstRow();
+                    if (rowindex >= insurerGrid.ChildRows.Count)
+                        rowindex = insurerGrid.ChildRows.Count - 1;
+                    rowindex = rowindex >= 0 ? rowindex : 0;
+                    insurerGrid.ChildRows[rowindex].IsCurrent = true;
                 }
 
             }
+
+            //insurerGrid.Refresh();
+
+            //if (insurerGrid.RowCount > 0)
+            //{
+            //    if (!String.IsNullOrEmpty(currentReg) && (insurerGrid.Rows.Any(x => x.Cells["RegNum"].Value.ToString() == currentReg)))
+            //    {
+            //        insurerGrid.TableElement.ScrollToRow(insurerGrid.Rows.First(x => x.Cells["RegNum"].Value.ToString() == currentReg));
+            //        insurerGrid.Rows.First(x => x.Cells["RegNum"].Value.ToString() == currentReg).IsCurrent = true;
+            //    }
+            //    else
+            //    {
+            //        insurerGrid.TableElement.ScrollToRow(insurerGrid.Rows[0]);
+            //        this.insurerGrid.GridNavigator.SelectFirstRow();
+            //    }
+
+            //}
 
 
         }
@@ -163,46 +223,128 @@ namespace PU
         {
             Telerik.WinControls.RadMessageBox.SetThemeName(this.ThemeName);
             ThemeResolutionService.ApplyThemeToControlTree(this, this.ThemeName);
+            RadGridLocalizationProvider.CurrentProvider = new MyRussianRadGridLocalizationProvider();
 
             checkAccessLevel();
-
-            if (db.Insurer.Any(x => x.ID == Options.InsID))
-            {
-                currentReg = Utils.ParseRegNum(db.Insurer.FirstOrDefault(x => x.ID == Options.InsID).RegNum);
-            }
 
 
             if (action == "selection")
             {
-                radButton7.Visible = true;
+                selectBtn.Visible = true;
             }
 
-            /*            radGridView1.Columns["RegNum"].Width = 120;
-                        radGridView1.Columns["Name"].Width = 200;
-                        radGridView1.Columns["INN"].Width = 100;
-                        radGridView1.Columns["Dolgn"].Width = radGridView1.Width / 10 * 3;
-                        radGridView1.Columns["DolgnFIO"].Width = radGridView1.Width / 10 * 2;*/
-            foreach (GridViewDataColumn column in this.radGridView1.Columns)
+
+            foreach (GridViewDataColumn column in this.insurerGrid.Columns)
             {
                 column.ReadOnly = (column.Name != "CheckBox");
             }
 
             dataGrid_upd();
-            radGridView1_SizeChanged(null, null);
+            insurerGrid_SizeChanged(null, null);
 
-            this.radGridView1.Select();
 
+            string id = Options.InsID.ToString();
+            if (insurerGrid.Rows.Any(x => x.Cells["ID"].Value.ToString() == id))
+                insurerGrid.Rows.First(x => x.Cells["ID"].Value.ToString() == id).IsCurrent = true;
+
+
+            this.insurerGrid.Select();
         }
 
 
-        private void radButton4_Click(object sender, EventArgs e)
+
+        //public string add(Insurer insData)
+        //{
+        //    string result = "";
+
+        //    int rowindex = insurerGrid.RowCount == 0 ? 0 : insurerGrid.CurrentRow.Index;
+
+
+
+        //    return result;
+        //}
+        //
+        //public string edit(Insurer insData)
+        //{
+        //    string result = "";
+
+        //    int rowindex = insurerGrid.CurrentRow.Index;
+        //    long id = long.Parse(insurerGrid.CurrentRow.Cells[0].Value.ToString());
+
+        //    if (!db.Insurer.Any(x => x.RegNum == insData.RegNum && x.ID != id))
+        //    {
+        //        try
+        //        {
+        //            Insurer ins = db.Insurer.FirstOrDefault(x => x.ID == id);
+
+        //            ins.BossDolgn = insData.BossDolgn;
+        //            ins.BossDolgnDop = insData.BossDolgnDop;
+        //            ins.BossPrint = insData.BossPrint;
+        //            ins.BossDopPrint = insData.BossDopPrint;
+        //            ins.BossFIO = insData.BossFIO;
+        //            ins.BossFIODop = insData.BossFIODop;
+        //            ins.BuchgFIO = insData.BuchgFIO;
+        //            ins.BuchgPrint = insData.BuchgPrint;
+        //            ins.CodeRaion = insData.CodeRaion;
+        //            ins.CodeRegion = insData.CodeRegion;
+        //            ins.ControlNumber = insData.ControlNumber;
+        //            ins.EGRIP = insData.EGRIP;
+        //            ins.EGRUL = insData.EGRUL;
+        //            ins.FirstName = insData.FirstName;
+        //            ins.INN = insData.INN;
+        //            ins.InsuranceNumber = insData.InsuranceNumber;
+        //            ins.KPP = insData.KPP;
+        //            ins.LastName = insData.LastName;
+        //            ins.MiddleName = insData.MiddleName;
+        //            ins.Name = insData.Name;
+        //            ins.NameShort = insData.NameShort;
+        //            ins.OKPO = insData.OKPO;
+        //            ins.OKTMO = insData.OKTMO;
+        //            ins.OKWED = insData.OKWED;
+        //            ins.OrgLegalForm = insData.OrgLegalForm;
+        //            ins.PerformerDolgn = insData.PerformerDolgn;
+        //            ins.PerformerFIO = insData.PerformerFIO;
+        //            ins.PerformerPrint = insData.PerformerPrint;
+        //            ins.PhoneContact = insData.PhoneContact;
+        //            ins.RegNum = insData.RegNum;
+        //            ins.TypePayer = insData.TypePayer;
+        //            ins.YearBirth = insData.YearBirth;
+
+
+        //            db.Entry(ins, EntityState.Modified);
+        //            db.SaveChanges();
+        //            dataGrid_upd();
+        //            insurerGrid.Rows[rowindex].IsCurrent = true;
+        //        }
+        //        catch (Exception e)
+        //        {
+        //            result = e.Message;
+        //        }
+        //    }
+        //    else
+        //        result = "Страхователь с рег. номером " + insData.RegNum + " уже существует в БД!";
+
+
+        //    return result;
+        //}
+
+
+
+        private void InsurerFrm_FormClosed(object sender, FormClosedEventArgs e)
         {
-            this.Close();
+            selectBtn.Visible = false;
         }
 
-        private void radButton1_Click(object sender, EventArgs e)
+
+        private void InsurerFrm_Shown(object sender, EventArgs e)
         {
-            if (!radButton1.Enabled)
+            insurerGrid.Select();
+        }
+
+
+        private void addBtn_Click(object sender, EventArgs e)
+        {
+            if (!addBtn.Enabled)
                 return;
 
             InsurerEdit child = new InsurerEdit();
@@ -211,212 +353,52 @@ namespace PU
             child.ShowInTaskbar = false;
             child.action = "add";
             child.ShowDialog();
+
+            if (child.insData != null)
+            {
+                db.ChangeTracker.DetectChanges();
+                db = new pu6Entities();
+                dataGrid_upd();
+                string id = child.insData.ID.ToString();
+                if (insurerGrid.Rows.Any(x => x.Cells["ID"].Value.ToString() == id))
+                    insurerGrid.Rows.First(x => x.Cells["ID"].Value.ToString() == id).IsCurrent = true;
+            }
             child.Dispose();
         }
 
-        private void radButton2_Click(object sender, EventArgs e)
+        private void editBtn_Click(object sender, EventArgs e)
         {
-            if (radGridView1.Rows.Count() > 0 && radGridView1.CurrentRow.Cells[0].Value != null)
+            if (insurerGrid.Rows.Count() > 0 && insurerGrid.CurrentRow.Cells[0].Value != null)
             {
-                long id = long.Parse(radGridView1.CurrentRow.Cells[0].Value.ToString());
-                currentReg = radGridView1.CurrentRow.Cells["RegNum"].Value.ToString();
+                long id = long.Parse(insurerGrid.CurrentRow.Cells[0].Value.ToString());
 
                 InsurerEdit child = new InsurerEdit();
                 child.Owner = this;
                 child.ThemeName = this.ThemeName;
                 child.ShowInTaskbar = false;
-                child.insData = db.Insurer.FirstOrDefault(x => x.ID == id);
+                child.InsID = id;
                 child.action = "edit";
                 child.ShowDialog();
-                child.Dispose();
-            }
-        }
-
-        public string add(Insurer insData)
-        {
-            string result = "";
-
-            int rowindex = radGridView1.RowCount == 0 ? 0 : radGridView1.CurrentRow.Index;
-
-            try
-            {
-                if (!db.Insurer.Any(x => x.RegNum == insData.RegNum))
+                if (child.insData != null)
                 {
-                    db.Insurer.AddObject(insData);
-                    db.SaveChanges();
+                    db.ChangeTracker.DetectChanges();
+                    db = new pu6Entities();
                     dataGrid_upd();
-                    radGridView1.Rows[rowindex].IsCurrent = true;
                 }
-                else
-                    result = "Страхователь с рег. номером " + insData.RegNum + " уже существует в БД!";
-            }
-            catch (Exception e)
-            {
-                result = e.Message;
-            }
-
-
-
-            return result;
-        }
-        //
-        public string edit(Insurer insData)
-        {
-            string result = "";
-
-            int rowindex = radGridView1.CurrentRow.Index;
-            long id = long.Parse(radGridView1.CurrentRow.Cells[0].Value.ToString());
-
-            if (!db.Insurer.Any(x => x.RegNum == insData.RegNum && x.ID != id))
-            {
-                try
-                {
-                    Insurer ins = db.Insurer.FirstOrDefault(x => x.ID == id);
-
-                    ins.BossDolgn = insData.BossDolgn;
-                    ins.BossDolgnDop = insData.BossDolgnDop;
-                    ins.BossPrint = insData.BossPrint;
-                    ins.BossDopPrint = insData.BossDopPrint;
-                    ins.BossFIO = insData.BossFIO;
-                    ins.BossFIODop = insData.BossFIODop;
-                    ins.BuchgFIO = insData.BuchgFIO;
-                    ins.BuchgPrint = insData.BuchgPrint;
-                    ins.CodeRaion = insData.CodeRaion;
-                    ins.CodeRegion = insData.CodeRegion;
-                    ins.ControlNumber = insData.ControlNumber;
-                    ins.EGRIP = insData.EGRIP;
-                    ins.EGRUL = insData.EGRUL;
-                    ins.FirstName = insData.FirstName;
-                    ins.INN = insData.INN;
-                    ins.InsuranceNumber = insData.InsuranceNumber;
-                    ins.KPP = insData.KPP;
-                    ins.LastName = insData.LastName;
-                    ins.MiddleName = insData.MiddleName;
-                    ins.Name = insData.Name;
-                    ins.NameShort = insData.NameShort;
-                    ins.OKPO = insData.OKPO;
-                    ins.OKTMO = insData.OKTMO;
-                    ins.OKWED = insData.OKWED;
-                    ins.OrgLegalForm = insData.OrgLegalForm;
-                    ins.PerformerDolgn = insData.PerformerDolgn;
-                    ins.PerformerFIO = insData.PerformerFIO;
-                    ins.PerformerPrint = insData.PerformerPrint;
-                    ins.PhoneContact = insData.PhoneContact;
-                    ins.RegNum = insData.RegNum;
-                    ins.TypePayer = insData.TypePayer;
-                    ins.YearBirth = insData.YearBirth;
-
-
-                    db.ObjectStateManager.ChangeObjectState(ins, EntityState.Modified);
-                    db.SaveChanges();
-                    dataGrid_upd();
-                    radGridView1.Rows[rowindex].IsCurrent = true;
-                }
-                catch (Exception e)
-                {
-                    result = e.Message;
-                }
-            }
-            else
-                result = "Страхователь с рег. номером " + insData.RegNum + " уже существует в БД!";
-
-
-            return result;
-        }
-
-        private void radButton5_Click(object sender, EventArgs e)
-        {
-            if (radGridView1.Rows.Count() > 0 && radGridView1.CurrentRow.Cells[0].Value != null)
-            {
-                long id = long.Parse(radGridView1.CurrentRow.Cells[0].Value.ToString());
-
-                DepartmentsFrm child = new DepartmentsFrm();
-                child.Owner = this;
-                child.ThemeName = this.ThemeName;
-                child.ShowInTaskbar = false;
-                child.ShowDialog();
                 child.Dispose();
             }
         }
 
-
-        private void radButton6_Click(object sender, EventArgs e)
+        private void delBtn_Click(object sender, EventArgs e)
         {
-            if (radGridView1.Rows.Count() > 0 && radGridView1.CurrentRow.Cells[0].Value != null)
-            {
-
-                long id = long.Parse(radGridView1.CurrentRow.Cells[0].Value.ToString());
-
-                StaffFrm child = new StaffFrm();
-                child.Text = "Сотрудники    -    " + radGridView1.CurrentRow.Cells[2].Value.ToString();
-                child.Owner = this;
-                child.ThemeName = this.ThemeName;
-                child.ShowInTaskbar = false;
-                child.showAllStaff = Control.ModifierKeys == Keys.Shift;
-                child.InsID = id;
-                child.ShowDialog();
-                child.Dispose();
-            }
-        }
-
-        private void radGridView1_CellDoubleClick(object sender, GridViewCellEventArgs e)
-        {
-            if (radGridView1.Rows.Count() > 0)
-            {
-                switch (action)
-                {
-                    case "selection":
-                        radButton7_Click(null, null);
-                        break;
-                    default:
-                        radButton2_Click(null, null);
-                        break;
-                }
-            }
-        }
-
-        private void radButton7_Click(object sender, EventArgs e)
-        {
-            if (radGridView1.Rows.Count() > 0 && radGridView1.CurrentRow != null && radGridView1.CurrentRow.Cells[0].Value != null)
-            {
-
-                if (action == "selection")
-                {
-                    InsID = long.Parse(radGridView1.CurrentRow.Cells[0].Value.ToString());
-
-                    var insData = db.Insurer.FirstOrDefault(x => x.ID == InsID);
-
-                    if (Options.InsurerFolders.Any(x => x.regnum == insData.RegNum))
-                    {
-                        var p = Options.InsurerFolders.FirstOrDefault(x => x.regnum == insData.RegNum);
-
-                        Options.CurrentInsurerFolders.regnum = p.regnum;
-                        Options.CurrentInsurerFolders.importPath = p.importPath;
-                        Options.CurrentInsurerFolders.exportPath = p.exportPath;
-                    }
-
-
-                    this.Close();
-                }
-            }
-
-        }
-
-        private void InsurerFrm_FormClosed(object sender, FormClosedEventArgs e)
-        {
-            radButton7.Visible = false;
-        }
-
-        private void radButton3_Click(object sender, EventArgs e)
-        {
-            if (!radButton3.Enabled)
+            if (!delBtn.Enabled)
                 return;
 
 
             DialogResult dialogResult;
-            if (radGridView1.Rows.Any(x => x.Cells[1].Value != null && (bool)x.Cells[1].Value == true)) // если выделено несколько записей на удаление
+            if (insurerGrid.Rows.Any(x => x.Cells[1].Value != null && (bool)x.Cells[1].Value == true)) // если выделено несколько записей на удаление
             {
-                int cnt = radGridView1.Rows.Where(x => x.Cells[1].Value != null && (bool)x.Cells[1].Value == true).Count();
+                int cnt = insurerGrid.Rows.Where(x => x.Cells[1].Value != null && (bool)x.Cells[1].Value == true).Count();
                 dialogResult = RadMessageBox.Show(this, "Вы уверены в том, что желаете удалить " + cnt.ToString() + " записи(ей)", "Внимание! Удаление записи.", MessageBoxButtons.YesNo, RadMessageIcon.Info, MessageBoxDefaultButton.Button2);
             }
             else
@@ -426,22 +408,22 @@ namespace PU
 
             if (dialogResult == DialogResult.Yes)
             {
-                if (radGridView1.RowCount > 0 && radGridView1.CurrentRow.Cells[0].Value != null)
+                if (insurerGrid.RowCount > 0 && insurerGrid.CurrentRow.Cells[0].Value != null)
                 {
-                    int rowindex = radGridView1.CurrentRow.Index;
+                    int rowindex = insurerGrid.CurrentRow.Index;
                     List<long> id = new List<long>();
 
                     //если несколько записей
-                    if (radGridView1.Rows.Any(x => x.Cells[1].Value != null && (bool)x.Cells[1].Value == true))
+                    if (insurerGrid.Rows.Any(x => x.Cells[1].Value != null && (bool)x.Cells[1].Value == true))
                     {
-                        foreach (var item in radGridView1.Rows.Where(x => x.Cells[1].Value != null && (bool)x.Cells[1].Value == true))
+                        foreach (var item in insurerGrid.Rows.Where(x => x.Cells[1].Value != null && (bool)x.Cells[1].Value == true))
                         {
                             id.Add(long.Parse(item.Cells[0].Value.ToString()));
                         }
                     }
                     else if (rowindex >= 0)// если текущая запись
                     {
-                        id.Add(long.Parse(radGridView1.CurrentRow.Cells[0].Value.ToString()));
+                        id.Add(long.Parse(insurerGrid.CurrentRow.Cells[0].Value.ToString()));
 
                     }
 
@@ -458,40 +440,87 @@ namespace PU
 
                     dataGrid_upd();
                     InsID = 0;
-                    if (rowindex < radGridView1.Rows.Count())
+                    if (rowindex < insurerGrid.Rows.Count())
                     {
-                        radGridView1.Rows[rowindex].IsCurrent = true;
+                        insurerGrid.Rows[rowindex].IsCurrent = true;
                     }
-                    else if (radGridView1.Rows.Count() > 0)
-                        radGridView1.Rows.Last().IsCurrent = true;
+                    else if (insurerGrid.Rows.Count() > 0)
+                        insurerGrid.Rows.Last().IsCurrent = true;
 
                 }
             }
-
         }
 
-        private void radGridView1_SizeChanged(object sender, EventArgs e)
-        {
-            if (radGridView1.Width >= 936)
-            {
-                radGridView1.MasterTemplate.AutoSizeColumnsMode = GridViewAutoSizeColumnsMode.Fill;
-            }
-            else if (radGridView1.ColumnCount > 0)
-            {
-                radGridView1.MasterTemplate.AutoSizeColumnsMode = GridViewAutoSizeColumnsMode.None;
-                radGridView1.Columns[1].Width = 29;
-                radGridView1.Columns[2].Width = 260;
-                radGridView1.Columns[3].Width = 150;
-                radGridView1.Columns[4].Width = 100;
-                radGridView1.Columns[5].Width = 220;
-                radGridView1.Columns[6].Width = 180;
-            }
 
+        private void closeBtn_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
 
-        private void btnPrint_Click(object sender, EventArgs e)
+        private void selectBtn_Click(object sender, EventArgs e)
         {
-            if (radGridView1.RowCount > 0)
+            if (insurerGrid.Rows.Count() > 0 && insurerGrid.CurrentRow != null && insurerGrid.CurrentRow.Cells[0].Value != null)
+            {
+
+                if (action == "selection")
+                {
+                    InsID = long.Parse(insurerGrid.CurrentRow.Cells[0].Value.ToString());
+
+                    var insData = db.Insurer.FirstOrDefault(x => x.ID == InsID);
+
+                    if (Options.InsurerFolders.Any(x => x.regnum == insData.RegNum))
+                    {
+                        var p = Options.InsurerFolders.FirstOrDefault(x => x.regnum == insData.RegNum);
+
+                        Options.CurrentInsurerFolders.regnum = p.regnum;
+                        Options.CurrentInsurerFolders.importPath = p.importPath;
+                        Options.CurrentInsurerFolders.exportPath = p.exportPath;
+                    }
+
+
+                    this.Close();
+                }
+            }
+        }
+
+        private void staffBtn_Click(object sender, EventArgs e)
+        {
+            if (insurerGrid.Rows.Count() > 0 && insurerGrid.CurrentRow.Cells[0].Value != null)
+            {
+
+                long id = long.Parse(insurerGrid.CurrentRow.Cells[0].Value.ToString());
+
+                StaffFrm child = new StaffFrm();
+                child.Text = "Сотрудники    -    " + insurerGrid.CurrentRow.Cells[2].Value.ToString();
+                child.Owner = this;
+                child.ThemeName = this.ThemeName;
+                child.ShowInTaskbar = false;
+                child.showAllStaff = Control.ModifierKeys == Keys.Shift;
+                child.InsID = id;
+                child.ShowDialog();
+                child.Dispose();
+            }
+        }
+
+        private void departmentBtn_Click(object sender, EventArgs e)
+        {
+            if (insurerGrid.Rows.Count() > 0 && insurerGrid.CurrentRow.Cells[0].Value != null)
+            {
+                long id = long.Parse(insurerGrid.CurrentRow.Cells[0].Value.ToString());
+
+                DepartmentsFrm child = new DepartmentsFrm();
+                child.Owner = this;
+                child.ThemeName = this.ThemeName;
+                child.ShowInTaskbar = false;
+                child.InsID = id;
+                child.ShowDialog();
+                child.Dispose();
+            }
+        }
+
+        private void printBtn_Click(object sender, EventArgs e)
+        {
+            if (insurerGrid.RowCount > 0)
             {
                 List<InsurerRep> insList = new List<InsurerRep>();
 
@@ -518,25 +547,20 @@ namespace PU
             }
         }
 
-        private void InsurerFrm_Shown(object sender, EventArgs e)
-        {
-            radGridView1.Select();
-        }
-
-        private void radGridView1_ContextMenuOpening(object sender, ContextMenuOpeningEventArgs e)
+        private void insurerGrid_ContextMenuOpening(object sender, ContextMenuOpeningEventArgs e)
         {
             if ((e.ContextMenuProvider as GridDataCellElement) != null)
             {
                 RadMenuItem menuItem1 = new RadMenuItem("Добавить");
-                menuItem1.Click += new EventHandler(radButton1_Click);
+                menuItem1.Click += new EventHandler(addBtn_Click);
                 RadMenuItem menuItem2 = new RadMenuItem("Изменить");
-                menuItem2.Click += new EventHandler(radButton2_Click);
+                menuItem2.Click += new EventHandler(editBtn_Click);
                 RadMenuItem menuItem3 = new RadMenuItem("Удалить");
-                menuItem3.Click += new EventHandler(radButton3_Click);
+                menuItem3.Click += new EventHandler(delBtn_Click);
                 RadMenuItem menuItem4 = new RadMenuItem("Отделы");
-                menuItem4.Click += new EventHandler(radButton5_Click);
+                menuItem4.Click += new EventHandler(departmentBtn_Click);
                 RadMenuItem menuItem5 = new RadMenuItem("Сотрудники");
-                menuItem5.Click += new EventHandler(radButton6_Click);
+                menuItem5.Click += new EventHandler(staffBtn_Click);
                 e.ContextMenu.Items.Insert(0, menuItem1);
                 e.ContextMenu.Items.Insert(1, menuItem2);
                 e.ContextMenu.Items.Insert(2, menuItem3);
@@ -548,40 +572,75 @@ namespace PU
             }
         }
 
-        private void radGridView1_KeyPress(object sender, KeyPressEventArgs e)
+        private void insurerGrid_CellDoubleClick(object sender, GridViewCellEventArgs e)
+        {
+            if (insurerGrid.Rows.Count() > 0)
+            {
+                switch (action)
+                {
+                    case "selection":
+                        selectBtn_Click(null, null);
+                        break;
+                    default:
+                        editBtn_Click(null, null);
+                        break;
+                }
+            }
+        }
+
+        private void insurerGrid_FilterChanged(object sender, GridViewCollectionChangedEventArgs e)
+        {
+            if ((e.GridViewTemplate.MasterTemplate.CurrentRow == null || e.GridViewTemplate.MasterTemplate.CurrentRow.Index < 0) && e.GridViewTemplate.ChildRows.Count > 0 && !insurerGrid.MasterView.TableFilteringRow.IsCurrent)
+            {
+                e.GridViewTemplate.ChildRows.First().IsCurrent = true;
+            }
+        }
+
+        private void insurerGrid_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (e.KeyChar == 13)
             {
                 switch (action)
                 {
                     case "selection":
-                        radButton7_Click(null, null);
+                        selectBtn_Click(null, null);
                         break;
                     default:
-                        radButton2_Click(null, null);
+                        editBtn_Click(null, null);
                         break;
                 }
             }
             else if (e.KeyChar == 8)
             {
-                if (this.radGridView1.MasterView.TableFilteringRow.Cells["Name"].Value != null && !String.IsNullOrEmpty(this.radGridView1.MasterView.TableFilteringRow.Cells["Name"].Value.ToString()))
+                if (this.insurerGrid.MasterView.TableFilteringRow.Cells["Name"].Value != null && !String.IsNullOrEmpty(this.insurerGrid.MasterView.TableFilteringRow.Cells["Name"].Value.ToString()))
                 {
-                    this.radGridView1.MasterView.TableFilteringRow.Cells["Name"].Value = this.radGridView1.MasterView.TableFilteringRow.Cells["Name"].Value.ToString().Remove(this.radGridView1.MasterView.TableFilteringRow.Cells["Name"].Value.ToString().Length - 1);
+                    this.insurerGrid.MasterView.TableFilteringRow.Cells["Name"].Value = this.insurerGrid.MasterView.TableFilteringRow.Cells["Name"].Value.ToString().Remove(this.insurerGrid.MasterView.TableFilteringRow.Cells["Name"].Value.ToString().Length - 1);
                 }
             }
             else
             {
-                this.radGridView1.MasterView.TableFilteringRow.Cells["Name"].Value = (this.radGridView1.MasterView.TableFilteringRow.Cells["Name"].Value != null ? this.radGridView1.MasterView.TableFilteringRow.Cells["Name"].Value.ToString() : "") + e.KeyChar;
+                this.insurerGrid.MasterView.TableFilteringRow.Cells["Name"].Value = (this.insurerGrid.MasterView.TableFilteringRow.Cells["Name"].Value != null ? this.insurerGrid.MasterView.TableFilteringRow.Cells["Name"].Value.ToString() : "") + e.KeyChar;
             }
         }
 
-        private void radGridView1_FilterChanged(object sender, GridViewCollectionChangedEventArgs e)
+        private void insurerGrid_SizeChanged(object sender, EventArgs e)
         {
-            if ((e.GridViewTemplate.MasterTemplate.CurrentRow == null || e.GridViewTemplate.MasterTemplate.CurrentRow.Index < 0) && e.GridViewTemplate.ChildRows.Count > 0 && !radGridView1.MasterView.TableFilteringRow.IsCurrent)
+            if (insurerGrid.Width >= 936)
             {
-                e.GridViewTemplate.ChildRows.First().IsCurrent = true;
+                insurerGrid.MasterTemplate.AutoSizeColumnsMode = GridViewAutoSizeColumnsMode.Fill;
+            }
+            else if (insurerGrid.ColumnCount > 0)
+            {
+                insurerGrid.MasterTemplate.AutoSizeColumnsMode = GridViewAutoSizeColumnsMode.None;
+                insurerGrid.Columns[1].Width = 29;
+                insurerGrid.Columns[2].Width = 260;
+                insurerGrid.Columns[3].Width = 150;
+                insurerGrid.Columns[4].Width = 100;
+                insurerGrid.Columns[5].Width = 220;
+                insurerGrid.Columns[6].Width = 180;
             }
         }
+
 
 
 

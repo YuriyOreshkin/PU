@@ -278,7 +278,7 @@ namespace PU.FormsRSW2014
                 child.defaultPage = 4;
                 child.ShowDialog();
 
-                db.DetectChanges();
+                db.ChangeTracker.DetectChanges();
                 db = new pu6Entities();
 
                 List<long> ids = rsw61List.Select(c => c.ID).ToList();

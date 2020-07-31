@@ -214,7 +214,7 @@
             this.radPageView1.DefaultPage = this.radPageViewPage1;
             this.radPageView1.Location = new System.Drawing.Point(12, 72);
             this.radPageView1.Name = "radPageView1";
-            this.radPageView1.SelectedPage = this.radPageViewPage3;
+            this.radPageView1.SelectedPage = this.radPageViewPage4;
             this.radPageView1.Size = new System.Drawing.Size(574, 335);
             this.radPageView1.TabIndex = 17;
             this.radPageView1.ThemeName = "Office2013Light";
@@ -851,7 +851,7 @@
             this.radPageViewPage5.ItemSize = new System.Drawing.SizeF(70F, 27F);
             this.radPageViewPage5.Location = new System.Drawing.Point(5, 31);
             this.radPageViewPage5.Name = "radPageViewPage5";
-            this.radPageViewPage5.Size = new System.Drawing.Size(564, 312);
+            this.radPageViewPage5.Size = new System.Drawing.Size(564, 299);
             this.radPageViewPage5.Text = "Документ";
             // 
             // ConfirmDocDateMaskedEditBox
@@ -1139,6 +1139,11 @@
             0,
             0});
             this.numSpinEditor.Name = "numSpinEditor";
+            this.numSpinEditor.NullableValue = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             this.numSpinEditor.Size = new System.Drawing.Size(51, 21);
             this.numSpinEditor.TabIndex = 20;
             this.numSpinEditor.TabStop = false;

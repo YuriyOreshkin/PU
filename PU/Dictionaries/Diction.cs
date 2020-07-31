@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
+using System.Data.Entity;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -224,7 +224,7 @@ namespace PU.FormsRSW2014
 							{
 								newItem.DateEnd = dc.DateEnd.Value.Date;
 							}
-							db.TerrUsl.AddObject(newItem);
+							db.TerrUsl.Add(newItem);
 						}
 						else
 							checkExist = true;
@@ -247,7 +247,7 @@ namespace PU.FormsRSW2014
 							{
 								newItem.DateEnd = dc.DateEnd.Value.Date;
 							}
-							db.IschislStrahStajOsn.AddObject(newItem);
+							db.IschislStrahStajOsn.Add(newItem);
 						}
 						else
 							checkExist = true;
@@ -276,7 +276,7 @@ namespace PU.FormsRSW2014
 								newItem.EdIzmID = id_izmer_ed;
 							}
 
-							db.UslDosrNazn.AddObject(newItem);
+							db.UslDosrNazn.Add(newItem);
 						}
 						else
 							checkExist = true;
@@ -299,7 +299,7 @@ namespace PU.FormsRSW2014
 							{
 								newItem.DateEnd = dc.DateEnd.Value.Date;
 							}
-							db.OsobUslTruda.AddObject(newItem);
+							db.OsobUslTruda.Add(newItem);
 						}
 						else
 							checkExist = true;
@@ -322,7 +322,7 @@ namespace PU.FormsRSW2014
 							{
 								newItem.DateEnd = dc.DateEnd.Value.Date;
 							}
-							db.VidTrudDeyat.AddObject(newItem);
+							db.VidTrudDeyat.Add(newItem);
 						}
 						else
 							checkExist = true;
@@ -345,7 +345,7 @@ namespace PU.FormsRSW2014
 							{
 								newItem.DateEnd = dc.DateEnd.Value.Date;
 							}
-							db.SpecOcenkaUslTruda.AddObject(newItem);
+							db.SpecOcenkaUslTruda.Add(newItem);
 						}
 						else
 							checkExist = true;
@@ -368,7 +368,7 @@ namespace PU.FormsRSW2014
 							{
 								newItem.DateEnd = dc.DateEnd.Value.Date;
 							}
-							db.IschislStrahStajDop.AddObject(newItem);
+							db.IschislStrahStajDop.Add(newItem);
 						}
 						else
 							checkExist = true;
@@ -500,7 +500,7 @@ namespace PU.FormsRSW2014
 							else
 								Item.DateEnd = null;
 
-							db.ObjectStateManager.ChangeObjectState(Item, EntityState.Modified);
+							db.Entry(Item).State= EntityState.Modified;
 						}
 						else
 						{
@@ -531,7 +531,7 @@ namespace PU.FormsRSW2014
 							else
 								Item.DateEnd = null;
 
-							db.ObjectStateManager.ChangeObjectState(Item, EntityState.Modified);
+							db.Entry(Item).State = EntityState.Modified;
 						}
 						else
 						{
@@ -571,7 +571,7 @@ namespace PU.FormsRSW2014
 								Item.EdIzmID = null;
 							}
 
-							db.ObjectStateManager.ChangeObjectState(Item, EntityState.Modified);
+							db.Entry(Item).State = EntityState.Modified;
 						}
 						else
 						{
@@ -602,7 +602,7 @@ namespace PU.FormsRSW2014
 							else
 								Item.DateEnd = null;
 
-							db.ObjectStateManager.ChangeObjectState(Item, EntityState.Modified);
+							db.Entry(Item).State = EntityState.Modified;
 						}
 						else
 						{
@@ -633,7 +633,7 @@ namespace PU.FormsRSW2014
 							else
 								Item.DateEnd = null;
 
-							db.ObjectStateManager.ChangeObjectState(Item, EntityState.Modified);
+							db.Entry(Item).State= EntityState.Modified;
 						}
 						else
 						{
@@ -664,7 +664,7 @@ namespace PU.FormsRSW2014
 							else
 								Item.DateEnd = null;
 
-							db.ObjectStateManager.ChangeObjectState(Item, EntityState.Modified);
+							db.Entry(Item).State= EntityState.Modified;
 						}
 						else
 						{
@@ -695,7 +695,7 @@ namespace PU.FormsRSW2014
 							else
 								Item.DateEnd = null;
 
-							db.ObjectStateManager.ChangeObjectState(Item, EntityState.Modified);
+							db.Entry(Item).State = EntityState.Modified;
 						}
 						else
 						{
@@ -761,43 +761,43 @@ namespace PU.FormsRSW2014
 							#region Территориальные условия
 							case "TerrUsl":
 								TerrUsl Item1 = db.TerrUsl.FirstOrDefault(x => x.ID == id);
-								db.TerrUsl.DeleteObject(Item1);
+								db.TerrUsl.Remove(Item1);
 								break;
 							#endregion
 							#region Исчисление страхового стажа: Основание
 							case "IschislStrahStajOsn":
 								IschislStrahStajOsn Item2 = db.IschislStrahStajOsn.FirstOrDefault(x => x.ID == id);
-								db.IschislStrahStajOsn.DeleteObject(Item2);
+								db.IschislStrahStajOsn.Remove(Item2);
 								break;
 							#endregion
 							#region Условия для досрочного назначения Трудовой пенсии: Основание
 							case "UslDosrNazn":
 								UslDosrNazn Item3 = db.UslDosrNazn.FirstOrDefault(x => x.ID == id);
-								db.UslDosrNazn.DeleteObject(Item3);
+								db.UslDosrNazn.Remove(Item3);
 								break;
 							#endregion
 							#region Особые условия труда
 							case "OsobUslTruda":
 								OsobUslTruda Item4 = db.OsobUslTruda.FirstOrDefault(x => x.ID == id);
-								db.OsobUslTruda.DeleteObject(Item4);
+								db.OsobUslTruda.Remove(Item4);
 								break;
 							#endregion
 							#region Виды трудовой или иной общественно полезной деятельности
 							case "VidTrudDeyat":
 								VidTrudDeyat Item5 = db.VidTrudDeyat.FirstOrDefault(x => x.ID == id);
-								db.VidTrudDeyat.DeleteObject(Item5);
+								db.VidTrudDeyat.Remove(Item5);
 								break;
 							#endregion
 							#region Специальная оценка условий труда
 							case "SpecOcenkaUslTruda":
 								SpecOcenkaUslTruda Item6 = db.SpecOcenkaUslTruda.FirstOrDefault(x => x.ID == id);
-								db.SpecOcenkaUslTruda.DeleteObject(Item6);
+								db.SpecOcenkaUslTruda.Remove(Item6);
 								break;
 							#endregion
 							#region Исчисление страхового стажа: Доп. сведения
 							case "IschislStrahStajDop":
 								IschislStrahStajDop Item7 = db.IschislStrahStajDop.FirstOrDefault(x => x.ID == id);
-								db.IschislStrahStajDop.DeleteObject(Item7);
+								db.IschislStrahStajDop.Remove(Item7);
 								break;
 							#endregion
 						}

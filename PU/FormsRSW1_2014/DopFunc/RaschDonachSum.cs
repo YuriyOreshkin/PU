@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
+using System.Data.Entity;
 using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
@@ -189,13 +189,13 @@ namespace PU.FormsRSW2014
                         rsw66_old.SumFeePFR_D = Math.Round(rsw66_new.SumFeePFR_D.Value, 2, MidpointRounding.AwayFromZero);
                         rsw66_old.SumFeePFR_NakopD = Math.Round(rsw66_new.SumFeePFR_NakopD.Value, 2, MidpointRounding.AwayFromZero);
                         rsw66_old.SumFeePFR_StrahD = Math.Round(rsw66_new.SumFeePFR_StrahD.Value, 2, MidpointRounding.AwayFromZero);
-                        db.ObjectStateManager.ChangeObjectState(rsw66_old, EntityState.Modified);
+                        db.Entry(rsw66_old).State = EntityState.Modified;
                         db.SaveChanges();
 
                     }
                     else
                     {
-                        db.FormsRSW2014_1_Razd_6_6.AddObject(rsw66_new);
+                        db.FormsRSW2014_1_Razd_6_6.Add(rsw66_new);
                         db.SaveChanges();
                     }
                 }

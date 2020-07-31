@@ -372,7 +372,7 @@ namespace PU.FormsRSW2014
                     if (id_del.Count() > 0)
                     {
                         string list = String.Join(",", id_del.ToArray());
-                        db.ExecuteStoreCommand(String.Format("DELETE FROM FormsRSW2014_1_Razd_6_1 WHERE ([ID] IN ({0}))", list));
+                        db.Database.ExecuteSqlCommand(String.Format("DELETE FROM FormsRSW2014_1_Razd_6_1 WHERE ([ID] IN ({0}))", list));
                     }
 
                     old_rsw.FormsRSW2014_1_Razd_6_4 = null;
@@ -380,7 +380,9 @@ namespace PU.FormsRSW2014
                     old_rsw.FormsRSW2014_1_Razd_6_7 = null;
 
                     FormsRSW2014_1_Razd_6_1 new_rsw = old_rsw.Clone();
-                    db.Detach(old_rsw);
+                            
+                    db.Entry(old_rsw).State = System.Data.Entity.EntityState.Detached;
+
                     IQueryable<FormsRSW2014_1_Razd_6_4> old_rsw_6_4 = db.FormsRSW2014_1_Razd_6_4.Where(x => x.FormsRSW2014_1_Razd_6_1_ID == old_rsw.ID);
                     IQueryable<FormsRSW2014_1_Razd_6_7> old_rsw_6_7 = db.FormsRSW2014_1_Razd_6_7.Where(x => x.FormsRSW2014_1_Razd_6_1_ID == old_rsw.ID);
 
@@ -415,10 +417,10 @@ namespace PU.FormsRSW2014
                                             new_rsw_6_4.PlatCategoryID = item_.PlatCategoryID;                    
                     */
                         new_rsw_6_4.FormsRSW2014_1_Razd_6_1 = null;
-                        new_rsw_6_4.FormsRSW2014_1_Razd_6_1Reference = null;
+                        //new_rsw_6_4.FormsRSW2014_1_Razd_6_1Reference = null;
                         new_rsw_6_4.FormsRSW2014_1_Razd_6_1_ID = new_rsw.ID;
 
-                        db.AddToFormsRSW2014_1_Razd_6_4(new_rsw_6_4);
+                        db.FormsRSW2014_1_Razd_6_4.Add(new_rsw_6_4);
                     }
 
                     foreach (var item_ in old_rsw_6_7)
@@ -429,10 +431,10 @@ namespace PU.FormsRSW2014
                                             new_rsw_6_7.SpecOcenkaUslTrudaID = item_.SpecOcenkaUslTrudaID;                    
                     */
                         new_rsw_6_7.FormsRSW2014_1_Razd_6_1 = null;
-                        new_rsw_6_7.FormsRSW2014_1_Razd_6_1Reference = null;
+                        //new_rsw_6_7.FormsRSW2014_1_Razd_6_1Reference = null;
                         new_rsw_6_7.FormsRSW2014_1_Razd_6_1_ID = new_rsw.ID;
 
-                        db.AddToFormsRSW2014_1_Razd_6_7(new_rsw_6_7);
+                        db.FormsRSW2014_1_Razd_6_7.Add(new_rsw_6_7);
                     }
 
 
@@ -444,10 +446,9 @@ namespace PU.FormsRSW2014
                         {
                             FormsRSW2014_1_Razd_6_6 new_rsw_6_6 = item_.Clone();
                             new_rsw_6_6.FormsRSW2014_1_Razd_6_1 = null;
-                            new_rsw_6_6.FormsRSW2014_1_Razd_6_1Reference = null;
                             new_rsw_6_6.FormsRSW2014_1_Razd_6_1_ID = new_rsw.ID;
 
-                            db.AddToFormsRSW2014_1_Razd_6_6(new_rsw_6_6);
+                            db.FormsRSW2014_1_Razd_6_6.Add(new_rsw_6_6);
                         }
                     }
                     db.SaveChanges();

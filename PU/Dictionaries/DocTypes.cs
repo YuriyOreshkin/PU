@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
+using System.Data.Entity;
 using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
@@ -135,7 +135,7 @@ namespace PU.FormsRSW2014
                     case "add":
                         if (!db.DocumentTypes.Any(x => x.Code == dt.Code && x.Name == dt.Name))
                         {
-                            db.DocumentTypes.AddObject(dt);
+                            db.DocumentTypes.Add(dt);
                             db.SaveChanges();
                             dataGrid_upd();
                             radGridView1.Rows[rowindex].IsCurrent = true;
@@ -157,7 +157,7 @@ namespace PU.FormsRSW2014
                             DocT.Name = dt.Name;
                             DocT.Code = dt.Code;
 
-                            db.ObjectStateManager.ChangeObjectState(DocT, EntityState.Modified);
+                            db.Entry(DocT).State = EntityState.Modified;
                             db.SaveChanges();
                             dataGrid_upd();
                             radGridView1.Rows[rowindex].IsCurrent = true;
@@ -198,7 +198,7 @@ namespace PU.FormsRSW2014
                         rowindex = rowindex + 1 == radGridView1.RowCount ? rowindex - 1 : rowindex;
 
                         DocumentTypes DocT = db.DocumentTypes.FirstOrDefault(x => x.ID == id);
-                        db.DocumentTypes.DeleteObject(DocT);
+                        db.DocumentTypes.Remove(DocT);
                         db.SaveChanges();
                         dataGrid_upd();
 

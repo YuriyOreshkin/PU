@@ -151,7 +151,7 @@ namespace PU.ZAGS.Zags_Death
             child.action = "add";
             child.ShowDialog();
             child.Dispose();
-            db.DetectChanges();
+            db.ChangeTracker.DetectChanges();
             db = new pu6Entities();
             DeathGrid_upd();
         }
@@ -185,7 +185,7 @@ namespace PU.ZAGS.Zags_Death
 
                     try
                     {
-                        db.ExecuteStoreCommand(String.Format("DELETE FROM ZAGS_Death WHERE ([ID] = {0})", id));
+                        db.Database.ExecuteSqlCommand(String.Format("DELETE FROM ZAGS_Death WHERE ([ID] = {0})", id));
                         db = new pu6Entities();
                         DeathGrid_upd();
                     }

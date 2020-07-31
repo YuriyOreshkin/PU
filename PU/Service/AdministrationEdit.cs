@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
+using System.Data.Entity;
 using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
@@ -96,7 +96,7 @@ namespace PU
                         RoleID = roleid,
                         DateCreate = DateTime.Now
                         };
-                        xacccssDB.AddToUsers(formData);
+                        xacccssDB.Users.Add(formData);
 
                         break;
                     case "edit":
@@ -115,7 +115,7 @@ namespace PU
                         {
                             user.RoleID = roleid;
                         }
-                        xacccssDB.ObjectStateManager.ChangeObjectState(user, EntityState.Modified);
+                        xacccssDB.Entry(user).State = EntityState.Modified;
 
                         break;
                 }

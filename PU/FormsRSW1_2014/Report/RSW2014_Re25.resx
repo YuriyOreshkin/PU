@@ -121,7 +121,7 @@
     <value>Сведения о базе для начисления страховых взносов на обязательное пенсионное страхование с сумм выплат и иных вознаграждений, не превышающих предельную величину базы для начисления страховых взносов, содержащиеся в пачке документов
  (руб. коп.)</value>
   </data>
-  <assembly alias="Telerik.Reporting" name="Telerik.Reporting, Version=10.0.16.204, Culture=neutral, PublicKeyToken=a9d7983dfcc261be" />
+  <assembly alias="Telerik.Reporting" name="Telerik.Reporting, Version=13.1.19.514, Culture=neutral, PublicKeyToken=a9d7983dfcc261be" />
   <data name="$this.SnapGridSize" type="Telerik.Reporting.Drawing.Unit, Telerik.Reporting">
     <value>0.1cm</value>
   </data>

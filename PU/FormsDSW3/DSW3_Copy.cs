@@ -263,7 +263,7 @@ namespace PU.FormsDSW3
                     DSW3Data.FormsDSW_3_Staff.Add(new FormsDSW_3_Staff { StaffID = item.StaffID, SUMFEEPFR_EMPLOYERS = item.SUMFEEPFR_EMPLOYERS, SUMFEEPFR_PAYER = item.SUMFEEPFR_PAYER});
                 }
 
-                db.AddToFormsDSW_3(DSW3Data);
+                db.FormsDSW_3.Add(DSW3Data);
                 db.SaveChanges();
                 Methods.showAlert("Успех", "Реестр ДСВ-3 успешно скопирован!", this.ThemeName);
                 this.Close();

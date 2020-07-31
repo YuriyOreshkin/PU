@@ -377,7 +377,7 @@ namespace PU.FormsSZVM_2016
                 child.SZVM = new FormsSZV_M_2016();
                 child.ShowDialog();
                 child.Dispose();
-                db.DetectChanges();
+                db.ChangeTracker.DetectChanges();
                 db = new pu6Entities();
                 szvmGrid_upd();
             }
@@ -397,7 +397,7 @@ namespace PU.FormsSZVM_2016
                 child.szvmID = id;
                 child.ShowDialog();
                 child.Dispose();
-                db.DetectChanges();
+                db.ChangeTracker.DetectChanges();
                 db = new pu6Entities();
                 szvmGrid_upd();
             }
@@ -420,7 +420,7 @@ namespace PU.FormsSZVM_2016
 
                     try
                     {
-                        db.ExecuteStoreCommand(String.Format("DELETE FROM FormsSZV_M_2016 WHERE ([ID] = {0})", id));
+                        db.Database.ExecuteSqlCommand(String.Format("DELETE FROM FormsSZV_M_2016 WHERE ([ID] = {0})", id));
                         db = new pu6Entities();
                         szvmGrid_upd();
                     }
@@ -488,7 +488,7 @@ namespace PU.FormsSZVM_2016
                 child.ThemeName = this.ThemeName;
                 child.szvmID = szvmID;
                 child.ShowDialog();
-                db.DetectChanges();
+                db.ChangeTracker.DetectChanges();
                 db = new pu6Entities();
                 szvmGrid_upd();
             }
@@ -526,7 +526,7 @@ namespace PU.FormsSZVM_2016
                 child.ShowDialog();
                 if (child.SZVMStaffData != null)
                 {
-                    db.DetectChanges();
+                    db.ChangeTracker.DetectChanges();
                     db = new pu6Entities();
                     szvmGrid_upd();
                 }
@@ -575,7 +575,7 @@ namespace PU.FormsSZVM_2016
                         string list = String.Join(",", id.ToArray());
                         try
                         {
-                            db.ExecuteStoreCommand(String.Format("DELETE FROM FormsSZV_M_2016_Staff WHERE ([ID] IN ({0}))", list));
+                            db.Database.ExecuteSqlCommand(String.Format("DELETE FROM FormsSZV_M_2016_Staff WHERE ([ID] IN ({0}))", list));
                         }
                         catch (Exception ex)
                         {
@@ -590,7 +590,7 @@ namespace PU.FormsSZVM_2016
                             Methods.showAlert("Внимание!", "При удалении данных произошла ошибка. Код исключения: " + result, this.ThemeName, 200);
                         }
 
-                        db.DetectChanges();
+                        db.ChangeTracker.DetectChanges();
                         db = new pu6Entities();
                         szvmGrid_upd();
 
@@ -621,7 +621,7 @@ namespace PU.FormsSZVM_2016
                 child.ShowDialog();
                 if (child.Updated)
                 {
-                    db.DetectChanges();
+                    db.ChangeTracker.DetectChanges();
                     db = new pu6Entities();
                     szvmGrid_upd();
                 }

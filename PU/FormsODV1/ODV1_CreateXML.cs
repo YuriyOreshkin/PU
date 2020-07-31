@@ -283,7 +283,7 @@ namespace PU.FormsODV1
                 }
             }
 
-            dbxml.ExecuteStoreCommand(String.Format("DELETE FROM xmlInfo WHERE ([Year] = {0} AND [Quarter] = {1} AND [InsurerID] = {2} AND [FormatType] = 'odv1')", odv1Data.Year, odv1Data.Code, Options.InsID));
+            dbxml.Database.ExecuteSqlCommand(String.Format("DELETE FROM xmlInfo WHERE ([Year] = {0} AND [Quarter] = {1} AND [InsurerID] = {2} AND [FormatType] = 'odv1')", odv1Data.Year, odv1Data.Code, Options.InsID));
 
 
 
@@ -449,7 +449,7 @@ namespace PU.FormsODV1
                 {
                     xml_info.StaffList.Add(item);
                 }
-                dbxmlTemp.AddToxmlInfo(xml_info);
+                dbxmlTemp.xmlInfo.Add(xml_info);
                 dbxmlTemp.SaveChanges();
 
                 dbxmlTemp.Dispose();

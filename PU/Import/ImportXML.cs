@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
+using System.Data.Entity;
 using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
@@ -215,6 +215,11 @@ namespace PU
                             case "updateStaj":
                                 updateStaj.Checked = item.value == "true" ? true : false;
                                 break;
+                            case "updateSZVTD_DDL":
+                                int.TryParse(item.value, out i);
+                                updateSZVTD_DDL.SelectedIndex = i;
+                                break;
+                                
                         }
 
                     }
@@ -518,6 +523,16 @@ namespace PU
                         gridItem.Version = "";
                         start = 1;
                     }
+                    else if (doc.Descendants().Any(p => p.Name.LocalName == "ЭДПФР") && doc.Descendants().Any(p => p.Name.LocalName == "СЗВ-ТД"))
+                    {
+                        node = doc.Descendants().First(p => p.Name.LocalName == "Работодатель");
+                        gridItem.Type = "СЗВ-ТД";
+                        gridItem.RegNum = node.Element("РегНомер").Value;
+                        gridItem.CntDoc = doc.Descendants().Where(x => x.Name.LocalName == "ЗЛ").Count();
+                        gridItem.Insurer = node.Element("НаименованиеОрганизации") != null ? node.Element("НаименованиеОрганизации").Value : "";
+                        gridItem.Version = "";
+                        start = 1;
+                    }
 
                     gridItem.CntImported = 0;
 
@@ -785,7 +800,7 @@ namespace PU
 
                         if (change)
                         {
-                            db.ObjectStateManager.ChangeObjectState(insurer, EntityState.Modified);
+                            db.Entry(insurer).State = EntityState.Modified;
                             db.SaveChanges();
                         }
                     }
@@ -811,7 +826,7 @@ namespace PU
                     insurer.KPP = kpp;
                     insurer.OKWED = okwed;
                     insurer.PhoneContact = tel;
-                    db.AddToInsurer(insurer);
+                    db.Insurer.Add(insurer);
                     db.SaveChanges();
                 }
 
@@ -1099,7 +1114,7 @@ namespace PU
 
                             }
 
-                            db.AddToFormsRSW2014_1_Razd_2_1(rsw_2_1);
+                            db.FormsRSW2014_1_Razd_2_1.Add(rsw_2_1);
                         }
                     }
                     #endregion
@@ -1379,7 +1394,7 @@ namespace PU
 
                             }
 
-                            db.AddToFormsRSW2014_1_Razd_2_4(rsw_2_4);
+                            db.FormsRSW2014_1_Razd_2_4.Add(rsw_2_4);
                         }
 
                         rsw.ExistPart_2_4 = (byte)1;
@@ -1413,7 +1428,7 @@ namespace PU
                                         Col_5 = razd_2_5_1.Element("ИмяФайла").Value != null ? razd_2_5_1.Element("ИмяФайла").Value.ToString() : ""
                                     };
 
-                                    db.AddToFormsRSW2014_1_Razd_2_5_1(rsw_2_5_1);
+                                    db.FormsRSW2014_1_Razd_2_5_1.Add(rsw_2_5_1);
                                 }
 
                             }
@@ -1450,7 +1465,7 @@ namespace PU
                                     };
 
 
-                                    db.AddToFormsRSW2014_1_Razd_2_5_2(rsw_2_5_2);
+                                    db.FormsRSW2014_1_Razd_2_5_2.Add(rsw_2_5_2);
                                 }
 
                             }
@@ -1746,7 +1761,7 @@ namespace PU
                                 RateIncome = decimal.Parse(razd_3_4.Element("ДоляДоходовПоВидуЭД").Value.ToString(), CultureInfo.InvariantCulture)
                             };
 
-                            db.AddToFormsRSW2014_1_Razd_3_4(rsw_3_4);
+                            db.FormsRSW2014_1_Razd_3_4.Add(rsw_3_4);
                         }
 
                         rsw.s_351_0 = DateTime.Parse(Раздел3_4_ДляОрганизацийСМИ.Element("СведенияИзРеестраСМИ").Element("ДатаЗаписиВреестре").Value.ToString());
@@ -1870,7 +1885,7 @@ namespace PU
                             OMS = razd_4.Element("СтраховыеВзносыОМС") != null ? decimal.Parse(razd_4.Element("СтраховыеВзносыОМС").Value.ToString(), CultureInfo.InvariantCulture) : 0
                         };
 
-                        db.AddToFormsRSW2014_1_Razd_4(rsw_4);
+                        db.FormsRSW2014_1_Razd_4.Add(rsw_4);
                     }
 
                     rsw.ExistPart_4 = (byte)1;
@@ -1906,7 +1921,7 @@ namespace PU
                             SumPay_2 = razd_5.Element("СуммыВыплатИвознаграждений").Element("СуммаПоследние3месяц") != null ? decimal.Parse(razd_5.Element("СуммыВыплатИвознаграждений").Element("СуммаПоследние3месяц").Value.ToString(), CultureInfo.InvariantCulture) : 0,
                         };
 
-                        db.AddToFormsRSW2014_1_Razd_5(rsw_5);
+                        db.FormsRSW2014_1_Razd_5.Add(rsw_5);
                     }
 
                     XElement СведенияИзРеестраМДОО = Раздел5СведенияОВыплатахВпользуОбучающихся2014.Element("СведенияИзРеестраМДОО");
@@ -1929,7 +1944,7 @@ namespace PU
                 }
                 #endregion
 
-                db.FormsRSW2014_1_1.AddObject(rsw);
+                db.FormsRSW2014_1_1.Add(rsw);
                 db.SaveChanges();
                 result = true;
 
@@ -2070,7 +2085,7 @@ namespace PU
 
                         if (change)
                         {
-                            db.ObjectStateManager.ChangeObjectState(insurer, EntityState.Modified);
+                            db.Entry(insurer).State = EntityState.Modified;
                             db.SaveChanges();
                         }
                     }
@@ -2106,7 +2121,7 @@ namespace PU
                     insurer.RegNum = regnum;
                     insurer.INN = inn;
                     insurer.KPP = kpp;
-                    db.AddToInsurer(insurer);
+                    db.Insurer.Add(insurer);
                     db.SaveChanges();
                 }
                 #endregion
@@ -2167,7 +2182,7 @@ namespace PU
                         Dismissed = item.dismissed
                     };
 
-                    db.AddToStaff(staff_);
+                    db.Staff.Add(staff_);
                 }
                 if (staffList.Count > 0)
                     db.SaveChanges();
@@ -2216,7 +2231,7 @@ namespace PU
 
                             if (change)
                             {
-                                db.ObjectStateManager.ChangeObjectState(staff, EntityState.Modified);
+                                db.Entry(staff).State = EntityState.Modified;
                                 db.SaveChanges();
                             }
                         }
@@ -2246,7 +2261,7 @@ namespace PU
                                 rsw_6_1 = db.FormsRSW2014_1_Razd_6_1.FirstOrDefault(x => x.StaffID == staff.ID && x.InsurerID == insurer.ID && x.Year == y && x.Quarter == q && x.TypeInfoID == tInfoID);
                                 if (updateIndSved_DDL.SelectedItem.Tag.ToString() == "0")
                                 {
-                                    db.ExecuteStoreCommand(String.Format("DELETE FROM FormsRSW2014_1_Razd_6_1 WHERE ([ID] = {0})", rsw_6_1.ID));
+                                    db.Database.ExecuteSqlCommand(String.Format("DELETE FROM FormsRSW2014_1_Razd_6_1 WHERE ([ID] = {0})", rsw_6_1.ID));
                                     rsw_6_1 = new FormsRSW2014_1_Razd_6_1();
                                 }
                                 else
@@ -2269,7 +2284,7 @@ namespace PU
                                 rsw_6_1 = db.FormsRSW2014_1_Razd_6_1.FirstOrDefault(x => x.StaffID == staff.ID && x.InsurerID == insurer.ID && x.Year == y && x.Quarter == q && x.TypeInfoID == tInfoID && x.YearKorr == yk && x.QuarterKorr == qk);
                                 if (updateIndSved_DDL.SelectedItem.Tag.ToString() == "0")
                                 {
-                                    db.ExecuteStoreCommand(String.Format("DELETE FROM FormsRSW2014_1_Razd_6_1 WHERE ([ID] = {0})", rsw_6_1.ID));
+                                    db.Database.ExecuteSqlCommand(String.Format("DELETE FROM FormsRSW2014_1_Razd_6_1 WHERE ([ID] = {0})", rsw_6_1.ID));
                                     rsw_6_1 = new FormsRSW2014_1_Razd_6_1();
                                 }
                                 else
@@ -2282,7 +2297,7 @@ namespace PU
                             if (updateIndSved_DDL.SelectedItem.Tag.ToString() == "2" && updateSumFee.Checked) // объединение
                             {
                                 rsw_6_1.SumFeePFR = rsw_6_1.SumFeePFR + decimal.Parse(razd_6_1.Element("СуммаВзносовНаОПС").Value.ToString(), CultureInfo.InvariantCulture);
-                                db.ObjectStateManager.ChangeObjectState(insurer, EntityState.Modified);
+                                db.Entry(insurer).State = EntityState.Modified;
                                 //db.SaveChanges();
                             }
                             if (updateIndSved_DDL.SelectedItem.Tag.ToString() == "1") // не загружать импортируемую форму
@@ -2313,7 +2328,7 @@ namespace PU
                                 rsw_6_1.SumFeePFR = 0;
                             rsw_6_1.DateFilling = DateTime.Parse(razd_6_1.Element("ДатаЗаполнения").Value.ToString());
 
-                            db.AddToFormsRSW2014_1_Razd_6_1(rsw_6_1);
+                            db.FormsRSW2014_1_Razd_6_1.Add(rsw_6_1);
                             //             db.SaveChanges();
                         }
 
@@ -2424,7 +2439,7 @@ namespace PU
                                         //
                                     }
                                     else
-                                        db.ObjectStateManager.ChangeObjectState(rsw_6_4, EntityState.Modified);
+                                        db.Entry(rsw_6_4).State = EntityState.Modified;
                                 }
                                 //          db.SaveChanges();
 
@@ -2455,7 +2470,7 @@ namespace PU
                                             var rsw_6_6_del = db.FormsRSW2014_1_Razd_6_6.Where(x => x.FormsRSW2014_1_Razd_6_1_ID == rsw_6_1.ID && x.AccountPeriodQuarter == accPer_q && x.AccountPeriodYear == accPer_y);
                                             foreach (var t in rsw_6_6_del)
                                             {
-                                                db.FormsRSW2014_1_Razd_6_6.DeleteObject(t);
+                                                db.FormsRSW2014_1_Razd_6_6.Remove(t);
                                             }
                                             if (rsw_6_6_del.Count() > 0)
                                                 db.SaveChanges();
@@ -2590,7 +2605,7 @@ namespace PU
                                         //   db.AddToFormsRSW2014_1_Razd_6_7(rsw_6_7);
                                     }
                                     else
-                                        db.ObjectStateManager.ChangeObjectState(rsw_6_7, EntityState.Modified);
+                                        db.Entry(rsw_6_7).State = EntityState.Modified;
                                 }
                                 //                            db.SaveChanges();
 
@@ -2612,7 +2627,7 @@ namespace PU
                             //    if (ids.Count() > 0)
                             //    {
                             //        string list = String.Join(",", ids);
-                            //        db.ExecuteStoreCommand(String.Format("DELETE FROM StajOsn WHERE ([ID] IN ({0}))", list));
+                            //        db.Database.ExecuteSqlCommand(String.Format("DELETE FROM StajOsn WHERE ([ID] IN ({0}))", list));
                             //    }
                             //}
 
@@ -2628,7 +2643,7 @@ namespace PU
                                     n++;
                                     StajOsn stajOsn = new StajOsn { DateBegin = dateStartStajOsn, DateEnd = dateEndStajOsn, Number = n };
                                     //  FormsRSW2014_1_Razd_6_1_ID = rsw_6_1.ID,
-                                    //                  db.StajOsn.AddObject(stajOsn);
+                                    //                  db.StajOsn.Add(stajOsn);
                                     //       db.SaveChanges();
 
                                     var staj_lgot_list = staj_osn.Descendants().Where(x => x.Name.LocalName == "ЛьготныйСтаж");
@@ -2683,7 +2698,7 @@ namespace PU
                                                     else
                                                     {
                                                         Dolgn dolgn = new Dolgn { Name = kv.Name };
-                                                        db.AddToDolgn(dolgn);
+                                                        db.Dolgn.Add(dolgn);
                                                         db.SaveChanges();
                                                         stajLgot.DolgnID = dolgn.ID;
                                                     }
@@ -2971,7 +2986,7 @@ namespace PU
 
                         if (change)
                         {
-                            db.ObjectStateManager.ChangeObjectState(insurer, EntityState.Modified);
+                            db.Entry(insurer).State =  EntityState.Modified;
                             db.SaveChanges();
                         }
                     }
@@ -3010,7 +3025,7 @@ namespace PU
                     insurer.KPP = kpp;
                     insurer.EGRIP = egrip;
                     insurer.EGRUL = egrul;
-                    db.AddToInsurer(insurer);
+                    db.Insurer.Add(insurer);
                     db.SaveChanges();
                 }
                 #endregion
@@ -3063,7 +3078,7 @@ namespace PU
                         Dismissed = 0
                     };
 
-                    db.AddToStaff(staff_);
+                    db.Staff.Add(staff_);
                 }
                 if (staffList.Count > 0)
                     db.SaveChanges();
@@ -3099,7 +3114,7 @@ namespace PU
 
                             if (change)
                             {
-                                db.ObjectStateManager.ChangeObjectState(staff, EntityState.Modified);
+                                db.Entry(staff).State = EntityState.Modified;
                                 db.SaveChanges();
                             }
                         }
@@ -3126,7 +3141,7 @@ namespace PU
                                 spw2 = db.FormsSPW2.FirstOrDefault(x => x.StaffID == staff.ID && x.InsurerID == insurer.ID && x.Year == y && x.Quarter == q && x.TypeInfoID == tInfoID);
                                 if (updateSPW2_DDL.SelectedItem.Tag.ToString() == "0")
                                 {
-                                    db.ExecuteStoreCommand(String.Format("DELETE FROM FormsSPW2 WHERE ([ID] = {0})", spw2.ID));
+                                    db.Database.ExecuteSqlCommand(String.Format("DELETE FROM FormsSPW2 WHERE ([ID] = {0})", spw2.ID));
                                     spw2 = new FormsSPW2();
                                 }
                                 else
@@ -3143,7 +3158,7 @@ namespace PU
                                 spw2 = db.FormsSPW2.FirstOrDefault(x => x.StaffID == staff.ID && x.InsurerID == insurer.ID && x.Year == y && x.Quarter == q && x.TypeInfoID == tInfoID && x.YearKorr == yk && x.QuarterKorr == qk);
                                 if (updateSPW2_DDL.SelectedItem.Tag.ToString() == "0")
                                 {
-                                    db.ExecuteStoreCommand(String.Format("DELETE FROM FormsSPW2 WHERE ([ID] = {0})", spw2.ID));
+                                    db.Database.ExecuteSqlCommand(String.Format("DELETE FROM FormsSPW2 WHERE ([ID] = {0})", spw2.ID));
                                     spw2 = new FormsSPW2();
                                 }
                                 else
@@ -3199,7 +3214,7 @@ namespace PU
                             spw2.DateFilling = DateTime.Parse(spv_2.Element("ДатаЗаполнения").Value.ToString());
                             spw2.DateComposit = DateTime.Parse(spv_2.Element("ДатаСоставленияНа").Value.ToString());
 
-                            db.AddToFormsSPW2(spw2);
+                            db.FormsSPW2.Add(spw2);
                             db.SaveChanges();
 
 
@@ -3218,7 +3233,7 @@ namespace PU
                                     n++;
                                     StajOsn stajOsn = new StajOsn { FormsSPW2_ID = spw2.ID, DateBegin = dateStartStajOsn, DateEnd = dateEndStajOsn, Number = n };
 
-                                    db.StajOsn.AddObject(stajOsn);
+                                    db.StajOsn.Add(stajOsn);
                                     db.SaveChanges();
 
                                     var staj_lgot_list = staj_osn.Descendants().Where(x => x.Name.LocalName == "ЛьготныйСтаж");
@@ -3273,7 +3288,7 @@ namespace PU
                                                     else
                                                     {
                                                         Dolgn dolgn = new Dolgn { Name = kv.Name };
-                                                        db.AddToDolgn(dolgn);
+                                                        db.Dolgn.Add(dolgn);
                                                         db.SaveChanges();
                                                         stajLgot.DolgnID = dolgn.ID;
                                                     }
@@ -3367,7 +3382,7 @@ namespace PU
                                             }
                                         }
 
-                                        db.StajLgot.AddObject(stajLgot);
+                                        db.StajLgot.Add(stajLgot);
                                     }
 
 
@@ -3542,7 +3557,7 @@ namespace PU
 
                         if (change)
                         {
-                            db.ObjectStateManager.ChangeObjectState(insurer, EntityState.Modified);
+                            db.Entry(insurer).State = EntityState.Modified;
                             db.SaveChanges();
                         }
                     }
@@ -3561,7 +3576,7 @@ namespace PU
                     insurer.ControlNumber = contrNum;
                     insurer.PhoneContact = tel;
                     insurer.YearBirth = year;
-                    db.AddToInsurer(insurer);
+                    db.Insurer.Add(insurer);
                     db.SaveChanges();
                 }
 
@@ -3575,7 +3590,7 @@ namespace PU
 
                     try
                     {
-                        db.ExecuteStoreCommand(String.Format("DELETE FROM FormsRSW2014_2_1 WHERE ([ID] = {0})", rswForDel.ID));
+                        db.Database.ExecuteSqlCommand(String.Format("DELETE FROM FormsRSW2014_2_1 WHERE ([ID] = {0})", rswForDel.ID));
                     }
                     catch (Exception ex)
                     {
@@ -3681,7 +3696,7 @@ namespace PU
                     }
 
                 }
-                db.AddToFormsRSW2014_2_1(rsw);
+                db.FormsRSW2014_2_1.Add(rsw);
                 db.SaveChanges();
                 #endregion
 
@@ -3723,7 +3738,7 @@ namespace PU
                         rsw_2_2.SumOPS = razd_2.Element("СуммаОПС") != null ? decimal.Parse(razd_2.Element("СуммаОПС").Value.ToString(), CultureInfo.InvariantCulture) : 0;
                         rsw_2_2.SumOMS = razd_2.Element("СуммаОМС") != null ? decimal.Parse(razd_2.Element("СуммаОМС").Value.ToString(), CultureInfo.InvariantCulture) : 0;
 
-                        db.AddToFormsRSW2014_2_2(rsw_2_2);
+                        db.FormsRSW2014_2_2.Add(rsw_2_2);
                     }
                     db.SaveChanges();
 
@@ -3779,7 +3794,7 @@ namespace PU
                         rsw_2_3.SumNakop_D = razd_3.Element("СуммаНЧ") != null ? decimal.Parse(razd_3.Element("СуммаНЧ").Value.ToString(), CultureInfo.InvariantCulture) : 0;
                         rsw_2_3.SumOMS_D = razd_3.Element("СуммаОМС") != null ? decimal.Parse(razd_3.Element("СуммаОМС").Value.ToString(), CultureInfo.InvariantCulture) : 0;
 
-                        db.AddToFormsRSW2014_2_3(rsw_2_3);
+                        db.FormsRSW2014_2_3.Add(rsw_2_3);
                     }
                     db.SaveChanges();
 
@@ -3905,7 +3920,7 @@ namespace PU
 
                         if (change)
                         {
-                            db.ObjectStateManager.ChangeObjectState(insurer, EntityState.Modified);
+                            db.Entry(insurer).State = EntityState.Modified;
                             db.SaveChanges();
                         }
                     }
@@ -3924,7 +3939,7 @@ namespace PU
                     insurer.ControlNumber = contrNum;
                     insurer.PhoneContact = tel;
                     insurer.YearBirth = year;
-                    db.AddToInsurer(insurer);
+                    db.Insurer.Add(insurer);
                     db.SaveChanges();
                 }
 
@@ -3938,7 +3953,7 @@ namespace PU
 
                     try
                     {
-                        db.ExecuteStoreCommand(String.Format("DELETE FROM FormsRSW2014_2_1 WHERE ([ID] = {0})", rswForDel.ID));
+                        db.Database.ExecuteSqlCommand(String.Format("DELETE FROM FormsRSW2014_2_1 WHERE ([ID] = {0})", rswForDel.ID));
                     }
                     catch (Exception ex)
                     {
@@ -4044,7 +4059,7 @@ namespace PU
                     }
 
                 }
-                db.AddToFormsRSW2014_2_1(rsw);
+                db.FormsRSW2014_2_1.Add(rsw);
                 db.SaveChanges();
                 #endregion
 
@@ -4088,7 +4103,7 @@ namespace PU
                         rsw_2_2.SumOPS = razd_2.Element("СуммаОПС") != null ? decimal.Parse(razd_2.Element("СуммаОПС").Value.ToString(), CultureInfo.InvariantCulture) : 0;
                         rsw_2_2.SumOMS = razd_2.Element("СуммаОМС") != null ? decimal.Parse(razd_2.Element("СуммаОМС").Value.ToString(), CultureInfo.InvariantCulture) : 0;
 
-                        db.AddToFormsRSW2014_2_2(rsw_2_2);
+                        db.FormsRSW2014_2_2.Add(rsw_2_2);
                     }
                     db.SaveChanges();
 
@@ -4144,7 +4159,7 @@ namespace PU
                         rsw_2_3.SumNakop_D = razd_3.Element("СуммаНЧ") != null ? decimal.Parse(razd_3.Element("СуммаНЧ").Value.ToString(), CultureInfo.InvariantCulture) : 0;
                         rsw_2_3.SumOMS_D = razd_3.Element("СуммаОМС") != null ? decimal.Parse(razd_3.Element("СуммаОМС").Value.ToString(), CultureInfo.InvariantCulture) : 0;
 
-                        db.AddToFormsRSW2014_2_3(rsw_2_3);
+                        db.FormsRSW2014_2_3.Add(rsw_2_3);
                     }
                     db.SaveChanges();
 
@@ -4263,7 +4278,7 @@ namespace PU
 
                         if (change)
                         {
-                            db.ObjectStateManager.ChangeObjectState(insurer, EntityState.Modified);
+                            db.Entry(insurer).State = EntityState.Modified;
                             db.SaveChanges();
                         }
                     }
@@ -4279,7 +4294,7 @@ namespace PU
                     insurer.KPP = kpp;
                     insurer.OKWED = okwed;
                     insurer.PhoneContact = tel;
-                    db.AddToInsurer(insurer);
+                    db.Insurer.Add(insurer);
                     db.SaveChanges();
                 }
 
@@ -4318,7 +4333,7 @@ namespace PU
 
                     try
                     {
-                        db.ExecuteStoreCommand(String.Format("DELETE FROM FormsRW3_2015 WHERE ([ID] = {0})", rw3ForDel.ID));
+                        db.Database.ExecuteSqlCommand(String.Format("DELETE FROM FormsRW3_2015 WHERE ([ID] = {0})", rw3ForDel.ID));
                     }
                     catch (Exception ex)
                     {
@@ -4449,7 +4464,7 @@ namespace PU
                 }
 
 
-                db.AddToFormsRW3_2015(rw3);
+                db.FormsRW3_2015.Add(rw3);
                 db.SaveChanges();
                 #endregion
 
@@ -4480,7 +4495,7 @@ namespace PU
                         decimal sum = 0;
                         rw_3_3.SumFee = razd_3.Element("Сумма") != null ? (decimal.TryParse(razd_3.Element("Сумма").Value.ToString(), out sum) ? sum : 0) : 0;
 
-                        db.AddToFormsRW3_2015_Razd_3(rw_3_3);
+                        db.FormsRW3_2015_Razd_3.Add(rw_3_3);
                     }
                     db.SaveChanges();
 
@@ -4583,7 +4598,7 @@ namespace PU
 
                         if (change)
                         {
-                            db.ObjectStateManager.ChangeObjectState(insurer, EntityState.Modified);
+                            db.Entry(insurer).State = EntityState.Modified;
                             db.SaveChanges();
                         }
                     }
@@ -4597,7 +4612,7 @@ namespace PU
                     insurer.RegNum = regnum;
                     insurer.INN = inn;
                     insurer.KPP = kpp;
-                    db.AddToInsurer(insurer);
+                    db.Insurer.Add(insurer);
                     db.SaveChanges();
                 }
 
@@ -4634,7 +4649,7 @@ namespace PU
                         string id = db.FormsSZV_M_2016.First(x => x.InsurerID == insurer.ID && x.YEAR == y && x.MONTH == m && x.TypeInfoID == TypeInfoID).ID.ToString();
                         try
                         {
-                            db.ExecuteStoreCommand(String.Format("DELETE FROM FormsSZV_M_2016 WHERE ([ID] = {0})", id));
+                            db.Database.ExecuteSqlCommand(String.Format("DELETE FROM FormsSZV_M_2016 WHERE ([ID] = {0})", id));
 
                             szvm.InsurerID = insurer.ID;
                             szvm.YEAR = y;
@@ -4646,7 +4661,7 @@ namespace PU
                             DateTime.TryParse(СЗВ_М.Element("ДатаЗаполнения").Value.ToString(), out dt);
                             szvm.DateFilling = dt;
 
-                            db.AddToFormsSZV_M_2016(szvm);
+                            db.FormsSZV_M_2016.Add(szvm);
                             //                db.SaveChanges();
                         }
                         catch (Exception ex)
@@ -4682,7 +4697,7 @@ namespace PU
                     DateTime.TryParse(СЗВ_М.Element("ДатаЗаполнения").Value.ToString(), out dt);
                     szvm.DateFilling = dt;
 
-                    db.AddToFormsSZV_M_2016(szvm);
+                    db.FormsSZV_M_2016.Add(szvm);
                 }
 
 
@@ -4733,7 +4748,7 @@ namespace PU
                                     staff.FirstName = FirstName;
                                     staff.MiddleName = MiddleName;
                                     staff.Dismissed = staff.Dismissed.Value;
-                                    db.ObjectStateManager.ChangeObjectState(staff, EntityState.Modified);
+                                    db.Entry(staff).State =  EntityState.Modified;
                                 }
 
 
@@ -4751,7 +4766,7 @@ namespace PU
                             staff.FirstName = FirstName;
                             staff.MiddleName = MiddleName;
                             staff.Dismissed = (byte)0;
-                            db.AddToStaff(staff);
+                            db.Staff.Add(staff);
                         }
 
                         if (bw.CancellationPending)
@@ -4835,6 +4850,7 @@ namespace PU
             public string LastName { get; set; }
             public string FirstName { get; set; }
             public string MiddleName { get; set; }
+            public DateTime? DateBirth { get; set; }
             public string num { get; set; }
         }
 
@@ -4920,7 +4936,7 @@ namespace PU
 
                         if (change)
                         {
-                            db.ObjectStateManager.ChangeObjectState(insurer, EntityState.Modified);
+                            db.Entry(insurer).State=EntityState.Modified;
                             db.SaveChanges();
                         }
                     }
@@ -4934,7 +4950,7 @@ namespace PU
                     insurer.RegNum = regnum;
                     insurer.INN = inn;
                     insurer.KPP = kpp;
-                    db.AddToInsurer(insurer);
+                    db.Insurer.Add(insurer);
                     db.SaveChanges();
                 }
 
@@ -5056,9 +5072,9 @@ namespace PU
                             odv1_5.DocsName = "";
 
 
-                        long StaffCountShtat = 0;
-                        long.TryParse(osn.Element("КоличествоШтат").Value.ToString(), out StaffCountShtat);
-                        odv1_5.StaffCountShtat = StaffCountShtat;
+
+                        odv1_5.StaffCountShtat = Utils.strToDec(osn.Element("КоличествоШтат"));
+
 
                         long StaffCountFakt = 0;
                         long.TryParse(osn.Element("КоличествоФакт").Value.ToString(), out StaffCountFakt);
@@ -5082,10 +5098,10 @@ namespace PU
                         odv1.FormsODV_1_5_2017.Add(odv1_5);
                     }
 
+                    odv1.s_0_0 = Utils.strToDec(node.Element("ЗадолженностьНаНачало"));
 
-                    long StaffCountOsobUslShtat = 0;
-                    long.TryParse(item.Element("ВсегоШтат").Value.ToString(), out StaffCountOsobUslShtat);
-                    odv1.StaffCountOsobUslShtat = StaffCountOsobUslShtat;
+
+                    odv1.StaffCountOsobUslShtat = Utils.strToDec(item.Element("ВсегоШтат"));
 
                     long StaffCountOsobUslFakt = 0;
                     long.TryParse(item.Element("ВсегоФакт").Value.ToString(), out StaffCountOsobUslFakt);
@@ -5102,7 +5118,7 @@ namespace PU
                     odv_id = db.FormsODV_1_2017.FirstOrDefault(x => x.InsurerID == odv1.InsurerID && x.TypeForm == odv1.TypeForm && x.TypeInfo == odv1.TypeInfo && x.Year == odv1.Year && x.Code == odv1.Code).ID;
                     if (updateODV_1_DDL.SelectedItem.Tag.ToString() == "0")  // заменить форму
                     {
-                        db.ExecuteStoreCommand(String.Format("DELETE FROM FormsODV_1_2017 WHERE ([ID] = {0})", odv_id));
+                        db.Database.ExecuteSqlCommand(String.Format("DELETE FROM FormsODV_1_2017 WHERE ([ID] = {0})", odv_id));
                     }
                     else
                         exist = true;
@@ -5147,7 +5163,7 @@ namespace PU
                             odv1_old.StaffCountOsobUslShtat += odv1.StaffCountOsobUslShtat.HasValue ? odv1.StaffCountOsobUslShtat.Value : 1;
 
 
-                            db.ObjectStateManager.ChangeObjectState(odv1_old, EntityState.Modified);
+                            db.Entry(odv1_old).State = EntityState.Modified;
 
                             db.SaveChanges();
                         }
@@ -5165,7 +5181,7 @@ namespace PU
                 }
                 else // если такой записи нет то добавляем ее
                 {
-                    db.AddToFormsODV_1_2017(odv1);
+                    db.FormsODV_1_2017.Add(odv1);
                     db.SaveChanges();
                     odv_id = odv1.ID;
                 }
@@ -5292,7 +5308,7 @@ namespace PU
 
                         if (changed)
                         {
-                            db.ObjectStateManager.ChangeObjectState(item, EntityState.Modified);
+                            db.Entry(item).State = EntityState.Modified;
                             i++;
                         }
 
@@ -5310,7 +5326,7 @@ namespace PU
 
                 foreach (var item in listStaffNew)
                 {
-                    db.AddToStaff(new Staff {
+                    db.Staff.Add(new Staff {
                         InsurerID = insurer.ID,
                         InsuranceNumber = item.num,
                         ControlNumber = listSnils.First(x => x.num == item.num).contrNum,
@@ -5331,13 +5347,16 @@ namespace PU
 
                 i = 0;
 
+                var szv_staj_list = db.FormsSZV_STAJ_2017.Where(x => x.FormsODV_1_2017_ID == odv_id).ToList();
+                var staffList = db.Staff.Where(x => x.InsurerID == insurer.ID).Select(x => new { snils = x.InsuranceNumber, ID = x.ID}).ToList();
+
                 foreach (var item in ЗЛ)
                 {
                     i++;
 
                     var snils = Utils.ParseSNILS_XML(item.Element("СНИЛС").Value.ToString(), true);
 
-                    Staff staff = db.Staff.FirstOrDefault(x => x.InsurerID == insurer.ID && x.InsuranceNumber == snils.num);
+                    long staffID = staffList.Single(x => x.snils == snils.num).ID;
 
                     // создаем запись СЗВ-СТАЖ
                     FormsSZV_STAJ_2017 szv_staj = new FormsSZV_STAJ_2017
@@ -5347,7 +5366,7 @@ namespace PU
                         TypeInfo = TypeInfo,
                         Code = 0,
                         Year = y,
-                        StaffID = staff.ID,
+                        StaffID = staffID,
                         OPSFeeNach = НачисленыНаОПС,
                         DopTarFeeNach = НачисленыПоДТ,
                         DateComposit = DateTime.Now,
@@ -5355,7 +5374,7 @@ namespace PU
                     };
 
 
-                    bool szv_exist = db.FormsSZV_STAJ_2017.Any(x => x.FormsODV_1_2017_ID == szv_staj.FormsODV_1_2017_ID && x.TypeInfo == szv_staj.TypeInfo && x.Code == szv_staj.Code && x.Year == szv_staj.Year && x.StaffID == szv_staj.StaffID);
+                    bool szv_exist = szv_staj_list.Any(x => x.TypeInfo == szv_staj.TypeInfo && x.Code == szv_staj.Code && x.Year == szv_staj.Year && x.StaffID == staffID);
 
                     if (szv_exist && updateODV_1_DDL.SelectedItem.Tag.ToString() == "1") // не загружать импортируемую форму
                     {
@@ -5428,7 +5447,7 @@ namespace PU
                         }
 
                         //  FormsRSW2014_1_Razd_6_1_ID = rsw_6_1.ID,
-                        //                  db.StajOsn.AddObject(stajOsn);
+                        //                  db.StajOsn.Add(stajOsn);
                         //       db.SaveChanges();
 
                         var staj_lgot_list = staj_osn.Descendants().Where(x => x.Name.LocalName == "ЛьготныйСтаж");
@@ -5450,7 +5469,7 @@ namespace PU
                                 {
                                     stajLgot.TerrUslID = TerrUsl_list.FirstOrDefault(x => x.Code.ToUpper() == str).ID;
                                     if (terrUsl.Element("Коэффициент") != null)
-                                        stajLgot.TerrUslKoef = !String.IsNullOrEmpty(terrUsl.Element("Коэффициент").Value.ToString()) ? decimal.Parse(terrUsl.Element("Коэффициент").Value.ToString(), CultureInfo.InvariantCulture) : 0;
+                                        stajLgot.TerrUslKoef = Utils.strToDec(terrUsl.Element("Коэффициент"));
                                     else
                                         stajLgot.TerrUslKoef = 0;
                                 }
@@ -5483,7 +5502,7 @@ namespace PU
                                         else
                                         {
                                             Dolgn dolgn = new Dolgn { Name = kv.Name };
-                                            db.AddToDolgn(dolgn);
+                                            db.Dolgn.Add(dolgn);
                                             db.SaveChanges();
                                             stajLgot.DolgnID = dolgn.ID;
                                         }
@@ -5573,7 +5592,7 @@ namespace PU
                                 }
                                 if (uslDosrNazn.Element("ДоляСтавки") != null)
                                 {
-                                    stajLgot.UslDosrNazn3Param = decimal.Parse(uslDosrNazn.Element("ДоляСтавки").Value.ToString(), CultureInfo.InvariantCulture);
+                                    stajLgot.UslDosrNazn3Param = Utils.strToDec(uslDosrNazn.Element("ДоляСтавки"));
                                 }
                             }
 
@@ -5615,7 +5634,7 @@ namespace PU
                         }
 
                         if (ch)
-                            db.ObjectStateManager.ChangeObjectState(szv_old, EntityState.Modified);
+                            db.Entry(szv_old).State= EntityState.Modified;
                     }
                     else
                     {
@@ -5624,7 +5643,7 @@ namespace PU
                             szv_staj.StajOsn.Add(st);
                         }
 
-                        db.AddToFormsSZV_STAJ_2017(szv_staj);
+                        db.FormsSZV_STAJ_2017.Add(szv_staj);
                     }
 
 
@@ -5637,7 +5656,7 @@ namespace PU
 
                     if (transactionCheckBox.Checked)
                     {
-                        if (i % 100 == 0)
+                        if (i % 50 == 0)
                         {
                             db.SaveChanges();
                         }
@@ -5758,7 +5777,7 @@ namespace PU
 
                         if (change)
                         {
-                            db.ObjectStateManager.ChangeObjectState(insurer, EntityState.Modified);
+                            db.Entry(insurer).State = EntityState.Modified;
                             db.SaveChanges();
                         }
                     }
@@ -5772,7 +5791,7 @@ namespace PU
                     insurer.RegNum = regnum;
                     insurer.INN = inn;
                     insurer.KPP = kpp;
-                    db.AddToInsurer(insurer);
+                    db.Insurer.Add(insurer);
                     db.SaveChanges();
                 }
 
@@ -5864,14 +5883,10 @@ namespace PU
                 {
                     node = ОДВ1.Element("Страховая");
 
-                    decimal sum = 0;
-                    odv1.s_0_0 = node.Element("ЗадолженностьНаНачало") != null ? (decimal.TryParse(node.Element("ЗадолженностьНаНачало").Value.ToString(), out sum) ? sum : 0) : 0;
-                    sum = 0;
-                    odv1.s_0_1 = node.Element("Начислено") != null ? (decimal.TryParse(node.Element("Начислено").Value.ToString(), out sum) ? sum : 0) : 0;
-                    sum = 0;
-                    odv1.s_0_2 = node.Element("Уплачено") != null ? (decimal.TryParse(node.Element("Уплачено").Value.ToString(), out sum) ? sum : 0) : 0;
-                    sum = 0;
-                    odv1.s_0_3 = node.Element("ЗадолженностьНаКонец") != null ? (decimal.TryParse(node.Element("ЗадолженностьНаКонец").Value.ToString(), out sum) ? sum : 0) : 0;
+                    odv1.s_0_0 = Utils.strToDec(node.Element("ЗадолженностьНаНачало"));
+                    odv1.s_0_1 = Utils.strToDec(node.Element("Начислено"));
+                    odv1.s_0_2 = Utils.strToDec(node.Element("Уплачено"));
+                    odv1.s_0_3 = Utils.strToDec(node.Element("ЗадолженностьНаКонец"));
                 }
                 else
                 {
@@ -5885,14 +5900,10 @@ namespace PU
                 {
                     node = ОДВ1.Element("Накопительная");
 
-                    decimal sum = 0;
-                    odv1.s_1_0 = node.Element("ЗадолженностьНаНачало") != null ? (decimal.TryParse(node.Element("ЗадолженностьНаНачало").Value.ToString(), out sum) ? sum : 0) : 0;
-                    sum = 0;
-                    odv1.s_1_1 = node.Element("Начислено") != null ? (decimal.TryParse(node.Element("Начислено").Value.ToString(), out sum) ? sum : 0) : 0;
-                    sum = 0;
-                    odv1.s_1_2 = node.Element("Уплачено") != null ? (decimal.TryParse(node.Element("Уплачено").Value.ToString(), out sum) ? sum : 0) : 0;
-                    sum = 0;
-                    odv1.s_1_3 = node.Element("ЗадолженностьНаКонец") != null ? (decimal.TryParse(node.Element("ЗадолженностьНаКонец").Value.ToString(), out sum) ? sum : 0) : 0;
+                    odv1.s_1_0 = Utils.strToDec(node.Element("ЗадолженностьНаНачало"));
+                    odv1.s_1_1 = Utils.strToDec(node.Element("Начислено"));
+                    odv1.s_1_2 = Utils.strToDec(node.Element("Уплачено"));
+                    odv1.s_1_3 = Utils.strToDec(node.Element("ЗадолженностьНаКонец"));
                 }
                 else
                 {
@@ -5906,14 +5917,10 @@ namespace PU
                 {
                     node = ОДВ1.Element("ТарифСВ");
 
-                    decimal sum = 0;
-                    odv1.s_2_0 = node.Element("ЗадолженностьНаНачало") != null ? (decimal.TryParse(node.Element("ЗадолженностьНаНачало").Value.ToString(), out sum) ? sum : 0) : 0;
-                    sum = 0;
-                    odv1.s_2_1 = node.Element("Начислено") != null ? (decimal.TryParse(node.Element("Начислено").Value.ToString(), out sum) ? sum : 0) : 0;
-                    sum = 0;
-                    odv1.s_2_2 = node.Element("Уплачено") != null ? (decimal.TryParse(node.Element("Уплачено").Value.ToString(), out sum) ? sum : 0) : 0;
-                    sum = 0;
-                    odv1.s_2_3 = node.Element("ЗадолженностьНаКонец") != null ? (decimal.TryParse(node.Element("ЗадолженностьНаКонец").Value.ToString(), out sum) ? sum : 0) : 0;
+                    odv1.s_2_0 = Utils.strToDec(node.Element("ЗадолженностьНаНачало"));
+                    odv1.s_2_1 = Utils.strToDec(node.Element("Начислено"));
+                    odv1.s_2_2 = Utils.strToDec(node.Element("Уплачено"));
+                    odv1.s_2_3 = Utils.strToDec(node.Element("ЗадолженностьНаКонец"));
                 }
                 else
                 {
@@ -5963,9 +5970,8 @@ namespace PU
                             odv1_5.DocsName = "";
 
 
-                        long StaffCountShtat = 0;
-                        long.TryParse(osn.Element("КоличествоШтат").Value.ToString(), out StaffCountShtat);
-                        odv1_5.StaffCountShtat = StaffCountShtat;
+                        odv1_5.StaffCountShtat = Utils.strToDec(osn.Element("КоличествоШтат"));
+
 
                         long StaffCountFakt = 0;
                         long.TryParse(osn.Element("КоличествоФакт").Value.ToString(), out StaffCountFakt);
@@ -5990,10 +5996,8 @@ namespace PU
                         odv1.FormsODV_1_5_2017.Add(odv1_5);
                     }
 
+                    odv1.StaffCountOsobUslShtat = Utils.strToDec(item.Element("ВсегоШтат"));
 
-                    long StaffCountOsobUslShtat = 0;
-                    long.TryParse(item.Element("ВсегоШтат").Value.ToString(), out StaffCountOsobUslShtat);
-                    odv1.StaffCountOsobUslShtat = StaffCountOsobUslShtat;
 
                     long StaffCountOsobUslFakt = 0;
                     long.TryParse(item.Element("ВсегоФакт").Value.ToString(), out StaffCountOsobUslFakt);
@@ -6001,7 +6005,7 @@ namespace PU
 
                 }
 
-                db.AddToFormsODV_1_2017(odv1);
+                db.FormsODV_1_2017.Add(odv1);
                 db.SaveChanges();
 
 
@@ -6060,7 +6064,7 @@ namespace PU
                         Dismissed = item.dismissed
                     };
 
-                    db.AddToStaff(staff_);
+                    db.Staff.Add(staff_);
                 }
                 if (staffList.Count > 0)
                     db.SaveChanges();
@@ -6098,7 +6102,7 @@ namespace PU
 
                             if (change)
                             {
-                                db.ObjectStateManager.ChangeObjectState(staff, EntityState.Modified);
+                                db.Entry(staff).State = EntityState.Modified;
                                 db.SaveChanges();
                             }
                         }
@@ -6119,6 +6123,15 @@ namespace PU
                         szv_ish.StaffID = staff.ID;
                         szv_ish.Year = y_;
                         szv_ish.Code = q;
+
+                        szv_ish.Dismissed = false;
+                        if (szv_ish_item.Element("ДатаУвольнения") != null)
+                        {
+                            if (!String.IsNullOrEmpty(szv_ish_item.Element("ДатаУвольнения").Value.ToString()))
+                            {
+                                szv_ish.Dismissed = true;
+                            }
+                        }
 
 
                         byte ContractType = 0;
@@ -6158,7 +6171,7 @@ namespace PU
                         szv_ish.DateFilling = DateTime.Now;
 
 
-                        #region Раздел 6.4
+                        #region 
 
                         if (szv_ish_item.Descendants().Any(x => x.Name.LocalName == "Выплаты"))
                         {
@@ -6199,17 +6212,14 @@ namespace PU
                                     szv_ish_4.Month = mon;
                                 }
 
-                                decimal sum = 0;
-                                szv_ish_4.SumFeePFR = item.Element("СуммаВыплат") != null ? (decimal.TryParse(item.Element("СуммаВыплат").Value.ToString(), out sum) ? sum : 0) : 0;
+                                szv_ish_4.SumFeePFR = Utils.strToDec(item.Element("СуммаВыплат"));
 
                                 if (item.Element("НеПревышающие") != null)
                                 {
                                     XElement НеПревышающие = item.Element("НеПревышающие");
 
-                                    sum = 0;
-                                    szv_ish_4.BaseALL = НеПревышающие.Element("Всего") != null ? (decimal.TryParse(НеПревышающие.Element("Всего").Value.ToString(), out sum) ? sum : 0) : 0;
-                                    sum = 0;
-                                    szv_ish_4.BaseGPD = НеПревышающие.Element("ПоГПД") != null ? (decimal.TryParse(НеПревышающие.Element("ПоГПД").Value.ToString(), out sum) ? sum : 0) : 0;
+                                    szv_ish_4.BaseALL = Utils.strToDec(НеПревышающие.Element("Всего"));
+                                    szv_ish_4.BaseGPD = Utils.strToDec(НеПревышающие.Element("ПоГПД"));
 
                                 }
                                 else
@@ -6222,10 +6232,8 @@ namespace PU
                                 {
                                     XElement Превышающие = item.Element("Превышающие");
 
-                                    sum = 0;
-                                    szv_ish_4.SumPrevBaseALL = Превышающие.Element("Всего") != null ? (decimal.TryParse(Превышающие.Element("Всего").Value.ToString(), out sum) ? sum : 0) : 0;
-                                    sum = 0;
-                                    szv_ish_4.SumPrevBaseGPD = Превышающие.Element("ПоГПД") != null ? (decimal.TryParse(Превышающие.Element("ПоГПД").Value.ToString(), out sum) ? sum : 0) : 0;
+                                    szv_ish_4.SumPrevBaseALL = Utils.strToDec(Превышающие.Element("Всего"));
+                                    szv_ish_4.SumPrevBaseGPD = Utils.strToDec(Превышающие.Element("ПоГПД"));
 
                                 }
                                 else
@@ -6248,20 +6256,13 @@ namespace PU
                         {
                             XElement Начисления = szv_ish_item.Element("Начисления");
 
-                            decimal sum = 0;
-                            szv_ish.SumFeePFR_Insurer = Начисления.Element("СВстрахователя") != null ? (decimal.TryParse(Начисления.Element("СВстрахователя").Value.ToString(), out sum) ? sum : 0) : 0;
-                            sum = 0;
-                            szv_ish.SumFeePFR_Staff = Начисления.Element("СВизЗаработка") != null ? (decimal.TryParse(Начисления.Element("СВизЗаработка").Value.ToString(), out sum) ? sum : 0) : 0;
-                            sum = 0;
-                            szv_ish.SumFeePFR_Tar = Начисления.Element("СВпоТарифу") != null ? (decimal.TryParse(Начисления.Element("СВпоТарифу").Value.ToString(), out sum) ? sum : 0) : 0;
-                            sum = 0;
-                            szv_ish.SumFeePFR_TarDop = Начисления.Element("СВпоДопТарифу") != null ? (decimal.TryParse(Начисления.Element("СВпоДопТарифу").Value.ToString(), out sum) ? sum : 0) : 0;
-                            sum = 0;
-                            szv_ish.SumFeePFR_Strah = Начисления.Element("Страховая") != null ? (decimal.TryParse(Начисления.Element("Страховая").Value.ToString(), out sum) ? sum : 0) : 0;
-                            sum = 0;
-                            szv_ish.SumFeePFR_Nakop = Начисления.Element("Накопительная") != null ? (decimal.TryParse(Начисления.Element("Накопительная").Value.ToString(), out sum) ? sum : 0) : 0;
-                            sum = 0;
-                            szv_ish.SumFeePFR_Base = Начисления.Element("СВпоТарифуНеПревышающие") != null ? (decimal.TryParse(Начисления.Element("СВпоТарифуНеПревышающие").Value.ToString(), out sum) ? sum : 0) : 0;
+                            szv_ish.SumFeePFR_Insurer = Utils.strToDec(Начисления.Element("СВстрахователя"));
+                            szv_ish.SumFeePFR_Staff = Utils.strToDec(Начисления.Element("СВизЗаработка"));
+                            szv_ish.SumFeePFR_Tar = Utils.strToDec(Начисления.Element("СВпоТарифу"));
+                            szv_ish.SumFeePFR_TarDop = Utils.strToDec(Начисления.Element("СВпоДопТарифу"));
+                            szv_ish.SumFeePFR_Strah = Utils.strToDec(Начисления.Element("Страховая"));
+                            szv_ish.SumFeePFR_Nakop = Utils.strToDec(Начисления.Element("Накопительная"));
+                            szv_ish.SumFeePFR_Base = Utils.strToDec(Начисления.Element("СВпоТарифуНеПревышающие"));
 
                         }
                         else
@@ -6281,10 +6282,8 @@ namespace PU
                         {
                             XElement Уплата = szv_ish_item.Element("Уплата");
 
-                            decimal sum = 0;
-                            szv_ish.SumPayPFR_Strah = Уплата.Element("Страховая") != null ? (decimal.TryParse(Уплата.Element("Страховая").Value.ToString(), out sum) ? sum : 0) : 0;
-                            sum = 0;
-                            szv_ish.SumPayPFR_Nakop = Уплата.Element("Накопительная") != null ? (decimal.TryParse(Уплата.Element("Накопительная").Value.ToString(), out sum) ? sum : 0) : 0;
+                            szv_ish.SumPayPFR_Strah = Utils.strToDec(Уплата.Element("Страховая"));
+                            szv_ish.SumPayPFR_Nakop = Utils.strToDec(Уплата.Element("Накопительная"));
                         }
                         else
                         {
@@ -6335,11 +6334,8 @@ namespace PU
                                     szv_ish_7.Month = mon;
                                 }
 
-                                decimal sum = 0;
-                                szv_ish_7.s_1_0 = item.Element("ДопТарифП1") != null ? (decimal.TryParse(item.Element("ДопТарифП1").Value.ToString(), out sum) ? sum : 0) : 0;
-
-                                sum = 0;
-                                szv_ish_7.s_1_1 = item.Element("ДопТарифП2_18") != null ? (decimal.TryParse(item.Element("ДопТарифП2_18").Value.ToString(), out sum) ? sum : 0) : 0;
+                                szv_ish_7.s_1_0 = Utils.strToDec(item.Element("ДопТарифП1"));
+                                szv_ish_7.s_1_1 = Utils.strToDec(item.Element("ДопТарифП2_18"));
 
 
 
@@ -6368,7 +6364,7 @@ namespace PU
                             n++;
                             StajOsn stajOsn = new StajOsn { DateBegin = dateStartStajOsn, DateEnd = dateEndStajOsn, Number = n };
                             //  FormsRSW2014_1_Razd_6_1_ID = rsw_6_1.ID,
-                            //                  db.StajOsn.AddObject(stajOsn);
+                            //                  db.StajOsn.Add(stajOsn);
                             //       db.SaveChanges();
 
                             var staj_lgot_list = staj_osn.Descendants().Where(x => x.Name.LocalName == "ЛьготныйСтаж");
@@ -6390,7 +6386,7 @@ namespace PU
                                     {
                                         stajLgot.TerrUslID = TerrUsl_list.FirstOrDefault(x => x.Code.ToUpper() == str).ID;
                                         if (terrUsl.Element("Коэффициент") != null)
-                                            stajLgot.TerrUslKoef = !String.IsNullOrEmpty(terrUsl.Element("Коэффициент").Value.ToString()) ? decimal.Parse(terrUsl.Element("Коэффициент").Value.ToString(), CultureInfo.InvariantCulture) : 0;
+                                            stajLgot.TerrUslKoef = Utils.strToDec(terrUsl.Element("Коэффициент"));
                                         else
                                             stajLgot.TerrUslKoef = 0;
                                     }
@@ -6423,7 +6419,7 @@ namespace PU
                                             else
                                             {
                                                 Dolgn dolgn = new Dolgn { Name = kv.Name };
-                                                db.AddToDolgn(dolgn);
+                                                db.Dolgn.Add(dolgn);
                                                 db.SaveChanges();
                                                 stajLgot.DolgnID = dolgn.ID;
                                             }
@@ -6513,7 +6509,7 @@ namespace PU
                                     }
                                     if (uslDosrNazn.Element("ДоляСтавки") != null)
                                     {
-                                        stajLgot.UslDosrNazn3Param = decimal.Parse(uslDosrNazn.Element("ДоляСтавки").Value.ToString(), CultureInfo.InvariantCulture);
+                                        stajLgot.UslDosrNazn3Param = Utils.strToDec(uslDosrNazn.Element("ДоляСтавки"));
                                     }
                                 }
 
@@ -6528,7 +6524,7 @@ namespace PU
 
                         #endregion
 
-                        db.AddToFormsSZV_ISH_2017(szv_ish);
+                        db.FormsSZV_ISH_2017.Add(szv_ish);
                         if (bw.CancellationPending)
                         {
                             return false;
@@ -6536,8 +6532,11 @@ namespace PU
 
                         if (transactionCheckBox.Checked)
                         {
-                            if (cnt_records_imported == 50 || cnt_records_imported == 100 || cnt_records_imported == 150)
+                            
+                            if (cnt_records_imported % 50 == 0)
+                            {
                                 db.SaveChanges();
+                            }
                         }
                         else
                             db.SaveChanges();
@@ -6591,7 +6590,7 @@ namespace PU
 
 
         /// <summary>
-        /// Импорт Файлов ПФР Формы ОДВ-1 СЗВ-КОРР
+        /// Импорт Файлов ПФР Формы СЗВ-КОРР
         /// </summary>
         /// <param name="XML_path"></param>
         /// <returns></returns>
@@ -6672,7 +6671,7 @@ namespace PU
 
                         if (change)
                         {
-                            db.ObjectStateManager.ChangeObjectState(insurer, EntityState.Modified);
+                            db.Entry(insurer).State =  EntityState.Modified;
                             db.SaveChanges();
                         }
                     }
@@ -6686,7 +6685,7 @@ namespace PU
                     insurer.RegNum = regnum;
                     insurer.INN = inn;
                     insurer.KPP = kpp;
-                    db.AddToInsurer(insurer);
+                    db.Insurer.Add(insurer);
                     db.SaveChanges();
                 }
 
@@ -6778,14 +6777,10 @@ namespace PU
                 {
                     node = ОДВ1.Element("Страховая");
 
-                    decimal sum = 0;
-                    odv1.s_0_0 = node.Element("ЗадолженностьНаНачало") != null ? (decimal.TryParse(node.Element("ЗадолженностьНаНачало").Value.ToString(), out sum) ? sum : 0) : 0;
-                    sum = 0;
-                    odv1.s_0_1 = node.Element("Начислено") != null ? (decimal.TryParse(node.Element("Начислено").Value.ToString(), out sum) ? sum : 0) : 0;
-                    sum = 0;
-                    odv1.s_0_2 = node.Element("Уплачено") != null ? (decimal.TryParse(node.Element("Уплачено").Value.ToString(), out sum) ? sum : 0) : 0;
-                    sum = 0;
-                    odv1.s_0_3 = node.Element("ЗадолженностьНаКонец") != null ? (decimal.TryParse(node.Element("ЗадолженностьНаКонец").Value.ToString(), out sum) ? sum : 0) : 0;
+                    odv1.s_0_0 = Utils.strToDec(node.Element("ЗадолженностьНаНачало"));
+                    odv1.s_0_1 = Utils.strToDec(node.Element("Начислено"));
+                    odv1.s_0_2 = Utils.strToDec(node.Element("Уплачено"));
+                    odv1.s_0_3 = Utils.strToDec(node.Element("ЗадолженностьНаКонец"));
                 }
                 else
                 {
@@ -6799,14 +6794,10 @@ namespace PU
                 {
                     node = ОДВ1.Element("Накопительная");
 
-                    decimal sum = 0;
-                    odv1.s_1_0 = node.Element("ЗадолженностьНаНачало") != null ? (decimal.TryParse(node.Element("ЗадолженностьНаНачало").Value.ToString(), out sum) ? sum : 0) : 0;
-                    sum = 0;
-                    odv1.s_1_1 = node.Element("Начислено") != null ? (decimal.TryParse(node.Element("Начислено").Value.ToString(), out sum) ? sum : 0) : 0;
-                    sum = 0;
-                    odv1.s_1_2 = node.Element("Уплачено") != null ? (decimal.TryParse(node.Element("Уплачено").Value.ToString(), out sum) ? sum : 0) : 0;
-                    sum = 0;
-                    odv1.s_1_3 = node.Element("ЗадолженностьНаКонец") != null ? (decimal.TryParse(node.Element("ЗадолженностьНаКонец").Value.ToString(), out sum) ? sum : 0) : 0;
+                    odv1.s_1_0 = Utils.strToDec(node.Element("ЗадолженностьНаНачало"));
+                    odv1.s_1_1 = Utils.strToDec(node.Element("Начислено"));
+                    odv1.s_1_2 = Utils.strToDec(node.Element("Уплачено"));
+                    odv1.s_1_3 = Utils.strToDec(node.Element("ЗадолженностьНаКонец"));
                 }
                 else
                 {
@@ -6820,14 +6811,10 @@ namespace PU
                 {
                     node = ОДВ1.Element("ТарифСВ");
 
-                    decimal sum = 0;
-                    odv1.s_2_0 = node.Element("ЗадолженностьНаНачало") != null ? (decimal.TryParse(node.Element("ЗадолженностьНаНачало").Value.ToString(), out sum) ? sum : 0) : 0;
-                    sum = 0;
-                    odv1.s_2_1 = node.Element("Начислено") != null ? (decimal.TryParse(node.Element("Начислено").Value.ToString(), out sum) ? sum : 0) : 0;
-                    sum = 0;
-                    odv1.s_2_2 = node.Element("Уплачено") != null ? (decimal.TryParse(node.Element("Уплачено").Value.ToString(), out sum) ? sum : 0) : 0;
-                    sum = 0;
-                    odv1.s_2_3 = node.Element("ЗадолженностьНаКонец") != null ? (decimal.TryParse(node.Element("ЗадолженностьНаКонец").Value.ToString(), out sum) ? sum : 0) : 0;
+                    odv1.s_2_0 = Utils.strToDec(node.Element("ЗадолженностьНаНачало"));
+                    odv1.s_2_1 = Utils.strToDec(node.Element("Начислено"));
+                    odv1.s_2_2 = Utils.strToDec(node.Element("Уплачено"));
+                    odv1.s_2_3 = Utils.strToDec(node.Element("ЗадолженностьНаКонец"));
                 }
                 else
                 {
@@ -6850,16 +6837,13 @@ namespace PU
                     odv1_4.Year = y;
 
 
-                    decimal sum = 0;
-                    odv1_4.OPS = item.Element("Страховая") != null ? (decimal.TryParse(item.Element("Страховая").Value.ToString(), out sum) ? sum : 0) : 0;
-                    sum = 0;
-                    odv1_4.NAKOP = item.Element("Накопительная") != null ? (decimal.TryParse(item.Element("Накопительная").Value.ToString(), out sum) ? sum : 0) : 0;
-                    sum = 0;
-                    odv1_4.DopTar = item.Element("ТарифСВ") != null ? (decimal.TryParse(item.Element("ТарифСВ").Value.ToString(), out sum) ? sum : 0) : 0;
+                    odv1_4.OPS = Utils.strToDec(item.Element("Страховая"));
+                    odv1_4.NAKOP = Utils.strToDec(item.Element("Накопительная"));
+                    odv1_4.DopTar = Utils.strToDec(item.Element("ТарифСВ"));
 
                 }
 
-
+                short g = 0;
                 var ОснованияДНП = ОДВ1.Descendants().Where(x => x.Name.LocalName == "ОснованияДНП");
                 foreach (var item in ОснованияДНП)
                 {
@@ -6868,7 +6852,9 @@ namespace PU
                     foreach (var osn in Основание)
                     {
                         FormsODV_1_5_2017 odv1_5 = new FormsODV_1_5_2017();
+                        g++;
 
+                        odv1_5.Num = g;
                         if (osn.Element("Подразделение") != null)
                         {
                             odv1_5.Department = checkStringLength(osn.Element("Подразделение").Value.ToString(), 200);
@@ -6898,9 +6884,8 @@ namespace PU
                             odv1_5.DocsName = "";
 
 
-                        long StaffCountShtat = 0;
-                        long.TryParse(osn.Element("КоличествоШтат").Value.ToString(), out StaffCountShtat);
-                        odv1_5.StaffCountShtat = StaffCountShtat;
+                        odv1_5.StaffCountShtat = Utils.strToDec(osn.Element("КоличествоШтат"));
+
 
                         long StaffCountFakt = 0;
                         long.TryParse(osn.Element("КоличествоФакт").Value.ToString(), out StaffCountFakt);
@@ -6926,9 +6911,7 @@ namespace PU
                     }
 
 
-                    long StaffCountOsobUslShtat = 0;
-                    long.TryParse(item.Element("ВсегоШтат").Value.ToString(), out StaffCountOsobUslShtat);
-                    odv1.StaffCountOsobUslShtat = StaffCountOsobUslShtat;
+                    odv1.StaffCountOsobUslShtat = Utils.strToDec(item.Element("ВсегоШтат"));
 
                     long StaffCountOsobUslFakt = 0;
                     long.TryParse(item.Element("ВсегоФакт").Value.ToString(), out StaffCountOsobUslFakt);
@@ -6936,7 +6919,7 @@ namespace PU
 
                 }
 
-                db.AddToFormsODV_1_2017(odv1);
+                db.FormsODV_1_2017.Add(odv1);
                 db.SaveChanges();
 
 
@@ -6997,7 +6980,7 @@ namespace PU
                         Dismissed = item.dismissed
                     };
 
-                    db.AddToStaff(staff_);
+                    db.Staff.Add(staff_);
                 }
                 if (staffList.Count > 0)
                     db.SaveChanges();
@@ -7074,6 +7057,16 @@ namespace PU
                         szv_korr.ShortNameKorr = name;
 
 
+                        szv_korr.Dismissed = false;
+                        if (szv_korr_item.Element("ДатаУвольнения") != null)
+                        {
+                            if (!String.IsNullOrEmpty(szv_korr_item.Element("ДатаУвольнения").Value.ToString()))
+                            {
+                                szv_korr.Dismissed = true;
+                            }
+                        }
+
+
 
                         XElement ЗЛ = szv_korr_item.Element("ЗЛ");
 
@@ -7103,7 +7096,7 @@ namespace PU
 
                             if (change)
                             {
-                                db.ObjectStateManager.ChangeObjectState(staff, EntityState.Modified);
+                                db.Entry(staff).State = EntityState.Modified;
                                 db.SaveChanges();
                             }
                         }
@@ -7200,92 +7193,81 @@ namespace PU
                                 szv_korr_4.Month = mon;
                             }
 
-                            decimal sum0 = 0;
-                            decimal sum1 = 0;
-                            decimal sum2 = 0;
-                            decimal sum3 = 0;
-                            decimal sum4 = 0;
 
                             if (item.Element("Выплаты") != null)
                             {
                                 XElement Выплаты = item.Element("Выплаты");
-                                szv_korr_4.SumFeePFR = Выплаты.Element("СуммаВыплат") != null ? (decimal.TryParse(Выплаты.Element("СуммаВыплат").Value.ToString(), out sum0) ? sum0 : 0) : 0;
+                                szv_korr_4.SumFeePFR = Utils.strToDec(Выплаты.Element("СуммаВыплат")); 
 
                                 if (Выплаты.Element("НеПревышающие") != null)
                                 {
                                     XElement НеПревышающие = Выплаты.Element("НеПревышающие");
-                                    szv_korr_4.BaseALL = НеПревышающие.Element("Всего") != null ? (decimal.TryParse(НеПревышающие.Element("Всего").Value.ToString(), out sum1) ? sum1 : 0) : 0;
-                                    szv_korr_4.BaseGPD = НеПревышающие.Element("ПоГПД") != null ? (decimal.TryParse(НеПревышающие.Element("ПоГПД").Value.ToString(), out sum2) ? sum2 : 0) : 0;
+                                    szv_korr_4.BaseALL = Utils.strToDec(НеПревышающие.Element("Всего"));
+                                    szv_korr_4.BaseGPD = Utils.strToDec(НеПревышающие.Element("ПоГПД"));
+                                    
                                 }
                                 else
                                 {
-                                    szv_korr_4.BaseALL = sum1;
-                                    szv_korr_4.BaseGPD = sum2;
+                                    szv_korr_4.BaseALL = 0;
+                                    szv_korr_4.BaseGPD = 0;
                                 }
 
                                 if (Выплаты.Element("Превышающие") != null)
                                 {
                                     XElement Превышающие = Выплаты.Element("Превышающие");
-                                    szv_korr_4.SumPrevBaseALL = Превышающие.Element("Всего") != null ? (decimal.TryParse(Превышающие.Element("Всего").Value.ToString(), out sum3) ? sum3 : 0) : 0;
-                                    szv_korr_4.SumPrevBaseGPD = Превышающие.Element("ПоГПД") != null ? (decimal.TryParse(Превышающие.Element("ПоГПД").Value.ToString(), out sum4) ? sum4 : 0) : 0;
+                                    szv_korr_4.SumPrevBaseALL = Utils.strToDec(Превышающие.Element("Всего"));
+                                    szv_korr_4.SumPrevBaseGPD = Utils.strToDec(Превышающие.Element("ПоГПД"));
                                 }
                                 else
                                 {
-                                    szv_korr_4.SumPrevBaseALL = sum3;
-                                    szv_korr_4.SumPrevBaseGPD = sum4;
+                                    szv_korr_4.SumPrevBaseALL = 0;
+                                    szv_korr_4.SumPrevBaseGPD = 0;
                                 }
 
                             }
                             else
                             {
-                                szv_korr_4.SumFeePFR = sum0;
-                                szv_korr_4.BaseALL = sum1;
-                                szv_korr_4.BaseGPD = sum2;
-                                szv_korr_4.SumPrevBaseALL = sum3;
-                                szv_korr_4.SumPrevBaseGPD = sum4;
+                                szv_korr_4.SumFeePFR = 0;
+                                szv_korr_4.BaseALL = 0;
+                                szv_korr_4.BaseGPD = 0;
+                                szv_korr_4.SumPrevBaseALL = 0;
+                                szv_korr_4.SumPrevBaseGPD = 0;
                             }
 
 
-                            decimal sum = 0;
 
                             if (item.Element("ДоначисленоСВ") != null)
                             {
                                 XElement ДоначисленоСВ = item.Element("ДоначисленоСВ");
-                                szv_korr_4.SumFeeBefore2001Insurer = ДоначисленоСВ.Element("СВстрахователя") != null ? (decimal.TryParse(ДоначисленоСВ.Element("СВстрахователя").Value.ToString(), out sum) ? sum : 0) : 0;
-                                sum = 0;
-                                szv_korr_4.SumFeeBefore2001Staff = ДоначисленоСВ.Element("СВизЗаработка") != null ? (decimal.TryParse(ДоначисленоСВ.Element("СВизЗаработка").Value.ToString(), out sum) ? sum : 0) : 0;
-                                sum = 0;
-                                szv_korr_4.SumFeeAfter2001STRAH = ДоначисленоСВ.Element("Страховая") != null ? (decimal.TryParse(ДоначисленоСВ.Element("Страховая").Value.ToString(), out sum) ? sum : 0) : 0;
-                                sum = 0;
-                                szv_korr_4.SumFeeAfter2001NAKOP = ДоначисленоСВ.Element("Накопительная") != null ? (decimal.TryParse(ДоначисленоСВ.Element("Накопительная").Value.ToString(), out sum) ? sum : 0) : 0;
-                                sum = 0;
-                                szv_korr_4.SumFeeTarSV = ДоначисленоСВ.Element("СВпоТарифу") != null ? (decimal.TryParse(ДоначисленоСВ.Element("СВпоТарифу").Value.ToString(), out sum) ? sum : 0) : 0;
+                                szv_korr_4.SumFeeBefore2001Insurer = Utils.strToDec(ДоначисленоСВ.Element("СВстрахователя"));
+                                szv_korr_4.SumFeeBefore2001Staff = Utils.strToDec(ДоначисленоСВ.Element("СВизЗаработка"));
+                                szv_korr_4.SumFeeAfter2001STRAH = Utils.strToDec(ДоначисленоСВ.Element("Страховая"));
+                                szv_korr_4.SumFeeAfter2001NAKOP = Utils.strToDec(ДоначисленоСВ.Element("Накопительная"));
+                                szv_korr_4.SumFeeTarSV = Utils.strToDec(ДоначисленоСВ.Element("СВпоТарифу"));
 
                             }
                             else
                             {
-                                szv_korr_4.SumFeeBefore2001Insurer = sum;
-                                szv_korr_4.SumFeeBefore2001Staff = sum;
-                                szv_korr_4.SumFeeAfter2001STRAH = sum;
-                                szv_korr_4.SumFeeAfter2001NAKOP = sum;
-                                szv_korr_4.SumFeeTarSV = sum;
+                                szv_korr_4.SumFeeBefore2001Insurer = 0;
+                                szv_korr_4.SumFeeBefore2001Staff = 0;
+                                szv_korr_4.SumFeeAfter2001STRAH = 0;
+                                szv_korr_4.SumFeeAfter2001NAKOP = 0;
+                                szv_korr_4.SumFeeTarSV = 0;
                             }
 
 
-                            sum = 0;
 
                             if (item.Element("Уплата") != null)
                             {
                                 XElement Уплата2 = item.Element("Уплата");
-                                szv_korr_4.SumPaySTRAH = Уплата2.Element("Страховая") != null ? (decimal.TryParse(Уплата2.Element("Страховая").Value.ToString(), out sum) ? sum : 0) : 0;
-                                sum = 0;
-                                szv_korr_4.SumPayNAKOP = Уплата2.Element("Накопительная") != null ? (decimal.TryParse(Уплата2.Element("Накопительная").Value.ToString(), out sum) ? sum : 0) : 0;
+                                szv_korr_4.SumPaySTRAH = Utils.strToDec(Уплата2.Element("Страховая"));
+                                szv_korr_4.SumPayNAKOP = Utils.strToDec(Уплата2.Element("Накопительная"));
 
                             }
                             else
                             {
-                                szv_korr_4.SumPaySTRAH = sum;
-                                szv_korr_4.SumPayNAKOP = sum;
+                                szv_korr_4.SumPaySTRAH = 0;
+                                szv_korr_4.SumPayNAKOP = 0;
                             }
 
 
@@ -7334,11 +7316,8 @@ namespace PU
                                 szv_korr_5.Month = mon;
                             }
 
-                            decimal sum = 0;
-                            szv_korr_5.s_0 = item.Element("ДопТарифП1") != null ? (decimal.TryParse(item.Element("ДопТарифП1").Value.ToString(), out sum) ? sum : 0) : 0;
-
-                            sum = 0;
-                            szv_korr_5.s_1 = item.Element("ДопТарифП2_18") != null ? (decimal.TryParse(item.Element("ДопТарифП2_18").Value.ToString(), out sum) ? sum : 0) : 0;
+                            szv_korr_5.s_0 = Utils.strToDec(item.Element("ДопТарифП1"));
+                            szv_korr_5.s_1 = Utils.strToDec(item.Element("ДопТарифП2_18"));
 
 
 
@@ -7365,8 +7344,21 @@ namespace PU
 
                             n++;
                             StajOsn stajOsn = new StajOsn { DateBegin = dateStartStajOsn, DateEnd = dateEndStajOsn, Number = n };
+
+
+                            if (staj_osn.Element("КатегорияЗЛ") != null)
+                            {
+                                if (staj_osn.Element("КатегорияЗЛ").Value != null && staj_osn.Element("КатегорияЗЛ").Value.ToString() == "БЕЗР")
+                                {
+                                    stajOsn.CodeBEZR = true;
+                                }
+                                else
+                                    stajOsn.CodeBEZR = false;
+
+                            }
+
                             //  FormsRSW2014_1_Razd_6_1_ID = rsw_6_1.ID,
-                            //                  db.StajOsn.AddObject(stajOsn);
+                            //                  db.StajOsn.Add(stajOsn);
                             //       db.SaveChanges();
 
                             var staj_lgot_list = staj_osn.Descendants().Where(x => x.Name.LocalName == "ЛьготныйСтаж");
@@ -7388,7 +7380,7 @@ namespace PU
                                     {
                                         stajLgot.TerrUslID = TerrUsl_list.FirstOrDefault(x => x.Code.ToUpper() == str).ID;
                                         if (terrUsl.Element("Коэффициент") != null)
-                                            stajLgot.TerrUslKoef = !String.IsNullOrEmpty(terrUsl.Element("Коэффициент").Value.ToString()) ? decimal.Parse(terrUsl.Element("Коэффициент").Value.ToString(), CultureInfo.InvariantCulture) : 0;
+                                            stajLgot.TerrUslKoef = Utils.strToDec(terrUsl.Element("Коэффициент"));
                                         else
                                             stajLgot.TerrUslKoef = 0;
                                     }
@@ -7421,7 +7413,7 @@ namespace PU
                                             else
                                             {
                                                 Dolgn dolgn = new Dolgn { Name = kv.Name };
-                                                db.AddToDolgn(dolgn);
+                                                db.Dolgn.Add(dolgn);
                                                 db.SaveChanges();
                                                 stajLgot.DolgnID = dolgn.ID;
                                             }
@@ -7511,7 +7503,7 @@ namespace PU
                                     }
                                     if (uslDosrNazn.Element("ДоляСтавки") != null)
                                     {
-                                        stajLgot.UslDosrNazn3Param = decimal.Parse(uslDosrNazn.Element("ДоляСтавки").Value.ToString(), CultureInfo.InvariantCulture);
+                                        stajLgot.UslDosrNazn3Param = Utils.strToDec(uslDosrNazn.Element("ДоляСтавки"));
                                     }
                                 }
 
@@ -7526,7 +7518,7 @@ namespace PU
 
                         #endregion
 
-                        db.AddToFormsSZV_KORR_2017(szv_korr);
+                        db.FormsSZV_KORR_2017.Add(szv_korr);
                         if (bw.CancellationPending)
                         {
                             return false;
@@ -7534,8 +7526,10 @@ namespace PU
 
                         if (transactionCheckBox.Checked)
                         {
-                            if (cnt_records_imported == 50 || cnt_records_imported == 100 || cnt_records_imported == 150)
+                            if (cnt_records_imported % 50 == 0)
+                            {
                                 db.SaveChanges();
+                            }
                         }
                         else
                             db.SaveChanges();
@@ -7572,6 +7566,773 @@ namespace PU
                 db.SaveChanges();
 
 
+
+                result = true;
+
+            }
+            catch (Exception ex)
+            {
+                errList.Add(new ErrList { name = importFilesGrid.Rows[row.Index].Cells[2].Value.ToString(), control = "", type = ex.Message + "\r\n" });
+                this.Invoke(new Action(() => { Methods.showAlert("Ошибка импорта", "В процессе импорта файла - " + XML_path + "  произошла ошибка.\r\n" + ex.Message, this.ThemeName); }));
+
+                result = false;
+            }
+
+            return result;
+        }
+
+
+        /// <summary>
+        /// Импорт Файлов ПФР Формы ОДВ-1 СЗВ-ТД
+        /// </summary>
+        /// <param name="XML_path"></param>
+        /// <returns></returns>
+        private bool ImportXML_SZVTD(GridViewRowInfo row)
+        {
+            string XML_path = row.Cells["path"].Value.ToString();
+            doc = new XDocument();
+            doc = XDocument.Load(XML_path);
+            doc.Root.Descendants().Attributes().Where(x => x.IsNamespaceDeclaration).Remove();
+
+            foreach (var elem in doc.Descendants())
+                elem.Name = elem.Name.LocalName;
+
+            bool result = true;
+            XElement node = doc.Root;
+
+            try
+            {
+                node = doc.Descendants().First(x => x.Name.LocalName == "Работодатель");
+                string regnum = node.Element("РегНомер").Value;
+
+                while (regnum.Contains("-"))
+                    regnum = regnum.Remove(regnum.IndexOf('-'), 1);
+
+                string name = "";
+                string inn = "";
+                string kpp = "";
+                byte type_ = (byte)0;
+
+                string fn = "", ln = "", mn = "";
+
+                if (node.Element("НаименованиеОрганизации") != null)
+                {
+                    name = node.Element("НаименованиеОрганизации").Value;
+                }
+
+                if (node.Element("КПП") != null)
+                    kpp = node.Element("КПП").Value;
+                if (node.Element("ИНН") != null)
+                    inn = node.Element("ИНН").Value;
+
+
+                if (inn.Length == 12)
+                {
+                    type_ = (byte)1;
+
+                    var fioIns = name.Split(' ');
+
+                    if (fioIns.Length >= 1)
+                    {
+                        ln = fioIns[0];
+                    }
+                    if (fioIns.Length >= 2)
+                    {
+                        fn = fioIns[1];
+                    }
+                    if (fioIns.Length >= 3)
+                    {
+                        for (int f = 2; f < fioIns.Length; f++)
+                        {
+                            if (f > 2)
+                                mn += " ";
+
+                            mn += fioIns[f];
+                        }
+                    }
+
+                }
+
+
+
+                Insurer insurer = new Insurer();
+
+                if (db.Insurer.Any(x => x.RegNum == regnum))
+                {
+                    insurer = db.Insurer.First(x => x.RegNum == regnum);
+                    if (updateInsData.Checked)
+                    {
+                        bool change = false;
+                        if (type_ != insurer.TypePayer)
+                        {
+                            insurer.TypePayer = type_;
+                            change = true;
+                        }
+                        if (insurer.NameShort != name)
+                        {
+                            insurer.NameShort = name;
+                            change = true;
+                        }
+                        if (String.IsNullOrEmpty(insurer.Name))
+                        {
+                            insurer.Name = name;
+                            change = true;
+                        }
+                        if (insurer.RegNum != regnum)
+                        {
+                            insurer.RegNum = regnum;
+                            change = true;
+                        }
+                        if (insurer.INN != inn)
+                        {
+                            insurer.INN = inn;
+                            change = true;
+                        }
+                        if (insurer.KPP != kpp)
+                        {
+                            insurer.KPP = kpp;
+                            change = true;
+                        }
+
+                        if (type_ == 1)
+                        {
+                            if (insurer.LastName != ln)
+                            {
+                                insurer.LastName = ln;
+                                change = true;
+                            }
+                            if (insurer.FirstName != fn)
+                            {
+                                insurer.FirstName = fn;
+                                change = true;
+                            }
+                            if (insurer.MiddleName != mn)
+                            {
+                                insurer.MiddleName = mn;
+                                change = true;
+                            }
+                        }
+
+                        if (change)
+                        {
+                            db.Entry(insurer).State = EntityState.Modified;
+                            db.SaveChanges();
+                        }
+                    }
+
+                }
+                else
+                {
+                    insurer.TypePayer = type_;
+                    insurer.NameShort = name;
+                    insurer.Name = name;
+                    insurer.RegNum = regnum;
+                    insurer.INN = inn;
+                    insurer.KPP = kpp;
+                    if (type_ == 1)
+                    {
+                        insurer.LastName = ln;
+                        insurer.FirstName = fn;
+                        insurer.MiddleName = mn;
+                    }
+
+                    db.Insurer.Add(insurer);
+                    db.SaveChanges();
+                }
+
+                XElement СЗВТД = doc.Descendants().First(x => x.Name.LocalName == "СЗВ-ТД");
+
+                FormsSZV_TD_2020 szvtd = new FormsSZV_TD_2020();
+                szvtd.InsurerID = insurer.ID;
+
+                node = СЗВТД.Element("ОтчетныйПериод");
+                short y = 0;
+                byte m = 0;
+
+                if (node.Element("КалендарныйГод") != null)
+                {
+                    short.TryParse(node.Element("КалендарныйГод").Value.ToString(), out y);
+                }
+                szvtd.Year = y;
+                if (node.Element("Месяц") != null)
+                {
+                    byte.TryParse(node.Element("Месяц").Value.ToString(), out m);
+                }
+                szvtd.Month = m;
+
+                long staffCount = 0;
+
+                if (СЗВТД.Element("КоличествоЗЛ") != null)
+                {
+                    long.TryParse(СЗВТД.Element("КоличествоЗЛ").Value.ToString(), out staffCount);
+                }
+
+                if (СЗВТД.Element("Руководитель") != null)
+                {
+                    node = СЗВТД.Element("Руководитель");
+                    if (node.Element("Должность") != null)
+                    {
+                        szvtd.ConfirmDolgn = node.Element("Должность").Value.ToString();
+                    }
+                    else
+                        szvtd.ConfirmDolgn = "";
+
+                    if (node.Element("ФИО") != null)
+                    {
+                        node = node.Element("ФИО");
+                        if (node.Element("Фамилия") != null)
+                        {
+                            szvtd.ConfirmLastName = node.Element("Фамилия").Value.ToString();
+                        }
+                        else
+                            szvtd.ConfirmLastName = "";
+
+                        if (node.Element("Имя") != null)
+                        {
+                            szvtd.ConfirmFirstName = node.Element("Имя").Value.ToString();
+                        }
+                        else
+                            szvtd.ConfirmFirstName = "";
+
+                        if (node.Element("Отчество") != null)
+                        {
+                            szvtd.ConfirmMiddleName = node.Element("Отчество").Value.ToString();
+                        }
+                        else
+                            szvtd.ConfirmMiddleName = "";
+                    }
+
+                }
+
+                DateTime datefill = DateTime.Now;
+
+                if (СЗВТД.Element("ДатаЗаполнения") != null)
+                {
+                    DateTime.TryParse(СЗВТД.Element("ДатаЗаполнения").Value.ToString(), out datefill);
+                }
+                szvtd.DateFilling = datefill;
+
+
+                bool exist = false;
+                long szvtd_id = 0;
+                // если ОДВ-1 с такими параметрами уже есть
+                if (db.FormsSZV_TD_2020.Any(x => x.InsurerID == szvtd.InsurerID && x.Year == szvtd.Year && x.Month == szvtd.Month && x.DateFilling == szvtd.DateFilling))
+                {
+                    szvtd_id = db.FormsSZV_TD_2020.FirstOrDefault(x => x.InsurerID == szvtd.InsurerID && x.Year == szvtd.Year && x.Month == szvtd.Month && x.DateFilling == szvtd.DateFilling).ID;
+                    if (updateSZVTD_DDL.SelectedItem.Tag.ToString() == "0")  // заменить форму
+                    {
+                        db.Database.ExecuteSqlCommand(String.Format("DELETE FROM FormsSZV_TD_2020 WHERE ([ID] = {0})", szvtd_id));
+                    }
+                    else
+                        exist = true;
+                }
+
+                if (exist) // если такая запись уже существует
+                {
+                    if (updateSZVTD_DDL.SelectedItem.Tag.ToString() == "2") // объединение
+                    {
+                        var szvtd_old = db.FormsSZV_TD_2020.FirstOrDefault(x => x.InsurerID == szvtd.InsurerID && x.Year == szvtd.Year && x.Month == szvtd.Month && x.DateFilling == szvtd.DateFilling);
+
+
+
+                        szvtd_id = szvtd_old.ID;
+                    }
+                    if (updateSZVTD_DDL.SelectedItem.Tag.ToString() == "1") // не загружать импортируемую форму
+                    {
+                        return false;
+                    }
+                }
+                else // если такой записи нет то добавляем ее
+                {
+                    db.FormsSZV_TD_2020.Add(szvtd);
+                    db.SaveChanges();
+                    szvtd_id = szvtd.ID;
+                }
+
+
+
+
+                #region СписокЗЛ
+
+                int i = 0;
+
+                var ЗЛ = СЗВТД.Descendants().Where(x => x.Name.LocalName == "ЗЛ");
+
+                int count = ЗЛ.Count();
+
+                List<staffImpCont> listStaff = new List<staffImpCont>();
+                List<SNILSObject> listSnils = new List<SNILSObject>();
+
+                foreach (var item in ЗЛ)
+                {
+                    string LastName = item.Element("ФИО") != null ? item.Element("ФИО").Element("Фамилия") != null ? item.Element("ФИО").Element("Фамилия").Value : "" : "";
+                    string FirstName = item.Element("ФИО") != null ? item.Element("ФИО").Element("Имя") != null ? item.Element("ФИО").Element("Имя").Value : "" : "";
+                    string MiddleName = item.Element("ФИО") != null ? item.Element("ФИО").Element("Отчество") != null ? item.Element("ФИО").Element("Отчество").Value : "" : "";
+                    DateTime? dbirth = null;
+                    if (item.Element("ДатаРождения") != null)
+                    {
+                        DateTime dbrth;
+                        if (DateTime.TryParse(item.Element("ДатаРождения").Value.ToString(), out dbrth))
+                            dbirth = dbrth;
+                    }
+
+                    if (item.Element("СНИЛС") == null || (item.Element("СНИЛС") != null && String.IsNullOrEmpty(item.Element("СНИЛС").Value)))
+                    {
+                        errList.Add(new ErrList { name = importFilesGrid.Rows[row.Index].Cells[2].Value.ToString(), control = i.ToString(), type = LastName + " " + FirstName + " " + MiddleName + ". Ошибка при загрузке Индивидуальных сведений. Не указан Страховой номер (СНИЛС) сотрудника.\r\n" });
+                        continue;
+                    }
+
+                    var snils = Utils.ParseSNILS_XML(item.Element("СНИЛС").Value.ToString(), true);
+
+                    if (!listStaff.Any(x => x.num == snils.num))
+                    {
+                        listStaff.Add(new staffImpCont
+                        {
+                            num = snils.num,
+                            LastName = LastName,
+                            FirstName = FirstName,
+                            MiddleName = MiddleName,
+                            DateBirth = dbirth
+                        });
+
+                        listSnils.Add(new SNILSObject
+                        {
+                            contrNum = snils.contrNum,
+                            num = snils.num
+                        });
+                    }
+
+
+                }
+
+                List<staffImpCont> listStaffDB = db.Staff.Where(x => x.InsurerID == insurer.ID).Select(x => new staffImpCont { FirstName = x.FirstName, LastName = x.LastName, MiddleName = x.MiddleName, num = x.InsuranceNumber }).ToList();
+
+                var listStaffExists = listStaff.Where(x => listStaffDB.Select(c => c.num).Contains(x.num)).ToList();
+
+                var listStaffNew = listStaff.Except(listStaffExists).ToList();
+
+                if (updateStaffData.Checked)
+                {
+                    List<string> snilsList = listStaffExists.Select(x => x.num).ToList();
+
+                    List<Staff> forEdit = db.Staff.Where(x => x.InsurerID == insurer.ID && snilsList.Contains(x.InsuranceNumber)).ToList();
+
+                    i = 0;
+
+                    foreach (var item in forEdit)
+                    {
+                        var tt = listStaffExists.First(x => x.num == item.InsuranceNumber);
+
+                        bool changed = false;
+
+                        if (item.LastName != tt.LastName)
+                        {
+                            item.LastName = tt.LastName;
+                            changed = true;
+                        }
+                        if (item.FirstName != tt.FirstName)
+                        {
+                            item.FirstName = tt.FirstName;
+                            changed = true;
+                        }
+                        if (item.MiddleName != tt.MiddleName)
+                        {
+                            item.MiddleName = tt.MiddleName;
+                            changed = true;
+                        }
+
+                        if ((tt.DateBirth != null && item.DateBirth != tt.DateBirth))
+                        {
+                            item.DateBirth = tt.DateBirth;
+                            changed = true;
+                        }
+
+                        if (changed)
+                        {
+                            db.Entry(item).State = EntityState.Modified;
+                            i++;
+                        }
+
+                        if (i % 100 == 0)
+                        {
+                            db.SaveChanges();
+                        }
+                    }
+                    db.SaveChanges();
+
+
+                }
+
+                i = 0;
+
+                foreach (var item in listStaffNew)
+                {
+                    db.Staff.Add(new Staff
+                    {
+                        InsurerID = insurer.ID,
+                        InsuranceNumber = item.num,
+                        ControlNumber = listSnils.First(x => x.num == item.num).contrNum,
+                        LastName = item.LastName,
+                        FirstName = item.FirstName,
+                        MiddleName = item.MiddleName,
+                        DateBirth = item.DateBirth,
+                        Dismissed = (byte)0
+
+                    });
+
+                    i++;
+                    if (i % 200 == 0)
+                    {
+                        db.SaveChanges();
+                    }
+                }
+                db.SaveChanges();
+
+                i = 0;
+
+                var szvtd_staff_list = db.FormsSZV_TD_2020_Staff.Where(x => x.FormsSZV_TD_2020_ID == szvtd_id).ToList();
+                var staffList = db.Staff.Where(x => x.InsurerID == insurer.ID).Select(x => new { snils = x.InsuranceNumber, ID = x.ID }).ToList();
+
+                foreach (var item in ЗЛ)
+                {
+                    i++;
+
+                    var snils = Utils.ParseSNILS_XML(item.Element("СНИЛС").Value.ToString(), true);
+
+                    long staffID = staffList.Single(x => x.snils == snils.num).ID;
+
+                    // создаем запись СЗВ-ТД Труд деятельность
+                    FormsSZV_TD_2020_Staff szv_staff = new FormsSZV_TD_2020_Staff
+                    {
+                        FormsSZV_TD_2020_ID = szvtd_id,
+                        StaffID = staffID
+                    };
+
+                    if (item.Element("Заявления") != null)
+                    {
+                        if (item.Element("Заявления").Element("ЗаявлениеОПродолжении") != null)
+                        {
+                            var ЗаявлениеОПродолжении = item.Element("Заявления").Element("ЗаявлениеОПродолжении");
+
+                            if (ЗаявлениеОПродолжении.Element("Дата") != null)
+                            {
+                                DateTime d;
+                                if (DateTime.TryParse(ЗаявлениеОПродолжении.Element("Дата").Value.ToString(), out d))
+                                {
+                                    szv_staff.ZayavOProdoljDate = d;
+                                }
+                            }
+
+                            if (ЗаявлениеОПродолжении.Element("СтатусЗаявленияОПродолжении") != null)
+                            {
+                                byte st = 0;
+
+                                byte.TryParse(ЗаявлениеОПродолжении.Element("СтатусЗаявленияОПродолжении").Value.ToString(), out st);
+
+                                szv_staff.ZayavOProdoljState = st;
+                            }
+
+
+                        }
+
+                        if (item.Element("Заявления").Element("ЗаявлениеОПредоставлении") != null)
+                        {
+                            var ЗаявлениеОПредоставлении = item.Element("Заявления").Element("ЗаявлениеОПредоставлении");
+
+                            if (ЗаявлениеОПредоставлении.Element("Дата") != null)
+                            {
+                                DateTime d;
+                                if (DateTime.TryParse(ЗаявлениеОПредоставлении.Element("Дата").Value.ToString(), out d))
+                                {
+                                    szv_staff.ZayavOPredostDate = d;
+                                }
+                            }
+
+                            if (ЗаявлениеОПредоставлении.Element("СтатусЗаявленияОПредоставлении") != null)
+                            {
+                                byte st = 0;
+
+                                byte.TryParse(ЗаявлениеОПредоставлении.Element("СтатусЗаявленияОПредоставлении").Value.ToString(), out st);
+
+                                szv_staff.ZayavOPredostState = st;
+                            }
+                        }
+
+
+                    }
+
+
+                    bool szv_staff_exist = szvtd_staff_list.Any(x => x.StaffID == staffID);
+
+                    if (szv_staff_exist && updateSZVTD_DDL.SelectedItem.Tag.ToString() == "1") // не загружать импортируемую форму
+                    {
+                        continue;
+                    }
+
+
+                    if (item.Element("ТрудоваяДеятельность") != null)
+                    {
+
+                        List<FormsSZV_TD_2020_Staff_Events> szvtd_staff_list_events = new List<FormsSZV_TD_2020_Staff_Events>();
+
+                        foreach (var Мероприятие in item.Element("ТрудоваяДеятельность").Descendants().Where(x => x.Name.LocalName == "Мероприятие"))
+                        {
+                            try
+                            {
+                                FormsSZV_TD_2020_Staff_Events szvtd_staff_ev = new FormsSZV_TD_2020_Staff_Events
+                                {
+                                    UUID = Guid.Parse(Мероприятие.Element("UUID").Value.ToString()),
+                                    DateOfEvent = DateTime.Parse(Мероприятие.Element("Дата").Value.ToString()),
+                                    TypesOfEvents_ID = int.Parse(Мероприятие.Element("Вид").Value.ToString()),
+                                    Annuled = false
+                                };
+
+                                if (Мероприятие.Element("Сведения") != null)
+                                {
+                                    szvtd_staff_ev.Svedenia = Мероприятие.Element("Сведения").Value;
+                                }
+                                if (Мероприятие.Element("Должность") != null)
+                                {
+                                    szvtd_staff_ev.Dolgn = Мероприятие.Element("Должность").Value;
+                                }
+
+                                szvtd_staff_ev.Sovmestitel = Мероприятие.Element("ЯвляетсяСовместителем") != null ? byte.Parse(Мероприятие.Element("ЯвляетсяСовместителем").Value.ToString()) : (byte)0;
+
+                                if (Мероприятие.Element("СтруктурноеПодразделение") != null)
+                                {
+                                    szvtd_staff_ev.Department = Мероприятие.Element("СтруктурноеПодразделение").Value;
+                                }
+                                if (Мероприятие.Element("ВидПР") != null)
+                                {
+                                    szvtd_staff_ev.VydPoruchRaboty = Мероприятие.Element("ВидПР").Value;
+                                }
+                                if (Мероприятие.Element("КодВФ") != null)
+                                {
+                                    szvtd_staff_ev.KodVypFunc = Мероприятие.Element("КодВФ").Value;
+                                }
+
+                                if (Мероприятие.Element("Статья") != null || Мероприятие.Element("Пункт") != null)
+                                {
+                                    szvtd_staff_ev.Statya = Мероприятие.Element("Статья") != null ? Utils.checkStrLength(Мероприятие.Element("Статья").Value, 50) : "";
+                                    szvtd_staff_ev.Punkt = Мероприятие.Element("Пункт") != null ? Utils.checkStrLength(Мероприятие.Element("Пункт").Value, 50) : "";
+                                }
+                                else if (Мероприятие.Element("ОснованиеУвольнения") != null)
+                                {
+                                    szvtd_staff_ev.OsnUvolName = Мероприятие.Element("ОснованиеУвольнения").Element("НормативныйДокумент") != null ? Мероприятие.Element("ОснованиеУвольнения").Element("НормативныйДокумент").Value : "";
+                                    szvtd_staff_ev.OsnUvolStartya = Мероприятие.Element("ОснованиеУвольнения").Element("Статья") != null ? Utils.checkStrLength(Мероприятие.Element("ОснованиеУвольнения").Element("Статья").Value, 50) : "";
+                                    szvtd_staff_ev.OsnUvolChyast = Мероприятие.Element("ОснованиеУвольнения").Element("Часть") != null ? Utils.checkStrLength(Мероприятие.Element("ОснованиеУвольнения").Element("Часть").Value, 50) : "";
+                                    szvtd_staff_ev.OsnUvolPunkt = Мероприятие.Element("ОснованиеУвольнения").Element("Пункт") != null ? Utils.checkStrLength(Мероприятие.Element("ОснованиеУвольнения").Element("Пункт").Value, 50) : "";
+                                    szvtd_staff_ev.OsnUvolPodPunkt = Мероприятие.Element("ОснованиеУвольнения").Element("Подпункт") != null ? Utils.checkStrLength(Мероприятие.Element("ОснованиеУвольнения").Element("Подпункт").Value, 50) : "";
+                                }
+
+                                if (Мероприятие.Element("Причина") != null)
+                                {
+                                    szvtd_staff_ev.Prichina = Мероприятие.Element("Причина").Value;
+                                }
+
+                                if (Мероприятие.Element("ДатаС") != null)
+                                {
+                                    DateTime d;
+                                    if (DateTime.TryParse(Мероприятие.Element("ДатаС").Value.ToString(), out d))
+                                    {
+                                        szvtd_staff_ev.DateFrom = d;
+                                    }
+                                    else
+                                    { 
+                                        // информация об ошибке
+                                    }
+                                }
+
+                                if (Мероприятие.Element("ДатаПо") != null)
+                                {
+                                    DateTime d;
+                                    if (DateTime.TryParse(Мероприятие.Element("ДатаПо").Value.ToString(), out d))
+                                    {
+                                        szvtd_staff_ev.DateTo = d;
+                                    }
+                                    else
+                                    {
+                                        // информация об ошибке
+                                    }
+                                }
+
+                                int l = 1;
+                                foreach (var Основание in Мероприятие.Elements("Основание"))
+                                {
+                                    if (l == 1)
+                                    {
+                                        if (Основание.Element("Наименование") != null)
+                                        {
+                                            szvtd_staff_ev.OsnName1 = Основание.Element("Наименование").Value;
+                                        }
+
+                                        if (Основание.Element("Дата") != null)
+                                        {
+                                            DateTime d;
+                                            if (DateTime.TryParse(Основание.Element("Дата").Value.ToString(), out d))
+                                            {
+                                                szvtd_staff_ev.OsnDate1 = d;
+                                            }
+                                            else
+                                            {
+                                                // информация об ошибке
+                                            }
+                                        }
+
+                                        if (Основание.Element("Номер") != null)
+                                        {
+                                            szvtd_staff_ev.OsnNum1 = Основание.Element("Номер").Value;
+                                        }
+
+                                        if (Основание.Element("Серия") != null)
+                                        {
+                                            szvtd_staff_ev.OsnSer1 = Основание.Element("Серия").Value;
+                                        }
+
+
+
+                                    }
+                                    else if (l == 2)
+                                    {
+                                        if (Основание.Element("Наименование") != null)
+                                        {
+                                            szvtd_staff_ev.OsnName2 = Основание.Element("Наименование").Value;
+                                        }
+
+                                        if (Основание.Element("Дата") != null)
+                                        {
+                                            DateTime d;
+                                            if (DateTime.TryParse(Основание.Element("Дата").Value.ToString(), out d))
+                                            {
+                                                szvtd_staff_ev.OsnDate2 = d;
+                                            }
+                                            else
+                                            {
+                                                // информация об ошибке
+                                            }
+                                        }
+
+                                        if (Основание.Element("Номер") != null)
+                                        {
+                                            szvtd_staff_ev.OsnNum2 = Основание.Element("Номер").Value;
+                                        }
+
+                                        if (Основание.Element("Серия") != null)
+                                        {
+                                            szvtd_staff_ev.OsnSer2 = Основание.Element("Серия").Value;
+                                        }
+
+
+
+                                    }
+
+                                    l++;
+                                }
+
+
+                                szvtd_staff_list_events.Add(szvtd_staff_ev);
+                            }
+                            catch
+                            {
+                                continue;
+                            }
+
+                        }
+
+
+                        foreach (var Мероприятие in item.Element("ТрудоваяДеятельность").Descendants().Where(x => x.Name.LocalName == "МероприятиеОтменяемое"))
+                        {
+                            try
+                            {
+                                FormsSZV_TD_2020_Staff_Events szvtd_staff_ev = new FormsSZV_TD_2020_Staff_Events
+                                {
+                                    UUID = Guid.Parse(Мероприятие.Element("UUID").Value.ToString()),
+                                    DateOfEvent = DateTime.Parse(Мероприятие.Element("ДатаМероприятия").Value.ToString()),
+                                    AnnuleDate = DateTime.Parse(Мероприятие.Element("ДатаОтмены").Value.ToString()),
+                                    TypesOfEvents_ID = int.Parse(Мероприятие.Element("Вид").Value.ToString()),
+                                    Annuled = true
+                                };
+
+                                szvtd_staff_ev.Sovmestitel = Мероприятие.Element("ЯвляетсяСовместителем") != null ? byte.Parse(Мероприятие.Element("ЯвляетсяСовместителем").Value.ToString()) : (byte)0;
+
+                                szvtd_staff_list_events.Add(szvtd_staff_ev);
+                            }
+                            catch
+                            {
+                                continue;
+                            }
+
+                        }
+
+
+
+
+
+
+                    // Если форма СЗВ-ТД по человеку с такими параметрами уже есть в бд. 
+                    if (szv_staff_exist && updateSZVTD_DDL.SelectedItem.Tag.ToString() == "2") // объединение
+                    {
+                        FormsSZV_TD_2020_Staff szvtd_staff_old = db.FormsSZV_TD_2020_Staff.FirstOrDefault(x => x.FormsSZV_TD_2020_ID == szv_staff.FormsSZV_TD_2020_ID && x.StaffID == szv_staff.StaffID);
+
+                        bool ch = false;
+
+                        foreach (var s_ev in szvtd_staff_list_events)
+                        {
+                            szvtd_staff_old.FormsSZV_TD_2020_Staff_Events.Add(s_ev);
+                            ch = true;
+                        }
+
+                        if (ch)
+                            db.Entry(szvtd_staff_old).State = EntityState.Modified;
+                    }
+                    else
+                    {
+                        foreach (var s_ev in szvtd_staff_list_events)
+                        {
+                            szv_staff.FormsSZV_TD_2020_Staff_Events.Add(s_ev);
+                        }
+
+                        
+                    }
+
+                    }
+
+
+                    db.FormsSZV_TD_2020_Staff.Add(szv_staff);
+
+
+                    if (bw.CancellationPending)
+                    {
+                        db.SaveChanges();
+                        return false;
+                    }
+
+
+                    if (transactionCheckBox.Checked)
+                    {
+                        if (i % 50 == 0)
+                        {
+                            db.SaveChanges();
+                        }
+                    }
+                    else
+                    {
+                        db.SaveChanges();
+                    }
+
+                    cnt_records_imported++;
+                    importFilesGrid.Invoke(new Action(() => { importFilesGrid.Rows[row.Index].Cells[7].Value = i; }));
+
+                    decimal temp = (decimal)i / (decimal)count;
+                    int proc = (int)Math.Round((temp * 100), 0);
+                    bw.ReportProgress(proc, i.ToString());
+
+                }
+                db.SaveChanges();
+
+
+
+                #endregion
 
                 result = true;
 
@@ -7879,7 +8640,7 @@ namespace PU
                     }
 
                 #endregion
-                    db.AddToZAGS_Born(zagsBorn);
+                    db.ZAGS_Born.Add(zagsBorn);
 
 
                     if (i % 100 == 0)
@@ -8201,7 +8962,7 @@ namespace PU
 
 
                 #endregion
-                    db.AddToZAGS_Death(zagsDeath);
+                    db.ZAGS_Death.Add(zagsDeath);
 
 
                     if (i % 100 == 0)
@@ -8374,7 +9135,7 @@ namespace PU
 
                         if (change)
                         {
-                            db.ObjectStateManager.ChangeObjectState(insurer, EntityState.Modified);
+                            db.Entry(insurer).State = EntityState.Modified;
                             db.SaveChanges();
                         }
                     }
@@ -8413,7 +9174,7 @@ namespace PU
                     insurer.KPP = kpp;
                     insurer.EGRIP = egrip;
                     insurer.EGRUL = egrul;
-                    db.AddToInsurer(insurer);
+                    db.Insurer.Add(insurer);
                     db.SaveChanges();
                 }
                 #endregion
@@ -8450,13 +9211,13 @@ namespace PU
                         string id = db.FormsDSW_3.First(x => x.InsurerID == insurer.ID && x.YEAR == dsw3.YEAR && x.DATEEXECUTPAYMENT == dsw3.DATEEXECUTPAYMENT && x.DATEPAYMENT == dsw3.DATEPAYMENT && x.NUMBERPAYMENT == dsw3.NUMBERPAYMENT).ID.ToString();
                         try
                         {
-                            db.ExecuteStoreCommand(String.Format("DELETE FROM FormsDSW_3 WHERE ([ID] = {0})", id));
+                            db.Database.ExecuteSqlCommand(String.Format("DELETE FROM FormsDSW_3 WHERE ([ID] = {0})", id));
 
                             dt = DateTime.Now;
                             DateTime.TryParse(doc.Descendants().First(x => x.Name.LocalName == "ДатаСоставления").Value.ToString(), out dt);
                             dsw3.DateFilling = dt;
 
-                            db.AddToFormsDSW_3(dsw3);
+                            db.FormsDSW_3.Add(dsw3);
                             //                db.SaveChanges();
                         }
                         catch (Exception ex)
@@ -8489,7 +9250,7 @@ namespace PU
                     DateTime.TryParse(doc.Descendants().First(x => x.Name.LocalName == "ДатаСоставления").Value.ToString(), out dt);
                     dsw3.DateFilling = dt;
 
-                    db.AddToFormsDSW_3(dsw3);
+                    db.FormsDSW_3.Add(dsw3);
                 }
 
 
@@ -8532,7 +9293,7 @@ namespace PU
                                 staff.FirstName = FirstName;
                                 staff.MiddleName = MiddleName;
                                 staff.Dismissed = staff.Dismissed.Value;
-                                db.ObjectStateManager.ChangeObjectState(staff, EntityState.Modified);
+                                db.Entry(staff).State = EntityState.Modified;
                             }
 
 
@@ -8549,7 +9310,7 @@ namespace PU
                         staff.FirstName = FirstName;
                         staff.MiddleName = MiddleName;
                         staff.Dismissed = (byte)0;
-                        db.AddToStaff(staff);
+                        db.Staff.Add(staff);
                     }
 
                     if (bw.CancellationPending)
@@ -8597,7 +9358,7 @@ namespace PU
                         dsw3_t.SUMFEEPFR_EMPLOYERS = (dsw3_t.SUMFEEPFR_EMPLOYERS.HasValue ? dsw3_t.SUMFEEPFR_EMPLOYERS.Value : 0) + SUMFEEPFR_EMPLOYERS;
                         dsw3_t.SUMFEEPFR_PAYER = (dsw3_t.SUMFEEPFR_PAYER.HasValue ? dsw3_t.SUMFEEPFR_PAYER.Value : 0) + SUMFEEPFR_PAYER;
 
-                        db.ObjectStateManager.ChangeObjectState(dsw3_t, EntityState.Modified);
+                        db.Entry(dsw3_t).State = EntityState.Modified;
                     }
                     else
                     {
@@ -8747,7 +9508,7 @@ namespace PU
 
                         if (change)
                         {
-                            db.ObjectStateManager.ChangeObjectState(insurer, EntityState.Modified);
+                            db.Entry(insurer).State = EntityState.Modified;
                             db.SaveChanges();
                         }
                     }
@@ -8784,7 +9545,7 @@ namespace PU
                     insurer.RegNum = regnum;
                     insurer.INN = inn;
                     insurer.KPP = kpp;
-                    db.AddToInsurer(insurer);
+                    db.Insurer.Add(insurer);
                     db.SaveChanges();
                 }
                 #endregion
@@ -8838,7 +9599,7 @@ namespace PU
                         Dismissed = 0
                     };
 
-                    db.AddToStaff(staff_);
+                    db.Staff.Add(staff_);
                 }
                 if (staffList.Count > 0)
                     db.SaveChanges();
@@ -8876,7 +9637,7 @@ namespace PU
 
                             if (change)
                             {
-                                db.ObjectStateManager.ChangeObjectState(staff, EntityState.Modified);
+                                db.Entry(staff).State = EntityState.Modified;
                                 //              db.SaveChanges();
                             }
                         }
@@ -8927,7 +9688,7 @@ namespace PU
                                 szv64 = db.FormsSZV_6_4.FirstOrDefault(x => x.StaffID == staff.ID && x.InsurerID == insurer.ID && x.Year == y && x.Quarter == q && x.TypeInfoID == tInfoID && x.PlatCategoryID == pcID && x.TypeContract == typeContr);
                                 if (updateSZV_6_4_DDL.SelectedItem.Tag.ToString() == "0")
                                 {
-                                    db.ExecuteStoreCommand(String.Format("DELETE FROM FormsSZV_6_4 WHERE ([ID] = {0})", szv64.ID));
+                                    db.Database.ExecuteSqlCommand(String.Format("DELETE FROM FormsSZV_6_4 WHERE ([ID] = {0})", szv64.ID));
                                     szv64 = new FormsSZV_6_4();
                                 }
                                 else
@@ -8950,7 +9711,7 @@ namespace PU
                                 szv64 = db.FormsSZV_6_4.FirstOrDefault(x => x.StaffID == staff.ID && x.InsurerID == insurer.ID && x.Year == y && x.Quarter == q && x.TypeInfoID == tInfoID && x.YearKorr == yk && x.QuarterKorr == qk && x.PlatCategoryID == pcID && x.TypeContract == typeContr);
                                 if (updateSZV_6_4_DDL.SelectedItem.Tag.ToString() == "0")
                                 {
-                                    db.ExecuteStoreCommand(String.Format("DELETE FROM FormsSZV_6_4 WHERE ([ID] = {0})", szv64.ID));
+                                    db.Database.ExecuteSqlCommand(String.Format("DELETE FROM FormsSZV_6_4 WHERE ([ID] = {0})", szv64.ID));
                                     szv64 = new FormsSZV_6_4();
                                 }
                                 else
@@ -9079,7 +9840,7 @@ namespace PU
                                     }
                                 }
 
-                                db.ObjectStateManager.ChangeObjectState(szv64, EntityState.Modified);
+                                db.Entry(szv64).State =  EntityState.Modified;
                                 //db.SaveChanges();
                             }
                             if (updateSZV_6_4_DDL.SelectedItem.Tag.ToString() == "1") // не загружать импортируемую форму
@@ -9213,7 +9974,7 @@ namespace PU
 
                             szv64.DateFilling = DateTime.Parse(szv_6_4.Element("ДатаЗаполнения").Value.ToString());
 
-                            db.AddToFormsSZV_6_4(szv64);
+                            db.FormsSZV_6_4.Add(szv64);
                             //                            db.SaveChanges();
                         }
 
@@ -9231,7 +9992,7 @@ namespace PU
                             //    if (ids.Count() > 0)
                             //    {
                             //        string list = String.Join(",", ids);
-                            //        db.ExecuteStoreCommand(String.Format("DELETE FROM StajOsn WHERE ([ID] IN ({0}))", list));
+                            //        db.Database.ExecuteSqlCommand(String.Format("DELETE FROM StajOsn WHERE ([ID] IN ({0}))", list));
                             //    }
                             //}
                             //else
@@ -9249,7 +10010,7 @@ namespace PU
                                     n++;
                                     StajOsn stajOsn = new StajOsn { DateBegin = dateStartStajOsn, DateEnd = dateEndStajOsn, Number = n };
 
-                                    //      db.StajOsn.AddObject(stajOsn);
+                                    //      db.StajOsn.Add(stajOsn);
 
                                     var staj_lgot_list = staj_osn.Descendants().Where(x => x.Name.LocalName == "ЛьготныйСтаж");
 
@@ -9304,7 +10065,7 @@ namespace PU
                                                     else
                                                     {
                                                         Dolgn dolgn = new Dolgn { Name = kv.Name };
-                                                        db.AddToDolgn(dolgn);
+                                                        db.Dolgn.Add(dolgn);
                                                         db.SaveChanges();
                                                         stajLgot.DolgnID = dolgn.ID;
                                                     }
@@ -9398,7 +10159,7 @@ namespace PU
                                             }
                                         }
 
-                                        //db.StajLgot.AddObject(stajLgot);
+                                        //db.StajLgot.Add(stajLgot);
                                         stajOsn.StajLgot.Add(stajLgot);
                                     }
 
@@ -9568,7 +10329,7 @@ namespace PU
 
                         if (change)
                         {
-                            db.ObjectStateManager.ChangeObjectState(insurer, EntityState.Modified);
+                            db.Entry(insurer).State = EntityState.Modified;
                             db.SaveChanges();
                         }
                     }
@@ -9604,7 +10365,7 @@ namespace PU
                     insurer.RegNum = regnum;
                     insurer.INN = inn;
                     insurer.KPP = kpp;
-                    db.AddToInsurer(insurer);
+                    db.Insurer.Add(insurer);
                     db.SaveChanges();
                 }
                 #endregion
@@ -9657,7 +10418,7 @@ namespace PU
                         Dismissed = 0
                     };
 
-                    db.AddToStaff(staff_);
+                    db.Staff.Add(staff_);
                 }
                 if (staffList.Count > 0)
                     db.SaveChanges();
@@ -9696,7 +10457,7 @@ namespace PU
 
                             if (change)
                             {
-                                db.ObjectStateManager.ChangeObjectState(staff, EntityState.Modified);
+                                db.Entry(staff).State =EntityState.Modified;
                                 //   db.SaveChanges();
                             }
                         }
@@ -9742,7 +10503,7 @@ namespace PU
                                 szv6 = db.FormsSZV_6.FirstOrDefault(x => x.StaffID == staff.ID && x.InsurerID == insurer.ID && x.Year == y && x.Quarter == q && x.TypeInfoID == tInfoID && x.PlatCategoryID == pcID);
                                 if (updateSZV_6_DDL.SelectedItem.Tag.ToString() == "0")
                                 {
-                                    db.ExecuteStoreCommand(String.Format("DELETE FROM FormsSZV_6 WHERE ([ID] = {0})", szv6.ID));
+                                    db.Database.ExecuteSqlCommand(String.Format("DELETE FROM FormsSZV_6 WHERE ([ID] = {0})", szv6.ID));
                                     szv6 = new FormsSZV_6();
                                 }
                                 else
@@ -9759,7 +10520,7 @@ namespace PU
                                 szv6 = db.FormsSZV_6.FirstOrDefault(x => x.StaffID == staff.ID && x.InsurerID == insurer.ID && x.Year == y && x.Quarter == q && x.TypeInfoID == tInfoID && x.YearKorr == yk && x.QuarterKorr == qk && x.PlatCategoryID == pcID);
                                 if (updateSZV_6_DDL.SelectedItem.Tag.ToString() == "0")
                                 {
-                                    db.ExecuteStoreCommand(String.Format("DELETE FROM FormsSZV_6 WHERE ([ID] = {0})", szv6.ID));
+                                    db.Database.ExecuteSqlCommand(String.Format("DELETE FROM FormsSZV_6 WHERE ([ID] = {0})", szv6.ID));
                                     szv6 = new FormsSZV_6();
                                 }
                                 else
@@ -9782,7 +10543,7 @@ namespace PU
                                     szv6.SumPayPFR_Nakop = szv6.SumPayPFR_Nakop + decimal.Parse(szv_6.Element("СуммаВзносовНаНакопительную").Element("Уплачено").Value.ToString(), CultureInfo.InvariantCulture);
                                 }
 
-                                db.ObjectStateManager.ChangeObjectState(szv6, EntityState.Modified);
+                                db.Entry(szv6).State = EntityState.Modified;
                                 //     db.SaveChanges();
                             }
                             else if (updateSZV_6_DDL.SelectedItem.Tag.ToString() == "1") // не загружать импортируемую форму
@@ -9828,7 +10589,7 @@ namespace PU
 
                             szv6.DateFilling = DateTime.Parse(szv_6.Element("ДатаЗаполнения").Value.ToString());
 
-                            db.AddToFormsSZV_6(szv6);
+                            db.FormsSZV_6.Add(szv6);
                             //                            db.SaveChanges();
                         }
 
@@ -9846,7 +10607,7 @@ namespace PU
                             //    if (ids.Count() > 0)
                             //    {
                             //        string list = String.Join(",", ids);
-                            //        db.ExecuteStoreCommand(String.Format("DELETE FROM StajOsn WHERE ([ID] IN ({0}))", list));
+                            //        db.Database.ExecuteSqlCommand(String.Format("DELETE FROM StajOsn WHERE ([ID] IN ({0}))", list));
                             //    }
                             //}
                             //else
@@ -9863,7 +10624,7 @@ namespace PU
                                     n++;
                                     StajOsn stajOsn = new StajOsn { DateBegin = dateStartStajOsn, DateEnd = dateEndStajOsn, Number = n };
 
-                                    //db.StajOsn.AddObject(stajOsn);
+                                    //db.StajOsn.Add(stajOsn);
                                     //db.SaveChanges();
 
                                     var staj_lgot_list = staj_osn.Descendants().Where(x => x.Name.LocalName == "ЛьготныйСтаж");
@@ -9919,7 +10680,7 @@ namespace PU
                                                     else
                                                     {
                                                         Dolgn dolgn = new Dolgn { Name = kv.Name };
-                                                        db.AddToDolgn(dolgn);
+                                                        db.Dolgn.Add(dolgn);
                                                         db.SaveChanges();
                                                         stajLgot.DolgnID = dolgn.ID;
                                                     }
@@ -10013,7 +10774,7 @@ namespace PU
                                             }
                                         }
 
-                                        //db.StajLgot.AddObject(stajLgot);
+                                        //db.StajLgot.Add(stajLgot);
                                         stajOsn.StajLgot.Add(stajLgot);
                                     }
 
@@ -10294,6 +11055,19 @@ namespace PU
                         cnt++;
                         if (!bw.CancellationPending)
                             importFilesGrid.Invoke(new Action(() => { importFilesGrid.Rows[row.Index].Cells[0].Value = Color.LimeGreen; importFilesGrid.Rows[row.Index].Cells[7].Value = cnt_records_imported; }));
+                    }
+                    else
+                    {
+                        if (!bw.CancellationPending)
+                            importFilesGrid.Invoke(new Action(() => { importFilesGrid.Rows[row.Index].Cells[0].Value = Color.Red; importFilesGrid.Rows[row.Index].Cells[7].Value = cnt_records_imported; }));
+                    }
+                    break;
+                case "СЗВ-ТД":
+                    if (ImportXML_SZVTD(row))
+                    {
+                        cnt++;
+                        if (!bw.CancellationPending)
+                            importFilesGrid.Invoke(new Action(() => { importFilesGrid.Rows[row.Index].Cells[0].Value = Color.LimeGreen; }));
                     }
                     else
                     {
@@ -10609,7 +11383,11 @@ namespace PU
                 control = "updatePayFeeSZV_STAJ",
                 value = updatePayFeeSZV_STAJ.Checked ? "true" : "false"
             });
-
+            windowData.Add(new WindowData
+            {
+                control = "updateSZVTD_DDL",
+                value = updateSZVTD_DDL.SelectedIndex.ToString()
+            });
 
             props.setFormParams(this, windowData);
 

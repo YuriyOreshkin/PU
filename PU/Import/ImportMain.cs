@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
+using System.Data.Entity;
 using System.Drawing;
 using System.Text;
 using System.Linq;
@@ -13,7 +13,7 @@ using PU.Models;
 using PU.Classes;
 using Telerik.WinControls.UI;
 using System.Globalization;
-
+using System.Data;
 
 namespace PU
 {
@@ -235,7 +235,7 @@ namespace PU
                 {
                     try
                     {
-                        db.AddToFormsSZV_STAJ_2017(item);
+                        db.FormsSZV_STAJ_2017.Add(item);
 
                         k++;
                         if (k % transCnt == 0)
@@ -641,7 +641,7 @@ namespace PU
                                         staffData.DateBirth = DateTime.Parse(row["DROZHDST"].ToString());
                                     }
 
-                                    db.Staff.AddObject(staffData);
+                                    db.Staff.Add(staffData);
                                     sb.AppendLine(DateTime.Now.ToString() + "   Сотрудник (" + lastname + " " + firstname + " "
                                         + middlename + ") с номером " + insnumber + " загружен. ");
                                 }
@@ -714,7 +714,7 @@ namespace PU
 
                                         if (change)
                                         {
-                                            db.ObjectStateManager.ChangeObjectState(staff, EntityState.Modified);
+                                            db.Entry(staff).State = System.Data.Entity.EntityState.Modified;
                                         }
 
                                     }
@@ -807,7 +807,7 @@ namespace PU
 
                                     if (!db.StaffDateWork.Any(x => x.StaffID == staffID && (newDateStaff.DateBeginWork.HasValue ? x.DateBeginWork == newDateStaff.DateBeginWork.Value : x.DateBeginWork == null) && (newDateStaff.DateEndWork.HasValue ? x.DateEndWork == newDateStaff.DateEndWork.Value : x.DateEndWork == null)))
                                     {
-                                        db.AddToStaffDateWork(newDateStaff);
+                                        db.StaffDateWork.Add(newDateStaff);
                                         sb.AppendLine(DateTime.Now.ToString() + "   Сотрудник с номером " + insnumber + ". Данные о датах приема\\увольнения загружены. ");
                                     }
                                     else
@@ -984,7 +984,7 @@ namespace PU
 
                                             if (updateIndSved_DDL.SelectedItem.Tag.ToString() == "0")  // Удаляем запись 6.4 если выбрано заменять
                                             {
-                                                db.DeleteObject(razd64_t);
+                                                db.FormsRSW2014_1_Razd_6_4.Remove(razd64_t);
 
                                                 //                                            db = new pu6Entities();
 
@@ -998,7 +998,7 @@ namespace PU
 
                                             razd6.DateFilling = updateDateFilling.Checked ? DateTime.Now : DateTime.Parse(row["DATAZAP"].ToString());
                                             razd6.AutoCalc = false;
-                                            db.ObjectStateManager.ChangeObjectState(razd6, EntityState.Modified);
+                                            db.Entry(razd6).State =System.Data.Entity.EntityState.Modified;
 
 
                                         }
@@ -1093,7 +1093,7 @@ namespace PU
                                 {
                                     foreach (var item in rsw61List)
                                     {
-                                        db.AddToFormsRSW2014_1_Razd_6_1(item);
+                                        db.FormsRSW2014_1_Razd_6_1.Add(item);
                                     }
 
                                     db.SaveChanges();
@@ -1103,7 +1103,7 @@ namespace PU
 
                             foreach (var item in rsw61List)
                             {
-                                db.AddToFormsRSW2014_1_Razd_6_1(item);
+                                db.FormsRSW2014_1_Razd_6_1.Add(item);
                             }
                             db.SaveChanges();
                             fin = true;
@@ -1218,7 +1218,7 @@ namespace PU
                                             CorrectionNum = 0
                                         };
 
-                                        //                                        db.FormsRSW2014_1_Razd_6_1.AddObject(razd6);
+                                        //                                        db.FormsRSW2014_1_Razd_6_1.Add(razd6);
                                         rsw61List.Add(razd6);
 
                                         sb.AppendLine(DateTime.Now.ToString() + "   Номер " + insnumber + " " + razd6.Year + " " + razd6.Quarter + " " + ti_cod + ". Раздел 6.1. Строка загружена.");
@@ -1245,7 +1245,7 @@ namespace PU
 
                                             if (updateIndSved_DDL.SelectedItem.Tag.ToString() == "0")  // Удаляем запись 6.7 если выбрано заменять
                                             {
-                                                db.DeleteObject(razd67_t);
+                                                db.FormsRSW2014_1_Razd_6_7.Remove(razd67_t);
                                             }
 
 
@@ -1286,7 +1286,7 @@ namespace PU
                                             tempR67.s_3_0 = tempR67.s_3_0 + razd67.s_3_0;
                                             tempR67.s_3_1 = tempR67.s_3_1 + razd67.s_3_1;
 
-                                            db.ObjectStateManager.ChangeObjectState(tempR67, EntityState.Modified);
+                                            db.Entry(tempR67).State =System.Data.Entity.EntityState.Modified;
                                         }
                                         else
                                             sb.AppendLine(DateTime.Now.ToString() + "   Номер " + insnumber + " " + specocenka + ". Раздел 6.7. Строка НЕ загружена. Строка с такой категорией уже есть.");
@@ -1312,7 +1312,7 @@ namespace PU
                                 {
                                     foreach (var item in rsw61List)
                                     {
-                                        db.AddToFormsRSW2014_1_Razd_6_1(item);
+                                        db.FormsRSW2014_1_Razd_6_1.Add(item);
                                     }
 
                                     db.SaveChanges();
@@ -1321,7 +1321,7 @@ namespace PU
                             }
                             foreach (var item in rsw61List)
                             {
-                                db.AddToFormsRSW2014_1_Razd_6_1(item);
+                                db.FormsRSW2014_1_Razd_6_1.Add(item);
                             }
                             db.SaveChanges();
                             fin = true;
@@ -1433,7 +1433,7 @@ namespace PU
                                             DateFilling = DateTime.Now
                                         };
 
-                                        db.FormsRSW2014_1_Razd_6_1.AddObject(razd6);
+                                        db.FormsRSW2014_1_Razd_6_1.Add(razd6);
                                         // db.SaveChanges();
                                         //                                        razd6_id = razd6.ID;
                                         sb.AppendLine(DateTime.Now.ToString() + "   Номер " + insnumber + " " + razd6.Year + " " + razd6.Quarter + " " + ti_cod + ". Раздел 6.1. Строка загружена.");
@@ -1446,7 +1446,7 @@ namespace PU
                                         {
                                             if (updateStaj_DDL.SelectedItem.Tag.ToString() == "0")  // заменить существующие записи
                                             {
-                                                db.ExecuteStoreCommand(String.Format("DELETE FROM StajOsn WHERE ([FormsRSW2014_1_Razd_6_1_ID] = {0})", razd6.ID));
+                                                db.Database.ExecuteSqlCommand(String.Format("DELETE FROM StajOsn WHERE ([FormsRSW2014_1_Razd_6_1_ID] = {0})", razd6.ID));
                                             }
                                             else if (updateStaj_DDL.SelectedItem.Tag.ToString() == "1")  // не импортировать, пропускаем
                                             {
@@ -1484,7 +1484,7 @@ namespace PU
 
                                         razd6.StajOsn.Add(stajosn);
 
-                                        //                                        db.StajOsn.AddObject(stajosn);
+                                        //                                        db.StajOsn.Add(stajosn);
                                         //                                        db.SaveChanges();
                                         sb.AppendLine(DateTime.Now.ToString() + "   Номер " + insnumber + ". Стаж основной. Строка загружена.");
 
@@ -1517,7 +1517,7 @@ namespace PU
                                                 {
                                                     Name = profession
                                                 };
-                                                db.Dolgn.AddObject(dolgn);
+                                                db.Dolgn.Add(dolgn);
                                                 db.SaveChanges();
                                                 dolgn1 = dolgn.ID;
                                             }
@@ -1559,7 +1559,7 @@ namespace PU
                                             };
 
                                             stajosn.StajLgot.Add(stajlgot);
-                                            //                                            db.StajLgot.AddObject(stajlgot);
+                                            //                                            db.StajLgot.Add(stajlgot);
                                             //db.SaveChanges();
                                             sb.AppendLine(DateTime.Now.ToString() + "   Номер " + insnumber + ". Стаж льготный. Строка загружена.");
                                         }
@@ -1737,7 +1737,7 @@ namespace PU
                                                 {
                                                     Name = profession
                                                 };
-                                                db.Dolgn.AddObject(dolgn);
+                                                db.Dolgn.Add(dolgn);
                                                 db.SaveChanges();
                                                 dolgn1 = dolgn.ID;
                                             }
@@ -1779,7 +1779,7 @@ namespace PU
                                             };
 
                                             stajosn.StajLgot.Add(stajlgot);
-                                            //                                            db.StajLgot.AddObject(stajlgot);
+                                            //                                            db.StajLgot.Add(stajlgot);
                                             //db.SaveChanges();
                                             sb.AppendLine(DateTime.Now.ToString() + "   Номер " + insnumber + ". Стаж льготный. Строка загружена.");
                                         }
@@ -1905,7 +1905,7 @@ namespace PU
 
                                         try
                                         {
-                                            db.ExecuteStoreCommand(String.Format("DELETE FROM FormsSZV_6 WHERE ([ID] = {0})", szv6ForDel.ID));
+                                            db.Database.ExecuteSqlCommand(String.Format("DELETE FROM FormsSZV_6 WHERE ([ID] = {0})", szv6ForDel.ID));
                                         }
                                         catch
                                         {
@@ -1957,7 +1957,7 @@ namespace PU
                                         s_12_1 = columns.Contains("JANUARY") ? (!String.IsNullOrEmpty(row["DECEMBERB"].ToString()) ? decimal.Parse(row["DECEMBERB"].ToString()) : 0) : 0
                                     };
 
-                                    db.AddToFormsSZV_6(szv6);
+                                    db.FormsSZV_6.Add(szv6);
 
                                     //                                        db.AddToFormsRSW2014_1_Razd_6_4(razd64);
                                     //                                 db.SaveChanges();
@@ -2115,7 +2115,7 @@ namespace PU
                                             SumPayPFR_Nakop = 0
                                         };
 
-                                        db.FormsSZV_6.AddObject(szv6);
+                                        db.FormsSZV_6.Add(szv6);
                                         // db.SaveChanges();
                                         //                                        razd6_id = razd6.ID;
                                         sb.AppendLine(DateTime.Now.ToString() + "   Номер " + insnumber + " " + szv6.Year + " " + szv6.Quarter + " " + ti_cod + ". Форма СЗВ-6. Строка загружена.");
@@ -2126,7 +2126,7 @@ namespace PU
 
                                         if (szv6.StajOsn.Count() > 0)
                                         {
-                                            db.ExecuteStoreCommand(String.Format("DELETE FROM StajOsn WHERE ([FormsSZV_6_ID] = {0})", szv6.ID));
+                                            db.Database.ExecuteSqlCommand(String.Format("DELETE FROM StajOsn WHERE ([FormsSZV_6_ID] = {0})", szv6.ID));
                                         }
                                     }
 
@@ -2151,7 +2151,7 @@ namespace PU
 
                                         szv6.StajOsn.Add(stajosn);
 
-                                        //                                        db.StajOsn.AddObject(stajosn);
+                                        //                                        db.StajOsn.Add(stajosn);
                                         //                                        db.SaveChanges();
                                         sb.AppendLine(DateTime.Now.ToString() + "   Номер " + insnumber + ". Стаж основной. Строка загружена.");
 
@@ -2182,7 +2182,7 @@ namespace PU
                                                 {
                                                     Name = profession
                                                 };
-                                                db.Dolgn.AddObject(dolgn);
+                                                db.Dolgn.Add(dolgn);
                                                 db.SaveChanges();
                                                 dolgn1 = dolgn.ID;
                                             }
@@ -2224,7 +2224,7 @@ namespace PU
                                             };
 
                                             stajosn.StajLgot.Add(stajlgot);
-                                            //                                            db.StajLgot.AddObject(stajlgot);
+                                            //                                            db.StajLgot.Add(stajlgot);
                                             //db.SaveChanges();
                                             sb.AppendLine(DateTime.Now.ToString() + "   Номер " + insnumber + ". Стаж льготный. Строка загружена.");
                                         }
@@ -2412,7 +2412,7 @@ namespace PU
                                                 {
                                                     Name = profession
                                                 };
-                                                db.Dolgn.AddObject(dolgn);
+                                                db.Dolgn.Add(dolgn);
                                                 db.SaveChanges();
                                                 dolgn1 = dolgn.ID;
                                             }
@@ -2454,7 +2454,7 @@ namespace PU
                                             };
 
                                             stajosn.StajLgot.Add(stajlgot);
-                                            //                                            db.StajLgot.AddObject(stajlgot);
+                                            //                                            db.StajLgot.Add(stajlgot);
                                             //db.SaveChanges();
                                             sb.AppendLine(DateTime.Now.ToString() + "   Номер " + insnumber + ". Стаж льготный. Строка загружена.");
                                         }
@@ -2577,7 +2577,7 @@ namespace PU
 
                                         try
                                         {
-                                            db.ExecuteStoreCommand(String.Format("DELETE FROM FormsSZV_6_4 WHERE ([ID] = {0})", szv64ForDel.ID));
+                                            db.Database.ExecuteSqlCommand(String.Format("DELETE FROM FormsSZV_6_4 WHERE ([ID] = {0})", szv64ForDel.ID));
                                         }
                                         catch
                                         {
@@ -2626,7 +2626,7 @@ namespace PU
                                     };
 
 
-                                    db.AddToFormsSZV_6_4(szv64);
+                                    db.FormsSZV_6_4.Add(szv64);
 
                                     sb.AppendLine(DateTime.Now.ToString() + "   Номер " + insnumber + " " + category + ". Форма СЗВ-6-4. Строка загружена.");
                                 }
@@ -2775,7 +2775,7 @@ namespace PU
                                             SumPayPFR_Nakop = 0
                                         };
 
-                                        db.FormsSZV_6_4.AddObject(szv64);
+                                        db.FormsSZV_6_4.Add(szv64);
                                         // db.SaveChanges();
                                         //                                        razd6_id = razd6.ID;
                                         sb.AppendLine(DateTime.Now.ToString() + "   Номер " + insnumber + " " + szv64.Year + " " + szv64.Quarter + " " + ti_cod + ". Форма СЗВ-6-4. Строка загружена.");
@@ -2786,7 +2786,7 @@ namespace PU
 
                                         if (szv64.StajOsn.Count() > 0)
                                         {
-                                            db.ExecuteStoreCommand(String.Format("DELETE FROM StajOsn WHERE ([FormsSZV_6_4_ID] = {0})", szv64.ID));
+                                            db.Database.ExecuteSqlCommand(String.Format("DELETE FROM StajOsn WHERE ([FormsSZV_6_4_ID] = {0})", szv64.ID));
                                         }
                                     }
 
@@ -2811,7 +2811,7 @@ namespace PU
 
                                         szv64.StajOsn.Add(stajosn);
 
-                                        //                                        db.StajOsn.AddObject(stajosn);
+                                        //                                        db.StajOsn.Add(stajosn);
                                         //                                        db.SaveChanges();
                                         sb.AppendLine(DateTime.Now.ToString() + "   Номер " + insnumber + ". Стаж основной. Строка загружена.");
 
@@ -2842,7 +2842,7 @@ namespace PU
                                                 {
                                                     Name = profession
                                                 };
-                                                db.Dolgn.AddObject(dolgn);
+                                                db.Dolgn.Add(dolgn);
                                                 db.SaveChanges();
                                                 dolgn1 = dolgn.ID;
                                             }
@@ -2884,7 +2884,7 @@ namespace PU
                                             };
 
                                             stajosn.StajLgot.Add(stajlgot);
-                                            //                                            db.StajLgot.AddObject(stajlgot);
+                                            //                                            db.StajLgot.Add(stajlgot);
                                             //db.SaveChanges();
                                             sb.AppendLine(DateTime.Now.ToString() + "   Номер " + insnumber + ". Стаж льготный. Строка загружена.");
                                         }
@@ -3069,7 +3069,7 @@ namespace PU
                                                 {
                                                     Name = profession
                                                 };
-                                                db.Dolgn.AddObject(dolgn);
+                                                db.Dolgn.Add(dolgn);
                                                 db.SaveChanges();
                                                 dolgn1 = dolgn.ID;
                                             }
@@ -3111,7 +3111,7 @@ namespace PU
                                             };
 
                                             stajosn.StajLgot.Add(stajlgot);
-                                            //                                            db.StajLgot.AddObject(stajlgot);
+                                            //                                            db.StajLgot.Add(stajlgot);
                                             //db.SaveChanges();
                                             sb.AppendLine(DateTime.Now.ToString() + "   Номер " + insnumber + ". Стаж льготный. Строка загружена.");
                                         }
@@ -3222,7 +3222,7 @@ namespace PU
 
                             try
                             {
-                                db.AddToFormsODV_1_2017(odv1);
+                                db.FormsODV_1_2017.Add(odv1);
                                 db.SaveChanges();
                             }
                             catch (Exception ex)
@@ -3582,7 +3582,7 @@ namespace PU
 
                                 try
                                 {
-                                    db.AddToFormsODV_1_2017(odv1);
+                                    db.FormsODV_1_2017.Add(odv1);
                                     db.SaveChanges();
 
                                     odvID = odv1.ID;
@@ -3854,7 +3854,7 @@ namespace PU
                                                     {
                                                         Name = profession
                                                     };
-                                                    db.Dolgn.AddObject(dolgn);
+                                                    db.Dolgn.Add(dolgn);
                                                     db.SaveChanges();
                                                     dolgn1 = dolgn.ID;
                                                 }

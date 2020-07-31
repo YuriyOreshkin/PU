@@ -140,7 +140,7 @@ namespace PU.FormsSZV_STAJ
                 StaffCountOsobUslShtat = 0
             };
 
-            db.FormsODV_1_2017.AddObject(odv1_new);
+            db.FormsODV_1_2017.Add(odv1_new);
             db.SaveChanges();
 
             Insurer ins = db.Insurer.First(x => x.ID == Options.InsID);
@@ -215,7 +215,7 @@ namespace PU.FormsSZV_STAJ
 
                 }
 
-                db.FormsSZV_KORR_2017.AddObject(szv_korr);
+                db.FormsSZV_KORR_2017.Add(szv_korr);
                 i++;
 
                 if (i % 100 == 0)

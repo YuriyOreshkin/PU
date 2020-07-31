@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
+using System.Data.Entity;
 using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
@@ -710,7 +710,7 @@ namespace PU.FormsRW_3_2015
                         {
                             flag_ok = false;
                             #region Сохранение новой записи
-                            db.AddToFormsRW3_2015(RWdata);
+                            db.FormsRW3_2015.Add(RWdata);
                             db.SaveChanges();
 
                             foreach (var item in RW_3_3_List)
@@ -735,7 +735,7 @@ namespace PU.FormsRW_3_2015
 
                                 }
 
-                                db.AddToFormsRW3_2015_Razd_3(r);
+                                db.FormsRW3_2015_Razd_3.Add(r);
                             }
 
 
@@ -793,7 +793,7 @@ namespace PU.FormsRW_3_2015
 
 
                             // сохраняем модифицированную запись обратно в бд
-                            db.ObjectStateManager.ChangeObjectState(r1, System.Data.EntityState.Modified);
+                            db.Entry(r1).State = EntityState.Modified;
                             //                                db.SaveChanges();
                             flag_ok = true;
 
@@ -818,7 +818,7 @@ namespace PU.FormsRW_3_2015
 
                                 foreach (var item in list_for_del)
                                 {
-                                    db.FormsRW3_2015_Razd_3.DeleteObject(item);
+                                    db.FormsRW3_2015_Razd_3.Remove(item);
                                 }
 
                                 if (list_for_del.Count() != 0)
@@ -875,7 +875,7 @@ namespace PU.FormsRW_3_2015
                                         if (flag_edited) // если записи отличаются
                                         {
 
-                                            db.ObjectStateManager.ChangeObjectState(rsw_temp, System.Data.EntityState.Modified);
+                                            db.Entry(rsw_temp).State =EntityState.Modified;
 
                                         }
 
@@ -901,7 +901,7 @@ namespace PU.FormsRW_3_2015
 
                                         }
 
-                                        db.AddToFormsRW3_2015_Razd_3(r);
+                                        db.FormsRW3_2015_Razd_3.Add(r);
                                     }
 
 

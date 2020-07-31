@@ -122,7 +122,7 @@
   2 - в случае если плательщиком страховых взносов самостоятельно доначислены страховые взносы в случае выявления факта неотражения или неполноты отражения сведений, а также ошибок, приводящих к занижению суммы страховых взносов, подлежащей уплате за предыдущие расчетные периоды;
   3 - в случае корректировки плательщиком страховых взносов данных для исчисления страховых взносов за предшествующие расчетные периоды, не признаваемой ошибкой.</value>
   </data>
-  <assembly alias="Telerik.Reporting" name="Telerik.Reporting, Version=10.0.16.204, Culture=neutral, PublicKeyToken=a9d7983dfcc261be" />
+  <assembly alias="Telerik.Reporting" name="Telerik.Reporting, Version=13.1.19.514, Culture=neutral, PublicKeyToken=a9d7983dfcc261be" />
   <data name="$this.SnapGridSize" type="Telerik.Reporting.Drawing.Unit, Telerik.Reporting">
     <value>0.1cm</value>
   </data>

@@ -82,7 +82,7 @@ namespace PU.FormsODV1
         private void ODV1_List_Load(object sender, EventArgs e)
         {
             ThemeResolutionService.ApplyThemeToControlTree(this, this.ThemeName);
-            Telerik.WinControls.RadMessageBox.SetThemeName(this.ThemeName);
+           // Telerik.WinControls.RadMessageBox.SetThemeName(this.ThemeName);
             RadGridLocalizationProvider.CurrentProvider = new MyRussianRadGridLocalizationProvider();
 
             var avail_periods = Options.RaschetPeriodInternal.Where(x => x.Year <= 2018).OrderBy(x => x.Year);
@@ -773,7 +773,7 @@ namespace PU.FormsODV1
                 child.ShowDialog();
                 if (child.ODV1 != null)
                 {
-                    db.DetectChanges();
+                    db.ChangeTracker.DetectChanges();
                     db = new pu6Entities();
                     odv1Grid_upd();
                     string id = child.ODV1.ID.ToString();
@@ -800,7 +800,7 @@ namespace PU.FormsODV1
                 child.ShowDialog();
                 if (child.ODV1 != null)
                 {
-                    db.DetectChanges();
+                    db.ChangeTracker.DetectChanges();
                     db = new pu6Entities();
                     odv1Grid_upd();
                 }
@@ -820,7 +820,7 @@ namespace PU.FormsODV1
                     try
                     {
                         var odv = db.FormsODV_1_2017.FirstOrDefault(x => x.ID == id);
-                        db.DeleteObject(odv);
+                        db.FormsODV_1_2017.Remove(odv);
                         db.SaveChanges();
                     }
                     catch (Exception ex)
@@ -1017,7 +1017,7 @@ namespace PU.FormsODV1
             //    child.ThemeName = this.ThemeName;
             //    child.odv1ID = odv1ID;
             //    child.ShowDialog();
-            //    db.DetectChanges();
+            //    db.ChangeTracker.DetectChanges();
             //    db = new pu6Entities();
             //    odv1Grid_upd();
             //}
@@ -1106,7 +1106,7 @@ namespace PU.FormsODV1
                 child.ODV1_ID = id;
                 child.ShowDialog();
                 child.Dispose();
-                db.DetectChanges();
+                db.ChangeTracker.DetectChanges();
                 db = new pu6Entities();
 
                 szv_stajGridView_upd();
@@ -1132,7 +1132,7 @@ namespace PU.FormsODV1
                 child.parentName = this.Name;
                 child.ShowDialog();
                 child.Dispose();
-                db.DetectChanges();
+                db.ChangeTracker.DetectChanges();
                 db = new pu6Entities();
                 szv_stajGridView_upd();
                 if (rowindex >= 0)
@@ -1155,7 +1155,7 @@ namespace PU.FormsODV1
 
                     try
                     {
-                        db.ExecuteStoreCommand(String.Format("DELETE FROM FormsSZV_STAJ_2017 WHERE ([ID] = {0})", id));
+                        db.Database.ExecuteSqlCommand(String.Format("DELETE FROM FormsSZV_STAJ_2017 WHERE ([ID] = {0})", id));
                     }
                     catch (Exception ex)
                     {
@@ -1186,7 +1186,7 @@ namespace PU.FormsODV1
                 child.Monthes = Monthes;
                 child.ShowDialog();
                 child.Dispose();
-                db.DetectChanges();
+                db.ChangeTracker.DetectChanges();
                 db = new pu6Entities();
 
                 szv_ishGridView_upd();
@@ -1217,7 +1217,7 @@ namespace PU.FormsODV1
                 child.Monthes = Monthes;
                 child.ShowDialog();
                 child.Dispose();
-                db.DetectChanges();
+                db.ChangeTracker.DetectChanges();
                 db = new pu6Entities();
                 szv_ishGridView_upd();
                 if (rowindex >= 0)
@@ -1240,7 +1240,7 @@ namespace PU.FormsODV1
 
                     try
                     {
-                        db.ExecuteStoreCommand(String.Format("DELETE FROM FormsSZV_ISH_2017 WHERE ([ID] = {0})", id));
+                        db.Database.ExecuteSqlCommand(String.Format("DELETE FROM FormsSZV_ISH_2017 WHERE ([ID] = {0})", id));
                     }
                     catch (Exception ex)
                     {
@@ -1300,7 +1300,7 @@ namespace PU.FormsODV1
                 child.Monthes = Monthes;
                 child.ShowDialog();
                 child.Dispose();
-                db.DetectChanges();
+                db.ChangeTracker.DetectChanges();
                 db = new pu6Entities();
 
                 szv_korrGridView_upd();
@@ -1326,7 +1326,7 @@ namespace PU.FormsODV1
                 child.Monthes = Monthes;
                 child.ShowDialog();
                 child.Dispose();
-                db.DetectChanges();
+                db.ChangeTracker.DetectChanges();
                 db = new pu6Entities();
                 szv_korrGridView_upd();
                 if (rowindex >= 0)
@@ -1349,7 +1349,7 @@ namespace PU.FormsODV1
 
                     try
                     {
-                        db.ExecuteStoreCommand(String.Format("DELETE FROM FormsSZV_KORR_2017 WHERE ([ID] = {0})", id));
+                        db.Database.ExecuteSqlCommand(String.Format("DELETE FROM FormsSZV_KORR_2017 WHERE ([ID] = {0})", id));
                     }
                     catch (Exception ex)
                     {
@@ -1432,7 +1432,7 @@ namespace PU.FormsODV1
                 child.ShowDialog();
                 if (child.Updated)
                 {
-                    db.DetectChanges();
+                    db.ChangeTracker.DetectChanges();
                     db = new pu6Entities();
                     odv1Grid_upd();
                     if (odv1GridView.Rows.Any(x => x.Cells["ID"].Value.ToString() == id.ToString()))
@@ -1455,7 +1455,7 @@ namespace PU.FormsODV1
                 child.ShowDialog();
                 if (child.Updated)
                 {
-                    db.DetectChanges();
+                    db.ChangeTracker.DetectChanges();
                     db = new pu6Entities();
                     odv1Grid_upd();
                     if (odv1GridView.Rows.Any(x => x.Cells["ID"].Value.ToString() == id.ToString()))
@@ -1464,6 +1464,50 @@ namespace PU.FormsODV1
 
             }
         }
+
+        private void copyToSzvStajDBtn_Click(object sender, EventArgs e)
+        {
+            if (szv_stajGridView.RowCount > 0 && szv_stajGridView.CurrentRow.Cells[1].Value != null)
+            {
+                long id = long.Parse(odv1GridView.CurrentRow.Cells[0].Value.ToString());
+
+                PU.FormsSZV_STAJ.SZV_STAJ_CreateSZVSTAJD child = new PU.FormsSZV_STAJ.SZV_STAJ_CreateSZVSTAJD();
+                child.Owner = this;
+                child.ThemeName = this.ThemeName;
+
+
+                if (szv_stajGridView.CurrentRow.Cells[1].Value != null)
+                {
+                    child.currentStaffId = long.Parse(szv_stajGridView.CurrentRow.Cells[1].Value.ToString());
+                }
+
+                List<long> ids = new List<long>();
+
+                if (szv_stajGridView.Rows.Any(x => x.Cells[0].Value != null && (bool)x.Cells[0].Value == true))
+                {
+                    foreach (var item in szv_stajGridView.Rows.Where(x => x.Cells[0].Value != null && (bool)x.Cells[0].Value == true))
+                    {
+                        ids.Add(long.Parse(item.Cells[1].Value.ToString()));
+                    }
+
+                    child.staffList_temp = ids;
+                }
+
+                child.odv1Data = db.FormsODV_1_2017.FirstOrDefault(x => x.ID == id);
+                child.ShowDialog();
+                if (child.Updated)
+                {
+                    db.ChangeTracker.DetectChanges();
+                    db = new pu6Entities();
+                    odv1Grid_upd();
+                    if (odv1GridView.Rows.Any(x => x.Cells["ID"].Value.ToString() == id.ToString()))
+                        odv1GridView.Rows.First(x => x.Cells["ID"].Value.ToString() == id.ToString()).IsCurrent = true;
+                }
+
+            }
+        }
+
+
 
     }
 }

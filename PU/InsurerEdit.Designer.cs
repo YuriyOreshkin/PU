@@ -96,8 +96,8 @@
             this.radLabel29 = new Telerik.WinControls.UI.RadLabel();
             this.importPathBrowser = new Telerik.WinControls.UI.RadBrowseEditor();
             this.radLabel30 = new Telerik.WinControls.UI.RadLabel();
-            this.radButton1 = new Telerik.WinControls.UI.RadButton();
-            this.radButton2 = new Telerik.WinControls.UI.RadButton();
+            this.saveBtn = new Telerik.WinControls.UI.RadButton();
+            this.closeBtn = new Telerik.WinControls.UI.RadButton();
             this.rkasvInfoPanel = new Telerik.WinControls.UI.RadPanel();
             this.serviceTextBox = new Telerik.WinControls.UI.RadTextBox();
             this.radLabel28 = new Telerik.WinControls.UI.RadLabel();
@@ -188,8 +188,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.radLabel29)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.importPathBrowser)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel30)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radButton1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radButton2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.saveBtn)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.closeBtn)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.rkasvInfoPanel)).BeginInit();
             this.rkasvInfoPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.serviceTextBox)).BeginInit();
@@ -223,7 +223,6 @@
             this.radPageView1.SelectedPage = this.radPageViewPage1;
             this.radPageView1.Size = new System.Drawing.Size(855, 491);
             this.radPageView1.TabIndex = 0;
-            this.radPageView1.Text = "Дополнительно";
             this.radPageView1.ThemeName = "Office2013Light";
             this.radPageView1.ViewMode = Telerik.WinControls.UI.PageViewMode.Backstage;
             // 
@@ -1043,27 +1042,27 @@
             this.radLabel30.Text = "Импорт";
             this.radLabel30.ThemeName = "Office2013Light";
             // 
-            // radButton1
+            // saveBtn
             // 
-            this.radButton1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.radButton1.Location = new System.Drawing.Point(598, 505);
-            this.radButton1.Name = "radButton1";
-            this.radButton1.Size = new System.Drawing.Size(110, 24);
-            this.radButton1.TabIndex = 1;
-            this.radButton1.Text = "Сохранить";
-            this.radButton1.ThemeName = "Office2013Light";
-            this.radButton1.Click += new System.EventHandler(this.radButton1_Click);
+            this.saveBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.saveBtn.Location = new System.Drawing.Point(598, 505);
+            this.saveBtn.Name = "saveBtn";
+            this.saveBtn.Size = new System.Drawing.Size(110, 24);
+            this.saveBtn.TabIndex = 1;
+            this.saveBtn.Text = "Сохранить";
+            this.saveBtn.ThemeName = "Office2013Light";
+            this.saveBtn.Click += new System.EventHandler(this.saveBtn_Click);
             // 
-            // radButton2
+            // closeBtn
             // 
-            this.radButton2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.radButton2.Location = new System.Drawing.Point(733, 505);
-            this.radButton2.Name = "radButton2";
-            this.radButton2.Size = new System.Drawing.Size(110, 24);
-            this.radButton2.TabIndex = 2;
-            this.radButton2.Text = "Закрыть";
-            this.radButton2.ThemeName = "Office2013Light";
-            this.radButton2.Click += new System.EventHandler(this.radButton2_Click);
+            this.closeBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.closeBtn.Location = new System.Drawing.Point(733, 505);
+            this.closeBtn.Name = "closeBtn";
+            this.closeBtn.Size = new System.Drawing.Size(110, 24);
+            this.closeBtn.TabIndex = 2;
+            this.closeBtn.Text = "Закрыть";
+            this.closeBtn.ThemeName = "Office2013Light";
+            this.closeBtn.Click += new System.EventHandler(this.closeBtn_Click);
             // 
             // rkasvInfoPanel
             // 
@@ -1293,8 +1292,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(855, 541);
             this.Controls.Add(this.rkasvInfoPanel);
-            this.Controls.Add(this.radButton2);
-            this.Controls.Add(this.radButton1);
+            this.Controls.Add(this.closeBtn);
+            this.Controls.Add(this.saveBtn);
             this.Controls.Add(this.radPageView1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.KeyPreview = true;
@@ -1392,8 +1391,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.radLabel29)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.importPathBrowser)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel30)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radButton1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radButton2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.saveBtn)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.closeBtn)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.rkasvInfoPanel)).EndInit();
             this.rkasvInfoPanel.ResumeLayout(false);
             this.rkasvInfoPanel.PerformLayout();
@@ -1447,8 +1446,8 @@
         private Telerik.WinControls.UI.RadLabel radLabel12;
         private Telerik.WinControls.UI.RadLabel radLabel13;
         private Telerik.WinControls.UI.RadLabel radLabel11;
-        private Telerik.WinControls.UI.RadButton radButton1;
-        private Telerik.WinControls.UI.RadButton radButton2;
+        private Telerik.WinControls.UI.RadButton saveBtn;
+        private Telerik.WinControls.UI.RadButton closeBtn;
         private Telerik.WinControls.UI.RadGroupBox radGroupBox2;
         private Telerik.WinControls.UI.RadLabel radLabel18;
         private Telerik.WinControls.UI.RadTextBox BossFIODop_;

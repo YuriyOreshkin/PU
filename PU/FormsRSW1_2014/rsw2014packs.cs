@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
+using System.Data.Entity;
 using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
@@ -277,7 +277,7 @@ namespace PU.FormsRSW2014
                     {
                         foreach (var item in files)
                         {
-                            dbxml.DeleteObject(item);
+                            dbxml.xmlInfo.Remove(item);
                         }
                         dbxml.SaveChanges();
                         files = dbxml.xmlInfo.Where(x => x.Year == ident.Year && x.Quarter == ident.Quarter && x.InsurerID == ident.InsurerID && x.FormatType == ident.FormatType);
@@ -394,7 +394,7 @@ namespace PU.FormsRSW2014
 
             if (dialogResult == DialogResult.Yes)
             {
-                dbxml.ExecuteStoreCommand(String.Format("DELETE FROM xmlInfo WHERE ([Year] = {0} AND [Quarter] = {1} AND [InsurerID] = {2} AND [FormatType] = '{3}')", ident.Year, ident.Quarter, ident.InsurerID, ident.FormatType));
+                dbxml.Database.ExecuteSqlCommand(String.Format("DELETE FROM xmlInfo WHERE ([Year] = {0} AND [Quarter] = {1} AND [InsurerID] = {2} AND [FormatType] = '{3}')", ident.Year, ident.Quarter, ident.InsurerID, ident.FormatType));
                 packsGrid_upd();
             }
         }
@@ -2613,7 +2613,7 @@ namespace PU.FormsRSW2014
                                             else
                                             {
                                                 Dolgn dolgn = new Dolgn { Name = kv.Name };
-                                                db.AddToDolgn(dolgn);
+                                                db.Dolgn.Add(dolgn);
                                                 db.SaveChanges();
                                                 stajLgot.DolgnID = dolgn.ID;
                                             }
@@ -3061,7 +3061,7 @@ namespace PU.FormsRSW2014
                                             else
                                             {
                                                 Dolgn dolgn = new Dolgn { Name = kv.Name };
-                                                db.AddToDolgn(dolgn);
+                                                db.Dolgn.Add(dolgn);
                                                 db.SaveChanges();
                                                 stajLgot.DolgnID = dolgn.ID;
                                             }
@@ -3352,7 +3352,7 @@ namespace PU.FormsRSW2014
                                             else
                                             {
                                                 Dolgn dolgn = new Dolgn { Name = kv.Name };
-                                                db.AddToDolgn(dolgn);
+                                                db.Dolgn.Add(dolgn);
                                                 db.SaveChanges();
                                                 stajLgot.DolgnID = dolgn.ID;
                                             }
@@ -3640,7 +3640,7 @@ namespace PU.FormsRSW2014
                         Dismissed = 0
                     };
 
-                    db.AddToStaff(staff_);
+                    db.Staff.Add(staff_);
                 }
                 if (staffList.Count > 0)
                     db.SaveChanges();
@@ -3774,7 +3774,7 @@ namespace PU.FormsRSW2014
                                             else
                                             {
                                                 Dolgn dolgn = new Dolgn { Name = kv.Name };
-                                                db.AddToDolgn(dolgn);
+                                                db.Dolgn.Add(dolgn);
                                                 db.SaveChanges();
                                                 stajLgot.DolgnID = dolgn.ID;
                                             }
@@ -4187,7 +4187,7 @@ namespace PU.FormsRSW2014
                                             new XElement("ТипФайла", "ВНЕШНИЙ"),
                                             new XElement("ПрограммаПодготовкиДанных",
                                                 new XElement("НазваниеПрограммы", Application.ProductName.ToUpper()),
-                                                new XElement("Версия", Application.ProductVersion)),
+                                                new XElement("Версия", Application.ProductVersion.Substring(2, Application.ProductVersion.Length - 2))),
                                             new XElement("ИсточникДанных", "СТРАХОВАТЕЛЬ")),
                                         new XElement("ПачкаВходящихДокументов", new XAttribute("Окружение", "В составе файла"), new XAttribute("Стадия", "До обработки"))));
 
@@ -4454,7 +4454,7 @@ namespace PU.FormsRSW2014
                                             new XElement("ТипФайла", "ВНЕШНИЙ"),
                                             new XElement("ПрограммаПодготовкиДанных",
                                                 new XElement("НазваниеПрограммы", Application.ProductName.ToUpper()),
-                                                new XElement("Версия", Application.ProductVersion)),
+                                                new XElement("Версия", Application.ProductVersion.Substring(2, Application.ProductVersion.Length - 2))),
                                             new XElement("ИсточникДанных", "СТРАХОВАТЕЛЬ")),
                                         new XElement("ПачкаВходящихДокументов", new XAttribute("Окружение", "В составе файла"), new XAttribute("Стадия", "До обработки"), new XAttribute("ДобровольныеПравоотношения", "ДСВ"))));
 
@@ -4624,6 +4624,7 @@ namespace PU.FormsRSW2014
             XNamespace pfr = "http://schema.pfr.ru";
             int num = 1;
 
+
             XDocument xDoc = new XDocument(new XDeclaration("1.0", "Windows-1251", "yes"),
                 new XElement("ФайлПФР", new XElement("ИмяФайла", item.FileName),
                                         new XElement("ЗаголовокФайла",
@@ -4631,7 +4632,7 @@ namespace PU.FormsRSW2014
                                             new XElement("ТипФайла", "ВНЕШНИЙ"),
                                             new XElement("ПрограммаПодготовкиДанных",
                                                 new XElement("НазваниеПрограммы", Application.ProductName.ToUpper()),
-                                                new XElement("Версия", Application.ProductVersion)),
+                                                new XElement("Версия", Application.ProductVersion.Substring(2, Application.ProductVersion.Length - 2))),
                                             new XElement("ИсточникДанных", "СТРАХОВАТЕЛЬ")),
                                         new XElement("ПачкаВходящихДокументов", new XAttribute("Окружение", "В составе файла"), new XAttribute("Стадия", "До обработки"))));
 
@@ -4750,12 +4751,31 @@ namespace PU.FormsRSW2014
                 XElement АНКЕТА_ЗЛ = new XElement("АНКЕТА_ЗЛ",
                                                         new XElement("НомерВпачке", num));
 
-                XElement АнкетныеДанные = new XElement("АнкетныеДанные",
-                                                                            new XElement("ФИО",
-                                                            new XElement("Фамилия", ish_staff.LastName.Substring(0, ish_staff.LastName.Length > 40 ? 40 : ish_staff.LastName.Length).ToUpper()),
-                                                            new XElement("Имя", ish_staff.FirstName.Substring(0, ish_staff.FirstName.Length > 40 ? 40 : ish_staff.FirstName.Length).ToUpper()),
-                                                            new XElement("Отчество", ish_staff.MiddleName.Substring(0, ish_staff.MiddleName.Length > 40 ? 40 : ish_staff.MiddleName.Length).ToUpper())),
-                                                            new XElement("Пол", ish_staff.Sex.HasValue ? (ish_staff.Sex.Value == 0 ? "МУЖСКОЙ" : "ЖЕНСКИЙ") : ""));
+                XElement АнкетныеДанные = new XElement("АнкетныеДанные");
+
+
+                XElement ФИО = new XElement("ФИО");
+
+                if (!String.IsNullOrEmpty(ish_staff.LastName.Trim()))
+                {
+                    ФИО.Add(new XElement("Фамилия", ish_staff.LastName.Substring(0, ish_staff.LastName.Length > 40 ? 40 : ish_staff.LastName.Length).ToUpper()));
+                }
+
+                if (!String.IsNullOrEmpty(ish_staff.FirstName.Trim()))
+                {
+                    ФИО.Add(new XElement("Имя", ish_staff.FirstName.Substring(0, ish_staff.FirstName.Length > 40 ? 40 : ish_staff.FirstName.Length).ToUpper()));
+                }
+
+                if (!String.IsNullOrEmpty(ish_staff.MiddleName.Trim()))
+                {
+                    ФИО.Add(new XElement("Отчество", ish_staff.MiddleName.Substring(0, ish_staff.MiddleName.Length > 40 ? 40 : ish_staff.MiddleName.Length).ToUpper()));
+                }
+
+                АнкетныеДанные.Add(ФИО);
+                АнкетныеДанные.Add(new XElement("Пол", ish_staff.Sex.HasValue ? (ish_staff.Sex.Value == 0 ? "МУЖСКОЙ" : "ЖЕНСКИЙ") : ""));
+
+
+
                 XElement Датарождения = new XElement("ДатаРождения");
                 if (adw1.Type_DateBirth.HasValue && adw1.Type_DateBirth.Value == 1)  //Если особая дата рождения
                 {
@@ -4784,56 +4804,318 @@ namespace PU.FormsRSW2014
 
                 АнкетныеДанные.Add(Датарождения);
 
+                bool flagPlaceBirth = false;
+
                 XElement МестоРождения = new XElement("МестоРождения",
-                        new XElement("ТипМестаРождения", adw1.Type_PlaceBirth.HasValue ? ((short)adw1.Type_PlaceBirth.Value == 0 ? "СТАНДАРТНОЕ" : "ОСОБОЕ") : "СТАНДАРТНОЕ"));
+                        new XElement("ТипМестаРождения", adw1.Type_PlaceBirth.HasValue ? ((short)adw1.Type_PlaceBirth.Value == 1 ? "СТАНДАРТНОЕ" : "ОСОБОЕ") : "СТАНДАРТНОЕ"));
 
-                if (!String.IsNullOrEmpty(adw1.Punkt))
+                if (!String.IsNullOrEmpty(adw1.Punkt.Trim()))
                 {
-                    МестоРождения.Add(new XElement("ГородРождения", adw1.Punkt.Trim().Length > 200 ? adw1.Punkt.Trim().Substring(0, 200) : adw1.Punkt.Trim()));
+                    МестоРождения.Add(new XElement("ГородРождения", adw1.Punkt.Trim().Length > 40 ? adw1.Punkt.Trim().Substring(0, 40) : adw1.Punkt.Trim()));
+                    flagPlaceBirth = true;
                 }
-                if (!String.IsNullOrEmpty(adw1.Distr))
+                if (!String.IsNullOrEmpty(adw1.Distr.Trim()))
                 {
-                    МестоРождения.Add(new XElement("РайонРождения", adw1.Distr.Trim().Length > 200 ? adw1.Distr.Trim().Substring(0, 200) : adw1.Distr.Trim()));
+                    МестоРождения.Add(new XElement("РайонРождения", adw1.Distr.Trim().Length > 40 ? adw1.Distr.Trim().Substring(0, 40) : adw1.Distr.Trim()));
+                    flagPlaceBirth = true;
                 }
-                if (!String.IsNullOrEmpty(adw1.Region))
+                if (!String.IsNullOrEmpty(adw1.Region.Trim()))
                 {
-                    МестоРождения.Add(new XElement("РегионРождения", adw1.Region.Trim().Length > 200 ? adw1.Region.Trim().Substring(0, 200) : adw1.Region.Trim()));
+                    МестоРождения.Add(new XElement("РегионРождения", adw1.Region.Trim().Length > 40 ? adw1.Region.Trim().Substring(0, 40) : adw1.Region.Trim()));
+                    flagPlaceBirth = true;
                 }
-                if (!String.IsNullOrEmpty(adw1.Country))
+                if (!String.IsNullOrEmpty(adw1.Country.Trim()))
                 {
-                    МестоРождения.Add(new XElement("СтранаРождения", adw1.Country.Trim().Length > 200 ? adw1.Country.Trim().Substring(0, 200) : adw1.Country.Trim()));
+                    МестоРождения.Add(new XElement("СтранаРождения", adw1.Country.Trim().Length > 40 ? adw1.Country.Trim().Substring(0, 40) : adw1.Country.Trim()));
+                    flagPlaceBirth = true;
                 }
 
+                if (flagPlaceBirth)
+                    АнкетныеДанные.Add(МестоРождения);
 
-                АнкетныеДанные.Add(МестоРождения);
 
-
-                if (!String.IsNullOrEmpty(adw1.Citizenship))
+                if (!String.IsNullOrEmpty(adw1.Citizenship.Trim()))
                 {
                     АнкетныеДанные.Add(new XElement("Гражданство", adw1.Citizenship.Trim().Length > 40 ? adw1.Citizenship.Trim().Substring(0, 40) : adw1.Citizenship.Trim()));
                 }
 
-                if (!String.IsNullOrEmpty(adw1.Reg_Addr))
+                if (!String.IsNullOrEmpty(adw1.Reg_Addr.Trim()))
                 {
-                    XElement АдресРегистрации = new XElement("АдресРегистрации",
-                        new XElement("ТипАдреса", "НЕСТРУКТУРИРОВАННЫЙ"),
+
+                    string[] t = adw1.Reg_Addr.Trim().Split(',');
+
+                    XElement АдресРегистрации = new XElement("АдресРегистрации");
+
+                    if (t.Length != 18)
+                    {
+                        АдресРегистрации.Add(new XElement("ТипАдреса", "НЕСТРУКТУРИРОВАННЫЙ"),
                         new XElement("НеструктурированныйАдрес",
                             new XElement("Адрес", adw1.Reg_Addr.Trim().Length > 200 ? adw1.Reg_Addr.Trim().Substring(0, 200) : adw1.Reg_Addr.Trim())));
+                    }
+                    else
+                    {
+                        АдресРегистрации.Add(new XElement("ТипАдреса", "РОССИЙСКИЙ"));
+
+                        try
+                        {
+                            АдресРегистрации.Add(new XElement("Индекс", t[1]));
+
+                            XElement РоссийскийАдрес = new XElement("РоссийскийАдрес");
+
+                            if (!String.IsNullOrEmpty(t[3].Trim()))
+                            {
+                                XElement Регион = new XElement("Регион",
+                                    new XElement("ГеографическоеНазвание", t[3].Trim()),
+                                    new XElement("Сокращение", t[2].Trim()));
+
+                                РоссийскийАдрес.Add(Регион);
+                            }
+
+                            if (!String.IsNullOrEmpty(t[5].Trim()))
+                            {
+                                XElement Район = new XElement("Район",
+                                    new XElement("ГеографическоеНазвание", t[5].Trim()),
+                                    new XElement("Сокращение", t[4].Trim()));
+
+                                РоссийскийАдрес.Add(Район);
+                            }
+
+
+                            if (!String.IsNullOrEmpty(t[7].Trim()))
+                            {
+                                XElement Город = new XElement("Город",
+                                    new XElement("ГеографическоеНазвание", t[7].Trim()),
+                                    new XElement("Сокращение", t[6].Trim()));
+
+                                РоссийскийАдрес.Add(Город);
+                            }
+
+
+                            if (!String.IsNullOrEmpty(t[9].Trim()))
+                            {
+                                XElement НаселенныйПункт = new XElement("НаселенныйПункт",
+                                    new XElement("ГеографическоеНазвание", t[9].Trim()),
+                                    new XElement("Сокращение", t[8].Trim()));
+
+                                РоссийскийАдрес.Add(НаселенныйПункт);
+                            }
+
+
+                            if (!String.IsNullOrEmpty(t[11].Trim()))
+                            {
+                                XElement Улица = new XElement("Улица",
+                                    new XElement("ГеографическоеНазвание", t[11].Trim()),
+                                    new XElement("Сокращение", t[10].Trim()));
+
+                                РоссийскийАдрес.Add(Улица);
+                            }
+
+
+                            if (!String.IsNullOrEmpty(t[12].Trim()) || !String.IsNullOrEmpty(t[13].Trim()))
+                            {
+                                XElement Дом = new XElement("Дом");
+
+                                if (!String.IsNullOrEmpty(t[12].Trim()))
+                                {
+                                    Дом.Add(new XElement("Сокращение", t[12].Trim()));
+                                }
+
+                                if (!String.IsNullOrEmpty(t[13].Trim()))
+                                {
+                                    Дом.Add(new XElement("Номер", t[13].Trim()));
+                                }
+
+                                РоссийскийАдрес.Add(Дом);
+                            }
+
+
+                            if (!String.IsNullOrEmpty(t[14].Trim()) || !String.IsNullOrEmpty(t[15].Trim()))
+                            {
+                                XElement Корпус = new XElement("Корпус");
+
+                                if (!String.IsNullOrEmpty(t[14].Trim()))
+                                {
+                                    Корпус.Add(new XElement("Сокращение", t[14].Trim()));
+                                }
+
+                                if (!String.IsNullOrEmpty(t[15].Trim()))
+                                {
+                                    Корпус.Add(new XElement("Номер", t[15].Trim()));
+                                }
+
+                                РоссийскийАдрес.Add(Корпус);
+                            }
+
+
+                            if (!String.IsNullOrEmpty(t[16].Trim()) || !String.IsNullOrEmpty(t[17].Trim()))
+                            {
+                                XElement Квартира = new XElement("Квартира");
+
+                                if (!String.IsNullOrEmpty(t[16].Trim()))
+                                {
+                                    Квартира.Add(new XElement("Сокращение", t[16].Trim()));
+                                }
+
+                                if (!String.IsNullOrEmpty(t[16].Trim()))
+                                {
+                                    Квартира.Add(new XElement("Номер", t[17].Trim()));
+                                }
+
+                                РоссийскийАдрес.Add(Квартира);
+                            }
+
+                            АдресРегистрации.Add(РоссийскийАдрес);
+                        }
+                        catch { }
+
+
+
+                    }
 
                     АнкетныеДанные.Add(АдресРегистрации);
                 }
 
-                if (!String.IsNullOrEmpty(adw1.Fakt_Addr))
+
+                if (!String.IsNullOrEmpty(adw1.Fakt_Addr.Trim()))
                 {
-                    XElement АдресФактический = new XElement("АдресФактический",
-                        new XElement("ТипАдреса", "НЕСТРУКТУРИРОВАННЫЙ"),
+
+                    string[] t = adw1.Fakt_Addr.Trim().Split(',');
+
+                    XElement АдресФактический = new XElement("АдресФактический");
+
+                    if (t.Length != 18)
+                    {
+                        АдресФактический.Add(new XElement("ТипАдреса", "НЕСТРУКТУРИРОВАННЫЙ"),
                         new XElement("НеструктурированныйАдрес",
                             new XElement("Адрес", adw1.Fakt_Addr.Trim().Length > 200 ? adw1.Fakt_Addr.Trim().Substring(0, 200) : adw1.Fakt_Addr.Trim())));
+                    }
+                    else
+                    {
+                        АдресФактический.Add(new XElement("ТипАдреса", "РОССИЙСКИЙ"));
+
+                        try
+                        {
+                            АдресФактический.Add(new XElement("Индекс", t[1]));
+
+                            XElement РоссийскийАдрес = new XElement("РоссийскийАдрес");
+
+                            if (!String.IsNullOrEmpty(t[3].Trim()))
+                            {
+                                XElement Регион = new XElement("Регион",
+                                    new XElement("ГеографическоеНазвание", t[3].Trim()),
+                                    new XElement("Сокращение", t[2].Trim()));
+
+                                РоссийскийАдрес.Add(Регион);
+                            }
+
+                            if (!String.IsNullOrEmpty(t[5].Trim()))
+                            {
+                                XElement Район = new XElement("Район",
+                                    new XElement("ГеографическоеНазвание", t[5].Trim()),
+                                    new XElement("Сокращение", t[4].Trim()));
+
+                                РоссийскийАдрес.Add(Район);
+                            }
+
+
+                            if (!String.IsNullOrEmpty(t[7].Trim()))
+                            {
+                                XElement Город = new XElement("Город",
+                                    new XElement("ГеографическоеНазвание", t[7].Trim()),
+                                    new XElement("Сокращение", t[6].Trim()));
+
+                                РоссийскийАдрес.Add(Город);
+                            }
+
+
+                            if (!String.IsNullOrEmpty(t[9].Trim()))
+                            {
+                                XElement НаселенныйПункт = new XElement("НаселенныйПункт",
+                                    new XElement("ГеографическоеНазвание", t[9].Trim()),
+                                    new XElement("Сокращение", t[8].Trim()));
+
+                                РоссийскийАдрес.Add(НаселенныйПункт);
+                            }
+
+
+                            if (!String.IsNullOrEmpty(t[11].Trim()))
+                            {
+                                XElement Улица = new XElement("Улица",
+                                    new XElement("ГеографическоеНазвание", t[11].Trim()),
+                                    new XElement("Сокращение", t[10].Trim()));
+
+                                РоссийскийАдрес.Add(Улица);
+                            }
+
+
+                            if (!String.IsNullOrEmpty(t[12].Trim()) || !String.IsNullOrEmpty(t[13].Trim()))
+                            {
+                                XElement Дом = new XElement("Дом");
+
+                                if (!String.IsNullOrEmpty(t[12].Trim()))
+                                {
+                                    Дом.Add(new XElement("Сокращение", t[12].Trim()));
+                                }
+
+                                if (!String.IsNullOrEmpty(t[13].Trim()))
+                                {
+                                    Дом.Add(new XElement("Номер", t[13].Trim()));
+                                }
+
+                                РоссийскийАдрес.Add(Дом);
+                            }
+
+
+                            if (!String.IsNullOrEmpty(t[14].Trim()) || !String.IsNullOrEmpty(t[15].Trim()))
+                            {
+                                XElement Корпус = new XElement("Корпус");
+
+                                if (!String.IsNullOrEmpty(t[14].Trim()))
+                                {
+                                    Корпус.Add(new XElement("Сокращение", t[14].Trim()));
+                                }
+
+                                if (!String.IsNullOrEmpty(t[15].Trim()))
+                                {
+                                    Корпус.Add(new XElement("Номер", t[15].Trim()));
+                                }
+
+                                РоссийскийАдрес.Add(Корпус);
+                            }
+
+
+                            if (!String.IsNullOrEmpty(t[16].Trim()) || !String.IsNullOrEmpty(t[17].Trim()))
+                            {
+                                XElement Квартира = new XElement("Квартира");
+
+                                if (!String.IsNullOrEmpty(t[16].Trim()))
+                                {
+                                    Квартира.Add(new XElement("Сокращение", t[16].Trim()));
+                                }
+
+                                if (!String.IsNullOrEmpty(t[16].Trim()))
+                                {
+                                    Квартира.Add(new XElement("Номер", t[17].Trim()));
+                                }
+
+                                РоссийскийАдрес.Add(Квартира);
+                            }
+
+                            АдресФактический.Add(РоссийскийАдрес);
+                        }
+                        catch { }
+
+
+
+                    }
 
                     АнкетныеДанные.Add(АдресФактический);
                 }
 
-                if (!String.IsNullOrEmpty(adw1.Phone))
+
+
+
+                if (!String.IsNullOrEmpty(adw1.Phone.Trim()))
                 {
                     АнкетныеДанные.Add(new XElement("Телефон", adw1.Phone.Trim().Length > 40 ? adw1.Phone.Trim().Substring(0, 40) : adw1.Phone.Trim()));
                 }
@@ -4851,11 +5133,11 @@ namespace PU.FormsRSW2014
                     XElement Документ = new XElement("Документ",
                         new XElement("НаименованиеУдостоверяющего", docName.Substring(0, docName.Length > 80 ? 80 : docName.Length).ToUpper()));
 
-                    if (!String.IsNullOrEmpty(adw1.Ser_Lat))
+                    if (!String.IsNullOrEmpty(adw1.Ser_Lat.Trim()))
                         Документ.Add(new XElement("СерияРимскиеЦифры", adw1.Ser_Lat.Substring(0, adw1.Ser_Lat.Length > 8 ? 8 : adw1.Ser_Lat.Length).ToUpper()));
-                    if (!String.IsNullOrEmpty(adw1.Ser_Rus))
+                    if (!String.IsNullOrEmpty(adw1.Ser_Rus.Trim()))
                         Документ.Add(new XElement("СерияРусскиеБуквы", adw1.Ser_Rus.Substring(0, adw1.Ser_Rus.Length > 8 ? 8 : adw1.Ser_Rus.Length).ToUpper()));
-                    if (!String.IsNullOrEmpty(adw1.Doc_Num))
+                    if (!String.IsNullOrEmpty(adw1.Doc_Num.Trim()))
                         Документ.Add(new XElement("НомерУдостоверяющего", adw1.Doc_Num.Substring(0, adw1.Doc_Num.Length > 8 ? 8 : adw1.Doc_Num.Length).ToUpper()));
                     Документ.Add(new XElement("ДатаВыдачи", adw1.Doc_Date.HasValue ? adw1.Doc_Date.Value.ToString("dd.MM.yyyy") : ""));
                     Документ.Add(new XElement("КемВыдан", adw1.Doc_Kem_Vyd.Substring(0, adw1.Doc_Kem_Vyd.Length > 80 ? 80 : adw1.Doc_Kem_Vyd.Length).ToUpper()));
@@ -4910,7 +5192,7 @@ namespace PU.FormsRSW2014
                                             new XElement("ТипФайла", "ВНЕШНИЙ"),
                                             new XElement("ПрограммаПодготовкиДанных",
                                                 new XElement("НазваниеПрограммы", Application.ProductName.ToUpper()),
-                                                new XElement("Версия", Application.ProductVersion)),
+                                                new XElement("Версия", Application.ProductVersion.Substring(2, Application.ProductVersion.Length - 2))),
                                             new XElement("ИсточникДанных", "СТРАХОВАТЕЛЬ")),
                                         new XElement("ПачкаВходящихДокументов", new XAttribute("Окружение", "В составе файла"), new XAttribute("Стадия", "До обработки"))));
 
@@ -5028,11 +5310,32 @@ namespace PU.FormsRSW2014
 
                 XElement ЗАЯВЛЕНИЕ_ОБ_ОБМЕНЕ = new XElement("ЗАЯВЛЕНИЕ_ОБ_ОБМЕНЕ",
                                                         new XElement("НомерВпачке", num),
-                                                        new XElement("СтраховойНомер", Utils.ParseSNILS(ish_staff.InsuranceNumber, ish_staff.ControlNumber.HasValue ? ish_staff.ControlNumber.Value : (short)0)),
-                                                        new XElement("ФИОизСтрахового",
-                                                            new XElement("Фамилия", ish_staff.LastName.Substring(0, ish_staff.LastName.Length > 40 ? 40 : ish_staff.LastName.Length).ToUpper()),
-                                                            new XElement("Имя", ish_staff.FirstName.Substring(0, ish_staff.FirstName.Length > 40 ? 40 : ish_staff.FirstName.Length).ToUpper()),
-                                                            new XElement("Отчество", ish_staff.MiddleName.Substring(0, ish_staff.MiddleName.Length > 40 ? 40 : ish_staff.MiddleName.Length).ToUpper())));
+                                                        new XElement("СтраховойНомер", Utils.ParseSNILS(ish_staff.InsuranceNumber, ish_staff.ControlNumber.HasValue ? ish_staff.ControlNumber.Value : (short)0)));
+
+
+
+
+                XElement ФИОизСтрахового = new XElement("ФИОизСтрахового");
+
+                if (!String.IsNullOrEmpty(ish_staff.LastName.Trim()))
+                {
+                    ФИОизСтрахового.Add(new XElement("Фамилия", ish_staff.LastName.Substring(0, ish_staff.LastName.Length > 40 ? 40 : ish_staff.LastName.Length).ToUpper()));
+                }
+
+                if (!String.IsNullOrEmpty(ish_staff.FirstName.Trim()))
+                {
+                    ФИОизСтрахового.Add(new XElement("Имя", ish_staff.FirstName.Substring(0, ish_staff.FirstName.Length > 40 ? 40 : ish_staff.FirstName.Length).ToUpper()));
+                }
+
+                if (!String.IsNullOrEmpty(ish_staff.MiddleName.Trim()))
+                {
+                    ФИОизСтрахового.Add(new XElement("Отчество", ish_staff.MiddleName.Substring(0, ish_staff.MiddleName.Length > 40 ? 40 : ish_staff.MiddleName.Length).ToUpper()));
+                }
+
+                ЗАЯВЛЕНИЕ_ОБ_ОБМЕНЕ.Add(ФИОизСтрахового);
+
+
+
 
 
                 XElement УдостоверяющийДокументИСХД = new XElement("УдостоверяющийДокумент");
@@ -5070,10 +5373,25 @@ namespace PU.FormsRSW2014
 
                 if (!String.IsNullOrEmpty(adw2.LastName) || !String.IsNullOrEmpty(adw2.FirstName) || !String.IsNullOrEmpty(adw2.MiddleName))
                 {
-                    ИзменившиесяДанные.Add(new XElement("ФИО",
-                                                            new XElement("Фамилия", adw2.LastName.Substring(0, adw2.LastName.Length > 40 ? 40 : adw2.LastName.Length).ToUpper()),
-                                                            new XElement("Имя", adw2.FirstName.Substring(0, adw2.FirstName.Length > 40 ? 40 : adw2.FirstName.Length).ToUpper()),
-                                                            new XElement("Отчество", adw2.MiddleName.Substring(0, adw2.MiddleName.Length > 40 ? 40 : adw2.MiddleName.Length).ToUpper())));
+                    XElement ФИО = new XElement("ФИО");
+
+                    if (!String.IsNullOrEmpty(adw2.LastName.Trim()))
+                    {
+                        ФИО.Add(new XElement("Фамилия", adw2.LastName.Substring(0, adw2.LastName.Length > 40 ? 40 : adw2.LastName.Length).ToUpper()));
+                    }
+
+                    if (!String.IsNullOrEmpty(adw2.FirstName.Trim()))
+                    {
+                        ФИО.Add(new XElement("Имя", adw2.FirstName.Substring(0, adw2.FirstName.Length > 40 ? 40 : adw2.FirstName.Length).ToUpper()));
+                    }
+
+                    if (!String.IsNullOrEmpty(adw2.MiddleName.Trim()))
+                    {
+                        ФИО.Add(new XElement("Отчество", adw2.MiddleName.Substring(0, adw2.MiddleName.Length > 40 ? 40 : adw2.MiddleName.Length).ToUpper()));
+                    }
+
+                    ИзменившиесяДанные.Add(ФИО);
+
                 }
 
                 if (adw2.Sex.HasValue)
@@ -5124,19 +5442,19 @@ namespace PU.FormsRSW2014
 
                     if (!String.IsNullOrEmpty(adw2.Punkt))
                     {
-                        МестоРождения.Add(new XElement("ГородРождения", adw2.Punkt.Trim().Length > 200 ? adw2.Punkt.Trim().Substring(0, 200) : adw2.Punkt.Trim()));
+                        МестоРождения.Add(new XElement("ГородРождения", adw2.Punkt.Trim().Length > 40 ? adw2.Punkt.Trim().Substring(0, 40) : adw2.Punkt.Trim()));
                     }
                     if (!String.IsNullOrEmpty(adw2.Distr))
                     {
-                        МестоРождения.Add(new XElement("РайонРождения", adw2.Distr.Trim().Length > 200 ? adw2.Distr.Trim().Substring(0, 200) : adw2.Distr.Trim()));
+                        МестоРождения.Add(new XElement("РайонРождения", adw2.Distr.Trim().Length > 40 ? adw2.Distr.Trim().Substring(0, 40) : adw2.Distr.Trim()));
                     }
                     if (!String.IsNullOrEmpty(adw2.Region))
                     {
-                        МестоРождения.Add(new XElement("РегионРождения", adw2.Region.Trim().Length > 200 ? adw2.Region.Trim().Substring(0, 200) : adw2.Region.Trim()));
+                        МестоРождения.Add(new XElement("РегионРождения", adw2.Region.Trim().Length > 40 ? adw2.Region.Trim().Substring(0, 40) : adw2.Region.Trim()));
                     }
                     if (!String.IsNullOrEmpty(adw2.Country))
                     {
-                        МестоРождения.Add(new XElement("СтранаРождения", adw2.Country.Trim().Length > 200 ? adw2.Country.Trim().Substring(0, 200) : adw2.Country.Trim()));
+                        МестоРождения.Add(new XElement("СтранаРождения", adw2.Country.Trim().Length > 40 ? adw2.Country.Trim().Substring(0, 40) : adw2.Country.Trim()));
                     }
 
                     ИзменившиесяДанные.Add(МестоРождения);
@@ -5147,25 +5465,279 @@ namespace PU.FormsRSW2014
                     ИзменившиесяДанные.Add(new XElement("Гражданство", adw2.Citizenship.Trim().Length > 40 ? adw2.Citizenship.Trim().Substring(0, 40) : adw2.Citizenship.Trim()));
                 }
 
-                if (!String.IsNullOrEmpty(adw2.Reg_Addr))
+                if (!String.IsNullOrEmpty(adw2.Reg_Addr.Trim()))
                 {
-                    XElement АдресРегистрации = new XElement("АдресРегистрации",
-                        new XElement("ТипАдреса", "НЕСТРУКТУРИРОВАННЫЙ"),
+
+                    string[] t = adw2.Reg_Addr.Trim().Split(',');
+
+                    XElement АдресРегистрации = new XElement("АдресРегистрации");
+
+                    if (t.Length != 18)
+                    {
+                        АдресРегистрации.Add(new XElement("ТипАдреса", "НЕСТРУКТУРИРОВАННЫЙ"),
                         new XElement("НеструктурированныйАдрес",
                             new XElement("Адрес", adw2.Reg_Addr.Trim().Length > 200 ? adw2.Reg_Addr.Trim().Substring(0, 200) : adw2.Reg_Addr.Trim())));
+                    }
+                    else
+                    {
+                        АдресРегистрации.Add(new XElement("ТипАдреса", "РОССИЙСКИЙ"));
+
+                        try
+                        {
+                            АдресРегистрации.Add(new XElement("Индекс", t[1]));
+
+                            XElement РоссийскийАдрес = new XElement("РоссийскийАдрес");
+
+                            if (!String.IsNullOrEmpty(t[3].Trim()))
+                            {
+                                XElement Регион = new XElement("Регион",
+                                    new XElement("ГеографическоеНазвание", t[3].Trim()),
+                                    new XElement("Сокращение", t[2].Trim()));
+
+                                РоссийскийАдрес.Add(Регион);
+                            }
+
+                            if (!String.IsNullOrEmpty(t[5].Trim()))
+                            {
+                                XElement Район = new XElement("Район",
+                                    new XElement("ГеографическоеНазвание", t[5].Trim()),
+                                    new XElement("Сокращение", t[4].Trim()));
+
+                                РоссийскийАдрес.Add(Район);
+                            }
+
+
+                            if (!String.IsNullOrEmpty(t[7].Trim()))
+                            {
+                                XElement Город = new XElement("Город",
+                                    new XElement("ГеографическоеНазвание", t[7].Trim()),
+                                    new XElement("Сокращение", t[6].Trim()));
+
+                                РоссийскийАдрес.Add(Город);
+                            }
+
+
+                            if (!String.IsNullOrEmpty(t[9].Trim()))
+                            {
+                                XElement НаселенныйПункт = new XElement("НаселенныйПункт",
+                                    new XElement("ГеографическоеНазвание", t[9].Trim()),
+                                    new XElement("Сокращение", t[8].Trim()));
+
+                                РоссийскийАдрес.Add(НаселенныйПункт);
+                            }
+
+
+                            if (!String.IsNullOrEmpty(t[11].Trim()))
+                            {
+                                XElement Улица = new XElement("Улица",
+                                    new XElement("ГеографическоеНазвание", t[11].Trim()),
+                                    new XElement("Сокращение", t[10].Trim()));
+
+                                РоссийскийАдрес.Add(Улица);
+                            }
+
+
+                            if (!String.IsNullOrEmpty(t[12].Trim()) || !String.IsNullOrEmpty(t[13].Trim()))
+                            {
+                                XElement Дом = new XElement("Дом");
+
+                                if (!String.IsNullOrEmpty(t[12].Trim()))
+                                {
+                                    Дом.Add(new XElement("Сокращение", t[12].Trim()));
+                                }
+
+                                if (!String.IsNullOrEmpty(t[13].Trim()))
+                                {
+                                    Дом.Add(new XElement("Номер", t[13].Trim()));
+                                }
+
+                                РоссийскийАдрес.Add(Дом);
+                            }
+
+
+                            if (!String.IsNullOrEmpty(t[14].Trim()) || !String.IsNullOrEmpty(t[15].Trim()))
+                            {
+                                XElement Корпус = new XElement("Корпус");
+
+                                if (!String.IsNullOrEmpty(t[14].Trim()))
+                                {
+                                    Корпус.Add(new XElement("Сокращение", t[14].Trim()));
+                                }
+
+                                if (!String.IsNullOrEmpty(t[15].Trim()))
+                                {
+                                    Корпус.Add(new XElement("Номер", t[15].Trim()));
+                                }
+
+                                РоссийскийАдрес.Add(Корпус);
+                            }
+
+
+                            if (!String.IsNullOrEmpty(t[16].Trim()) || !String.IsNullOrEmpty(t[17].Trim()))
+                            {
+                                XElement Квартира = new XElement("Квартира");
+
+                                if (!String.IsNullOrEmpty(t[16].Trim()))
+                                {
+                                    Квартира.Add(new XElement("Сокращение", t[16].Trim()));
+                                }
+
+                                if (!String.IsNullOrEmpty(t[16].Trim()))
+                                {
+                                    Квартира.Add(new XElement("Номер", t[17].Trim()));
+                                }
+
+                                РоссийскийАдрес.Add(Квартира);
+                            }
+
+                            АдресРегистрации.Add(РоссийскийАдрес);
+                        }
+                        catch { }
+
+
+
+                    }
 
                     ИзменившиесяДанные.Add(АдресРегистрации);
                 }
 
-                if (!String.IsNullOrEmpty(adw2.Fakt_Addr))
+
+                if (!String.IsNullOrEmpty(adw2.Fakt_Addr.Trim()))
                 {
-                    XElement АдресФактический = new XElement("АдресФактический",
-                        new XElement("ТипАдреса", "НЕСТРУКТУРИРОВАННЫЙ"),
+
+                    string[] t = adw2.Fakt_Addr.Trim().Split(',');
+
+                    XElement АдресФактический = new XElement("АдресФактический");
+
+                    if (t.Length != 18)
+                    {
+                        АдресФактический.Add(new XElement("ТипАдреса", "НЕСТРУКТУРИРОВАННЫЙ"),
                         new XElement("НеструктурированныйАдрес",
                             new XElement("Адрес", adw2.Fakt_Addr.Trim().Length > 200 ? adw2.Fakt_Addr.Trim().Substring(0, 200) : adw2.Fakt_Addr.Trim())));
+                    }
+                    else
+                    {
+                        АдресФактический.Add(new XElement("ТипАдреса", "РОССИЙСКИЙ"));
+
+                        try
+                        {
+                            АдресФактический.Add(new XElement("Индекс", t[1]));
+
+                            XElement РоссийскийАдрес = new XElement("РоссийскийАдрес");
+
+                            if (!String.IsNullOrEmpty(t[3].Trim()))
+                            {
+                                XElement Регион = new XElement("Регион",
+                                    new XElement("ГеографическоеНазвание", t[3].Trim()),
+                                    new XElement("Сокращение", t[2].Trim()));
+
+                                РоссийскийАдрес.Add(Регион);
+                            }
+
+                            if (!String.IsNullOrEmpty(t[5].Trim()))
+                            {
+                                XElement Район = new XElement("Район",
+                                    new XElement("ГеографическоеНазвание", t[5].Trim()),
+                                    new XElement("Сокращение", t[4].Trim()));
+
+                                РоссийскийАдрес.Add(Район);
+                            }
+
+
+                            if (!String.IsNullOrEmpty(t[7].Trim()))
+                            {
+                                XElement Город = new XElement("Город",
+                                    new XElement("ГеографическоеНазвание", t[7].Trim()),
+                                    new XElement("Сокращение", t[6].Trim()));
+
+                                РоссийскийАдрес.Add(Город);
+                            }
+
+
+                            if (!String.IsNullOrEmpty(t[9].Trim()))
+                            {
+                                XElement НаселенныйПункт = new XElement("НаселенныйПункт",
+                                    new XElement("ГеографическоеНазвание", t[9].Trim()),
+                                    new XElement("Сокращение", t[8].Trim()));
+
+                                РоссийскийАдрес.Add(НаселенныйПункт);
+                            }
+
+
+                            if (!String.IsNullOrEmpty(t[11].Trim()))
+                            {
+                                XElement Улица = new XElement("Улица",
+                                    new XElement("ГеографическоеНазвание", t[11].Trim()),
+                                    new XElement("Сокращение", t[10].Trim()));
+
+                                РоссийскийАдрес.Add(Улица);
+                            }
+
+
+                            if (!String.IsNullOrEmpty(t[12].Trim()) || !String.IsNullOrEmpty(t[13].Trim()))
+                            {
+                                XElement Дом = new XElement("Дом");
+
+                                if (!String.IsNullOrEmpty(t[12].Trim()))
+                                {
+                                    Дом.Add(new XElement("Сокращение", t[12].Trim()));
+                                }
+
+                                if (!String.IsNullOrEmpty(t[13].Trim()))
+                                {
+                                    Дом.Add(new XElement("Номер", t[13].Trim()));
+                                }
+
+                                РоссийскийАдрес.Add(Дом);
+                            }
+
+
+                            if (!String.IsNullOrEmpty(t[14].Trim()) || !String.IsNullOrEmpty(t[15].Trim()))
+                            {
+                                XElement Корпус = new XElement("Корпус");
+
+                                if (!String.IsNullOrEmpty(t[14].Trim()))
+                                {
+                                    Корпус.Add(new XElement("Сокращение", t[14].Trim()));
+                                }
+
+                                if (!String.IsNullOrEmpty(t[15].Trim()))
+                                {
+                                    Корпус.Add(new XElement("Номер", t[15].Trim()));
+                                }
+
+                                РоссийскийАдрес.Add(Корпус);
+                            }
+
+
+                            if (!String.IsNullOrEmpty(t[16].Trim()) || !String.IsNullOrEmpty(t[17].Trim()))
+                            {
+                                XElement Квартира = new XElement("Квартира");
+
+                                if (!String.IsNullOrEmpty(t[16].Trim()))
+                                {
+                                    Квартира.Add(new XElement("Сокращение", t[16].Trim()));
+                                }
+
+                                if (!String.IsNullOrEmpty(t[16].Trim()))
+                                {
+                                    Квартира.Add(new XElement("Номер", t[17].Trim()));
+                                }
+
+                                РоссийскийАдрес.Add(Квартира);
+                            }
+
+                            АдресФактический.Add(РоссийскийАдрес);
+                        }
+                        catch { }
+
+
+
+                    }
 
                     ИзменившиесяДанные.Add(АдресФактический);
                 }
+
 
                 if (!String.IsNullOrEmpty(adw2.Phone))
                 {
@@ -5259,7 +5831,7 @@ namespace PU.FormsRSW2014
                                             new XElement("ТипФайла", "ВНЕШНИЙ"),
                                             new XElement("ПрограммаПодготовкиДанных",
                                                 new XElement("НазваниеПрограммы", Application.ProductName.ToUpper()),
-                                                new XElement("Версия", Application.ProductVersion)),
+                                                new XElement("Версия", Application.ProductVersion.Substring(2, Application.ProductVersion.Length - 2))),
                                             new XElement("ИсточникДанных", "СТРАХОВАТЕЛЬ")),
                                         new XElement("ПачкаВходящихДокументов", new XAttribute("Окружение", "В составе файла"), new XAttribute("Стадия", "До обработки"))));
 
@@ -5384,10 +5956,26 @@ namespace PU.FormsRSW2014
                     ЗАЯВЛЕНИЕ_О_ДУБЛИКАТЕ.Add(new XElement("ОтметкаОпредставленииСведений", adw3.OtmetkaOPredSved.ToUpper().Trim()));
                 }
 
-                ЗАЯВЛЕНИЕ_О_ДУБЛИКАТЕ.Add(new XElement("ФИОизСтрахового",
-                        new XElement("Фамилия", ish_staff.LastName.Substring(0, ish_staff.LastName.Length > 40 ? 40 : ish_staff.LastName.Length).ToUpper()),
-                        new XElement("Имя", ish_staff.FirstName.Substring(0, ish_staff.FirstName.Length > 40 ? 40 : ish_staff.FirstName.Length).ToUpper()),
-                        new XElement("Отчество", ish_staff.MiddleName.Substring(0, ish_staff.MiddleName.Length > 40 ? 40 : ish_staff.MiddleName.Length).ToUpper())));
+
+                XElement ФИОизСтрахового = new XElement("ФИОизСтрахового");
+
+                if (!String.IsNullOrEmpty(ish_staff.LastName.Trim()))
+                {
+                    ФИОизСтрахового.Add(new XElement("Фамилия", ish_staff.LastName.Substring(0, ish_staff.LastName.Length > 40 ? 40 : ish_staff.LastName.Length).ToUpper()));
+                }
+
+                if (!String.IsNullOrEmpty(ish_staff.FirstName.Trim()))
+                {
+                    ФИОизСтрахового.Add(new XElement("Имя", ish_staff.FirstName.Substring(0, ish_staff.FirstName.Length > 40 ? 40 : ish_staff.FirstName.Length).ToUpper()));
+                }
+
+                if (!String.IsNullOrEmpty(ish_staff.MiddleName.Trim()))
+                {
+                    ФИОизСтрахового.Add(new XElement("Отчество", ish_staff.MiddleName.Substring(0, ish_staff.MiddleName.Length > 40 ? 40 : ish_staff.MiddleName.Length).ToUpper()));
+                }
+
+                ЗАЯВЛЕНИЕ_О_ДУБЛИКАТЕ.Add(ФИОизСтрахового);
+
 
 
                 if (ish_staff.Sex.HasValue)
@@ -5395,42 +5983,41 @@ namespace PU.FormsRSW2014
                     ЗАЯВЛЕНИЕ_О_ДУБЛИКАТЕ.Add(new XElement("ПолИзСтрахового", ish_staff.Sex.HasValue ? (ish_staff.Sex.Value == 0 ? "МУЖСКОЙ" : "ЖЕНСКИЙ") : ""));
                 }
 
+
                 XElement УдостоверяющийДокументИСХД = new XElement("УдостоверяющийДокумент");
                 bool ishDocExist = false;
+
+                if (ish_staff.DateBirth.HasValue)
+                {
+                    try
+                    {
+                        XElement ДатаРожденияИзСтрахового = new XElement("ДатаРожденияИзСтрахового", ish_staff.DateBirth.Value.ToString("dd.MM.yyyy"));
+                        ЗАЯВЛЕНИЕ_О_ДУБЛИКАТЕ.Add(ДатаРожденияИзСтрахового);
+                    }
+                    catch { }
+                }
 
                 if (db_temp.FormsADW_1.Any(x => x.StaffID == ish_staff.ID))
                 {
                     FormsADW_1 adw1 = db_temp.FormsADW_1.First(x => x.StaffID == ish_staff.ID);
 
-                    if ((adw1.Type_DateBirth.HasValue && adw1.Type_DateBirth.Value == 1) || ish_staff.DateBirth.HasValue)  //Если особая дата рождения
+                    if ((adw1.Type_DateBirth.HasValue && adw1.Type_DateBirth.Value == 1))  //Если особая дата рождения
                     {
-                        XElement ДатаРожденияИзСтрахового = new XElement("ДатаРожденияИзСтрахового");
-                        if (adw1.Type_DateBirth.HasValue && adw1.Type_DateBirth.Value == 1)  //Если особая дата рождения
-                        {
-                            ДатаРожденияИзСтрахового = new XElement("ДатаРожденияИзСтраховогоОсобая");
+                        XElement ДатаРожденияИзСтрахового = new XElement("ДатаРожденияИзСтраховогоОсобая");
 
-                            if (adw1.DateBirthDay_Os.HasValue)
-                            {
-                                ДатаРожденияИзСтрахового.Add(new XElement("День", adw1.DateBirthDay_Os.Value.ToString()));
-                            }
-                            if (adw1.DateBirthMonth_Os.HasValue)
-                            {
-                                ДатаРожденияИзСтрахового.Add(new XElement("Месяц", adw1.DateBirthMonth_Os.Value.ToString()));
-                            }
-
-                            ДатаРожденияИзСтрахового.Add(new XElement("Год", adw1.DateBirthYear_Os.HasValue ? adw1.DateBirthYear_Os.Value.ToString() : ""));
-                        }
-                        else
+                        if (adw1.DateBirthDay_Os.HasValue)
                         {
-                            try
-                            {
-                                if (ish_staff.DateBirth.HasValue)
-                                    ДатаРожденияИзСтрахового = new XElement("ДатаРожденияИзСтрахового", ish_staff.DateBirth.Value.ToString("dd.MM.yyyy"));
-                            }
-                            catch { }
+                            ДатаРожденияИзСтрахового.Add(new XElement("День", adw1.DateBirthDay_Os.Value.ToString()));
                         }
+                        if (adw1.DateBirthMonth_Os.HasValue)
+                        {
+                            ДатаРожденияИзСтрахового.Add(new XElement("Месяц", adw1.DateBirthMonth_Os.Value.ToString()));
+                        }
+
+                        ДатаРожденияИзСтрахового.Add(new XElement("Год", adw1.DateBirthYear_Os.HasValue ? adw1.DateBirthYear_Os.Value.ToString() : ""));
 
                         ЗАЯВЛЕНИЕ_О_ДУБЛИКАТЕ.Add(ДатаРожденияИзСтрахового);
+
                     }
 
 
@@ -5445,19 +6032,19 @@ namespace PU.FormsRSW2014
 
                         if (!String.IsNullOrEmpty(adw1.Punkt))
                         {
-                            МестоРожденияИзСтрахового.Add(new XElement("ГородРождения", adw1.Punkt.Trim().Length > 200 ? adw1.Punkt.Trim().Substring(0, 200) : adw1.Punkt.Trim()));
+                            МестоРожденияИзСтрахового.Add(new XElement("ГородРождения", adw1.Punkt.Trim().Length > 40 ? adw1.Punkt.Trim().Substring(0, 40) : adw1.Punkt.Trim()));
                         }
                         if (!String.IsNullOrEmpty(adw1.Distr))
                         {
-                            МестоРожденияИзСтрахового.Add(new XElement("РайонРождения", adw1.Distr.Trim().Length > 200 ? adw1.Distr.Trim().Substring(0, 200) : adw1.Distr.Trim()));
+                            МестоРожденияИзСтрахового.Add(new XElement("РайонРождения", adw1.Distr.Trim().Length > 40 ? adw1.Distr.Trim().Substring(0, 40) : adw1.Distr.Trim()));
                         }
                         if (!String.IsNullOrEmpty(adw1.Region))
                         {
-                            МестоРожденияИзСтрахового.Add(new XElement("РегионРождения", adw1.Region.Trim().Length > 200 ? adw1.Region.Trim().Substring(0, 200) : adw1.Region.Trim()));
+                            МестоРожденияИзСтрахового.Add(new XElement("РегионРождения", adw1.Region.Trim().Length > 40 ? adw1.Region.Trim().Substring(0, 40) : adw1.Region.Trim()));
                         }
                         if (!String.IsNullOrEmpty(adw1.Country))
                         {
-                            МестоРожденияИзСтрахового.Add(new XElement("СтранаРождения", adw1.Country.Trim().Length > 200 ? adw1.Country.Trim().Substring(0, 200) : adw1.Country.Trim()));
+                            МестоРожденияИзСтрахового.Add(new XElement("СтранаРождения", adw1.Country.Trim().Length > 40 ? adw1.Country.Trim().Substring(0, 40) : adw1.Country.Trim()));
                         }
 
                         ЗАЯВЛЕНИЕ_О_ДУБЛИКАТЕ.Add(МестоРожденияИзСтрахового);
@@ -5495,17 +6082,36 @@ namespace PU.FormsRSW2014
 
                 XElement ИзменившиесяДанные = new XElement("ИзменившиесяДанные");
 
+                bool flagChangedData = false;
+
                 if (!String.IsNullOrEmpty(adw3.LastName) || !String.IsNullOrEmpty(adw3.FirstName) || !String.IsNullOrEmpty(adw3.MiddleName))
                 {
-                    ИзменившиесяДанные.Add(new XElement("ФИО",
-                                                            new XElement("Фамилия", adw3.LastName.Substring(0, adw3.LastName.Length > 40 ? 40 : adw3.LastName.Length).ToUpper()),
-                                                            new XElement("Имя", adw3.FirstName.Substring(0, adw3.FirstName.Length > 40 ? 40 : adw3.FirstName.Length).ToUpper()),
-                                                            new XElement("Отчество", adw3.MiddleName.Substring(0, adw3.MiddleName.Length > 40 ? 40 : adw3.MiddleName.Length).ToUpper())));
+                    XElement ФИО = new XElement("ФИО");
+
+                    if (!String.IsNullOrEmpty(adw3.LastName.Trim()))
+                    {
+                        ФИО.Add(new XElement("Фамилия", adw3.LastName.Substring(0, adw3.LastName.Length > 40 ? 40 : adw3.LastName.Length).ToUpper()));
+                    }
+
+                    if (!String.IsNullOrEmpty(adw3.FirstName.Trim()))
+                    {
+                        ФИО.Add(new XElement("Имя", adw3.FirstName.Substring(0, adw3.FirstName.Length > 40 ? 40 : adw3.FirstName.Length).ToUpper()));
+                    }
+
+                    if (!String.IsNullOrEmpty(adw3.MiddleName.Trim()))
+                    {
+                        ФИО.Add(new XElement("Отчество", adw3.MiddleName.Substring(0, adw3.MiddleName.Length > 40 ? 40 : adw3.MiddleName.Length).ToUpper()));
+                    }
+
+                    ИзменившиесяДанные.Add(ФИО);
+                    flagChangedData = true;
+
                 }
 
                 if (adw3.Sex.HasValue)
                 {
                     ИзменившиесяДанные.Add(new XElement("Пол", adw3.Sex.HasValue ? (adw3.Sex.Value == 0 ? "МУЖСКОЙ" : "ЖЕНСКИЙ") : ""));
+                    flagChangedData = true;
                 }
 
                 if ((adw3.Type_DateBirth.HasValue && adw3.Type_DateBirth.Value == 1) || adw3.DateBirth.HasValue)  //Если особая дата рождения
@@ -5537,6 +6143,7 @@ namespace PU.FormsRSW2014
                     }
 
                     ИзменившиесяДанные.Add(Датарождения);
+                    flagChangedData = true;
                 }
 
 
@@ -5551,55 +6158,328 @@ namespace PU.FormsRSW2014
 
                     if (!String.IsNullOrEmpty(adw3.Punkt))
                     {
-                        МестоРождения.Add(new XElement("ГородРождения", adw3.Punkt.Trim().Length > 200 ? adw3.Punkt.Trim().Substring(0, 200) : adw3.Punkt.Trim()));
+                        МестоРождения.Add(new XElement("ГородРождения", adw3.Punkt.Trim().Length > 40 ? adw3.Punkt.Trim().Substring(0, 40) : adw3.Punkt.Trim()));
                     }
                     if (!String.IsNullOrEmpty(adw3.Distr))
                     {
-                        МестоРождения.Add(new XElement("РайонРождения", adw3.Distr.Trim().Length > 200 ? adw3.Distr.Trim().Substring(0, 200) : adw3.Distr.Trim()));
+                        МестоРождения.Add(new XElement("РайонРождения", adw3.Distr.Trim().Length > 40 ? adw3.Distr.Trim().Substring(0, 40) : adw3.Distr.Trim()));
                     }
                     if (!String.IsNullOrEmpty(adw3.Region))
                     {
-                        МестоРождения.Add(new XElement("РегионРождения", adw3.Region.Trim().Length > 200 ? adw3.Region.Trim().Substring(0, 200) : adw3.Region.Trim()));
+                        МестоРождения.Add(new XElement("РегионРождения", adw3.Region.Trim().Length > 40 ? adw3.Region.Trim().Substring(0, 40) : adw3.Region.Trim()));
                     }
                     if (!String.IsNullOrEmpty(adw3.Country))
                     {
-                        МестоРождения.Add(new XElement("СтранаРождения", adw3.Country.Trim().Length > 200 ? adw3.Country.Trim().Substring(0, 200) : adw3.Country.Trim()));
+                        МестоРождения.Add(new XElement("СтранаРождения", adw3.Country.Trim().Length > 40 ? adw3.Country.Trim().Substring(0, 40) : adw3.Country.Trim()));
                     }
 
                     ИзменившиесяДанные.Add(МестоРождения);
+                    flagChangedData = true;
                 }
 
                 if (!String.IsNullOrEmpty(adw3.Citizenship))
                 {
                     ИзменившиесяДанные.Add(new XElement("Гражданство", adw3.Citizenship.Trim().Length > 40 ? adw3.Citizenship.Trim().Substring(0, 40) : adw3.Citizenship.Trim()));
+                    flagChangedData = true;
                 }
 
-                if (!String.IsNullOrEmpty(adw3.Reg_Addr))
+
+
+                if (!String.IsNullOrEmpty(adw3.Reg_Addr.Trim()))
                 {
-                    XElement АдресРегистрации = new XElement("АдресРегистрации",
-                        new XElement("ТипАдреса", "НЕСТРУКТУРИРОВАННЫЙ"),
+
+                    string[] t = adw3.Reg_Addr.Trim().Split(',');
+
+                    XElement АдресРегистрации = new XElement("АдресРегистрации");
+
+                    if (t.Length != 18)
+                    {
+                        АдресРегистрации.Add(new XElement("ТипАдреса", "НЕСТРУКТУРИРОВАННЫЙ"),
                         new XElement("НеструктурированныйАдрес",
                             new XElement("Адрес", adw3.Reg_Addr.Trim().Length > 200 ? adw3.Reg_Addr.Trim().Substring(0, 200) : adw3.Reg_Addr.Trim())));
+                    }
+                    else
+                    {
+                        АдресРегистрации.Add(new XElement("ТипАдреса", "РОССИЙСКИЙ"));
+
+                        try
+                        {
+                            АдресРегистрации.Add(new XElement("Индекс", t[1]));
+
+                            XElement РоссийскийАдрес = new XElement("РоссийскийАдрес");
+
+                            if (!String.IsNullOrEmpty(t[3].Trim()))
+                            {
+                                XElement Регион = new XElement("Регион",
+                                    new XElement("ГеографическоеНазвание", t[3].Trim()),
+                                    new XElement("Сокращение", t[2].Trim()));
+
+                                РоссийскийАдрес.Add(Регион);
+                            }
+
+                            if (!String.IsNullOrEmpty(t[5].Trim()))
+                            {
+                                XElement Район = new XElement("Район",
+                                    new XElement("ГеографическоеНазвание", t[5].Trim()),
+                                    new XElement("Сокращение", t[4].Trim()));
+
+                                РоссийскийАдрес.Add(Район);
+                            }
+
+
+                            if (!String.IsNullOrEmpty(t[7].Trim()))
+                            {
+                                XElement Город = new XElement("Город",
+                                    new XElement("ГеографическоеНазвание", t[7].Trim()),
+                                    new XElement("Сокращение", t[6].Trim()));
+
+                                РоссийскийАдрес.Add(Город);
+                            }
+
+
+                            if (!String.IsNullOrEmpty(t[9].Trim()))
+                            {
+                                XElement НаселенныйПункт = new XElement("НаселенныйПункт",
+                                    new XElement("ГеографическоеНазвание", t[9].Trim()),
+                                    new XElement("Сокращение", t[8].Trim()));
+
+                                РоссийскийАдрес.Add(НаселенныйПункт);
+                            }
+
+
+                            if (!String.IsNullOrEmpty(t[11].Trim()))
+                            {
+                                XElement Улица = new XElement("Улица",
+                                    new XElement("ГеографическоеНазвание", t[11].Trim()),
+                                    new XElement("Сокращение", t[10].Trim()));
+
+                                РоссийскийАдрес.Add(Улица);
+                            }
+
+
+                            if (!String.IsNullOrEmpty(t[12].Trim()) || !String.IsNullOrEmpty(t[13].Trim()))
+                            {
+                                XElement Дом = new XElement("Дом");
+
+                                if (!String.IsNullOrEmpty(t[12].Trim()))
+                                {
+                                    Дом.Add(new XElement("Сокращение", t[12].Trim()));
+                                }
+
+                                if (!String.IsNullOrEmpty(t[13].Trim()))
+                                {
+                                    Дом.Add(new XElement("Номер", t[13].Trim()));
+                                }
+
+                                РоссийскийАдрес.Add(Дом);
+                            }
+
+
+                            if (!String.IsNullOrEmpty(t[14].Trim()) || !String.IsNullOrEmpty(t[15].Trim()))
+                            {
+                                XElement Корпус = new XElement("Корпус");
+
+                                if (!String.IsNullOrEmpty(t[14].Trim()))
+                                {
+                                    Корпус.Add(new XElement("Сокращение", t[14].Trim()));
+                                }
+
+                                if (!String.IsNullOrEmpty(t[15].Trim()))
+                                {
+                                    Корпус.Add(new XElement("Номер", t[15].Trim()));
+                                }
+
+                                РоссийскийАдрес.Add(Корпус);
+                            }
+
+
+                            if (!String.IsNullOrEmpty(t[16].Trim()) || !String.IsNullOrEmpty(t[17].Trim()))
+                            {
+                                XElement Квартира = new XElement("Квартира");
+
+                                if (!String.IsNullOrEmpty(t[16].Trim()))
+                                {
+                                    Квартира.Add(new XElement("Сокращение", t[16].Trim()));
+                                }
+
+                                if (!String.IsNullOrEmpty(t[16].Trim()))
+                                {
+                                    Квартира.Add(new XElement("Номер", t[17].Trim()));
+                                }
+
+                                РоссийскийАдрес.Add(Квартира);
+                            }
+
+                            АдресРегистрации.Add(РоссийскийАдрес);
+                        }
+                        catch { }
+
+
+
+                    }
 
                     ИзменившиесяДанные.Add(АдресРегистрации);
+                    flagChangedData = true;
                 }
 
-                if (!String.IsNullOrEmpty(adw3.Fakt_Addr))
+
+                if (!String.IsNullOrEmpty(adw3.Fakt_Addr.Trim()))
                 {
-                    XElement АдресФактический = new XElement("АдресФактический",
-                        new XElement("ТипАдреса", "НЕСТРУКТУРИРОВАННЫЙ"),
+
+                    string[] t = adw3.Fakt_Addr.Trim().Split(',');
+
+                    XElement АдресФактический = new XElement("АдресФактический");
+
+                    if (t.Length != 18)
+                    {
+                        АдресФактический.Add(new XElement("ТипАдреса", "НЕСТРУКТУРИРОВАННЫЙ"),
                         new XElement("НеструктурированныйАдрес",
                             new XElement("Адрес", adw3.Fakt_Addr.Trim().Length > 200 ? adw3.Fakt_Addr.Trim().Substring(0, 200) : adw3.Fakt_Addr.Trim())));
+                    }
+                    else
+                    {
+                        АдресФактический.Add(new XElement("ТипАдреса", "РОССИЙСКИЙ"));
+
+                        try
+                        {
+                            АдресФактический.Add(new XElement("Индекс", t[1]));
+
+                            XElement РоссийскийАдрес = new XElement("РоссийскийАдрес");
+
+                            if (!String.IsNullOrEmpty(t[3].Trim()))
+                            {
+                                XElement Регион = new XElement("Регион",
+                                    new XElement("ГеографическоеНазвание", t[3].Trim()),
+                                    new XElement("Сокращение", t[2].Trim()));
+
+                                РоссийскийАдрес.Add(Регион);
+                            }
+
+                            if (!String.IsNullOrEmpty(t[5].Trim()))
+                            {
+                                XElement Район = new XElement("Район",
+                                    new XElement("ГеографическоеНазвание", t[5].Trim()),
+                                    new XElement("Сокращение", t[4].Trim()));
+
+                                РоссийскийАдрес.Add(Район);
+                            }
+
+
+                            if (!String.IsNullOrEmpty(t[7].Trim()))
+                            {
+                                XElement Город = new XElement("Город",
+                                    new XElement("ГеографическоеНазвание", t[7].Trim()),
+                                    new XElement("Сокращение", t[6].Trim()));
+
+                                РоссийскийАдрес.Add(Город);
+                            }
+
+
+                            if (!String.IsNullOrEmpty(t[9].Trim()))
+                            {
+                                XElement НаселенныйПункт = new XElement("НаселенныйПункт",
+                                    new XElement("ГеографическоеНазвание", t[9].Trim()),
+                                    new XElement("Сокращение", t[8].Trim()));
+
+                                РоссийскийАдрес.Add(НаселенныйПункт);
+                            }
+
+
+                            if (!String.IsNullOrEmpty(t[11].Trim()))
+                            {
+                                XElement Улица = new XElement("Улица",
+                                    new XElement("ГеографическоеНазвание", t[11].Trim()),
+                                    new XElement("Сокращение", t[10].Trim()));
+
+                                РоссийскийАдрес.Add(Улица);
+                            }
+
+
+                            if (!String.IsNullOrEmpty(t[12].Trim()) || !String.IsNullOrEmpty(t[13].Trim()))
+                            {
+                                XElement Дом = new XElement("Дом");
+
+                                if (!String.IsNullOrEmpty(t[12].Trim()))
+                                {
+                                    Дом.Add(new XElement("Сокращение", t[12].Trim()));
+                                }
+
+                                if (!String.IsNullOrEmpty(t[13].Trim()))
+                                {
+                                    Дом.Add(new XElement("Номер", t[13].Trim()));
+                                }
+
+                                РоссийскийАдрес.Add(Дом);
+                            }
+
+
+                            if (!String.IsNullOrEmpty(t[14].Trim()) || !String.IsNullOrEmpty(t[15].Trim()))
+                            {
+                                XElement Корпус = new XElement("Корпус");
+
+                                if (!String.IsNullOrEmpty(t[14].Trim()))
+                                {
+                                    Корпус.Add(new XElement("Сокращение", t[14].Trim()));
+                                }
+
+                                if (!String.IsNullOrEmpty(t[15].Trim()))
+                                {
+                                    Корпус.Add(new XElement("Номер", t[15].Trim()));
+                                }
+
+                                РоссийскийАдрес.Add(Корпус);
+                            }
+
+
+                            if (!String.IsNullOrEmpty(t[16].Trim()) || !String.IsNullOrEmpty(t[17].Trim()))
+                            {
+                                XElement Квартира = new XElement("Квартира");
+
+                                if (!String.IsNullOrEmpty(t[16].Trim()))
+                                {
+                                    Квартира.Add(new XElement("Сокращение", t[16].Trim()));
+                                }
+
+                                if (!String.IsNullOrEmpty(t[16].Trim()))
+                                {
+                                    Квартира.Add(new XElement("Номер", t[17].Trim()));
+                                }
+
+                                РоссийскийАдрес.Add(Квартира);
+                            }
+
+                            АдресФактический.Add(РоссийскийАдрес);
+                        }
+                        catch { }
+
+
+
+                    }
 
                     ИзменившиесяДанные.Add(АдресФактический);
+                    flagChangedData = true;
                 }
+
+
+
+
+
+
+
+
+
+
+
+
 
                 if (!String.IsNullOrEmpty(adw3.Phone))
                 {
                     ИзменившиесяДанные.Add(new XElement("Телефон", adw3.Phone.Trim().Length > 40 ? adw3.Phone.Trim().Substring(0, 40) : adw3.Phone.Trim()));
+                    flagChangedData = true;
                 }
 
-                ЗАЯВЛЕНИЕ_О_ДУБЛИКАТЕ.Add(ИзменившиесяДанные);
+                if (flagChangedData)
+                    ЗАЯВЛЕНИЕ_О_ДУБЛИКАТЕ.Add(ИзменившиесяДанные);
 
                 if (!String.IsNullOrEmpty(adw3.MiddleNameCancel) && adw3.MiddleNameCancel == "ОТМН")
                 {
@@ -5677,9 +6557,11 @@ namespace PU.FormsRSW2014
 
             XNamespace УТ2 = "http://пф.рф/УТ/2017-08-21";
             XNamespace АФ4 = "http://пф.рф/АФ/2017-08-21";
-            XNamespace ИС2 = "http://пф.рф/ВС/ИС/типы/2017-09-11";
+            XNamespace ИС = "http://пф.рф/ВС/ИС/типы/2018-11-20";   //ИС4
             XNamespace xsi = "http://www.w3.org/2001/XMLSchema-instance";
             XNamespace ВС2 = "http://пф.рф/ВС/типы/2017-10-23";
+
+            string ИС_имя = "ИС4";
 
 
             List<XElement> formNode = new List<XElement>();
@@ -5694,17 +6576,17 @@ namespace PU.FormsRSW2014
             byte type_korr = 4;
 
 
-
-
             switch (TypeForm)
             {
                 case 0: // одв1
                     schLoc = @"http://пф.рф/ВС/ОДВ-1/2017-12-25 ..\..\..\..\Схемы\ВС\Входящие\ИС2017\ОДВ-1_2017-12-25.xsd";
+                    ИС = "http://пф.рф/ВС/ИС/типы/2017-09-11";   // ИС2
+                    ИС_имя = "ИС2";
                     break;
                 case 1: // сзв-стаж
-                    pfr = "http://пф.рф/ВС/СЗВ-СТАЖ/2018-01-29";
-                    schLoc = @"http://пф.рф/ВС/СЗВ-СТАЖ/2018-01-29 ..\..\..\..\Схемы\ВС\Входящие\ИС2017\СЗВ-СТАЖ_2018-01-29.xsd";
-                    formNode.Add(generateXML_SZVSTAJ(item, pfr));
+                    pfr = "http://пф.рф/ВС/СЗВ-СТАЖ/2018-03-22";
+                    schLoc = @"http://пф.рф/ВС/СЗВ-СТАЖ/2018-03-22 ..\..\..\..\Схемы\ВС\Входящие\ИС2017\СЗВ-СТАЖ_2018-03-22.xsd";
+                    formNode.Add(generateXML_SZVSTAJ(item, pfr, ИС));
                     break;
                 case 2:
 
@@ -5714,12 +6596,12 @@ namespace PU.FormsRSW2014
 
                     var itemStaff = dbxml_temp.StaffList.Where(x => x.XmlInfoID == item.ID).ToList();
 
-                    pfr = "http://пф.рф/ВС/СЗВ-ИСХ/2017-05-01";
-                    schLoc = @"http://пф.рф/ВС/СЗВ-ИСХ/2017-05-01 ..\..\..\..\Схемы\ВС\Входящие\ИС2017\СЗВ-ИСХ_2017-05-01.xsd";
+                    pfr = "http://пф.рф/ВС/СЗВ-ИСХ/2018-11-20";
+                    schLoc = @"http://пф.рф/ВС/СЗВ-ИСХ/2018-11-20 ..\..\..\..\Схемы\ВС\Входящие\ИС2017\СЗВ-ИСХ_2018-11-20.xsd";
 
                     foreach (var it in itemStaff)
                     {
-                        formNode.Add(generateXML_SZVISH(item, pfr, ins, it, db_temp));
+                        formNode.Add(generateXML_SZVISH(item, pfr, ins, it, db_temp, ИС));
                     }
                     break;
                 case 3:
@@ -5736,22 +6618,22 @@ namespace PU.FormsRSW2014
                         type_korr = szv.TypeInfo.HasValue ? szv.TypeInfo.Value : (byte)4;
                     }
 
-                    pfr = "http://пф.рф/ВС/СЗВ-КОРР/2017-05-01";
-                    schLoc = @"http://пф.рф/ВС/СЗВ-КОРР/2017-05-01 ..\..\..\..\Схемы\ВС\Входящие\ИС2017\СЗВ-КОРР_2017-05-01.xsd";
+                    pfr = "http://пф.рф/ВС/СЗВ-КОРР/2018-03-22";
+                    schLoc = @"http://пф.рф/ВС/СЗВ-КОРР/2018-03-22 ..\..\..\..\Схемы\ВС\Входящие\ИС2017\СЗВ-КОРР_2018-03-22.xsd";
 
                     foreach (var it in itemStaff2)
                     {
-                        formNode.Add(generateXML_SZVKORR(item, pfr, ins, it, db_temp));
+                        formNode.Add(generateXML_SZVKORR(item, pfr, ins, it, db_temp, ИС));
                     }
                     break;
             }
-            XElement odvNode = generateXML_ODV1(item, TypeForm, pfr, type_korr);
+            XElement odvNode = generateXML_ODV1(item, TypeForm, pfr, type_korr, ИС);
 
             XDocument xDoc = new XDocument(new XDeclaration("1.0", "UTF-8", null),
                                  new XElement(pfr + "ЭДПФР",
                                      new XAttribute(XNamespace.Xmlns + "УТ2", УТ2.NamespaceName),
                                      new XAttribute(XNamespace.Xmlns + "АФ4", АФ4.NamespaceName),
-                                     new XAttribute(XNamespace.Xmlns + "ИС2", ИС2.NamespaceName),
+                                     new XAttribute(XNamespace.Xmlns + ИС_имя, ИС.NamespaceName),
                                      new XAttribute(XNamespace.Xmlns + "ВС2", ВС2.NamespaceName),
                                      new XAttribute(XNamespace.Xmlns + "xsi", xsi.NamespaceName),
                                      new XAttribute(xsi + "schemaLocation", schLoc)));
@@ -5775,7 +6657,7 @@ namespace PU.FormsRSW2014
 
         }
 
-        private XElement generateXML_ODV1(xmlInfo item, int TypeForm, XNamespace pfr, byte type_korr)
+        private XElement generateXML_ODV1(xmlInfo item, int TypeForm, XNamespace pfr, byte type_korr, XNamespace ИС)
         {
             pu6Entities db_temp = new pu6Entities();
 
@@ -5815,7 +6697,7 @@ namespace PU.FormsRSW2014
 
             XNamespace УТ2 = "http://пф.рф/УТ/2017-08-21";
             XNamespace АФ4 = "http://пф.рф/АФ/2017-08-21";
-            XNamespace ИС2 = "http://пф.рф/ВС/ИС/типы/2017-09-11";
+            //            XNamespace ИС2 = "http://пф.рф/ВС/ИС/типы/2017-09-11";
 
             XElement ОДВ1 = new XElement(pfr + "ОДВ-1",
                  new XElement(pfr + "Тип", odv1.TypeInfo.HasValue ? odv1.TypeInfo.Value : 0),
@@ -5828,7 +6710,7 @@ namespace PU.FormsRSW2014
                 ОДВ1.Element(pfr + "Страхователь").Add(new XElement(УТ2 + "КПП", ins.KPP.Substring(0, ins.KPP.Length > 9 ? 9 : ins.KPP.Length)));
             }
 
-            ОДВ1.Element(pfr + "Страхователь").Add(new XElement(ИС2 + "Наименование", orgName.Trim()));
+            ОДВ1.Element(pfr + "Страхователь").Add(new XElement(ИС + "Наименование", orgName.Trim()));
 
             int cntT = item.StaffList != null ? item.StaffList.Count() : 0;
 
@@ -5844,101 +6726,156 @@ namespace PU.FormsRSW2014
 
             if (TypeForm == 2) // Если СЗВ-ИСХ
             {
-                ОДВ1.Add(new XElement(pfr + "Страховая",
-                            new XElement(ИС2 + "ЗадолженностьНаНачало", Utils.decToStr(odv1.s_0_0)),
-                            new XElement(ИС2 + "Начислено", Utils.decToStr(odv1.s_0_1)),
-                            new XElement(ИС2 + "Уплачено", Utils.decToStr(odv1.s_0_2)),
-                            new XElement(ИС2 + "ЗадолженностьНаКонец", Utils.decToStr(odv1.s_0_3))),
-                        new XElement(pfr + "Накопительная",
-                            new XElement(ИС2 + "ЗадолженностьНаНачало", Utils.decToStr(odv1.s_1_0)),
-                            new XElement(ИС2 + "Начислено", Utils.decToStr(odv1.s_1_1)),
-                            new XElement(ИС2 + "Уплачено", Utils.decToStr(odv1.s_1_2)),
-                            new XElement(ИС2 + "ЗадолженностьНаКонец", Utils.decToStr(odv1.s_1_3))),
-                        new XElement(pfr + "ТарифСВ",
-                            new XElement(ИС2 + "ЗадолженностьНаНачало", Utils.decToStr(odv1.s_2_0)),
-                            new XElement(ИС2 + "Начислено", Utils.decToStr(odv1.s_2_1)),
-                            new XElement(ИС2 + "Уплачено", Utils.decToStr(odv1.s_2_2)),
-                            new XElement(ИС2 + "ЗадолженностьНаКонец", Utils.decToStr(odv1.s_2_3))));
+                if ((odv1.s_0_0.HasValue && odv1.s_0_0.Value != 0) || (odv1.s_0_1.HasValue && odv1.s_0_1.Value != 0) || (odv1.s_0_2.HasValue && odv1.s_0_2.Value != 0) || (odv1.s_0_3.HasValue && odv1.s_0_3.Value != 0))
+                {
+                    ОДВ1.Add(new XElement(pfr + "Страховая",
+                            new XElement(ИС + "ЗадолженностьНаНачало", Utils.decToStr(odv1.s_0_0)),
+                            new XElement(ИС + "Начислено", Utils.decToStr(odv1.s_0_1)),
+                            new XElement(ИС + "Уплачено", Utils.decToStr(odv1.s_0_2)),
+                            new XElement(ИС + "ЗадолженностьНаКонец", Utils.decToStr(odv1.s_0_3))));
+                }
 
-            }
-            else if (TypeForm == 3 && type_korr == 2) // Если СЗВ-КОРР
-            {
-                ОДВ1.Add(new XElement(pfr + "Страховая",
-                            new XElement(ИС2 + "ЗадолженностьНаНачало", Utils.decToStr(odv1.s_0_0)),
-                            new XElement(ИС2 + "Начислено", Utils.decToStr(odv1.s_0_1)),
-                            new XElement(ИС2 + "Уплачено", Utils.decToStr(odv1.s_0_2)),
-                            new XElement(ИС2 + "ЗадолженностьНаКонец", Utils.decToStr(odv1.s_0_3))),
-                        new XElement(pfr + "Накопительная",
-                            new XElement(ИС2 + "ЗадолженностьНаНачало", Utils.decToStr(odv1.s_1_0)),
-                            new XElement(ИС2 + "Начислено", Utils.decToStr(odv1.s_1_1)),
-                            new XElement(ИС2 + "Уплачено", Utils.decToStr(odv1.s_1_2)),
-                            new XElement(ИС2 + "ЗадолженностьНаКонец", Utils.decToStr(odv1.s_1_3))),
-                        new XElement(pfr + "ТарифСВ",
-                            new XElement(ИС2 + "ЗадолженностьНаНачало", Utils.decToStr(odv1.s_2_0)),
-                            new XElement(ИС2 + "Начислено", Utils.decToStr(odv1.s_2_1)),
-                            new XElement(ИС2 + "Уплачено", Utils.decToStr(odv1.s_2_2)),
-                            new XElement(ИС2 + "ЗадолженностьНаКонец", Utils.decToStr(odv1.s_2_3))));
 
+                if ((odv1.s_1_0.HasValue && odv1.s_1_0.Value != 0) || (odv1.s_1_1.HasValue && odv1.s_1_1.Value != 0) || (odv1.s_1_2.HasValue && odv1.s_1_2.Value != 0) || (odv1.s_1_3.HasValue && odv1.s_1_3.Value != 0))
+                {
+                    ОДВ1.Add(new XElement(pfr + "Накопительная",
+                            new XElement(ИС + "ЗадолженностьНаНачало", Utils.decToStr(odv1.s_1_0)),
+                            new XElement(ИС + "Начислено", Utils.decToStr(odv1.s_1_1)),
+                            new XElement(ИС + "Уплачено", Utils.decToStr(odv1.s_1_2)),
+                            new XElement(ИС + "ЗадолженностьНаКонец", Utils.decToStr(odv1.s_1_3))));
+                }
+
+                if ((odv1.s_2_0.HasValue && odv1.s_2_0.Value != 0) || (odv1.s_2_1.HasValue && odv1.s_2_1.Value != 0) || (odv1.s_2_2.HasValue && odv1.s_2_2.Value != 0) || (odv1.s_2_3.HasValue && odv1.s_2_3.Value != 0))
+                {
+                    ОДВ1.Add(new XElement(pfr + "ТарифСВ",
+                            new XElement(ИС + "ЗадолженностьНаНачало", Utils.decToStr(odv1.s_2_0)),
+                            new XElement(ИС + "Начислено", Utils.decToStr(odv1.s_2_1)),
+                            new XElement(ИС + "Уплачено", Utils.decToStr(odv1.s_2_2)),
+                            new XElement(ИС + "ЗадолженностьНаКонец", Utils.decToStr(odv1.s_2_3))));
+                }
 
                 foreach (var itm in odv1.FormsODV_1_4_2017.ToList())
                 {
 
-                    XElement Уплата = new XElement(ИС2 + "Уплата",
-                        new XElement(ИС2 + "Год", itm.Year),
-                        new XElement(ИС2 + "Страховая", Utils.decToStr(itm.OPS)),
-                        new XElement(ИС2 + "Накопительная", Utils.decToStr(itm.NAKOP)),
-                        new XElement(ИС2 + "ТарифСВ", Utils.decToStr(itm.DopTar)));
+                    XElement Уплата = new XElement(pfr + "Уплата",
+                        new XElement(ИС + "Год", itm.Year));
+
+                    if (itm.OPS.HasValue && itm.OPS.Value != 0)
+                    {
+                        Уплата.Add(new XElement(ИС + "Страховая", Utils.decToStr(itm.OPS)));
+                    }
+                    if (itm.NAKOP.HasValue && itm.NAKOP.Value != 0)
+                    {
+                        Уплата.Add(new XElement(ИС + "Накопительная", Utils.decToStr(itm.NAKOP)));
+                    }
+                    if (itm.DopTar.HasValue && itm.DopTar.Value != 0)
+                    {
+                        Уплата.Add(new XElement(ИС + "ТарифСВ", Utils.decToStr(itm.DopTar)));
+                    }
+
+
 
                     ОДВ1.Add(Уплата);
                 }
 
             }
-
-
-            if (TypeForm == 0 || TypeForm == 1 || TypeForm == 2) // Если форма ОДВ1 или СЗВ-СТАЖ
+            else if (TypeForm == 3 && type_korr == 2) // Если СЗВ-КОРР
             {
-                if (odv1.FormsODV_1_5_2017.Count > 0)
+//                if ((odv1.s_0_0.HasValue && odv1.s_0_0.Value != 0) || (odv1.s_0_1.HasValue && odv1.s_0_1.Value != 0) || (odv1.s_0_2.HasValue && odv1.s_0_2.Value != 0) || (odv1.s_0_3.HasValue && odv1.s_0_3.Value != 0))
+//                {
+                    ОДВ1.Add(new XElement(pfr + "Страховая",
+                            new XElement(ИС + "ЗадолженностьНаНачало", Utils.decToStr(odv1.s_0_0)),
+                            new XElement(ИС + "Начислено", Utils.decToStr(odv1.s_0_1)),
+                            new XElement(ИС + "Уплачено", Utils.decToStr(odv1.s_0_2)),
+                            new XElement(ИС + "ЗадолженностьНаКонец", Utils.decToStr(odv1.s_0_3))));
+  //              }
+
+
+//                if ((odv1.s_1_0.HasValue && odv1.s_1_0.Value != 0) || (odv1.s_1_1.HasValue && odv1.s_1_1.Value != 0) || (odv1.s_1_2.HasValue && odv1.s_1_2.Value != 0) || (odv1.s_1_3.HasValue && odv1.s_1_3.Value != 0))
+  //              {
+                    ОДВ1.Add(new XElement(pfr + "Накопительная",
+                            new XElement(ИС + "ЗадолженностьНаНачало", Utils.decToStr(odv1.s_1_0)),
+                            new XElement(ИС + "Начислено", Utils.decToStr(odv1.s_1_1)),
+                            new XElement(ИС + "Уплачено", Utils.decToStr(odv1.s_1_2)),
+                            new XElement(ИС + "ЗадолженностьНаКонец", Utils.decToStr(odv1.s_1_3))));
+    //            }
+
+                if ((odv1.s_2_0.HasValue && odv1.s_2_0.Value != 0) || (odv1.s_2_1.HasValue && odv1.s_2_1.Value != 0) || (odv1.s_2_2.HasValue && odv1.s_2_2.Value != 0) || (odv1.s_2_3.HasValue && odv1.s_2_3.Value != 0))
                 {
-                    XElement ОснованияДНП = new XElement(pfr + "ОснованияДНП");
+                    ОДВ1.Add(new XElement(pfr + "ТарифСВ",
+                            new XElement(ИС + "ЗадолженностьНаНачало", Utils.decToStr(odv1.s_2_0)),
+                            new XElement(ИС + "Начислено", Utils.decToStr(odv1.s_2_1)),
+                            new XElement(ИС + "Уплачено", Utils.decToStr(odv1.s_2_2)),
+                            new XElement(ИС + "ЗадолженностьНаКонец", Utils.decToStr(odv1.s_2_3))));
+                }
 
-                    foreach (var itm in odv1.FormsODV_1_5_2017.ToList())
+                foreach (var itm in odv1.FormsODV_1_4_2017.ToList())
+                {
+
+                    XElement Уплата = new XElement(pfr + "Уплата",
+                        new XElement(ИС + "Год", itm.Year));
+
+                    if (itm.OPS.HasValue && itm.OPS.Value != 0)
                     {
-
-                        XElement Основание = new XElement(pfr + "Основание",
-                            new XElement(ИС2 + "Подразделение", itm.Department.Trim()),
-                            new XElement(ИС2 + "ПрофессияДолжность", itm.Profession.Trim()),
-                            new XElement(ИС2 + "КоличествоШтат", itm.StaffCountShtat.HasValue ? itm.StaffCountShtat.Value : 0),
-                            new XElement(ИС2 + "КоличествоФакт", itm.StaffCountFakt.HasValue ? itm.StaffCountFakt.Value : 0),
-                            new XElement(ИС2 + "Описание", itm.VidRabotFakt.Trim()),
-                            new XElement(ИС2 + "Документы", itm.DocsName.Trim()));
-
-
-                        foreach (var itout in itm.FormsODV_1_5_2017_OUT.ToList())
-                        {
-                            XElement ОУТ = new XElement(pfr + "ОУТ",
-                                   new XElement(pfr + "Код", itout.OsobUslTrudaCode != null ? itout.OsobUslTrudaCode.Trim() : ""));
-
-                            if (itout.CodePosition != null && !String.IsNullOrEmpty(itout.CodePosition.Trim()))
-                            {
-                                ОУТ.Add(new XElement(pfr + "ПозицияСписка", itout.CodePosition.Trim()));
-                            }
-
-                            Основание.Add(ОУТ);
-
-                        }
-
-
-                        ОснованияДНП.Add(Основание);
+                        Уплата.Add(new XElement(ИС + "Страховая", Utils.decToStr(itm.OPS)));
                     }
-
-                    ОснованияДНП.Add(new XElement(ИС2 + "ВсегоШтат", odv1.StaffCountOsobUslShtat.HasValue ? odv1.StaffCountOsobUslShtat.Value : 0));
-                    ОснованияДНП.Add(new XElement(ИС2 + "ВсегоФакт", odv1.StaffCountOsobUslFakt.HasValue ? odv1.StaffCountOsobUslFakt.Value : 0));
-
-                    ОДВ1.Add(ОснованияДНП);
-
+                    if (itm.NAKOP.HasValue && itm.NAKOP.Value != 0)
+                    {
+                        Уплата.Add(new XElement(ИС + "Накопительная", Utils.decToStr(itm.NAKOP)));
+                    }
+                    if (itm.DopTar.HasValue && itm.DopTar.Value != 0)
+                    {
+                        Уплата.Add(new XElement(ИС + "ТарифСВ", Utils.decToStr(itm.DopTar)));
+                    }
                 }
 
             }
+
+
+            //if (TypeForm == 0 || TypeForm == 1 || TypeForm == 2) // Если форма ОДВ1 или СЗВ-СТАЖ
+            //{
+            if (odv1.FormsODV_1_5_2017.Count > 0)
+            {
+                XElement ОснованияДНП = new XElement(pfr + "ОснованияДНП");
+
+                foreach (var itm in odv1.FormsODV_1_5_2017.ToList())
+                {
+
+                    XElement Основание = new XElement(pfr + "Основание",
+                        new XElement(ИС + "Подразделение", itm.Department.Trim()),
+                        new XElement(ИС + "ПрофессияДолжность", itm.Profession.Trim()),
+                        new XElement(ИС + "КоличествоШтат", Utils.decToStr(itm.StaffCountShtat)),
+                        new XElement(ИС + "КоличествоФакт", itm.StaffCountFakt.HasValue ? itm.StaffCountFakt.Value : 0),
+                        new XElement(ИС + "Описание", itm.VidRabotFakt.Trim()),
+                        new XElement(ИС + "Документы", itm.DocsName.Trim()));
+
+
+                    foreach (var itout in itm.FormsODV_1_5_2017_OUT.ToList())
+                    {
+                        XElement ОУТ = new XElement(pfr + "ОУТ",
+                               new XElement(pfr + "Код", itout.OsobUslTrudaCode != null ? itout.OsobUslTrudaCode.Trim() : ""));
+
+                        if (itout.CodePosition != null && !String.IsNullOrEmpty(itout.CodePosition.Trim()))
+                        {
+                            ОУТ.Add(new XElement(pfr + "ПозицияСписка", itout.CodePosition.Trim()));
+                        }
+
+                        Основание.Add(ОУТ);
+
+                    }
+
+
+                    ОснованияДНП.Add(Основание);
+                }
+
+                ОснованияДНП.Add(new XElement(ИС + "ВсегоШтат", odv1.StaffCountOsobUslShtat.HasValue ? odv1.StaffCountOsobUslShtat.Value : 0));
+                ОснованияДНП.Add(new XElement(ИС + "ВсегоФакт", odv1.StaffCountOsobUslFakt.HasValue ? odv1.StaffCountOsobUslFakt.Value : 0));
+
+                ОДВ1.Add(ОснованияДНП);
+
+            }
+
+            //}
 
 
             XElement Руководитель = new XElement(pfr + "Руководитель");
@@ -5979,7 +6916,7 @@ namespace PU.FormsRSW2014
             return ОДВ1;
         }
 
-        private XElement generateXML_SZVSTAJ(xmlInfo itemT, XNamespace pfr)
+        private XElement generateXML_SZVSTAJ(xmlInfo itemT, XNamespace pfr, XNamespace ИС)
         {
             pu6Entities db_temp = new pu6Entities();
 
@@ -6022,7 +6959,7 @@ namespace PU.FormsRSW2014
 
             XNamespace УТ2 = "http://пф.рф/УТ/2017-08-21";
             XNamespace АФ4 = "http://пф.рф/АФ/2017-08-21";
-            XNamespace ИС2 = "http://пф.рф/ВС/ИС/типы/2017-09-11";
+            //            XNamespace ИС = "http://пф.рф/ВС/ИС/типы/2017-09-11";
 
             XElement СЗВ = new XElement(pfr + "СЗВ-СТАЖ",
      new XElement(pfr + "Страхователь",
@@ -6034,7 +6971,7 @@ namespace PU.FormsRSW2014
                 СЗВ.Element(pfr + "Страхователь").Add(new XElement(УТ2 + "КПП", ins.KPP.Substring(0, ins.KPP.Length > 9 ? 9 : ins.KPP.Length)));
             }
 
-            СЗВ.Element(pfr + "Страхователь").Add(new XElement(ИС2 + "Наименование", orgName.Trim()));
+            СЗВ.Element(pfr + "Страхователь").Add(new XElement(ИС + "Наименование", orgName.Trim()));
 
             int szv_t = szv.TypeInfo.HasValue ? szv.TypeInfo.Value : 0;
 
@@ -6107,7 +7044,7 @@ namespace PU.FormsRSW2014
                     try
                     {
                         ii++;
-                        XElement СтажевыйПериод = createStajElement_2017(staj_osn, stajLgot_list, ii, pfr, УТ2, ИС2);
+                        XElement СтажевыйПериод = createStajElement_2017(staj_osn, stajLgot_list, ii, pfr, УТ2, ИС);
 
                         //Если стоит статус БЕЗР
                         if (staj_osn.CodeBEZR.HasValue && staj_osn.CodeBEZR.Value)
@@ -6135,11 +7072,11 @@ namespace PU.FormsRSW2014
 
                 //if (szv.OPSFeeNach.HasValue && szv.OPSFeeNach.Value != 0)
                 //{
-                    СВ.Add(new XElement(pfr + "НачисленыНаОПС", szv.OPSFeeNach.HasValue ? szv.OPSFeeNach.Value : 0));
+                СВ.Add(new XElement(pfr + "НачисленыНаОПС", szv.OPSFeeNach.HasValue ? szv.OPSFeeNach.Value : 0));
                 //}
                 //if (szv.DopTarFeeNach.HasValue && szv.DopTarFeeNach.Value != 0)
                 //{
-                    СВ.Add(new XElement(pfr + "НачисленыПоДТ", szv.DopTarFeeNach.HasValue ? szv.DopTarFeeNach.Value : 0));
+                СВ.Add(new XElement(pfr + "НачисленыПоДТ", szv.DopTarFeeNach.HasValue ? szv.DopTarFeeNach.Value : 0));
                 //}
                 СЗВ.Add(СВ);
             }
@@ -6161,7 +7098,7 @@ namespace PU.FormsRSW2014
             return СЗВ;
         }
 
-        private XElement generateXML_SZVISH(xmlInfo itemT, XNamespace pfr, Insurer ins, StaffList StaffItem, pu6Entities db_temp)
+        private XElement generateXML_SZVISH(xmlInfo itemT, XNamespace pfr, Insurer ins, StaffList StaffItem, pu6Entities db_temp, XNamespace ИС)
         {
 
             string regNum = Utils.ParseRegNum(ins.RegNum);
@@ -6194,7 +7131,7 @@ namespace PU.FormsRSW2014
 
             XNamespace УТ2 = "http://пф.рф/УТ/2017-08-21";
             XNamespace АФ4 = "http://пф.рф/АФ/2017-08-21";
-            XNamespace ИС2 = "http://пф.рф/ВС/ИС/типы/2017-09-11";
+            //     XNamespace ИС = "http://пф.рф/ВС/ИС/типы/2017-09-11";
 
             XElement СЗВ = new XElement(pfr + "СЗВ-ИСХ",
                                new XElement(pfr + "Страхователь",
@@ -6206,7 +7143,7 @@ namespace PU.FormsRSW2014
                 СЗВ.Element(pfr + "Страхователь").Add(new XElement(УТ2 + "КПП", ins.KPP.Substring(0, ins.KPP.Length > 9 ? 9 : ins.KPP.Length)));
             }
 
-            СЗВ.Element(pfr + "Страхователь").Add(new XElement(ИС2 + "Наименование", orgName.Trim()));
+            СЗВ.Element(pfr + "Страхователь").Add(new XElement(ИС + "Наименование", orgName.Trim()));
 
 
 
@@ -6238,6 +7175,11 @@ namespace PU.FormsRSW2014
             СЗВ.Add(ФИО);
 
             СЗВ.Add(new XElement(pfr + "СНИЛС", !String.IsNullOrEmpty(ish_staff.InsuranceNumber) ? ish_staff.InsuranceNumber.Substring(0, 3) + "-" + ish_staff.InsuranceNumber.Substring(3, 3) + "-" + ish_staff.InsuranceNumber.Substring(6, 3) + " " + contrNum : ""));
+
+
+            //Если уволен 31 декабря
+            if (szv.Dismissed.HasValue && szv.Dismissed.Value)
+                СЗВ.Add(new XElement(pfr + "ДатаУвольнения", szv.Year.ToString() + "-12-31"));
 
 
             if (szv.ContractType.HasValue && szv.ContractType.Value != 0)
@@ -6307,42 +7249,30 @@ namespace PU.FormsRSW2014
             XElement Начисления = new XElement(pfr + "Начисления");
             bool flag_ = false;
 
-            if (szv.SumFeePFR_Insurer.HasValue && szv.SumFeePFR_Insurer.Value != 0)
+            if ((szv.SumFeePFR_Insurer.HasValue && szv.SumFeePFR_Insurer.Value != 0) || (szv.SumFeePFR_Staff.HasValue && szv.SumFeePFR_Staff.Value != 0))
             {
                 Начисления.Add(new XElement(pfr + "СВстрахователя", Utils.decToStr(szv.SumFeePFR_Insurer)));
-                flag_ = true;
-            }
-            if (szv.SumFeePFR_Staff.HasValue && szv.SumFeePFR_Staff.Value != 0)
-            {
                 Начисления.Add(new XElement(pfr + "СВизЗаработка", Utils.decToStr(szv.SumFeePFR_Staff)));
                 flag_ = true;
             }
+
             if (szv.SumFeePFR_Tar.HasValue && szv.SumFeePFR_Tar.Value != 0)
             {
                 Начисления.Add(new XElement(pfr + "СВпоТарифу", Utils.decToStr(szv.SumFeePFR_Tar)));
                 flag_ = true;
             }
-            if (szv.SumFeePFR_TarDop.HasValue && szv.SumFeePFR_TarDop.Value != 0)
-            {
 
+            if ((szv.SumFeePFR_TarDop.HasValue && szv.SumFeePFR_TarDop.Value != 0) || (szv.SumFeePFR_Strah.HasValue && szv.SumFeePFR_Strah.Value != 0) || (szv.SumFeePFR_Nakop.HasValue && szv.SumFeePFR_Nakop.Value != 0))
+            {
                 Начисления.Add(new XElement(pfr + "СВпоДопТарифу", Utils.decToStr(szv.SumFeePFR_TarDop)));
-                flag_ = true;
-            }
-            if (szv.SumFeePFR_Strah.HasValue && szv.SumFeePFR_Strah.Value != 0)
-            {
-
                 Начисления.Add(new XElement(pfr + "Страховая", Utils.decToStr(szv.SumFeePFR_Strah)));
-                flag_ = true;
-            }
-            if (szv.SumFeePFR_Nakop.HasValue && szv.SumFeePFR_Nakop.Value != 0)
-            {
-
                 Начисления.Add(new XElement(pfr + "Накопительная", Utils.decToStr(szv.SumFeePFR_Nakop)));
                 flag_ = true;
             }
+
+
             if (szv.SumFeePFR_Base.HasValue && szv.SumFeePFR_Base.Value != 0)
             {
-
                 Начисления.Add(new XElement(pfr + "СВпоТарифуНеПревышающие", Utils.decToStr(szv.SumFeePFR_Base)));
                 flag_ = true;
             }
@@ -6355,15 +7285,12 @@ namespace PU.FormsRSW2014
             XElement Уплата = new XElement(pfr + "Уплата");
             flag_ = false;
 
-            if (szv.SumPayPFR_Strah.HasValue && szv.SumPayPFR_Strah.Value != 0)
+            if ((szv.SumPayPFR_Strah.HasValue && szv.SumPayPFR_Strah.Value != 0) || (szv.SumPayPFR_Nakop.HasValue && szv.SumPayPFR_Nakop.Value != 0))
             {
                 Уплата.Add(new XElement(pfr + "Страховая", Utils.decToStr(szv.SumPayPFR_Strah)));
-                flag_ = true;
-            }
-            if (szv.SumPayPFR_Nakop.HasValue && szv.SumPayPFR_Nakop.Value != 0)
-            {
                 Уплата.Add(new XElement(pfr + "Накопительная", Utils.decToStr(szv.SumPayPFR_Nakop)));
                 flag_ = true;
+
             }
 
             if (flag_)
@@ -6397,8 +7324,8 @@ namespace PU.FormsRSW2014
                 decimal s2 = list_t.Sum(x => x.s_1_1.Value) + list_t.Sum(x => x.s_2_1.Value) + list_t.Sum(x => x.s_3_1.Value);
 
                 XElement Всего = new XElement(pfr + "Всего",
-                                             new XElement(ИС2 + "ДопТарифП1", Utils.decToStr(s1)),
-                                             new XElement(ИС2 + "ДопТарифП2_18", Utils.decToStr(s2)));
+                                             new XElement(ИС + "ДопТарифП1", Utils.decToStr(s1)),
+                                             new XElement(ИС + "ДопТарифП2_18", Utils.decToStr(s2)));
 
                 ВыплатыДТ.Add(Всего);
 
@@ -6410,20 +7337,20 @@ namespace PU.FormsRSW2014
                     XElement Период = new XElement(pfr + "Период",
                                           new XElement(pfr + "Месяц", MonthesList[m - 1]),
                                           new XElement(pfr + "КодСОУТ", code),
-                                          new XElement(ИС2 + "ДопТарифП1", Utils.decToStr(item.s_1_0)),
-                                          new XElement(ИС2 + "ДопТарифП2_18", Utils.decToStr(item.s_1_1)));
+                                          new XElement(ИС + "ДопТарифП1", Utils.decToStr(item.s_1_0)),
+                                          new XElement(ИС + "ДопТарифП2_18", Utils.decToStr(item.s_1_1)));
                     ВыплатыДТ.Add(Период);
                     Период = new XElement(pfr + "Период",
                                           new XElement(pfr + "Месяц", MonthesList[m]),
                                           new XElement(pfr + "КодСОУТ", code),
-                                          new XElement(ИС2 + "ДопТарифП1", Utils.decToStr(item.s_2_0)),
-                                          new XElement(ИС2 + "ДопТарифП2_18", Utils.decToStr(item.s_2_1)));
+                                          new XElement(ИС + "ДопТарифП1", Utils.decToStr(item.s_2_0)),
+                                          new XElement(ИС + "ДопТарифП2_18", Utils.decToStr(item.s_2_1)));
                     ВыплатыДТ.Add(Период);
                     Период = new XElement(pfr + "Период",
                                           new XElement(pfr + "Месяц", MonthesList[m + 1]),
                                           new XElement(pfr + "КодСОУТ", code),
-                                          new XElement(ИС2 + "ДопТарифП1", Utils.decToStr(item.s_3_0)),
-                                          new XElement(ИС2 + "ДопТарифП2_18", Utils.decToStr(item.s_3_1)));
+                                          new XElement(ИС + "ДопТарифП1", Utils.decToStr(item.s_3_0)),
+                                          new XElement(ИС + "ДопТарифП2_18", Utils.decToStr(item.s_3_1)));
                     ВыплатыДТ.Add(Период);
 
                 }
@@ -6446,7 +7373,7 @@ namespace PU.FormsRSW2014
                 try
                 {
                     ii++;
-                    XElement СтажевыйПериод = createStajElement_2017(staj_osn, stajLgot_list, ii, pfr, УТ2, ИС2);
+                    XElement СтажевыйПериод = createStajElement_2017(staj_osn, stajLgot_list, ii, pfr, УТ2, ИС);
                     СЗВ.Add(СтажевыйПериод);
                 }
                 catch (Exception ex)
@@ -6461,7 +7388,7 @@ namespace PU.FormsRSW2014
             return СЗВ;
         }
 
-        private XElement generateXML_SZVKORR(xmlInfo itemT, XNamespace pfr, Insurer ins, StaffList StaffItem, pu6Entities db_temp)
+        private XElement generateXML_SZVKORR(xmlInfo itemT, XNamespace pfr, Insurer ins, StaffList StaffItem, pu6Entities db_temp, XNamespace ИС)
         {
 
             string regNum = Utils.ParseRegNum(ins.RegNum);
@@ -6494,7 +7421,7 @@ namespace PU.FormsRSW2014
 
             XNamespace УТ2 = "http://пф.рф/УТ/2017-08-21";
             XNamespace АФ4 = "http://пф.рф/АФ/2017-08-21";
-            XNamespace ИС2 = "http://пф.рф/ВС/ИС/типы/2017-09-11";
+            //    XNamespace ИС = "http://пф.рф/ВС/ИС/типы/2017-09-11";
 
             XElement СЗВ = new XElement(pfr + "СЗВ-КОРР",
                                new XElement(pfr + "Страхователь",
@@ -6506,7 +7433,7 @@ namespace PU.FormsRSW2014
                 СЗВ.Element(pfr + "Страхователь").Add(new XElement(УТ2 + "КПП", ins.KPP.Substring(0, ins.KPP.Length > 9 ? 9 : ins.KPP.Length)));
             }
 
-            СЗВ.Element(pfr + "Страхователь").Add(new XElement(ИС2 + "Наименование", orgName.Trim()));
+            СЗВ.Element(pfr + "Страхователь").Add(new XElement(ИС + "Наименование", orgName.Trim()));
 
 
             СЗВ.Add(new XElement(pfr + "ОтчетныйПериод",
@@ -6571,45 +7498,45 @@ namespace PU.FormsRSW2014
 
             СЗВ.Add(ЗЛ);
 
-            if (szv.TypeInfo.HasValue && szv.TypeInfo.Value != 1)
+            //if (szv.TypeInfo.HasValue && szv.TypeInfo.Value != 1)
+            //{
+            XElement ДанныеЗЛ = new XElement(pfr + "ДанныеЗЛ");
+
+            bool fl0 = false;
+            if (szv.PlatCategoryID.HasValue)
             {
-                XElement ДанныеЗЛ = new XElement(pfr + "ДанныеЗЛ");
-
-                bool fl0 = false;
-                if (szv.PlatCategoryID.HasValue)
-                {
-                    ДанныеЗЛ.Add(new XElement(pfr + "Категория", szv.PlatCategory.Code));
-                    fl0 = true;
-                }
-
-                XElement Договор = new XElement(pfr + "Договор");
-
-                bool fl = false;
-                if (szv.ContractType.HasValue && szv.ContractType.Value != 0)
-                {
-                    Договор.Add(new XElement(pfr + "Тип", szv.ContractType.Value));
-                    fl = true;
-                }
-                if (szv.ContractDate.HasValue && !String.IsNullOrEmpty(szv.ContractNum.Trim()))
-                {
-                    Договор.Add(new XElement(pfr + "Реквизиты",
-                                    new XElement(УТ2 + "Дата", szv.ContractDate.Value.ToString("yyyy-MM-dd")),
-                                    new XElement(УТ2 + "Номер", szv.ContractNum.Trim())));
-                    fl = true;
-                }
-
-                if (fl)
-                    ДанныеЗЛ.Add(Договор);
-
-                if (szv.DopTarCode != null && !String.IsNullOrEmpty(szv.DopTarCode.Trim()))
-                {
-                    ДанныеЗЛ.Add(new XElement(pfr + "КодДТ", szv.DopTarCode.Trim()));
-                    fl0 = true;
-                }
-
-                if (fl || fl0)
-                    СЗВ.Add(ДанныеЗЛ);
+                ДанныеЗЛ.Add(new XElement(pfr + "Категория", szv.PlatCategory.Code));
+                fl0 = true;
             }
+
+            XElement Договор = new XElement(pfr + "Договор");
+
+            bool fl = false;
+            if (szv.ContractType.HasValue && szv.ContractType.Value != 0)
+            {
+                Договор.Add(new XElement(pfr + "Тип", szv.ContractType.Value));
+                fl = true;
+            }
+            if (szv.ContractDate.HasValue && !String.IsNullOrEmpty(szv.ContractNum.Trim()))
+            {
+                Договор.Add(new XElement(pfr + "Реквизиты",
+                                new XElement(УТ2 + "Дата", szv.ContractDate.Value.ToString("yyyy-MM-dd")),
+                                new XElement(УТ2 + "Номер", szv.ContractNum.Trim())));
+                fl = true;
+            }
+
+            if (fl)
+                ДанныеЗЛ.Add(Договор);
+
+            if (szv.DopTarCode != null && !String.IsNullOrEmpty(szv.DopTarCode.Trim()))
+            {
+                ДанныеЗЛ.Add(new XElement(pfr + "КодДТ", szv.DopTarCode.Trim()));
+                fl0 = true;
+            }
+
+            if (fl || fl0)
+                СЗВ.Add(ДанныеЗЛ);
+            //}
 
 
 
@@ -6673,40 +7600,74 @@ namespace PU.FormsRSW2014
 
 
                     XElement ДоначисленоСВ = new XElement(pfr + "ДоначисленоСВ");
-                    flag_ = false;
+                    bool flag_Before2001 = false;
+                    bool flag_After2001 = false;
+                    bool flag_TarSV = false;
 
-                    if (item.SumFeeBefore2001Insurer.HasValue && item.SumFeeBefore2001Insurer.Value != 0)
+                    if ((item.SumFeeBefore2001Insurer.HasValue && item.SumFeeBefore2001Insurer.Value != 0) || (item.SumFeeBefore2001Staff.HasValue && item.SumFeeBefore2001Staff.Value != 0))
                     {
-                        ДоначисленоСВ.Add(new XElement(pfr + "СВстрахователя", Utils.decToStr(item.SumFeeBefore2001Insurer)));
-                        flag_ = true;
-                    }
-                    if (item.SumFeeBefore2001Staff.HasValue && item.SumFeeBefore2001Staff.Value != 0)
-                    {
+                        flag_Before2001 = true;
 
-                        ДоначисленоСВ.Add(new XElement(pfr + "СВизЗаработка", Utils.decToStr(item.SumFeeBefore2001Staff)));
-                        flag_ = true;
-                    }
-                    if (item.SumFeeAfter2001STRAH.HasValue && item.SumFeeAfter2001STRAH.Value != 0)
-                    {
+                        if (item.SumFeeBefore2001Insurer.HasValue)
+                        {
+                            ДоначисленоСВ.Add(new XElement(pfr + "СВстрахователя", Utils.decToStr(item.SumFeeBefore2001Insurer)));
+                        }
+                        else
+                        {
+                            ДоначисленоСВ.Add(new XElement(pfr + "СВстрахователя", Utils.decToStr(0)));
+                        }
 
-                        ДоначисленоСВ.Add(new XElement(pfr + "Страховая", Utils.decToStr(item.SumFeeAfter2001STRAH)));
-                        flag_ = true;
-                    }
-                    if (item.SumFeeAfter2001NAKOP.HasValue && item.SumFeeAfter2001NAKOP.Value != 0)
-                    {
+                        if (item.SumFeeBefore2001Staff.HasValue)
+                        {
+                            ДоначисленоСВ.Add(new XElement(pfr + "СВизЗаработка", Utils.decToStr(item.SumFeeBefore2001Staff)));
+                        }
+                        else
+                        {
+                            ДоначисленоСВ.Add(new XElement(pfr + "СВизЗаработка", Utils.decToStr(0)));
+                        }
 
-                        ДоначисленоСВ.Add(new XElement(pfr + "Накопительная", Utils.decToStr(item.SumFeeAfter2001NAKOP)));
-                        flag_ = true;
+
                     }
+
+                    if ((item.SumFeeAfter2001STRAH.HasValue && item.SumFeeAfter2001STRAH.Value != 0) || (item.SumFeeAfter2001NAKOP.HasValue && item.SumFeeAfter2001NAKOP.Value != 0))
+                    {
+                        flag_After2001 = true;
+
+                        if (item.SumFeeAfter2001STRAH.HasValue)
+                        {
+                            ДоначисленоСВ.Add(new XElement(pfr + "Страховая", Utils.decToStr(item.SumFeeAfter2001STRAH)));
+                        }
+                        else
+                        {
+                            ДоначисленоСВ.Add(new XElement(pfr + "Страховая", Utils.decToStr(0)));
+                        }
+
+                        if (item.SumFeeAfter2001NAKOP.HasValue)
+                        {
+                            ДоначисленоСВ.Add(new XElement(pfr + "Накопительная", Utils.decToStr(item.SumFeeAfter2001NAKOP)));
+                        }
+                        else
+                        {
+                            ДоначисленоСВ.Add(new XElement(pfr + "Накопительная", Utils.decToStr(0)));
+                        }
+                    }
+
                     if (item.SumFeeTarSV.HasValue && item.SumFeeTarSV.Value != 0)
                     {
+                        flag_TarSV = true;
 
-                        ДоначисленоСВ.Add(new XElement(pfr + "СВпоТарифу", Utils.decToStr(item.SumFeeTarSV)));
-                        flag_ = true;
+                        if (item.SumFeeTarSV.HasValue)
+                        {
+                            ДоначисленоСВ.Add(new XElement(pfr + "СВпоТарифу", Utils.decToStr(item.SumFeeTarSV)));
+                        }
+                        else
+                        {
+                            ДоначисленоСВ.Add(new XElement(pfr + "СВпоТарифу", Utils.decToStr(item.SumFeeTarSV)));
+                        }
                     }
 
 
-                    if (flag_)
+                    if (flag_Before2001 || flag_After2001 || flag_TarSV)
                     {
                         Суммы.Add(ДоначисленоСВ);
                         flag_3 = true;
@@ -6751,14 +7712,14 @@ namespace PU.FormsRSW2014
                                       new XElement(pfr + "Месяц", item.Month.HasValue ? (item.Month.Value <= 12 ? MonthesList[item.Month.Value - 1] : "") : ""),
                                       new XElement(pfr + "КодСОУТ", code));
 
-                if (item.s_0.HasValue && item.s_0.Value != 0)
-                {
-                    ВыплатыДТ.Add(new XElement(ИС2 + "ДопТарифП1", Utils.decToStr(item.s_0)));
-                }
-                if (item.s_1.HasValue && item.s_1.Value != 0)
-                {
-                    ВыплатыДТ.Add(new XElement(ИС2 + "ДопТарифП2_18", Utils.decToStr(item.s_1)));
-                }
+                //if (item.s_0.HasValue && item.s_0.Value != 0)
+                //{
+                ВыплатыДТ.Add(new XElement(ИС + "ДопТарифП1", Utils.decToStr(item.s_0)));
+                //}
+                //if (item.s_1.HasValue && item.s_1.Value != 0)
+                //{
+                ВыплатыДТ.Add(new XElement(ИС + "ДопТарифП2_18", Utils.decToStr(item.s_1)));
+                //}
 
 
                 СЗВ.Add(ВыплатыДТ);
@@ -6778,7 +7739,11 @@ namespace PU.FormsRSW2014
                 try
                 {
                     ii++;
-                    XElement СтажевыйПериод = createStajElement_2017(staj_osn, stajLgot_list, ii, pfr, УТ2, ИС2);
+                    XElement СтажевыйПериод = createStajElement_2017(staj_osn, stajLgot_list, ii, pfr, УТ2, ИС);
+
+                    if (staj_osn.CodeBEZR.HasValue && staj_osn.CodeBEZR.Value)
+                        СтажевыйПериод.Add(new XElement(pfr + "КатегорияЗЛ", "БЕЗР"));
+
                     СЗВ.Add(СтажевыйПериод);
                 }
                 catch (Exception ex)
@@ -6787,6 +7752,9 @@ namespace PU.FormsRSW2014
                 }
 
             }
+            //Если уволен 31 декабря
+            if (szv.Dismissed.HasValue && szv.Dismissed.Value)
+                СЗВ.Add(new XElement(pfr + "ДатаУвольнения", szv.YearKorr.ToString() + "-12-31"));
 
 
 
@@ -6811,7 +7779,7 @@ namespace PU.FormsRSW2014
                                             new XElement("ТипФайла", "ВНЕШНИЙ"),
                                             new XElement("ПрограммаПодготовкиДанных",
                                                 new XElement("НазваниеПрограммы", Application.ProductName.ToUpper()),
-                                                new XElement("Версия", Application.ProductVersion)),
+                                                new XElement("Версия", Application.ProductVersion.Substring(2, Application.ProductVersion.Length - 2))),
                                             new XElement("ИсточникДанных", "СТРАХОВАТЕЛЬ")),
                                         new XElement("ПачкаВходящихДокументов", new XAttribute("Окружение", "Единичный запрос"))));
 
@@ -8175,7 +9143,7 @@ namespace PU.FormsRSW2014
                                             new XElement("ТипФайла", "ВНЕШНИЙ"),
                                             new XElement("ПрограммаПодготовкиДанных",
                                                 new XElement("НазваниеПрограммы", Application.ProductName.ToUpper()),
-                                                new XElement("Версия", Application.ProductVersion)),
+                                                new XElement("Версия", Application.ProductVersion.Substring(2, Application.ProductVersion.Length - 2))),
                                             new XElement("ИсточникДанных", "СТРАХОВАТЕЛЬ")),
                                         new XElement("ПачкаВходящихДокументов", new XAttribute("Окружение", "В составе файла"), new XAttribute("Стадия", "До обработки"))));
 
@@ -8684,7 +9652,7 @@ namespace PU.FormsRSW2014
                                             new XElement("ТипФайла", "ВНЕШНИЙ"),
                                             new XElement("ПрограммаПодготовкиДанных",
                                                 new XElement("НазваниеПрограммы", Application.ProductName.ToUpper()),
-                                                new XElement("Версия", Application.ProductVersion)),
+                                                new XElement("Версия", Application.ProductVersion.Substring(2, Application.ProductVersion.Length - 2))),
                                             new XElement("ИсточникДанных", "СТРАХОВАТЕЛЬ")),
                                         new XElement("ПачкаВходящихДокументов", new XAttribute("Окружение", "В составе файла"), new XAttribute("Стадия", "До обработки"))));
 
@@ -9089,7 +10057,7 @@ namespace PU.FormsRSW2014
                                             new XElement("ТипФайла", "ВНЕШНИЙ"),
                                             new XElement("ПрограммаПодготовкиДанных",
                                                 new XElement("НазваниеПрограммы", Application.ProductName.ToUpper()),
-                                                new XElement("Версия", Application.ProductVersion)),
+                                                new XElement("Версия", Application.ProductVersion.Substring(2, Application.ProductVersion.Length - 2))),
                                             new XElement("ИсточникДанных", "СТРАХОВАТЕЛЬ")),
                                         new XElement("ПачкаВходящихДокументов", new XAttribute("Окружение", "В составе файла"), new XAttribute("Стадия", "До обработки"))));
 
@@ -9393,7 +10361,7 @@ namespace PU.FormsRSW2014
                                             new XElement("ТипФайла", "ВНЕШНИЙ"),
                                             new XElement("ПрограммаПодготовкиДанных",
                                                 new XElement("НазваниеПрограммы", Application.ProductName.ToUpper()),
-                                                new XElement("Версия", Application.ProductVersion)),
+                                                new XElement("Версия", Application.ProductVersion.Substring(2, Application.ProductVersion.Length - 2))),
                                             new XElement("ИсточникДанных", "СТРАХОВАТЕЛЬ")),
                                         new XElement("ПачкаВходящихДокументов", new XAttribute("Окружение", "В составе файла"), new XAttribute("Стадия", "До обработки"))));
 
@@ -10059,7 +11027,7 @@ namespace PU.FormsRSW2014
 
                                             try
                                             {
-                                                db.ObjectStateManager.ChangeObjectState(rsw251, EntityState.Modified);
+                                                db.Entry(rsw251).State = EntityState.Modified;
                                                 db.SaveChanges();
 
                                             }
@@ -10076,7 +11044,7 @@ namespace PU.FormsRSW2014
 
                                             try
                                             {
-                                                db.ObjectStateManager.ChangeObjectState(rsw252, EntityState.Modified);
+                                                db.Entry(rsw252).State = EntityState.Modified;
                                                 db.SaveChanges();
 
                                             }
@@ -10098,7 +11066,7 @@ namespace PU.FormsRSW2014
 
                             try
                             {
-                                dbxml.ObjectStateManager.ChangeObjectState(xml_info, EntityState.Modified);
+                                dbxml.Entry(xml_info).State = EntityState.Modified;
                                 dbxml.SaveChanges();
 
                             }

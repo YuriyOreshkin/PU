@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
+using System.Data.Entity;
 using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
@@ -847,7 +847,7 @@ namespace PU.FormsRSW2_2014
                         {
                             flag_ok = false;
                             #region Сохранение новой записи
-                            db.AddToFormsRSW2014_2_1(RSWdata);
+                            db.FormsRSW2014_2_1.Add(RSWdata);
                             db.SaveChanges();
 
                             foreach (var item in RSW_2_2_List)
@@ -872,7 +872,7 @@ namespace PU.FormsRSW2_2014
 
                                 }
 
-                                db.AddToFormsRSW2014_2_2(r);
+                                db.FormsRSW2014_2_2.Add(r);
                             }
 
                             foreach (var item in RSW_2_3_List)
@@ -897,7 +897,7 @@ namespace PU.FormsRSW2_2014
 
                                 }
 
-                                db.AddToFormsRSW2014_2_3(r);
+                                db.FormsRSW2014_2_3.Add(r);
                             }
 
                             flag_ok = true;
@@ -954,7 +954,7 @@ namespace PU.FormsRSW2_2014
 
 
                             // сохраняем модифицированную запись обратно в бд
-                            db.ObjectStateManager.ChangeObjectState(r1, System.Data.EntityState.Modified);
+                            db.Entry(r1).State = EntityState.Modified;
                             //                                db.SaveChanges();
                             flag_ok = true;
 
@@ -979,7 +979,7 @@ namespace PU.FormsRSW2_2014
 
                                 foreach (var item in list_for_del)
                                 {
-                                    db.FormsRSW2014_2_2.DeleteObject(item);
+                                    db.FormsRSW2014_2_2.Remove(item);
                                 }
 
                                 if (list_for_del.Count() != 0)
@@ -1036,7 +1036,7 @@ namespace PU.FormsRSW2_2014
                                         if (flag_edited) // если записи отличаются
                                         {
 
-                                            db.ObjectStateManager.ChangeObjectState(rsw_temp, System.Data.EntityState.Modified);
+                                            db.Entry(rsw_temp).State = EntityState.Modified;
 
                                         }
 
@@ -1062,7 +1062,7 @@ namespace PU.FormsRSW2_2014
 
                                         }
 
-                                        db.AddToFormsRSW2014_2_2(r);
+                                        db.FormsRSW2014_2_2.Add(r);
                                     }
 
 
@@ -1088,7 +1088,7 @@ namespace PU.FormsRSW2_2014
 
                                 foreach (var item in list_for_del)
                                 {
-                                    db.FormsRSW2014_2_3.DeleteObject(item);
+                                    db.FormsRSW2014_2_3.Remove(item);
                                 }
 
                                 if (list_for_del.Count() != 0)
@@ -1145,7 +1145,7 @@ namespace PU.FormsRSW2_2014
                                         if (flag_edited) // если записи отличаются
                                         {
 
-                                            db.ObjectStateManager.ChangeObjectState(rsw_temp, System.Data.EntityState.Modified);
+                                            db.Entry(rsw_temp).State = EntityState.Modified;
 
                                         }
 
@@ -1171,7 +1171,7 @@ namespace PU.FormsRSW2_2014
 
                                         }
 
-                                        db.AddToFormsRSW2014_2_3(r);
+                                        db.FormsRSW2014_2_3.Add(r);
                                     }
 
 

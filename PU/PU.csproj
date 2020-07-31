@@ -43,7 +43,7 @@
     <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
+    <PlatformTarget>x86</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -79,27 +79,21 @@
     <ApplicationIcon>pfr_logo_256px.ico</ApplicationIcon>
   </PropertyGroup>
   <PropertyGroup />
-  <PropertyGroup>
-    <ApplicationManifest>app.manifest</ApplicationManifest>
-  </PropertyGroup>
+  <PropertyGroup />
   <PropertyGroup>
     <TargetZone>LocalIntranet</TargetZone>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="DevExpress.Data.v13.1, Version=13.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
-      <HintPath>..\packages\DevExpress.Data.v13.1.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="DevExpress.Sparkline.v13.1.Core, Version=13.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
-      <HintPath>..\packages\DevExpress.Sparkline.v13.1.Core.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="DevExpress.Utils.v13.1, Version=13.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
-      <HintPath>..\packages\DevExpress.Utils.v13.1.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="DevExpress.XtraEditors.v13.1, Version=13.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
-      <HintPath>..\packages\DevExpress.XtraEditors.v13.1.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="EntityFramework">
@@ -112,8 +106,12 @@
       <HintPath>..\packages\DotNetZip.1.9.3\lib\net20\Ionic.Zip.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.JScript" />
-    <Reference Include="RadControlSpy, Version=2017.1.221.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
-      <HintPath>..\lib\RCWF\2017.1.221.40\RadControlSpy.dll</HintPath>
+    <Reference Include="Microsoft.SqlServer.Types, Version=14.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.SqlServer.Types.14.0.1016.290\lib\net40\Microsoft.SqlServer.Types.dll</HintPath>
+    </Reference>
+    <Reference Include="RadControlSpy, Version=2019.2.508.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
+      <HintPath>..\lib\RCWF\2019.2.508.40\RadControlSpy.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="ShiftReduceParser">
@@ -164,75 +162,73 @@
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
-    <Reference Include="Telerik.Reporting, Version=11.0.17.222, Culture=neutral, PublicKeyToken=a9d7983dfcc261be, processorArchitecture=MSIL">
+    <Reference Include="Telerik.WinControls, Version=2019.2.508.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
+      <HintPath>..\lib\RCWF\2019.2.508.40\Telerik.WinControls.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Telerik.ReportViewer.WinForms, Version=11.0.17.222, Culture=neutral, PublicKeyToken=a9d7983dfcc261be, processorArchitecture=MSIL">
+    <Reference Include="Telerik.WinControls.GridView, Version=2019.2.508.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
+      <HintPath>..\lib\RCWF\2019.2.508.40\Telerik.WinControls.GridView.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Telerik.WinControls, Version=2017.1.221.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
-      <HintPath>..\lib\RCWF\2017.1.221.40\Telerik.WinControls.dll</HintPath>
+    <Reference Include="Telerik.WinControls.PdfViewer, Version=2019.2.508.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
+      <HintPath>..\lib\RCWF\2019.2.508.40\Telerik.WinControls.PdfViewer.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Telerik.WinControls.GridView, Version=2017.1.221.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
-      <HintPath>..\lib\RCWF\2017.1.221.40\Telerik.WinControls.GridView.dll</HintPath>
+    <Reference Include="Telerik.WinControls.RadDock, Version=2019.2.508.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
+      <HintPath>..\lib\RCWF\2019.2.508.40\Telerik.WinControls.RadDock.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Telerik.WinControls.PdfViewer, Version=2017.1.221.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
-      <HintPath>..\lib\RCWF\2017.1.221.40\Telerik.WinControls.PdfViewer.dll</HintPath>
+    <Reference Include="Telerik.WinControls.RadMarkupEditor, Version=2019.2.508.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
+      <HintPath>..\lib\RCWF\2019.2.508.40\Telerik.WinControls.RadMarkupEditor.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Telerik.WinControls.RadDock, Version=2017.1.221.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
-      <HintPath>..\lib\RCWF\2017.1.221.40\Telerik.WinControls.RadDock.dll</HintPath>
+    <Reference Include="Telerik.WinControls.Themes.HighContrastBlack, Version=2019.2.508.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
+      <HintPath>..\lib\RCWF\2019.2.508.40\Telerik.WinControls.Themes.HighContrastBlack.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Telerik.WinControls.RadMarkupEditor, Version=2017.1.221.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
-      <HintPath>..\lib\RCWF\2017.1.221.40\Telerik.WinControls.RadMarkupEditor.dll</HintPath>
+    <Reference Include="Telerik.WinControls.Themes.Office2013Light, Version=2019.2.508.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
+      <HintPath>..\lib\RCWF\2019.2.508.40\Telerik.WinControls.Themes.Office2013Light.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Telerik.WinControls.RichTextEditor, Version=2017.1.221.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
-      <HintPath>..\lib\RCWF\2017.1.221.40\Telerik.WinControls.RichTextEditor.dll</HintPath>
+    <Reference Include="Telerik.WinControls.Themes.TelerikMetro, Version=2019.2.508.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
+      <HintPath>..\lib\RCWF\2019.2.508.40\Telerik.WinControls.Themes.TelerikMetro.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Telerik.WinControls.Themes.HighContrastBlack, Version=2017.1.221.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
-      <HintPath>..\lib\RCWF\2017.1.221.40\Telerik.WinControls.Themes.HighContrastBlack.dll</HintPath>
+    <Reference Include="Telerik.WinControls.Themes.TelerikMetroBlue, Version=2019.2.508.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
+      <HintPath>..\lib\RCWF\2019.2.508.40\Telerik.WinControls.Themes.TelerikMetroBlue.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Telerik.WinControls.Themes.Office2013Light, Version=2017.1.221.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
-      <HintPath>..\lib\RCWF\2017.1.221.40\Telerik.WinControls.Themes.Office2013Light.dll</HintPath>
+    <Reference Include="Telerik.WinControls.Themes.VisualStudio2012Light, Version=2019.2.508.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
+      <HintPath>..\lib\RCWF\2019.2.508.40\Telerik.WinControls.Themes.VisualStudio2012Light.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Telerik.WinControls.Themes.TelerikMetro, Version=2017.1.221.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
-      <HintPath>..\lib\RCWF\2017.1.221.40\Telerik.WinControls.Themes.TelerikMetro.dll</HintPath>
+    <Reference Include="Telerik.WinControls.Themes.Windows7, Version=2019.2.508.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
+      <HintPath>..\lib\RCWF\2019.2.508.40\Telerik.WinControls.Themes.Windows7.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Telerik.WinControls.Themes.TelerikMetroBlue, Version=2017.1.221.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
-      <HintPath>..\lib\RCWF\2017.1.221.40\Telerik.WinControls.Themes.TelerikMetroBlue.dll</HintPath>
+    <Reference Include="Telerik.WinControls.Themes.Windows8, Version=2019.2.508.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
+      <HintPath>..\lib\RCWF\2019.2.508.40\Telerik.WinControls.Themes.Windows8.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Telerik.WinControls.Themes.VisualStudio2012Light, Version=2017.1.221.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
-      <HintPath>..\lib\RCWF\2017.1.221.40\Telerik.WinControls.Themes.VisualStudio2012Light.dll</HintPath>
+    <Reference Include="Telerik.WinControls.UI, Version=2019.2.508.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
+      <HintPath>..\lib\RCWF\2019.2.508.40\Telerik.WinControls.UI.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Telerik.WinControls.Themes.Windows7, Version=2017.1.221.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
-      <HintPath>..\lib\RCWF\2017.1.221.40\Telerik.WinControls.Themes.Windows7.dll</HintPath>
+    <Reference Include="TelerikCommon, Version=2019.2.508.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
+      <HintPath>..\lib\RCWF\2019.2.508.40\TelerikCommon.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Telerik.WinControls.Themes.Windows8, Version=2017.1.221.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
-      <HintPath>..\lib\RCWF\2017.1.221.40\Telerik.WinControls.Themes.Windows8.dll</HintPath>
+    <Reference Include="TelerikData, Version=2019.2.508.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
+      <HintPath>..\lib\RCWF\2019.2.508.40\TelerikData.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Telerik.WinControls.UI, Version=2017.1.221.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
-      <HintPath>..\lib\RCWF\2017.1.221.40\Telerik.WinControls.UI.dll</HintPath>
+    <Reference Include="Telerik.Reporting, Version=13.1.19.514, Culture=neutral, PublicKeyToken=a9d7983dfcc261be">
       <Private>True</Private>
+      <SpecificVersion>True</SpecificVersion>
     </Reference>
-    <Reference Include="TelerikCommon, Version=2017.1.221.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
-      <HintPath>..\lib\RCWF\2017.1.221.40\TelerikCommon.dll</HintPath>
+    <Reference Include="Telerik.ReportViewer.WinForms, Version=13.1.19.514, Culture=neutral, PublicKeyToken=a9d7983dfcc261be">
       <Private>True</Private>
-    </Reference>
-    <Reference Include="TelerikData, Version=2017.1.221.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
-      <HintPath>..\lib\RCWF\2017.1.221.40\TelerikData.dll</HintPath>
-      <Private>True</Private>
+      <SpecificVersion>True</SpecificVersion>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -458,6 +454,60 @@
     </Compile>
     <Compile Include="FormsODV1\Report\FormsODV1_Rep.Designer.cs">
       <DependentUpon>FormsODV1_Rep.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormsPredPens\PredPensSpravka_ImportXML.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormsPredPens\PredPensSpravka_ImportXML.Designer.cs">
+      <DependentUpon>PredPensSpravka_ImportXML.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormsPredPens\PredPensZapros_CreateXML.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormsPredPens\PredPensZapros_CreateXML.Designer.cs">
+      <DependentUpon>PredPensZapros_CreateXML.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormsPredPens\PredPensZapros_Edit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormsPredPens\PredPensZapros_Edit.Designer.cs">
+      <DependentUpon>PredPensZapros_Edit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormsPredPens\PredPensZapros_List.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormsPredPens\PredPensZapros_List.Designer.cs">
+      <DependentUpon>PredPensZapros_List.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormsPredPens\PredPensZapros_EditStaff.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormsPredPens\PredPensZapros_EditStaff.Designer.cs">
+      <DependentUpon>PredPensZapros_EditStaff.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormsPredPens\PredPensZapros_Print.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormsPredPens\PredPensZapros_Print.Designer.cs">
+      <DependentUpon>PredPensZapros_Print.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormsPredPens\Report\PredPensZapros_Report.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="FormsPredPens\Report\PredPensZapros_Report.Designer.cs">
+      <DependentUpon>PredPensZapros_Report.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormsPredPens\PredPensSpravka_Print.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormsPredPens\PredPensSpravka_Print.Designer.cs">
+      <DependentUpon>PredPensSpravka_Print.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormsPredPens\Report\PredPensSpravka_Report.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="FormsPredPens\Report\PredPensSpravka_Report.Designer.cs">
+      <DependentUpon>PredPensSpravka_Report.cs</DependentUpon>
     </Compile>
     <Compile Include="FormsRSW1_2014\ADV_Print.cs">
       <SubType>Form</SubType>
@@ -760,6 +810,12 @@
     <Compile Include="FormsSZV_STAJ\SZV_STAJ_CreateSZVKORR.Designer.cs">
       <DependentUpon>SZV_STAJ_CreateSZVKORR.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormsSZV_STAJ\SZV_STAJ_CreateSZVSTAJD.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormsSZV_STAJ\SZV_STAJ_CreateSZVSTAJD.Designer.cs">
+      <DependentUpon>SZV_STAJ_CreateSZVSTAJD.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormsSZV_STAJ\SZV_STAJ_Edit.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -772,10 +828,334 @@
     <Compile Include="FormsSZV_STAJ\SZV_STAJ_FillStaff.Designer.cs">
       <DependentUpon>SZV_STAJ_FillStaff.cs</DependentUpon>
     </Compile>
-    <Compile Include="Models\Model.Designer.cs">
+    <Compile Include="FormsSZV_TD\Report\SZV_TD_Rep.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="FormsSZV_TD\Report\SZV_TD_Rep.Designer.cs">
+      <DependentUpon>SZV_TD_Rep.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormsSZV_TD\SZV_TD_CreateXmlPack.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormsSZV_TD\SZV_TD_CreateXmlPack.Designer.cs">
+      <DependentUpon>SZV_TD_CreateXmlPack.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormsSZV_TD\SZV_TD_Print.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormsSZV_TD\SZV_TD_Print.Designer.cs">
+      <DependentUpon>SZV_TD_Print.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormsSZV_TD\SZV_TD_Edit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormsSZV_TD\SZV_TD_Edit.Designer.cs">
+      <DependentUpon>SZV_TD_Edit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormsSZV_TD\SZV_TD_EditStaff.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormsSZV_TD\SZV_TD_EditStaff.Designer.cs">
+      <DependentUpon>SZV_TD_EditStaff.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormsSZV_TD\SZV_TD_EditStaff_Event.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormsSZV_TD\SZV_TD_EditStaff_Event.Designer.cs">
+      <DependentUpon>SZV_TD_EditStaff_Event.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormsSZV_TD\SZV_TD_List.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormsSZV_TD\SZV_TD_List.Designer.cs">
+      <DependentUpon>SZV_TD_List.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Models\BackupDB_Info.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CodeBaseRW3_2015.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Department.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DocumentTypes.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Dolgn.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DopTariff.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\FormsADW_1.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\FormsADW_2.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\FormsADW_3.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\FormsDSW_3.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\FormsDSW_3_Staff.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\FormsODV_1_2017.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\FormsODV_1_4_2017.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\FormsODV_1_5_2017.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\FormsODV_1_5_2017_OUT.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\FormsPredPens_Zapros.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\FormsPredPens_Zapros_Staff.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\FormsRSW.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\FormsRSW2014_1_1.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\FormsRSW2014_1_Razd_2_1.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\FormsRSW2014_1_Razd_2_4.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\FormsRSW2014_1_Razd_2_5_1.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\FormsRSW2014_1_Razd_2_5_2.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\FormsRSW2014_1_Razd_3_4.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\FormsRSW2014_1_Razd_4.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\FormsRSW2014_1_Razd_5.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\FormsRSW2014_1_Razd_6_1.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\FormsRSW2014_1_Razd_6_4.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\FormsRSW2014_1_Razd_6_6.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\FormsRSW2014_1_Razd_6_7.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\FormsRSW2014_2_1.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\FormsRSW2014_2_2.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\FormsRSW2014_2_3.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\FormsRW3_2015.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\FormsRW3_2015_Razd_3.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\FormsSPW2.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\FormsSZV_6.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\FormsSZV_6_4.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\FormsSZV_ISH_2017.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\FormsSZV_ISH_4_2017.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\FormsSZV_ISH_7_2017.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\FormsSZV_KORR_2017.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\FormsSZV_KORR_4_2017.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\FormsSZV_KORR_5_2017.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\FormsSZV_M_2016.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\FormsSZV_M_2016_Staff.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\FormsSZV_STAJ_2017.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\FormsSZV_STAJ_4_2017.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\FormsSZV_TD_2020.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\FormsSZV_TD_2020_Staff.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\FormsSZV_TD_2020_Staff_AnnuledEvents.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\FormsSZV_TD_2020_Staff_Events.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\FormsSZV_TD_2020_TypesOfEvents.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Insurer.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\IschislStrahStajDop.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\IschislStrahStajOsn.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\KodVred_1.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\KodVred_2.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\KodVred_3.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Model.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
+      <DependentUpon>Model.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Model.cs" />
+    <Compile Include="Models\Model.Designer.cs">
       <DependentUpon>Model.edmx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Models\Model1.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\MROT.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\OsobUslTruda.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\PlatCategory.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\PlatCategoryRaschPer.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\RaschetPeriod.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SpecOcenkaUslTruda.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SpecOcenkaUslTrudaDopTariff.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Staff.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\StaffDateWork.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\StaffInfo.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\StajLgot.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\StajOsn.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TariffCode.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TariffCodePlatCat.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TariffPlat.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TerrUsl.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TypeInfo.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Users.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\UsersActivity.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\UslDosrNazn.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\UslDosrNaznEdIzm.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\VidTrudDeyat.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ZAGS_Born.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ZAGS_Death.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\rsw2014.cs">
+      <DependentUpon>xmlModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\StaffList.cs">
+      <DependentUpon>xmlModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\xmlFile.cs">
+      <DependentUpon>xmlModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\xmlInfo.cs">
+      <DependentUpon>xmlModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\xmlModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>xmlModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\xmlModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>xmlModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -989,6 +1369,7 @@
     <Compile Include="SQLiteCompare\TableCompareWorker.cs" />
     <Compile Include="SQLiteParsers\SQLiteCreateTableStatement.cs" />
     <Compile Include="SQLiteParsers\SQLiteDdlStatement.cs" />
+    <Compile Include="SqlServerTypes\Loader.cs" />
     <Compile Include="StaffAnketaEdit.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1024,11 +1405,6 @@
     </Compile>
     <Compile Include="Import\ImportXML.Designer.cs">
       <DependentUpon>ImportXML.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Models\xmlContainer.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>xmlContainer.edmx</DependentUpon>
     </Compile>
     <Compile Include="Service\BaseManager.cs">
       <SubType>Form</SubType>
@@ -1434,16 +1810,50 @@
     <Compile Include="FormsSZV_6_2010\SZV_6_List.Designer.cs">
       <DependentUpon>SZV_6_List.cs</DependentUpon>
     </Compile>
+    <Compile Include="UserAccess\AccessCategory.cs">
+      <DependentUpon>xaccessModelEF.tt</DependentUpon>
+    </Compile>
+    <Compile Include="UserAccess\AccessLevel.cs">
+      <DependentUpon>xaccessModelEF.tt</DependentUpon>
+    </Compile>
+    <Compile Include="UserAccess\AccessObject.cs">
+      <DependentUpon>xaccessModelEF.tt</DependentUpon>
+    </Compile>
+    <Compile Include="UserAccess\Activity.cs">
+      <DependentUpon>xaccessModelEF.tt</DependentUpon>
+    </Compile>
+    <Compile Include="UserAccess\FormsToObjects.cs">
+      <DependentUpon>xaccessModelEF.tt</DependentUpon>
+    </Compile>
     <Compile Include="UserAccess\LoginFrm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="UserAccess\LoginFrm.Designer.cs">
       <DependentUpon>LoginFrm.cs</DependentUpon>
     </Compile>
+    <Compile Include="UserAccess\Roles.cs">
+      <DependentUpon>xaccessModelEF.tt</DependentUpon>
+    </Compile>
+    <Compile Include="UserAccess\Users.cs">
+      <DependentUpon>xaccessModelEF.tt</DependentUpon>
+    </Compile>
+    <Compile Include="UserAccess\UsersAccessLevelToObjects.cs">
+      <DependentUpon>xaccessModelEF.tt</DependentUpon>
+    </Compile>
     <Compile Include="UserAccess\xaccessModel.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>xaccessModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="UserAccess\xaccessModelEF.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>xaccessModelEF.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="UserAccess\xaccessModelEF.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>xaccessModelEF.tt</DependentUpon>
     </Compile>
     <Compile Include="ZAGS\Zags_Born\Born_List.cs">
       <SubType>Form</SubType>
@@ -1592,6 +2002,33 @@
     <EmbeddedResource Include="FormsODV1\Report\FormsODV1_Rep.resx">
       <DependentUpon>FormsODV1_Rep.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormsPredPens\PredPensSpravka_ImportXML.resx">
+      <DependentUpon>PredPensSpravka_ImportXML.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormsPredPens\PredPensZapros_CreateXML.resx">
+      <DependentUpon>PredPensZapros_CreateXML.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormsPredPens\PredPensZapros_Edit.resx">
+      <DependentUpon>PredPensZapros_Edit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormsPredPens\PredPensZapros_List.resx">
+      <DependentUpon>PredPensZapros_List.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormsPredPens\PredPensZapros_EditStaff.resx">
+      <DependentUpon>PredPensZapros_EditStaff.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormsPredPens\PredPensZapros_Print.resx">
+      <DependentUpon>PredPensZapros_Print.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormsPredPens\Report\PredPensZapros_Report.resx">
+      <DependentUpon>PredPensZapros_Report.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormsPredPens\PredPensSpravka_Print.resx">
+      <DependentUpon>PredPensSpravka_Print.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormsPredPens\Report\PredPensSpravka_Report.resx">
+      <DependentUpon>PredPensSpravka_Report.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormsRSW1_2014\ADV_Print.resx">
       <DependentUpon>ADV_Print.cs</DependentUpon>
     </EmbeddedResource>
@@ -1716,6 +2153,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="AboutBox.resx">
       <DependentUpon>AboutBox.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="FormsSZVM_2016\CreateXmlPack_SZV_M_2016.resx">
       <DependentUpon>CreateXmlPack_SZV_M_2016.cs</DependentUpon>
@@ -1786,11 +2224,35 @@
     <EmbeddedResource Include="FormsSZV_STAJ\SZV_STAJ_CreateSZVKORR.resx">
       <DependentUpon>SZV_STAJ_CreateSZVKORR.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormsSZV_STAJ\SZV_STAJ_CreateSZVSTAJD.resx">
+      <DependentUpon>SZV_STAJ_CreateSZVSTAJD.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormsSZV_STAJ\SZV_STAJ_Edit.resx">
       <DependentUpon>SZV_STAJ_Edit.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormsSZV_STAJ\SZV_STAJ_FillStaff.resx">
       <DependentUpon>SZV_STAJ_FillStaff.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormsSZV_TD\Report\SZV_TD_Rep.resx">
+      <DependentUpon>SZV_TD_Rep.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormsSZV_TD\SZV_TD_CreateXmlPack.resx">
+      <DependentUpon>SZV_TD_CreateXmlPack.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormsSZV_TD\SZV_TD_Print.resx">
+      <DependentUpon>SZV_TD_Print.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormsSZV_TD\SZV_TD_Edit.resx">
+      <DependentUpon>SZV_TD_Edit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormsSZV_TD\SZV_TD_EditStaff.resx">
+      <DependentUpon>SZV_TD_EditStaff.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormsSZV_TD\SZV_TD_EditStaff_Event.resx">
+      <DependentUpon>SZV_TD_EditStaff_Event.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormsSZV_TD\SZV_TD_List.resx">
+      <DependentUpon>SZV_TD_List.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -2097,9 +2559,6 @@
     <None Include="App.Config">
       <SubType>Designer</SubType>
     </None>
-    <None Include="app.manifest">
-      <SubType>Designer</SubType>
-    </None>
     <None Include="App_Data\pfrXML.db" />
     <None Include="App_Data\pu5.db3" />
     <EntityDeploy Include="Models\xmlContainer.edmx">
@@ -2107,6 +2566,7 @@
       <LastGenOutput>xmlContainer.Designer.cs</LastGenOutput>
     </EntityDeploy>
     <None Include="Base_emp\pu6_emp.db3" />
+    <None Include="ClassDiagram1.cd" />
     <EntityDeploy Include="Models\Model.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>Model.Designer.cs</LastGenOutput>
@@ -2376,8 +2836,49 @@
     <Content Include="history.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Models\Model.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>Model.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\Model.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>Model1.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\xmlModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>xmlModel.Context.cs</LastGenOutput>
+      <DependentUpon>xmlContainer.edmx</DependentUpon>
+    </Content>
+    <Content Include="Models\xmlModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>xmlModel.cs</LastGenOutput>
+      <DependentUpon>xmlContainer.edmx</DependentUpon>
+    </Content>
     <Content Include="pfr_logo_256px.ico" />
     <None Include="Resources\pfr_logo.png" />
+    <Content Include="SqlServerTypes\readme.htm" />
+    <Content Include="SqlServerTypes\x64\msvcr120.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlServerTypes\x64\SqlServerSpatial140.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlServerTypes\x86\msvcr120.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlServerTypes\x86\SqlServerSpatial140.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="UserAccess\xaccessModelEF.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>xaccessModelEF.Context.cs</LastGenOutput>
+      <DependentUpon>xaccessModel.edmx</DependentUpon>
+    </Content>
+    <Content Include="UserAccess\xaccessModelEF.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>xaccessModelEF.cs</LastGenOutput>
+      <DependentUpon>xaccessModel.edmx</DependentUpon>
+    </Content>
     <Content Include="XML\Schemas\СЗВ_М_2016\Справочники.xml" />
     <None Include="Service\Resources\pfr_logo.png" />
   </ItemGroup>

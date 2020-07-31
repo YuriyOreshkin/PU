@@ -204,7 +204,7 @@ namespace PU.FormsDSW3
                             SUMFEEPFR_PAYER = (decimal)SUMFEEPFR_PAYER.EditValue
                         };
 
-                        db.AddToFormsDSW_3_Staff(newItem);
+                        db.FormsDSW_3_Staff.Add(newItem);
 
                         if (i % 200 == 0)
                         {

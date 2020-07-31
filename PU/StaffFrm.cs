@@ -266,6 +266,7 @@ namespace PU
             child.ShowDialog();
             if (child.staff != null)
             {
+
                 dataGrid_upd();
 
                 string fio = child.staff.LastName + " " + child.staff.FirstName + " " + child.staff.MiddleName;
@@ -293,6 +294,7 @@ namespace PU
                 if (child.staff != null)
                 {
                 //    db = new pu6Entities();
+
                     dataGrid_upd();
                     staffGridView.Rows[rowindex].IsCurrent = true;
                 }

@@ -242,7 +242,7 @@ namespace PU.Models
                     catch { }
 
             //        pu6Entities db = new pu6Entities();
-            //        db.ExecuteStoreCommand(sql);
+            //        db.Database.ExecuteSqlCommand(sql);
 
                 }
                 else if (_parent != null)

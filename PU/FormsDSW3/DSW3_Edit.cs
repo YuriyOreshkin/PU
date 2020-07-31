@@ -2,7 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
+using System.Data.Entity;
 using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
@@ -45,7 +45,7 @@ namespace PU.FormsDSW3
             }
         }
 
-        public static StaffEdit SelfRef
+        public static DSW3_Edit SelfRef
         {
             get;
             set;
@@ -258,7 +258,7 @@ namespace PU.FormsDSW3
 
                             try
                             {
-                                db.AddToFormsDSW_3(DSW3Data);
+                                db.FormsDSW_3.Add(DSW3Data);
                                 db.SaveChanges();
                                 cleanData = false;
                                 this.Close();
@@ -273,7 +273,7 @@ namespace PU.FormsDSW3
                             try
                             {
                                 // сохраняем модифицированную запись обратно в бд
-                                db.ObjectStateManager.ChangeObjectState(DSW3Data, System.Data.EntityState.Modified);
+                                db.Entry(DSW3Data).State = EntityState.Modified;
                                 db.SaveChanges();
                                 cleanData = false;
                                 this.Close();
@@ -336,14 +336,14 @@ namespace PU.FormsDSW3
                 switch (action)
                 {
                     case "add":
-                        if (db.FormsDSW_3.Any(x => x.NUMBERPAYMENT == NUMBERPAYMENT.Text.Trim() && x.DATEPAYMENT == DATEPAYMENT.Value && x.YEAR == Year.Value))
+                        if (db.FormsDSW_3.Any(x => x.InsurerID == Options.InsID && x.NUMBERPAYMENT == NUMBERPAYMENT.Text.Trim() && x.DATEPAYMENT == DATEPAYMENT.Value && x.YEAR == Year.Value))
                         {
                             errMessBox.Add(new ErrList { name = "Ошибка! Нарушение уникальности записей." });
                         }
 
                         break;
                     case "edit":
-                        if (db.FormsDSW_3.Any(x => x.NUMBERPAYMENT == NUMBERPAYMENT.Text.Trim() && x.DATEPAYMENT == DATEPAYMENT.Value && x.YEAR == Year.Value && x.ID != DSW3Data.ID))
+                        if (db.FormsDSW_3.Any(x => x.InsurerID == Options.InsID && x.NUMBERPAYMENT == NUMBERPAYMENT.Text.Trim() && x.DATEPAYMENT == DATEPAYMENT.Value && x.YEAR == Year.Value && x.ID != DSW3Data.ID))
                         {
                             errMessBox.Add(new ErrList { name = "Ошибка! Нарушение уникальности записей." });
                         }

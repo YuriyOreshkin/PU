@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
+using System.Data.Entity;
 using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
@@ -239,7 +239,7 @@ namespace PU.FormsRSW2014
                         item.s_0_2 = Math.Round(prevANDCurrRSW64s.Where(x => x.s_1_2.HasValue).Sum(x => x.s_1_2.Value) + prevANDCurrRSW64s.Where(x => x.s_2_2.HasValue).Sum(x => x.s_2_2.Value) + prevANDCurrRSW64s.Where(x => x.s_3_2.HasValue).Sum(x => x.s_3_2.Value), 2, MidpointRounding.AwayFromZero);
                         item.s_0_3 = Math.Round(prevANDCurrRSW64s.Where(x => x.s_1_3.HasValue).Sum(x => x.s_1_3.Value) + prevANDCurrRSW64s.Where(x => x.s_2_3.HasValue).Sum(x => x.s_2_3.Value) + prevANDCurrRSW64s.Where(x => x.s_3_3.HasValue).Sum(x => x.s_3_3.Value), 2, MidpointRounding.AwayFromZero);
 
-                        db.ObjectStateManager.ChangeObjectState(item, EntityState.Modified);
+                        db.Entry(item).State = EntityState.Modified;
                     }
                 }
 
@@ -251,7 +251,7 @@ namespace PU.FormsRSW2014
                         item.s_0_0 = Math.Round(prevANDCurrRSW67s.Where(x => x.s_1_0.HasValue).Sum(x => x.s_1_0.Value) + prevANDCurrRSW67s.Where(x => x.s_2_0.HasValue).Sum(x => x.s_2_0.Value) + prevANDCurrRSW67s.Where(x => x.s_3_0.HasValue).Sum(x => x.s_3_0.Value), 2, MidpointRounding.AwayFromZero);
                         item.s_0_1 = Math.Round(prevANDCurrRSW67s.Where(x => x.s_1_1.HasValue).Sum(x => x.s_1_1.Value) + prevANDCurrRSW67s.Where(x => x.s_2_1.HasValue).Sum(x => x.s_2_1.Value) + prevANDCurrRSW67s.Where(x => x.s_3_1.HasValue).Sum(x => x.s_3_1.Value), 2, MidpointRounding.AwayFromZero);
 
-                        db.ObjectStateManager.ChangeObjectState(item, EntityState.Modified);
+                        db.Entry(item).State = EntityState.Modified;
                     }
                 }
 

@@ -255,7 +255,7 @@ namespace PU.FormsSZVM_2016
                             else
                                 newStaff.TabelNumber = null;
 
-                            db.AddToStaff(newStaff);
+                            db.Staff.Add(newStaff);
                             db.SaveChanges();
 
                         }
@@ -284,7 +284,7 @@ namespace PU.FormsSZVM_2016
                                 StaffID = staffID,
                             };
 
-                            db.AddToFormsSZV_M_2016_Staff(szvmstaffNew);
+                            db.FormsSZV_M_2016_Staff.Add(szvmstaffNew);
                             try
                             {
                                 db.SaveChanges();

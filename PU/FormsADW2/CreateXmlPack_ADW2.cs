@@ -237,7 +237,7 @@ namespace PU.FormsADW2
             {
                 query = String.Format("DELETE FROM xmlInfo WHERE ([Year] = {0} AND [Quarter] = {1} AND [InsurerID] = {2} AND [FormatType] = 'adw2'); VACUUM;", 0, 0, Options.InsID);
 
-                dbxml.ExecuteStoreCommand(query);
+                dbxml.Database.ExecuteSqlCommand(query);
             }
             catch
             {
@@ -345,8 +345,8 @@ namespace PU.FormsADW2
                     {
                         xml_info.StaffList.Add(item);
                     }
-                    dbxmlTemp.AddToxmlInfo(xml_info);
-                    //       dbxml.ObjectStateManager.ChangeObjectState(xml_info, EntityState.Modified);
+                    dbxmlTemp.xmlInfo.Add(xml_info);
+                    //       dbxml.Entry(xml_info, EntityState.Modified);
                     dbxmlTemp.SaveChanges();
 
                     v++;

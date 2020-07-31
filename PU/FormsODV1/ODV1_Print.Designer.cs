@@ -40,13 +40,13 @@
             this.reportViewer1.Size = new System.Drawing.Size(792, 820);
             this.reportViewer1.TabIndex = 0;
             // 
-            // FormsODV1_Print
+            // ODV1_Print
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(792, 820);
             this.Controls.Add(this.reportViewer1);
-            this.Name = "FormsODV1_Print";
+            this.Name = "ODV1_Print";
             // 
             // 
             // 
@@ -54,7 +54,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Предварительный просмотр";
             this.ThemeName = "Office2013Light";
-            this.Load += new System.EventHandler(this.FormsODV1_Print_Load);
+            this.Load += new System.EventHandler(this.ODV1_Print_Load);
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
             this.ResumeLayout(false);
 

@@ -179,7 +179,7 @@ namespace PU.FormsRSW2_2014
                 child.YearT = Year;
                 child.ShowDialog();
                 child.Dispose();
-                db.DetectChanges();
+                db.ChangeTracker.DetectChanges();
                 db = new pu6Entities();
                 rsw2Grid_upd();
             }
@@ -205,7 +205,7 @@ namespace PU.FormsRSW2_2014
                 child.RSW_2_3_List = rsw_data.FormsRSW2014_2_3.OrderBy(x => x.ID).ToList();
                 child.ShowDialog();
                 child.Dispose();
-                db.DetectChanges();
+                db.ChangeTracker.DetectChanges();
                 db = new pu6Entities();
                 rsw2Grid_upd();
             }
@@ -229,7 +229,7 @@ namespace PU.FormsRSW2_2014
 
                     try
                     {
-                        db.ExecuteStoreCommand(String.Format("DELETE FROM FormsRSW2014_2_1 WHERE ([ID] = {0})", id));
+                        db.Database.ExecuteSqlCommand(String.Format("DELETE FROM FormsRSW2014_2_1 WHERE ([ID] = {0})", id));
                         db = new pu6Entities();
                         rsw2Grid_upd();
                     }

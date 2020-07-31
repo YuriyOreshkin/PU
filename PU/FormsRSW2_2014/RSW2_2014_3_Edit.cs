@@ -103,7 +103,7 @@ namespace PU.FormsRSW2_2014
                                 DateBirth = new DateTime((int)Year.Value, 1, 1)
                             };
 
-                            db.AddToStaff(newStaff);
+                            db.Staff.Add(newStaff);
                             db.SaveChanges();
 
                         }

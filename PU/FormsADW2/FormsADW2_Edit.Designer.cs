@@ -1132,6 +1132,11 @@
             0,
             0});
             this.numSpinEditor.Name = "numSpinEditor";
+            this.numSpinEditor.NullableValue = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             this.numSpinEditor.Size = new System.Drawing.Size(51, 21);
             this.numSpinEditor.TabIndex = 20;
             this.numSpinEditor.TabStop = false;

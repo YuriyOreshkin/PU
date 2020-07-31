@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
+using System.Data.Entity;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -125,7 +125,7 @@ namespace PU.FormsRSW2014
                         rowindex = rowindex + 1 == radGridView1.RowCount ? rowindex - 1 : rowindex;
 
                         MROT mrot = db.MROT.FirstOrDefault(x => x.ID == id);
-                        db.MROT.DeleteObject(mrot);
+                        db.MROT.Remove(mrot);
                         db.SaveChanges();
                         dataGrid_upd();
 
@@ -179,7 +179,7 @@ namespace PU.FormsRSW2014
             {
                 if (!db.MROT.Any(x => x.Year == mrot.Year))
                 {
-                    db.MROT.AddObject(mrot);
+                    db.MROT.Add(mrot);
                     db.SaveChanges();
                     dataGrid_upd();
                     radGridView1.Rows[rowindex].IsCurrent = true;
@@ -214,7 +214,7 @@ namespace PU.FormsRSW2014
                     mr.NalogBase = mrot.NalogBase;
                     mr.Mrot1 = mrot.Mrot1;
 
-                    db.ObjectStateManager.ChangeObjectState(mr, EntityState.Modified);
+                    db.Entry(mr).State = EntityState.Modified;
                     db.SaveChanges();
                     dataGrid_upd();
                     radGridView1.Rows[rowindex].IsCurrent = true;

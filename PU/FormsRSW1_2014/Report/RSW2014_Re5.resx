@@ -123,7 +123,7 @@
   <data name="textBox4.Value" xml:space="preserve">
     <value>** Информация представляется на основании положений части 9.1 статьи 15 Федерального закона от 24 июля 2009 г. № 212-ФЗ о студенческих отрядах, включенных в федеральный или региональный реестр молодежных и детских объединений, пользующихся государственной поддержкой.</value>
   </data>
-  <assembly alias="Telerik.Reporting" name="Telerik.Reporting, Version=10.0.16.204, Culture=neutral, PublicKeyToken=a9d7983dfcc261be" />
+  <assembly alias="Telerik.Reporting" name="Telerik.Reporting, Version=13.1.19.514, Culture=neutral, PublicKeyToken=a9d7983dfcc261be" />
   <data name="$this.SnapGridSize" type="Telerik.Reporting.Drawing.Unit, Telerik.Reporting">
     <value>0.1cm</value>
   </data>

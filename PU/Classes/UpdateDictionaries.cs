@@ -25,7 +25,7 @@ namespace PU.Classes
             string tableType = tableName;
 
             String[] tableList1 = new string[] { "TerrUsl", "OsobUslTruda", "IschislStrahStajOsn", "IschislStrahStajDop", "VidTrudDeyat", "SpecOcenkaUslTruda" };
-            String[] tableList2 = new string[] { "DocumentTypes", "KodVred_1" };
+            String[] tableList2 = new string[] { "DocumentTypes", "KodVred_1", "FormsSZV_TD_2020_TypesOfEvents" };
             String[] tableList3 = new string[] { "KodVred_2", "KodVred_3" };
             String[] tableList4 = new string[] { "TariffPlat", "MROT", "DopTariff", "CodeBaseRW3_2015" };
 
@@ -104,7 +104,7 @@ namespace PU.Classes
                             }
                         }
 
-                        db.ExecuteStoreCommand(query);
+                        db.Database.ExecuteSqlCommand(query);
                         result = true;
                     }
                     catch (Exception ex)
@@ -165,7 +165,7 @@ namespace PU.Classes
                             }
                         }
 
-                        db.ExecuteStoreCommand(query);
+                        db.Database.ExecuteSqlCommand(query);
                         result = true;
                     }
                     catch (Exception ex)
@@ -217,7 +217,7 @@ namespace PU.Classes
                             }
                         }
 
-                        db.ExecuteStoreCommand(query);
+                        db.Database.ExecuteSqlCommand(query);
                         result = true;
                     }
                     catch (Exception ex)
@@ -270,7 +270,7 @@ namespace PU.Classes
                             }
                         }
 
-                        db.ExecuteStoreCommand(query);
+                        db.Database.ExecuteSqlCommand(query);
                         result = true;
                     }
                     catch (Exception ex)
@@ -343,7 +343,7 @@ namespace PU.Classes
                             }
                         }
 
-                        db.ExecuteStoreCommand(query);
+                        db.Database.ExecuteSqlCommand(query);
                         result = true;
                     }
                     catch (Exception ex)
@@ -412,7 +412,7 @@ namespace PU.Classes
                             }
                         }
 
-                        db.ExecuteStoreCommand(query);
+                        db.Database.ExecuteSqlCommand(query);
                         result = true;
                     }
                     catch (Exception ex)
@@ -439,7 +439,7 @@ namespace PU.Classes
                             con.Close();
 
                             query = String.Format(@"DELETE FROM {0}", tableName);
-                            db.ExecuteStoreCommand(query);
+                            db.Database.ExecuteSqlCommand(query);
                             query = "";
 
                             foreach (DataRow item in ds.Tables[0].Rows)
@@ -462,7 +462,7 @@ namespace PU.Classes
                             }
                         }
 
-                        db.ExecuteStoreCommand(query);
+                        db.Database.ExecuteSqlCommand(query);
                         result = true;
                     }
                     catch (Exception ex)
@@ -523,7 +523,7 @@ namespace PU.Classes
                             da.Fill(ds);
                             con.Close();
                             query = @"DELETE FROM TariffCodePlatCat";
-                            db.ExecuteStoreCommand(query);
+                            db.Database.ExecuteSqlCommand(query);
                             query = "";
 
                             foreach (DataRow item in ds.Tables[0].Rows)
@@ -559,7 +559,7 @@ namespace PU.Classes
                             }
                         }
 
-                        db.ExecuteStoreCommand(query);
+                        db.Database.ExecuteSqlCommand(query);
 
                         query = "";
                         foreach(var item in TCPL_list)
@@ -569,7 +569,7 @@ namespace PU.Classes
                             query = query + String.Format(@" INSERT INTO TariffCodePlatCat (PlatCategoryID, TariffCodeID) VALUES ({0}, {1});", item.PlatCategoryID.ToString(), item.TariffCodeID.ToString());
 
                         }
-                        db.ExecuteStoreCommand(query);
+                        db.Database.ExecuteSqlCommand(query);
 
                         result = true;
                     }

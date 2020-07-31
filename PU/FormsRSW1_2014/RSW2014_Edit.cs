@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
+using System.Data.Entity;
 using System.Drawing;
 using System.Text;
 using System.Linq;
@@ -166,7 +166,7 @@ namespace PU.FormsRSW2014
             }
             if (yearType == 2015)
             {
-                avail_periods = Options.RaschetPeriodInternal.Where(x => (x.Year == 2015 && (x.Kvartal == 6 || x.Kvartal == 9 || x.Kvartal == 0)) || (x.Year == 2016)).OrderBy(x => x.Year);
+                avail_periods = Options.RaschetPeriodInternal.Where(x => (x.Year == 2015 && (x.Kvartal == 6 || x.Kvartal == 9 || x.Kvartal == 0)) || (x.Year >= 2016)).OrderBy(x => x.Year);
             }
             DateUnderwrite.Value = DateTime.Now.Date;
             AutoCalcSwitch.IsOn = RSWdata.AutoCalc.HasValue ? RSWdata.AutoCalc.Value : false;
@@ -898,7 +898,7 @@ namespace PU.FormsRSW2014
                 //            child.CorrNum = (byte)0;
                 child.action = "add";
                 child.ShowDialog();
-                db.DetectChanges();
+                db.ChangeTracker.DetectChanges();
                 db = new pu6Entities();
                 gridUpdate_6_1(null, null);
             }
@@ -959,7 +959,7 @@ namespace PU.FormsRSW2014
                 child.RSW_6_7_List = rsw_6.FormsRSW2014_1_Razd_6_7.OrderBy(x => x.ID).ToList();
                 child.staff = rsw_6.Staff;
                 child.ShowDialog();
-                db.DetectChanges();
+                db.ChangeTracker.DetectChanges();
                 db = new pu6Entities();
 
                 gridUpdate_6_1(null, null);
@@ -1611,7 +1611,7 @@ namespace PU.FormsRSW2014
                             item.Quarter = RSWdata.Quarter;
                             item.InsurerID = RSWdata.InsurerID;
 
-                            db.ObjectStateManager.ChangeObjectState(item, System.Data.EntityState.Modified);
+                            db.Entry(item).State = EntityState.Modified;
                         }
 
 
@@ -1638,7 +1638,7 @@ namespace PU.FormsRSW2014
                             flag_ok = false;
                             #region Сохранение новой записи
 
-                            db.AddToFormsRSW2014_1_1(RSWdata);
+                            db.FormsRSW2014_1_1.Add(RSWdata);
                             foreach (var item in RSW_2_1_List)
                             {
                                 /*          item.CorrectionNum = RSWdata.CorrectionNum;
@@ -1665,7 +1665,7 @@ namespace PU.FormsRSW2014
 
                                 }
 
-                                db.AddToFormsRSW2014_1_Razd_2_1(r);
+                                db.FormsRSW2014_1_Razd_2_1.Add(r);
                             }
 
                             foreach (var item in RSW_2_4_List)
@@ -1689,7 +1689,7 @@ namespace PU.FormsRSW2014
 
                                 }
 
-                                db.AddToFormsRSW2014_1_Razd_2_4(r);
+                                db.FormsRSW2014_1_Razd_2_4.Add(r);
                             }
 
                             foreach (var item in RSW_3_4_List)
@@ -1713,7 +1713,7 @@ namespace PU.FormsRSW2014
 
                                 }
 
-                                db.AddToFormsRSW2014_1_Razd_3_4(r);
+                                db.FormsRSW2014_1_Razd_3_4.Add(r);
                             }
 
                             foreach (var item in RSW_4_List)
@@ -1737,7 +1737,7 @@ namespace PU.FormsRSW2014
 
                                 }
 
-                                db.AddToFormsRSW2014_1_Razd_4(r);
+                                db.FormsRSW2014_1_Razd_4.Add(r);
                             }
 
                             foreach (var item in RSW_5_List)
@@ -1761,7 +1761,7 @@ namespace PU.FormsRSW2014
 
                                 }
 
-                                db.AddToFormsRSW2014_1_Razd_5(r);
+                                db.FormsRSW2014_1_Razd_5.Add(r);
                             }
 
                             flag_ok = true;
@@ -1819,7 +1819,7 @@ namespace PU.FormsRSW2014
 
 
                             // сохраняем модифицированную запись обратно в бд
-                            db.ObjectStateManager.ChangeObjectState(r1, System.Data.EntityState.Modified);
+                            db.Entry(r1).State = EntityState.Modified;
                             //                                db.SaveChanges();
                             flag_ok = true;
 
@@ -1844,7 +1844,7 @@ namespace PU.FormsRSW2014
 
                                 foreach (var item in list_for_del)
                                 {
-                                    db.FormsRSW2014_1_Razd_2_1.DeleteObject(item);
+                                    db.FormsRSW2014_1_Razd_2_1.Remove(item);
                                 }
 
                                 if (list_for_del.Count() != 0)
@@ -1902,7 +1902,7 @@ namespace PU.FormsRSW2014
                                         if (flag_edited) // если записи отличаются
                                         {
 
-                                            db.ObjectStateManager.ChangeObjectState(rsw_temp, System.Data.EntityState.Modified);
+                                            db.Entry(rsw_temp).State = EntityState.Modified;
 
                                         }
 
@@ -1927,7 +1927,7 @@ namespace PU.FormsRSW2014
 
                                         }
 
-                                        db.AddToFormsRSW2014_1_Razd_2_1(r);
+                                        db.FormsRSW2014_1_Razd_2_1.Add(r);
                                     }
 
 
@@ -1953,7 +1953,7 @@ namespace PU.FormsRSW2014
 
                                 foreach (var item in list_for_del)
                                 {
-                                    db.FormsRSW2014_1_Razd_2_4.DeleteObject(item);
+                                    db.FormsRSW2014_1_Razd_2_4.Remove(item);
                                 }
 
                                 if (list_for_del.Count() != 0)
@@ -2012,7 +2012,7 @@ namespace PU.FormsRSW2014
                                         if (flag_edited) // если записи отличаются
                                         {
 
-                                            db.ObjectStateManager.ChangeObjectState(rsw_temp, System.Data.EntityState.Modified);
+                                            db.Entry(rsw_temp).State =EntityState.Modified;
 
                                         }
 
@@ -2037,7 +2037,7 @@ namespace PU.FormsRSW2014
 
                                         }
 
-                                        db.AddToFormsRSW2014_1_Razd_2_4(r);
+                                        db.FormsRSW2014_1_Razd_2_4.Add(r);
                                     }
 
 
@@ -2062,7 +2062,7 @@ namespace PU.FormsRSW2014
                                     foreach (var item in RSW_2_5_1_List_from_db)
                                     {
                                         item.CorrectionNum = RSWdata.CorrectionNum;
-                                        db.ObjectStateManager.ChangeObjectState(item, System.Data.EntityState.Modified);
+                                        db.Entry(item).State = EntityState.Modified;
                                     }
 
                                     flag_ok = true;
@@ -2084,7 +2084,7 @@ namespace PU.FormsRSW2014
                                     foreach (var item in RSW_2_5_2_List_from_db)
                                     {
                                         item.CorrectionNum = RSWdata.CorrectionNum;
-                                        db.ObjectStateManager.ChangeObjectState(item, System.Data.EntityState.Modified);
+                                        db.Entry(item).State  = EntityState.Modified;
                                     }
 
                                     flag_ok = true;
@@ -2107,7 +2107,7 @@ namespace PU.FormsRSW2014
 
                                 foreach (var item in list_for_del)
                                 {
-                                    db.FormsRSW2014_1_Razd_3_4.DeleteObject(item);
+                                    db.FormsRSW2014_1_Razd_3_4.Remove(item);
                                 }
 
                                 if (list_for_del.Count() != 0)
@@ -2166,7 +2166,7 @@ namespace PU.FormsRSW2014
                                         if (flag_edited) // если записи отличаются
                                         {
 
-                                            db.ObjectStateManager.ChangeObjectState(rsw_temp, System.Data.EntityState.Modified);
+                                            db.Entry(rsw_temp).State = EntityState.Modified;
 
                                         }
 
@@ -2191,7 +2191,7 @@ namespace PU.FormsRSW2014
 
                                         }
 
-                                        db.AddToFormsRSW2014_1_Razd_3_4(r);
+                                        db.FormsRSW2014_1_Razd_3_4.Add(r);
                                     }
 
 
@@ -2217,7 +2217,7 @@ namespace PU.FormsRSW2014
 
                                 foreach (var item in list_for_del)
                                 {
-                                    db.FormsRSW2014_1_Razd_4.DeleteObject(item);
+                                    db.FormsRSW2014_1_Razd_4.Remove(item);
                                 }
 
                                 if (list_for_del.Count() != 0)
@@ -2276,7 +2276,7 @@ namespace PU.FormsRSW2014
                                         if (flag_edited) // если записи отличаются
                                         {
 
-                                            db.ObjectStateManager.ChangeObjectState(rsw_temp, System.Data.EntityState.Modified);
+                                            db.Entry(rsw_temp).State = EntityState.Modified;
 
                                         }
 
@@ -2301,7 +2301,7 @@ namespace PU.FormsRSW2014
 
                                         }
 
-                                        db.AddToFormsRSW2014_1_Razd_4(r);
+                                        db.FormsRSW2014_1_Razd_4.Add(r);
                                     }
 
 
@@ -2328,7 +2328,7 @@ namespace PU.FormsRSW2014
 
                                 foreach (var item in list_for_del)
                                 {
-                                    db.FormsRSW2014_1_Razd_5.DeleteObject(item);
+                                    db.FormsRSW2014_1_Razd_5.Remove(item);
                                 }
 
                                 if (list_for_del.Count() != 0)
@@ -2387,7 +2387,7 @@ namespace PU.FormsRSW2014
                                         if (flag_edited) // если записи отличаются
                                         {
 
-                                            db.ObjectStateManager.ChangeObjectState(rsw_temp, System.Data.EntityState.Modified);
+                                            db.Entry(rsw_temp).State = EntityState.Modified;
 
                                         }
 
@@ -2412,7 +2412,7 @@ namespace PU.FormsRSW2014
 
                                         }
 
-                                        db.AddToFormsRSW2014_1_Razd_5(r);
+                                        db.FormsRSW2014_1_Razd_5.Add(r);
                                     }
 
 
@@ -3326,7 +3326,7 @@ namespace PU.FormsRSW2014
 
                     try
                     {
-                        db.ExecuteStoreCommand(String.Format("DELETE FROM FormsRSW2014_1_Razd_6_1 WHERE ([ID] = {0})", id));
+                        db.Database.ExecuteSqlCommand(String.Format("DELETE FROM FormsRSW2014_1_Razd_6_1 WHERE ([ID] = {0})", id));
                     }
                     catch (Exception ex)
                     {

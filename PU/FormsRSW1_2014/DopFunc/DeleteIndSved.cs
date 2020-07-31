@@ -370,7 +370,7 @@ namespace PU.FormsRSW2014
             {
                 try
                 {
-                    db.ExecuteStoreCommand(String.Format("DELETE FROM FormsRSW2014_1_Razd_6_1 WHERE ([ID] IN ({0}))", list));
+                    db.Database.ExecuteSqlCommand(String.Format("DELETE FROM FormsRSW2014_1_Razd_6_1 WHERE ([ID] IN ({0}))", list));
                 }
                 catch (Exception ex)
                 {
@@ -381,7 +381,7 @@ namespace PU.FormsRSW2014
             {
                 try
                 {
-                    db.ExecuteStoreCommand(String.Format("UPDATE FormsRSW2014_1_Razd_6_1 SET RegNumKorr = \"\" WHERE (([ID] IN ({0})) AND (RegNumKorr <> \"\"))", list));
+                    db.Database.ExecuteSqlCommand(String.Format("UPDATE FormsRSW2014_1_Razd_6_1 SET RegNumKorr = \"\" WHERE (([ID] IN ({0})) AND (RegNumKorr <> \"\"))", list));
                 }
                 catch (Exception ex)
                 {
@@ -413,7 +413,7 @@ namespace PU.FormsRSW2014
 
                     try
                     {
-                        db.ExecuteStoreCommand(String.Format("DELETE FROM FormsRSW2014_1_Razd_6_1 WHERE ([ID] = {0})", item.ID));
+                        db.Database.ExecuteSqlCommand(String.Format("DELETE FROM FormsRSW2014_1_Razd_6_1 WHERE ([ID] = {0})", item.ID));
                     }
                     catch (Exception ex)
                     {
@@ -441,7 +441,7 @@ namespace PU.FormsRSW2014
                 {
                     try
                     {
-                        db.ExecuteStoreCommand(String.Format("DELETE FROM FormsRSW2014_1_Razd_6_1 WHERE ([ID] IN ({0}))", list));
+                        db.Database.ExecuteSqlCommand(String.Format("DELETE FROM FormsRSW2014_1_Razd_6_1 WHERE ([ID] IN ({0}))", list));
                     }
                     catch (Exception ex)
                     {
@@ -456,11 +456,11 @@ namespace PU.FormsRSW2014
                         {
                             if (PlatCat != null)
                             {
-                                db.ExecuteStoreCommand(String.Format("DELETE FROM FormsRSW2014_1_Razd_6_4 WHERE (([FormsRSW2014_1_Razd_6_1_ID] IN ({0})) AND (PlatCategoryID = {1}))", list, PlatCat.ID));
+                                db.Database.ExecuteSqlCommand(String.Format("DELETE FROM FormsRSW2014_1_Razd_6_4 WHERE (([FormsRSW2014_1_Razd_6_1_ID] IN ({0})) AND (PlatCategoryID = {1}))", list, PlatCat.ID));
                             }
                             else
                             {
-                                db.ExecuteStoreCommand(String.Format("DELETE FROM FormsRSW2014_1_Razd_6_4 WHERE ([FormsRSW2014_1_Razd_6_1_ID] IN ({0}))", list));
+                                db.Database.ExecuteSqlCommand(String.Format("DELETE FROM FormsRSW2014_1_Razd_6_4 WHERE ([FormsRSW2014_1_Razd_6_1_ID] IN ({0}))", list));
                             }
                         }
                         catch (Exception ex)
@@ -472,7 +472,7 @@ namespace PU.FormsRSW2014
                     {
                         try
                         {
-                            db.ExecuteStoreCommand(String.Format("UPDATE FormsRSW2014_1_Razd_6_1 SET SumFeePFR = 0 WHERE ([ID] IN ({0}))", list));
+                            db.Database.ExecuteSqlCommand(String.Format("UPDATE FormsRSW2014_1_Razd_6_1 SET SumFeePFR = 0 WHERE ([ID] IN ({0}))", list));
                         }
                         catch (Exception ex)
                         {
@@ -484,7 +484,7 @@ namespace PU.FormsRSW2014
                     {
                         try
                         {
-                            db.ExecuteStoreCommand(String.Format("DELETE FROM FormsRSW2014_1_Razd_6_7 WHERE ([FormsRSW2014_1_Razd_6_1_ID] IN ({0}))", list));
+                            db.Database.ExecuteSqlCommand(String.Format("DELETE FROM FormsRSW2014_1_Razd_6_7 WHERE ([FormsRSW2014_1_Razd_6_1_ID] IN ({0}))", list));
                         }
                         catch (Exception ex)
                         {
@@ -495,7 +495,7 @@ namespace PU.FormsRSW2014
                     {
                         try
                         {
-                            db.ExecuteStoreCommand(String.Format("DELETE FROM FormsRSW2014_1_Razd_6_6 WHERE ([FormsRSW2014_1_Razd_6_1_ID] IN ({0}))", list));
+                            db.Database.ExecuteSqlCommand(String.Format("DELETE FROM FormsRSW2014_1_Razd_6_6 WHERE ([FormsRSW2014_1_Razd_6_1_ID] IN ({0}))", list));
                         }
                         catch (Exception ex)
                         {
@@ -506,7 +506,7 @@ namespace PU.FormsRSW2014
                     {
                         try
                         {
-                            db.ExecuteStoreCommand(String.Format("DELETE FROM StajOsn WHERE ([FormsRSW2014_1_Razd_6_1_ID] IN ({0}))", list));
+                            db.Database.ExecuteSqlCommand(String.Format("DELETE FROM StajOsn WHERE ([FormsRSW2014_1_Razd_6_1_ID] IN ({0}))", list));
                         }
                         catch (Exception ex)
                         {

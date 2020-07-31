@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
+using System.Data.Entity;
 using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
@@ -111,7 +111,7 @@ namespace PU.FormsRSW2014
             {
                 if (!db.SpecOcenkaUslTrudaDopTariff.Any(x => x.Rate == child.formData.Rate && x.Type == child.formData.Type && x.SpecOcenkaUslTrudaID == child.formData.SpecOcenkaUslTrudaID && x.DateBegin.Value == child.formData.DateBegin.Value))
                 {
-                    db.SpecOcenkaUslTrudaDopTariff.AddObject(child.formData);
+                    db.SpecOcenkaUslTrudaDopTariff.Add(child.formData);
                     db.SaveChanges();
                     dataGrid_upd();
                     radGridView1.Rows[rowindex].IsCurrent = true;
@@ -154,7 +154,7 @@ namespace PU.FormsRSW2014
                         sc.Rate = child.formData.Rate;
                         sc.Type = child.formData.Type;
 
-                        db.ObjectStateManager.ChangeObjectState(sc, EntityState.Modified);
+                        db.Entry(sc).State = EntityState.Modified;
                         db.SaveChanges();
                         dataGrid_upd();
                         radGridView1.Rows[rowindex].IsCurrent = true;
@@ -190,7 +190,7 @@ namespace PU.FormsRSW2014
                         rowindex = rowindex + 1 == radGridView1.RowCount ? rowindex - 1 : rowindex;
                         SpecOcenkaUslTrudaDopTariff sc = db.SpecOcenkaUslTrudaDopTariff.FirstOrDefault(x => x.ID == id);
 
-                        db.SpecOcenkaUslTrudaDopTariff.DeleteObject(sc);
+                        db.SpecOcenkaUslTrudaDopTariff.Remove(sc);
                         db.SaveChanges();
                         dataGrid_upd();
 

@@ -1,10 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
-using System.Drawing;
+using System.Data.Entity;
 using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 using PU.Models;
 using Telerik.WinControls;
@@ -122,13 +120,13 @@ namespace PU.FormsRSW2014
             if (child.formData != null)
             {
                 TariffCode tariff = child.formData;
-                db.TariffCode.AddObject(tariff);
+                db.TariffCode.Add(tariff);
 
                 if (child.selectedItems != null)
                 {
                     foreach (var item in child.selectedItems)
                     {
-                        db.TariffCodePlatCat.AddObject(new TariffCodePlatCat { PlatCategoryID = item, TariffCodeID = tariff.ID });
+                        db.TariffCodePlatCat.Add(new TariffCodePlatCat { PlatCategoryID = item, TariffCodeID = tariff.ID });
                     }
                 }
 
@@ -161,7 +159,7 @@ namespace PU.FormsRSW2014
                     tariff.Code = child.formData.Code;
                     tariff.DateBegin = child.formData.DateBegin;
                     tariff.DateEnd = child.formData.DateEnd;
-                    db.ObjectStateManager.ChangeObjectState(tariff, EntityState.Modified);
+                    db.Entry(tariff).State = EntityState.Modified;
 
                     var list = db.TariffCodePlatCat.Where(x => x.TariffCodeID == tariff.ID);
                     if (child.selectedItems != null)
@@ -171,14 +169,14 @@ namespace PU.FormsRSW2014
                         list = list.Where(x => !listForDel.Select(y => y.ID).Contains(x.ID));
                         foreach (var item in listForDel)
                         {
-                            db.TariffCodePlatCat.DeleteObject(item);
+                            db.TariffCodePlatCat.Remove(item);
                         }
 
                         foreach (var item in newList)
                         {
                             if (!list.Select(x => x.PlatCategoryID).Contains(item))
                             {
-                                db.TariffCodePlatCat.AddObject(new TariffCodePlatCat { PlatCategoryID = item, TariffCodeID = tariff.ID });
+                                db.TariffCodePlatCat.Add(new TariffCodePlatCat { PlatCategoryID = item, TariffCodeID = tariff.ID });
                             }
                         }
 
@@ -189,7 +187,7 @@ namespace PU.FormsRSW2014
                         if (db.TariffCodePlatCat.Any(x => x.TariffCodeID == tariff.ID))
                         {
                             foreach (var item in list)
-                                db.TariffCodePlatCat.DeleteObject(item);
+                                db.TariffCodePlatCat.Remove(item);
                         }
 
                     }
@@ -218,10 +216,10 @@ namespace PU.FormsRSW2014
             var b = db.TariffCodePlatCat.Where(x => list.Contains(x.ID));
             foreach (var item in b)
             {
-                db.TariffCodePlatCat.DeleteObject(item);
+                db.TariffCodePlatCat.Remove(item);
 
             }
-            db.TariffCode.DeleteObject(tariff);
+            db.TariffCode.Remove(tariff);
             db.SaveChanges();
 
             dataGrid_upd();

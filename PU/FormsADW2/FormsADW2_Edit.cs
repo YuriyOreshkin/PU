@@ -1,15 +1,10 @@
 ﻿using PU.FormsRSW2014;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Text;
+using System.Data.Entity;
 using System.Windows.Forms;
 using Telerik.WinControls;
 using System.Linq;
 using PU.Models;
-using PU.Classes;
 using Telerik.WinControls.UI;
 
 namespace PU.FormsADW2
@@ -357,7 +352,7 @@ namespace PU.FormsADW2
                         //    return;
                         //}
 
-                        db.FormsADW_2.AddObject(adw_2);
+                        db.FormsADW_2.Add(adw_2);
                         db.SaveChanges();
                         this.Close();
                     }
@@ -377,7 +372,7 @@ namespace PU.FormsADW2
                         }
 
 
-                        db.ObjectStateManager.ChangeObjectState(adw_2, EntityState.Modified);
+                        db.Entry(adw_2).State = EntityState.Modified;
                         db.SaveChanges();
                         this.Close();
                     }

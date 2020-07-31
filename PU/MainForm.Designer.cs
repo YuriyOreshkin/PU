@@ -65,6 +65,7 @@
             this.radMenuItem60 = new Telerik.WinControls.UI.RadMenuItem();
             this.radMenuItem62 = new Telerik.WinControls.UI.RadMenuItem();
             this.radMenuItem63 = new Telerik.WinControls.UI.RadMenuItem();
+            this.radMenuItem69 = new Telerik.WinControls.UI.RadMenuItem();
             this.radMenuItem46 = new Telerik.WinControls.UI.RadMenuItem();
             this.radMenuItem47 = new Telerik.WinControls.UI.RadMenuItem();
             this.radMenuItem48 = new Telerik.WinControls.UI.RadMenuItem();
@@ -90,6 +91,9 @@
             this.radMenuItem56 = new Telerik.WinControls.UI.RadMenuItem();
             this.radMenuItem58 = new Telerik.WinControls.UI.RadMenuItem();
             this.radMenuItem57 = new Telerik.WinControls.UI.RadMenuItem();
+            this.radMenuItem66 = new Telerik.WinControls.UI.RadMenuItem();
+            this.radMenuItem67 = new Telerik.WinControls.UI.RadMenuItem();
+            this.radMenuItem68 = new Telerik.WinControls.UI.RadMenuItem();
             this.radMenuItem61 = new Telerik.WinControls.UI.RadMenuItem();
             this.radMenuItem64 = new Telerik.WinControls.UI.RadMenuItem();
             this.radMenuItem65 = new Telerik.WinControls.UI.RadMenuItem();
@@ -363,18 +367,21 @@
             this.radMenuItem34,
             this.radMenuItem53,
             this.radMenuItem55,
+            this.radMenuItem66,
             this.radMenuItem61});
             this.radMenuItem20.Name = "radMenuItem20";
             this.radMenuItem20.Text = "Отчетность";
+            this.radMenuItem20.Click += new System.EventHandler(this.radMenuItem20_Click);
             // 
             // radMenuItem59
             // 
             this.radMenuItem59.Items.AddRange(new Telerik.WinControls.RadItem[] {
             this.radMenuItem60,
             this.radMenuItem62,
-            this.radMenuItem63});
+            this.radMenuItem63,
+            this.radMenuItem69});
             this.radMenuItem59.Name = "radMenuItem59";
-            this.radMenuItem59.Text = "2017-2018";
+            this.radMenuItem59.Text = "2017-2020";
             // 
             // radMenuItem60
             // 
@@ -393,6 +400,12 @@
             this.radMenuItem63.Name = "radMenuItem63";
             this.radMenuItem63.Text = "СЗВ-М";
             this.radMenuItem63.Click += new System.EventHandler(this.radMenuItem63_Click);
+            // 
+            // radMenuItem69
+            // 
+            this.radMenuItem69.Name = "radMenuItem69";
+            this.radMenuItem69.Text = "СЗВ-ТД";
+            this.radMenuItem69.Click += new System.EventHandler(this.radMenuItem69_Click);
             // 
             // radMenuItem46
             // 
@@ -572,6 +585,26 @@
             this.radMenuItem57.Text = "Заявления о выдаче дубликата: формы АДВ-3";
             this.radMenuItem57.Click += new System.EventHandler(this.radMenuItem57_Click);
             // 
+            // radMenuItem66
+            // 
+            this.radMenuItem66.Items.AddRange(new Telerik.WinControls.RadItem[] {
+            this.radMenuItem67,
+            this.radMenuItem68});
+            this.radMenuItem66.Name = "radMenuItem66";
+            this.radMenuItem66.Text = "Предпенсионеры";
+            // 
+            // radMenuItem67
+            // 
+            this.radMenuItem67.Name = "radMenuItem67";
+            this.radMenuItem67.Text = "Запросы по предпенсионерам";
+            this.radMenuItem67.Click += new System.EventHandler(this.radMenuItem67_Click);
+            // 
+            // radMenuItem68
+            // 
+            this.radMenuItem68.Name = "radMenuItem68";
+            this.radMenuItem68.Text = "Печать сведений по предпенсионерам";
+            this.radMenuItem68.Click += new System.EventHandler(this.radMenuItem68_Click);
+            // 
             // radMenuItem61
             // 
             this.radMenuItem61.Items.AddRange(new Telerik.WinControls.RadItem[] {
@@ -580,7 +613,6 @@
             this.radMenuItem61.Name = "radMenuItem61";
             this.radMenuItem61.Text = "ЗАГС";
             this.radMenuItem61.Visibility = Telerik.WinControls.ElementVisibility.Hidden;
-            this.radMenuItem61.Click += new System.EventHandler(this.radMenuItem61_Click);
             // 
             // radMenuItem64
             // 
@@ -668,7 +700,6 @@
             this.radStatusStrip1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.radStatusStrip1.Size = new System.Drawing.Size(1091, 27);
             this.radStatusStrip1.TabIndex = 7;
-            this.radStatusStrip1.Text = "radStatusStrip1";
             this.radStatusStrip1.ThemeName = "Office2013Light";
             ((Telerik.WinControls.UI.RadStatusBarElement)(this.radStatusStrip1.GetChildAt(0))).Text = "radStatusStrip1";
             ((Telerik.WinControls.UI.RadStatusBarElement)(this.radStatusStrip1.GetChildAt(0))).Alignment = System.Drawing.ContentAlignment.MiddleRight;
@@ -778,14 +809,11 @@
             this.radPanorama1.ShowGroups = true;
             this.radPanorama1.Size = new System.Drawing.Size(1091, 628);
             this.radPanorama1.TabIndex = 9;
-            this.radPanorama1.Text = "radPanorama1";
             this.radPanorama1.ThemeName = "Office2013Light";
             this.radPanorama1.Visible = false;
             // 
             // tileGroupElement1
             // 
-            this.tileGroupElement1.AccessibleDescription = "Отчетность 2014-2015";
-            this.tileGroupElement1.AccessibleName = "Отчетность 2014-2015";
             this.tileGroupElement1.CellSize = new System.Drawing.Size(106, 100);
             this.tileGroupElement1.DefaultSize = new System.Drawing.Size(200, 200);
             this.tileGroupElement1.Items.AddRange(new Telerik.WinControls.RadItem[] {
@@ -795,7 +823,7 @@
             this.tileGroupElement1.Margin = new System.Windows.Forms.Padding(30, 0, 25, 0);
             this.tileGroupElement1.Name = "tileGroupElement1";
             this.tileGroupElement1.RowsCount = 4;
-            this.tileGroupElement1.Text = "Отчетность 2017-2018";
+            this.tileGroupElement1.Text = "Отчетность 2017-2020";
             // 
             // radTileElement1
             // 
@@ -811,7 +839,7 @@
             this.radTileElement2.Name = "radTileElement2";
             this.radTileElement2.Row = 2;
             this.radTileElement2.RowSpan = 2;
-            this.radTileElement2.Text = "СПВ-2";
+            this.radTileElement2.Text = "СЗВ-ТД";
             this.radTileElement2.Click += new System.EventHandler(this.radTileElement2_Click);
             // 
             // radTileElement3
@@ -1000,7 +1028,6 @@
             this.radMenu1.Name = "radMenu1";
             this.radMenu1.Size = new System.Drawing.Size(1091, 19);
             this.radMenu1.TabIndex = 0;
-            this.radMenu1.Text = "radMenu1";
             this.radMenu1.ThemeName = "Office2013Light";
             // 
             // MainForm
@@ -1137,7 +1164,6 @@
         private Telerik.WinControls.UI.RadMenuItem radMenuItem55;
         private Telerik.WinControls.UI.RadMenuItem radMenuItem56;
         private Telerik.WinControls.UI.RadMenuItem radMenuItem58;
-        private Telerik.WinControls.UI.RadMenu radMenu1;
         private Telerik.WinControls.UI.RadMenuItem radMenuItem57;
         private Telerik.WinControls.UI.RadMenuItem radMenuItem59;
         private Telerik.WinControls.UI.RadMenuItem radMenuItem60;
@@ -1146,5 +1172,10 @@
         private Telerik.WinControls.UI.RadMenuItem radMenuItem61;
         private Telerik.WinControls.UI.RadMenuItem radMenuItem64;
         private Telerik.WinControls.UI.RadMenuItem radMenuItem65;
+        private Telerik.WinControls.UI.RadMenuItem radMenuItem66;
+        private Telerik.WinControls.UI.RadMenu radMenu1;
+        private Telerik.WinControls.UI.RadMenuItem radMenuItem67;
+        private Telerik.WinControls.UI.RadMenuItem radMenuItem68;
+        private Telerik.WinControls.UI.RadMenuItem radMenuItem69;
     }
 }

@@ -178,7 +178,7 @@ namespace PU
                             var u = xaccessDB.Users.FirstOrDefault(x => x.ID == id);
                             if (!u.SysAdmin.HasValue || u.SysAdmin.Value != 1)
                             {
-                                xaccessDB.ExecuteStoreCommand("DELETE FROM Users WHERE ID = " + id.ToString());
+                                xaccessDB.Database.ExecuteSqlCommand("DELETE FROM Users WHERE ID = " + id.ToString());
                                 UsersRadGridView_upd();
                             }
                         }

@@ -153,7 +153,7 @@ namespace PU.Service
                 long id = (long)objectsGridView.CurrentRow.Cells["ID"].Value;
                 if (!refFormsGridView.Rows.Any(x => x.Cells["Form"].Value.ToString() == formName))
                 {
-                    xaccessDB.AddToFormsToObjects(new FormsToObjects { ObjectsID = id, Form = formName });
+                    xaccessDB.FormsToObjects.Add(new FormsToObjects { ObjectsID = id, Form = formName });
                     xaccessDB.SaveChanges();
                     updateRefFormsGridView();
                     updateAllFormsGridView();
@@ -171,7 +171,7 @@ namespace PU.Service
                 long id = (long)refFormsGridView.CurrentRow.Cells["ID"].Value;
 
                 var form = xaccessDB.FormsToObjects.First(x => x.ID == id);
-                xaccessDB.DeleteObject(form);
+                xaccessDB.FormsToObjects.Remove(form);
                 xaccessDB.SaveChanges();
 
                 updateRefFormsGridView();

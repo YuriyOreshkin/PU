@@ -559,7 +559,7 @@ namespace PU.FormsRSW2014
                 child.parentName = this.Name;
                 child.ShowDialog();
                 child.Dispose();
-                db.DetectChanges();
+                db.ChangeTracker.DetectChanges();
                 db = new pu6Entities();
 
                 indSvedGrid_upd();
@@ -584,7 +584,7 @@ namespace PU.FormsRSW2014
                 child.staff = db.Staff.FirstOrDefault(x => x.ID == id);
                 child.ShowDialog();
                 child.Dispose();
-                db.DetectChanges();
+                db.ChangeTracker.DetectChanges();
                 db = new pu6Entities();
 
                 indSvedGrid_upd();
@@ -604,7 +604,7 @@ namespace PU.FormsRSW2014
 
                     try
                     {
-                        db.ExecuteStoreCommand(String.Format("DELETE FROM FormsRSW2014_1_Razd_6_1 WHERE ([ID] = {0})", id));
+                        db.Database.ExecuteSqlCommand(String.Format("DELETE FROM FormsRSW2014_1_Razd_6_1 WHERE ([ID] = {0})", id));
                     }
                     catch (Exception ex)
                     {
@@ -642,7 +642,7 @@ namespace PU.FormsRSW2014
 
                 child.ShowDialog();
                 child.Dispose();
-                db.DetectChanges();
+                db.ChangeTracker.DetectChanges();
                 db = new pu6Entities();
                 dataGrid_upd();
             }
@@ -702,7 +702,7 @@ namespace PU.FormsRSW2014
 
                     //                GC.WaitForPendingFinalizers();
                     //                GC.Collect();
-                    db.DetectChanges();
+                    db.ChangeTracker.DetectChanges();
                     db = new pu6Entities();
                     dataGrid_upd();
                 }
@@ -739,7 +739,7 @@ namespace PU.FormsRSW2014
 
                     try
                     {
-                        db.DetectChanges();
+                        db.ChangeTracker.DetectChanges();
                         db = new pu6Entities();
                         dataGrid_upd();
                     }
@@ -989,7 +989,7 @@ namespace PU.FormsRSW2014
                 child.ThemeName = this.ThemeName;
                 child.ShowInTaskbar = false;
                 child.ShowDialog();
-                db.DetectChanges();
+                db.ChangeTracker.DetectChanges();
                 db = new pu6Entities();
 
                 indSvedGrid_upd();
@@ -1014,7 +1014,7 @@ namespace PU.FormsRSW2014
                 child.ShowInTaskbar = false;
                 child.RSWdata = rsw_data;
                 child.ShowDialog();
-                db.DetectChanges();
+                db.ChangeTracker.DetectChanges();
                 db = new pu6Entities();
                 dataGrid_upd();
             }
@@ -1029,7 +1029,7 @@ namespace PU.FormsRSW2014
                 child.ThemeName = this.ThemeName;
                 child.ShowInTaskbar = false;
                 child.ShowDialog();
-                db.DetectChanges();
+                db.ChangeTracker.DetectChanges();
                 db = new pu6Entities();
                 dataGrid_upd();
             }
@@ -1130,7 +1130,7 @@ namespace PU.FormsRSW2014
                 child.ThemeName = this.ThemeName;
                 child.ShowDialog();
 
-                db.DetectChanges();
+                db.ChangeTracker.DetectChanges();
                 db = new pu6Entities();
 
             }

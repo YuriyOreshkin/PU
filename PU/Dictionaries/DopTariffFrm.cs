@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
+using System.Data.Entity;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -89,7 +89,7 @@ namespace PU.FormsRSW2014
             {
                 if (!db.DopTariff.Any(x => x.Year == dt.Year))
                 {
-                    db.DopTariff.AddObject(dt);
+                    db.DopTariff.Add(dt);
                     db.SaveChanges();
                     dataGrid_upd();
                     radGridView1.Rows[rowindex].IsCurrent = true;
@@ -124,7 +124,7 @@ namespace PU.FormsRSW2014
                     dopTar.Tariff1 = dt.Tariff1.Value;
                     dopTar.Tariff2 = dt.Tariff2.Value;
 
-                    db.ObjectStateManager.ChangeObjectState(dopTar, EntityState.Modified);
+                    db.Entry(dopTar).State = EntityState.Modified;
                     db.SaveChanges();
                     dataGrid_upd();
                     radGridView1.Rows[rowindex].IsCurrent = true;
@@ -181,7 +181,7 @@ namespace PU.FormsRSW2014
                         rowindex = rowindex + 1 == radGridView1.RowCount ? rowindex - 1 : rowindex;
 
                         DopTariff dopT = db.DopTariff.FirstOrDefault(x => x.ID == id);
-                        db.DopTariff.DeleteObject(dopT);
+                        db.DopTariff.Remove(dopT);
                         db.SaveChanges();
                         dataGrid_upd();
 

@@ -224,7 +224,7 @@ namespace PU.FormsRSW2014
 
             //        xmlFileItem.XmlContent = doc.ToString();
 
-            //        dbxml.ObjectStateManager.ChangeObjectState(xmlFileItem, EntityState.Modified);
+            //        dbxml.Entry(xmlFileItem, EntityState.Modified);
             //        dbxml.SaveChanges();
             //        Methods.showAlert("Сохранение", "Сохранение данных прошло успешно!", this.ThemeName);
             //    }
@@ -288,7 +288,7 @@ namespace PU.FormsRSW2014
                                 Col_5 = item.FileName
                             };
 
-                            db.FormsRSW2014_1_Razd_2_5_1.AddObject(rsw251);
+                            db.FormsRSW2014_1_Razd_2_5_1.Add(rsw251);
 
                         }
 
@@ -312,7 +312,7 @@ namespace PU.FormsRSW2014
                                 Col_8 = item.FileName
                             };
 
-                            db.FormsRSW2014_1_Razd_2_5_2.AddObject(rsw252);
+                            db.FormsRSW2014_1_Razd_2_5_2.Add(rsw252);
 
 
                         }
@@ -341,11 +341,11 @@ namespace PU.FormsRSW2014
             {
                 foreach (var item in db.FormsRSW2014_1_Razd_2_5_1.Where(x => x.InsurerID == rsw.InsurerID && x.Year == rsw.Year && x.Quarter == rsw.Quarter && x.CorrectionNum == rsw.CorrectionNum))
                 {
-                    db.FormsRSW2014_1_Razd_2_5_1.DeleteObject(item);
+                    db.FormsRSW2014_1_Razd_2_5_1.Remove(item);
                 }
                 foreach (var item in db.FormsRSW2014_1_Razd_2_5_2.Where(x => x.InsurerID == rsw.InsurerID && x.Year == rsw.Year && x.Quarter == rsw.Quarter && x.CorrectionNum == rsw.CorrectionNum))
                 {
-                    db.FormsRSW2014_1_Razd_2_5_2.DeleteObject(item);
+                    db.FormsRSW2014_1_Razd_2_5_2.Remove(item);
                 }
                 db.SaveChanges();
             }

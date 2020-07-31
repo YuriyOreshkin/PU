@@ -15,7 +15,9 @@ using System.Configuration;
 using SQLiteParser;
 using PU.UserAccess;
 using System.Reflection;
-using System.Data.Metadata.Edm;
+using System.Data.Entity.Infrastructure;
+//using System.Data.Metadata.Edm;
+//using System.Data.Entity.Core.Metadata.Edm;
 
 namespace PU
 {
@@ -338,7 +340,7 @@ namespace PU
 
                     pu6Entities db = new pu6Entities();
 
-                    db.ExecuteStoreCommand(sql);
+                    db.Database.ExecuteSqlCommand(sql);
 
                     if (!db.Insurer.Any(x => x.ID == Options.InsID))
                     {
@@ -470,13 +472,13 @@ namespace PU
             pu6Entities db = new pu6Entities();
 
             // Удаление данных оставшихся после удаления Страхователя
-            List<string> tables = new List<string> { "FormsRSW2014_1_Razd_6_1", "FormsDSW_3", "FormsRSW2014_2_1", "FormsRW3_2015", "FormsSPW2", "FormsSZV_6", "FormsSZV_6_4", "FormsSZV_M_2016", "FormsODV_1_2017", "FormsSZV_KORR_2017", "FormsSZV_STAJ_2017", "FormsSZV_ISH_2017" };
+            List<string> tables = new List<string> { "FormsRSW2014_1_Razd_6_1", "FormsDSW_3", "FormsRSW2014_2_1", "FormsRW3_2015", "FormsSPW2", "FormsSZV_6", "FormsSZV_6_4", "FormsSZV_M_2016", "FormsODV_1_2017", "FormsSZV_KORR_2017", "FormsSZV_STAJ_2017", "FormsSZV_ISH_2017", "FormsPredPens_Zapros", "FormsSZV_TD_2020", "Staff" };
 
             foreach (var item in tables)
             {
                 try
                 {
-                    db.ExecuteStoreCommand(String.Format("DELETE FROM " + item + " WHERE (InsurerID NOT IN (SELECT ID FROM Insurer))"));
+                    db.Database.ExecuteSqlCommand(String.Format("DELETE FROM " + item + " WHERE (InsurerID NOT IN (SELECT ID FROM Insurer))"));
                 }
                 catch (Exception ex)
                 {
@@ -492,7 +494,7 @@ namespace PU
             {
                 try
                 {
-                    db.ExecuteStoreCommand(String.Format("DELETE FROM " + item + " WHERE (FormsODV_1_2017_ID NOT IN (SELECT ID FROM FormsODV_1_2017))"));
+                    db.Database.ExecuteSqlCommand(String.Format("DELETE FROM " + item + " WHERE (FormsODV_1_2017_ID NOT IN (SELECT ID FROM FormsODV_1_2017))"));
                 }
                 catch (Exception ex)
                 {
@@ -507,7 +509,7 @@ namespace PU
             {
                 try
                 {
-                    db.ExecuteStoreCommand(String.Format("DELETE FROM " + item + " WHERE ([TypeInfoID] IS NULL)"));
+                    db.Database.ExecuteSqlCommand(String.Format("DELETE FROM " + item + " WHERE ([TypeInfoID] IS NULL)"));
                 }
                 catch (Exception ex)
                 {
@@ -519,7 +521,7 @@ namespace PU
 
 
 
-            try
+            /*try
             {
                 tables = new List<string> { 
                 "FormsDSW_3", 
@@ -544,14 +546,15 @@ namespace PU
                 "FormsSZV_6_4"
             };
 
-                var l = db.MetadataWorkspace.GetItems<EntityType>(DataSpace.CSpace).Where(x => tables.Contains(x.Name));
+                //var l = db.MetadataWorkspace.GetItems<EntityType>(DataSpace.CSpace).Where(x => tables.Contains(x.Name));
+                var l = ((IObjectContextAdapter)db).ObjectContext.MetadataWorkspace.GetItemCollection(DataSpace.SSpace).GetItems<EntityType>().Where(x => tables.Contains(x.Name));
                 foreach (var item in l)
                 {
                     var list = item.Properties.Where(x => x.TypeUsage.EdmType.FullName.ToLower().Contains("decimal")).ToArray();
 
                     foreach (var itemName_ in list)
                     {
-                        db.ExecuteStoreCommand("Update " + item.Name + " set " + itemName_ + " = round(" + itemName_ + ", 2);");
+                        db.Database.ExecuteSqlCommand("Update " + item.Name + " set " + itemName_ + " = round(" + itemName_ + ", 2);");
                     }
 
                 }
@@ -559,11 +562,11 @@ namespace PU
             catch (Exception ex)
             {
                 RadMessageBox.Show("Во время обслуживания базы произошла ошибка. Код ошибки: " + ex.Message);
-            }
+            }*/
 
             try
             {
-                db.ExecuteStoreCommand("VACUUM;");
+                db.Database.ExecuteSqlCommand("VACUUM;");
             }
             catch (Exception ex)
             {
@@ -571,7 +574,7 @@ namespace PU
             }
             try
             {
-                db.ExecuteStoreCommand("REINDEX;");
+                db.Database.ExecuteSqlCommand("REINDEX;");
             }
             catch (Exception ex)
             {

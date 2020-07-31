@@ -30,6 +30,7 @@ namespace PU.FormsRSW2014
         private void InitializeComponent()
         {
             Telerik.WinControls.Data.FilterDescriptor filterDescriptor1 = new Telerik.WinControls.Data.FilterDescriptor();
+            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition1 = new Telerik.WinControls.UI.TableViewDefinition();
             this.radButton2 = new Telerik.WinControls.UI.RadButton();
             this.radButton3 = new Telerik.WinControls.UI.RadButton();
             this.radButton4 = new Telerik.WinControls.UI.RadButton();
@@ -107,7 +108,7 @@ namespace PU.FormsRSW2014
             this.radGridView1.EnableHotTracking = false;
             this.radGridView1.Location = new System.Drawing.Point(9, 12);
             // 
-            // radGridView1
+            // 
             // 
             this.radGridView1.MasterTemplate.AllowAddNewRow = false;
             this.radGridView1.MasterTemplate.AllowDeleteRow = false;
@@ -119,6 +120,7 @@ namespace PU.FormsRSW2014
             this.radGridView1.MasterTemplate.FilterDescriptors.AddRange(new Telerik.WinControls.Data.FilterDescriptor[] {
             filterDescriptor1});
             this.radGridView1.MasterTemplate.ShowRowHeaderColumn = false;
+            this.radGridView1.MasterTemplate.ViewDefinition = tableViewDefinition1;
             this.radGridView1.Name = "radGridView1";
             this.radGridView1.ShowRowErrors = false;
             this.radGridView1.Size = new System.Drawing.Size(564, 345);
@@ -182,6 +184,11 @@ namespace PU.FormsRSW2014
             0,
             0});
             this.copySpin.Name = "copySpin";
+            this.copySpin.NullableValue = new decimal(new int[] {
+            2015,
+            0,
+            0,
+            0});
             this.copySpin.Size = new System.Drawing.Size(61, 20);
             this.copySpin.TabIndex = 0;
             this.copySpin.TabStop = false;

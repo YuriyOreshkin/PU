@@ -2,7 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
+using System.Data.Entity;
 using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
@@ -782,7 +782,7 @@ namespace PU.ZAGS.Zags_Born
                     try
                     {
 
-                        db.AddToZAGS_Born(formData);
+                        db.ZAGS_Born.Add(formData);
                         db.SaveChanges();
                         this.Close();
                     }
@@ -796,7 +796,7 @@ namespace PU.ZAGS.Zags_Born
                     try
                     {
 
-                        db.ObjectStateManager.ChangeObjectState(formData, EntityState.Modified);
+                        db.Entry(formData).State = EntityState.Modified;
                         db.SaveChanges();
                         this.Close();
                     }

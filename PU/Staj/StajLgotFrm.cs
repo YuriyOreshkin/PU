@@ -78,6 +78,18 @@ namespace PU.Staj
 
             checkAccessLevel();
 
+            int year = StajOsnData.DateBegin.Value.Year;
+
+            if (year <= 2001)
+            {
+                TerrUslKoefSpin.Maximum = 2;
+            }
+            else
+            {
+                TerrUslKoefSpin.Maximum = 1;
+            }
+
+
             #region Территориальные условия загрузка DDL
             BindingSource b = new BindingSource();
             b.DataSource = db.TerrUsl;
@@ -271,9 +283,13 @@ namespace PU.Staj
         {
             if (this.OsobUslDDL.SelectedItem != null)
             {
+                int year = StajOsnData.DateBegin.Value.Year;
+
+
+                List<string> itemsBefore2001 = new List<string> { "ЗП12А", "ЗП12Б" };
                 List<string> items = new List<string> { "27-1", "27-2" };
 
-                if (items.Contains(this.OsobUslDDL.SelectedItem.Text))
+                if ((year >= 2002 && items.Contains(this.OsobUslDDL.SelectedItem.Text)) || (year <= 2001 && itemsBefore2001.Contains(this.OsobUslDDL.SelectedItem.Text)))
                 {
                     if (!KodVredLabel.Enabled)
                     {
@@ -369,7 +385,7 @@ namespace PU.Staj
             child.ThemeName = this.ThemeName;
             child.ShowInTaskbar = false;
             child.action = "selection";
-            child.ddl1_index = this.OsobUslDDL.SelectedItem.Text == "27-1" ? (byte)0 : (byte)1;
+            child.ddl1_index = (this.OsobUslDDL.SelectedItem.Text == "27-1" || this.OsobUslDDL.SelectedItem.Text == "ЗП12А") ? (byte)0 : (byte)1;
             child.btnSelection.Visible = true;
             child.ShowDialog();
             if (child.kv_osn != null)
@@ -729,7 +745,7 @@ namespace PU.Staj
                                     try
                                     {
                                         formData.StajOsnID = StajOsnData.ID;
-                                        db.AddToStajLgot(formData);
+                                        db.StajLgot.Add(formData);
                                         db.SaveChanges();
                                         setNull = false;
                                         this.Close();
@@ -772,7 +788,7 @@ namespace PU.Staj
 
 
                                         // сохраняем модифицированную запись обратно в бд
-                                        db.ObjectStateManager.ChangeObjectState(r1, System.Data.EntityState.Modified);
+                                        db.Entry(r1).State =System.Data.Entity.EntityState.Modified;
                                         db.SaveChanges();
                                         setNull = false;
                                         this.Close();
@@ -869,7 +885,7 @@ namespace PU.Staj
                     {
                         Name = DolgnTextBox.Text.Trim()
                     };
-                    db.Dolgn.AddObject(newItem);
+                    db.Dolgn.Add(newItem);
                     db.SaveChanges();
 
                     formData.DolgnID = newItem.ID;

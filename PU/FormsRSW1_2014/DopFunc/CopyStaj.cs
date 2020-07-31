@@ -424,14 +424,14 @@ namespace PU.FormsRSW2014
                     sto.DateBegin = !korrPeriodRadioButton.IsChecked ? (year ? staj.DateBegin.Value.AddYears(1) : staj.DateBegin.Value.AddMonths(3)) : staj.DateBegin.Value;
                     sto.DateEnd = !korrPeriodRadioButton.IsChecked ? (year ? staj.DateEnd.Value.AddYears(1) : staj.DateEnd.Value.AddMonths(3)) : staj.DateEnd.Value;
                     sto.FormsRSW2014_1_Razd_6_1_ID = id;
-                    db.StajOsn.AddObject(sto);
+                    db.StajOsn.Add(sto);
                     var stajlList = staj.StajLgot.ToList();
                     foreach (var stajl in stajlList)
                     {
                         StajLgot stl = stajl.Clone();
                         stl.StajOsn = null;
                         stl.StajOsnID = sto.ID;
-                        db.AddToStajLgot(stl);
+                        db.StajLgot.Add(stl);
                     }
                     db.SaveChanges();
                 }

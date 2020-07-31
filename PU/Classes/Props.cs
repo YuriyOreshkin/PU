@@ -60,8 +60,8 @@ namespace PU.Classes
         public bool checkFilesAfterSaving = true;
         public string pathCheckPfr = "C:\\CheckPfr";
         //public bool useRSW1_2015 = true;
-        public RKASV RKASV = new RKASV { opfrCode = "007", port = "9080", url = "http://10.7.0.49", service = "/asvWeb/vio/getInsurer" };
-//        public RKASV RKASV = new RKASV {}; // для страхователей
+//        public RKASV RKASV = new RKASV { opfrCode = "007", port = "9080", url = "http://10.7.0.49", service = "/asvWeb/vio/getInsurer" };
+        public RKASV RKASV = new RKASV {}; // для страхователей
         public string xaccessLastName = "Администратор";
         public string xaccessPath = (Path.Combine(Application.StartupPath, "xaccess.db3"));
         public backup Backup = new backup { autoBackup = new backupSettings { active = true, value = 3 }, maxCount = new backupSettings { active = false, value = 10 }, pathLast = Application.StartupPath + "\\Архивы БД" };

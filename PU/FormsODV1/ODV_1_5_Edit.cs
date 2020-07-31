@@ -19,7 +19,8 @@ namespace PU.FormsODV1
     {
         public FormsODV_1_5_2017 formData { get; set; }
         private bool setNull = true;
-        public int cnt = 0;
+        public short cnt = 0;
+        public List<short> existedNum = new List<short>();
         List<FormsODV_1_5_2017_OUT> FormsODV_1_5_OUT_List = new List<FormsODV_1_5_2017_OUT>();
 
 
@@ -157,12 +158,12 @@ namespace PU.FormsODV1
                 emptyFields.Add("Характер фактически выполняемых работ и доп. услочия труда");
             if (String.IsNullOrEmpty(DocsName.Text))
                 emptyFields.Add("Наименование первичных документов, подтверждающих занятость в особых условиях");
-            if (StaffCountShtat.Value == 0)
-                emptyFields.Add("Кол-во раб. мест по штатному расп.");
             if (StaffCountFakt.Value == 0)
                 emptyFields.Add("Кол-во фактически работающих");
             if (FormsODV_1_5_OUT_List.Count == 0)
                 emptyFields.Add("Должна быть хотя бы одна запись льготных категорий");
+            if (existedNum.Contains((short)Num.Value))
+                emptyFields.Add("Указанный номер п\\п уже используется в списке записей");
 
             if (emptyFields.Count > 0)
             {
@@ -184,7 +185,7 @@ namespace PU.FormsODV1
             formData.Num = (short)Num.Value;
             formData.Department = Department.Text;
             formData.Profession = Profession.Text;
-            formData.StaffCountShtat = (long)StaffCountShtat.Value;
+            formData.StaffCountShtat = (decimal)StaffCountShtat.Value;
             formData.StaffCountFakt = (long)StaffCountFakt.Value;
             formData.VidRabotFakt = VidRabotFakt.Text;
             formData.DocsName = DocsName.Text;

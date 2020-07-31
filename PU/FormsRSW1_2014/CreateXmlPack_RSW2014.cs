@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
+using System.Data.Entity;
 using System.Drawing;
 using System.Text;
 using System.Linq;
@@ -602,7 +602,7 @@ namespace PU.FormsRSW2014
                         {
                             titleLabel.Invoke(new Action(() => { titleLabel.Text = "Подготовка временной базы данных"; }));
                             query = String.Format("DELETE FROM xmlInfo WHERE ([Year] = {0} AND [Quarter] = {1} AND [InsurerID] = {2} AND [FormatType] = 'rsw2014'); VACUUM;", y_, q_, Options.InsID);
-                            dbxml.ExecuteStoreCommand(query);
+                            dbxml.Database.ExecuteSqlCommand(query);
                         }
                         catch
                         {
@@ -670,7 +670,7 @@ namespace PU.FormsRSW2014
                     FormatType = "rsw2014"
                 };
 
-                dbxml.AddToxmlInfo(xml_info);
+                dbxml.xmlInfo.Add(xml_info);
                 dbxml.SaveChanges();
                 parentID = xml_info.ID;
 
@@ -1256,7 +1256,7 @@ namespace PU.FormsRSW2014
                                 FormsRSW_6_1_ID = rsw61Item.ID
                             };
                             staffList_.Add(staffListNewItem);
-                            //                          dbxml.AddToStaffList(staffListNewItem);
+                            //                          dbxml.Staff.AddList(staffListNewItem);
 
 
                         }
@@ -1266,7 +1266,7 @@ namespace PU.FormsRSW2014
                         {
                             xml_info.StaffList.Add(item);
                         }
-                        dbxmlTemp.AddToxmlInfo(xml_info);
+                        dbxmlTemp.xmlInfo.Add(xml_info);
                         //       dbxml.ObjectStateManager.ChangeObjectState(xml_info, EntityState.Modified);
                         dbxmlTemp.SaveChanges();
 
@@ -1324,7 +1324,7 @@ namespace PU.FormsRSW2014
                             korrFlag = true;
                         }
 
-                        dbxml.AddToxmlInfo(xml_info);
+                        dbxml.xmlInfo.Add(xml_info);
                         dbxml.SaveChanges();
 
                         rsw2014 rsw2014_ = new rsw2014
@@ -1337,7 +1337,7 @@ namespace PU.FormsRSW2014
                             xmlInfo_ID = xml_info.ID
                         };
 
-                        dbxml.AddTorsw2014(rsw2014_);
+                        dbxml.rsw2014.Add(rsw2014_);
                         dbxml.SaveChanges();
 
                         int k = 0;
@@ -1397,12 +1397,12 @@ namespace PU.FormsRSW2014
                                 FormsRSW_6_1_ID = szv64Item.ID
                             };
 
-                            dbxml.AddToStaffList(staffListNewItem);
+                            dbxml.StaffList.Add(staffListNewItem);
 
 
                         }
 
-                        dbxml.ObjectStateManager.ChangeObjectState(xml_info, EntityState.Modified);
+                        dbxml.Entry(xml_info).State =EntityState.Modified;
                         dbxml.SaveChanges();
                         v++;
                         updateProgressBar(v, packs_cnt);
@@ -1455,7 +1455,7 @@ namespace PU.FormsRSW2014
                             korrFlag = true;
                         }
 
-                        dbxml.AddToxmlInfo(xml_info);
+                        dbxml.xmlInfo.Add(xml_info);
                         dbxml.SaveChanges();
 
                         rsw2014 rsw2014_ = new rsw2014
@@ -1468,7 +1468,7 @@ namespace PU.FormsRSW2014
                             xmlInfo_ID = xml_info.ID
                         };
 
-                        dbxml.AddTorsw2014(rsw2014_);
+                        dbxml.rsw2014.Add(rsw2014_);
                         dbxml.SaveChanges();
 
                         int k = 0;
@@ -1529,12 +1529,12 @@ namespace PU.FormsRSW2014
                                 FormsRSW_6_1_ID = szv61Item.ID
                             };
 
-                            dbxml.AddToStaffList(staffListNewItem);
+                            dbxml.StaffList.Add(staffListNewItem);
 
 
                         }
 
-                        dbxml.ObjectStateManager.ChangeObjectState(xml_info, EntityState.Modified);
+                        dbxml.Entry(xml_info).State = EntityState.Modified;
                         dbxml.SaveChanges();
 
                         v++;
@@ -1589,7 +1589,7 @@ namespace PU.FormsRSW2014
                             korrFlag = true;
                         }
 
-                        dbxml.AddToxmlInfo(xml_info);
+                        dbxml.xmlInfo.Add(xml_info);
                         dbxml.SaveChanges();
 
                         rsw2014 rsw2014_ = new rsw2014
@@ -1602,7 +1602,7 @@ namespace PU.FormsRSW2014
                             xmlInfo_ID = xml_info.ID
                         };
 
-                        dbxml.AddTorsw2014(rsw2014_);
+                        dbxml.rsw2014.Add(rsw2014_);
                         dbxml.SaveChanges();
 
                         int k = 0;
@@ -1663,12 +1663,12 @@ namespace PU.FormsRSW2014
                                 FormsRSW_6_1_ID = szv62Item.ID
                             };
 
-                            dbxml.AddToStaffList(staffListNewItem);
+                            dbxml.StaffList.Add(staffListNewItem);
 
 
                         }
 
-                        dbxml.ObjectStateManager.ChangeObjectState(xml_info, EntityState.Modified);
+                        dbxml.Entry(xml_info).State = EntityState.Modified;
                         dbxml.SaveChanges();
 
                         v++;
@@ -1690,12 +1690,12 @@ namespace PU.FormsRSW2014
                     bool flag = false;
                     foreach (var item in db.FormsRSW2014_1_Razd_2_5_1.Where(x => x.InsurerID == rsw_source.InsurerID && x.Year == rsw_source.Year && x.Quarter == rsw_source.Quarter && x.CorrectionNum == rsw_source.CorrectionNum))
                     {
-                        db.FormsRSW2014_1_Razd_2_5_1.DeleteObject(item);
+                        db.FormsRSW2014_1_Razd_2_5_1.Remove(item);
                         flag = true;
                     }
                     foreach (var item in db.FormsRSW2014_1_Razd_2_5_2.Where(x => x.InsurerID == rsw_source.InsurerID && x.Year == rsw_source.Year && x.Quarter == rsw_source.Quarter && x.CorrectionNum == rsw_source.CorrectionNum))
                     {
-                        db.FormsRSW2014_1_Razd_2_5_2.DeleteObject(item);
+                        db.FormsRSW2014_1_Razd_2_5_2.Remove(item);
                         flag = true;
                     }
 
@@ -1725,7 +1725,7 @@ namespace PU.FormsRSW2014
                                 Col_5 = item.FileName
                             };
 
-                            db.FormsRSW2014_1_Razd_2_5_1.AddObject(rsw251);
+                            db.FormsRSW2014_1_Razd_2_5_1.Add(rsw251);
 
                         }
 
@@ -1749,7 +1749,7 @@ namespace PU.FormsRSW2014
                                 Col_8 = item.FileName
                             };
 
-                            db.FormsRSW2014_1_Razd_2_5_2.AddObject(rsw252);
+                            db.FormsRSW2014_1_Razd_2_5_2.Add(rsw252);
 
 
                         }
@@ -1872,7 +1872,7 @@ namespace PU.FormsRSW2014
                                             new XElement("ТипФайла", "ВНЕШНИЙ"),
                                             new XElement("ПрограммаПодготовкиДанных",
                                                 new XElement("НазваниеПрограммы", Application.ProductName.ToUpper()),
-                                                new XElement("Версия", Application.ProductVersion)),
+                                                new XElement("Версия", Application.ProductVersion.Substring(2, Application.ProductVersion.Length - 2))),
                                             new XElement("ИсточникДанных", "СТРАХОВАТЕЛЬ")),
                                         new XElement("ПачкаВходящихДокументов", new XAttribute("Окружение", "В составе файла"), new XAttribute("Стадия", "До обработки"))));
 
@@ -2159,7 +2159,7 @@ namespace PU.FormsRSW2014
                                             new XElement("ТипФайла", "ВНЕШНИЙ"),
                                             new XElement("ПрограммаПодготовкиДанных",
                                                 new XElement("НазваниеПрограммы", Application.ProductName.ToUpper()),
-                                                new XElement("Версия", Application.ProductVersion)),
+                                                new XElement("Версия", Application.ProductVersion.Substring(2, Application.ProductVersion.Length - 2))),
                                             new XElement("ИсточникДанных", "СТРАХОВАТЕЛЬ")),
                                         new XElement("ПачкаВходящихДокументов", new XAttribute("Окружение", "В составе файла"), new XAttribute("Стадия", "До обработки"))));
 
@@ -2454,7 +2454,7 @@ namespace PU.FormsRSW2014
                                             new XElement("ТипФайла", "ВНЕШНИЙ"),
                                             new XElement("ПрограммаПодготовкиДанных",
                                                 new XElement("НазваниеПрограммы", Application.ProductName.ToUpper()),
-                                                new XElement("Версия", Application.ProductVersion)),
+                                                new XElement("Версия", Application.ProductVersion.Substring(2, Application.ProductVersion.Length - 2))),
                                             new XElement("ИсточникДанных", "СТРАХОВАТЕЛЬ")),
                                         new XElement("ПачкаВходящихДокументов", new XAttribute("Окружение", "В составе файла"), new XAttribute("Стадия", "До обработки"))));
 
@@ -3008,7 +3008,7 @@ namespace PU.FormsRSW2014
                                             new XElement("ТипФайла", "ВНЕШНИЙ"),
                                             new XElement("ПрограммаПодготовкиДанных",
                                                 new XElement("НазваниеПрограммы", Application.ProductName.ToUpper()),
-                                                new XElement("Версия", Application.ProductVersion)),
+                                                new XElement("Версия", Application.ProductVersion.Substring(2, Application.ProductVersion.Length - 2))),
                                             new XElement("ИсточникДанных", "СТРАХОВАТЕЛЬ")),
                                         new XElement("ПачкаВходящихДокументов", new XAttribute("Окружение", "В составе файла"), new XAttribute("Стадия", "До обработки"))));
 
@@ -3477,7 +3477,7 @@ namespace PU.FormsRSW2014
                                             new XElement("ТипФайла", "ВНЕШНИЙ"),
                                             new XElement("ПрограммаПодготовкиДанных",
                                                 new XElement("НазваниеПрограммы", Application.ProductName.ToUpper()),
-                                                new XElement("Версия", Application.ProductVersion)),
+                                                new XElement("Версия", Application.ProductVersion.Substring(2, Application.ProductVersion.Length - 2))),
                                             new XElement("ИсточникДанных", "СТРАХОВАТЕЛЬ")),
                                         new XElement("ПачкаВходящихДокументов", new XAttribute("Окружение", "Единичный запрос"))));
 

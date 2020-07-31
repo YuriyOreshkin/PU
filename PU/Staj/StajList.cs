@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
+using System.Data.Entity;
 using System.Drawing;
 using System.Text;
 using System.Linq;
@@ -311,12 +311,12 @@ namespace PU.Staj
                     foreach (var item in ids)
                     {
                         StajLgot sl = db.StajLgot.FirstOrDefault(x => x.ID == item);
-                        db.DeleteObject(sl);
+                        db.StajLgot.Remove(sl);
                     }
 
                 }
 
-                db.DeleteObject(so);
+                db.StajOsn.Remove(so);
                 db.SaveChanges();
 
                 gridUpdate_StajOsn();
@@ -479,7 +479,7 @@ namespace PU.Staj
                 long id = long.Parse(stajLgotGrid.CurrentRow.Cells[0].Value.ToString());
 
                 StajLgot sl = db.StajLgot.FirstOrDefault(x => x.ID == id);
-                db.DeleteObject(sl);
+                db.StajLgot.Remove(sl);
                 db.SaveChanges();
 
                 gridUpdate_StajLgot();
@@ -525,14 +525,14 @@ namespace PU.Staj
                     long id = long.Parse(stajOsnGrid.Rows.Skip(index).Take(1).First().Cells[0].Value.ToString());
                     StajOsn stCurr = db.StajOsn.First(x => x.ID == id);
                     stCurr.Number--;
-                    db.ObjectStateManager.ChangeObjectState(stCurr, EntityState.Modified);
+                    db.Entry(stCurr).State = EntityState.Modified;
 
                     if ((numCurr - numPrev) == 1) // если последовательность один за одним например 2, 3
                     {
                         id = long.Parse(stajOsnGrid.Rows.Skip(index - 1).Take(1).First().Cells[0].Value.ToString());
                         StajOsn stOld = db.StajOsn.First(x => x.ID == id);
                         stOld.Number++;
-                        db.ObjectStateManager.ChangeObjectState(stOld, EntityState.Modified);
+                        db.Entry(stOld).State = EntityState.Modified;
                         index--;
                     }
                     else // если в последовательности есть промежутки например 2, 4
@@ -566,14 +566,14 @@ namespace PU.Staj
                     long id = long.Parse(stajOsnGrid.Rows.Skip(index).Take(1).First().Cells[0].Value.ToString());
                     StajOsn stCurr = db.StajOsn.First(x => x.ID == id);
                     stCurr.Number++;
-                    db.ObjectStateManager.ChangeObjectState(stCurr, EntityState.Modified);
+                    db.Entry(stCurr).State = EntityState.Modified;
 
                     if ((numNext - numCurr) == 1) // если последовательность один за одним например 2, 3
                     {
                         id = long.Parse(stajOsnGrid.Rows.Skip(index + 1).Take(1).First().Cells[0].Value.ToString());
                         StajOsn stOld = db.StajOsn.First(x => x.ID == id);
                         stOld.Number--;
-                        db.ObjectStateManager.ChangeObjectState(stOld, EntityState.Modified);
+                        db.Entry(stOld).State = EntityState.Modified;
                         index++;
                     }
                     else // если в последовательности есть промежутки например 2, 4
@@ -616,7 +616,7 @@ namespace PU.Staj
                     if (item.Number != num)
                     {
                         item.Number = num;
-                        db.ObjectStateManager.ChangeObjectState(item, EntityState.Modified);
+                        db.Entry(item).State = EntityState.Modified;
                         flag = true;
                     }
                     num++;

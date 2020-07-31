@@ -351,6 +351,7 @@
         <DesignerProperty Name="ValidateOnBuild" Value="true" />
         <DesignerProperty Name="EnablePluralization" Value="False" />
         <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
       </DesignerInfoPropertySet>
     </Options>
     <!-- Diagram content (shape and connector positions) -->
@@ -358,7 +359,7 @@
       <Diagram Name="xmlContainer">
         <EntityTypeShape EntityType="pfrXMLModel.StaffList" Width="1.5" PointX="0.27981975128865788" PointY="4.0873821396787564" />
         <EntityTypeShape EntityType="pfrXMLModel.xmlFile" Width="1.5" PointX="6.75" PointY="7.875" />
-        <EntityTypeShape EntityType="pfrXMLModel.rsw2014" Width="1.5" PointX="2.6627032936842663" PointY="27.012588334741345" />
+        <EntityTypeShape EntityType="pfrXMLModel.rsw2014" Width="1.5" PointX="1.875" PointY="19.375" />
         <EntityTypeShape EntityType="pfrXMLModel.xmlInfo" Width="1.5" PointX="3.75" PointY="5.25" />
         <AssociationConnector Association="pfrXMLModel.FK_rsw2014_0_0" />
         <AssociationConnector Association="pfrXMLModel.FK_StaffList_0_0" />

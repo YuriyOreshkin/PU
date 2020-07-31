@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
+using System.Data.Entity;
 using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
@@ -754,7 +754,7 @@ namespace PU.FormsSZV_6_4_2013
                         {
                             flag_ok = false;
                             #region Сохранение новой записи
-                            db.FormsSZV_6_4.AddObject(SZV_6_4);
+                            db.FormsSZV_6_4.Add(SZV_6_4);
                             db.SaveChanges();
 
                             flag_ok = true;
@@ -793,7 +793,7 @@ namespace PU.FormsSZV_6_4_2013
 
 
                             // сохраняем модифицированную запись обратно в бд
-                            db.ObjectStateManager.ChangeObjectState(r1, System.Data.EntityState.Modified);
+                            db.Entry(r1).State = EntityState.Modified;
                             //                                db.SaveChanges();
                             flag_ok = true;
 

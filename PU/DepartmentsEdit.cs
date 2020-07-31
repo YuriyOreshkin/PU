@@ -15,6 +15,7 @@ namespace PU
     {
         public string action;
         public long ParId = 0;
+        public long InsID = 0;   // ID страхователя
         public DepartmentsEdit()
         {
             InitializeComponent();
@@ -75,7 +76,7 @@ namespace PU
                     Code = radTextBox1.Text,
                     Name = radTextBox2.Text,
                     ParentID = ParId == 0 ? (long?)null : ParId,
-                    InsurerID = Options.InsID
+                    InsurerID = InsID
                 };
 
 

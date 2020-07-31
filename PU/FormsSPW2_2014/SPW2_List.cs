@@ -385,7 +385,7 @@ namespace PU.FormsSPW2_2014
                 child.ShowDialog();
                 if (child.staffData != null)
                 {
-                    db.DetectChanges();
+                    db.ChangeTracker.DetectChanges();
                     db = new pu6Entities();
                     staffGrid_upd();
 //                    staffGridView.Rows[rowindex].IsCurrent = true;
@@ -559,7 +559,7 @@ namespace PU.FormsSPW2_2014
 
                     try
                     {
-                        db.ExecuteStoreCommand(String.Format("DELETE FROM FormsSPW2 WHERE ([ID] = {0})", id));
+                        db.Database.ExecuteSqlCommand(String.Format("DELETE FROM FormsSPW2 WHERE ([ID] = {0})", id));
                     }
                     catch (Exception ex)
                     {

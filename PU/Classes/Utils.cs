@@ -11,6 +11,9 @@ using SQLiteParser;
 using System.Data.SQLite;
 using System.Data;
 using Microsoft.Win32;
+using System.Xml.Linq;
+using System.Globalization;
+using System.Threading;
 
 namespace PU.Classes
 {
@@ -1293,6 +1296,21 @@ namespace PU.Classes
             return result;
         }
 
+
+        public static decimal strToDec(XElement el)
+        {
+            decimal result = 0;
+            if (el == null)
+                return result = 0;
+
+            string dec_sep = Thread.CurrentThread.CurrentCulture.NumberFormat.NumberDecimalSeparator;
+            string sum_new = el.Value.ToString().Replace(",", dec_sep).Replace(".", dec_sep); 
+
+            decimal.TryParse(sum_new, out result);
+
+            return result;
+        }
+
         /// <summary>
         /// Оставляем в строке только цифры
         /// </summary>
@@ -1449,6 +1467,14 @@ namespace PU.Classes
             return correctPath;
         }
 
+
+        public static string checkStrLength(string str, int lng)
+        {
+            string s = str.Length <= lng ? str : str.Substring(0, lng);
+
+
+            return s;
+        }
 
     }
 }

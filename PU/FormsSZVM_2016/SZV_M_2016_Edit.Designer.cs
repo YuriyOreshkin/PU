@@ -112,6 +112,11 @@
             0,
             0});
             this.Year.Name = "Year";
+            this.Year.NullableValue = new decimal(new int[] {
+            2017,
+            0,
+            0,
+            0});
             this.Year.Size = new System.Drawing.Size(51, 21);
             this.Year.TabIndex = 20;
             this.Year.TabStop = false;
@@ -274,6 +279,7 @@
             // 
             this.RootElement.ApplyShapeToControl = true;
             this.ShowIcon = false;
+            this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Редактирование Формы СЗВ-М";
             this.ThemeName = "Office2013Light";

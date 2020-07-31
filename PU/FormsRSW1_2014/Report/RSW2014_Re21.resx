@@ -120,7 +120,7 @@
   <data name="textBox56.Value" xml:space="preserve">
     <value> * Представляется плательщиками страховых взносов отдельно по каждому тарифу, применяемому в отношении выплат застрахованным лицам, в том числе в отношении выплат в пользу работников, являющихся инвалидами I, II или III группы.</value>
   </data>
-  <assembly alias="Telerik.Reporting" name="Telerik.Reporting, Version=10.0.16.204, Culture=neutral, PublicKeyToken=a9d7983dfcc261be" />
+  <assembly alias="Telerik.Reporting" name="Telerik.Reporting, Version=13.1.19.514, Culture=neutral, PublicKeyToken=a9d7983dfcc261be" />
   <data name="$this.SnapGridSize" type="Telerik.Reporting.Drawing.Unit, Telerik.Reporting">
     <value>0.1cm</value>
   </data>

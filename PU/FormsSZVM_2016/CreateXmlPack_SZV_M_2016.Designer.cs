@@ -48,10 +48,10 @@
             // remainChkbox
             // 
             this.remainChkbox.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.remainChkbox.Location = new System.Drawing.Point(324, 64);
+            this.remainChkbox.Location = new System.Drawing.Point(318, 64);
             this.remainChkbox.Name = "remainChkbox";
             this.remainChkbox.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.remainChkbox.Size = new System.Drawing.Size(106, 18);
+            this.remainChkbox.Size = new System.Drawing.Size(112, 19);
             this.remainChkbox.TabIndex = 43;
             this.remainChkbox.Text = "запомнить путь";
             this.remainChkbox.ThemeName = "Office2013Light";

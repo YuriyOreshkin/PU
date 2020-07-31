@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
+using System.Data.Entity;
 using System.Drawing;
 using System.Text;
 using System.Linq;
@@ -27,13 +27,6 @@ namespace PU.FormsSZVM_2016
             InitializeComponent();
         }
 
-        public class StaffItem
-        {
-            public long ID { get; set; }
-            public string FIO { get; set; }
-            public string SNILS { get; set; }
-            public string INN { get; set; }
-        }
 
         /// <summary>
         /// Перехват нажатия на ESC для закрытия формы
@@ -202,10 +195,10 @@ namespace PU.FormsSZVM_2016
                 switch (action)
                 {
                     case "add":
-                        db.FormsSZV_M_2016.AddObject(SZVM_t);
+                        db.FormsSZV_M_2016.Add(SZVM_t);
                         break;
                     case "edit":
-                        db.ObjectStateManager.ChangeObjectState(SZVM_t, System.Data.EntityState.Modified);
+                        db.Entry(SZVM_t).State = EntityState.Modified;
                         break;
                 }
 
@@ -229,7 +222,7 @@ namespace PU.FormsSZVM_2016
                     string list = String.Join(",", list_for_del.Select(x => x.ID).ToArray());
                     try
                     {
-                        db.ExecuteStoreCommand(String.Format("DELETE FROM FormsSZV_M_2016_Staff WHERE ([ID] IN ({0}))", list));
+                        db.Database.ExecuteSqlCommand(String.Format("DELETE FROM FormsSZV_M_2016_Staff WHERE ([ID] IN ({0}))", list));
 
                     }
                     catch (Exception ex)
@@ -248,7 +241,7 @@ namespace PU.FormsSZVM_2016
 
             foreach (var item in staffList)
             {
-                db.AddToFormsSZV_M_2016_Staff(new FormsSZV_M_2016_Staff { StaffID = item.StaffID, FormsSZV_M_2016_ID = SZVM_t.ID });
+                db.FormsSZV_M_2016_Staff.Add(new FormsSZV_M_2016_Staff { StaffID = item.StaffID, FormsSZV_M_2016_ID = SZVM_t.ID });
             }
 
             try

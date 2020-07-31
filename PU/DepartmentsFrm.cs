@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
+using System.Data.Entity;
 using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
@@ -16,6 +16,7 @@ namespace PU.Models
     public partial class DepartmentsFrm : Telerik.WinControls.UI.RadForm
     {
         pu6Entities db = new pu6Entities();
+        public long InsID = 0;   // ID страхователя
         public string action;
         public long DepID;
         public string Name { get; set; }
@@ -76,7 +77,7 @@ namespace PU.Models
         public void dataTree_upd()
         {
             treeView1.Nodes.Clear();
-            var b = db.Department.Where(x => x.InsurerID == Options.InsID);
+            var b = db.Department.Where(x => x.InsurerID == InsID);
 
             treeView1.Nodes.Clear();
 
@@ -135,6 +136,9 @@ namespace PU.Models
 
             checkAccessLevel();
 
+            if (InsID == 0)
+                InsID = Options.InsID;
+
             dataTree_upd();
             if (action == "selection")
             {
@@ -161,6 +165,7 @@ namespace PU.Models
             child.Owner = this;
             child.action = "add";
             child.ThemeName = this.ThemeName;
+            child.InsID = InsID;
             child.ParId = SelNode == null ? 0 : long.Parse(SelNode.Tag.ToString());
             child.ShowInTaskbar = false;
             child.ShowDialog();
@@ -200,7 +205,7 @@ namespace PU.Models
                 if (!db.Department.Any(x => x.Code == dep.Code && x.Name == dep.Name && x.ParentID == dep.ParentID))
                 {
 
-                    db.Department.AddObject(dep);
+                    db.Department.Add(dep);
 
                     db.SaveChanges();
                     dataTree_upd();
@@ -242,7 +247,7 @@ namespace PU.Models
                     Item.Code = dep.Code;
                     Item.Name = dep.Name;
 
-                    db.ObjectStateManager.ChangeObjectState(Item, EntityState.Modified);
+                    db.Entry(Item).State = EntityState.Modified;
                     db.SaveChanges();
                     dataTree_upd();
                     TreeNode[] tn = treeView1.Nodes.Find(nodeindex, true);
@@ -305,7 +310,7 @@ namespace PU.Models
 
                         foreach (var item in deps)
                         {
-                            db.Department.DeleteObject(item);
+                            db.Department.Remove(item);
                         }
 
                     }

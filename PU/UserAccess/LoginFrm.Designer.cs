@@ -133,7 +133,7 @@
             // 
             this.rememberNameCheckBox.Location = new System.Drawing.Point(231, 86);
             this.rememberNameCheckBox.Name = "rememberNameCheckBox";
-            this.rememberNameCheckBox.Size = new System.Drawing.Size(80, 18);
+            this.rememberNameCheckBox.Size = new System.Drawing.Size(84, 19);
             this.rememberNameCheckBox.TabIndex = 4;
             this.rememberNameCheckBox.Text = "запомнить";
             this.rememberNameCheckBox.ThemeName = "Office2013Light";

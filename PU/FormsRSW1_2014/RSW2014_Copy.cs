@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
+using System.Data.Entity;
 using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
@@ -184,12 +184,12 @@ namespace PU.FormsRSW2014
 
 
             FormsRSW2014_1_1 new_rsw = old_rsw.Clone();
-            db.Detach(old_rsw);
+            db.Entry(old_rsw).State = EntityState.Detached;
 
             //           new_rsw.EntityKey = null;
 
             new_rsw.Insurer = null;
-            new_rsw.InsurerReference = null;
+            //new_rsw.InsurerReference = null;
             new_rsw.InsurerID = RSWdata.InsurerID;
 
             // make any other changes you want on your clone here
@@ -217,7 +217,7 @@ namespace PU.FormsRSW2014
                 new_rsw.CorrectionType = null;
             }
 
-            db.AddToFormsRSW2014_1_1(new_rsw);
+            db.FormsRSW2014_1_1.Add(new_rsw);
             backgroundWorker1.ReportProgress(1);
 
             foreach (var item in old_rsw_2_1)
@@ -260,54 +260,54 @@ namespace PU.FormsRSW2014
                     new_rsw_2_1.s_213_3 = 0;
                 }
 
-                db.Detach(item);
+                db.Entry(item).State = EntityState.Detached;
 
-                db.AddToFormsRSW2014_1_Razd_2_1(new_rsw_2_1);
+                db.FormsRSW2014_1_Razd_2_1.Add(new_rsw_2_1);
             }
             backgroundWorker1.ReportProgress(2);
             foreach (var item in old_rsw_2_4)
             {
                 FormsRSW2014_1_Razd_2_4 new_rsw_2_4 = item.Clone();
-                db.Detach(item);
+                db.Entry(item).State = EntityState.Detached;
                 //                    new_rsw_2_4.EntityKey = null;
                 new_rsw_2_4.CorrectionNum = corrNew;
                 new_rsw_2_4.Quarter = quarterNew;
                 new_rsw_2_4.Year = yearNew;
-                db.AddToFormsRSW2014_1_Razd_2_4(new_rsw_2_4);
+                db.FormsRSW2014_1_Razd_2_4.Add(new_rsw_2_4);
             }
             backgroundWorker1.ReportProgress(3);
 
             foreach (var item in old_rsw_3_4)
             {
                 FormsRSW2014_1_Razd_3_4 new_rsw_3_4 = item.Clone();
-                db.Detach(item);
+                db.Entry(item).State = EntityState.Detached;
                 //                    new_rsw_3_4.EntityKey = null;
                 new_rsw_3_4.CorrectionNum = corrNew;
                 new_rsw_3_4.Quarter = quarterNew;
                 new_rsw_3_4.Year = yearNew;
-                db.AddToFormsRSW2014_1_Razd_3_4(new_rsw_3_4);
+                db.FormsRSW2014_1_Razd_3_4.Add(new_rsw_3_4);
             }
             backgroundWorker1.ReportProgress(4);
             foreach (var item in old_rsw_4)
             {
                 FormsRSW2014_1_Razd_4 new_rsw_4 = item.Clone();
-                db.Detach(item);
+                db.Entry(item).State = EntityState.Detached;
                 //                    new_rsw_4.EntityKey = null;
                 new_rsw_4.CorrectionNum = corrNew;
                 new_rsw_4.Quarter = quarterNew;
                 new_rsw_4.Year = yearNew;
-                db.AddToFormsRSW2014_1_Razd_4(new_rsw_4);
+                db.FormsRSW2014_1_Razd_4.Add(new_rsw_4);
             }
             backgroundWorker1.ReportProgress(5);
             foreach (var item in old_rsw_5)
             {
                 FormsRSW2014_1_Razd_5 new_rsw_5 = item.Clone();
-                db.Detach(item);
+                db.Entry(item).State = EntityState.Detached;
                 //                    new_rsw_5.EntityKey = null;
                 new_rsw_5.CorrectionNum = corrNew;
                 new_rsw_5.Quarter = quarterNew;
                 new_rsw_5.Year = yearNew;
-                db.AddToFormsRSW2014_1_Razd_5(new_rsw_5);
+                db.FormsRSW2014_1_Razd_5.Add(new_rsw_5);
             }
 
 

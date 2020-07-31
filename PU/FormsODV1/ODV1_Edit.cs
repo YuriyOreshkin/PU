@@ -2,7 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
+using System.Data.Entity;
 using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
@@ -12,6 +12,7 @@ using Telerik.WinControls.UI.Localization;
 using PU.Classes;
 using Telerik.WinControls.UI;
 using System.Reflection;
+using Telerik.WinControls.Data;
 
 namespace PU.FormsODV1
 {
@@ -204,6 +205,30 @@ namespace PU.FormsODV1
                         Quarter.Items.OrderByDescending(x => x.Value).First().Selected = true;
                 }
 
+                try
+                {
+                    if (ins.TypePayer != 0)  // не организация
+                    {
+                        ConfirmLastName.Text = !String.IsNullOrEmpty(ins.LastName) ? ins.LastName : "";
+                        ConfirmFirstName.Text = !String.IsNullOrEmpty(ins.FirstName) ? ins.FirstName : "";
+                        ConfirmMiddleName.Text = !String.IsNullOrEmpty(ins.MiddleName) ? ins.MiddleName : "";
+                    }
+                    else
+                    {
+                        var FIO = ins.BossFIO.Split(' ');
+
+                        ConfirmLastName.Text = FIO[0] != null ? (!String.IsNullOrEmpty(FIO[0]) ? FIO[0] : "") : "";
+                        ConfirmFirstName.Text = FIO[1] != null ? (!String.IsNullOrEmpty(FIO[1]) ? FIO[1] : "") : "";
+
+                        if (FIO.Length > 2)
+                            ConfirmMiddleName.Text = FIO[2] != null ? (!String.IsNullOrEmpty(FIO[2]) ? FIO[2] : "") : "";
+
+                        ConfirmDolgn.Text = !String.IsNullOrEmpty(ins.BossDolgn) ? ins.BossDolgn : "";
+                    }
+                }
+                catch { }
+
+
             }
 
             this.Quarter.SelectedIndexChanged += (s, с) => Quarter_SelectedIndexChanged();
@@ -323,31 +348,95 @@ namespace PU.FormsODV1
             this.Close();
         }
 
+
         private void ODV1_5_Grid_update()
         {
             RadGridLocalizationProvider.CurrentProvider = new MyRussianRadGridLocalizationProvider();
 
-            ODV1_5_Grid.Rows.Clear();
+            int rowindex = 0;
+            string currId = "";
+            if (ODV1_5_Grid.RowCount > 0 && ODV1_5_Grid.CurrentRow != null)
+            {
+                rowindex = ODV1_5_Grid.CurrentRow.Index;
+                currId = ODV1_5_Grid.CurrentRow.Cells[0].Value.ToString();
+            }
+
+            SortDescriptor descriptor = new SortDescriptor();
+            if (ODV1_5_Grid.MasterTemplate.SortDescriptors.Any())
+            {
+                descriptor = ODV1_5_Grid.MasterTemplate.SortDescriptors.First();
+            }
+            else
+            {
+                descriptor.PropertyName = "Num";
+                descriptor.Direction = ListSortDirection.Ascending;
+            }
+
+//            ODV1_5_Grid.Rows.Clear();
+            ODV1_5_Grid.TableElement.BeginUpdate();
+
+            ODV1_5_Grid.DataSource = FormsODV_1_5_List.OrderBy(x => x.Num);
+            ODV1_5_Grid.AllowDeleteRow = true;
+
+            if (descriptor != null)
+            {
+                ODV1_5_Grid.MasterTemplate.SortDescriptors.Add(descriptor);
+            }
+
+
 
             if (FormsODV_1_5_List.Count() != 0)
             {
-                foreach (var item in FormsODV_1_5_List)
+                ODV1_5_Grid.Columns["ID"].IsVisible = false;
+                ODV1_5_Grid.Columns["FormsODV_1_2017_ID"].IsVisible = false;
+                ODV1_5_Grid.Columns["FormsODV_1_5_2017_OUT"].IsVisible = false;
+                ODV1_5_Grid.Columns["FormsODV_1_2017"].IsVisible = false;
+                ODV1_5_Grid.Columns["Num"].Width = 80;
+                ODV1_5_Grid.Columns["Num"].HeaderText = "№";
+                ODV1_5_Grid.Columns["Department"].Width = 120;
+                ODV1_5_Grid.Columns["Department"].HeaderText = "Наименование подразделения";
+                ODV1_5_Grid.Columns["Profession"].Width = 100;
+                ODV1_5_Grid.Columns["Profession"].HeaderText = "Профессия, должность";
+                ODV1_5_Grid.Columns["StaffCountShtat"].Width = 100;
+                ODV1_5_Grid.Columns["StaffCountShtat"].HeaderText = "Кол-во штат";
+                ODV1_5_Grid.Columns["StaffCountFakt"].Width = 100;
+                ODV1_5_Grid.Columns["StaffCountFakt"].HeaderText = "Кол-во факт";
+                ODV1_5_Grid.Columns["VidRabotFakt"].Width = 80;
+                ODV1_5_Grid.Columns["VidRabotFakt"].HeaderText = "Характер фактически выполняемых работ и дополнительные условия труда";
+                ODV1_5_Grid.Columns["DocsName"].Width = 80;
+                ODV1_5_Grid.Columns["DocsName"].HeaderText = "Наименование  первичных документов, подтверждающих занятость в особых условиях труда";
+
+                for (var i = 0; i < ODV1_5_Grid.Columns.Count; i++)
                 {
-                    GridViewDataRowInfo rowInfo = new GridViewDataRowInfo(this.ODV1_5_Grid.MasterView);
-                    rowInfo.Cells["ID"].Value = item.ID;
-                    rowInfo.Cells["Num"].Value = item.Num;
-                    rowInfo.Cells["Department"].Value = item.Department;
-                    rowInfo.Cells["Profession"].Value = item.Profession;
-                    rowInfo.Cells["StaffCountShtat"].Value = item.StaffCountShtat;
-                    rowInfo.Cells["StaffCountFakt"].Value = item.StaffCountFakt;
-                    rowInfo.Cells["VidRabotFakt"].Value = item.VidRabotFakt;
-                    rowInfo.Cells["DocsName"].Value = item.DocsName;
-                    ODV1_5_Grid.Rows.Add(rowInfo);
+                    ODV1_5_Grid.Columns[i].TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+                    ODV1_5_Grid.Columns[i].ReadOnly = true;
                 }
+
+                this.ODV1_5_Grid.MasterTemplate.AutoSizeColumnsMode = GridViewAutoSizeColumnsMode.Fill;
+
+
             }
 
-            this.ODV1_5_Grid.MasterTemplate.AutoSizeColumnsMode = GridViewAutoSizeColumnsMode.Fill;
-            ODV1_5_Grid.Refresh();
+
+            ODV1_5_Grid.TableElement.EndUpdate();
+
+            //            odv1GridView.Refresh();
+
+
+            if (ODV1_5_Grid.ChildRows.Count > 0)
+            {
+                if (ODV1_5_Grid.Rows.Any(x => x.Cells[0].Value.ToString() == currId))
+                {
+                    ODV1_5_Grid.Rows.First(x => x.Cells[0].Value.ToString() == currId).IsCurrent = true;
+                }
+                else
+                {
+                    if (rowindex >= ODV1_5_Grid.ChildRows.Count)
+                        rowindex = ODV1_5_Grid.ChildRows.Count - 1;
+                    rowindex = rowindex >= 0 ? rowindex : 0;
+                    ODV1_5_Grid.ChildRows[rowindex].IsCurrent = true;
+                }
+            }
         }
 
         private void ODV1_4_Grid_update()
@@ -454,7 +543,7 @@ namespace PU.FormsODV1
             }
             ODV1.StaffCount = StaffCount;
 
-            ODV1.StaffCountOsobUslShtat = (long)StaffCountOsobUslShtat.Value;
+            ODV1.StaffCountOsobUslShtat = (decimal)StaffCountOsobUslShtat.Value;
 
             ODV1.StaffCountOsobUslFakt = (long)StaffCountOsobUslFakt.Value;
 
@@ -514,7 +603,7 @@ namespace PU.FormsODV1
 
                             }
 
-                            foreach (var it in item.FormsODV_1_5_2017_OUT)
+                            foreach (var it in item.FormsODV_1_5_2017_OUT.ToList())
                             {
                                 r.FormsODV_1_5_2017_OUT.Add(it);
                             }
@@ -523,7 +612,7 @@ namespace PU.FormsODV1
 
                         }
 
-                        db.AddToFormsODV_1_2017(ODV1);
+                        db.FormsODV_1_2017.Add(ODV1);
                         try
                         {
                             db.SaveChanges();
@@ -566,7 +655,7 @@ namespace PU.FormsODV1
 
 
                             // сохраняем модифицированную запись обратно в бд
-                            db.ObjectStateManager.ChangeObjectState(odv_1_ish, System.Data.EntityState.Modified);
+                            db.Entry(odv_1_ish).State= EntityState.Modified;
                             // сохраняем модифицированную запись обратно в бд
                             db.SaveChanges();
                         }
@@ -586,7 +675,7 @@ namespace PU.FormsODV1
 
                             foreach (var item in list_for_del)
                             {
-                                db.FormsODV_1_4_2017.DeleteObject(item);
+                                db.FormsODV_1_4_2017.Remove(item);
                             }
 
                             if (list_for_del.Count() != 0)
@@ -625,9 +714,9 @@ namespace PU.FormsODV1
                                 }
 
                                 if (!exist)
-                                    db.AddToFormsODV_1_4_2017(r);
+                                    db.FormsODV_1_4_2017.Add(r);
                                 else
-                                    db.ObjectStateManager.ChangeObjectState(r, EntityState.Modified);
+                                    db.Entry(r).State = EntityState.Modified;
 
                             }
 
@@ -654,7 +743,7 @@ namespace PU.FormsODV1
 
                             foreach (var item in list_for_del)
                             {
-                                db.FormsODV_1_5_2017.DeleteObject(item);
+                                db.FormsODV_1_5_2017.Remove(item);
                             }
 
                             if (list_for_del.Count() != 0)
@@ -696,7 +785,7 @@ namespace PU.FormsODV1
                                     {
                                         r.FormsODV_1_5_2017_OUT.Add(it);
                                     }
-                                    db.AddToFormsODV_1_5_2017(r);
+                                    db.FormsODV_1_5_2017.Add(r);
 
                                 }
                                 else
@@ -719,7 +808,7 @@ namespace PU.FormsODV1
                                     foreach (var item_ in list_for_del_)
                                     {
                                      //   r.FormsODV_1_5_2017_OUT.Remove(item_);
-                                        db.FormsODV_1_5_2017_OUT.DeleteObject(item_);
+                                        db.FormsODV_1_5_2017_OUT.Remove(item_);
                                     }
 
                                     if (list_for_del_.Count() != 0)
@@ -761,11 +850,11 @@ namespace PU.FormsODV1
                                             r.FormsODV_1_5_2017_OUT.Add(r_);
                                         }
                                         //else
-                                        //    db.ObjectStateManager.ChangeObjectState(r, EntityState.Modified);
+                                        //    db.Entry(r, EntityState.Modified);
 
                                     }
 
-                                    db.ObjectStateManager.ChangeObjectState(r, EntityState.Modified);
+                                    db.Entry(r).State = EntityState.Modified;
                                 }
 
                             }
@@ -914,6 +1003,8 @@ namespace PU.FormsODV1
             child.Owner = this;
             child.ThemeName = this.ThemeName;
             child.ShowInTaskbar = false;
+            child.existedNum = FormsODV_1_5_List.Any() ? FormsODV_1_5_List.Select(x => x.Num.Value).ToList() : new List<short>();
+            child.cnt = FormsODV_1_5_List.Any() ? FormsODV_1_5_List.Max(x => x.Num).Value : (short)0;
             child.ShowDialog();
             if (child.formData != null)
             {
@@ -926,25 +1017,60 @@ namespace PU.FormsODV1
 
         private void radButton11_Click(object sender, EventArgs e)
         {
-            if (ODV1_5_Grid.RowCount != 0)
+            if (ODV1_5_Grid.RowCount > 0 && ODV1_5_Grid.CurrentRow.Cells[0].Value != null)
             {
-                int rowindex = ODV1_5_Grid.CurrentRow.Index;
+                long id = (long)ODV1_5_Grid.CurrentRow.Cells[0].Value;
+                bool Good = false;
+                int ind = 0;
 
-                ODV_1_5_Edit child = new ODV_1_5_Edit();
-                child.Owner = this;
-                child.ThemeName = this.ThemeName;
-                child.ShowInTaskbar = false;
-                child.formData = FormsODV_1_5_List.Skip(rowindex).Take(1).First();
-                child.ShowDialog();
+                FormsODV_1_5_2017 item = new FormsODV_1_5_2017();
 
-                if (child.formData != null)
+                if (id != 0)
                 {
-                    FormsODV_1_5_List.RemoveAt(rowindex);
-                    FormsODV_1_5_List.Insert(rowindex, child.formData);
+                    item = FormsODV_1_5_List.First(x => x.ID == id);
 
-                    ODV1_5_Grid_update();
-                    updateStaffCnt();
+                    ind = FormsODV_1_5_List.IndexOf(item);
+                    Good = true;
+                }
+                else
+                {
+                    var Num = (Int16)ODV1_5_Grid.CurrentRow.Cells["Num"].Value;
+                    if (FormsODV_1_5_List.Where(x => x.Num == Num).Count() == 1)
+                    {
+                        item = FormsODV_1_5_List.First(x => x.Num == Num);
 
+                        ind = FormsODV_1_5_List.IndexOf(item);
+                        Good = true;
+                    }
+                }
+
+                if (Good)
+                {
+
+                    ODV_1_5_Edit child = new ODV_1_5_Edit();
+                    child.Owner = this;
+                    child.ThemeName = this.ThemeName;
+                    child.ShowInTaskbar = false;
+                    child.existedNum = FormsODV_1_5_List.Select(x => x.Num.Value).ToList();
+                    child.formData = item;
+                    child.ShowDialog();
+
+                    if (child.formData != null)
+                    {
+
+
+
+                        FormsODV_1_5_List.RemoveAt(ind);
+                        FormsODV_1_5_List.Insert(ind, child.formData);
+
+                        ODV1_5_Grid_update();
+                        updateStaffCnt();
+
+                    }
+                }
+                else
+                {
+                    RadMessageBox.Show(this, "Не получилось открыть данные для редактирования! Попробуйте сохранить и закрыть текущую Форму ОДВ-1 и открыть заново!");
                 }
             }
             else
@@ -955,16 +1081,47 @@ namespace PU.FormsODV1
 
         private void radButton10_Click(object sender, EventArgs e)
         {
-            if (ODV1_5_Grid.RowCount != 0)
+            if (ODV1_5_Grid.RowCount > 0 && ODV1_5_Grid.CurrentRow.Cells[0].Value != null)
             {
-                int rowindex = ODV1_5_Grid.CurrentRow.Index;
-                FormsODV_1_5_List.RemoveAt(rowindex);
+                bool delGood = false;
 
-                ODV1_5_Grid_update();
-                updateStaffCnt();
+                long id = (long)ODV1_5_Grid.CurrentRow.Cells[0].Value;
 
+                if (id != 0)
+                {
+                    var item = FormsODV_1_5_List.First(x => x.ID == id);
+                    delGood = FormsODV_1_5_List.Remove(item);
+                }
+                else
+                {
+                    var Num = (Int16)ODV1_5_Grid.CurrentRow.Cells["Num"].Value;
+                    if (FormsODV_1_5_List.Where(x => x.Num == Num).Count() == 1)
+                    {
+                        var item = FormsODV_1_5_List.First(x => x.Num == Num);
+                        delGood = FormsODV_1_5_List.Remove(item);
+                    }
+                }
+
+
+                if (!delGood)   
+                    RadMessageBox.Show(this, "При удалении записи произошла ошибка! Попробуйте сохранить и закрыть текущую Форму ОДВ-1 и открыть заново и попробуйте удалить лишнюю запись!", "Ошибка", MessageBoxButtons.OK, RadMessageIcon.Error, MessageBoxDefaultButton.Button1);
+
+
+                    ODV1_5_Grid_update();
 
             }
+
+
+            //if (ODV1_5_Grid.RowCount != 0)
+            //{
+            //    int rowindex = ODV1_5_Grid.CurrentRow.Index;
+            //    FormsODV_1_5_List.RemoveAt(rowindex);
+
+            //    ODV1_5_Grid_update();
+            //    updateStaffCnt();
+
+
+            //}
             else
             {
                 RadMessageBox.Show(this, "Нет данных для удаления!");
@@ -974,7 +1131,7 @@ namespace PU.FormsODV1
         private void TypeForm_SelectedIndexChanged(object sender, Telerik.WinControls.UI.Data.PositionChangedEventArgs e)
         {
 
-
+            int year = DateTime.Now.Year;
 
             typeForm = TypeForm.SelectedItem.Tag.ToString();
 
@@ -1013,7 +1170,7 @@ namespace PU.FormsODV1
                     }
                     break;
                 case "2":
-                    avail_periods = Options.RaschetPeriodInternal.Where(x => x.Year < 2018).OrderBy(x => x.Year).ToList();
+                    avail_periods = Options.RaschetPeriodInternal.Where(x => x.Year < year).OrderBy(x => x.Year).ToList();
                     foreach (var item in avail_periods)
                     {
                         avail_periods_all.Add(item);
@@ -1033,10 +1190,10 @@ namespace PU.FormsODV1
 
 
                     flag = true;
-                    flag_4 = false;
+                    flag_4 = true;
                     flag_5 = true;
                     SZV_ISH_Cnt.Enabled = true;
-                    foreach (var item in avail_periods_all.Where(x => x.Year < 2018).Select(x => x.Year).ToList().Distinct())
+                    foreach (var item in avail_periods_all.Where(x => x.Year < year).Select(x => x.Year).ToList().Distinct())
                     {
                         Year.Items.Add(new RadListDataItem(item.ToString(), item.ToString()));
                     }
@@ -1053,7 +1210,7 @@ namespace PU.FormsODV1
 
                     flag = true;
                     flag_4 = true;
-                    flag_5 = false;
+                    flag_5 = true;
                     SZV_KORR_Cnt.Enabled = true;
                     foreach (var item in avail_periods_all.Where(x => x.Year >= 2017).Select(x => x.Year).ToList().Distinct())
                     {
@@ -1194,6 +1351,25 @@ namespace PU.FormsODV1
                     break;
             }
         }
+
+        private void razd5_reNumBtn_Click(object sender, EventArgs e)
+        {
+            short i = 1;
+            foreach (var item in FormsODV_1_5_List)
+            {
+                item.Num = i;
+                i++;
+            }
+            ODV1_5_Grid_update();
+        }
+
+        private void ODV1_5_Grid_CellDoubleClick(object sender, GridViewCellEventArgs e)
+        {
+            radButton11_Click(null, null);
+        }
+
+
+
 
 
 

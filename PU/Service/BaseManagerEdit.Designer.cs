@@ -147,7 +147,6 @@
             this.existedDBRadioBtn.Name = "existedDBRadioBtn";
             this.existedDBRadioBtn.Size = new System.Drawing.Size(266, 19);
             this.existedDBRadioBtn.TabIndex = 11;
-            this.existedDBRadioBtn.TabStop = true;
             this.existedDBRadioBtn.Text = "Указать путь к существующей базе данных";
             this.existedDBRadioBtn.ThemeName = "Office2013Light";
             this.existedDBRadioBtn.ToggleState = Telerik.WinControls.Enumerations.ToggleState.On;

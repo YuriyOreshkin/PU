@@ -21,6 +21,8 @@
           <EntitySet Name="FormsODV_1_4_2017" EntityType="Хранилище pu6Model.FormsODV_1_4_2017" store:Type="Tables" />
           <EntitySet Name="FormsODV_1_5_2017" EntityType="Хранилище pu6Model.FormsODV_1_5_2017" store:Type="Tables" />
           <EntitySet Name="FormsODV_1_5_2017_OUT" EntityType="Хранилище pu6Model.FormsODV_1_5_2017_OUT" store:Type="Tables" />
+          <EntitySet Name="FormsPredPens_Zapros" EntityType="Хранилище pu6Model.FormsPredPens_Zapros" store:Type="Tables" />
+          <EntitySet Name="FormsPredPens_Zapros_Staff" EntityType="Хранилище pu6Model.FormsPredPens_Zapros_Staff" store:Type="Tables" />
           <EntitySet Name="FormsRSW" EntityType="Хранилище pu6Model.FormsRSW" store:Type="Tables" />
           <EntitySet Name="FormsRSW2014_1_1" EntityType="Хранилище pu6Model.FormsRSW2014_1_1" store:Type="Tables" />
           <EntitySet Name="FormsRSW2014_1_Razd_2_1" EntityType="Хранилище pu6Model.FormsRSW2014_1_Razd_2_1" store:Type="Tables" />
@@ -52,6 +54,11 @@
           <EntitySet Name="FormsSZV_M_2016_Staff" EntityType="Хранилище pu6Model.FormsSZV_M_2016_Staff" store:Type="Tables" />
           <EntitySet Name="FormsSZV_STAJ_2017" EntityType="Хранилище pu6Model.FormsSZV_STAJ_2017" store:Type="Tables" />
           <EntitySet Name="FormsSZV_STAJ_4_2017" EntityType="Хранилище pu6Model.FormsSZV_STAJ_4_2017" store:Type="Tables" />
+          <EntitySet Name="FormsSZV_TD_2020" EntityType="Хранилище pu6Model.FormsSZV_TD_2020" store:Type="Tables" />
+          <EntitySet Name="FormsSZV_TD_2020_Staff" EntityType="Хранилище pu6Model.FormsSZV_TD_2020_Staff" store:Type="Tables" />
+          <EntitySet Name="FormsSZV_TD_2020_Staff_AnnuledEvents" EntityType="Хранилище pu6Model.FormsSZV_TD_2020_Staff_AnnuledEvents" store:Type="Tables" />
+          <EntitySet Name="FormsSZV_TD_2020_Staff_Events" EntityType="Хранилище pu6Model.FormsSZV_TD_2020_Staff_Events" store:Type="Tables" />
+          <EntitySet Name="FormsSZV_TD_2020_TypesOfEvents" EntityType="Хранилище pu6Model.FormsSZV_TD_2020_TypesOfEvents" store:Type="Tables" />
           <EntitySet Name="Insurer" EntityType="Хранилище pu6Model.Insurer" store:Type="Tables" />
           <EntitySet Name="IschislStrahStajDop" EntityType="Хранилище pu6Model.IschislStrahStajDop" store:Type="Tables" />
           <EntitySet Name="IschislStrahStajOsn" EntityType="Хранилище pu6Model.IschislStrahStajOsn" store:Type="Tables" />
@@ -133,6 +140,18 @@
           <AssociationSet Name="FK_FormsODV_1_5_2017_OUT_0_0" Association="Хранилище pu6Model.FK_FormsODV_1_5_2017_OUT_0_0">
             <End Role="FormsODV_1_5_2017" EntitySet="FormsODV_1_5_2017" />
             <End Role="FormsODV_1_5_2017_OUT" EntitySet="FormsODV_1_5_2017_OUT" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FormsPredPens_Zapros_0_0" Association="Хранилище pu6Model.FK_FormsPredPens_Zapros_0_0">
+            <End Role="Insurer" EntitySet="Insurer" />
+            <End Role="FormsPredPens_Zapros" EntitySet="FormsPredPens_Zapros" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FormsPredPens_Zapros_Staff_0_0" Association="Хранилище pu6Model.FK_FormsPredPens_Zapros_Staff_0_0">
+            <End Role="Staff" EntitySet="Staff" />
+            <End Role="FormsPredPens_Zapros_Staff" EntitySet="FormsPredPens_Zapros_Staff" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FormsPredPens_Zapros_Staff_1_0" Association="Хранилище pu6Model.FK_FormsPredPens_Zapros_Staff_1_0">
+            <End Role="FormsPredPens_Zapros" EntitySet="FormsPredPens_Zapros" />
+            <End Role="FormsPredPens_Zapros_Staff" EntitySet="FormsPredPens_Zapros_Staff" />
           </AssociationSet>
           <AssociationSet Name="FK_FormsRSW_0_0" Association="Хранилище pu6Model.FK_FormsRSW_0_0">
             <End Role="Staff" EntitySet="Staff" />
@@ -305,6 +324,30 @@
           <AssociationSet Name="FK_FormsSZV_STAJ_4_2017_0_0" Association="Хранилище pu6Model.FK_FormsSZV_STAJ_4_2017_0_0">
             <End Role="FormsSZV_STAJ_2017" EntitySet="FormsSZV_STAJ_2017" />
             <End Role="FormsSZV_STAJ_4_2017" EntitySet="FormsSZV_STAJ_4_2017" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FormsSZV_TD_2020_0_0" Association="Хранилище pu6Model.FK_FormsSZV_TD_2020_0_0">
+            <End Role="Insurer" EntitySet="Insurer" />
+            <End Role="FormsSZV_TD_2020" EntitySet="FormsSZV_TD_2020" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FormsSZV_TD_2020_Staff_0_0" Association="Хранилище pu6Model.FK_FormsSZV_TD_2020_Staff_0_0">
+            <End Role="Staff" EntitySet="Staff" />
+            <End Role="FormsSZV_TD_2020_Staff" EntitySet="FormsSZV_TD_2020_Staff" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FormsSZV_TD_2020_Staff_1_0" Association="Хранилище pu6Model.FK_FormsSZV_TD_2020_Staff_1_0">
+            <End Role="FormsSZV_TD_2020" EntitySet="FormsSZV_TD_2020" />
+            <End Role="FormsSZV_TD_2020_Staff" EntitySet="FormsSZV_TD_2020_Staff" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FormsSZV_TD_2020_Staff_AnnuledEvents_0_0" Association="Хранилище pu6Model.FK_FormsSZV_TD_2020_Staff_AnnuledEvents_0_0">
+            <End Role="FormsSZV_TD_2020_Staff" EntitySet="FormsSZV_TD_2020_Staff" />
+            <End Role="FormsSZV_TD_2020_Staff_AnnuledEvents" EntitySet="FormsSZV_TD_2020_Staff_AnnuledEvents" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FormsSZV_TD_2020_Staff_Events_0_0" Association="Хранилище pu6Model.FK_FormsSZV_TD_2020_Staff_Events_0_0">
+            <End Role="FormsSZV_TD_2020_TypesOfEvents" EntitySet="FormsSZV_TD_2020_TypesOfEvents" />
+            <End Role="FormsSZV_TD_2020_Staff_Events" EntitySet="FormsSZV_TD_2020_Staff_Events" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FormsSZV_TD_2020_Staff_Events_1_0" Association="Хранилище pu6Model.FK_FormsSZV_TD_2020_Staff_Events_1_0">
+            <End Role="FormsSZV_TD_2020_Staff" EntitySet="FormsSZV_TD_2020_Staff" />
+            <End Role="FormsSZV_TD_2020_Staff_Events" EntitySet="FormsSZV_TD_2020_Staff_Events" />
           </AssociationSet>
           <AssociationSet Name="FK_PlatCategory_0_0" Association="Хранилище pu6Model.FK_PlatCategory_0_0">
             <End Role="PlatCategoryRaschPer" EntitySet="PlatCategoryRaschPer" />
@@ -662,7 +705,7 @@
           <Property Name="s_2_1" Type="decimal" Precision="15" Scale="2" />
           <Property Name="s_2_2" Type="decimal" Precision="15" Scale="2" />
           <Property Name="s_2_3" Type="decimal" Precision="15" Scale="2" />
-          <Property Name="StaffCountOsobUslShtat" Type="integer" />
+          <Property Name="StaffCountOsobUslShtat" Type="decimal" Precision="15" Scale="2" />
           <Property Name="StaffCountOsobUslFakt" Type="integer" />
           <Property Name="DateFilling" Type="datetime" Nullable="false" />
           <Property Name="ConfirmLastName" Type="varchar" />
@@ -693,7 +736,7 @@
           <Property Name="FormsODV_1_2017_ID" Type="integer" Nullable="false" />
           <Property Name="Department" Type="varchar" />
           <Property Name="Profession" Type="varchar" />
-          <Property Name="StaffCountShtat" Type="integer" />
+          <Property Name="StaffCountShtat" Type="decimal" Precision="15" Scale="2" />
           <Property Name="StaffCountFakt" Type="integer" />
           <Property Name="VidRabotFakt" Type="varchar" />
           <Property Name="DocsName" Type="varchar" />
@@ -706,6 +749,27 @@
           <Property Name="OsobUslTrudaCode" Type="varchar" />
           <Property Name="CodePosition" Type="varchar" />
           <Property Name="FormsODV_1_5_2017_ID" Type="integer" Nullable="false" />
+        </EntityType>
+        <EntityType Name="FormsPredPens_Zapros">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="integer" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="InsurerID" Type="integer" Nullable="false" />
+          <Property Name="TypeORG" Type="tinyint" Nullable="false" />
+          <Property Name="Date" Type="datetime" Nullable="false" />
+          <Property Name="Number" Type="varchar" />
+          <Property Name="FirstName" Type="varchar" />
+          <Property Name="LastName" Type="varchar" />
+          <Property Name="MiddleName" Type="varchar" />
+        </EntityType>
+        <EntityType Name="FormsPredPens_Zapros_Staff">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="integer" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="FormsPredPens_ZaprosID" Type="integer" Nullable="false" />
+          <Property Name="StaffID" Type="integer" Nullable="false" />
         </EntityType>
         <EntityType Name="FormsRSW">
           <Key>
@@ -1587,6 +1651,7 @@
           <Property Name="SumFeePFR_Base" Type="decimal" Precision="10" Scale="2" />
           <Property Name="SumPayPFR_Strah" Type="decimal" Precision="10" Scale="2" />
           <Property Name="SumPayPFR_Nakop" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="Dismissed" Type="bit" />
         </EntityType>
         <EntityType Name="FormsSZV_ISH_4_2017">
           <Key>
@@ -1642,6 +1707,7 @@
           <Property Name="DopTarCode" Type="varchar" />
           <Property Name="DateFilling" Type="datetime" Nullable="false" />
           <Property Name="ShortNameKorr" Type="varchar" />
+          <Property Name="Dismissed" Type="bit" />
         </EntityType>
         <EntityType Name="FormsSZV_KORR_4_2017">
           <Key>
@@ -1722,6 +1788,87 @@
           <Property Name="DNPO_DateFrom" Type="datetime" />
           <Property Name="DNPO_DateTo" Type="datetime" />
           <Property Name="DNPO_Fee" Type="bit" />
+        </EntityType>
+        <EntityType Name="FormsSZV_TD_2020">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="integer" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="InsurerID" Type="integer" Nullable="false" />
+          <Property Name="Year" Type="smallint" Nullable="false" />
+          <Property Name="Month" Type="tinyint" Nullable="false" />
+          <Property Name="Annuled" Type="bit" />
+          <Property Name="AnnulDate" Type="datetime" />
+          <Property Name="DateFilling" Type="datetime" Nullable="false" />
+          <Property Name="ConfirmDolgn" Type="varchar" />
+          <Property Name="ConfirmLastName" Type="varchar" />
+          <Property Name="ConfirmFirstName" Type="varchar" />
+          <Property Name="ConfirmMiddleName" Type="varchar" />
+        </EntityType>
+        <EntityType Name="FormsSZV_TD_2020_Staff">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="integer" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="FormsSZV_TD_2020_ID" Type="integer" Nullable="false" />
+          <Property Name="StaffID" Type="integer" Nullable="false" />
+          <Property Name="ZayavOProdoljDate" Type="datetime" />
+          <Property Name="ZayavOProdoljState" Type="tinyint" />
+          <Property Name="ZayavOPredostDate" Type="datetime" />
+          <Property Name="ZayavOPredostState" Type="tinyint" />
+        </EntityType>
+        <EntityType Name="FormsSZV_TD_2020_Staff_AnnuledEvents">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="integer" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="FormsSZV_TD_2020_Staff_ID" Type="integer" Nullable="false" />
+          <Property Name="UUID_Annuled" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Date_Annuled" Type="datetime" />
+        </EntityType>
+        <EntityType Name="FormsSZV_TD_2020_Staff_Events">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="integer" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="FormsSZV_TD_2020_Staff_ID" Type="integer" Nullable="false" />
+          <Property Name="UUID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="TypesOfEvents_ID" Type="integer" Nullable="false" />
+          <Property Name="DateOfEvent" Type="datetime" Nullable="false" />
+          <Property Name="Sovmestitel" Type="tinyint" Nullable="false" />
+          <Property Name="Svedenia" Type="varchar" />
+          <Property Name="Dolgn" Type="varchar" />
+          <Property Name="Department" Type="varchar" />
+          <Property Name="Statya" Type="varchar" />
+          <Property Name="Punkt" Type="varchar" />
+          <Property Name="OsnUvolName" Type="varchar" />
+          <Property Name="OsnUvolStartya" Type="varchar" />
+          <Property Name="OsnUvolChyast" Type="varchar" />
+          <Property Name="OsnUvolPunkt" Type="varchar" />
+          <Property Name="OsnUvolPodPunkt" Type="varchar" />
+          <Property Name="Prichina" Type="varchar" />
+          <Property Name="DateFrom" Type="datetime" />
+          <Property Name="OsnName1" Type="varchar" />
+          <Property Name="OsnDate1" Type="datetime" />
+          <Property Name="OsnNum1" Type="varchar" />
+          <Property Name="OsnSer1" Type="varchar" />
+          <Property Name="OsnName2" Type="varchar" />
+          <Property Name="OsnDate2" Type="datetime" />
+          <Property Name="OsnNum2" Type="varchar" />
+          <Property Name="OsnSer2" Type="varchar" />
+          <Property Name="DateTo" Type="datetime" />
+          <Property Name="Annuled" Type="bit" />
+          <Property Name="AnnuleDate" Type="datetime" />
+          <Property Name="VydPoruchRaboty" Type="varchar" />
+          <Property Name="KodVypFunc" Type="varchar" />
+        </EntityType>
+        <EntityType Name="FormsSZV_TD_2020_TypesOfEvents">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="integer" Nullable="false" />
+          <Property Name="Name" Type="varchar" />
+          <Property Name="Code" Type="varchar" />
         </EntityType>
         <EntityType Name="Insurer">
           <Key>
@@ -1902,6 +2049,7 @@
           <Property Name="Sex" Type="tinyint" />
           <Property Name="DateBirth" Type="datetime" />
           <Property Name="Dismissed" Type="tinyint" />
+          <Property Name="DolgnID" Type="integer" />
         </EntityType>
         <EntityType Name="StaffDateWork">
           <Key>
@@ -2367,6 +2515,42 @@
             </Principal>
             <Dependent Role="FormsODV_1_5_2017_OUT">
               <PropertyRef Name="FormsODV_1_5_2017_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_FormsPredPens_Zapros_0_0">
+          <End Role="Insurer" Type="Хранилище pu6Model.Insurer" Multiplicity="1" />
+          <End Role="FormsPredPens_Zapros" Type="Хранилище pu6Model.FormsPredPens_Zapros" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Insurer">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="FormsPredPens_Zapros">
+              <PropertyRef Name="InsurerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_FormsPredPens_Zapros_Staff_0_0">
+          <End Role="Staff" Type="Хранилище pu6Model.Staff" Multiplicity="1" />
+          <End Role="FormsPredPens_Zapros_Staff" Type="Хранилище pu6Model.FormsPredPens_Zapros_Staff" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Staff">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="FormsPredPens_Zapros_Staff">
+              <PropertyRef Name="StaffID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_FormsPredPens_Zapros_Staff_1_0">
+          <End Role="FormsPredPens_Zapros" Type="Хранилище pu6Model.FormsPredPens_Zapros" Multiplicity="1" />
+          <End Role="FormsPredPens_Zapros_Staff" Type="Хранилище pu6Model.FormsPredPens_Zapros_Staff" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FormsPredPens_Zapros">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="FormsPredPens_Zapros_Staff">
+              <PropertyRef Name="FormsPredPens_ZaprosID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -2886,6 +3070,78 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_FormsSZV_TD_2020_0_0">
+          <End Role="Insurer" Type="Хранилище pu6Model.Insurer" Multiplicity="1" />
+          <End Role="FormsSZV_TD_2020" Type="Хранилище pu6Model.FormsSZV_TD_2020" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Insurer">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="FormsSZV_TD_2020">
+              <PropertyRef Name="InsurerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_FormsSZV_TD_2020_Staff_0_0">
+          <End Role="Staff" Type="Хранилище pu6Model.Staff" Multiplicity="1" />
+          <End Role="FormsSZV_TD_2020_Staff" Type="Хранилище pu6Model.FormsSZV_TD_2020_Staff" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Staff">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="FormsSZV_TD_2020_Staff">
+              <PropertyRef Name="StaffID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_FormsSZV_TD_2020_Staff_1_0">
+          <End Role="FormsSZV_TD_2020" Type="Хранилище pu6Model.FormsSZV_TD_2020" Multiplicity="1" />
+          <End Role="FormsSZV_TD_2020_Staff" Type="Хранилище pu6Model.FormsSZV_TD_2020_Staff" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FormsSZV_TD_2020">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="FormsSZV_TD_2020_Staff">
+              <PropertyRef Name="FormsSZV_TD_2020_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_FormsSZV_TD_2020_Staff_AnnuledEvents_0_0">
+          <End Role="FormsSZV_TD_2020_Staff" Type="Хранилище pu6Model.FormsSZV_TD_2020_Staff" Multiplicity="1" />
+          <End Role="FormsSZV_TD_2020_Staff_AnnuledEvents" Type="Хранилище pu6Model.FormsSZV_TD_2020_Staff_AnnuledEvents" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FormsSZV_TD_2020_Staff">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="FormsSZV_TD_2020_Staff_AnnuledEvents">
+              <PropertyRef Name="FormsSZV_TD_2020_Staff_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_FormsSZV_TD_2020_Staff_Events_0_0">
+          <End Role="FormsSZV_TD_2020_TypesOfEvents" Type="Хранилище pu6Model.FormsSZV_TD_2020_TypesOfEvents" Multiplicity="1" />
+          <End Role="FormsSZV_TD_2020_Staff_Events" Type="Хранилище pu6Model.FormsSZV_TD_2020_Staff_Events" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FormsSZV_TD_2020_TypesOfEvents">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="FormsSZV_TD_2020_Staff_Events">
+              <PropertyRef Name="TypesOfEvents_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_FormsSZV_TD_2020_Staff_Events_1_0">
+          <End Role="FormsSZV_TD_2020_Staff" Type="Хранилище pu6Model.FormsSZV_TD_2020_Staff" Multiplicity="1" />
+          <End Role="FormsSZV_TD_2020_Staff_Events" Type="Хранилище pu6Model.FormsSZV_TD_2020_Staff_Events" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FormsSZV_TD_2020_Staff">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="FormsSZV_TD_2020_Staff_Events">
+              <PropertyRef Name="FormsSZV_TD_2020_Staff_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_PlatCategory_0_0">
           <End Role="PlatCategoryRaschPer" Type="Хранилище pu6Model.PlatCategoryRaschPer" Multiplicity="1" />
           <End Role="PlatCategory" Type="Хранилище pu6Model.PlatCategory" Multiplicity="*" />
@@ -3334,7 +3590,6 @@
           <EntitySet Name="FormsADW_3" EntityType="pu6Model.FormsADW_3" />
           <EntitySet Name="FormsDSW_3" EntityType="pu6Model.FormsDSW_3" />
           <EntitySet Name="FormsDSW_3_Staff" EntityType="pu6Model.FormsDSW_3_Staff" />
-          <EntitySet Name="FormsODV_1_2017" EntityType="pu6Model.FormsODV_1_2017" />
           <EntitySet Name="FormsODV_1_4_2017" EntityType="pu6Model.FormsODV_1_4_2017" />
           <EntitySet Name="FormsRSW" EntityType="pu6Model.FormsRSW" />
           <EntitySet Name="FormsRSW2014_1_1" EntityType="pu6Model.FormsRSW2014_1_1" />
@@ -3357,10 +3612,8 @@
           <EntitySet Name="FormsSPW2" EntityType="pu6Model.FormsSPW2" />
           <EntitySet Name="FormsSZV_6" EntityType="pu6Model.FormsSZV_6" />
           <EntitySet Name="FormsSZV_6_4" EntityType="pu6Model.FormsSZV_6_4" />
-          <EntitySet Name="FormsSZV_ISH_2017" EntityType="pu6Model.FormsSZV_ISH_2017" />
           <EntitySet Name="FormsSZV_ISH_4_2017" EntityType="pu6Model.FormsSZV_ISH_4_2017" />
           <EntitySet Name="FormsSZV_ISH_7_2017" EntityType="pu6Model.FormsSZV_ISH_7_2017" />
-          <EntitySet Name="FormsSZV_KORR_2017" EntityType="pu6Model.FormsSZV_KORR_2017" />
           <EntitySet Name="FormsSZV_KORR_4_2017" EntityType="pu6Model.FormsSZV_KORR_4_2017" />
           <EntitySet Name="FormsSZV_KORR_5_2017" EntityType="pu6Model.FormsSZV_KORR_5_2017" />
           <EntitySet Name="FormsSZV_M_2016" EntityType="pu6Model.FormsSZV_M_2016" />
@@ -3379,7 +3632,6 @@
           <EntitySet Name="RaschetPeriod" EntityType="pu6Model.RaschetPeriod" />
           <EntitySet Name="SpecOcenkaUslTruda" EntityType="pu6Model.SpecOcenkaUslTruda" />
           <EntitySet Name="SpecOcenkaUslTrudaDopTariff" EntityType="pu6Model.SpecOcenkaUslTrudaDopTariff" />
-          <EntitySet Name="Staff" EntityType="pu6Model.Staff" />
           <EntitySet Name="StaffDateWork" EntityType="pu6Model.StaffDateWork" />
           <EntitySet Name="StaffInfo" EntityType="pu6Model.StaffInfo" />
           <EntitySet Name="StajLgot" EntityType="pu6Model.StajLgot" />
@@ -3411,10 +3663,6 @@
             <End Role="Department" EntitySet="Department" />
             <End Role="FormsDSW_3" EntitySet="FormsDSW_3" />
           </AssociationSet>
-          <AssociationSet Name="FK_Staff_0_0" Association="pu6Model.FK_Staff_0_0">
-            <End Role="Department" EntitySet="Department" />
-            <End Role="Staff" EntitySet="Staff" />
-          </AssociationSet>
           <AssociationSet Name="FK_StaffInfo_0_0" Association="pu6Model.FK_StaffInfo_0_0">
             <End Role="DocumentTypes" EntitySet="DocumentTypes" />
             <End Role="StaffInfo" EntitySet="StaffInfo" />
@@ -3423,18 +3671,6 @@
             <End Role="Dolgn" EntitySet="Dolgn" />
             <End Role="StajLgot" EntitySet="StajLgot" />
           </AssociationSet>
-          <AssociationSet Name="FK_FormsADW_1_0_0" Association="pu6Model.FK_FormsADW_1_0_0">
-            <End Role="Staff" EntitySet="Staff" />
-            <End Role="FormsADW_1" EntitySet="FormsADW_1" />
-          </AssociationSet>
-          <AssociationSet Name="FK_FormsADW_2_0_0" Association="pu6Model.FK_FormsADW_2_0_0">
-            <End Role="Staff" EntitySet="Staff" />
-            <End Role="FormsADW_2" EntitySet="FormsADW_2" />
-          </AssociationSet>
-          <AssociationSet Name="FK_FormsADW_3_0_0" Association="pu6Model.FK_FormsADW_3_0_0">
-            <End Role="Staff" EntitySet="Staff" />
-            <End Role="FormsADW_3" EntitySet="FormsADW_3" />
-          </AssociationSet>
           <AssociationSet Name="FK_FormsDSW_3_0_0" Association="pu6Model.FK_FormsDSW_3_0_0">
             <End Role="Insurer" EntitySet="Insurer" />
             <End Role="FormsDSW_3" EntitySet="FormsDSW_3" />
@@ -3442,26 +3678,6 @@
           <AssociationSet Name="FK_FormsDSW_3_Staff_1_0" Association="pu6Model.FK_FormsDSW_3_Staff_1_0">
             <End Role="FormsDSW_3" EntitySet="FormsDSW_3" />
             <End Role="FormsDSW_3_Staff" EntitySet="FormsDSW_3_Staff" />
-          </AssociationSet>
-          <AssociationSet Name="FK_FormsDSW_3_Staff_0_0" Association="pu6Model.FK_FormsDSW_3_Staff_0_0">
-            <End Role="Staff" EntitySet="Staff" />
-            <End Role="FormsDSW_3_Staff" EntitySet="FormsDSW_3_Staff" />
-          </AssociationSet>
-          <AssociationSet Name="FK_FormsODV_1_4_2017_0_0" Association="pu6Model.FK_FormsODV_1_4_2017_0_0">
-            <End Role="FormsODV_1_2017" EntitySet="FormsODV_1_2017" />
-            <End Role="FormsODV_1_4_2017" EntitySet="FormsODV_1_4_2017" />
-          </AssociationSet>
-          <AssociationSet Name="FK_FormsSZV_ISH_2017_0_0" Association="pu6Model.FK_FormsSZV_ISH_2017_0_0">
-            <End Role="FormsODV_1_2017" EntitySet="FormsODV_1_2017" />
-            <End Role="FormsSZV_ISH_2017" EntitySet="FormsSZV_ISH_2017" />
-          </AssociationSet>
-          <AssociationSet Name="FK_FormsSZV_KORR_2017_1_0" Association="pu6Model.FK_FormsSZV_KORR_2017_1_0">
-            <End Role="FormsODV_1_2017" EntitySet="FormsODV_1_2017" />
-            <End Role="FormsSZV_KORR_2017" EntitySet="FormsSZV_KORR_2017" />
-          </AssociationSet>
-          <AssociationSet Name="FK_FormsRSW_0_0" Association="pu6Model.FK_FormsRSW_0_0">
-            <End Role="Staff" EntitySet="Staff" />
-            <End Role="FormsRSW" EntitySet="FormsRSW" />
           </AssociationSet>
           <AssociationSet Name="FK_FormsRSW2014_1_1_0_0" Association="pu6Model.FK_FormsRSW2014_1_1_0_0">
             <End Role="Insurer" EntitySet="Insurer" />
@@ -3473,10 +3689,6 @@
           </AssociationSet>
           <AssociationSet Name="FK_FormsRSW2014_1_Razd_6_1_0_0" Association="pu6Model.FK_FormsRSW2014_1_Razd_6_1_0_0">
             <End Role="TypeInfo" EntitySet="TypeInfo" />
-            <End Role="FormsRSW2014_1_Razd_6_1" EntitySet="FormsRSW2014_1_Razd_6_1" />
-          </AssociationSet>
-          <AssociationSet Name="FK_FormsRSW2014_1_Razd_6_1_1_0" Association="pu6Model.FK_FormsRSW2014_1_Razd_6_1_1_0">
-            <End Role="Staff" EntitySet="Staff" />
             <End Role="FormsRSW2014_1_Razd_6_1" EntitySet="FormsRSW2014_1_Razd_6_1" />
           </AssociationSet>
           <AssociationSet Name="FK_FormsRSW2014_1_Razd_6_4_0_0" Association="pu6Model.FK_FormsRSW2014_1_Razd_6_4_0_0">
@@ -3527,20 +3739,12 @@
             <End Role="PlatCategory" EntitySet="PlatCategory" />
             <End Role="FormsSPW2" EntitySet="FormsSPW2" />
           </AssociationSet>
-          <AssociationSet Name="FK_FormsSPW2_2_0" Association="pu6Model.FK_FormsSPW2_2_0">
-            <End Role="Staff" EntitySet="Staff" />
-            <End Role="FormsSPW2" EntitySet="FormsSPW2" />
-          </AssociationSet>
           <AssociationSet Name="FK_FormsSZV_6_0_0" Association="pu6Model.FK_FormsSZV_6_0_0">
             <End Role="PlatCategory" EntitySet="PlatCategory" />
             <End Role="FormsSZV_6" EntitySet="FormsSZV_6" />
           </AssociationSet>
           <AssociationSet Name="FK_FormsSZV_6_1_0" Association="pu6Model.FK_FormsSZV_6_1_0">
             <End Role="TypeInfo" EntitySet="TypeInfo" />
-            <End Role="FormsSZV_6" EntitySet="FormsSZV_6" />
-          </AssociationSet>
-          <AssociationSet Name="FK_FormsSZV_6_2_0" Association="pu6Model.FK_FormsSZV_6_2_0">
-            <End Role="Staff" EntitySet="Staff" />
             <End Role="FormsSZV_6" EntitySet="FormsSZV_6" />
           </AssociationSet>
           <AssociationSet Name="FK_FormsSZV_6_4_0_0" Association="pu6Model.FK_FormsSZV_6_4_0_0">
@@ -3551,22 +3755,6 @@
             <End Role="TypeInfo" EntitySet="TypeInfo" />
             <End Role="FormsSZV_6_4" EntitySet="FormsSZV_6_4" />
           </AssociationSet>
-          <AssociationSet Name="FK_FormsSZV_6_4_2_0" Association="pu6Model.FK_FormsSZV_6_4_2_0">
-            <End Role="Staff" EntitySet="Staff" />
-            <End Role="FormsSZV_6_4" EntitySet="FormsSZV_6_4" />
-          </AssociationSet>
-          <AssociationSet Name="FK_FormsSZV_ISH_2017_1_0" Association="pu6Model.FK_FormsSZV_ISH_2017_1_0">
-            <End Role="Staff" EntitySet="Staff" />
-            <End Role="FormsSZV_ISH_2017" EntitySet="FormsSZV_ISH_2017" />
-          </AssociationSet>
-          <AssociationSet Name="FK_FormsSZV_ISH_4_2017_1_0" Association="pu6Model.FK_FormsSZV_ISH_4_2017_1_0">
-            <End Role="FormsSZV_ISH_2017" EntitySet="FormsSZV_ISH_2017" />
-            <End Role="FormsSZV_ISH_4_2017" EntitySet="FormsSZV_ISH_4_2017" />
-          </AssociationSet>
-          <AssociationSet Name="FK_FormsSZV_ISH_7_2017_1_0" Association="pu6Model.FK_FormsSZV_ISH_7_2017_1_0">
-            <End Role="FormsSZV_ISH_2017" EntitySet="FormsSZV_ISH_2017" />
-            <End Role="FormsSZV_ISH_7_2017" EntitySet="FormsSZV_ISH_7_2017" />
-          </AssociationSet>
           <AssociationSet Name="FK_FormsSZV_ISH_4_2017_0_0" Association="pu6Model.FK_FormsSZV_ISH_4_2017_0_0">
             <End Role="PlatCategory" EntitySet="PlatCategory" />
             <End Role="FormsSZV_ISH_4_2017" EntitySet="FormsSZV_ISH_4_2017" />
@@ -3574,22 +3762,6 @@
           <AssociationSet Name="FK_FormsSZV_ISH_7_2017_0_0" Association="pu6Model.FK_FormsSZV_ISH_7_2017_0_0">
             <End Role="SpecOcenkaUslTruda" EntitySet="SpecOcenkaUslTruda" />
             <End Role="FormsSZV_ISH_7_2017" EntitySet="FormsSZV_ISH_7_2017" />
-          </AssociationSet>
-          <AssociationSet Name="FK_FormsSZV_KORR_2017_0_0" Association="pu6Model.FK_FormsSZV_KORR_2017_0_0">
-            <End Role="PlatCategory" EntitySet="PlatCategory" />
-            <End Role="FormsSZV_KORR_2017" EntitySet="FormsSZV_KORR_2017" />
-          </AssociationSet>
-          <AssociationSet Name="FK_FormsSZV_KORR_2017_2_0" Association="pu6Model.FK_FormsSZV_KORR_2017_2_0">
-            <End Role="Staff" EntitySet="Staff" />
-            <End Role="FormsSZV_KORR_2017" EntitySet="FormsSZV_KORR_2017" />
-          </AssociationSet>
-          <AssociationSet Name="FK_FormsSZV_KORR_4_2017_0_0" Association="pu6Model.FK_FormsSZV_KORR_4_2017_0_0">
-            <End Role="FormsSZV_KORR_2017" EntitySet="FormsSZV_KORR_2017" />
-            <End Role="FormsSZV_KORR_4_2017" EntitySet="FormsSZV_KORR_4_2017" />
-          </AssociationSet>
-          <AssociationSet Name="FK_FormsSZV_KORR_5_2017_1_0" Association="pu6Model.FK_FormsSZV_KORR_5_2017_1_0">
-            <End Role="FormsSZV_KORR_2017" EntitySet="FormsSZV_KORR_2017" />
-            <End Role="FormsSZV_KORR_5_2017" EntitySet="FormsSZV_KORR_5_2017" />
           </AssociationSet>
           <AssociationSet Name="FK_FormsSZV_KORR_5_2017_0_0" Association="pu6Model.FK_FormsSZV_KORR_5_2017_0_0">
             <End Role="SpecOcenkaUslTruda" EntitySet="SpecOcenkaUslTruda" />
@@ -3606,14 +3778,6 @@
           <AssociationSet Name="FK_FormsSZV_M_2016_Staff_1_0" Association="pu6Model.FK_FormsSZV_M_2016_Staff_1_0">
             <End Role="FormsSZV_M_2016" EntitySet="FormsSZV_M_2016" />
             <End Role="FormsSZV_M_2016_Staff" EntitySet="FormsSZV_M_2016_Staff" />
-          </AssociationSet>
-          <AssociationSet Name="FK_FormsSZV_M_2016_Staff_0_0" Association="pu6Model.FK_FormsSZV_M_2016_Staff_0_0">
-            <End Role="Staff" EntitySet="Staff" />
-            <End Role="FormsSZV_M_2016_Staff" EntitySet="FormsSZV_M_2016_Staff" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Staff_1_0" Association="pu6Model.FK_Staff_1_0">
-            <End Role="Insurer" EntitySet="Insurer" />
-            <End Role="Staff" EntitySet="Staff" />
           </AssociationSet>
           <AssociationSet Name="FK_StajLgot_1_0" Association="pu6Model.FK_StajLgot_1_0">
             <End Role="IschislStrahStajDop" EntitySet="IschislStrahStajDop" />
@@ -3651,14 +3815,6 @@
             <End Role="SpecOcenkaUslTruda" EntitySet="SpecOcenkaUslTruda" />
             <End Role="SpecOcenkaUslTrudaDopTariff" EntitySet="SpecOcenkaUslTrudaDopTariff" />
           </AssociationSet>
-          <AssociationSet Name="FK_StaffDateWork_0_0" Association="pu6Model.FK_StaffDateWork_0_0">
-            <End Role="Staff" EntitySet="Staff" />
-            <End Role="StaffDateWork" EntitySet="StaffDateWork" />
-          </AssociationSet>
-          <AssociationSet Name="FK_StaffInfo_1_0" Association="pu6Model.FK_StaffInfo_1_0">
-            <End Role="Staff" EntitySet="Staff" />
-            <End Role="StaffInfo" EntitySet="StaffInfo" />
-          </AssociationSet>
           <AssociationSet Name="FK_StajLgot_0_0" Association="pu6Model.FK_StajLgot_0_0">
             <End Role="UslDosrNazn" EntitySet="UslDosrNazn" />
             <End Role="StajLgot" EntitySet="StajLgot" />
@@ -3685,10 +3841,6 @@
             <End Role="Dolgn" EntitySet="Dolgn" />
             <End Role="StajOsn" EntitySet="StajOsn" />
           </AssociationSet>
-          <AssociationSet Name="FK_FormsSZV_STAJ_2017_0_0" Association="pu6Model.FK_FormsSZV_STAJ_2017_0_0">
-            <End Role="FormsODV_1_2017" EntitySet="FormsODV_1_2017" />
-            <End Role="FormsSZV_STAJ_2017" EntitySet="FormsSZV_STAJ_2017" />
-          </AssociationSet>
           <AssociationSet Name="FK_StajOsn_14_0" Association="pu6Model.FK_StajOsn_14_0">
             <End Role="FormsRSW2014_1_Razd_6_1" EntitySet="FormsRSW2014_1_Razd_6_1" />
             <End Role="StajOsn" EntitySet="StajOsn" />
@@ -3704,18 +3856,6 @@
           <AssociationSet Name="FK_StajOsn_12_0" Association="pu6Model.FK_StajOsn_12_0">
             <End Role="FormsSZV_6_4" EntitySet="FormsSZV_6_4" />
             <End Role="StajOsn" EntitySet="StajOsn" />
-          </AssociationSet>
-          <AssociationSet Name="FK_StajOsn_1_0" Association="pu6Model.FK_StajOsn_1_0">
-            <End Role="FormsSZV_ISH_2017" EntitySet="FormsSZV_ISH_2017" />
-            <End Role="StajOsn" EntitySet="StajOsn" />
-          </AssociationSet>
-          <AssociationSet Name="FK_StajOsn_0_0" Association="pu6Model.FK_StajOsn_0_0">
-            <End Role="FormsSZV_KORR_2017" EntitySet="FormsSZV_KORR_2017" />
-            <End Role="StajOsn" EntitySet="StajOsn" />
-          </AssociationSet>
-          <AssociationSet Name="FK_FormsSZV_STAJ_2017_1_0" Association="pu6Model.FK_FormsSZV_STAJ_2017_1_0">
-            <End Role="Staff" EntitySet="Staff" />
-            <End Role="FormsSZV_STAJ_2017" EntitySet="FormsSZV_STAJ_2017" />
           </AssociationSet>
           <AssociationSet Name="FK_FormsSZV_STAJ_4_2017_0_0" Association="pu6Model.FK_FormsSZV_STAJ_4_2017_0_0">
             <End Role="FormsSZV_STAJ_2017" EntitySet="FormsSZV_STAJ_2017" />
@@ -3757,15 +3897,174 @@
             <End Role="TerrUsl" EntitySet="TerrUsl" />
             <End Role="StajOsn" EntitySet="StajOsn" />
           </AssociationSet>
-          <EntitySet Name="FormsODV_1_5_2017" EntityType="pu6Model.FormsODV_1_5_2017" />
           <EntitySet Name="FormsODV_1_5_2017_OUT" EntityType="pu6Model.FormsODV_1_5_2017_OUT" />
+          <EntitySet Name="FormsSZV_KORR_2017" EntityType="pu6Model.FormsSZV_KORR_2017" />
+          <AssociationSet Name="FK_FormsSZV_KORR_2017_0_0" Association="pu6Model.FK_FormsSZV_KORR_2017_0_0">
+            <End Role="PlatCategory" EntitySet="PlatCategory" />
+            <End Role="FormsSZV_KORR_2017" EntitySet="FormsSZV_KORR_2017" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FormsSZV_KORR_4_2017_0_0" Association="pu6Model.FK_FormsSZV_KORR_4_2017_0_0">
+            <End Role="FormsSZV_KORR_2017" EntitySet="FormsSZV_KORR_2017" />
+            <End Role="FormsSZV_KORR_4_2017" EntitySet="FormsSZV_KORR_4_2017" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FormsSZV_KORR_5_2017_1_0" Association="pu6Model.FK_FormsSZV_KORR_5_2017_1_0">
+            <End Role="FormsSZV_KORR_2017" EntitySet="FormsSZV_KORR_2017" />
+            <End Role="FormsSZV_KORR_5_2017" EntitySet="FormsSZV_KORR_5_2017" />
+          </AssociationSet>
+          <AssociationSet Name="FK_StajOsn_0_0" Association="pu6Model.FK_StajOsn_0_0">
+            <End Role="FormsSZV_KORR_2017" EntitySet="FormsSZV_KORR_2017" />
+            <End Role="StajOsn" EntitySet="StajOsn" />
+          </AssociationSet>
+          <EntitySet Name="FormsSZV_ISH_2017" EntityType="pu6Model.FormsSZV_ISH_2017" />
+          <AssociationSet Name="FK_FormsSZV_ISH_4_2017_1_0" Association="pu6Model.FK_FormsSZV_ISH_4_2017_1_0">
+            <End Role="FormsSZV_ISH_2017" EntitySet="FormsSZV_ISH_2017" />
+            <End Role="FormsSZV_ISH_4_2017" EntitySet="FormsSZV_ISH_4_2017" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FormsSZV_ISH_7_2017_1_0" Association="pu6Model.FK_FormsSZV_ISH_7_2017_1_0">
+            <End Role="FormsSZV_ISH_2017" EntitySet="FormsSZV_ISH_2017" />
+            <End Role="FormsSZV_ISH_7_2017" EntitySet="FormsSZV_ISH_7_2017" />
+          </AssociationSet>
+          <AssociationSet Name="FK_StajOsn_1_0" Association="pu6Model.FK_StajOsn_1_0">
+            <End Role="FormsSZV_ISH_2017" EntitySet="FormsSZV_ISH_2017" />
+            <End Role="StajOsn" EntitySet="StajOsn" />
+          </AssociationSet>
+          <EntitySet Name="FormsPredPens_Zapros" EntityType="pu6Model.FormsPredPens_Zapros" />
+          <EntitySet Name="FormsPredPens_Zapros_Staff" EntityType="pu6Model.FormsPredPens_Zapros_Staff" />
+          <AssociationSet Name="FK_FormsPredPens_Zapros_0_0" Association="pu6Model.FK_FormsPredPens_Zapros_0_0">
+            <End Role="Insurer" EntitySet="Insurer" />
+            <End Role="FormsPredPens_Zapros" EntitySet="FormsPredPens_Zapros" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FormsPredPens_Zapros_Staff_1_0" Association="pu6Model.FK_FormsPredPens_Zapros_Staff_1_0">
+            <End Role="FormsPredPens_Zapros" EntitySet="FormsPredPens_Zapros" />
+            <End Role="FormsPredPens_Zapros_Staff" EntitySet="FormsPredPens_Zapros_Staff" />
+          </AssociationSet>
+          <EntitySet Name="FormsODV_1_5_2017" EntityType="pu6Model.FormsODV_1_5_2017" />
+          <AssociationSet Name="FK_FormsODV_1_5_2017_OUT_0_0" Association="pu6Model.FK_FormsODV_1_5_2017_OUT_0_0">
+            <End Role="FormsODV_1_5_2017" EntitySet="FormsODV_1_5_2017" />
+            <End Role="FormsODV_1_5_2017_OUT" EntitySet="FormsODV_1_5_2017_OUT" />
+          </AssociationSet>
+          <EntitySet Name="FormsODV_1_2017" EntityType="pu6Model.FormsODV_1_2017" />
+          <AssociationSet Name="FK_FormsODV_1_4_2017_0_0" Association="pu6Model.FK_FormsODV_1_4_2017_0_0">
+            <End Role="FormsODV_1_2017" EntitySet="FormsODV_1_2017" />
+            <End Role="FormsODV_1_4_2017" EntitySet="FormsODV_1_4_2017" />
+          </AssociationSet>
           <AssociationSet Name="FK_FormsODV_1_5_2017_0_0" Association="pu6Model.FK_FormsODV_1_5_2017_0_0">
             <End Role="FormsODV_1_2017" EntitySet="FormsODV_1_2017" />
             <End Role="FormsODV_1_5_2017" EntitySet="FormsODV_1_5_2017" />
           </AssociationSet>
-          <AssociationSet Name="FK_FormsODV_1_5_2017_OUT_0_0" Association="pu6Model.FK_FormsODV_1_5_2017_OUT_0_0">
-            <End Role="FormsODV_1_5_2017" EntitySet="FormsODV_1_5_2017" />
-            <End Role="FormsODV_1_5_2017_OUT" EntitySet="FormsODV_1_5_2017_OUT" />
+          <AssociationSet Name="FK_FormsSZV_ISH_2017_0_0" Association="pu6Model.FK_FormsSZV_ISH_2017_0_0">
+            <End Role="FormsODV_1_2017" EntitySet="FormsODV_1_2017" />
+            <End Role="FormsSZV_ISH_2017" EntitySet="FormsSZV_ISH_2017" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FormsSZV_KORR_2017_1_0" Association="pu6Model.FK_FormsSZV_KORR_2017_1_0">
+            <End Role="FormsODV_1_2017" EntitySet="FormsODV_1_2017" />
+            <End Role="FormsSZV_KORR_2017" EntitySet="FormsSZV_KORR_2017" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FormsSZV_STAJ_2017_0_0" Association="pu6Model.FK_FormsSZV_STAJ_2017_0_0">
+            <End Role="FormsODV_1_2017" EntitySet="FormsODV_1_2017" />
+            <End Role="FormsSZV_STAJ_2017" EntitySet="FormsSZV_STAJ_2017" />
+          </AssociationSet>
+          <EntitySet Name="FormsSZV_TD_2020_Staff" EntityType="pu6Model.FormsSZV_TD_2020_Staff" />
+          <EntitySet Name="FormsSZV_TD_2020_TypesOfEvents" EntityType="pu6Model.FormsSZV_TD_2020_TypesOfEvents" />
+          <EntitySet Name="FormsSZV_TD_2020_Staff_AnnuledEvents" EntityType="pu6Model.FormsSZV_TD_2020_Staff_AnnuledEvents" />
+          <AssociationSet Name="FK_FormsSZV_TD_2020_Staff_AnnuledEvents_0_0" Association="pu6Model.FK_FormsSZV_TD_2020_Staff_AnnuledEvents_0_0">
+            <End Role="FormsSZV_TD_2020_Staff" EntitySet="FormsSZV_TD_2020_Staff" />
+            <End Role="FormsSZV_TD_2020_Staff_AnnuledEvents" EntitySet="FormsSZV_TD_2020_Staff_AnnuledEvents" />
+          </AssociationSet>
+          <EntitySet Name="FormsSZV_TD_2020" EntityType="pu6Model.FormsSZV_TD_2020" />
+          <EntitySet Name="FormsSZV_TD_2020_Staff_Events" EntityType="pu6Model.FormsSZV_TD_2020_Staff_Events" />
+          <AssociationSet Name="FK_FormsSZV_TD_2020_0_0" Association="pu6Model.FK_FormsSZV_TD_2020_0_0">
+            <End Role="Insurer" EntitySet="Insurer" />
+            <End Role="FormsSZV_TD_2020" EntitySet="FormsSZV_TD_2020" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FormsSZV_TD_2020_Staff_1_0" Association="pu6Model.FK_FormsSZV_TD_2020_Staff_1_0">
+            <End Role="FormsSZV_TD_2020" EntitySet="FormsSZV_TD_2020" />
+            <End Role="FormsSZV_TD_2020_Staff" EntitySet="FormsSZV_TD_2020_Staff" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FormsSZV_TD_2020_Staff_Events_1_0" Association="pu6Model.FK_FormsSZV_TD_2020_Staff_Events_1_0">
+            <End Role="FormsSZV_TD_2020_Staff" EntitySet="FormsSZV_TD_2020_Staff" />
+            <End Role="FormsSZV_TD_2020_Staff_Events" EntitySet="FormsSZV_TD_2020_Staff_Events" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FormsSZV_TD_2020_Staff_Events_0_0" Association="pu6Model.FK_FormsSZV_TD_2020_Staff_Events_0_0">
+            <End Role="FormsSZV_TD_2020_TypesOfEvents" EntitySet="FormsSZV_TD_2020_TypesOfEvents" />
+            <End Role="FormsSZV_TD_2020_Staff_Events" EntitySet="FormsSZV_TD_2020_Staff_Events" />
+          </AssociationSet>
+          <EntitySet Name="Staff" EntityType="pu6Model.Staff" />
+          <AssociationSet Name="FK_Staff_0_0" Association="pu6Model.FK_Staff_0_0">
+            <End Role="Department" EntitySet="Department" />
+            <End Role="Staff" EntitySet="Staff" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FormsADW_1_0_0" Association="pu6Model.FK_FormsADW_1_0_0">
+            <End Role="Staff" EntitySet="Staff" />
+            <End Role="FormsADW_1" EntitySet="FormsADW_1" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FormsADW_2_0_0" Association="pu6Model.FK_FormsADW_2_0_0">
+            <End Role="Staff" EntitySet="Staff" />
+            <End Role="FormsADW_2" EntitySet="FormsADW_2" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FormsADW_3_0_0" Association="pu6Model.FK_FormsADW_3_0_0">
+            <End Role="Staff" EntitySet="Staff" />
+            <End Role="FormsADW_3" EntitySet="FormsADW_3" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FormsDSW_3_Staff_0_0" Association="pu6Model.FK_FormsDSW_3_Staff_0_0">
+            <End Role="Staff" EntitySet="Staff" />
+            <End Role="FormsDSW_3_Staff" EntitySet="FormsDSW_3_Staff" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FormsPredPens_Zapros_Staff_0_0" Association="pu6Model.FK_FormsPredPens_Zapros_Staff_0_0">
+            <End Role="Staff" EntitySet="Staff" />
+            <End Role="FormsPredPens_Zapros_Staff" EntitySet="FormsPredPens_Zapros_Staff" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FormsRSW_0_0" Association="pu6Model.FK_FormsRSW_0_0">
+            <End Role="Staff" EntitySet="Staff" />
+            <End Role="FormsRSW" EntitySet="FormsRSW" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FormsRSW2014_1_Razd_6_1_1_0" Association="pu6Model.FK_FormsRSW2014_1_Razd_6_1_1_0">
+            <End Role="Staff" EntitySet="Staff" />
+            <End Role="FormsRSW2014_1_Razd_6_1" EntitySet="FormsRSW2014_1_Razd_6_1" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FormsSPW2_2_0" Association="pu6Model.FK_FormsSPW2_2_0">
+            <End Role="Staff" EntitySet="Staff" />
+            <End Role="FormsSPW2" EntitySet="FormsSPW2" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FormsSZV_6_2_0" Association="pu6Model.FK_FormsSZV_6_2_0">
+            <End Role="Staff" EntitySet="Staff" />
+            <End Role="FormsSZV_6" EntitySet="FormsSZV_6" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FormsSZV_6_4_2_0" Association="pu6Model.FK_FormsSZV_6_4_2_0">
+            <End Role="Staff" EntitySet="Staff" />
+            <End Role="FormsSZV_6_4" EntitySet="FormsSZV_6_4" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FormsSZV_ISH_2017_1_0" Association="pu6Model.FK_FormsSZV_ISH_2017_1_0">
+            <End Role="Staff" EntitySet="Staff" />
+            <End Role="FormsSZV_ISH_2017" EntitySet="FormsSZV_ISH_2017" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FormsSZV_KORR_2017_2_0" Association="pu6Model.FK_FormsSZV_KORR_2017_2_0">
+            <End Role="Staff" EntitySet="Staff" />
+            <End Role="FormsSZV_KORR_2017" EntitySet="FormsSZV_KORR_2017" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FormsSZV_M_2016_Staff_0_0" Association="pu6Model.FK_FormsSZV_M_2016_Staff_0_0">
+            <End Role="Staff" EntitySet="Staff" />
+            <End Role="FormsSZV_M_2016_Staff" EntitySet="FormsSZV_M_2016_Staff" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FormsSZV_STAJ_2017_1_0" Association="pu6Model.FK_FormsSZV_STAJ_2017_1_0">
+            <End Role="Staff" EntitySet="Staff" />
+            <End Role="FormsSZV_STAJ_2017" EntitySet="FormsSZV_STAJ_2017" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FormsSZV_TD_2020_Staff_0_0" Association="pu6Model.FK_FormsSZV_TD_2020_Staff_0_0">
+            <End Role="Staff" EntitySet="Staff" />
+            <End Role="FormsSZV_TD_2020_Staff" EntitySet="FormsSZV_TD_2020_Staff" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Staff_1_0" Association="pu6Model.FK_Staff_1_0">
+            <End Role="Insurer" EntitySet="Insurer" />
+            <End Role="Staff" EntitySet="Staff" />
+          </AssociationSet>
+          <AssociationSet Name="FK_StaffDateWork_0_0" Association="pu6Model.FK_StaffDateWork_0_0">
+            <End Role="Staff" EntitySet="Staff" />
+            <End Role="StaffDateWork" EntitySet="StaffDateWork" />
+          </AssociationSet>
+          <AssociationSet Name="FK_StaffInfo_1_0" Association="pu6Model.FK_StaffInfo_1_0">
+            <End Role="Staff" EntitySet="Staff" />
+            <End Role="StaffInfo" EntitySet="StaffInfo" />
           </AssociationSet>
           </EntityContainer>
         <EntityType Name="BackupDB_Info">
@@ -3973,43 +4272,6 @@
           <Property Name="SUMFEEPFR_PAYER" Type="Decimal" Precision="10" Scale="2" />
           <NavigationProperty Name="FormsDSW_3" Relationship="pu6Model.FK_FormsDSW_3_Staff_1_0" FromRole="FormsDSW_3_Staff" ToRole="FormsDSW_3" />
           <NavigationProperty Name="Staff" Relationship="pu6Model.FK_FormsDSW_3_Staff_0_0" FromRole="FormsDSW_3_Staff" ToRole="Staff" />
-        </EntityType>
-        <EntityType Name="FormsODV_1_2017">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Year" Type="Int16" Nullable="false" />
-          <Property Name="Code" Type="Byte" Nullable="false" />
-          <Property Name="InsurerID" Type="Int64" />
-          <Property Name="TypeInfo" Type="Byte" />
-          <Property Name="StaffCount" Type="Int64" />
-          <Property Name="s_0_0" Type="Decimal" Precision="15" Scale="2" />
-          <Property Name="s_0_1" Type="Decimal" Precision="15" Scale="2" />
-          <Property Name="s_0_2" Type="Decimal" Precision="15" Scale="2" />
-          <Property Name="s_0_3" Type="Decimal" Precision="15" Scale="2" />
-          <Property Name="s_1_0" Type="Decimal" Precision="15" Scale="2" />
-          <Property Name="s_1_1" Type="Decimal" Precision="15" Scale="2" />
-          <Property Name="s_1_2" Type="Decimal" Precision="15" Scale="2" />
-          <Property Name="s_1_3" Type="Decimal" Precision="15" Scale="2" />
-          <Property Name="s_2_0" Type="Decimal" Precision="15" Scale="2" />
-          <Property Name="s_2_1" Type="Decimal" Precision="15" Scale="2" />
-          <Property Name="s_2_2" Type="Decimal" Precision="15" Scale="2" />
-          <Property Name="s_2_3" Type="Decimal" Precision="15" Scale="2" />
-          <Property Name="StaffCountOsobUslShtat" Type="Int64" />
-          <Property Name="StaffCountOsobUslFakt" Type="Int64" />
-          <Property Name="DateFilling" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="ConfirmLastName" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
-          <Property Name="ConfirmFirstName" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
-          <Property Name="ConfirmMiddleName" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
-          <Property Name="ConfirmDolgn" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
-          <Property Name="DispatchPFR" Type="Boolean" />
-          <Property Name="TypeForm" Type="Byte" />
-          <NavigationProperty Name="FormsODV_1_4_2017" Relationship="pu6Model.FK_FormsODV_1_4_2017_0_0" FromRole="FormsODV_1_2017" ToRole="FormsODV_1_4_2017" />
-          <NavigationProperty Name="FormsSZV_ISH_2017" Relationship="pu6Model.FK_FormsSZV_ISH_2017_0_0" FromRole="FormsODV_1_2017" ToRole="FormsSZV_ISH_2017" />
-          <NavigationProperty Name="FormsSZV_KORR_2017" Relationship="pu6Model.FK_FormsSZV_KORR_2017_1_0" FromRole="FormsODV_1_2017" ToRole="FormsSZV_KORR_2017" />
-          <NavigationProperty Name="FormsSZV_STAJ_2017" Relationship="pu6Model.FK_FormsSZV_STAJ_2017_0_0" FromRole="FormsODV_1_2017" ToRole="FormsSZV_STAJ_2017" />
-          <NavigationProperty Name="FormsODV_1_5_2017" Relationship="pu6Model.FK_FormsODV_1_5_2017_0_0" FromRole="FormsODV_1_2017" ToRole="FormsODV_1_5_2017" />
         </EntityType>
         <EntityType Name="FormsODV_1_4_2017">
           <Key>
@@ -4558,11 +4820,11 @@
           <Property Name="InsurerID" Type="Int64" />
           <Property Name="CorrectionNum" Type="Byte" />
           <NavigationProperty Name="TypeInfo" Relationship="pu6Model.FK_FormsRSW2014_1_Razd_6_1_0_0" FromRole="FormsRSW2014_1_Razd_6_1" ToRole="TypeInfo" />
-          <NavigationProperty Name="Staff" Relationship="pu6Model.FK_FormsRSW2014_1_Razd_6_1_1_0" FromRole="FormsRSW2014_1_Razd_6_1" ToRole="Staff" />
           <NavigationProperty Name="FormsRSW2014_1_Razd_6_4" Relationship="pu6Model.FK_FormsRSW2014_1_Razd_6_4_0_0" FromRole="FormsRSW2014_1_Razd_6_1" ToRole="FormsRSW2014_1_Razd_6_4" />
           <NavigationProperty Name="FormsRSW2014_1_Razd_6_6" Relationship="pu6Model.FK_FormsRSW2014_1_Razd_6_6_0_0" FromRole="FormsRSW2014_1_Razd_6_1" ToRole="FormsRSW2014_1_Razd_6_6" />
           <NavigationProperty Name="FormsRSW2014_1_Razd_6_7" Relationship="pu6Model.FK_FormsRSW2014_1_Razd_6_7_0_0" FromRole="FormsRSW2014_1_Razd_6_1" ToRole="FormsRSW2014_1_Razd_6_7" />
           <NavigationProperty Name="StajOsn" Relationship="pu6Model.FK_StajOsn_14_0" FromRole="FormsRSW2014_1_Razd_6_1" ToRole="StajOsn" />
+          <NavigationProperty Name="Staff" Relationship="pu6Model.FK_FormsRSW2014_1_Razd_6_1_1_0" FromRole="FormsRSW2014_1_Razd_6_1" ToRole="Staff" />
         </EntityType>
         <EntityType Name="FormsRSW2014_1_Razd_6_4">
           <Key>
@@ -4808,8 +5070,8 @@
           <Property Name="DispatchPFR" Type="Byte" />
           <NavigationProperty Name="TypeInfo" Relationship="pu6Model.FK_FormsSPW2_0_0" FromRole="FormsSPW2" ToRole="TypeInfo" />
           <NavigationProperty Name="PlatCategory" Relationship="pu6Model.FK_FormsSPW2_1_0" FromRole="FormsSPW2" ToRole="PlatCategory" />
-          <NavigationProperty Name="Staff" Relationship="pu6Model.FK_FormsSPW2_2_0" FromRole="FormsSPW2" ToRole="Staff" />
           <NavigationProperty Name="StajOsn" Relationship="pu6Model.FK_StajOsn_13_0" FromRole="FormsSPW2" ToRole="StajOsn" />
+          <NavigationProperty Name="Staff" Relationship="pu6Model.FK_FormsSPW2_2_0" FromRole="FormsSPW2" ToRole="Staff" />
         </EntityType>
         <EntityType Name="FormsSZV_6">
           <Key>
@@ -4860,8 +5122,8 @@
           <Property Name="DispatchPFR" Type="Byte" />
           <NavigationProperty Name="PlatCategory" Relationship="pu6Model.FK_FormsSZV_6_0_0" FromRole="FormsSZV_6" ToRole="PlatCategory" />
           <NavigationProperty Name="TypeInfo" Relationship="pu6Model.FK_FormsSZV_6_1_0" FromRole="FormsSZV_6" ToRole="TypeInfo" />
-          <NavigationProperty Name="Staff" Relationship="pu6Model.FK_FormsSZV_6_2_0" FromRole="FormsSZV_6" ToRole="Staff" />
           <NavigationProperty Name="StajOsn" Relationship="pu6Model.FK_StajOsn_11_0" FromRole="FormsSZV_6" ToRole="StajOsn" />
+          <NavigationProperty Name="Staff" Relationship="pu6Model.FK_FormsSZV_6_2_0" FromRole="FormsSZV_6" ToRole="Staff" />
         </EntityType>
         <EntityType Name="FormsSZV_6_4">
           <Key>
@@ -4911,38 +5173,8 @@
           <Property Name="DispatchPFR" Type="Byte" />
           <NavigationProperty Name="PlatCategory" Relationship="pu6Model.FK_FormsSZV_6_4_0_0" FromRole="FormsSZV_6_4" ToRole="PlatCategory" />
           <NavigationProperty Name="TypeInfo" Relationship="pu6Model.FK_FormsSZV_6_4_1_0" FromRole="FormsSZV_6_4" ToRole="TypeInfo" />
-          <NavigationProperty Name="Staff" Relationship="pu6Model.FK_FormsSZV_6_4_2_0" FromRole="FormsSZV_6_4" ToRole="Staff" />
           <NavigationProperty Name="StajOsn" Relationship="pu6Model.FK_StajOsn_12_0" FromRole="FormsSZV_6_4" ToRole="StajOsn" />
-        </EntityType>
-        <EntityType Name="FormsSZV_ISH_2017">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Year" Type="Int16" Nullable="false" />
-          <Property Name="Code" Type="Byte" Nullable="false" />
-          <Property Name="InsurerID" Type="Int64" />
-          <Property Name="StaffID" Type="Int64" Nullable="false" />
-          <Property Name="FormsODV_1_2017_ID" Type="Int64" />
-          <Property Name="ContractType" Type="Byte" />
-          <Property Name="ContractDate" Type="DateTime" Precision="3" />
-          <Property Name="ContractNum" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
-          <Property Name="DopTarCode" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
-          <Property Name="DateFilling" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="SumFeePFR_Insurer" Type="Decimal" Precision="10" Scale="2" />
-          <Property Name="SumFeePFR_Staff" Type="Decimal" Precision="10" Scale="2" />
-          <Property Name="SumFeePFR_Tar" Type="Decimal" Precision="10" Scale="2" />
-          <Property Name="SumFeePFR_TarDop" Type="Decimal" Precision="10" Scale="2" />
-          <Property Name="SumFeePFR_Strah" Type="Decimal" Precision="10" Scale="2" />
-          <Property Name="SumFeePFR_Nakop" Type="Decimal" Precision="10" Scale="2" />
-          <Property Name="SumFeePFR_Base" Type="Decimal" Precision="10" Scale="2" />
-          <Property Name="SumPayPFR_Strah" Type="Decimal" Precision="10" Scale="2" />
-          <Property Name="SumPayPFR_Nakop" Type="Decimal" Precision="10" Scale="2" />
-          <NavigationProperty Name="FormsODV_1_2017" Relationship="pu6Model.FK_FormsSZV_ISH_2017_0_0" FromRole="FormsSZV_ISH_2017" ToRole="FormsODV_1_2017" />
-          <NavigationProperty Name="Staff" Relationship="pu6Model.FK_FormsSZV_ISH_2017_1_0" FromRole="FormsSZV_ISH_2017" ToRole="Staff" />
-          <NavigationProperty Name="FormsSZV_ISH_4_2017" Relationship="pu6Model.FK_FormsSZV_ISH_4_2017_1_0" FromRole="FormsSZV_ISH_2017" ToRole="FormsSZV_ISH_4_2017" />
-          <NavigationProperty Name="FormsSZV_ISH_7_2017" Relationship="pu6Model.FK_FormsSZV_ISH_7_2017_1_0" FromRole="FormsSZV_ISH_2017" ToRole="FormsSZV_ISH_7_2017" />
-          <NavigationProperty Name="StajOsn" Relationship="pu6Model.FK_StajOsn_1_0" FromRole="FormsSZV_ISH_2017" ToRole="StajOsn" />
+          <NavigationProperty Name="Staff" Relationship="pu6Model.FK_FormsSZV_6_4_2_0" FromRole="FormsSZV_6_4" ToRole="Staff" />
         </EntityType>
         <EntityType Name="FormsSZV_ISH_4_2017">
           <Key>
@@ -4957,8 +5189,8 @@
           <Property Name="BaseGPD" Type="Decimal" Precision="13" Scale="2" />
           <Property Name="SumPrevBaseALL" Type="Decimal" Precision="13" Scale="2" />
           <Property Name="SumPrevBaseGPD" Type="Decimal" Precision="13" Scale="2" />
-          <NavigationProperty Name="FormsSZV_ISH_2017" Relationship="pu6Model.FK_FormsSZV_ISH_4_2017_1_0" FromRole="FormsSZV_ISH_4_2017" ToRole="FormsSZV_ISH_2017" />
           <NavigationProperty Name="PlatCategory" Relationship="pu6Model.FK_FormsSZV_ISH_4_2017_0_0" FromRole="FormsSZV_ISH_4_2017" ToRole="PlatCategory" />
+          <NavigationProperty Name="FormsSZV_ISH_2017" Relationship="pu6Model.FK_FormsSZV_ISH_4_2017_1_0" FromRole="FormsSZV_ISH_4_2017" ToRole="FormsSZV_ISH_2017" />
         </EntityType>
         <EntityType Name="FormsSZV_ISH_7_2017">
           <Key>
@@ -4976,38 +5208,8 @@
           <Property Name="s_2_1" Type="Decimal" Precision="10" Scale="2" />
           <Property Name="s_3_0" Type="Decimal" Precision="10" Scale="2" />
           <Property Name="s_3_1" Type="Decimal" Precision="10" Scale="2" />
-          <NavigationProperty Name="FormsSZV_ISH_2017" Relationship="pu6Model.FK_FormsSZV_ISH_7_2017_1_0" FromRole="FormsSZV_ISH_7_2017" ToRole="FormsSZV_ISH_2017" />
           <NavigationProperty Name="SpecOcenkaUslTruda" Relationship="pu6Model.FK_FormsSZV_ISH_7_2017_0_0" FromRole="FormsSZV_ISH_7_2017" ToRole="SpecOcenkaUslTruda" />
-        </EntityType>
-        <EntityType Name="FormsSZV_KORR_2017">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Year" Type="Int16" Nullable="false" />
-          <Property Name="Code" Type="Byte" Nullable="false" />
-          <Property Name="YearKorr" Type="Int16" />
-          <Property Name="CodeKorr" Type="Byte" />
-          <Property Name="RegNumKorr" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
-          <Property Name="INNKorr" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
-          <Property Name="KPPKorr" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
-          <Property Name="InsurerID" Type="Int64" />
-          <Property Name="StaffID" Type="Int64" Nullable="false" />
-          <Property Name="FormsODV_1_2017_ID" Type="Int64" />
-          <Property Name="TypeInfo" Type="Byte" />
-          <Property Name="ContractType" Type="Byte" />
-          <Property Name="ContractDate" Type="DateTime" Precision="3" />
-          <Property Name="ContractNum" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
-          <Property Name="PlatCategoryID" Type="Int64" />
-          <Property Name="DopTarCode" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
-          <Property Name="DateFilling" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="ShortNameKorr" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
-          <NavigationProperty Name="FormsODV_1_2017" Relationship="pu6Model.FK_FormsSZV_KORR_2017_1_0" FromRole="FormsSZV_KORR_2017" ToRole="FormsODV_1_2017" />
-          <NavigationProperty Name="PlatCategory" Relationship="pu6Model.FK_FormsSZV_KORR_2017_0_0" FromRole="FormsSZV_KORR_2017" ToRole="PlatCategory" />
-          <NavigationProperty Name="Staff" Relationship="pu6Model.FK_FormsSZV_KORR_2017_2_0" FromRole="FormsSZV_KORR_2017" ToRole="Staff" />
-          <NavigationProperty Name="FormsSZV_KORR_4_2017" Relationship="pu6Model.FK_FormsSZV_KORR_4_2017_0_0" FromRole="FormsSZV_KORR_2017" ToRole="FormsSZV_KORR_4_2017" />
-          <NavigationProperty Name="FormsSZV_KORR_5_2017" Relationship="pu6Model.FK_FormsSZV_KORR_5_2017_1_0" FromRole="FormsSZV_KORR_2017" ToRole="FormsSZV_KORR_5_2017" />
-          <NavigationProperty Name="StajOsn" Relationship="pu6Model.FK_StajOsn_0_0" FromRole="FormsSZV_KORR_2017" ToRole="StajOsn" />
+          <NavigationProperty Name="FormsSZV_ISH_2017" Relationship="pu6Model.FK_FormsSZV_ISH_7_2017_1_0" FromRole="FormsSZV_ISH_7_2017" ToRole="FormsSZV_ISH_2017" />
         </EntityType>
         <EntityType Name="FormsSZV_KORR_4_2017">
           <Key>
@@ -5040,8 +5242,8 @@
           <Property Name="SpecOcenkaUslTrudaID" Type="Int64" />
           <Property Name="s_0" Type="Decimal" Precision="10" Scale="2" />
           <Property Name="s_1" Type="Decimal" Precision="10" Scale="2" />
-          <NavigationProperty Name="FormsSZV_KORR_2017" Relationship="pu6Model.FK_FormsSZV_KORR_5_2017_1_0" FromRole="FormsSZV_KORR_5_2017" ToRole="FormsSZV_KORR_2017" />
           <NavigationProperty Name="SpecOcenkaUslTruda" Relationship="pu6Model.FK_FormsSZV_KORR_5_2017_0_0" FromRole="FormsSZV_KORR_5_2017" ToRole="SpecOcenkaUslTruda" />
+          <NavigationProperty Name="FormsSZV_KORR_2017" Relationship="pu6Model.FK_FormsSZV_KORR_5_2017_1_0" FromRole="FormsSZV_KORR_5_2017" ToRole="FormsSZV_KORR_2017" />
         </EntityType>
         <EntityType Name="FormsSZV_M_2016">
           <Key>
@@ -5121,6 +5323,8 @@
           <NavigationProperty Name="FormsRSW2014_2_1" Relationship="pu6Model.FK_FormsRSW2014_2_1_0_0" FromRole="Insurer" ToRole="FormsRSW2014_2_1" />
           <NavigationProperty Name="FormsRW3_2015" Relationship="pu6Model.FK_FormsRW3_2015_0_0" FromRole="Insurer" ToRole="FormsRW3_2015" />
           <NavigationProperty Name="FormsSZV_M_2016" Relationship="pu6Model.FK_FormsSZV_M_2016_1_0" FromRole="Insurer" ToRole="FormsSZV_M_2016" />
+          <NavigationProperty Name="FormsPredPens_Zapros" Relationship="pu6Model.FK_FormsPredPens_Zapros_0_0" FromRole="Insurer" ToRole="FormsPredPens_Zapros" />
+          <NavigationProperty Name="FormsSZV_TD_2020" Relationship="pu6Model.FK_FormsSZV_TD_2020_0_0" FromRole="Insurer" ToRole="FormsSZV_TD_2020" />
           <NavigationProperty Name="Staff" Relationship="pu6Model.FK_Staff_1_0" FromRole="Insurer" ToRole="Staff" />
         </EntityType>
         <EntityType Name="IschislStrahStajDop">
@@ -5217,10 +5421,10 @@
           <NavigationProperty Name="FormsSZV_6" Relationship="pu6Model.FK_FormsSZV_6_0_0" FromRole="PlatCategory" ToRole="FormsSZV_6" />
           <NavigationProperty Name="FormsSZV_6_4" Relationship="pu6Model.FK_FormsSZV_6_4_0_0" FromRole="PlatCategory" ToRole="FormsSZV_6_4" />
           <NavigationProperty Name="FormsSZV_ISH_4_2017" Relationship="pu6Model.FK_FormsSZV_ISH_4_2017_0_0" FromRole="PlatCategory" ToRole="FormsSZV_ISH_4_2017" />
-          <NavigationProperty Name="FormsSZV_KORR_2017" Relationship="pu6Model.FK_FormsSZV_KORR_2017_0_0" FromRole="PlatCategory" ToRole="FormsSZV_KORR_2017" />
           <NavigationProperty Name="PlatCategoryRaschPer" Relationship="pu6Model.FK_PlatCategory_0_0" FromRole="PlatCategory" ToRole="PlatCategoryRaschPer" />
           <NavigationProperty Name="TariffCodePlatCat" Relationship="pu6Model.FK_TariffCodePlatCat_1_0" FromRole="PlatCategory" ToRole="TariffCodePlatCat" />
           <NavigationProperty Name="TariffPlat" Relationship="pu6Model.FK_TariffPlat_0_0" FromRole="PlatCategory" ToRole="TariffPlat" />
+          <NavigationProperty Name="FormsSZV_KORR_2017" Relationship="pu6Model.FK_FormsSZV_KORR_2017_0_0" FromRole="PlatCategory" ToRole="FormsSZV_KORR_2017" />
         </EntityType>
         <EntityType Name="PlatCategoryRaschPer">
           <Key>
@@ -5268,41 +5472,6 @@
           <Property Name="DateEnd" Type="DateTime" Precision="3" />
           <Property Name="Rate" Type="Decimal" Precision="5" Scale="2" />
           <NavigationProperty Name="SpecOcenkaUslTruda" Relationship="pu6Model.FK_SpecOcenkaUslTrudaDopTariff_0_0" FromRole="SpecOcenkaUslTrudaDopTariff" ToRole="SpecOcenkaUslTruda" />
-        </EntityType>
-        <EntityType Name="Staff">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="InsurerID" Type="Int64" />
-          <Property Name="DepartmentID" Type="Int64" />
-          <Property Name="InsuranceNumber" Type="String" MaxLength="9" Unicode="false" FixedLength="true" />
-          <Property Name="ControlNumber" Type="Byte" />
-          <Property Name="TabelNumber" Type="Int64" />
-          <Property Name="INN" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
-          <Property Name="LastName" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
-          <Property Name="FirstName" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
-          <Property Name="MiddleName" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
-          <Property Name="Sex" Type="Byte" />
-          <Property Name="DateBirth" Type="DateTime" Precision="3" />
-          <Property Name="Dismissed" Type="Byte" />
-          <NavigationProperty Name="Department" Relationship="pu6Model.FK_Staff_0_0" FromRole="Staff" ToRole="Department" />
-          <NavigationProperty Name="FormsADW_1" Relationship="pu6Model.FK_FormsADW_1_0_0" FromRole="Staff" ToRole="FormsADW_1" />
-          <NavigationProperty Name="FormsADW_2" Relationship="pu6Model.FK_FormsADW_2_0_0" FromRole="Staff" ToRole="FormsADW_2" />
-          <NavigationProperty Name="FormsADW_3" Relationship="pu6Model.FK_FormsADW_3_0_0" FromRole="Staff" ToRole="FormsADW_3" />
-          <NavigationProperty Name="FormsDSW_3_Staff" Relationship="pu6Model.FK_FormsDSW_3_Staff_0_0" FromRole="Staff" ToRole="FormsDSW_3_Staff" />
-          <NavigationProperty Name="FormsRSW" Relationship="pu6Model.FK_FormsRSW_0_0" FromRole="Staff" ToRole="FormsRSW" />
-          <NavigationProperty Name="FormsRSW2014_1_Razd_6_1" Relationship="pu6Model.FK_FormsRSW2014_1_Razd_6_1_1_0" FromRole="Staff" ToRole="FormsRSW2014_1_Razd_6_1" />
-          <NavigationProperty Name="FormsSPW2" Relationship="pu6Model.FK_FormsSPW2_2_0" FromRole="Staff" ToRole="FormsSPW2" />
-          <NavigationProperty Name="FormsSZV_6" Relationship="pu6Model.FK_FormsSZV_6_2_0" FromRole="Staff" ToRole="FormsSZV_6" />
-          <NavigationProperty Name="FormsSZV_6_4" Relationship="pu6Model.FK_FormsSZV_6_4_2_0" FromRole="Staff" ToRole="FormsSZV_6_4" />
-          <NavigationProperty Name="FormsSZV_ISH_2017" Relationship="pu6Model.FK_FormsSZV_ISH_2017_1_0" FromRole="Staff" ToRole="FormsSZV_ISH_2017" />
-          <NavigationProperty Name="FormsSZV_KORR_2017" Relationship="pu6Model.FK_FormsSZV_KORR_2017_2_0" FromRole="Staff" ToRole="FormsSZV_KORR_2017" />
-          <NavigationProperty Name="FormsSZV_M_2016_Staff" Relationship="pu6Model.FK_FormsSZV_M_2016_Staff_0_0" FromRole="Staff" ToRole="FormsSZV_M_2016_Staff" />
-          <NavigationProperty Name="Insurer" Relationship="pu6Model.FK_Staff_1_0" FromRole="Staff" ToRole="Insurer" />
-          <NavigationProperty Name="StaffDateWork" Relationship="pu6Model.FK_StaffDateWork_0_0" FromRole="Staff" ToRole="StaffDateWork" />
-          <NavigationProperty Name="StaffInfo" Relationship="pu6Model.FK_StaffInfo_1_0" FromRole="Staff" ToRole="StaffInfo" />
-          <NavigationProperty Name="FormsSZV_STAJ_2017" Relationship="pu6Model.FK_FormsSZV_STAJ_2017_1_0" FromRole="Staff" ToRole="FormsSZV_STAJ_2017" />
         </EntityType>
         <EntityType Name="StaffDateWork">
           <Key>
@@ -5663,18 +5832,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Staff_0_0">
-          <End Role="Department" Type="pu6Model.Department" Multiplicity="0..1" />
-          <End Role="Staff" Type="pu6Model.Staff" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Department">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="Staff">
-              <PropertyRef Name="DepartmentID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_StaffInfo_0_0">
           <End Role="DocumentTypes" Type="pu6Model.DocumentTypes" Multiplicity="0..1" />
           <End Role="StaffInfo" Type="pu6Model.StaffInfo" Multiplicity="*" />
@@ -5699,42 +5856,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_FormsADW_1_0_0">
-          <End Role="Staff" Type="pu6Model.Staff" Multiplicity="0..1" />
-          <End Role="FormsADW_1" Type="pu6Model.FormsADW_1" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Staff">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="FormsADW_1">
-              <PropertyRef Name="StaffID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_FormsADW_2_0_0">
-          <End Role="Staff" Type="pu6Model.Staff" Multiplicity="0..1" />
-          <End Role="FormsADW_2" Type="pu6Model.FormsADW_2" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Staff">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="FormsADW_2">
-              <PropertyRef Name="StaffID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_FormsADW_3_0_0">
-          <End Role="Staff" Type="pu6Model.Staff" Multiplicity="0..1" />
-          <End Role="FormsADW_3" Type="pu6Model.FormsADW_3" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Staff">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="FormsADW_3">
-              <PropertyRef Name="StaffID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_FormsDSW_3_0_0">
           <End Role="Insurer" Type="pu6Model.Insurer" Multiplicity="1" />
           <End Role="FormsDSW_3" Type="pu6Model.FormsDSW_3" Multiplicity="*" />
@@ -5756,66 +5877,6 @@
             </Principal>
             <Dependent Role="FormsDSW_3_Staff">
               <PropertyRef Name="FormsDSW_3_ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_FormsDSW_3_Staff_0_0">
-          <End Role="Staff" Type="pu6Model.Staff" Multiplicity="1" />
-          <End Role="FormsDSW_3_Staff" Type="pu6Model.FormsDSW_3_Staff" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Staff">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="FormsDSW_3_Staff">
-              <PropertyRef Name="StaffID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_FormsODV_1_4_2017_0_0">
-          <End Role="FormsODV_1_2017" Type="pu6Model.FormsODV_1_2017" Multiplicity="1" />
-          <End Role="FormsODV_1_4_2017" Type="pu6Model.FormsODV_1_4_2017" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="FormsODV_1_2017">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="FormsODV_1_4_2017">
-              <PropertyRef Name="FormsODV_1_2017_ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_FormsSZV_ISH_2017_0_0">
-          <End Role="FormsODV_1_2017" Type="pu6Model.FormsODV_1_2017" Multiplicity="0..1" />
-          <End Role="FormsSZV_ISH_2017" Type="pu6Model.FormsSZV_ISH_2017" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="FormsODV_1_2017">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="FormsSZV_ISH_2017">
-              <PropertyRef Name="FormsODV_1_2017_ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_FormsSZV_KORR_2017_1_0">
-          <End Role="FormsODV_1_2017" Type="pu6Model.FormsODV_1_2017" Multiplicity="0..1" />
-          <End Role="FormsSZV_KORR_2017" Type="pu6Model.FormsSZV_KORR_2017" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="FormsODV_1_2017">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="FormsSZV_KORR_2017">
-              <PropertyRef Name="FormsODV_1_2017_ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_FormsRSW_0_0">
-          <End Role="Staff" Type="pu6Model.Staff" Multiplicity="1" />
-          <End Role="FormsRSW" Type="pu6Model.FormsRSW" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Staff">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="FormsRSW">
-              <PropertyRef Name="StaffID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -5852,18 +5913,6 @@
             </Principal>
             <Dependent Role="FormsRSW2014_1_Razd_6_1">
               <PropertyRef Name="TypeInfoID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_FormsRSW2014_1_Razd_6_1_1_0">
-          <End Role="Staff" Type="pu6Model.Staff" Multiplicity="1" />
-          <End Role="FormsRSW2014_1_Razd_6_1" Type="pu6Model.FormsRSW2014_1_Razd_6_1" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Staff">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="FormsRSW2014_1_Razd_6_1">
-              <PropertyRef Name="StaffID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -6011,18 +6060,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_FormsSPW2_2_0">
-          <End Role="Staff" Type="pu6Model.Staff" Multiplicity="1" />
-          <End Role="FormsSPW2" Type="pu6Model.FormsSPW2" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Staff">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="FormsSPW2">
-              <PropertyRef Name="StaffID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_FormsSZV_6_0_0">
           <End Role="PlatCategory" Type="pu6Model.PlatCategory" Multiplicity="1" />
           <End Role="FormsSZV_6" Type="pu6Model.FormsSZV_6" Multiplicity="*" />
@@ -6044,18 +6081,6 @@
             </Principal>
             <Dependent Role="FormsSZV_6">
               <PropertyRef Name="TypeInfoID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_FormsSZV_6_2_0">
-          <End Role="Staff" Type="pu6Model.Staff" Multiplicity="1" />
-          <End Role="FormsSZV_6" Type="pu6Model.FormsSZV_6" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Staff">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="FormsSZV_6">
-              <PropertyRef Name="StaffID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -6083,54 +6108,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_FormsSZV_6_4_2_0">
-          <End Role="Staff" Type="pu6Model.Staff" Multiplicity="1" />
-          <End Role="FormsSZV_6_4" Type="pu6Model.FormsSZV_6_4" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Staff">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="FormsSZV_6_4">
-              <PropertyRef Name="StaffID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_FormsSZV_ISH_2017_1_0">
-          <End Role="Staff" Type="pu6Model.Staff" Multiplicity="1" />
-          <End Role="FormsSZV_ISH_2017" Type="pu6Model.FormsSZV_ISH_2017" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Staff">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="FormsSZV_ISH_2017">
-              <PropertyRef Name="StaffID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_FormsSZV_ISH_4_2017_1_0">
-          <End Role="FormsSZV_ISH_2017" Type="pu6Model.FormsSZV_ISH_2017" Multiplicity="1" />
-          <End Role="FormsSZV_ISH_4_2017" Type="pu6Model.FormsSZV_ISH_4_2017" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="FormsSZV_ISH_2017">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="FormsSZV_ISH_4_2017">
-              <PropertyRef Name="FormsSZV_ISH_2017_ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_FormsSZV_ISH_7_2017_1_0">
-          <End Role="FormsSZV_ISH_2017" Type="pu6Model.FormsSZV_ISH_2017" Multiplicity="1" />
-          <End Role="FormsSZV_ISH_7_2017" Type="pu6Model.FormsSZV_ISH_7_2017" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="FormsSZV_ISH_2017">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="FormsSZV_ISH_7_2017">
-              <PropertyRef Name="FormsSZV_ISH_2017_ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_FormsSZV_ISH_4_2017_0_0">
           <End Role="PlatCategory" Type="pu6Model.PlatCategory" Multiplicity="1" />
           <End Role="FormsSZV_ISH_4_2017" Type="pu6Model.FormsSZV_ISH_4_2017" Multiplicity="*" />
@@ -6152,54 +6129,6 @@
             </Principal>
             <Dependent Role="FormsSZV_ISH_7_2017">
               <PropertyRef Name="SpecOcenkaUslTrudaID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_FormsSZV_KORR_2017_0_0">
-          <End Role="PlatCategory" Type="pu6Model.PlatCategory" Multiplicity="0..1" />
-          <End Role="FormsSZV_KORR_2017" Type="pu6Model.FormsSZV_KORR_2017" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="PlatCategory">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="FormsSZV_KORR_2017">
-              <PropertyRef Name="PlatCategoryID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_FormsSZV_KORR_2017_2_0">
-          <End Role="Staff" Type="pu6Model.Staff" Multiplicity="1" />
-          <End Role="FormsSZV_KORR_2017" Type="pu6Model.FormsSZV_KORR_2017" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Staff">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="FormsSZV_KORR_2017">
-              <PropertyRef Name="StaffID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_FormsSZV_KORR_4_2017_0_0">
-          <End Role="FormsSZV_KORR_2017" Type="pu6Model.FormsSZV_KORR_2017" Multiplicity="1" />
-          <End Role="FormsSZV_KORR_4_2017" Type="pu6Model.FormsSZV_KORR_4_2017" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="FormsSZV_KORR_2017">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="FormsSZV_KORR_4_2017">
-              <PropertyRef Name="FormsSZV_KORR_2017_ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_FormsSZV_KORR_5_2017_1_0">
-          <End Role="FormsSZV_KORR_2017" Type="pu6Model.FormsSZV_KORR_2017" Multiplicity="1" />
-          <End Role="FormsSZV_KORR_5_2017" Type="pu6Model.FormsSZV_KORR_5_2017" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="FormsSZV_KORR_2017">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="FormsSZV_KORR_5_2017">
-              <PropertyRef Name="FormsSZV_KORR_2017_ID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -6248,30 +6177,6 @@
             </Principal>
             <Dependent Role="FormsSZV_M_2016_Staff">
               <PropertyRef Name="FormsSZV_M_2016_ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_FormsSZV_M_2016_Staff_0_0">
-          <End Role="Staff" Type="pu6Model.Staff" Multiplicity="1" />
-          <End Role="FormsSZV_M_2016_Staff" Type="pu6Model.FormsSZV_M_2016_Staff" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Staff">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="FormsSZV_M_2016_Staff">
-              <PropertyRef Name="StaffID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Staff_1_0">
-          <End Role="Insurer" Type="pu6Model.Insurer" Multiplicity="0..1" />
-          <End Role="Staff" Type="pu6Model.Staff" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Insurer">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="Staff">
-              <PropertyRef Name="InsurerID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -6383,30 +6288,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_StaffDateWork_0_0">
-          <End Role="Staff" Type="pu6Model.Staff" Multiplicity="1" />
-          <End Role="StaffDateWork" Type="pu6Model.StaffDateWork" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Staff">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="StaffDateWork">
-              <PropertyRef Name="StaffID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_StaffInfo_1_0">
-          <End Role="Staff" Type="pu6Model.Staff" Multiplicity="1" />
-          <End Role="StaffInfo" Type="pu6Model.StaffInfo" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Staff">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="StaffInfo">
-              <PropertyRef Name="StaffID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_StajLgot_0_0">
           <End Role="UslDosrNazn" Type="pu6Model.UslDosrNazn" Multiplicity="0..1" />
           <End Role="StajLgot" Type="pu6Model.StajLgot" Multiplicity="*" />
@@ -6486,10 +6367,10 @@
           <Property Type="String" Name="ConfirmDolgn" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Type="Boolean" Name="DispatchPFR" />
           <Property Type="Boolean" Name="Dismissed" />
-          <NavigationProperty Name="FormsODV_1_2017" Relationship="pu6Model.FK_FormsSZV_STAJ_2017_0_0" FromRole="FormsSZV_STAJ_2017" ToRole="FormsODV_1_2017" />
-          <NavigationProperty Name="Staff" Relationship="pu6Model.FK_FormsSZV_STAJ_2017_1_0" FromRole="FormsSZV_STAJ_2017" ToRole="Staff" />
           <NavigationProperty Name="FormsSZV_STAJ_4_2017" Relationship="pu6Model.FK_FormsSZV_STAJ_4_2017_0_0" FromRole="FormsSZV_STAJ_2017" ToRole="FormsSZV_STAJ_4_2017" />
           <NavigationProperty Name="StajOsn" Relationship="pu6Model.FK_StajOsn_2_0" FromRole="FormsSZV_STAJ_2017" ToRole="StajOsn" />
+          <NavigationProperty Name="FormsODV_1_2017" Relationship="pu6Model.FK_FormsSZV_STAJ_2017_0_0" FromRole="FormsSZV_STAJ_2017" ToRole="FormsODV_1_2017" />
+          <NavigationProperty Name="Staff" Relationship="pu6Model.FK_FormsSZV_STAJ_2017_1_0" FromRole="FormsSZV_STAJ_2017" ToRole="Staff" />
         </EntityType>
         <EntityType Name="StajOsn">
           <Key>
@@ -6526,8 +6407,6 @@
           <NavigationProperty Name="FormsSPW2" Relationship="pu6Model.FK_StajOsn_13_0" FromRole="StajOsn" ToRole="FormsSPW2" />
           <NavigationProperty Name="FormsSZV_6" Relationship="pu6Model.FK_StajOsn_11_0" FromRole="StajOsn" ToRole="FormsSZV_6" />
           <NavigationProperty Name="FormsSZV_6_4" Relationship="pu6Model.FK_StajOsn_12_0" FromRole="StajOsn" ToRole="FormsSZV_6_4" />
-          <NavigationProperty Name="FormsSZV_ISH_2017" Relationship="pu6Model.FK_StajOsn_1_0" FromRole="StajOsn" ToRole="FormsSZV_ISH_2017" />
-          <NavigationProperty Name="FormsSZV_KORR_2017" Relationship="pu6Model.FK_StajOsn_0_0" FromRole="StajOsn" ToRole="FormsSZV_KORR_2017" />
           <NavigationProperty Name="FormsSZV_STAJ_2017" Relationship="pu6Model.FK_StajOsn_2_0" FromRole="StajOsn" ToRole="FormsSZV_STAJ_2017" />
           <NavigationProperty Name="IschislStrahStajDop" Relationship="pu6Model.FK_StajOsn_4_0" FromRole="StajOsn" ToRole="IschislStrahStajDop" />
           <NavigationProperty Name="IschislStrahStajOsn" Relationship="pu6Model.FK_StajOsn_5_0" FromRole="StajOsn" ToRole="IschislStrahStajOsn" />
@@ -6537,6 +6416,8 @@
           <NavigationProperty Name="StajLgot" Relationship="pu6Model.FK_StajLgot_8_0" FromRole="StajOsn" ToRole="StajLgot" />
           <NavigationProperty Name="UslDosrNazn" Relationship="pu6Model.FK_StajOsn_3_0" FromRole="StajOsn" ToRole="UslDosrNazn" />
           <NavigationProperty Name="TerrUsl" Relationship="pu6Model.FK_StajOsn_8_0" FromRole="StajOsn" ToRole="TerrUsl" />
+          <NavigationProperty Name="FormsSZV_KORR_2017" Relationship="pu6Model.FK_StajOsn_0_0" FromRole="StajOsn" ToRole="FormsSZV_KORR_2017" />
+          <NavigationProperty Name="FormsSZV_ISH_2017" Relationship="pu6Model.FK_StajOsn_1_0" FromRole="StajOsn" ToRole="FormsSZV_ISH_2017" />
         </EntityType>
         <Association Name="FK_StajOsn_6_0">
           <End Type="pu6Model.Dolgn" Role="Dolgn" Multiplicity="0..1" />
@@ -6547,18 +6428,6 @@
             </Principal>
             <Dependent Role="StajOsn">
               <PropertyRef Name="DolgnID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_FormsSZV_STAJ_2017_0_0">
-          <End Type="pu6Model.FormsODV_1_2017" Role="FormsODV_1_2017" Multiplicity="0..1" />
-          <End Type="pu6Model.FormsSZV_STAJ_2017" Role="FormsSZV_STAJ_2017" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="FormsODV_1_2017">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="FormsSZV_STAJ_2017">
-              <PropertyRef Name="FormsODV_1_2017_ID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -6607,42 +6476,6 @@
             </Principal>
             <Dependent Role="StajOsn">
               <PropertyRef Name="FormsSZV_6_4_ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_StajOsn_1_0">
-          <End Type="pu6Model.FormsSZV_ISH_2017" Role="FormsSZV_ISH_2017" Multiplicity="0..1" />
-          <End Type="pu6Model.StajOsn" Role="StajOsn" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="FormsSZV_ISH_2017">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="StajOsn">
-              <PropertyRef Name="FormsSZV_ISH_2017_ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_StajOsn_0_0">
-          <End Type="pu6Model.FormsSZV_KORR_2017" Role="FormsSZV_KORR_2017" Multiplicity="0..1" />
-          <End Type="pu6Model.StajOsn" Role="StajOsn" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="FormsSZV_KORR_2017">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="StajOsn">
-              <PropertyRef Name="FormsSZV_KORR_2017_ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_FormsSZV_STAJ_2017_1_0">
-          <End Type="pu6Model.Staff" Role="Staff" Multiplicity="1" />
-          <End Type="pu6Model.FormsSZV_STAJ_2017" Role="FormsSZV_STAJ_2017" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Staff">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="FormsSZV_STAJ_2017">
-              <PropertyRef Name="StaffID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -6766,22 +6599,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityType Name="FormsODV_1_5_2017">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Type="Int64" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Type="Int16" Name="Num" />
-          <Property Type="Int64" Name="FormsODV_1_2017_ID" Nullable="false" />
-          <Property Type="String" Name="Department" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="Profession" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Type="Int64" Name="StaffCountShtat" />
-          <Property Type="Int64" Name="StaffCountFakt" />
-          <Property Type="String" Name="VidRabotFakt" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="DocsName" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="FormsODV_1_2017" Relationship="pu6Model.FK_FormsODV_1_5_2017_0_0" FromRole="FormsODV_1_5_2017" ToRole="FormsODV_1_2017" />
-          <NavigationProperty Name="FormsODV_1_5_2017_OUT" Relationship="pu6Model.FK_FormsODV_1_5_2017_OUT_0_0" FromRole="FormsODV_1_5_2017" ToRole="FormsODV_1_5_2017_OUT" />
-        </EntityType>
         <EntityType Name="FormsODV_1_5_2017_OUT">
           <Key>
             <PropertyRef Name="ID" />
@@ -6792,6 +6609,278 @@
           <Property Type="Int64" Name="FormsODV_1_5_2017_ID" Nullable="false" />
           <NavigationProperty Name="FormsODV_1_5_2017" Relationship="pu6Model.FK_FormsODV_1_5_2017_OUT_0_0" FromRole="FormsODV_1_5_2017_OUT" ToRole="FormsODV_1_5_2017" />
         </EntityType>
+        <EntityType Name="FormsSZV_KORR_2017">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Int64" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int16" Name="Year" Nullable="false" />
+          <Property Type="Byte" Name="Code" Nullable="false" />
+          <Property Type="Int16" Name="YearKorr" />
+          <Property Type="Byte" Name="CodeKorr" />
+          <Property Type="String" Name="RegNumKorr" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="INNKorr" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="KPPKorr" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Type="Int64" Name="InsurerID" />
+          <Property Type="Int64" Name="StaffID" Nullable="false" />
+          <Property Type="Int64" Name="FormsODV_1_2017_ID" />
+          <Property Type="Byte" Name="TypeInfo" />
+          <Property Type="Byte" Name="ContractType" />
+          <Property Type="DateTime" Name="ContractDate" Precision="3" />
+          <Property Type="String" Name="ContractNum" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Type="Int64" Name="PlatCategoryID" />
+          <Property Type="String" Name="DopTarCode" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Type="DateTime" Name="DateFilling" Nullable="false" Precision="3" />
+          <Property Type="String" Name="ShortNameKorr" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Type="Boolean" Name="Dismissed" />
+          <NavigationProperty Name="PlatCategory" Relationship="pu6Model.FK_FormsSZV_KORR_2017_0_0" FromRole="FormsSZV_KORR_2017" ToRole="PlatCategory" />
+          <NavigationProperty Name="FormsSZV_KORR_4_2017" Relationship="pu6Model.FK_FormsSZV_KORR_4_2017_0_0" FromRole="FormsSZV_KORR_2017" ToRole="FormsSZV_KORR_4_2017" />
+          <NavigationProperty Name="FormsSZV_KORR_5_2017" Relationship="pu6Model.FK_FormsSZV_KORR_5_2017_1_0" FromRole="FormsSZV_KORR_2017" ToRole="FormsSZV_KORR_5_2017" />
+          <NavigationProperty Name="StajOsn" Relationship="pu6Model.FK_StajOsn_0_0" FromRole="FormsSZV_KORR_2017" ToRole="StajOsn" />
+          <NavigationProperty Name="FormsODV_1_2017" Relationship="pu6Model.FK_FormsSZV_KORR_2017_1_0" FromRole="FormsSZV_KORR_2017" ToRole="FormsODV_1_2017" />
+          <NavigationProperty Name="Staff" Relationship="pu6Model.FK_FormsSZV_KORR_2017_2_0" FromRole="FormsSZV_KORR_2017" ToRole="Staff" />
+        </EntityType>
+        <Association Name="FK_FormsSZV_KORR_2017_0_0">
+          <End Type="pu6Model.PlatCategory" Role="PlatCategory" Multiplicity="0..1" />
+          <End Type="pu6Model.FormsSZV_KORR_2017" Role="FormsSZV_KORR_2017" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PlatCategory">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="FormsSZV_KORR_2017">
+              <PropertyRef Name="PlatCategoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_FormsSZV_KORR_4_2017_0_0">
+          <End Type="pu6Model.FormsSZV_KORR_2017" Role="FormsSZV_KORR_2017" Multiplicity="1" />
+          <End Type="pu6Model.FormsSZV_KORR_4_2017" Role="FormsSZV_KORR_4_2017" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FormsSZV_KORR_2017">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="FormsSZV_KORR_4_2017">
+              <PropertyRef Name="FormsSZV_KORR_2017_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_FormsSZV_KORR_5_2017_1_0">
+          <End Type="pu6Model.FormsSZV_KORR_2017" Role="FormsSZV_KORR_2017" Multiplicity="1" />
+          <End Type="pu6Model.FormsSZV_KORR_5_2017" Role="FormsSZV_KORR_5_2017" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FormsSZV_KORR_2017">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="FormsSZV_KORR_5_2017">
+              <PropertyRef Name="FormsSZV_KORR_2017_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_StajOsn_0_0">
+          <End Type="pu6Model.FormsSZV_KORR_2017" Role="FormsSZV_KORR_2017" Multiplicity="0..1" />
+          <End Type="pu6Model.StajOsn" Role="StajOsn" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FormsSZV_KORR_2017">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="StajOsn">
+              <PropertyRef Name="FormsSZV_KORR_2017_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="FormsSZV_ISH_2017">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Int64" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int16" Name="Year" Nullable="false" />
+          <Property Type="Byte" Name="Code" Nullable="false" />
+          <Property Type="Int64" Name="InsurerID" />
+          <Property Type="Int64" Name="StaffID" Nullable="false" />
+          <Property Type="Int64" Name="FormsODV_1_2017_ID" />
+          <Property Type="Byte" Name="ContractType" />
+          <Property Type="DateTime" Name="ContractDate" Precision="3" />
+          <Property Type="String" Name="ContractNum" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="DopTarCode" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Type="DateTime" Name="DateFilling" Nullable="false" Precision="3" />
+          <Property Type="Decimal" Name="SumFeePFR_Insurer" Precision="10" Scale="2" />
+          <Property Type="Decimal" Name="SumFeePFR_Staff" Precision="10" Scale="2" />
+          <Property Type="Decimal" Name="SumFeePFR_Tar" Precision="10" Scale="2" />
+          <Property Type="Decimal" Name="SumFeePFR_TarDop" Precision="10" Scale="2" />
+          <Property Type="Decimal" Name="SumFeePFR_Strah" Precision="10" Scale="2" />
+          <Property Type="Decimal" Name="SumFeePFR_Nakop" Precision="10" Scale="2" />
+          <Property Type="Decimal" Name="SumFeePFR_Base" Precision="10" Scale="2" />
+          <Property Type="Decimal" Name="SumPayPFR_Strah" Precision="10" Scale="2" />
+          <Property Type="Decimal" Name="SumPayPFR_Nakop" Precision="10" Scale="2" />
+          <Property Type="Boolean" Name="Dismissed" />
+          <NavigationProperty Name="FormsSZV_ISH_4_2017" Relationship="pu6Model.FK_FormsSZV_ISH_4_2017_1_0" FromRole="FormsSZV_ISH_2017" ToRole="FormsSZV_ISH_4_2017" />
+          <NavigationProperty Name="FormsSZV_ISH_7_2017" Relationship="pu6Model.FK_FormsSZV_ISH_7_2017_1_0" FromRole="FormsSZV_ISH_2017" ToRole="FormsSZV_ISH_7_2017" />
+          <NavigationProperty Name="StajOsn" Relationship="pu6Model.FK_StajOsn_1_0" FromRole="FormsSZV_ISH_2017" ToRole="StajOsn" />
+          <NavigationProperty Name="FormsODV_1_2017" Relationship="pu6Model.FK_FormsSZV_ISH_2017_0_0" FromRole="FormsSZV_ISH_2017" ToRole="FormsODV_1_2017" />
+          <NavigationProperty Name="Staff" Relationship="pu6Model.FK_FormsSZV_ISH_2017_1_0" FromRole="FormsSZV_ISH_2017" ToRole="Staff" />
+        </EntityType>
+        <Association Name="FK_FormsSZV_ISH_4_2017_1_0">
+          <End Type="pu6Model.FormsSZV_ISH_2017" Role="FormsSZV_ISH_2017" Multiplicity="1" />
+          <End Type="pu6Model.FormsSZV_ISH_4_2017" Role="FormsSZV_ISH_4_2017" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FormsSZV_ISH_2017">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="FormsSZV_ISH_4_2017">
+              <PropertyRef Name="FormsSZV_ISH_2017_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_FormsSZV_ISH_7_2017_1_0">
+          <End Type="pu6Model.FormsSZV_ISH_2017" Role="FormsSZV_ISH_2017" Multiplicity="1" />
+          <End Type="pu6Model.FormsSZV_ISH_7_2017" Role="FormsSZV_ISH_7_2017" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FormsSZV_ISH_2017">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="FormsSZV_ISH_7_2017">
+              <PropertyRef Name="FormsSZV_ISH_2017_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_StajOsn_1_0">
+          <End Type="pu6Model.FormsSZV_ISH_2017" Role="FormsSZV_ISH_2017" Multiplicity="0..1" />
+          <End Type="pu6Model.StajOsn" Role="StajOsn" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FormsSZV_ISH_2017">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="StajOsn">
+              <PropertyRef Name="FormsSZV_ISH_2017_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="FormsPredPens_Zapros">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Int64" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int64" Name="InsurerID" Nullable="false" />
+          <Property Type="Byte" Name="TypeORG" Nullable="false" />
+          <Property Type="DateTime" Name="Date" Nullable="false" Precision="3" />
+          <Property Type="String" Name="Number" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="FirstName" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="LastName" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="MiddleName" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Insurer" Relationship="pu6Model.FK_FormsPredPens_Zapros_0_0" FromRole="FormsPredPens_Zapros" ToRole="Insurer" />
+          <NavigationProperty Name="FormsPredPens_Zapros_Staff" Relationship="pu6Model.FK_FormsPredPens_Zapros_Staff_1_0" FromRole="FormsPredPens_Zapros" ToRole="FormsPredPens_Zapros_Staff" />
+        </EntityType>
+        <EntityType Name="FormsPredPens_Zapros_Staff">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Int64" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int64" Name="FormsPredPens_ZaprosID" Nullable="false" />
+          <Property Type="Int64" Name="StaffID" Nullable="false" />
+          <NavigationProperty Name="FormsPredPens_Zapros" Relationship="pu6Model.FK_FormsPredPens_Zapros_Staff_1_0" FromRole="FormsPredPens_Zapros_Staff" ToRole="FormsPredPens_Zapros" />
+          <NavigationProperty Name="Staff" Relationship="pu6Model.FK_FormsPredPens_Zapros_Staff_0_0" FromRole="FormsPredPens_Zapros_Staff" ToRole="Staff" />
+        </EntityType>
+        <Association Name="FK_FormsPredPens_Zapros_0_0">
+          <End Type="pu6Model.Insurer" Role="Insurer" Multiplicity="1" />
+          <End Type="pu6Model.FormsPredPens_Zapros" Role="FormsPredPens_Zapros" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Insurer">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="FormsPredPens_Zapros">
+              <PropertyRef Name="InsurerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_FormsPredPens_Zapros_Staff_1_0">
+          <End Type="pu6Model.FormsPredPens_Zapros" Role="FormsPredPens_Zapros" Multiplicity="1" />
+          <End Type="pu6Model.FormsPredPens_Zapros_Staff" Role="FormsPredPens_Zapros_Staff" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FormsPredPens_Zapros">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="FormsPredPens_Zapros_Staff">
+              <PropertyRef Name="FormsPredPens_ZaprosID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="FormsODV_1_5_2017">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Int64" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int16" Name="Num" />
+          <Property Type="Int64" Name="FormsODV_1_2017_ID" Nullable="false" />
+          <Property Type="String" Name="Department" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Profession" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Type="Decimal" Name="StaffCountShtat" Precision="15" Scale="2" />
+          <Property Type="Int64" Name="StaffCountFakt" />
+          <Property Type="String" Name="VidRabotFakt" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="DocsName" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="FormsODV_1_5_2017_OUT" Relationship="pu6Model.FK_FormsODV_1_5_2017_OUT_0_0" FromRole="FormsODV_1_5_2017" ToRole="FormsODV_1_5_2017_OUT" />
+          <NavigationProperty Name="FormsODV_1_2017" Relationship="pu6Model.FK_FormsODV_1_5_2017_0_0" FromRole="FormsODV_1_5_2017" ToRole="FormsODV_1_2017" />
+        </EntityType>
+        <Association Name="FK_FormsODV_1_5_2017_OUT_0_0">
+          <End Type="pu6Model.FormsODV_1_5_2017" Role="FormsODV_1_5_2017" Multiplicity="1" />
+          <End Type="pu6Model.FormsODV_1_5_2017_OUT" Role="FormsODV_1_5_2017_OUT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FormsODV_1_5_2017">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="FormsODV_1_5_2017_OUT">
+              <PropertyRef Name="FormsODV_1_5_2017_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="FormsODV_1_2017">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Int64" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int16" Name="Year" Nullable="false" />
+          <Property Type="Byte" Name="Code" Nullable="false" />
+          <Property Type="Int64" Name="InsurerID" />
+          <Property Type="Byte" Name="TypeInfo" />
+          <Property Type="Int64" Name="StaffCount" />
+          <Property Type="Decimal" Name="s_0_0" Precision="15" Scale="2" />
+          <Property Type="Decimal" Name="s_0_1" Precision="15" Scale="2" />
+          <Property Type="Decimal" Name="s_0_2" Precision="15" Scale="2" />
+          <Property Type="Decimal" Name="s_0_3" Precision="15" Scale="2" />
+          <Property Type="Decimal" Name="s_1_0" Precision="15" Scale="2" />
+          <Property Type="Decimal" Name="s_1_1" Precision="15" Scale="2" />
+          <Property Type="Decimal" Name="s_1_2" Precision="15" Scale="2" />
+          <Property Type="Decimal" Name="s_1_3" Precision="15" Scale="2" />
+          <Property Type="Decimal" Name="s_2_0" Precision="15" Scale="2" />
+          <Property Type="Decimal" Name="s_2_1" Precision="15" Scale="2" />
+          <Property Type="Decimal" Name="s_2_2" Precision="15" Scale="2" />
+          <Property Type="Decimal" Name="s_2_3" Precision="15" Scale="2" />
+          <Property Type="Decimal" Name="StaffCountOsobUslShtat" Precision="15" Scale="2" />
+          <Property Type="Int64" Name="StaffCountOsobUslFakt" />
+          <Property Type="DateTime" Name="DateFilling" Nullable="false" Precision="3" />
+          <Property Type="String" Name="ConfirmLastName" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="ConfirmFirstName" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="ConfirmMiddleName" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="ConfirmDolgn" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Type="Boolean" Name="DispatchPFR" />
+          <Property Type="Byte" Name="TypeForm" />
+          <NavigationProperty Name="FormsODV_1_4_2017" Relationship="pu6Model.FK_FormsODV_1_4_2017_0_0" FromRole="FormsODV_1_2017" ToRole="FormsODV_1_4_2017" />
+          <NavigationProperty Name="FormsODV_1_5_2017" Relationship="pu6Model.FK_FormsODV_1_5_2017_0_0" FromRole="FormsODV_1_2017" ToRole="FormsODV_1_5_2017" />
+          <NavigationProperty Name="FormsSZV_ISH_2017" Relationship="pu6Model.FK_FormsSZV_ISH_2017_0_0" FromRole="FormsODV_1_2017" ToRole="FormsSZV_ISH_2017" />
+          <NavigationProperty Name="FormsSZV_KORR_2017" Relationship="pu6Model.FK_FormsSZV_KORR_2017_1_0" FromRole="FormsODV_1_2017" ToRole="FormsSZV_KORR_2017" />
+          <NavigationProperty Name="FormsSZV_STAJ_2017" Relationship="pu6Model.FK_FormsSZV_STAJ_2017_0_0" FromRole="FormsODV_1_2017" ToRole="FormsSZV_STAJ_2017" />
+        </EntityType>
+        <Association Name="FK_FormsODV_1_4_2017_0_0">
+          <End Type="pu6Model.FormsODV_1_2017" Role="FormsODV_1_2017" Multiplicity="1" />
+          <End Type="pu6Model.FormsODV_1_4_2017" Role="FormsODV_1_4_2017" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FormsODV_1_2017">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="FormsODV_1_4_2017">
+              <PropertyRef Name="FormsODV_1_2017_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_FormsODV_1_5_2017_0_0">
           <End Type="pu6Model.FormsODV_1_2017" Role="FormsODV_1_2017" Multiplicity="1" />
           <End Type="pu6Model.FormsODV_1_5_2017" Role="FormsODV_1_5_2017" Multiplicity="*" />
@@ -6804,15 +6893,456 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_FormsODV_1_5_2017_OUT_0_0">
-          <End Type="pu6Model.FormsODV_1_5_2017" Role="FormsODV_1_5_2017" Multiplicity="1" />
-          <End Type="pu6Model.FormsODV_1_5_2017_OUT" Role="FormsODV_1_5_2017_OUT" Multiplicity="*" />
+        <Association Name="FK_FormsSZV_ISH_2017_0_0">
+          <End Type="pu6Model.FormsODV_1_2017" Role="FormsODV_1_2017" Multiplicity="0..1" />
+          <End Type="pu6Model.FormsSZV_ISH_2017" Role="FormsSZV_ISH_2017" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="FormsODV_1_5_2017">
+            <Principal Role="FormsODV_1_2017">
               <PropertyRef Name="ID" />
             </Principal>
-            <Dependent Role="FormsODV_1_5_2017_OUT">
-              <PropertyRef Name="FormsODV_1_5_2017_ID" />
+            <Dependent Role="FormsSZV_ISH_2017">
+              <PropertyRef Name="FormsODV_1_2017_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_FormsSZV_KORR_2017_1_0">
+          <End Type="pu6Model.FormsODV_1_2017" Role="FormsODV_1_2017" Multiplicity="0..1" />
+          <End Type="pu6Model.FormsSZV_KORR_2017" Role="FormsSZV_KORR_2017" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FormsODV_1_2017">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="FormsSZV_KORR_2017">
+              <PropertyRef Name="FormsODV_1_2017_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_FormsSZV_STAJ_2017_0_0">
+          <End Type="pu6Model.FormsODV_1_2017" Role="FormsODV_1_2017" Multiplicity="0..1" />
+          <End Type="pu6Model.FormsSZV_STAJ_2017" Role="FormsSZV_STAJ_2017" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FormsODV_1_2017">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="FormsSZV_STAJ_2017">
+              <PropertyRef Name="FormsODV_1_2017_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="FormsSZV_TD_2020_Staff">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Int64" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int64" Name="FormsSZV_TD_2020_ID" Nullable="false" />
+          <Property Type="Int64" Name="StaffID" Nullable="false" />
+          <NavigationProperty Name="FormsSZV_TD_2020_Staff_AnnuledEvents" Relationship="pu6Model.FK_FormsSZV_TD_2020_Staff_AnnuledEvents_0_0" FromRole="FormsSZV_TD_2020_Staff" ToRole="FormsSZV_TD_2020_Staff_AnnuledEvents" />
+          <Property Type="DateTime" Name="ZayavOProdoljDate" Precision="3" />
+          <Property Type="Byte" Name="ZayavOProdoljState" />
+          <Property Type="DateTime" Name="ZayavOPredostDate" Precision="3" />
+          <Property Type="Byte" Name="ZayavOPredostState" />
+          <NavigationProperty Name="FormsSZV_TD_2020" Relationship="pu6Model.FK_FormsSZV_TD_2020_Staff_1_0" FromRole="FormsSZV_TD_2020_Staff" ToRole="FormsSZV_TD_2020" />
+          <NavigationProperty Name="FormsSZV_TD_2020_Staff_Events" Relationship="pu6Model.FK_FormsSZV_TD_2020_Staff_Events_1_0" FromRole="FormsSZV_TD_2020_Staff" ToRole="FormsSZV_TD_2020_Staff_Events" />
+          <NavigationProperty Name="Staff" Relationship="pu6Model.FK_FormsSZV_TD_2020_Staff_0_0" FromRole="FormsSZV_TD_2020_Staff" ToRole="Staff" />
+        </EntityType>
+        <EntityType Name="FormsSZV_TD_2020_TypesOfEvents">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Int64" Name="ID" Nullable="false" />
+          <Property Type="String" Name="Name" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Code" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="FormsSZV_TD_2020_Staff_Events" Relationship="pu6Model.FK_FormsSZV_TD_2020_Staff_Events_0_0" FromRole="FormsSZV_TD_2020_TypesOfEvents" ToRole="FormsSZV_TD_2020_Staff_Events" />
+        </EntityType>
+        <EntityType Name="FormsSZV_TD_2020_Staff_AnnuledEvents">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Int64" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int64" Name="FormsSZV_TD_2020_Staff_ID" Nullable="false" />
+          <Property Type="Guid" Name="UUID_Annuled" Nullable="false" />
+          <Property Type="DateTime" Name="Date_Annuled" Precision="3" />
+          <NavigationProperty Name="FormsSZV_TD_2020_Staff" Relationship="pu6Model.FK_FormsSZV_TD_2020_Staff_AnnuledEvents_0_0" FromRole="FormsSZV_TD_2020_Staff_AnnuledEvents" ToRole="FormsSZV_TD_2020_Staff" />
+        </EntityType>
+        <Association Name="FK_FormsSZV_TD_2020_Staff_AnnuledEvents_0_0">
+          <End Type="pu6Model.FormsSZV_TD_2020_Staff" Role="FormsSZV_TD_2020_Staff" Multiplicity="1" />
+          <End Type="pu6Model.FormsSZV_TD_2020_Staff_AnnuledEvents" Role="FormsSZV_TD_2020_Staff_AnnuledEvents" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FormsSZV_TD_2020_Staff">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="FormsSZV_TD_2020_Staff_AnnuledEvents">
+              <PropertyRef Name="FormsSZV_TD_2020_Staff_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="FormsSZV_TD_2020">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Int64" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int64" Name="InsurerID" Nullable="false" />
+          <Property Type="Int16" Name="Year" Nullable="false" />
+          <Property Type="Byte" Name="Month" Nullable="false" />
+          <Property Type="Boolean" Name="Annuled" />
+          <Property Type="DateTime" Name="AnnulDate" Precision="3" />
+          <Property Type="DateTime" Name="DateFilling" Nullable="false" Precision="3" />
+          <Property Type="String" Name="ConfirmDolgn" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="ConfirmLastName" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="ConfirmFirstName" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="ConfirmMiddleName" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Insurer" Relationship="pu6Model.FK_FormsSZV_TD_2020_0_0" FromRole="FormsSZV_TD_2020" ToRole="Insurer" />
+          <NavigationProperty Name="FormsSZV_TD_2020_Staff" Relationship="pu6Model.FK_FormsSZV_TD_2020_Staff_1_0" FromRole="FormsSZV_TD_2020" ToRole="FormsSZV_TD_2020_Staff" />
+        </EntityType>
+        <EntityType Name="FormsSZV_TD_2020_Staff_Events">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Int64" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int64" Name="FormsSZV_TD_2020_Staff_ID" Nullable="false" />
+          <Property Type="Guid" Name="UUID" Nullable="false" />
+          <Property Type="Int64" Name="TypesOfEvents_ID" Nullable="false" />
+          <Property Type="DateTime" Name="DateOfEvent" Nullable="false" Precision="3" />
+          <Property Type="Byte" Name="Sovmestitel" Nullable="false" />
+          <Property Type="String" Name="Svedenia" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Dolgn" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Department" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Statya" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Punkt" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="OsnUvolName" FixedLength="false" Unicode="false" MaxLength="Max" />
+          <Property Type="String" Name="OsnUvolStartya" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="OsnUvolChyast" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="OsnUvolPunkt" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="OsnUvolPodPunkt" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Prichina" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Type="DateTime" Name="DateFrom" Precision="3" />
+          <Property Type="String" Name="OsnName1" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Type="DateTime" Name="OsnDate1" Precision="3" />
+          <Property Type="String" Name="OsnNum1" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="OsnSer1" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="OsnName2" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Type="DateTime" Name="OsnDate2" Precision="3" />
+          <Property Type="String" Name="OsnNum2" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="OsnSer2" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Type="DateTime" Name="DateTo" Precision="3" />
+          <Property Type="Boolean" Name="Annuled" />
+          <Property Type="DateTime" Name="AnnuleDate" Precision="3" />
+          <Property Type="String" Name="VydPoruchRaboty" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="KodVypFunc" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="FormsSZV_TD_2020_Staff" Relationship="pu6Model.FK_FormsSZV_TD_2020_Staff_Events_1_0" FromRole="FormsSZV_TD_2020_Staff_Events" ToRole="FormsSZV_TD_2020_Staff" />
+          <NavigationProperty Name="FormsSZV_TD_2020_TypesOfEvents" Relationship="pu6Model.FK_FormsSZV_TD_2020_Staff_Events_0_0" FromRole="FormsSZV_TD_2020_Staff_Events" ToRole="FormsSZV_TD_2020_TypesOfEvents" />
+        </EntityType>
+        <Association Name="FK_FormsSZV_TD_2020_0_0">
+          <End Type="pu6Model.Insurer" Role="Insurer" Multiplicity="1" />
+          <End Type="pu6Model.FormsSZV_TD_2020" Role="FormsSZV_TD_2020" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Insurer">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="FormsSZV_TD_2020">
+              <PropertyRef Name="InsurerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_FormsSZV_TD_2020_Staff_1_0">
+          <End Type="pu6Model.FormsSZV_TD_2020" Role="FormsSZV_TD_2020" Multiplicity="1" />
+          <End Type="pu6Model.FormsSZV_TD_2020_Staff" Role="FormsSZV_TD_2020_Staff" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FormsSZV_TD_2020">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="FormsSZV_TD_2020_Staff">
+              <PropertyRef Name="FormsSZV_TD_2020_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_FormsSZV_TD_2020_Staff_Events_1_0">
+          <End Type="pu6Model.FormsSZV_TD_2020_Staff" Role="FormsSZV_TD_2020_Staff" Multiplicity="1" />
+          <End Type="pu6Model.FormsSZV_TD_2020_Staff_Events" Role="FormsSZV_TD_2020_Staff_Events" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FormsSZV_TD_2020_Staff">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="FormsSZV_TD_2020_Staff_Events">
+              <PropertyRef Name="FormsSZV_TD_2020_Staff_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_FormsSZV_TD_2020_Staff_Events_0_0">
+          <End Type="pu6Model.FormsSZV_TD_2020_TypesOfEvents" Role="FormsSZV_TD_2020_TypesOfEvents" Multiplicity="1" />
+          <End Type="pu6Model.FormsSZV_TD_2020_Staff_Events" Role="FormsSZV_TD_2020_Staff_Events" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FormsSZV_TD_2020_TypesOfEvents">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="FormsSZV_TD_2020_Staff_Events">
+              <PropertyRef Name="TypesOfEvents_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Staff">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Int64" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int64" Name="InsurerID" />
+          <Property Type="Int64" Name="DepartmentID" />
+          <Property Type="String" Name="InsuranceNumber" MaxLength="9" FixedLength="true" Unicode="false" />
+          <Property Type="Byte" Name="ControlNumber" />
+          <Property Type="Int64" Name="TabelNumber" />
+          <Property Type="String" Name="INN" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="LastName" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="FirstName" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="MiddleName" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Type="Byte" Name="Sex" />
+          <Property Type="DateTime" Name="DateBirth" Precision="3" />
+          <Property Type="Byte" Name="Dismissed" />
+          <Property Type="Int64" Name="DolgnID" />
+          <NavigationProperty Name="Department" Relationship="pu6Model.FK_Staff_0_0" FromRole="Staff" ToRole="Department" />
+          <NavigationProperty Name="FormsADW_1" Relationship="pu6Model.FK_FormsADW_1_0_0" FromRole="Staff" ToRole="FormsADW_1" />
+          <NavigationProperty Name="FormsADW_2" Relationship="pu6Model.FK_FormsADW_2_0_0" FromRole="Staff" ToRole="FormsADW_2" />
+          <NavigationProperty Name="FormsADW_3" Relationship="pu6Model.FK_FormsADW_3_0_0" FromRole="Staff" ToRole="FormsADW_3" />
+          <NavigationProperty Name="FormsDSW_3_Staff" Relationship="pu6Model.FK_FormsDSW_3_Staff_0_0" FromRole="Staff" ToRole="FormsDSW_3_Staff" />
+          <NavigationProperty Name="FormsPredPens_Zapros_Staff" Relationship="pu6Model.FK_FormsPredPens_Zapros_Staff_0_0" FromRole="Staff" ToRole="FormsPredPens_Zapros_Staff" />
+          <NavigationProperty Name="FormsRSW" Relationship="pu6Model.FK_FormsRSW_0_0" FromRole="Staff" ToRole="FormsRSW" />
+          <NavigationProperty Name="FormsRSW2014_1_Razd_6_1" Relationship="pu6Model.FK_FormsRSW2014_1_Razd_6_1_1_0" FromRole="Staff" ToRole="FormsRSW2014_1_Razd_6_1" />
+          <NavigationProperty Name="FormsSPW2" Relationship="pu6Model.FK_FormsSPW2_2_0" FromRole="Staff" ToRole="FormsSPW2" />
+          <NavigationProperty Name="FormsSZV_6" Relationship="pu6Model.FK_FormsSZV_6_2_0" FromRole="Staff" ToRole="FormsSZV_6" />
+          <NavigationProperty Name="FormsSZV_6_4" Relationship="pu6Model.FK_FormsSZV_6_4_2_0" FromRole="Staff" ToRole="FormsSZV_6_4" />
+          <NavigationProperty Name="FormsSZV_ISH_2017" Relationship="pu6Model.FK_FormsSZV_ISH_2017_1_0" FromRole="Staff" ToRole="FormsSZV_ISH_2017" />
+          <NavigationProperty Name="FormsSZV_KORR_2017" Relationship="pu6Model.FK_FormsSZV_KORR_2017_2_0" FromRole="Staff" ToRole="FormsSZV_KORR_2017" />
+          <NavigationProperty Name="FormsSZV_M_2016_Staff" Relationship="pu6Model.FK_FormsSZV_M_2016_Staff_0_0" FromRole="Staff" ToRole="FormsSZV_M_2016_Staff" />
+          <NavigationProperty Name="FormsSZV_STAJ_2017" Relationship="pu6Model.FK_FormsSZV_STAJ_2017_1_0" FromRole="Staff" ToRole="FormsSZV_STAJ_2017" />
+          <NavigationProperty Name="FormsSZV_TD_2020_Staff" Relationship="pu6Model.FK_FormsSZV_TD_2020_Staff_0_0" FromRole="Staff" ToRole="FormsSZV_TD_2020_Staff" />
+          <NavigationProperty Name="Insurer" Relationship="pu6Model.FK_Staff_1_0" FromRole="Staff" ToRole="Insurer" />
+          <NavigationProperty Name="StaffDateWork" Relationship="pu6Model.FK_StaffDateWork_0_0" FromRole="Staff" ToRole="StaffDateWork" />
+          <NavigationProperty Name="StaffInfo" Relationship="pu6Model.FK_StaffInfo_1_0" FromRole="Staff" ToRole="StaffInfo" />
+        </EntityType>
+        <Association Name="FK_Staff_0_0">
+          <End Type="pu6Model.Department" Role="Department" Multiplicity="0..1" />
+          <End Type="pu6Model.Staff" Role="Staff" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Department">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Staff">
+              <PropertyRef Name="DepartmentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_FormsADW_1_0_0">
+          <End Type="pu6Model.Staff" Role="Staff" Multiplicity="0..1" />
+          <End Type="pu6Model.FormsADW_1" Role="FormsADW_1" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Staff">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="FormsADW_1">
+              <PropertyRef Name="StaffID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_FormsADW_2_0_0">
+          <End Type="pu6Model.Staff" Role="Staff" Multiplicity="0..1" />
+          <End Type="pu6Model.FormsADW_2" Role="FormsADW_2" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Staff">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="FormsADW_2">
+              <PropertyRef Name="StaffID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_FormsADW_3_0_0">
+          <End Type="pu6Model.Staff" Role="Staff" Multiplicity="0..1" />
+          <End Type="pu6Model.FormsADW_3" Role="FormsADW_3" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Staff">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="FormsADW_3">
+              <PropertyRef Name="StaffID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_FormsDSW_3_Staff_0_0">
+          <End Type="pu6Model.Staff" Role="Staff" Multiplicity="1" />
+          <End Type="pu6Model.FormsDSW_3_Staff" Role="FormsDSW_3_Staff" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Staff">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="FormsDSW_3_Staff">
+              <PropertyRef Name="StaffID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_FormsPredPens_Zapros_Staff_0_0">
+          <End Type="pu6Model.Staff" Role="Staff" Multiplicity="1" />
+          <End Type="pu6Model.FormsPredPens_Zapros_Staff" Role="FormsPredPens_Zapros_Staff" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Staff">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="FormsPredPens_Zapros_Staff">
+              <PropertyRef Name="StaffID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_FormsRSW_0_0">
+          <End Type="pu6Model.Staff" Role="Staff" Multiplicity="1" />
+          <End Type="pu6Model.FormsRSW" Role="FormsRSW" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Staff">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="FormsRSW">
+              <PropertyRef Name="StaffID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_FormsRSW2014_1_Razd_6_1_1_0">
+          <End Type="pu6Model.Staff" Role="Staff" Multiplicity="1" />
+          <End Type="pu6Model.FormsRSW2014_1_Razd_6_1" Role="FormsRSW2014_1_Razd_6_1" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Staff">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="FormsRSW2014_1_Razd_6_1">
+              <PropertyRef Name="StaffID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_FormsSPW2_2_0">
+          <End Type="pu6Model.Staff" Role="Staff" Multiplicity="1" />
+          <End Type="pu6Model.FormsSPW2" Role="FormsSPW2" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Staff">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="FormsSPW2">
+              <PropertyRef Name="StaffID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_FormsSZV_6_2_0">
+          <End Type="pu6Model.Staff" Role="Staff" Multiplicity="1" />
+          <End Type="pu6Model.FormsSZV_6" Role="FormsSZV_6" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Staff">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="FormsSZV_6">
+              <PropertyRef Name="StaffID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_FormsSZV_6_4_2_0">
+          <End Type="pu6Model.Staff" Role="Staff" Multiplicity="1" />
+          <End Type="pu6Model.FormsSZV_6_4" Role="FormsSZV_6_4" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Staff">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="FormsSZV_6_4">
+              <PropertyRef Name="StaffID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_FormsSZV_ISH_2017_1_0">
+          <End Type="pu6Model.Staff" Role="Staff" Multiplicity="1" />
+          <End Type="pu6Model.FormsSZV_ISH_2017" Role="FormsSZV_ISH_2017" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Staff">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="FormsSZV_ISH_2017">
+              <PropertyRef Name="StaffID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_FormsSZV_KORR_2017_2_0">
+          <End Type="pu6Model.Staff" Role="Staff" Multiplicity="1" />
+          <End Type="pu6Model.FormsSZV_KORR_2017" Role="FormsSZV_KORR_2017" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Staff">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="FormsSZV_KORR_2017">
+              <PropertyRef Name="StaffID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_FormsSZV_M_2016_Staff_0_0">
+          <End Type="pu6Model.Staff" Role="Staff" Multiplicity="1" />
+          <End Type="pu6Model.FormsSZV_M_2016_Staff" Role="FormsSZV_M_2016_Staff" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Staff">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="FormsSZV_M_2016_Staff">
+              <PropertyRef Name="StaffID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_FormsSZV_STAJ_2017_1_0">
+          <End Type="pu6Model.Staff" Role="Staff" Multiplicity="1" />
+          <End Type="pu6Model.FormsSZV_STAJ_2017" Role="FormsSZV_STAJ_2017" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Staff">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="FormsSZV_STAJ_2017">
+              <PropertyRef Name="StaffID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_FormsSZV_TD_2020_Staff_0_0">
+          <End Type="pu6Model.Staff" Role="Staff" Multiplicity="1" />
+          <End Type="pu6Model.FormsSZV_TD_2020_Staff" Role="FormsSZV_TD_2020_Staff" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Staff">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="FormsSZV_TD_2020_Staff">
+              <PropertyRef Name="StaffID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Staff_1_0">
+          <End Type="pu6Model.Insurer" Role="Insurer" Multiplicity="0..1" />
+          <End Type="pu6Model.Staff" Role="Staff" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Insurer">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Staff">
+              <PropertyRef Name="InsurerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_StaffDateWork_0_0">
+          <End Type="pu6Model.Staff" Role="Staff" Multiplicity="1" />
+          <End Type="pu6Model.StaffDateWork" Role="StaffDateWork" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Staff">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="StaffDateWork">
+              <PropertyRef Name="StaffID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_StaffInfo_1_0">
+          <End Type="pu6Model.Staff" Role="Staff" Multiplicity="1" />
+          <End Type="pu6Model.StaffInfo" Role="StaffInfo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Staff">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="StaffInfo">
+              <PropertyRef Name="StaffID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -7019,39 +7549,6 @@
                 <ScalarProperty Name="StaffID" ColumnName="StaffID" />
                 <ScalarProperty Name="SUMFEEPFR_EMPLOYERS" ColumnName="SUMFEEPFR_EMPLOYERS" />
                 <ScalarProperty Name="SUMFEEPFR_PAYER" ColumnName="SUMFEEPFR_PAYER" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="FormsODV_1_2017">
-            <EntityTypeMapping TypeName="pu6Model.FormsODV_1_2017">
-              <MappingFragment StoreEntitySet="FormsODV_1_2017">
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="Year" ColumnName="Year" />
-                <ScalarProperty Name="Code" ColumnName="Code" />
-                <ScalarProperty Name="InsurerID" ColumnName="InsurerID" />
-                <ScalarProperty Name="TypeInfo" ColumnName="TypeInfo" />
-                <ScalarProperty Name="StaffCount" ColumnName="StaffCount" />
-                <ScalarProperty Name="s_0_0" ColumnName="s_0_0" />
-                <ScalarProperty Name="s_0_1" ColumnName="s_0_1" />
-                <ScalarProperty Name="s_0_2" ColumnName="s_0_2" />
-                <ScalarProperty Name="s_0_3" ColumnName="s_0_3" />
-                <ScalarProperty Name="s_1_0" ColumnName="s_1_0" />
-                <ScalarProperty Name="s_1_1" ColumnName="s_1_1" />
-                <ScalarProperty Name="s_1_2" ColumnName="s_1_2" />
-                <ScalarProperty Name="s_1_3" ColumnName="s_1_3" />
-                <ScalarProperty Name="s_2_0" ColumnName="s_2_0" />
-                <ScalarProperty Name="s_2_1" ColumnName="s_2_1" />
-                <ScalarProperty Name="s_2_2" ColumnName="s_2_2" />
-                <ScalarProperty Name="s_2_3" ColumnName="s_2_3" />
-                <ScalarProperty Name="StaffCountOsobUslShtat" ColumnName="StaffCountOsobUslShtat" />
-                <ScalarProperty Name="StaffCountOsobUslFakt" ColumnName="StaffCountOsobUslFakt" />
-                <ScalarProperty Name="DateFilling" ColumnName="DateFilling" />
-                <ScalarProperty Name="ConfirmLastName" ColumnName="ConfirmLastName" />
-                <ScalarProperty Name="ConfirmFirstName" ColumnName="ConfirmFirstName" />
-                <ScalarProperty Name="ConfirmMiddleName" ColumnName="ConfirmMiddleName" />
-                <ScalarProperty Name="ConfirmDolgn" ColumnName="ConfirmDolgn" />
-                <ScalarProperty Name="DispatchPFR" ColumnName="DispatchPFR" />
-                <ScalarProperty Name="TypeForm" ColumnName="TypeForm" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -7945,32 +8442,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="FormsSZV_ISH_2017">
-            <EntityTypeMapping TypeName="pu6Model.FormsSZV_ISH_2017">
-              <MappingFragment StoreEntitySet="FormsSZV_ISH_2017">
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="Year" ColumnName="Year" />
-                <ScalarProperty Name="Code" ColumnName="Code" />
-                <ScalarProperty Name="InsurerID" ColumnName="InsurerID" />
-                <ScalarProperty Name="StaffID" ColumnName="StaffID" />
-                <ScalarProperty Name="FormsODV_1_2017_ID" ColumnName="FormsODV_1_2017_ID" />
-                <ScalarProperty Name="ContractType" ColumnName="ContractType" />
-                <ScalarProperty Name="ContractDate" ColumnName="ContractDate" />
-                <ScalarProperty Name="ContractNum" ColumnName="ContractNum" />
-                <ScalarProperty Name="DopTarCode" ColumnName="DopTarCode" />
-                <ScalarProperty Name="DateFilling" ColumnName="DateFilling" />
-                <ScalarProperty Name="SumFeePFR_Insurer" ColumnName="SumFeePFR_Insurer" />
-                <ScalarProperty Name="SumFeePFR_Staff" ColumnName="SumFeePFR_Staff" />
-                <ScalarProperty Name="SumFeePFR_Tar" ColumnName="SumFeePFR_Tar" />
-                <ScalarProperty Name="SumFeePFR_TarDop" ColumnName="SumFeePFR_TarDop" />
-                <ScalarProperty Name="SumFeePFR_Strah" ColumnName="SumFeePFR_Strah" />
-                <ScalarProperty Name="SumFeePFR_Nakop" ColumnName="SumFeePFR_Nakop" />
-                <ScalarProperty Name="SumFeePFR_Base" ColumnName="SumFeePFR_Base" />
-                <ScalarProperty Name="SumPayPFR_Strah" ColumnName="SumPayPFR_Strah" />
-                <ScalarProperty Name="SumPayPFR_Nakop" ColumnName="SumPayPFR_Nakop" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="FormsSZV_ISH_4_2017">
             <EntityTypeMapping TypeName="pu6Model.FormsSZV_ISH_4_2017">
               <MappingFragment StoreEntitySet="FormsSZV_ISH_4_2017">
@@ -8001,31 +8472,6 @@
                 <ScalarProperty Name="s_2_1" ColumnName="s_2_1" />
                 <ScalarProperty Name="s_3_0" ColumnName="s_3_0" />
                 <ScalarProperty Name="s_3_1" ColumnName="s_3_1" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="FormsSZV_KORR_2017">
-            <EntityTypeMapping TypeName="pu6Model.FormsSZV_KORR_2017">
-              <MappingFragment StoreEntitySet="FormsSZV_KORR_2017">
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="Year" ColumnName="Year" />
-                <ScalarProperty Name="Code" ColumnName="Code" />
-                <ScalarProperty Name="YearKorr" ColumnName="YearKorr" />
-                <ScalarProperty Name="CodeKorr" ColumnName="CodeKorr" />
-                <ScalarProperty Name="RegNumKorr" ColumnName="RegNumKorr" />
-                <ScalarProperty Name="INNKorr" ColumnName="INNKorr" />
-                <ScalarProperty Name="KPPKorr" ColumnName="KPPKorr" />
-                <ScalarProperty Name="InsurerID" ColumnName="InsurerID" />
-                <ScalarProperty Name="StaffID" ColumnName="StaffID" />
-                <ScalarProperty Name="FormsODV_1_2017_ID" ColumnName="FormsODV_1_2017_ID" />
-                <ScalarProperty Name="TypeInfo" ColumnName="TypeInfo" />
-                <ScalarProperty Name="ContractType" ColumnName="ContractType" />
-                <ScalarProperty Name="ContractDate" ColumnName="ContractDate" />
-                <ScalarProperty Name="ContractNum" ColumnName="ContractNum" />
-                <ScalarProperty Name="PlatCategoryID" ColumnName="PlatCategoryID" />
-                <ScalarProperty Name="DopTarCode" ColumnName="DopTarCode" />
-                <ScalarProperty Name="DateFilling" ColumnName="DateFilling" />
-                <ScalarProperty Name="ShortNameKorr" ColumnName="ShortNameKorr" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -8263,25 +8709,6 @@
                 <ScalarProperty Name="DateBegin" ColumnName="DateBegin" />
                 <ScalarProperty Name="DateEnd" ColumnName="DateEnd" />
                 <ScalarProperty Name="Rate" ColumnName="Rate" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Staff">
-            <EntityTypeMapping TypeName="pu6Model.Staff">
-              <MappingFragment StoreEntitySet="Staff">
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="InsurerID" ColumnName="InsurerID" />
-                <ScalarProperty Name="DepartmentID" ColumnName="DepartmentID" />
-                <ScalarProperty Name="InsuranceNumber" ColumnName="InsuranceNumber" />
-                <ScalarProperty Name="ControlNumber" ColumnName="ControlNumber" />
-                <ScalarProperty Name="TabelNumber" ColumnName="TabelNumber" />
-                <ScalarProperty Name="INN" ColumnName="INN" />
-                <ScalarProperty Name="LastName" ColumnName="LastName" />
-                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
-                <ScalarProperty Name="MiddleName" ColumnName="MiddleName" />
-                <ScalarProperty Name="Sex" ColumnName="Sex" />
-                <ScalarProperty Name="DateBirth" ColumnName="DateBirth" />
-                <ScalarProperty Name="Dismissed" ColumnName="Dismissed" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -8633,6 +9060,92 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="FormsODV_1_5_2017_OUT">
+            <EntityTypeMapping TypeName="pu6Model.FormsODV_1_5_2017_OUT">
+              <MappingFragment StoreEntitySet="FormsODV_1_5_2017_OUT">
+                <ScalarProperty Name="FormsODV_1_5_2017_ID" ColumnName="FormsODV_1_5_2017_ID" />
+                <ScalarProperty Name="CodePosition" ColumnName="CodePosition" />
+                <ScalarProperty Name="OsobUslTrudaCode" ColumnName="OsobUslTrudaCode" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FormsSZV_KORR_2017">
+            <EntityTypeMapping TypeName="pu6Model.FormsSZV_KORR_2017">
+              <MappingFragment StoreEntitySet="FormsSZV_KORR_2017">
+                <ScalarProperty Name="Dismissed" ColumnName="Dismissed" />
+                <ScalarProperty Name="ShortNameKorr" ColumnName="ShortNameKorr" />
+                <ScalarProperty Name="DateFilling" ColumnName="DateFilling" />
+                <ScalarProperty Name="DopTarCode" ColumnName="DopTarCode" />
+                <ScalarProperty Name="PlatCategoryID" ColumnName="PlatCategoryID" />
+                <ScalarProperty Name="ContractNum" ColumnName="ContractNum" />
+                <ScalarProperty Name="ContractDate" ColumnName="ContractDate" />
+                <ScalarProperty Name="ContractType" ColumnName="ContractType" />
+                <ScalarProperty Name="TypeInfo" ColumnName="TypeInfo" />
+                <ScalarProperty Name="FormsODV_1_2017_ID" ColumnName="FormsODV_1_2017_ID" />
+                <ScalarProperty Name="StaffID" ColumnName="StaffID" />
+                <ScalarProperty Name="InsurerID" ColumnName="InsurerID" />
+                <ScalarProperty Name="KPPKorr" ColumnName="KPPKorr" />
+                <ScalarProperty Name="INNKorr" ColumnName="INNKorr" />
+                <ScalarProperty Name="RegNumKorr" ColumnName="RegNumKorr" />
+                <ScalarProperty Name="CodeKorr" ColumnName="CodeKorr" />
+                <ScalarProperty Name="YearKorr" ColumnName="YearKorr" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="Year" ColumnName="Year" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FormsSZV_ISH_2017">
+            <EntityTypeMapping TypeName="pu6Model.FormsSZV_ISH_2017">
+              <MappingFragment StoreEntitySet="FormsSZV_ISH_2017">
+                <ScalarProperty Name="Dismissed" ColumnName="Dismissed" />
+                <ScalarProperty Name="SumPayPFR_Nakop" ColumnName="SumPayPFR_Nakop" />
+                <ScalarProperty Name="SumPayPFR_Strah" ColumnName="SumPayPFR_Strah" />
+                <ScalarProperty Name="SumFeePFR_Base" ColumnName="SumFeePFR_Base" />
+                <ScalarProperty Name="SumFeePFR_Nakop" ColumnName="SumFeePFR_Nakop" />
+                <ScalarProperty Name="SumFeePFR_Strah" ColumnName="SumFeePFR_Strah" />
+                <ScalarProperty Name="SumFeePFR_TarDop" ColumnName="SumFeePFR_TarDop" />
+                <ScalarProperty Name="SumFeePFR_Tar" ColumnName="SumFeePFR_Tar" />
+                <ScalarProperty Name="SumFeePFR_Staff" ColumnName="SumFeePFR_Staff" />
+                <ScalarProperty Name="SumFeePFR_Insurer" ColumnName="SumFeePFR_Insurer" />
+                <ScalarProperty Name="DateFilling" ColumnName="DateFilling" />
+                <ScalarProperty Name="DopTarCode" ColumnName="DopTarCode" />
+                <ScalarProperty Name="ContractNum" ColumnName="ContractNum" />
+                <ScalarProperty Name="ContractDate" ColumnName="ContractDate" />
+                <ScalarProperty Name="ContractType" ColumnName="ContractType" />
+                <ScalarProperty Name="FormsODV_1_2017_ID" ColumnName="FormsODV_1_2017_ID" />
+                <ScalarProperty Name="StaffID" ColumnName="StaffID" />
+                <ScalarProperty Name="InsurerID" ColumnName="InsurerID" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="Year" ColumnName="Year" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FormsPredPens_Zapros">
+            <EntityTypeMapping TypeName="pu6Model.FormsPredPens_Zapros">
+              <MappingFragment StoreEntitySet="FormsPredPens_Zapros">
+                <ScalarProperty Name="MiddleName" ColumnName="MiddleName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="Number" ColumnName="Number" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="TypeORG" ColumnName="TypeORG" />
+                <ScalarProperty Name="InsurerID" ColumnName="InsurerID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FormsPredPens_Zapros_Staff">
+            <EntityTypeMapping TypeName="pu6Model.FormsPredPens_Zapros_Staff">
+              <MappingFragment StoreEntitySet="FormsPredPens_Zapros_Staff">
+                <ScalarProperty Name="StaffID" ColumnName="StaffID" />
+                <ScalarProperty Name="FormsPredPens_ZaprosID" ColumnName="FormsPredPens_ZaprosID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="FormsODV_1_5_2017">
             <EntityTypeMapping TypeName="pu6Model.FormsODV_1_5_2017">
               <MappingFragment StoreEntitySet="FormsODV_1_5_2017">
@@ -8648,12 +9161,141 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="FormsODV_1_5_2017_OUT">
-            <EntityTypeMapping TypeName="pu6Model.FormsODV_1_5_2017_OUT">
-              <MappingFragment StoreEntitySet="FormsODV_1_5_2017_OUT">
-                <ScalarProperty Name="FormsODV_1_5_2017_ID" ColumnName="FormsODV_1_5_2017_ID" />
-                <ScalarProperty Name="CodePosition" ColumnName="CodePosition" />
-                <ScalarProperty Name="OsobUslTrudaCode" ColumnName="OsobUslTrudaCode" />
+          <EntitySetMapping Name="FormsODV_1_2017">
+            <EntityTypeMapping TypeName="pu6Model.FormsODV_1_2017">
+              <MappingFragment StoreEntitySet="FormsODV_1_2017">
+                <ScalarProperty Name="TypeForm" ColumnName="TypeForm" />
+                <ScalarProperty Name="DispatchPFR" ColumnName="DispatchPFR" />
+                <ScalarProperty Name="ConfirmDolgn" ColumnName="ConfirmDolgn" />
+                <ScalarProperty Name="ConfirmMiddleName" ColumnName="ConfirmMiddleName" />
+                <ScalarProperty Name="ConfirmFirstName" ColumnName="ConfirmFirstName" />
+                <ScalarProperty Name="ConfirmLastName" ColumnName="ConfirmLastName" />
+                <ScalarProperty Name="DateFilling" ColumnName="DateFilling" />
+                <ScalarProperty Name="StaffCountOsobUslFakt" ColumnName="StaffCountOsobUslFakt" />
+                <ScalarProperty Name="StaffCountOsobUslShtat" ColumnName="StaffCountOsobUslShtat" />
+                <ScalarProperty Name="s_2_3" ColumnName="s_2_3" />
+                <ScalarProperty Name="s_2_2" ColumnName="s_2_2" />
+                <ScalarProperty Name="s_2_1" ColumnName="s_2_1" />
+                <ScalarProperty Name="s_2_0" ColumnName="s_2_0" />
+                <ScalarProperty Name="s_1_3" ColumnName="s_1_3" />
+                <ScalarProperty Name="s_1_2" ColumnName="s_1_2" />
+                <ScalarProperty Name="s_1_1" ColumnName="s_1_1" />
+                <ScalarProperty Name="s_1_0" ColumnName="s_1_0" />
+                <ScalarProperty Name="s_0_3" ColumnName="s_0_3" />
+                <ScalarProperty Name="s_0_2" ColumnName="s_0_2" />
+                <ScalarProperty Name="s_0_1" ColumnName="s_0_1" />
+                <ScalarProperty Name="s_0_0" ColumnName="s_0_0" />
+                <ScalarProperty Name="StaffCount" ColumnName="StaffCount" />
+                <ScalarProperty Name="TypeInfo" ColumnName="TypeInfo" />
+                <ScalarProperty Name="InsurerID" ColumnName="InsurerID" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="Year" ColumnName="Year" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FormsSZV_TD_2020_Staff">
+            <EntityTypeMapping TypeName="pu6Model.FormsSZV_TD_2020_Staff">
+              <MappingFragment StoreEntitySet="FormsSZV_TD_2020_Staff">
+                <ScalarProperty Name="ZayavOPredostState" ColumnName="ZayavOPredostState" />
+                <ScalarProperty Name="ZayavOPredostDate" ColumnName="ZayavOPredostDate" />
+                <ScalarProperty Name="ZayavOProdoljState" ColumnName="ZayavOProdoljState" />
+                <ScalarProperty Name="ZayavOProdoljDate" ColumnName="ZayavOProdoljDate" />
+                <ScalarProperty Name="StaffID" ColumnName="StaffID" />
+                <ScalarProperty Name="FormsSZV_TD_2020_ID" ColumnName="FormsSZV_TD_2020_ID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FormsSZV_TD_2020_TypesOfEvents">
+            <EntityTypeMapping TypeName="pu6Model.FormsSZV_TD_2020_TypesOfEvents">
+              <MappingFragment StoreEntitySet="FormsSZV_TD_2020_TypesOfEvents">
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FormsSZV_TD_2020_Staff_AnnuledEvents">
+            <EntityTypeMapping TypeName="pu6Model.FormsSZV_TD_2020_Staff_AnnuledEvents">
+              <MappingFragment StoreEntitySet="FormsSZV_TD_2020_Staff_AnnuledEvents">
+                <ScalarProperty Name="Date_Annuled" ColumnName="Date_Annuled" />
+                <ScalarProperty Name="UUID_Annuled" ColumnName="UUID_Annuled" />
+                <ScalarProperty Name="FormsSZV_TD_2020_Staff_ID" ColumnName="FormsSZV_TD_2020_Staff_ID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FormsSZV_TD_2020">
+            <EntityTypeMapping TypeName="pu6Model.FormsSZV_TD_2020">
+              <MappingFragment StoreEntitySet="FormsSZV_TD_2020">
+                <ScalarProperty Name="ConfirmMiddleName" ColumnName="ConfirmMiddleName" />
+                <ScalarProperty Name="ConfirmFirstName" ColumnName="ConfirmFirstName" />
+                <ScalarProperty Name="ConfirmLastName" ColumnName="ConfirmLastName" />
+                <ScalarProperty Name="ConfirmDolgn" ColumnName="ConfirmDolgn" />
+                <ScalarProperty Name="DateFilling" ColumnName="DateFilling" />
+                <ScalarProperty Name="AnnulDate" ColumnName="AnnulDate" />
+                <ScalarProperty Name="Annuled" ColumnName="Annuled" />
+                <ScalarProperty Name="Month" ColumnName="Month" />
+                <ScalarProperty Name="Year" ColumnName="Year" />
+                <ScalarProperty Name="InsurerID" ColumnName="InsurerID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FormsSZV_TD_2020_Staff_Events">
+            <EntityTypeMapping TypeName="pu6Model.FormsSZV_TD_2020_Staff_Events">
+              <MappingFragment StoreEntitySet="FormsSZV_TD_2020_Staff_Events">
+                <ScalarProperty Name="KodVypFunc" ColumnName="KodVypFunc" />
+                <ScalarProperty Name="VydPoruchRaboty" ColumnName="VydPoruchRaboty" />
+                <ScalarProperty Name="AnnuleDate" ColumnName="AnnuleDate" />
+                <ScalarProperty Name="Annuled" ColumnName="Annuled" />
+                <ScalarProperty Name="DateTo" ColumnName="DateTo" />
+                <ScalarProperty Name="OsnSer2" ColumnName="OsnSer2" />
+                <ScalarProperty Name="OsnNum2" ColumnName="OsnNum2" />
+                <ScalarProperty Name="OsnDate2" ColumnName="OsnDate2" />
+                <ScalarProperty Name="OsnName2" ColumnName="OsnName2" />
+                <ScalarProperty Name="OsnSer1" ColumnName="OsnSer1" />
+                <ScalarProperty Name="OsnNum1" ColumnName="OsnNum1" />
+                <ScalarProperty Name="OsnDate1" ColumnName="OsnDate1" />
+                <ScalarProperty Name="OsnName1" ColumnName="OsnName1" />
+                <ScalarProperty Name="DateFrom" ColumnName="DateFrom" />
+                <ScalarProperty Name="Prichina" ColumnName="Prichina" />
+                <ScalarProperty Name="OsnUvolPodPunkt" ColumnName="OsnUvolPodPunkt" />
+                <ScalarProperty Name="OsnUvolPunkt" ColumnName="OsnUvolPunkt" />
+                <ScalarProperty Name="OsnUvolChyast" ColumnName="OsnUvolChyast" />
+                <ScalarProperty Name="OsnUvolStartya" ColumnName="OsnUvolStartya" />
+                <ScalarProperty Name="OsnUvolName" ColumnName="OsnUvolName" />
+                <ScalarProperty Name="Punkt" ColumnName="Punkt" />
+                <ScalarProperty Name="Statya" ColumnName="Statya" />
+                <ScalarProperty Name="Department" ColumnName="Department" />
+                <ScalarProperty Name="Dolgn" ColumnName="Dolgn" />
+                <ScalarProperty Name="Svedenia" ColumnName="Svedenia" />
+                <ScalarProperty Name="Sovmestitel" ColumnName="Sovmestitel" />
+                <ScalarProperty Name="DateOfEvent" ColumnName="DateOfEvent" />
+                <ScalarProperty Name="TypesOfEvents_ID" ColumnName="TypesOfEvents_ID" />
+                <ScalarProperty Name="UUID" ColumnName="UUID" />
+                <ScalarProperty Name="FormsSZV_TD_2020_Staff_ID" ColumnName="FormsSZV_TD_2020_Staff_ID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Staff">
+            <EntityTypeMapping TypeName="pu6Model.Staff">
+              <MappingFragment StoreEntitySet="Staff">
+                <ScalarProperty Name="DolgnID" ColumnName="DolgnID" />
+                <ScalarProperty Name="Dismissed" ColumnName="Dismissed" />
+                <ScalarProperty Name="DateBirth" ColumnName="DateBirth" />
+                <ScalarProperty Name="Sex" ColumnName="Sex" />
+                <ScalarProperty Name="MiddleName" ColumnName="MiddleName" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="INN" ColumnName="INN" />
+                <ScalarProperty Name="TabelNumber" ColumnName="TabelNumber" />
+                <ScalarProperty Name="ControlNumber" ColumnName="ControlNumber" />
+                <ScalarProperty Name="InsuranceNumber" ColumnName="InsuranceNumber" />
+                <ScalarProperty Name="DepartmentID" ColumnName="DepartmentID" />
+                <ScalarProperty Name="InsurerID" ColumnName="InsurerID" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -8674,27 +9316,26 @@
         <DesignerProperty Name="ValidateOnBuild" Value="true" />
         <DesignerProperty Name="EnablePluralization" Value="False" />
         <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
-        <DesignerProperty Name="CodeGenerationStrategy" Value="По умолчанию" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
       </DesignerInfoPropertySet>
     </Options>
     <!-- Diagram content (shape and connector positions) -->
     <Diagrams>
-      <Diagram DiagramId="a42ea376f7b34f65bdb3e84682fa711a" Name="Диаграмма1" ZoomLevel="98">
+      <Diagram DiagramId="a42ea376f7b34f65bdb3e84682fa711a" Name="Диаграмма1" ZoomLevel="10" ShowGrid="false">
         <EntityTypeShape EntityType="pu6Model.BackupDB_Info" Width="1.5" PointX="3" PointY="1.125" IsExpanded="true" />
         <EntityTypeShape EntityType="pu6Model.CodeBaseRW3_2015" Width="1.5" PointX="0.75" PointY="7.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="pu6Model.Department" Width="1.5" PointX="3" PointY="67.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="pu6Model.DocumentTypes" Width="1.5" PointX="17.25" PointY="70.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="pu6Model.Dolgn" Width="1.5" PointX="22.5" PointY="69.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="pu6Model.Department" Width="1.5" PointX="3.75" PointY="32.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="pu6Model.DocumentTypes" Width="1.5" PointX="15" PointY="71.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="pu6Model.Dolgn" Width="1.5" PointX="23.25" PointY="39.875" IsExpanded="true" />
         <EntityTypeShape EntityType="pu6Model.DopTariff" Width="1.5" PointX="2.75" PointY="7.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="pu6Model.FormsADW_1" Width="1.5" PointX="10.5" PointY="71.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="pu6Model.FormsADW_2" Width="1.5" PointX="10.5" PointY="78.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="pu6Model.FormsADW_3" Width="1.5" PointX="10.5" PointY="87" IsExpanded="true" />
-        <EntityTypeShape EntityType="pu6Model.FormsDSW_3" Width="1.5" PointX="5.25" PointY="85.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="pu6Model.FormsDSW_3_Staff" Width="1.5" PointX="19.5" PointY="90" IsExpanded="true" />
-        <EntityTypeShape EntityType="pu6Model.FormsODV_1_2017" Width="1.5" PointX="14.25" PointY="105.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="pu6Model.FormsODV_1_4_2017" Width="1.5" PointX="16.5" PointY="105.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="pu6Model.FormsRSW" Width="1.5" PointX="10.5" PointY="96" IsExpanded="true" />
-        <EntityTypeShape EntityType="pu6Model.FormsRSW2014_1_1" Width="1.5" PointX="3" PointY="71.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="pu6Model.FormsADW_1" Width="1.5" PointX="11.25" PointY="58" IsExpanded="true" />
+        <EntityTypeShape EntityType="pu6Model.FormsADW_2" Width="1.5" PointX="11.25" PointY="92.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="pu6Model.FormsADW_3" Width="1.5" PointX="20.625" PointY="85.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="pu6Model.FormsDSW_3" Width="1.5" PointX="6" PointY="50.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="pu6Model.FormsDSW_3_Staff" Width="1.5" PointX="11.25" PointY="44.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="pu6Model.FormsODV_1_4_2017" Width="1.5" PointX="17.25" PointY="24.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="pu6Model.FormsRSW" Width="1.5" PointX="20.625" PointY="94.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="pu6Model.FormsRSW2014_1_1" Width="1.5" PointX="3.75" PointY="36" IsExpanded="true" />
         <EntityTypeShape EntityType="pu6Model.FormsRSW2014_1_Razd_2_1" Width="1.5" PointX="8" PointY="3.125" IsExpanded="true" />
         <EntityTypeShape EntityType="pu6Model.FormsRSW2014_1_Razd_2_4" Width="1.5" PointX="10.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="pu6Model.FormsRSW2014_1_Razd_2_5_1" Width="1.5" PointX="0.75" PointY="10.75" IsExpanded="true" />
@@ -8702,53 +9343,50 @@
         <EntityTypeShape EntityType="pu6Model.FormsRSW2014_1_Razd_3_4" Width="1.5" PointX="12.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="pu6Model.FormsRSW2014_1_Razd_4" Width="1.5" PointX="12.75" PointY="4.75" IsExpanded="true" />
         <EntityTypeShape EntityType="pu6Model.FormsRSW2014_1_Razd_5" Width="1.5" PointX="4.75" PointY="12.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="pu6Model.FormsRSW2014_1_Razd_6_1" Width="1.5" PointX="13.5" PointY="83.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="pu6Model.FormsRSW2014_1_Razd_6_4" Width="1.5" PointX="21.75" PointY="78.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="pu6Model.FormsRSW2014_1_Razd_6_6" Width="1.5" PointX="15.75" PointY="96.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="pu6Model.FormsRSW2014_1_Razd_6_7" Width="1.5" PointX="21.75" PointY="88.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="pu6Model.FormsRSW2014_2_1" Width="1.5" PointX="3" PointY="114.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="pu6Model.FormsRSW2014_2_2" Width="1.5" PointX="5.25" PointY="115" IsExpanded="true" />
-        <EntityTypeShape EntityType="pu6Model.FormsRSW2014_2_3" Width="1.5" PointX="5.25" PointY="119.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="pu6Model.FormsRW3_2015" Width="1.5" PointX="3" PointY="125.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="pu6Model.FormsRW3_2015_Razd_3" Width="1.5" PointX="5.25" PointY="130" IsExpanded="true" />
-        <EntityTypeShape EntityType="pu6Model.FormsSPW2" Width="1.5" PointX="16.5" PointY="84" IsExpanded="true" />
-        <EntityTypeShape EntityType="pu6Model.FormsSZV_6" Width="1.5" PointX="16.5" PointY="73.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="pu6Model.FormsSZV_6_4" Width="1.5" PointX="13.5" PointY="72.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="pu6Model.FormsSZV_ISH_2017" Width="1.5" PointX="16.5" PointY="89.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="pu6Model.FormsSZV_ISH_4_2017" Width="1.5" PointX="18.75" PointY="93.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="pu6Model.FormsSZV_ISH_7_2017" Width="1.5" PointX="21.75" PointY="93.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="pu6Model.FormsSZV_KORR_2017" Width="1.5" PointX="13.5" PointY="90.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="pu6Model.FormsSZV_KORR_4_2017" Width="1.5" PointX="15.75" PointY="100.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="pu6Model.FormsSZV_KORR_5_2017" Width="1.5" PointX="18.75" PointY="98" IsExpanded="true" />
-        <EntityTypeShape EntityType="pu6Model.FormsSZV_M_2016" Width="1.5" PointX="6" PointY="101" IsExpanded="true" />
-        <EntityTypeShape EntityType="pu6Model.FormsSZV_M_2016_Staff" Width="1.5" PointX="13.5" PointY="97.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="pu6Model.FormsSZV_STAJ_4_2017" Width="1.5" PointX="21.75" PointY="85.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="pu6Model.Insurer" Width="1.5" PointX="0.75" PointY="98" IsExpanded="true" />
-        <EntityTypeShape EntityType="pu6Model.IschislStrahStajDop" Width="1.5" PointX="22.5" PointY="71.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="pu6Model.IschislStrahStajOsn" Width="1.5" PointX="22.5" PointY="74.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="pu6Model.FormsRSW2014_1_Razd_6_1" Width="1.5" PointX="14.25" PointY="55.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="pu6Model.FormsRSW2014_1_Razd_6_4" Width="1.5" PointX="19.5" PointY="58.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="pu6Model.FormsRSW2014_1_Razd_6_6" Width="1.5" PointX="16.5" PointY="76.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="pu6Model.FormsRSW2014_1_Razd_6_7" Width="1.5" PointX="22.5" PointY="56.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="pu6Model.FormsRSW2014_2_1" Width="1.5" PointX="3.75" PointY="86.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="pu6Model.FormsRSW2014_2_2" Width="1.5" PointX="6" PointY="87.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="pu6Model.FormsRSW2014_2_3" Width="1.5" PointX="6" PointY="91.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="pu6Model.FormsRW3_2015" Width="1.5" PointX="3.75" PointY="97.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="pu6Model.FormsRW3_2015_Razd_3" Width="1.5" PointX="6" PointY="102.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="pu6Model.FormsSPW2" Width="1.5" PointX="20.25" PointY="48.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="pu6Model.FormsSZV_6" Width="1.5" PointX="14.25" PointY="37" IsExpanded="true" />
+        <EntityTypeShape EntityType="pu6Model.FormsSZV_6_4" Width="1.5" PointX="17.25" PointY="38.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="pu6Model.FormsSZV_ISH_4_2017" Width="1.5" PointX="22.5" PointY="49.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="pu6Model.FormsSZV_ISH_7_2017" Width="1.5" PointX="19.5" PointY="40.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="pu6Model.FormsSZV_KORR_4_2017" Width="1.5" PointX="16.5" PointY="61.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="pu6Model.FormsSZV_KORR_5_2017" Width="1.5" PointX="19.5" PointY="44.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="pu6Model.FormsSZV_M_2016" Width="1.5" PointX="6.75" PointY="65.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="pu6Model.FormsSZV_M_2016_Staff" Width="1.5" PointX="11.25" PointY="55.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="pu6Model.FormsSZV_STAJ_4_2017" Width="1.5" PointX="19.5" PointY="55" IsExpanded="true" />
+        <EntityTypeShape EntityType="pu6Model.Insurer" Width="1.5" PointX="1.125" PointY="69.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="pu6Model.IschislStrahStajDop" Width="1.5" PointX="23.25" PointY="42.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="pu6Model.IschislStrahStajOsn" Width="1.5" PointX="23.25" PointY="45.5" IsExpanded="true" />
         <EntityTypeShape EntityType="pu6Model.KodVred_1" Width="1.5" PointX="12.75" PointY="10.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="pu6Model.KodVred_2" Width="1.5" PointX="22.5" PointY="66" IsExpanded="true" />
-        <EntityTypeShape EntityType="pu6Model.KodVred_3" Width="1.5" PointX="22.5" PointY="98.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="pu6Model.KodVred_2" Width="1.5" PointX="23.25" PointY="36.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="pu6Model.KodVred_3" Width="1.5" PointX="23.25" PointY="60.625" IsExpanded="true" />
         <EntityTypeShape EntityType="pu6Model.MROT" Width="1.5" PointX="12.75" PointY="13.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="pu6Model.OsobUslTruda" Width="1.5" PointX="22.5" PointY="101.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="pu6Model.PlatCategory" Width="1.5" PointX="11.25" PointY="65.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="pu6Model.PlatCategoryRaschPer" Width="1.5" PointX="9" PointY="66.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="pu6Model.OsobUslTruda" Width="1.5" PointX="23.25" PointY="63.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="pu6Model.PlatCategory" Width="1.5" PointX="12" PointY="32.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="pu6Model.PlatCategoryRaschPer" Width="1.5" PointX="9.75" PointY="33.625" IsExpanded="true" />
         <EntityTypeShape EntityType="pu6Model.RaschetPeriod" Width="1.5" PointX="14.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="pu6Model.SpecOcenkaUslTruda" Width="1.5" PointX="19.5" PointY="101.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="pu6Model.SpecOcenkaUslTrudaDopTariff" Width="1.5" PointX="21.75" PointY="111" IsExpanded="true" />
-        <EntityTypeShape EntityType="pu6Model.Staff" Width="1.5" PointX="8.25" PointY="82.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="pu6Model.StaffDateWork" Width="1.5" PointX="10.5" PointY="152.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="pu6Model.StaffInfo" Width="1.5" PointX="19.5" PointY="76.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="pu6Model.StajLgot" Width="1.5" PointX="27" PointY="82.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="pu6Model.SpecOcenkaUslTruda" Width="1.5" PointX="17.25" PointY="33.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="pu6Model.SpecOcenkaUslTrudaDopTariff" Width="1.5" PointX="19.5" PointY="33.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="pu6Model.StaffDateWork" Width="1.5" PointX="20.625" PointY="103.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="pu6Model.StaffInfo" Width="1.5" PointX="17.25" PointY="54.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="pu6Model.StajLgot" Width="1.5" PointX="27.375" PointY="52.625" IsExpanded="true" />
         <EntityTypeShape EntityType="pu6Model.TariffCode" Width="1.5" PointX="5.75" PointY="9.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="pu6Model.TariffCodePlatCat" Width="1.5" PointX="13.5" PointY="38.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="pu6Model.TariffPlat" Width="1.5" PointX="13.5" PointY="66.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="pu6Model.TerrUsl" Width="1.5" PointX="22.5" PointY="104.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="pu6Model.TypeInfo" Width="1.5" PointX="11.25" PointY="62.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="pu6Model.TariffCodePlatCat" Width="1.5" PointX="18.25" PointY="18.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="pu6Model.TariffPlat" Width="1.5" PointX="13.875" PointY="31.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="pu6Model.TerrUsl" Width="1.5" PointX="23.25" PointY="66.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="pu6Model.TypeInfo" Width="1.5" PointX="12" PointY="37.5" IsExpanded="true" />
         <EntityTypeShape EntityType="pu6Model.Users" Width="1.5" PointX="0.75" PointY="2.375" IsExpanded="true" />
         <EntityTypeShape EntityType="pu6Model.UsersActivity" Width="1.5" PointX="3" PointY="4" IsExpanded="true" />
-        <EntityTypeShape EntityType="pu6Model.UslDosrNazn" Width="1.5" PointX="22.5" PointY="107.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="pu6Model.UslDosrNaznEdIzm" Width="1.5" PointX="20.25" PointY="107.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="pu6Model.UslDosrNazn" Width="1.5" PointX="23.25" PointY="70" IsExpanded="true" />
+        <EntityTypeShape EntityType="pu6Model.UslDosrNaznEdIzm" Width="1.5" PointX="21" PointY="70.375" IsExpanded="true" />
         <EntityTypeShape EntityType="pu6Model.VidTrudDeyat" Width="1.5" PointX="14.75" PointY="3.75" IsExpanded="true" />
         <EntityTypeShape EntityType="pu6Model.ZAGS_Born" Width="1.5" PointX="14.75" PointY="6.75" IsExpanded="true" />
         <EntityTypeShape EntityType="pu6Model.ZAGS_Death" Width="1.5" PointX="0.75" PointY="15.75" IsExpanded="true" />
@@ -8756,23 +9394,13 @@
         <AssociationConnector Association="pu6Model.FK_Department_0_0" ManuallyRouted="false" />
         <AssociationConnector Association="pu6Model.FK_Department_1_0" ManuallyRouted="false" />
         <AssociationConnector Association="pu6Model.FK_FormsDSW_3_1_0" ManuallyRouted="false" />
-        <AssociationConnector Association="pu6Model.FK_Staff_0_0" ManuallyRouted="false" />
         <AssociationConnector Association="pu6Model.FK_StaffInfo_0_0" ManuallyRouted="false" />
         <AssociationConnector Association="pu6Model.FK_StajLgot_3_0" ManuallyRouted="false" />
-        <AssociationConnector Association="pu6Model.FK_FormsADW_1_0_0" ManuallyRouted="false" />
-        <AssociationConnector Association="pu6Model.FK_FormsADW_2_0_0" ManuallyRouted="false" />
-        <AssociationConnector Association="pu6Model.FK_FormsADW_3_0_0" ManuallyRouted="false" />
         <AssociationConnector Association="pu6Model.FK_FormsDSW_3_0_0" ManuallyRouted="false" />
         <AssociationConnector Association="pu6Model.FK_FormsDSW_3_Staff_1_0" ManuallyRouted="false" />
-        <AssociationConnector Association="pu6Model.FK_FormsDSW_3_Staff_0_0" ManuallyRouted="false" />
-        <AssociationConnector Association="pu6Model.FK_FormsODV_1_4_2017_0_0" ManuallyRouted="false" />
-        <AssociationConnector Association="pu6Model.FK_FormsSZV_ISH_2017_0_0" ManuallyRouted="false" />
-        <AssociationConnector Association="pu6Model.FK_FormsSZV_KORR_2017_1_0" ManuallyRouted="false" />
-        <AssociationConnector Association="pu6Model.FK_FormsRSW_0_0" ManuallyRouted="false" />
         <AssociationConnector Association="pu6Model.FK_FormsRSW2014_1_1_0_0" ManuallyRouted="false" />
         <AssociationConnector Association="pu6Model.FK_FormsRSW2014_1_Razd_2_1_0_0" ManuallyRouted="false" />
         <AssociationConnector Association="pu6Model.FK_FormsRSW2014_1_Razd_6_1_0_0" ManuallyRouted="false" />
-        <AssociationConnector Association="pu6Model.FK_FormsRSW2014_1_Razd_6_1_1_0" ManuallyRouted="false" />
         <AssociationConnector Association="pu6Model.FK_FormsRSW2014_1_Razd_6_4_0_0" ManuallyRouted="false" />
         <AssociationConnector Association="pu6Model.FK_FormsRSW2014_1_Razd_6_6_0_0" ManuallyRouted="false" />
         <AssociationConnector Association="pu6Model.FK_FormsRSW2014_1_Razd_6_7_0_0" ManuallyRouted="false" />
@@ -8785,28 +9413,16 @@
         <AssociationConnector Association="pu6Model.FK_FormsRW3_2015_Razd_3_0_0" ManuallyRouted="false" />
         <AssociationConnector Association="pu6Model.FK_FormsSPW2_0_0" ManuallyRouted="false" />
         <AssociationConnector Association="pu6Model.FK_FormsSPW2_1_0" ManuallyRouted="false" />
-        <AssociationConnector Association="pu6Model.FK_FormsSPW2_2_0" ManuallyRouted="false" />
         <AssociationConnector Association="pu6Model.FK_FormsSZV_6_0_0" ManuallyRouted="false" />
         <AssociationConnector Association="pu6Model.FK_FormsSZV_6_1_0" ManuallyRouted="false" />
-        <AssociationConnector Association="pu6Model.FK_FormsSZV_6_2_0" ManuallyRouted="false" />
         <AssociationConnector Association="pu6Model.FK_FormsSZV_6_4_0_0" ManuallyRouted="false" />
         <AssociationConnector Association="pu6Model.FK_FormsSZV_6_4_1_0" ManuallyRouted="false" />
-        <AssociationConnector Association="pu6Model.FK_FormsSZV_6_4_2_0" ManuallyRouted="false" />
-        <AssociationConnector Association="pu6Model.FK_FormsSZV_ISH_2017_1_0" ManuallyRouted="false" />
-        <AssociationConnector Association="pu6Model.FK_FormsSZV_ISH_4_2017_1_0" ManuallyRouted="false" />
-        <AssociationConnector Association="pu6Model.FK_FormsSZV_ISH_7_2017_1_0" ManuallyRouted="false" />
         <AssociationConnector Association="pu6Model.FK_FormsSZV_ISH_4_2017_0_0" ManuallyRouted="false" />
         <AssociationConnector Association="pu6Model.FK_FormsSZV_ISH_7_2017_0_0" ManuallyRouted="false" />
-        <AssociationConnector Association="pu6Model.FK_FormsSZV_KORR_2017_0_0" ManuallyRouted="false" />
-        <AssociationConnector Association="pu6Model.FK_FormsSZV_KORR_2017_2_0" ManuallyRouted="false" />
-        <AssociationConnector Association="pu6Model.FK_FormsSZV_KORR_4_2017_0_0" ManuallyRouted="false" />
-        <AssociationConnector Association="pu6Model.FK_FormsSZV_KORR_5_2017_1_0" ManuallyRouted="false" />
         <AssociationConnector Association="pu6Model.FK_FormsSZV_KORR_5_2017_0_0" ManuallyRouted="false" />
         <AssociationConnector Association="pu6Model.FK_FormsSZV_M_2016_0_0" ManuallyRouted="false" />
         <AssociationConnector Association="pu6Model.FK_FormsSZV_M_2016_1_0" ManuallyRouted="false" />
         <AssociationConnector Association="pu6Model.FK_FormsSZV_M_2016_Staff_1_0" ManuallyRouted="false" />
-        <AssociationConnector Association="pu6Model.FK_FormsSZV_M_2016_Staff_0_0" ManuallyRouted="false" />
-        <AssociationConnector Association="pu6Model.FK_Staff_1_0" ManuallyRouted="false" />
         <AssociationConnector Association="pu6Model.FK_StajLgot_1_0" ManuallyRouted="false" />
         <AssociationConnector Association="pu6Model.FK_StajLgot_2_0" ManuallyRouted="false" />
         <AssociationConnector Association="pu6Model.FK_StajLgot_7_0" ManuallyRouted="false" />
@@ -8816,24 +9432,18 @@
         <AssociationConnector Association="pu6Model.FK_TariffCodePlatCat_1_0" ManuallyRouted="false" />
         <AssociationConnector Association="pu6Model.FK_TariffPlat_0_0" ManuallyRouted="false" />
         <AssociationConnector Association="pu6Model.FK_SpecOcenkaUslTrudaDopTariff_0_0" ManuallyRouted="false" />
-        <AssociationConnector Association="pu6Model.FK_StaffDateWork_0_0" ManuallyRouted="false" />
-        <AssociationConnector Association="pu6Model.FK_StaffInfo_1_0" ManuallyRouted="false" />
         <AssociationConnector Association="pu6Model.FK_StajLgot_0_0" ManuallyRouted="false" />
         <AssociationConnector Association="pu6Model.FK_StajLgot_5_0" ManuallyRouted="false" />
         <AssociationConnector Association="pu6Model.FK_TariffCodePlatCat_0_0" ManuallyRouted="false" />
         <AssociationConnector Association="pu6Model.FK_UsersActivity_0_0" ManuallyRouted="false" />
         <AssociationConnector Association="pu6Model.FK_UslDosrNazn_0_0" ManuallyRouted="false" />
-        <EntityTypeShape EntityType="pu6Model.FormsSZV_STAJ_2017" Width="1.5" PointX="7.01484257868251" PointY="29.840192376561554" />
-        <EntityTypeShape EntityType="pu6Model.StajOsn" Width="1.5" PointX="7.7437435964791774" PointY="26.817036432594545" />
+        <EntityTypeShape EntityType="pu6Model.FormsSZV_STAJ_2017" Width="1.5" PointX="17.25" PointY="48.75" />
+        <EntityTypeShape EntityType="pu6Model.StajOsn" Width="1.5" PointX="25.5" PointY="44.25" />
         <AssociationConnector Association="pu6Model.FK_StajOsn_6_0" />
-        <AssociationConnector Association="pu6Model.FK_FormsSZV_STAJ_2017_0_0" />
         <AssociationConnector Association="pu6Model.FK_StajOsn_14_0" />
         <AssociationConnector Association="pu6Model.FK_StajOsn_13_0" />
         <AssociationConnector Association="pu6Model.FK_StajOsn_11_0" />
         <AssociationConnector Association="pu6Model.FK_StajOsn_12_0" />
-        <AssociationConnector Association="pu6Model.FK_StajOsn_1_0" />
-        <AssociationConnector Association="pu6Model.FK_StajOsn_0_0" />
-        <AssociationConnector Association="pu6Model.FK_FormsSZV_STAJ_2017_1_0" />
         <AssociationConnector Association="pu6Model.FK_FormsSZV_STAJ_4_2017_0_0" />
         <AssociationConnector Association="pu6Model.FK_StajOsn_2_0" />
         <AssociationConnector Association="pu6Model.FK_StajOsn_4_0" />
@@ -8844,10 +9454,58 @@
         <AssociationConnector Association="pu6Model.FK_StajLgot_8_0" />
         <AssociationConnector Association="pu6Model.FK_StajOsn_3_0" />
         <AssociationConnector Association="pu6Model.FK_StajOsn_8_0" />
-        <EntityTypeShape EntityType="pu6Model.FormsODV_1_5_2017" Width="1.5" PointX="9.0500875474187019" PointY="4.9109831624249853" />
-        <EntityTypeShape EntityType="pu6Model.FormsODV_1_5_2017_OUT" Width="1.5" PointX="2.3567629616506225" PointY="19.433881694187356" />
-        <AssociationConnector Association="pu6Model.FK_FormsODV_1_5_2017_0_0" />
+        <EntityTypeShape EntityType="pu6Model.FormsODV_1_5_2017_OUT" Width="1.5" PointX="19.5" PointY="29.375" />
+        <EntityTypeShape EntityType="pu6Model.FormsSZV_KORR_2017" Width="1.5" PointX="14.25" PointY="48.125" />
+        <AssociationConnector Association="pu6Model.FK_FormsSZV_KORR_2017_0_0" />
+        <AssociationConnector Association="pu6Model.FK_FormsSZV_KORR_4_2017_0_0" />
+        <AssociationConnector Association="pu6Model.FK_FormsSZV_KORR_5_2017_1_0" />
+        <AssociationConnector Association="pu6Model.FK_StajOsn_0_0" />
+        <EntityTypeShape EntityType="pu6Model.FormsSZV_ISH_2017" Width="1.5" PointX="11.25" PointY="48.125" />
+        <AssociationConnector Association="pu6Model.FK_FormsSZV_ISH_4_2017_1_0" />
+        <AssociationConnector Association="pu6Model.FK_FormsSZV_ISH_7_2017_1_0" />
+        <AssociationConnector Association="pu6Model.FK_StajOsn_1_0" />
+        <EntityTypeShape EntityType="pu6Model.FormsPredPens_Zapros" Width="1.5" PointX="3.75" PointY="28.625" />
+        <EntityTypeShape EntityType="pu6Model.FormsPredPens_Zapros_Staff" Width="1.5" PointX="11.25" PointY="40.625" />
+        <AssociationConnector Association="pu6Model.FK_FormsPredPens_Zapros_0_0" />
+        <AssociationConnector Association="pu6Model.FK_FormsPredPens_Zapros_Staff_1_0" />
+        <EntityTypeShape EntityType="pu6Model.FormsODV_1_5_2017" Width="1.5" PointX="17.25" PointY="28.875" />
         <AssociationConnector Association="pu6Model.FK_FormsODV_1_5_2017_OUT_0_0" />
+        <EntityTypeShape EntityType="pu6Model.FormsODV_1_2017" Width="1.5" PointX="15" PointY="28.5" />
+        <AssociationConnector Association="pu6Model.FK_FormsODV_1_4_2017_0_0" />
+        <AssociationConnector Association="pu6Model.FK_FormsODV_1_5_2017_0_0" />
+        <AssociationConnector Association="pu6Model.FK_FormsSZV_ISH_2017_0_0" />
+        <AssociationConnector Association="pu6Model.FK_FormsSZV_KORR_2017_1_0" />
+        <AssociationConnector Association="pu6Model.FK_FormsSZV_STAJ_2017_0_0" />
+        <EntityTypeShape EntityType="pu6Model.FormsSZV_TD_2020_Staff" Width="1.5" PointX="11.25" PointY="65.5" />
+        <EntityTypeShape EntityType="pu6Model.FormsSZV_TD_2020_TypesOfEvents" Width="1.5" PointX="11.25" PointY="68.875" />
+        <EntityTypeShape EntityType="pu6Model.FormsSZV_TD_2020_Staff_AnnuledEvents" Width="1.5" PointX="22.75" PointY="79.125" />
+        <AssociationConnector Association="pu6Model.FK_FormsSZV_TD_2020_Staff_AnnuledEvents_0_0" />
+        <EntityTypeShape EntityType="pu6Model.FormsSZV_TD_2020" Width="1.5" PointX="7.0630975137758529" PointY="9.9996823268009738" />
+        <EntityTypeShape EntityType="pu6Model.FormsSZV_TD_2020_Staff_Events" Width="1.5" PointX="1.1734084920833858" PointY="4.0872495789487147" />
+        <AssociationConnector Association="pu6Model.FK_FormsSZV_TD_2020_0_0" />
+        <AssociationConnector Association="pu6Model.FK_FormsSZV_TD_2020_Staff_1_0" />
+        <AssociationConnector Association="pu6Model.FK_FormsSZV_TD_2020_Staff_Events_1_0" />
+        <AssociationConnector Association="pu6Model.FK_FormsSZV_TD_2020_Staff_Events_0_0" />
+        <EntityTypeShape EntityType="pu6Model.Staff" Width="1.5" PointX="5.6762103967723485" PointY="12.896447888061612" />
+        <AssociationConnector Association="pu6Model.FK_Staff_0_0" />
+        <AssociationConnector Association="pu6Model.FK_FormsADW_1_0_0" />
+        <AssociationConnector Association="pu6Model.FK_FormsADW_2_0_0" />
+        <AssociationConnector Association="pu6Model.FK_FormsADW_3_0_0" />
+        <AssociationConnector Association="pu6Model.FK_FormsDSW_3_Staff_0_0" />
+        <AssociationConnector Association="pu6Model.FK_FormsPredPens_Zapros_Staff_0_0" />
+        <AssociationConnector Association="pu6Model.FK_FormsRSW_0_0" />
+        <AssociationConnector Association="pu6Model.FK_FormsRSW2014_1_Razd_6_1_1_0" />
+        <AssociationConnector Association="pu6Model.FK_FormsSPW2_2_0" />
+        <AssociationConnector Association="pu6Model.FK_FormsSZV_6_2_0" />
+        <AssociationConnector Association="pu6Model.FK_FormsSZV_6_4_2_0" />
+        <AssociationConnector Association="pu6Model.FK_FormsSZV_ISH_2017_1_0" />
+        <AssociationConnector Association="pu6Model.FK_FormsSZV_KORR_2017_2_0" />
+        <AssociationConnector Association="pu6Model.FK_FormsSZV_M_2016_Staff_0_0" />
+        <AssociationConnector Association="pu6Model.FK_FormsSZV_STAJ_2017_1_0" />
+        <AssociationConnector Association="pu6Model.FK_FormsSZV_TD_2020_Staff_0_0" />
+        <AssociationConnector Association="pu6Model.FK_Staff_1_0" />
+        <AssociationConnector Association="pu6Model.FK_StaffDateWork_0_0" />
+        <AssociationConnector Association="pu6Model.FK_StaffInfo_1_0" />
         </Diagram>
     </Diagrams>
   </Designer>

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
+using System.Data.Entity;
 using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
@@ -183,7 +183,7 @@ namespace PU.FormsSZV_6_4_2013.DopFunc
                         }
 
                         if (flag)
-                            db.ObjectStateManager.ChangeObjectState(item, EntityState.Modified);
+                            db.Entry(item).State = EntityState.Modified;
 
                     }
 

@@ -28,17 +28,20 @@
         /// </summary>
         private void InitializeComponent()
         {
-            Telerik.WinControls.UI.GridViewColorColumn gridViewColorColumn1 = new Telerik.WinControls.UI.GridViewColorColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn1 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn2 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn3 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn4 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn5 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn6 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn7 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn8 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn9 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition1 = new Telerik.WinControls.UI.TableViewDefinition();
+            Telerik.WinControls.UI.GridViewColorColumn gridViewColorColumn2 = new Telerik.WinControls.UI.GridViewColorColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn10 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn11 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn12 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn13 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn14 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn15 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn16 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn17 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn18 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition2 = new Telerik.WinControls.UI.TableViewDefinition();
+            Telerik.WinControls.UI.RadListDataItem radListDataItem24 = new Telerik.WinControls.UI.RadListDataItem();
+            Telerik.WinControls.UI.RadListDataItem radListDataItem25 = new Telerik.WinControls.UI.RadListDataItem();
+            Telerik.WinControls.UI.RadListDataItem radListDataItem26 = new Telerik.WinControls.UI.RadListDataItem();
             Telerik.WinControls.UI.RadListDataItem radListDataItem1 = new Telerik.WinControls.UI.RadListDataItem();
             Telerik.WinControls.UI.RadListDataItem radListDataItem2 = new Telerik.WinControls.UI.RadListDataItem();
             Telerik.WinControls.UI.RadListDataItem radListDataItem3 = new Telerik.WinControls.UI.RadListDataItem();
@@ -50,15 +53,15 @@
             Telerik.WinControls.UI.RadListDataItem radListDataItem9 = new Telerik.WinControls.UI.RadListDataItem();
             Telerik.WinControls.UI.RadListDataItem radListDataItem10 = new Telerik.WinControls.UI.RadListDataItem();
             Telerik.WinControls.UI.RadListDataItem radListDataItem11 = new Telerik.WinControls.UI.RadListDataItem();
-            Telerik.WinControls.UI.RadListDataItem radListDataItem12 = new Telerik.WinControls.UI.RadListDataItem();
-            Telerik.WinControls.UI.RadListDataItem radListDataItem13 = new Telerik.WinControls.UI.RadListDataItem();
-            Telerik.WinControls.UI.RadListDataItem radListDataItem14 = new Telerik.WinControls.UI.RadListDataItem();
             Telerik.WinControls.UI.RadListDataItem radListDataItem15 = new Telerik.WinControls.UI.RadListDataItem();
             Telerik.WinControls.UI.RadListDataItem radListDataItem16 = new Telerik.WinControls.UI.RadListDataItem();
             Telerik.WinControls.UI.RadListDataItem radListDataItem17 = new Telerik.WinControls.UI.RadListDataItem();
             Telerik.WinControls.UI.RadListDataItem radListDataItem18 = new Telerik.WinControls.UI.RadListDataItem();
             Telerik.WinControls.UI.RadListDataItem radListDataItem19 = new Telerik.WinControls.UI.RadListDataItem();
             Telerik.WinControls.UI.RadListDataItem radListDataItem20 = new Telerik.WinControls.UI.RadListDataItem();
+            Telerik.WinControls.UI.RadListDataItem radListDataItem21 = new Telerik.WinControls.UI.RadListDataItem();
+            Telerik.WinControls.UI.RadListDataItem radListDataItem22 = new Telerik.WinControls.UI.RadListDataItem();
+            Telerik.WinControls.UI.RadListDataItem radListDataItem23 = new Telerik.WinControls.UI.RadListDataItem();
             this.closeBtn = new Telerik.WinControls.UI.RadButton();
             this.radPanel1 = new Telerik.WinControls.UI.RadPanel();
             this.radPageView1 = new Telerik.WinControls.UI.RadPageView();
@@ -122,6 +125,8 @@
             this.updateStaffData = new Telerik.WinControls.UI.RadCheckBox();
             this.updateInsData = new Telerik.WinControls.UI.RadCheckBox();
             this.office2013LightTheme1 = new Telerik.WinControls.Themes.Office2013LightTheme();
+            this.updateSZVTD_DDL = new Telerik.WinControls.UI.RadDropDownList();
+            this.radLabel9 = new Telerik.WinControls.UI.RadLabel();
             ((System.ComponentModel.ISupportInitialize)(this.closeBtn)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radPanel1)).BeginInit();
             this.radPanel1.SuspendLayout();
@@ -196,6 +201,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.radLabel8)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.updateStaffData)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.updateInsData)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.updateSZVTD_DDL)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel9)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             this.SuspendLayout();
             // 
@@ -317,7 +324,6 @@
             this.secondPartLabel_.Size = new System.Drawing.Size(20, 18);
             this.secondPartLabel_.TabIndex = 15;
             this.secondPartLabel_.Text = "из";
-            this.secondPartLabel_.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
             this.secondPartLabel_.ThemeName = "Office2013Light";
             this.secondPartLabel_.Visible = false;
             // 
@@ -418,7 +424,6 @@
             this.currentDir.Size = new System.Drawing.Size(598, 25);
             this.currentDir.TabIndex = 1;
             this.currentDir.Text = "не выбран";
-            this.currentDir.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
             this.currentDir.ThemeName = "Office2013Light";
             // 
             // radLabel1
@@ -431,7 +436,6 @@
             this.radLabel1.Size = new System.Drawing.Size(124, 25);
             this.radLabel1.TabIndex = 0;
             this.radLabel1.Text = "Текущий каталог:";
-            this.radLabel1.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
             this.radLabel1.ThemeName = "Office2013Light";
             // 
             // radPanel2
@@ -479,111 +483,111 @@
             this.importFilesGrid.MasterTemplate.AllowDragToGroup = false;
             this.importFilesGrid.MasterTemplate.AllowEditRow = false;
             this.importFilesGrid.MasterTemplate.AllowRowResize = false;
-            gridViewColorColumn1.AllowReorder = false;
-            gridViewColorColumn1.AllowResize = false;
-            gridViewColorColumn1.AllowSort = false;
-            gridViewColorColumn1.HeaderText = "";
-            gridViewColorColumn1.Name = "colorFlag";
-            gridViewColorColumn1.Width = 26;
-            gridViewTextBoxColumn1.AllowFiltering = false;
-            gridViewTextBoxColumn1.AllowGroup = false;
-            gridViewTextBoxColumn1.AllowReorder = false;
-            gridViewTextBoxColumn1.AllowResize = false;
-            gridViewTextBoxColumn1.AllowSort = false;
-            gridViewTextBoxColumn1.HeaderText = "Путь";
-            gridViewTextBoxColumn1.IsVisible = false;
-            gridViewTextBoxColumn1.Name = "path";
-            gridViewTextBoxColumn2.AllowFiltering = false;
-            gridViewTextBoxColumn2.AllowGroup = false;
-            gridViewTextBoxColumn2.AllowHide = false;
-            gridViewTextBoxColumn2.AllowReorder = false;
-            gridViewTextBoxColumn2.AllowSort = false;
-            gridViewTextBoxColumn2.HeaderText = "Имя файла";
-            gridViewTextBoxColumn2.Name = "name";
-            gridViewTextBoxColumn2.Width = 220;
-            gridViewTextBoxColumn3.AllowFiltering = false;
-            gridViewTextBoxColumn3.AllowGroup = false;
-            gridViewTextBoxColumn3.AllowHide = false;
-            gridViewTextBoxColumn3.AllowReorder = false;
-            gridViewTextBoxColumn3.AllowResize = false;
-            gridViewTextBoxColumn3.AllowSort = false;
-            gridViewTextBoxColumn3.HeaderText = "Время";
-            gridViewTextBoxColumn3.Name = "dateTime";
-            gridViewTextBoxColumn3.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
-            gridViewTextBoxColumn3.Width = 120;
-            gridViewTextBoxColumn4.AllowFiltering = false;
-            gridViewTextBoxColumn4.AllowGroup = false;
-            gridViewTextBoxColumn4.AllowHide = false;
-            gridViewTextBoxColumn4.AllowReorder = false;
-            gridViewTextBoxColumn4.AllowSort = false;
-            gridViewTextBoxColumn4.HeaderText = "Тип";
-            gridViewTextBoxColumn4.Name = "type";
-            gridViewTextBoxColumn4.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
-            gridViewTextBoxColumn4.Width = 70;
-            gridViewTextBoxColumn5.AllowFiltering = false;
-            gridViewTextBoxColumn5.AllowGroup = false;
-            gridViewTextBoxColumn5.AllowHide = false;
-            gridViewTextBoxColumn5.AllowReorder = false;
-            gridViewTextBoxColumn5.AllowResize = false;
-            gridViewTextBoxColumn5.AllowSort = false;
-            gridViewTextBoxColumn5.HeaderText = "Версия";
-            gridViewTextBoxColumn5.Name = "version";
-            gridViewTextBoxColumn5.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
-            gridViewTextBoxColumn6.AllowFiltering = false;
-            gridViewTextBoxColumn6.AllowGroup = false;
-            gridViewTextBoxColumn6.AllowHide = false;
-            gridViewTextBoxColumn6.AllowReorder = false;
-            gridViewTextBoxColumn6.AllowResize = false;
-            gridViewTextBoxColumn6.AllowSort = false;
-            gridViewTextBoxColumn6.HeaderText = "Документов";
-            gridViewTextBoxColumn6.Name = "cntDoc";
-            gridViewTextBoxColumn6.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
-            gridViewTextBoxColumn6.Width = 80;
-            gridViewTextBoxColumn7.AllowFiltering = false;
-            gridViewTextBoxColumn7.AllowGroup = false;
-            gridViewTextBoxColumn7.AllowHide = false;
-            gridViewTextBoxColumn7.AllowReorder = false;
-            gridViewTextBoxColumn7.AllowResize = false;
-            gridViewTextBoxColumn7.AllowSort = false;
-            gridViewTextBoxColumn7.HeaderText = "Загружено";
-            gridViewTextBoxColumn7.Name = "cntImported";
-            gridViewTextBoxColumn7.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
-            gridViewTextBoxColumn7.Width = 70;
-            gridViewTextBoxColumn8.AllowFiltering = false;
-            gridViewTextBoxColumn8.AllowGroup = false;
-            gridViewTextBoxColumn8.AllowHide = false;
-            gridViewTextBoxColumn8.AllowReorder = false;
-            gridViewTextBoxColumn8.AllowResize = false;
-            gridViewTextBoxColumn8.AllowSort = false;
-            gridViewTextBoxColumn8.HeaderText = "Рег. номер";
-            gridViewTextBoxColumn8.Name = "regNum";
-            gridViewTextBoxColumn8.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
-            gridViewTextBoxColumn8.Width = 110;
-            gridViewTextBoxColumn9.AllowFiltering = false;
-            gridViewTextBoxColumn9.AllowGroup = false;
-            gridViewTextBoxColumn9.AllowHide = false;
-            gridViewTextBoxColumn9.AllowReorder = false;
-            gridViewTextBoxColumn9.AllowResize = false;
-            gridViewTextBoxColumn9.AllowSort = false;
-            gridViewTextBoxColumn9.HeaderText = "Страхователь";
-            gridViewTextBoxColumn9.Name = "insurer";
-            gridViewTextBoxColumn9.Width = 300;
+            gridViewColorColumn2.AllowReorder = false;
+            gridViewColorColumn2.AllowResize = false;
+            gridViewColorColumn2.AllowSort = false;
+            gridViewColorColumn2.HeaderText = "";
+            gridViewColorColumn2.Name = "colorFlag";
+            gridViewColorColumn2.Width = 26;
+            gridViewTextBoxColumn10.AllowFiltering = false;
+            gridViewTextBoxColumn10.AllowGroup = false;
+            gridViewTextBoxColumn10.AllowReorder = false;
+            gridViewTextBoxColumn10.AllowResize = false;
+            gridViewTextBoxColumn10.AllowSort = false;
+            gridViewTextBoxColumn10.HeaderText = "Путь";
+            gridViewTextBoxColumn10.IsVisible = false;
+            gridViewTextBoxColumn10.Name = "path";
+            gridViewTextBoxColumn11.AllowFiltering = false;
+            gridViewTextBoxColumn11.AllowGroup = false;
+            gridViewTextBoxColumn11.AllowHide = false;
+            gridViewTextBoxColumn11.AllowReorder = false;
+            gridViewTextBoxColumn11.AllowSort = false;
+            gridViewTextBoxColumn11.HeaderText = "Имя файла";
+            gridViewTextBoxColumn11.Name = "name";
+            gridViewTextBoxColumn11.Width = 220;
+            gridViewTextBoxColumn12.AllowFiltering = false;
+            gridViewTextBoxColumn12.AllowGroup = false;
+            gridViewTextBoxColumn12.AllowHide = false;
+            gridViewTextBoxColumn12.AllowReorder = false;
+            gridViewTextBoxColumn12.AllowResize = false;
+            gridViewTextBoxColumn12.AllowSort = false;
+            gridViewTextBoxColumn12.HeaderText = "Время";
+            gridViewTextBoxColumn12.Name = "dateTime";
+            gridViewTextBoxColumn12.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+            gridViewTextBoxColumn12.Width = 120;
+            gridViewTextBoxColumn13.AllowFiltering = false;
+            gridViewTextBoxColumn13.AllowGroup = false;
+            gridViewTextBoxColumn13.AllowHide = false;
+            gridViewTextBoxColumn13.AllowReorder = false;
+            gridViewTextBoxColumn13.AllowSort = false;
+            gridViewTextBoxColumn13.HeaderText = "Тип";
+            gridViewTextBoxColumn13.Name = "type";
+            gridViewTextBoxColumn13.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+            gridViewTextBoxColumn13.Width = 70;
+            gridViewTextBoxColumn14.AllowFiltering = false;
+            gridViewTextBoxColumn14.AllowGroup = false;
+            gridViewTextBoxColumn14.AllowHide = false;
+            gridViewTextBoxColumn14.AllowReorder = false;
+            gridViewTextBoxColumn14.AllowResize = false;
+            gridViewTextBoxColumn14.AllowSort = false;
+            gridViewTextBoxColumn14.HeaderText = "Версия";
+            gridViewTextBoxColumn14.Name = "version";
+            gridViewTextBoxColumn14.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+            gridViewTextBoxColumn15.AllowFiltering = false;
+            gridViewTextBoxColumn15.AllowGroup = false;
+            gridViewTextBoxColumn15.AllowHide = false;
+            gridViewTextBoxColumn15.AllowReorder = false;
+            gridViewTextBoxColumn15.AllowResize = false;
+            gridViewTextBoxColumn15.AllowSort = false;
+            gridViewTextBoxColumn15.HeaderText = "Документов";
+            gridViewTextBoxColumn15.Name = "cntDoc";
+            gridViewTextBoxColumn15.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+            gridViewTextBoxColumn15.Width = 80;
+            gridViewTextBoxColumn16.AllowFiltering = false;
+            gridViewTextBoxColumn16.AllowGroup = false;
+            gridViewTextBoxColumn16.AllowHide = false;
+            gridViewTextBoxColumn16.AllowReorder = false;
+            gridViewTextBoxColumn16.AllowResize = false;
+            gridViewTextBoxColumn16.AllowSort = false;
+            gridViewTextBoxColumn16.HeaderText = "Загружено";
+            gridViewTextBoxColumn16.Name = "cntImported";
+            gridViewTextBoxColumn16.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+            gridViewTextBoxColumn16.Width = 70;
+            gridViewTextBoxColumn17.AllowFiltering = false;
+            gridViewTextBoxColumn17.AllowGroup = false;
+            gridViewTextBoxColumn17.AllowHide = false;
+            gridViewTextBoxColumn17.AllowReorder = false;
+            gridViewTextBoxColumn17.AllowResize = false;
+            gridViewTextBoxColumn17.AllowSort = false;
+            gridViewTextBoxColumn17.HeaderText = "Рег. номер";
+            gridViewTextBoxColumn17.Name = "regNum";
+            gridViewTextBoxColumn17.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+            gridViewTextBoxColumn17.Width = 110;
+            gridViewTextBoxColumn18.AllowFiltering = false;
+            gridViewTextBoxColumn18.AllowGroup = false;
+            gridViewTextBoxColumn18.AllowHide = false;
+            gridViewTextBoxColumn18.AllowReorder = false;
+            gridViewTextBoxColumn18.AllowResize = false;
+            gridViewTextBoxColumn18.AllowSort = false;
+            gridViewTextBoxColumn18.HeaderText = "Страхователь";
+            gridViewTextBoxColumn18.Name = "insurer";
+            gridViewTextBoxColumn18.Width = 300;
             this.importFilesGrid.MasterTemplate.Columns.AddRange(new Telerik.WinControls.UI.GridViewDataColumn[] {
-            gridViewColorColumn1,
-            gridViewTextBoxColumn1,
-            gridViewTextBoxColumn2,
-            gridViewTextBoxColumn3,
-            gridViewTextBoxColumn4,
-            gridViewTextBoxColumn5,
-            gridViewTextBoxColumn6,
-            gridViewTextBoxColumn7,
-            gridViewTextBoxColumn8,
-            gridViewTextBoxColumn9});
+            gridViewColorColumn2,
+            gridViewTextBoxColumn10,
+            gridViewTextBoxColumn11,
+            gridViewTextBoxColumn12,
+            gridViewTextBoxColumn13,
+            gridViewTextBoxColumn14,
+            gridViewTextBoxColumn15,
+            gridViewTextBoxColumn16,
+            gridViewTextBoxColumn17,
+            gridViewTextBoxColumn18});
             this.importFilesGrid.MasterTemplate.EnableGrouping = false;
             this.importFilesGrid.MasterTemplate.EnableSorting = false;
             this.importFilesGrid.MasterTemplate.ShowFilteringRow = false;
             this.importFilesGrid.MasterTemplate.ShowRowHeaderColumn = false;
-            this.importFilesGrid.MasterTemplate.ViewDefinition = tableViewDefinition1;
+            this.importFilesGrid.MasterTemplate.ViewDefinition = tableViewDefinition2;
             this.importFilesGrid.Name = "importFilesGrid";
             this.importFilesGrid.ReadOnly = true;
             this.importFilesGrid.ShowNoDataText = false;
@@ -625,10 +629,9 @@
             this.radPageView2.DefaultPage = this.radPageViewPage3;
             this.radPageView2.Location = new System.Drawing.Point(3, 92);
             this.radPageView2.Name = "radPageView2";
-            this.radPageView2.SelectedPage = this.radPageViewPage6;
+            this.radPageView2.SelectedPage = this.radPageViewPage5;
             this.radPageView2.Size = new System.Drawing.Size(716, 330);
             this.radPageView2.TabIndex = 2;
-            this.radPageView2.Text = "radPageView2";
             this.radPageView2.ThemeName = "Office2013Light";
             ((Telerik.WinControls.UI.RadPageViewStripElement)(this.radPageView2.GetChildAt(0))).StripButtons = Telerik.WinControls.UI.StripViewButtons.Scroll;
             // 
@@ -703,16 +706,16 @@
             this.updateIndSved_DDL.AutoCompleteDisplayMember = null;
             this.updateIndSved_DDL.AutoCompleteValueMember = null;
             this.updateIndSved_DDL.DropDownStyle = Telerik.WinControls.RadDropDownStyle.DropDownList;
-            radListDataItem1.Selected = true;
-            radListDataItem1.Tag = "0";
-            radListDataItem1.Text = "Заменять существующую форму";
-            radListDataItem2.Tag = "1";
-            radListDataItem2.Text = "Не загружать импортируемую форму";
-            radListDataItem3.Tag = "2";
-            radListDataItem3.Text = "Объединять загружаемые формы";
-            this.updateIndSved_DDL.Items.Add(radListDataItem1);
-            this.updateIndSved_DDL.Items.Add(radListDataItem2);
-            this.updateIndSved_DDL.Items.Add(radListDataItem3);
+            radListDataItem24.Selected = true;
+            radListDataItem24.Tag = "0";
+            radListDataItem24.Text = "Заменять существующую форму";
+            radListDataItem25.Tag = "1";
+            radListDataItem25.Text = "Не загружать импортируемую форму";
+            radListDataItem26.Tag = "2";
+            radListDataItem26.Text = "Объединять загружаемые формы";
+            this.updateIndSved_DDL.Items.Add(radListDataItem24);
+            this.updateIndSved_DDL.Items.Add(radListDataItem25);
+            this.updateIndSved_DDL.Items.Add(radListDataItem26);
             this.updateIndSved_DDL.Location = new System.Drawing.Point(3, 78);
             this.updateIndSved_DDL.Name = "updateIndSved_DDL";
             this.updateIndSved_DDL.Size = new System.Drawing.Size(270, 21);
@@ -735,13 +738,13 @@
             this.updateSPW2_DDL.AutoCompleteDisplayMember = null;
             this.updateSPW2_DDL.AutoCompleteValueMember = null;
             this.updateSPW2_DDL.DropDownStyle = Telerik.WinControls.RadDropDownStyle.DropDownList;
-            radListDataItem4.Selected = true;
-            radListDataItem4.Tag = "0";
-            radListDataItem4.Text = "Заменять существующую форму";
-            radListDataItem5.Tag = "1";
-            radListDataItem5.Text = "Не загружать импортируемую форму";
-            this.updateSPW2_DDL.Items.Add(radListDataItem4);
-            this.updateSPW2_DDL.Items.Add(radListDataItem5);
+            radListDataItem1.Selected = true;
+            radListDataItem1.Tag = "0";
+            radListDataItem1.Text = "Заменять существующую форму";
+            radListDataItem2.Tag = "1";
+            radListDataItem2.Text = "Не загружать импортируемую форму";
+            this.updateSPW2_DDL.Items.Add(radListDataItem1);
+            this.updateSPW2_DDL.Items.Add(radListDataItem2);
             this.updateSPW2_DDL.Location = new System.Drawing.Point(3, 27);
             this.updateSPW2_DDL.Name = "updateSPW2_DDL";
             this.updateSPW2_DDL.Size = new System.Drawing.Size(270, 21);
@@ -840,16 +843,16 @@
             this.updateSZV_6_4_DDL.AutoCompleteDisplayMember = null;
             this.updateSZV_6_4_DDL.AutoCompleteValueMember = null;
             this.updateSZV_6_4_DDL.DropDownStyle = Telerik.WinControls.RadDropDownStyle.DropDownList;
-            radListDataItem6.Selected = true;
-            radListDataItem6.Tag = "0";
-            radListDataItem6.Text = "Заменять существующую форму";
-            radListDataItem7.Tag = "1";
-            radListDataItem7.Text = "Не загружать импортируемую форму";
-            radListDataItem8.Tag = "2";
-            radListDataItem8.Text = "Объединять загружаемые формы";
-            this.updateSZV_6_4_DDL.Items.Add(radListDataItem6);
-            this.updateSZV_6_4_DDL.Items.Add(radListDataItem7);
-            this.updateSZV_6_4_DDL.Items.Add(radListDataItem8);
+            radListDataItem3.Selected = true;
+            radListDataItem3.Tag = "0";
+            radListDataItem3.Text = "Заменять существующую форму";
+            radListDataItem4.Tag = "1";
+            radListDataItem4.Text = "Не загружать импортируемую форму";
+            radListDataItem5.Tag = "2";
+            radListDataItem5.Text = "Объединять загружаемые формы";
+            this.updateSZV_6_4_DDL.Items.Add(radListDataItem3);
+            this.updateSZV_6_4_DDL.Items.Add(radListDataItem4);
+            this.updateSZV_6_4_DDL.Items.Add(radListDataItem5);
             this.updateSZV_6_4_DDL.Location = new System.Drawing.Point(358, 27);
             this.updateSZV_6_4_DDL.Name = "updateSZV_6_4_DDL";
             this.updateSZV_6_4_DDL.Size = new System.Drawing.Size(270, 21);
@@ -915,16 +918,16 @@
             this.updateSZV_6_DDL.AutoCompleteDisplayMember = null;
             this.updateSZV_6_DDL.AutoCompleteValueMember = null;
             this.updateSZV_6_DDL.DropDownStyle = Telerik.WinControls.RadDropDownStyle.DropDownList;
-            radListDataItem9.Selected = true;
-            radListDataItem9.Tag = "0";
-            radListDataItem9.Text = "Заменять существующую форму";
-            radListDataItem10.Tag = "1";
-            radListDataItem10.Text = "Не загружать импортируемую форму";
-            radListDataItem11.Tag = "2";
-            radListDataItem11.Text = "Объединять загружаемые формы";
-            this.updateSZV_6_DDL.Items.Add(radListDataItem9);
-            this.updateSZV_6_DDL.Items.Add(radListDataItem10);
-            this.updateSZV_6_DDL.Items.Add(radListDataItem11);
+            radListDataItem6.Selected = true;
+            radListDataItem6.Tag = "0";
+            radListDataItem6.Text = "Заменять существующую форму";
+            radListDataItem7.Tag = "1";
+            radListDataItem7.Text = "Не загружать импортируемую форму";
+            radListDataItem8.Tag = "2";
+            radListDataItem8.Text = "Объединять загружаемые формы";
+            this.updateSZV_6_DDL.Items.Add(radListDataItem6);
+            this.updateSZV_6_DDL.Items.Add(radListDataItem7);
+            this.updateSZV_6_DDL.Items.Add(radListDataItem8);
             this.updateSZV_6_DDL.Location = new System.Drawing.Point(3, 27);
             this.updateSZV_6_DDL.Name = "updateSZV_6_DDL";
             this.updateSZV_6_DDL.Size = new System.Drawing.Size(270, 21);
@@ -944,32 +947,34 @@
             // 
             // radPageViewPage5
             // 
+            this.radPageViewPage5.Controls.Add(this.updateSZVTD_DDL);
+            this.radPageViewPage5.Controls.Add(this.radLabel9);
             this.radPageViewPage5.Controls.Add(this.updateDSW3_DDL);
             this.radPageViewPage5.Controls.Add(this.radLabel6);
             this.radPageViewPage5.Controls.Add(this.updateSZVM_DDL);
             this.radPageViewPage5.Controls.Add(this.radLabel7);
-            this.radPageViewPage5.ItemSize = new System.Drawing.SizeF(135F, 27F);
+            this.radPageViewPage5.ItemSize = new System.Drawing.SizeF(182F, 27F);
             this.radPageViewPage5.Location = new System.Drawing.Point(5, 31);
             this.radPageViewPage5.Name = "radPageViewPage5";
             this.radPageViewPage5.Size = new System.Drawing.Size(706, 294);
-            this.radPageViewPage5.Text = "Форма СЗВ-М, ДСВ-3";
+            this.radPageViewPage5.Text = "Форма СЗВ-ТД, СЗВ-М, ДСВ-3";
             // 
             // updateDSW3_DDL
             // 
             this.updateDSW3_DDL.AutoCompleteDisplayMember = null;
             this.updateDSW3_DDL.AutoCompleteValueMember = null;
             this.updateDSW3_DDL.DropDownStyle = Telerik.WinControls.RadDropDownStyle.DropDownList;
-            radListDataItem12.Selected = true;
-            radListDataItem12.Tag = "0";
-            radListDataItem12.Text = "Заменять существующую форму";
-            radListDataItem13.Tag = "1";
-            radListDataItem13.Text = "Не загружать импортируемую форму";
-            radListDataItem14.Tag = "2";
-            radListDataItem14.Text = "Объединить загружаемые формы";
-            this.updateDSW3_DDL.Items.Add(radListDataItem12);
-            this.updateDSW3_DDL.Items.Add(radListDataItem13);
-            this.updateDSW3_DDL.Items.Add(radListDataItem14);
-            this.updateDSW3_DDL.Location = new System.Drawing.Point(3, 78);
+            radListDataItem9.Selected = true;
+            radListDataItem9.Tag = "0";
+            radListDataItem9.Text = "Заменять существующую форму";
+            radListDataItem10.Tag = "1";
+            radListDataItem10.Text = "Не загружать импортируемую форму";
+            radListDataItem11.Tag = "2";
+            radListDataItem11.Text = "Объединить загружаемые формы";
+            this.updateDSW3_DDL.Items.Add(radListDataItem9);
+            this.updateDSW3_DDL.Items.Add(radListDataItem10);
+            this.updateDSW3_DDL.Items.Add(radListDataItem11);
+            this.updateDSW3_DDL.Location = new System.Drawing.Point(3, 129);
             this.updateDSW3_DDL.Name = "updateDSW3_DDL";
             this.updateDSW3_DDL.Size = new System.Drawing.Size(270, 21);
             this.updateDSW3_DDL.TabIndex = 7;
@@ -978,7 +983,7 @@
             // 
             // radLabel6
             // 
-            this.radLabel6.Location = new System.Drawing.Point(3, 54);
+            this.radLabel6.Location = new System.Drawing.Point(3, 105);
             this.radLabel6.Name = "radLabel6";
             this.radLabel6.Size = new System.Drawing.Size(294, 19);
             this.radLabel6.TabIndex = 6;
@@ -1000,7 +1005,7 @@
             this.updateSZVM_DDL.Items.Add(radListDataItem15);
             this.updateSZVM_DDL.Items.Add(radListDataItem16);
             this.updateSZVM_DDL.Items.Add(radListDataItem17);
-            this.updateSZVM_DDL.Location = new System.Drawing.Point(3, 27);
+            this.updateSZVM_DDL.Location = new System.Drawing.Point(3, 78);
             this.updateSZVM_DDL.Name = "updateSZVM_DDL";
             this.updateSZVM_DDL.Size = new System.Drawing.Size(270, 21);
             this.updateSZVM_DDL.TabIndex = 5;
@@ -1009,7 +1014,7 @@
             // 
             // radLabel7
             // 
-            this.radLabel7.Location = new System.Drawing.Point(3, 3);
+            this.radLabel7.Location = new System.Drawing.Point(3, 54);
             this.radLabel7.Name = "radLabel7";
             this.radLabel7.Size = new System.Drawing.Size(296, 19);
             this.radLabel7.TabIndex = 4;
@@ -1109,6 +1114,37 @@
             this.updateInsData.TabIndex = 0;
             this.updateInsData.Text = "Заменять данные Страхователя, при несовпадении со сведениями в базе данных";
             this.updateInsData.ThemeName = "Office2013Light";
+            // 
+            // updateSZVTD_DDL
+            // 
+            this.updateSZVTD_DDL.AutoCompleteDisplayMember = null;
+            this.updateSZVTD_DDL.AutoCompleteValueMember = null;
+            this.updateSZVTD_DDL.DropDownStyle = Telerik.WinControls.RadDropDownStyle.DropDownList;
+            radListDataItem21.Selected = true;
+            radListDataItem21.Tag = "0";
+            radListDataItem21.Text = "Заменять существующую форму";
+            radListDataItem22.Tag = "1";
+            radListDataItem22.Text = "Не загружать импортируемую форму";
+            radListDataItem23.Tag = "2";
+            radListDataItem23.Text = "Объединить загружаемые формы";
+            this.updateSZVTD_DDL.Items.Add(radListDataItem21);
+            this.updateSZVTD_DDL.Items.Add(radListDataItem22);
+            this.updateSZVTD_DDL.Items.Add(radListDataItem23);
+            this.updateSZVTD_DDL.Location = new System.Drawing.Point(3, 27);
+            this.updateSZVTD_DDL.Name = "updateSZVTD_DDL";
+            this.updateSZVTD_DDL.Size = new System.Drawing.Size(270, 21);
+            this.updateSZVTD_DDL.TabIndex = 9;
+            this.updateSZVTD_DDL.Text = "Заменять существующую форму";
+            this.updateSZVTD_DDL.ThemeName = "Office2013Light";
+            // 
+            // radLabel9
+            // 
+            this.radLabel9.Location = new System.Drawing.Point(3, 3);
+            this.radLabel9.Name = "radLabel9";
+            this.radLabel9.Size = new System.Drawing.Size(300, 19);
+            this.radLabel9.TabIndex = 8;
+            this.radLabel9.Text = "Действие при наличии в базе данных форм СЗВ-ТД";
+            this.radLabel9.ThemeName = "Office2013Light";
             // 
             // ImportXML
             // 
@@ -1214,6 +1250,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.radLabel8)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.updateStaffData)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.updateInsData)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.updateSZVTD_DDL)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel9)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
             this.ResumeLayout(false);
 
@@ -1284,5 +1322,7 @@
         private Telerik.WinControls.UI.RadCheckBox updatePayFeeSZV_STAJ;
         private Telerik.WinControls.UI.RadDropDownList updateODV_1_DDL;
         private Telerik.WinControls.UI.RadLabel radLabel8;
+        private Telerik.WinControls.UI.RadDropDownList updateSZVTD_DDL;
+        private Telerik.WinControls.UI.RadLabel radLabel9;
     }
 }

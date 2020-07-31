@@ -13,19 +13,25 @@ using System.Linq;
 using PU.Classes;
 using System.Net;
 using System.IO;
+using Telerik.WinControls.UI.Localization;
+using System.Reflection;
 
 namespace PU
 {
     public partial class InsurerEdit : Telerik.WinControls.UI.RadForm
     {
 //        public short typePayer = 0;
+        pu6Entities db = new pu6Entities();
         public string action;
         public Insurer insData = new Insurer();
+        public long InsID { get; set; }
         bool connGood;
         BackgroundWorker bw = new BackgroundWorker();
         BackgroundWorker bw_ccs = new BackgroundWorker();
         MethodsNonStatic methodsNonStatic = new MethodsNonStatic(); //экземпляр класса с настройками
         List<ErrList> errList = new List<ErrList>();
+        private bool cleanData = true;
+        bool allowClose = false;
 
 
         public InsurerEdit()
@@ -41,7 +47,7 @@ namespace PU
             {
                 case 2:
                     saveRkasvBtn.Enabled = false;
-                    radButton1.Enabled = false;
+                    saveBtn.Enabled = false;
                     break;
                 case 3:
                     RadMessageBox.Show("Доступ запрещен!");
@@ -106,16 +112,15 @@ namespace PU
 
         }
 
-        private void radButton2_Click(object sender, EventArgs e)
-        {
-            this.Close();
-        }
+
 
         private void GetData()
         {
             string regN = "";
             string snils = "";
             byte contrNum = 0;
+             
+
             var s = (this.RegNum_.Value.ToString()).Split('-');
             foreach (var item in s)
             {
@@ -151,40 +156,36 @@ namespace PU
             }
 
 
+            insData.TypePayer = radToggleButton1.ToggleState != ToggleState.On ? (byte)0 : (byte)1;
+            insData.RegNum = regN;
+            insData.INN = radToggleButton1.ToggleState != ToggleState.On ? this.INN_UR_.Text.ToString() : this.INN_IP_.Text.ToString();
+            insData.OKTMO = this.OKTMO_.Text.ToString();
+            insData.OKWED = this.OKWED_.Text.ToString();
+            insData.OKPO = this.OKPO_.Text.ToString();
+            insData.OrgLegalForm = this.OrgLegalForm_.Text;
+            insData.PhoneContact = this.PhoneContact_.Text;
+            insData.BossDolgn = this.BossDolgn_.Text;
+            insData.BossFIO = this.BossFIO_.Text;
+            insData.BossPrint = this.printBoss1CheckBox.Checked;
+            insData.BossDolgnDop = this.BossDolgnDop_.Text;
+            insData.BossFIODop = this.BossFIODop_.Text;
+            insData.BossDopPrint = this.printBoss2CheckBox.Checked;
+            insData.BuchgFIO = this.BuchgFIO_.Text;
+            insData.BuchgPrint = this.printBuhCheckBox.Checked;
+            insData.PerformerDolgn = this.PerformerDolgn_.Text;
+            insData.PerformerFIO = this.PerformerFIO_.Text;
+            insData.PerformerPrint = this.printIspolnCheckBox.Checked;
+            insData.Name = radToggleButton1.ToggleState != ToggleState.On ? this.Name_.Text : null;
+            insData.NameShort = radToggleButton1.ToggleState != ToggleState.On ? this.NameShort_.Text : null;
+            insData.LastName = radToggleButton1.ToggleState == ToggleState.On ? this.LastName_.Text : null;
+            insData.FirstName = radToggleButton1.ToggleState == ToggleState.On ? this.FirstName_.Text : null;
+            insData.MiddleName = radToggleButton1.ToggleState == ToggleState.On ? this.MiddleName_.Text : null;
+            insData.KPP = radToggleButton1.ToggleState != ToggleState.On ? this.KPP_.Text.ToString() : null;
+            insData.EGRUL = radToggleButton1.ToggleState != ToggleState.On ? this.EGRUL_.Text.ToString() : null;
+            insData.EGRIP = radToggleButton1.ToggleState == ToggleState.On ? this.EGRIP_.Text.ToString() : null;
+            insData.InsuranceNumber = radToggleButton1.ToggleState == ToggleState.On ? snils : null;
+            insData.YearBirth = radToggleButton1.ToggleState == ToggleState.On ? Convert.ToInt16(this.YearBirth_.Value) : (short)0;
 
-
-            insData = new Models.Insurer
-            {
-                TypePayer = radToggleButton1.ToggleState != ToggleState.On ? (byte)0 : (byte)1,
-                RegNum = regN,
-                INN = radToggleButton1.ToggleState != ToggleState.On ? this.INN_UR_.Text.ToString() : this.INN_IP_.Text.ToString(),
-                OKTMO = this.OKTMO_.Text.ToString(),
-                OKWED = this.OKWED_.Text.ToString(),
-                OKPO = this.OKPO_.Text.ToString(),
-                OrgLegalForm = this.OrgLegalForm_.Text,
-                PhoneContact = this.PhoneContact_.Text,
-                BossDolgn = this.BossDolgn_.Text,
-                BossFIO = this.BossFIO_.Text,
-                BossPrint = this.printBoss1CheckBox.Checked,
-                BossDolgnDop = this.BossDolgnDop_.Text,
-                BossFIODop = this.BossFIODop_.Text,
-                BossDopPrint = this.printBoss2CheckBox.Checked,
-                BuchgFIO = this.BuchgFIO_.Text,
-                BuchgPrint = this.printBuhCheckBox.Checked,
-                PerformerDolgn = this.PerformerDolgn_.Text,
-                PerformerFIO = this.PerformerFIO_.Text,
-                PerformerPrint = this.printIspolnCheckBox.Checked,
-                Name = radToggleButton1.ToggleState != ToggleState.On ? this.Name_.Text : null,
-                NameShort = radToggleButton1.ToggleState != ToggleState.On ? this.NameShort_.Text : null,
-                LastName = radToggleButton1.ToggleState == ToggleState.On ? this.LastName_.Text : null,
-                FirstName = radToggleButton1.ToggleState == ToggleState.On ? this.FirstName_.Text : null,
-                MiddleName = radToggleButton1.ToggleState == ToggleState.On ? this.MiddleName_.Text : null,
-                KPP = radToggleButton1.ToggleState != ToggleState.On ? this.KPP_.Text.ToString() : null,
-                EGRUL = radToggleButton1.ToggleState != ToggleState.On ? this.EGRUL_.Text.ToString() : null,
-                EGRIP = radToggleButton1.ToggleState == ToggleState.On ? this.EGRIP_.Text.ToString() : null,
-                InsuranceNumber = radToggleButton1.ToggleState == ToggleState.On ? snils : null,
-                YearBirth = radToggleButton1.ToggleState == ToggleState.On ? Convert.ToInt16(this.YearBirth_.Value) : (short)0
-            };
             if (contrNum != 0)
             {
                 insData.ControlNumber = contrNum;
@@ -235,81 +236,11 @@ namespace PU
             return errList.Count() == 0;
         }
 
-        private void radButton1_Click(object sender, EventArgs e)
-        {
-            if (validation())
-            {
-                GetData();
-
-                if (Options.InsurerFolders.Any(x => x.regnum == insData.RegNum))
-                {
-                    var p = Options.InsurerFolders.FirstOrDefault(x => x.regnum == insData.RegNum);
-                    Options.InsurerFolders.Remove(p);
-                }
-
-                if (Options.InsID == insData.ID)
-                {
-                    Options.CurrentInsurerFolders.regnum = insData.RegNum;
-                    Options.CurrentInsurerFolders.importPath = importPathBrowser.Value;
-                    Options.CurrentInsurerFolders.exportPath = exportPathBrowser.Value;
-                }
-
-                if (!String.IsNullOrEmpty(importPathBrowser.Value) || !String.IsNullOrEmpty(exportPathBrowser.Value))
-                {
-                    InsurerImportExportPath param = new InsurerImportExportPath
-                    {
-                        regnum = insData.RegNum,
-                        importPath = importPathBrowser.Value,
-                        exportPath = exportPathBrowser.Value
-
-                    };
-                    Options.InsurerFolders.Add(param);
-                }
-                methodsNonStatic.writeSetting();
-
-
-                string result = "";
-                switch (action)
-                {
-                    case "add":
-                        result = InsurerFrm.SelfRef.add(insData);
-                        break;
-                    case "edit":
-                        result = InsurerFrm.SelfRef.edit(insData);
-                        break;
-                }
-
-
-                if (result == "")
-                {
-                    /*       DocTypes main = this.Owner as DocTypes;
-                           if (main != null)
-                           {
-                               main.label1.Text = "Test";
-                    
-                           }
-                     * */
-                    insData = new Insurer();
-                    this.Close();
-                }
-                else
-                {
-                    RadMessageBox.Show("При сохранении данных произошла ошибка! " + result, "Ошибка", MessageBoxButtons.OK, RadMessageIcon.Error);
-                };
-            }
-            else
-            {
-                foreach (var item in errList)
-                {
-                    Methods.showAlert("Внимание. Ошибка заполнения.", item.name, this.ThemeName, 100);
-                }
-
-            }
-        }
 
         private void InsurerEdit_Load(object sender, EventArgs e)
         {
             Telerik.WinControls.RadMessageBox.SetThemeName(this.ThemeName);
+            RadGridLocalizationProvider.CurrentProvider = new MyRussianRadGridLocalizationProvider();
             ThemeResolutionService.ApplyThemeToControlTree(this, this.ThemeName);
 
             radPageView1.SelectedPage = radPageView1.Pages[0];
@@ -350,101 +281,130 @@ namespace PU
 
             if (action == "edit")
             {
-                if (Options.InsurerFolders.Any(x => x.regnum == insData.RegNum))
+                if (db.Insurer.Any(x => x.ID == InsID))
                 {
-                    var p = Options.InsurerFolders.FirstOrDefault(x => x.regnum == insData.RegNum);
-                    importPathBrowser.Value = p.importPath;
-                    exportPathBrowser.Value = p.exportPath;
+
+                    if (Options.InsurerFolders.Any(x => x.regnum == insData.RegNum))
+                    {
+                        var p = Options.InsurerFolders.FirstOrDefault(x => x.regnum == insData.RegNum);
+                        importPathBrowser.Value = p.importPath;
+                        exportPathBrowser.Value = p.exportPath;
+                    }
+
+                    insData = db.Insurer.FirstOrDefault(x => x.ID == InsID);
+
+                    rkasvToggle.IsOn = true; // если Редактирование, то по дефолту автозаполнение отключено
+                    radToggleButton1.ToggleState = insData.TypePayer == 0 ? ToggleState.Off : ToggleState.On;
+                    RegNum_.Text = insData.RegNum;
+                    OKTMO_.Text = insData.OKTMO;
+                    OKPO_.Text = insData.OKPO;
+                    OKWED_.Text = insData.OKWED;
+                    OrgLegalForm_.Text = insData.OrgLegalForm;
+                    PhoneContact_.Text = insData.PhoneContact;
+
+                    BossDolgn_.Text = insData.BossDolgn;
+                    BossFIO_.Text = insData.BossFIO;
+                    printBoss1CheckBox.Checked = insData.BossPrint.HasValue ? insData.BossPrint.Value : false;
+                    BossDolgnDop_.Text = insData.BossDolgnDop;
+                    BossFIODop_.Text = insData.BossFIODop;
+                    printBoss2CheckBox.Checked = insData.BossDopPrint.HasValue ? insData.BossDopPrint.Value : false;
+                    BuchgFIO_.Text = insData.BuchgFIO;
+                    printBuhCheckBox.Checked = insData.BuchgPrint.HasValue ? insData.BuchgPrint.Value : false;
+                    PerformerDolgn_.Text = insData.PerformerDolgn;
+                    PerformerFIO_.Text = insData.PerformerFIO;
+                    printIspolnCheckBox.Checked = insData.PerformerPrint.HasValue ? insData.PerformerPrint.Value : false;
+
+                    if (insData.TypePayer == 0) // если организация
+                    {
+                        Name_.Text = insData.Name;
+                        NameShort_.Text = insData.NameShort;
+                        KPP_.Text = insData.KPP;
+                        EGRUL_.Text = insData.EGRUL;
+                        INN_UR_.Text = insData.INN;
+                    }
+                    else // если физ лицо
+                    {
+                        LastName_.Text = insData.LastName;
+                        FirstName_.Text = insData.FirstName;
+                        MiddleName_.Text = insData.MiddleName;
+                        INN_IP_.Text = insData.INN;
+                        YearBirth_.Value = insData.YearBirth.HasValue ? decimal.Parse(insData.YearBirth.Value.ToString()) : 0;
+                        EGRIP_.Text = insData.EGRIP;
+                        InsuranceNumber_.Text = insData.InsuranceNumber + (insData.ControlNumber.HasValue ? insData.ControlNumber.Value.ToString() : "");
+
+                    }
+
+                }
+                else
+                {
+                    RadMessageBox.Show("Не удалось загрузить данные Страхователя из базы данных!");
                 }
 
-                rkasvToggle.IsOn = true; // если Редактирование, то по дефолту автозаполнение отключено
-                radToggleButton1.ToggleState = insData.TypePayer == 0 ? ToggleState.Off : ToggleState.On;
-                RegNum_.Text = insData.RegNum;
-                OKTMO_.Text = insData.OKTMO;
-                OKPO_.Text = insData.OKPO;
-                OKWED_.Text = insData.OKWED;
-                OrgLegalForm_.Text = insData.OrgLegalForm;
-                PhoneContact_.Text = insData.PhoneContact;
-
-                BossDolgn_.Text = insData.BossDolgn;
-                BossFIO_.Text = insData.BossFIO;
-                printBoss1CheckBox.Checked = insData.BossPrint.HasValue ? insData.BossPrint.Value : false;
-                BossDolgnDop_.Text = insData.BossDolgnDop;
-                BossFIODop_.Text = insData.BossFIODop;
-                printBoss2CheckBox.Checked = insData.BossDopPrint.HasValue ? insData.BossDopPrint.Value : false;
-                BuchgFIO_.Text = insData.BuchgFIO;
-                printBuhCheckBox.Checked = insData.BuchgPrint.HasValue ? insData.BuchgPrint.Value : false;
-                PerformerDolgn_.Text = insData.PerformerDolgn;
-                PerformerFIO_.Text = insData.PerformerFIO;
-                printIspolnCheckBox.Checked = insData.PerformerPrint.HasValue ? insData.PerformerPrint.Value : false;
-
-                if (insData.TypePayer == 0) // если организация
-                {
-                    Name_.Text = insData.Name;
-                    NameShort_.Text = insData.NameShort;
-                    KPP_.Text = insData.KPP;
-                    EGRUL_.Text = insData.EGRUL;
-                    INN_UR_.Text = insData.INN;
-                }
-                else // если физ лицо
-                {
-                    LastName_.Text = insData.LastName;
-                    FirstName_.Text = insData.FirstName;
-                    MiddleName_.Text = insData.MiddleName;
-                    INN_IP_.Text = insData.INN;
-                    YearBirth_.Value = insData.YearBirth.HasValue ? decimal.Parse(insData.YearBirth.Value.ToString()) : 0;
-                    EGRIP_.Text = insData.EGRIP;
-                    InsuranceNumber_.Text = insData.InsuranceNumber + (insData.ControlNumber.HasValue ? insData.ControlNumber.Value.ToString() : "");
-
-                }
-
-
-                
+            }
+            else
+            {
+                insData = new Insurer();
             }
         }
 
         private void RegNum__Leave(object sender, EventArgs e)
         {
-            errorRkasvBox.ResetText();
-
-
-            if (!rkasvToggle.IsOn)  // если включено автозаполнение
+            if (RegNum_.Text != RegNum_.NullText && RegNum_.Text.Contains("_"))  // если регномер не дозаполнен
             {
-                if (connGood)
+                if ((DialogResult)RadMessageBox.Show("Регистрационный номер заполнен не правильно! Вернуться для исправления?", "Ошибка заполнения", MessageBoxButtons.YesNo, RadMessageIcon.Question, MessageBoxDefaultButton.Button3) == System.Windows.Forms.DialogResult.Yes)
                 {
-                    OKTMO_.ResetText();
-                    OKPO_.ResetText();
-                    OKWED_.ResetText();
-                    OrgLegalForm_.ResetText();
-                    PhoneContact_.ResetText();
-                    BossDolgn_.ResetText();
-                    BossFIO_.ResetText();
-                    BossDolgnDop_.ResetText();
-                    BossFIODop_.ResetText();
-                    BuchgFIO_.ResetText();
-                    PerformerDolgn_.ResetText();
-                    PerformerFIO_.ResetText();
-                    Name_.ResetText();
-                    NameShort_.ResetText();
-                    KPP_.ResetText();
-                    EGRUL_.ResetText();
-                    INN_UR_.ResetText();
-                    LastName_.ResetText();
-                    FirstName_.ResetText();
-                    MiddleName_.ResetText();
-                    INN_IP_.ResetText();
-                    YearBirth_.ResetText();
-                    EGRIP_.ResetText();
-                    InsuranceNumber_.Clear();
+                    RegNum_.Focus();
                 }
-
-                while (bw.IsBusy)
+                else
                 {
-                    Application.DoEvents();
-                }
+                    RegNum_.Value = RegNum_.NullText;
 
-                if (!bw.IsBusy)
-                    bw.RunWorkerAsync();
+                }
+            }
+            else
+            {
+
+                errorRkasvBox.ResetText();
+
+
+                if (!rkasvToggle.IsOn)  // если включено автозаполнение
+                {
+                    if (connGood)
+                    {
+                        OKTMO_.ResetText();
+                        OKPO_.ResetText();
+                        OKWED_.ResetText();
+                        OrgLegalForm_.ResetText();
+                        PhoneContact_.ResetText();
+                        BossDolgn_.ResetText();
+                        BossFIO_.ResetText();
+                        BossDolgnDop_.ResetText();
+                        BossFIODop_.ResetText();
+                        BuchgFIO_.ResetText();
+                        PerformerDolgn_.ResetText();
+                        PerformerFIO_.ResetText();
+                        Name_.ResetText();
+                        NameShort_.ResetText();
+                        KPP_.ResetText();
+                        EGRUL_.ResetText();
+                        INN_UR_.ResetText();
+                        LastName_.ResetText();
+                        FirstName_.ResetText();
+                        MiddleName_.ResetText();
+                        INN_IP_.ResetText();
+                        YearBirth_.ResetText();
+                        EGRIP_.ResetText();
+                        InsuranceNumber_.Clear();
+                    }
+
+                    while (bw.IsBusy)
+                    {
+                        Application.DoEvents();
+                    }
+
+                    if (!bw.IsBusy)
+                        bw.RunWorkerAsync();
+                }
             }
         }
 
@@ -804,7 +764,157 @@ namespace PU
                 bw_ccs.Dispose();
             }
 
+
+            if (allowClose)
+            {
+                if (cleanData)
+                    insData = null;
+                db.Dispose();
+            }
+            else
+            {
+                DialogResult dialogResult = RadMessageBox.Show("Вы хотите сохранить изменения перед закрытием формы?", "Сохранение записи!", MessageBoxButtons.YesNoCancel, RadMessageIcon.Question, MessageBoxDefaultButton.Button3);
+                switch (dialogResult)
+                {
+                    case DialogResult.Yes:
+                        saveBtn_Click(null, null);
+                        break;
+                    case DialogResult.No:
+                        if (cleanData)
+                            insData = null;
+                        db.Dispose();
+                        break;
+                    case DialogResult.Cancel:
+                        e.Cancel = true;
+                        return;
+                }
+
+            }
+
         }
+
+        private void saveBtn_Click(object sender, EventArgs e)
+        {
+            if (validation())
+            {
+                cleanData = true;
+
+                GetData();
+
+                if (Options.InsurerFolders.Any(x => x.regnum == insData.RegNum))
+                {
+                    var p = Options.InsurerFolders.FirstOrDefault(x => x.regnum == insData.RegNum);
+                    Options.InsurerFolders.Remove(p);
+                    methodsNonStatic.writeSetting();
+                }
+
+                if (Options.InsID == insData.ID)
+                {
+                    Options.CurrentInsurerFolders.regnum = insData.RegNum;
+                    Options.CurrentInsurerFolders.importPath = importPathBrowser.Value;
+                    Options.CurrentInsurerFolders.exportPath = exportPathBrowser.Value;
+                    methodsNonStatic.writeSetting();
+                }
+
+                if (!String.IsNullOrEmpty(importPathBrowser.Value) || !String.IsNullOrEmpty(exportPathBrowser.Value))
+                {
+                    InsurerImportExportPath param = new InsurerImportExportPath
+                    {
+                        regnum = insData.RegNum,
+                        importPath = importPathBrowser.Value,
+                        exportPath = exportPathBrowser.Value
+
+                    };
+                    Options.InsurerFolders.Add(param);
+                    methodsNonStatic.writeSetting();
+                }
+
+
+                string result = "";
+                switch (action)
+                {
+                    case "add":
+                        //  result = InsurerFrm.SelfRef.add(insData);
+
+                        try
+                        {
+                            if (!db.Insurer.Any(x => x.RegNum == insData.RegNum))
+                            {
+                                db.Insurer.Add(insData);
+
+                                try
+                                {
+                                    db.SaveChanges();
+                                    cleanData = false;
+                                }
+                                catch (Exception ex)
+                                {
+                                    RadMessageBox.Show(this, "Во время сохранения данных Страхователя произошла ошибка! Код ошибки - " + ex.Message);
+                                }
+                            }
+                            else
+                                result = "Страхователь с рег. номером " + insData.RegNum + " уже существует в БД!";
+                        }
+                        catch (Exception ex)
+                        {
+                            result = ex.Message;
+                        }
+
+
+                        break;
+                    case "edit":
+                        // выбираем из базы исходную запись по идешнику
+                        db = new pu6Entities();
+
+                        Insurer Ins_ish = db.Insurer.FirstOrDefault(x => x.ID == insData.ID);
+
+                        try
+                        {
+                            var fields = typeof(Insurer).GetFields(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance);
+                            var names = Array.ConvertAll(fields, field => field.Name);
+
+                            foreach (var itemName_ in names)
+                            {
+                                string itemName = itemName_.TrimStart('_');
+                                var properties = insData.GetType().GetProperty(itemName);
+                                if (properties != null)
+                                {
+                                    object value = properties.GetValue(insData, null);
+                                    var data = value;
+
+                                    Ins_ish.GetType().GetProperty(itemName).SetValue(Ins_ish, data, null);
+                                }
+
+                            }
+
+
+                            // сохраняем модифицированную запись обратно в бд
+                            db.Entry(Ins_ish).State = System.Data.Entity.EntityState.Modified;
+                            // сохраняем модифицированную запись обратно в бд
+                            db.SaveChanges();
+                        }
+                        catch (Exception ex)
+                        {
+                            RadMessageBox.Show("При сохранении основных данных произошла ошибка. Код ошибки: " + ex.Message);
+                        }
+
+
+
+                        break;
+                }
+
+                allowClose = true;
+                this.Close();
+
+            }
+        }
+
+        private void closeBtn_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+
 
 
 

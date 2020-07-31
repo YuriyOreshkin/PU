@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
+using System.Data.Entity;
 using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
@@ -123,7 +123,7 @@ namespace PU.FormsRSW2014
                     {
                         newItem.DateEnd = pc.DateEnd.Value.Date;
                     }
-                    db.PlatCategory.AddObject(newItem);
+                    db.PlatCategory.Add(newItem);
 
                     db.SaveChanges();
                     dataGrid_upd();
@@ -172,7 +172,7 @@ namespace PU.FormsRSW2014
                     else
                         Item.DateEnd = null;
 
-                    db.ObjectStateManager.ChangeObjectState(Item, EntityState.Modified);
+                    db.Entry(Item).State = EntityState.Modified;
                     db.SaveChanges();
                     dataGrid_upd();
                     radGridView1.Rows[rowindex].IsCurrent = true;
@@ -336,14 +336,14 @@ namespace PU.FormsRSW2014
                             {
                                 foreach (var item in TarPlats)
                                 {
-                                    db.TariffPlat.DeleteObject(item);
+                                    db.TariffPlat.Remove(item);
                                 }
                             }
                             finally
                             {
                                 db.SaveChanges();
 
-                                db.PlatCategory.DeleteObject(PlatCat);
+                                db.PlatCategory.Remove(PlatCat);
                                 db.SaveChanges();
                                 dataGrid_upd();
 
@@ -481,7 +481,7 @@ namespace PU.FormsRSW2014
                             tp_edit.StrahPercent1967 = tp.StrahPercent1967;
                             tp_edit.TFOMS_Percent = tp.TFOMS_Percent;
 
-                            db.ObjectStateManager.ChangeObjectState(tp_edit, EntityState.Modified);
+                            db.Entry(tp_edit).State = EntityState.Modified;
                             cnt_good++;
                             
                         }
@@ -500,7 +500,7 @@ namespace PU.FormsRSW2014
                             TFOMS_Percent = tp.TFOMS_Percent
                         };
 
-                        db.TariffPlat.AddObject(tp_new);
+                        db.TariffPlat.Add(tp_new);
                         cnt_good++;
                     }
                 }
