@@ -1,0 +1,147 @@
+<?xml version="1.0"?>
+<xs:schema version="1.0" targetNamespace="http://пф.рф/ОТАФ" xmlns="http://пф.рф/ОТАФ" xmlns:ОТАФ="http://пф.рф/ОТАФ" xmlns:АФ="http://пф.рф/АФ" xmlns:УТ="http://пф.рф/унифицированныеТипы/2014-01-01" xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:import namespace="http://пф.рф/унифицированныеТипы/2014-01-01" schemaLocation="../../УнифТипы_2014-01-01.xsd"/>
+	<xs:import namespace="http://пф.рф/АФ" schemaLocation="../../ТипыОбщие.xsd"/>
+	<xs:annotation>
+		<xs:documentation>Описание тестов для Альбома форматов</xs:documentation>
+	</xs:annotation>
+	<xs:element name="Тесты">
+		<xs:annotation>
+			<xs:documentation>Корневой элемент. Описание тестов для одного формата из Альбома форматов</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="КодИО" type="УТ:ТипНепустаяСтрока">
+					<xs:annotation>
+						<xs:documentation>Код информационного обмена формата, для которого описываются тесты. Обязательно указывается, т.к. в разных ИО допускаются форматы документов одинаковыми кодами.</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="КодДокумента" type="УТ:ТипНепустаяСтрока">
+					<xs:annotation>
+						<xs:documentation>Код документа формата, для которого описываются тесты. Используется при формировании кода проверки.</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="ПространствоИмен" type="xs:anyURI">
+					<xs:annotation>
+						<xs:documentation>Пространство имен (namespace), документа, для которого описываются тесты</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="Тест" maxOccurs="unbounded">
+					<xs:annotation>
+						<xs:documentation>Описание одного теста. Один тест всегда соответствует одному тестируемому XML-файлу и перечню тестируемых по этому документу проверок с указанием ожидаемых результатов</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="ТестируемыйДокумент" type="АФ:XMLФайл">
+								<xs:annotation>
+									<xs:documentation>Путь до тестируемого документа (XML-файла с документом)</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="Комментарий" type="УТ:ТипНепустаяСтрока" minOccurs="0">
+								<xs:annotation>
+									<xs:documentation>Комментарий специалиста к тесту</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="ДатаВремя" type="xs:dateTime">
+								<xs:annotation>
+									<xs:documentation>Дата и время создания (обновления) описания теста</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="ФИОспециалиста" type="УТ:ТипФИО">
+								<xs:annotation>
+									<xs:documentation>ФИО пользователя, подготовившего тест;</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="ОжидаемыеРезультаты">
+								<xs:annotation>
+									<xs:documentation>Перечень ожидаемых результатов проверки: список проверок из УПП, тестируемых на указанном XML-файле, с ожидаемыми значениями кода результата проверки</xs:documentation>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="Проверка" maxOccurs="unbounded">
+											<xs:annotation>
+												<xs:documentation>Информация о проверке: описание, ожидаемый код результата, список ожидаемых ошибок</xs:documentation>
+											</xs:annotation>
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element name="ID" type="xs:string">
+														<xs:annotation>
+															<xs:documentation>Идентификатор проверки</xs:documentation>
+														</xs:annotation>
+													</xs:element>
+													<xs:element name="ОписаниеПроверки" type="УТ:ТипНепустаяСтрока">
+														<xs:annotation>
+															<xs:documentation>Текстовое описание проверки</xs:documentation>
+														</xs:annotation>
+													</xs:element>
+													<xs:element name="КодОжидаемогоРезультата" type="АФ:ТипКодРезультата">
+														<xs:annotation>
+															<xs:documentation>Код результата, ожидаемый к возвращению проверкой. Код "00" означает успешную проверку</xs:documentation>
+														</xs:annotation>
+													</xs:element>
+													<xs:element name="Ошибки" minOccurs="0">
+														<xs:annotation>
+															<xs:documentation>Список ожидаемых ошибок по результатам проверки. Отсутствие списка ожидиаемых ошибок так же является ожидаемым результатом.</xs:documentation>
+														</xs:annotation>
+														<xs:complexType>
+															<xs:sequence>
+																<xs:element name="Ошибка" maxOccurs="unbounded">
+																	<xs:annotation>
+																		<xs:documentation>Список ошибок</xs:documentation>
+																	</xs:annotation>
+																	<xs:complexType>
+																		<xs:sequence>
+																			<xs:element name="Строка" type="УТ:ТипНепустаяСтрока">
+																				<xs:annotation>
+																					<xs:documentation>Номер строки в проверемом файле, приведенного к канонической форме, в которой находится элемент, не прошедший проверку. Используется для визуального контроля человеком</xs:documentation>
+																				</xs:annotation>
+																			</xs:element>
+																			<xs:element name="ПутьДоЭлемента" type="УТ:ТипНепустаяСтрока">
+																				<xs:annotation>
+																					<xs:documentation>Xpath-путь до элемента, не прошедшего проверку.Используется для программной навигации по проверяемому документу для отработк ошибок</xs:documentation>
+																				</xs:annotation>
+																			</xs:element>
+																			<xs:element name="Объект" minOccurs="0">
+																				<xs:annotation>
+																					<xs:documentation>Идентификатор объекта, в котором обнаружена ошибка</xs:documentation>
+																				</xs:annotation>
+																				<xs:complexType>
+																					<xs:sequence>
+																						<xs:element name="Наименование" type="УТ:ТипНепустаяСтрока" minOccurs="0"/>
+																						<xs:element name="Значение" type="УТ:ТипНепустаяСтрока"/>
+																					</xs:sequence>
+																				</xs:complexType>
+																			</xs:element>
+																		</xs:sequence>
+																	</xs:complexType>
+																</xs:element>
+															</xs:sequence>
+														</xs:complexType>
+													</xs:element>
+												</xs:sequence>
+											</xs:complexType>
+										</xs:element>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+						<xs:attribute name="Статус" use="required">
+							<xs:annotation>
+								<xs:documentation>Статус теста:
+								Проект - тест находится в разработке, не используется в проводящих тестирование системах,
+								Действующий - тест запущен в эксплуатацию, используется проводящими тестирование системами</xs:documentation>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:enumeration value="Проект"/>
+									<xs:enumeration value="Действующий"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:attribute>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

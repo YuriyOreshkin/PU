@@ -1,0 +1,248 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema version="2.0" xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" xmlns="http://пф.рф/ВС/ФС/АВП-ПУ/2017-05-21" xmlns:УТ="http://пф.рф/унифицированныеТипы/2014-01-01" xmlns:ФС="http://пф.рф/ВС/ФС/типы/2017-05-21"
+           xmlns:АФ="http://пф.рф/АФ" targetNamespace="http://пф.рф/ВС/ФС/АВП-ПУ/2017-05-21">
+
+	<xs:import namespace="http://пф.рф/унифицированныеТипы/2014-01-01" schemaLocation="../../../УнифТипы_2014-01-01.xsd"/>
+	<xs:import namespace="http://пф.рф/АФ" schemaLocation="../../../ТипыОбщие.xsd"/>
+	<xs:import namespace="http://пф.рф/ВС/ФС/типы/2017-05-21" schemaLocation="ТипыФС_2017-05-21.xsd"/>
+	<xs:import namespace="http://www.w3.org/2000/09/xmldsig#" schemaLocation="../../../xmldsig_core_schema.xsd"/>
+
+	<xs:annotation>
+		<xs:documentation>Акт о выявлении правонарушения в сфере законодательства РФ о ПУ в системе ОПС</xs:documentation>
+	</xs:annotation>
+
+	<xs:element name="ЭДПФР">
+		<xs:annotation>
+			<xs:documentation>Корневой элемент. Электронный документ АВП-ПУ (Акт о выявлении правонарушения в сфере законодательства РФ о ПУ в системе ОПС). Содержит сведения самого документа и служебную информацию об электронном документе.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="АВП-ПУ">
+					<xs:annotation>
+						<xs:documentation>Акт о выявлении правонарушения в сфере законодательства РФ о ПУ в системе ОПС</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="ТерриториальныйОрганПФР" type="ФС:ТипСведенияТОПФР">
+								<xs:annotation>
+									<xs:documentation>Сведения о территориальном органе ПФР, который проводил проверку</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="Реквизиты" type="УТ:ТипРеквизитыДокумента">
+								<xs:annotation>
+									<xs:documentation>Дата составления и номер акта о выявлении правонарушения</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="Проверяющий" type="УТ:ТипДолжностноеЛицо">
+								<xs:annotation>
+									<xs:documentation>ФИО и должность должностного лица, проводившего проверку</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="Страхователь" type="ФС:ТипСтрахователь">
+								<xs:annotation>
+									<xs:documentation>Данные о проверяемом юридическом  или физическом  лице (страхователе)</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="Основания">
+								<xs:annotation>
+									<xs:documentation>Блок сведений о документах на основании, которых выявлено правонарушение</xs:documentation>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="Документ" maxOccurs="unbounded">
+											<xs:annotation>
+												<xs:documentation>Сведения о документе, на основании которого выявлено правонарушение</xs:documentation>
+											</xs:annotation>
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element name="Тип" type="УТ:ТипНепустаяСтрока">
+														<xs:annotation>
+															<xs:documentation>Тип документа</xs:documentation>
+														</xs:annotation>
+													</xs:element>
+													<xs:element name="ДатаПредставления" type="xs:date">
+														<xs:annotation>
+															<xs:documentation>Дата представления документа</xs:documentation>
+														</xs:annotation>
+													</xs:element>
+												</xs:sequence>
+											</xs:complexType>
+										</xs:element>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="ПериодПроверки">
+								<xs:annotation>
+									<xs:documentation>Период, за который проводилась проверка</xs:documentation>
+								</xs:annotation>
+								<xs:simpleType>
+									<xs:restriction base="xs:string">
+										<xs:pattern value="МС\.((0[1-9]{1})|(1[0-2]))\.\d{4}"></xs:pattern>
+										<xs:pattern value="КВ\.0[1-4]\.\d{4}"></xs:pattern>
+										<xs:pattern value="ГД\.00\.\d{4}"></xs:pattern>
+									</xs:restriction>
+								</xs:simpleType>
+							</xs:element>
+							<xs:element name="Документы" minOccurs="0">
+								<xs:annotation>
+									<xs:documentation>Документы, на основании которых проведена проверка. Указываются виды проверенных документов и при необходимости перечень конкретных документов</xs:documentation>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="Документ" type="УТ:ТипНепустаяСтрока" maxOccurs="unbounded">
+											<xs:annotation>
+												<xs:documentation>Вид документа и при необходимости перечень конкретных документов</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="КоличествоЗЛ" type="xs:positiveInteger">
+								<xs:annotation>
+									<xs:documentation>Количество застрахованных лиц, в отношении которых выявлены нарушения</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="Нарушения" minOccurs="0">
+								<xs:annotation>
+									<xs:documentation>Факты нарушения. Приводятся документально подтвержденные факты нарушения законодательства РФ об индивидуальном (персонифицированном) учете в системе ОПС</xs:documentation>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="Нарушение" type="УТ:ТипНепустаяСтрока" maxOccurs="unbounded">
+											<xs:annotation>
+												<xs:documentation>Документально подтвержденный факт нарушения законодательства РФ об индивидуальном (персонифицированном) учете в системе ОПС</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="Правонарушения">
+								<xs:annotation>
+									<xs:documentation>Сведения о составе правонарушений</xs:documentation>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="Правонарушение" maxOccurs="unbounded">
+											<xs:annotation>
+												<xs:documentation>Указывается Часть статьи 17 Федерального закона от 1 апреля 1996 г. № 27-ФЗ  и состав правонарушения</xs:documentation>
+											</xs:annotation>
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element name="Часть" type="УТ:ТипНепустаяСтрока" minOccurs="0">
+														<xs:annotation>
+															<xs:documentation>Часть статьи 17 Федерального закона от 1 апреля 1996 г. № 27-ФЗ, в соответствии с которой определен состав правонарушения</xs:documentation>
+														</xs:annotation>
+													</xs:element>
+													<xs:element name="Состав" type="УТ:ТипНепустаяСтрока">
+														<xs:annotation>
+															<xs:documentation>Состав правонарушения</xs:documentation>
+														</xs:annotation>
+													</xs:element>
+												</xs:sequence>
+											</xs:complexType>
+										</xs:element>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="ЛистовПриложения" type="xs:nonNegativeInteger" minOccurs="0">
+								<xs:annotation>
+									<xs:documentation>Количество листов приложения</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="РассмотрениеАкта">
+								<xs:annotation>
+									<xs:documentation>Сведения о дате, времени и месте рассмотрения акта</xs:documentation>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="Время" type="xs:time">
+											<xs:annotation>
+												<xs:documentation>Время рассмотрения акта в территориальном органе ПФР</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="Дата" type="xs:date">
+											<xs:annotation>
+												<xs:documentation>Дата рассмотрения акта в территориальном органе ПФР</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="Руководитель" type="УТ:ТипДолжностноеЛицо" minOccurs="0">
+								<xs:annotation>
+									<xs:documentation>Должность и ФИО руководителя юридического лица (обособленного подразделения)</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="Представитель" type="УТ:ТипФИО" minOccurs="0">
+								<xs:annotation>
+									<xs:documentation>ФИО уполномоченного представителя индивидуального предпринимателя, физического лица</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="ВручениеАкта" minOccurs="0">
+								<xs:annotation>
+									<xs:documentation>Блок сведений, заполняемый в случае вручения акта лично страхователю</xs:documentation>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="КоличествоПриложений" type="xs:nonNegativeInteger" minOccurs="0">
+											<xs:annotation>
+												<xs:documentation>Количество приложений</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="КоличествоЛистовАкта" type="xs:nonNegativeInteger" minOccurs="0">
+											<xs:annotation>
+												<xs:documentation>Количество листов акта</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="Дата" type="xs:date">
+											<xs:annotation>
+												<xs:documentation>Дата получения акта лично</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="Уклонение" minOccurs="0">
+								<xs:annotation>
+									<xs:documentation>Блок сведений, заполняемый в случае уклонения страхователем от подписи и получения акта</xs:documentation>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="СпособНаправления">
+											<xs:annotation>
+												<xs:documentation>Способ направления акта страхователю. Возможные варианты: 
+												1 - по почте, 
+												2 - по телекоммуникационным каналам связи</xs:documentation>
+											</xs:annotation>
+											<xs:simpleType>
+												<xs:restriction base="xs:integer">
+													<xs:enumeration value="1"></xs:enumeration>
+													<xs:enumeration value="2"></xs:enumeration>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:element>
+										<xs:element name="Дата" type="xs:date">
+											<xs:annotation>
+												<xs:documentation>Дата фиксации факта уклонения от подписи и получения акта</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="ЭлектроннаяПодпись" xmlns="http://www.w3.org/2000/09/xmldsig#" type="SignatureType" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Электронная подпись (ЭП) в соответствии со спецификацией XMLDsig</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="СлужебнаяИнформация" type="АФ:ТипСлужебнаяИнформация">
+					<xs:annotation>
+						<xs:documentation>Служебная информация об электронном документе</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

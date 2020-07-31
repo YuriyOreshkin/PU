@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema version="2.0" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://пф.рф/ВС/ОДВ-1/2017-01-01" xmlns:УТ="http://пф.рф/унифицированныеТипы/2014-01-01" xmlns:АФ="http://пф.рф/АФ" xmlns:АФ2="http://пф.рф/АФ/2016-06-21"
+           targetNamespace="http://пф.рф/ВС/ОДВ-1/2017-01-01" xmlns:ВС="http://пф.рф/ВС/типы/2014-01-01" xmlns:РВ="http://пф.рф/ВС/типыРВ/2014-01-01" xmlns:ИС="http://пф.рф/ВС/типыИС/2017-01-01" elementFormDefault="qualified">
+
+	<xs:import namespace="http://пф.рф/унифицированныеТипы/2014-01-01" schemaLocation="../../../УнифТипы_2014-01-01.xsd"/>
+	<xs:import namespace="http://пф.рф/ВС/типы/2014-01-01" schemaLocation="../../ТипыВС_2014-01-01.xsd"/>
+	<xs:import namespace="http://пф.рф/ВС/типыРВ/2014-01-01" schemaLocation="../РСВ/ТипыРВ_2014-01-01.xsd"/>
+	<xs:import namespace="http://пф.рф/ВС/типыИС/2017-01-01" schemaLocation="ТипыИС_2017-01-01.xsd"/>
+	<xs:import namespace="http://пф.рф/АФ" schemaLocation="../../../ТипыОбщие.xsd"/>
+	<xs:import namespace="http://пф.рф/АФ/2016-06-21" schemaLocation="../../../ТипыАФ_2016-06-21.xsd"/>
+	<xs:import namespace="http://www.w3.org/2000/09/xmldsig#" schemaLocation="../../../xmldsig_core_schema.xsd"/>
+
+	<xs:annotation>
+		<xs:documentation>ОДВ-1 Сведения о страховом стаже застрахованного лица</xs:documentation>
+	</xs:annotation>
+
+	<xs:element name="ЭДПФР">
+		<xs:annotation>
+			<xs:documentation>Корневой элемент. Электронный документ ОДВ-1 (Сведения о страховом стаже застрахованного лица). Содержит сведения самого документа и служебную информацию об электронном документе.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="ЭлектроннаяПодпись" xmlns="http://www.w3.org/2000/09/xmldsig#" type="SignatureType" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Электронная подпись (ЭП). Электронный документ, для которого законодательством Российской Федерации предусмотрена юридически значимая подпись, должен быть подписан усиленной квалифицированной электронной подписью в соответствии со спецификацией XMLDSig.</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="СлужебнаяИнформация" type="АФ2:ТипСлужебнаяИнформация">
+					<xs:annotation>
+						<xs:documentation>Служебная информация об электронном документе.</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="ОДВ-1">
+					<xs:annotation>
+						<xs:documentation>Сведения по страхователю, передаваемые в ПФР для ведения индивидуального (персонифицированного) учета (ОДВ-1).</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="Тип">
+								<xs:annotation>
+									<xs:documentation>Тип сведений ОДВ-1. Возможные значения:
+										1 - корректирующая,
+										2 - отменяющая.</xs:documentation>
+								</xs:annotation>
+								<xs:simpleType>
+									<xs:restriction base="ИС:ТипТипОДВ-1">
+										<xs:enumeration value="1"/>
+										<xs:enumeration value="2"/>
+									</xs:restriction>
+								</xs:simpleType>
+							</xs:element>
+							<xs:element name="Страхователь" type="ИС:ТипСтраховательИС">
+								<xs:annotation>
+									<xs:documentation>Данные о страхователе (плательщике страховых взносов).</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="ОтчетныйПериод">
+								<xs:annotation>
+									<xs:documentation>Отчетный период, за который представляются сведения.</xs:documentation>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="Код" type="ИС:ТипКодОтчетногоПериодаИС">
+											<xs:annotation>
+												<xs:documentation>Код отчетного периода.</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="Год">
+											<xs:annotation>
+												<xs:documentation>Год отчетного периода</xs:documentation>
+											</xs:annotation>
+											<xs:simpleType>
+												<xs:restriction base="xs:gYear">
+													<xs:minInclusive value="1996"/>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:element>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="ОснованияДНП" type="ИС:ТипСведенияДНП" minOccurs="0" maxOccurs="unbounded">
+								<xs:annotation>
+									<xs:documentation>Блок сведений об основании для отражения данных о периодах работы застрахованного лица в условиях, дающих право на досрочное назначение пенсии в соответствии со статьей 30 Федерального закона от 28.12.2013 № 400–ФЗ «О страховых пенсиях».</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="Руководитель">
+								<xs:annotation>
+									<xs:documentation>Должность и ФИО руководителя организации-страхователя.</xs:documentation>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="Должность" type="УТ:ТипНепустаяСтрока">
+											<xs:annotation>
+												<xs:documentation>Наименование должности руководителя организации-страхователя.</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="ФИО" type="УТ:ТипФИО">
+											<xs:annotation>
+												<xs:documentation>ФИО руководителя организации-страхователя.</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="ДатаЗаполнения" type="xs:date">
+								<xs:annotation>
+									<xs:documentation>Дата заполнения документа.</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

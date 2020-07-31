@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema version="2.0" elementFormDefault="qualified" xmlns="http://пф.рф/АФ/УПП/Общий/2016-03-15/2016-03-15" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:УПП="http://пф.рф/АФ/УПП/типы" xmlns:АФ="http://пф.рф/АФ"
+           xmlns:УТ="http://пф.рф/унифицированныеТипы/2014-01-01" targetNamespace="http://пф.рф/АФ/УПП/Общий/2016-03-15/2016-03-15">
+	<xs:annotation>
+		<xs:documentation>XML-схема для формирования XML для учета ошибок и предупреждений цикла проверок проверочного модуля ПК БПИ для отчетности страхователей</xs:documentation>
+	</xs:annotation>
+
+	<xs:import namespace="http://пф.рф/АФ" schemaLocation="../../ТипыОбщие.xsd"/>
+	<xs:import namespace="http://пф.рф/унифицированныеТипы/2014-01-01" schemaLocation="../../УнифТипы_2014-01-01.xsd"/>
+	<xs:import namespace="http://пф.рф/АФ/УПП/типы" schemaLocation="ТипыУПП.xsd"/>
+	<xs:import namespace="http://www.w3.org/2000/09/xmldsig#" schemaLocation="../../xmldsig_core_schema.xsd"/>
+
+	<xs:element name="ЭДПФР">
+		<xs:annotation>
+			<xs:documentation>Корневой элемент. Электронный документ УПП (Унифицированный протокол проверок проверочного модуля ПК БПИ для отчетности страхователей). Содержит сведения самого документа и служебную информацию об электронном документе.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="УПП" type="УПП:ТипУПП">
+					<xs:annotation>
+						<xs:documentation>Унифицированный протокол проверок</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="ЭлектроннаяПодпись" xmlns="http://www.w3.org/2000/09/xmldsig#" type="SignatureType" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Электронная подпись (ЭП). Электронный документ, для которого законодательством Российской Федерации предусмотрена юридически значимая подпись, должен быть подписан усиленной квалифицированной электронной подписью в соответствии со спецификацией XMLDSig</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="СлужебнаяИнформация">
+					<xs:annotation>
+						<xs:documentation>Служебная информация об электронном документе</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:complexContent>
+							<xs:extension base="АФ:ТипСлужебнаяИнформация">
+								<xs:sequence>
+									<xs:element name="Контрагент" type="УТ:ТипОрганизация" minOccurs="0">
+										<xs:annotation>
+											<xs:documentation>Сведения о контрагенте, представившем документ</xs:documentation>
+										</xs:annotation>
+									</xs:element>
+									<xs:element name="ОтчетныйГод" type="xs:gYear" minOccurs="0">
+										<xs:annotation>
+											<xs:documentation>Отчетный год, за который предоставлен документ</xs:documentation>
+										</xs:annotation>
+									</xs:element>
+									<xs:choice>
+										<xs:annotation>
+											<xs:documentation>Для ежемесячной отчетности заполняется элемент ОтчетныйМесяц, для квартальной или годовой - элемент ОтчетныйПериод</xs:documentation>
+										</xs:annotation>
+										<xs:element name="ОтчетныйМесяц" type="УТ:ТипМесяц" minOccurs="0">
+											<xs:annotation>
+												<xs:documentation>Отчетный месяц, за который предоставлен документ</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="ОтчетныйПериод" type="УТ:ТипКодОтчетногоПериода" minOccurs="0">
+											<xs:annotation>
+												<xs:documentation>Отчетный период, за который предоставлен документ</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+									</xs:choice>
+									<xs:element name="НомерКорректировки" type="xs:positiveInteger" minOccurs="0">
+										<xs:annotation>
+											<xs:documentation>Номер корректировки документа</xs:documentation>
+										</xs:annotation>
+									</xs:element>
+									<xs:element name="КоличествоЗЛ" type="xs:positiveInteger" minOccurs="0">
+										<xs:annotation>
+											<xs:documentation>Количество застрахованных лиц, содержащихся в документе</xs:documentation>
+										</xs:annotation>
+									</xs:element>
+									<xs:element name="РезультатПроверки" type="xs:string" minOccurs="0">
+										<xs:annotation>
+											<xs:documentation>Общий результат проверки документа</xs:documentation>
+										</xs:annotation>
+									</xs:element>
+								</xs:sequence>
+							</xs:extension>
+						</xs:complexContent>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

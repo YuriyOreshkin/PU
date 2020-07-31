@@ -1,0 +1,172 @@
+<?xml version="1.0"?>
+<xs:schema version="1.0" targetNamespace="http://пф.рф/КЛИ/2017-09-21" xmlns:УТ2="http://пф.рф/УТ/2017-08-21" elementFormDefault="qualified" xmlns="http://пф.рф/КЛИ/2017-09-21" xmlns:КЛИ="http://пф.рф/КЛИ/2017-09-21"
+           xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+	<xs:import namespace="http://пф.рф/УТ/2017-08-21" schemaLocation="../../УнифТипы_2017-08-21.xsd"/>
+
+	<xs:annotation>
+		<xs:documentation>Схема к конструктору листа изменений для конструктора Альбома форматов</xs:documentation>
+	</xs:annotation>
+	<xs:element name="ЛистИзменений">
+		<xs:annotation>
+			<xs:documentation>Корневой элемент конструктора листа изменений</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="Наименование" type="УТ2:ТипНепустаяСтрока">
+					<xs:annotation>
+						<xs:documentation>Полное наименование листа изменений</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="Версии" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Список выпущенных версий</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="Версия" maxOccurs="unbounded">
+								<xs:annotation>
+									<xs:documentation>Версия АФ со списком изменений</xs:documentation>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="НаборыИзменений" minOccurs="0">
+											<xs:annotation>
+												<xs:documentation>Перечень наборов изменений, с которыми осуществлялись выпуски сервис-паков до релиза версии. Изменения указанные в этих наборах считаются относящимися к сервис-пакам предыдущей версии.</xs:documentation>
+											</xs:annotation>
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element name="НаборИзменений" maxOccurs="unbounded" type="ТипНаборИзменений">
+														<xs:annotation>
+															<xs:documentation>Набор изменений в версии</xs:documentation>
+														</xs:annotation>
+														<xs:unique name="УникальнаяПубликация">
+															<xs:selector xpath="КЛИ:Публикация"/>
+															<xs:field xpath="."/>
+														</xs:unique>
+													</xs:element>
+												</xs:sequence>
+											</xs:complexType>
+										</xs:element>
+										<xs:element name="НаборИзмененийРелиза" minOccurs="0" type="ТипНаборИзменений">
+											<xs:annotation>
+												<xs:documentation>Набор изменений релиза версии. Изменения указанные в этом наборе считаются относящимися к самой версии, а не к сервис-пакам предыдущей версии. Версия считается выпущенной и завершенной, если присутствует этот элемент.</xs:documentation>
+											</xs:annotation>
+											<xs:unique name="УникальнаяПубликацияРелиза">
+												<xs:selector xpath="КЛИ:Публикация"/>
+												<xs:field xpath="."/>
+											</xs:unique>
+										</xs:element>
+									</xs:sequence>
+									<xs:attribute name="Номер" type="УТ2:ТипНепустаяСтрока" use="required">
+										<xs:annotation>
+											<xs:documentation>Номер версии</xs:documentation>
+										</xs:annotation>
+									</xs:attribute>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:complexType name="ТипНаборИзменений">
+		<xs:annotation>
+			<xs:documentation>Набор изменений в версии</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Публикация" minOccurs="0" maxOccurs="2">
+				<xs:annotation>
+					<xs:documentation>Признак публикации сборки на сайте ПФР с указанием типа сборки:
+				п - только проекты,
+				д - только действующие</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="п"/>
+						<xs:enumeration value="д"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="Изменение" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Описание изменения</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="Описание" type="УТ2:ТипНепустаяСтрока">
+							<xs:annotation>
+								<xs:documentation>Краткое описание внесенного изменения</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="СписокИО" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation>Список информационных обменов, к которым относится изменение. Элемент может быть пропущен, если изменения касаются всех информационных обменов или альбома форматов в целом</xs:documentation>
+							</xs:annotation>
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element name="ИО" maxOccurs="unbounded">
+										<xs:annotation>
+											<xs:documentation>Информационный обмен, к которому относится изменение. Если изменение касается отдельно взятых документов информационного обмена, то их следует конкретизировать во вложенных элементах "Документ"</xs:documentation>
+										</xs:annotation>
+										<xs:complexType>
+											<xs:sequence>
+												<xs:element name="Код" type="УТ2:ТипНепустаяСтрока">
+													<xs:annotation>
+														<xs:documentation>Код информационного обмена</xs:documentation>
+													</xs:annotation>
+												</xs:element>
+												<xs:element name="СписокДокументов" minOccurs="0">
+													<xs:annotation>
+														<xs:documentation>Перечень документов информационного обмена, к которым относится изменение</xs:documentation>
+													</xs:annotation>
+													<xs:complexType>
+														<xs:sequence>
+															<xs:element name="Документ" maxOccurs="unbounded">
+																<xs:annotation>
+																	<xs:documentation>Код документа внутри информационного обмена, к которому относится изменение - указывается, если изменение касается конкретных документов, если изменение касается всего информационного обмена - элемент опускается</xs:documentation>
+																</xs:annotation>
+																<xs:complexType>
+																	<xs:simpleContent>
+																		<xs:extension base="УТ2:ТипНепустаяСтрока">
+																			<xs:attribute name="Статус" use="optional">
+																				<xs:annotation>
+																					<xs:documentation>Статус формата, к которому относится изменение:
+																					п - проект,
+																					д - действующий,
+																					пд - и проект, и действующий</xs:documentation>
+																				</xs:annotation>
+																				<xs:simpleType>
+																					<xs:restriction base="xs:string">
+																						<xs:enumeration value="п"/>
+																						<xs:enumeration value="д"/>
+																						<xs:enumeration value="пд"/>
+																					</xs:restriction>
+																				</xs:simpleType>
+																			</xs:attribute>
+																		</xs:extension>
+																	</xs:simpleContent>
+																</xs:complexType>
+															</xs:element>
+														</xs:sequence>
+													</xs:complexType>
+												</xs:element>
+											</xs:sequence>
+										</xs:complexType>
+									</xs:element>
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="Дата" type="xs:date" use="required">
+			<xs:annotation>
+				<xs:documentation>Дата выпуска набора изменений. Если это дата выпуска релизного набора изменений, то она считается датой выпуска версии</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+</xs:schema>

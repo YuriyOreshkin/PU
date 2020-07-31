@@ -1,0 +1,683 @@
+<?xml version="1.0" encoding="Windows-1251"?>
+<!-- edited with XMLSpy v2012 rel. 2 sp1 (http://www.altova.com) by Sauronix (Branch of the  Pension Fund of the Russian Federation on  Republic Bashkortostan) -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:annotation>
+		<xs:documentation>Комплексные типы данных</xs:documentation>
+	</xs:annotation>
+	<xs:simpleType name="ТипНомерКорректировки">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="\d{3}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="ТипНомерВПачке">
+		<xs:restriction base="xs:integer">
+			<xs:minInclusive value="1"/>
+			<xs:maxInclusive value="201"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="ТипФИО">
+		<xs:annotation>
+			<xs:documentation>Тип данных: ФИО физического лица</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Фамилия" type="ТипСтрока40Н" minOccurs="0"/>
+			<xs:element name="Имя" type="ТипСтрока40Н" minOccurs="0"/>
+			<xs:element name="Отчество" type="ТипСтрока40Н" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ТипУплаченоСНачалаРасчетногоПериода">
+		<xs:annotation>
+			<xs:documentation>Тип данных Уплачено с начала расчетного периода</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="ВсегоСначалаРасчетногоПериода2014" type="ТипРасчетПоНачисленнымИУплаченнымС2014"/>
+			<xs:element name="ПоследниеТриМесяца1с2014" type="ТипРасчетПоНачисленнымИУплаченнымС2014"/>
+			<xs:element name="ПоследниеТриМесяца2с2014" type="ТипРасчетПоНачисленнымИУплаченнымС2014"/>
+			<xs:element name="ПоследниеТриМесяца3с2014" type="ТипРасчетПоНачисленнымИУплаченнымС2014"/>
+			<xs:element name="ПоследниеТриМесяцаИтого2014" type="ТипРасчетПоНачисленнымИУплаченнымС2014"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ТипУплаченоСНачалаРасчетногоПериода2015">
+		<xs:annotation>
+			<xs:documentation>Тип данных Уплачено с начала расчетного периода</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="ВсегоСначалаРасчетногоПериода" type="ТипРасчетПоНачисленнымИУплаченнымС2014"/>
+			<xs:element name="ПоследниеТриМесяца1" type="ТипРасчетПоНачисленнымИУплаченнымС2014"/>
+			<xs:element name="ПоследниеТриМесяца2" type="ТипРасчетПоНачисленнымИУплаченнымС2014"/>
+			<xs:element name="ПоследниеТриМесяца3" type="ТипРасчетПоНачисленнымИУплаченнымС2014"/>
+			<xs:element name="ПоследниеТриМесяцаИтого" type="ТипРасчетПоНачисленнымИУплаченнымС2014"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ТипРасчетПоНачисленнымИУплаченнымС2014">
+		<xs:annotation>
+			<xs:documentation>Тип данных Расчет по начисленным и уплаченным с 2014</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="КодСтроки">
+				<xs:simpleType>
+					<xs:restriction base="ТипКодСтроки">
+						<xs:enumeration value="100"/>
+						<xs:enumeration value="120"/>
+						<xs:enumeration value="130"/>
+						<xs:enumeration value="150"/>
+						<xs:enumeration value="140"/>
+						<xs:enumeration value="141"/>
+						<xs:enumeration value="142"/>
+						<xs:enumeration value="143"/>
+						<xs:enumeration value="144"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="СтраховыеВзносыОПС" type="Деньги" minOccurs="0"/>
+			<xs:element name="ОПСстраховаяЧасть" type="Деньги" minOccurs="0"/>
+			<xs:element name="ОПСнакопительнаяЧасть" type="Деньги" minOccurs="0"/>
+			<xs:element name="ВзносыПоДопТарифу1" type="Деньги" minOccurs="0"/>
+			<xs:element name="ВзносыПоДопТарифу2_18" type="Деньги" minOccurs="0"/>
+			<xs:element name="СтраховыеВзносыОМС" type="Деньги" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ТипРасчетСтраховыхВзносовПоТарифу2014">
+		<xs:annotation>
+			<xs:documentation>Тип данных Расчет Страховых Взносов По Тарифу с 2014</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="КодТарифа" type="ТипКодТарифа"/>
+			<xs:element name="НаОбязательноеПенсионноеСтрахование2014" type="ТипНаОбязательноеПенсионноеСтрахование2014"/>
+			<xs:element name="НаОбязательноеМедицинскоеСтрахование" type="ТипНаОбязательноеМедицинскоеСтрахование"/>
+		</xs:sequence>
+	</xs:complexType>
+		<xs:complexType name="ТипРасчетСтраховыхВзносовПоТарифу2015">
+		<xs:annotation>
+			<xs:documentation>Тип данных Расчет Страховых Взносов По Тарифу с 2014</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="КодТарифа" type="ТипКодТарифа"/>
+			<xs:element name="НаОбязательноеПенсионноеСтрахование" type="ТипНаОбязательноеПенсионноеСтрахование2014"/>
+			<xs:element name="НаОбязательноеМедицинскоеСтрахование" type="ТипНаОбязательноеМедицинскоеСтрахование"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ТипНаОбязательноеПенсионноеСтрахование2014">
+		<xs:annotation>
+			<xs:documentation>Тип данных На Обязательное Пенсионное Страхование с 2014</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="СуммаВыплатИвознагражденийОПС" type="ТипПоказательРасчетСумм" minOccurs="0"/>
+			<xs:element name="НеПодлежащиеОбложениюОПС" type="ТипПоказательРасчетСумм" minOccurs="0"/>
+			<xs:element name="СуммаРасходовПринимаемыхКвычетуОПС" type="ТипПоказательРасчетСумм" minOccurs="0"/>
+			<xs:element name="ПревышающиеПредельнуюВеличинуБазыОПС" type="ТипПоказательРасчетСумм" minOccurs="0"/>
+			<xs:element name="БазаДляНачисленияСтраховыхВзносовНаОПС" type="ТипПоказательРасчетСумм" minOccurs="0"/>
+			<xs:element name="НачисленоНаОПСсСуммНеПревышающих" type="ТипПоказательРасчетСумм" minOccurs="0"/>
+			<xs:element name="НачисленоНаОПСсСуммПревышающих" type="ТипПоказательРасчетСумм" minOccurs="0"/>
+			<xs:element name="КоличествоФЛвсего" type="ТипПоказательЧисленность" minOccurs="0"/>
+			<xs:element name="КоличествоФЛпоКоторымБазаПревысилаПредел" type="ТипПоказательЧисленность" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ТипПоказательРасчетСумм">
+		<xs:annotation>
+			<xs:documentation>Тип данных Показатель Расчета Сумм</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="КодСтроки">
+				<xs:simpleType>
+					<xs:restriction base="ТипКодСтроки">
+						<xs:enumeration value="200"/>
+						<xs:enumeration value="201"/>
+						<xs:enumeration value="202"/>
+						<xs:enumeration value="203"/>
+						<xs:enumeration value="204"/>
+						<xs:enumeration value="205"/>
+						<xs:enumeration value="206"/>
+						<xs:enumeration value="210"/>
+						<xs:enumeration value="211"/>
+						<xs:enumeration value="212"/>
+						<xs:enumeration value="213"/>
+						<xs:enumeration value="214"/>
+						<xs:enumeration value="215"/>
+						<xs:enumeration value="220"/>
+						<xs:enumeration value="221"/>
+						<xs:enumeration value="223"/>
+						<xs:enumeration value="224"/>
+						<xs:enumeration value="230"/>
+						<xs:enumeration value="231"/>
+						<xs:enumeration value="233"/>
+						<xs:enumeration value="234"/>
+						<xs:enumeration value="240"/>
+						<xs:enumeration value="241"/>
+						<xs:enumeration value="243"/>
+						<xs:enumeration value="244"/>
+						<xs:enumeration value="246"/>
+						<xs:enumeration value="247"/>
+						<xs:enumeration value="249"/>
+						<xs:enumeration value="250"/>
+						<xs:enumeration value="252"/>
+						<xs:enumeration value="253"/>
+						<xs:enumeration value="255"/>
+						<xs:enumeration value="256"/>
+						<xs:enumeration value="258"/>
+						<xs:enumeration value="259"/>
+						<xs:enumeration value="261"/>
+						<xs:enumeration value="262"/>
+						<xs:enumeration value="264"/>
+						<xs:enumeration value="265"/>
+						<xs:enumeration value="267"/>
+						<xs:enumeration value="268"/>
+						<xs:enumeration value="334"/>
+						<xs:enumeration value="335"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="РасчетСумм" type="ТипРасчетСумм"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ТипПоказательЧисленность">
+		<xs:annotation>
+			<xs:documentation>Тип данных ПоказательЧисленности</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="КодСтроки">
+				<xs:simpleType>
+					<xs:restriction base="ТипКодСтроки">
+						<xs:enumeration value="207"/>
+						<xs:enumeration value="208"/>
+						<xs:enumeration value="215"/>
+						<xs:enumeration value="225"/>
+						<xs:enumeration value="235"/>
+						<xs:enumeration value="245"/>
+						<xs:enumeration value="251"/>
+						<xs:enumeration value="257"/>
+						<xs:enumeration value="263"/>
+						<xs:enumeration value="269"/>
+						<xs:enumeration value="321"/>
+						<xs:enumeration value="322"/>
+						<xs:enumeration value="331"/>
+						<xs:enumeration value="332"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="КоличествоЗЛ_Всего" type="ТипКоличество6"/>
+			<xs:element name="КоличествоЗЛ_1месяц" type="ТипКоличество6" minOccurs="0"/>
+			<xs:element name="КоличествоЗЛ_2месяц" type="ТипКоличество6" minOccurs="0"/>
+			<xs:element name="КоличествоЗЛ_3месяц" type="ТипКоличество6" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ТипРасчетСумм">
+		<xs:annotation>
+			<xs:documentation>Тип данных Расчет Сумм</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="СуммаВсегоСначалаРасчетногоПериода" type="Деньги"/>
+			<xs:element name="СуммаПоследние1месяц" type="Деньги" minOccurs="0"/>
+			<xs:element name="СуммаПоследние2месяц" type="Деньги" minOccurs="0"/>
+			<xs:element name="СуммаПоследние3месяц" type="Деньги" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ТипНаОбязательноеМедицинскоеСтрахование">
+		<xs:annotation>
+			<xs:documentation>Тип данных На Обязательное Медицинское Страхование</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="СуммаВыплатИвознаграждений" type="ТипПоказательРасчетСумм" minOccurs="0"/>
+			<xs:element name="НеПодлежащиеОбложению" type="ТипПоказательРасчетСумм" minOccurs="0"/>
+			<xs:element name="СуммаРасходовПринимаемыхКвычету" type="ТипПоказательРасчетСумм" minOccurs="0"/>
+			<xs:element name="ПревышающиеПредельнуюВеличинуБазы" type="ТипПоказательРасчетСумм" minOccurs="0"/>
+			<xs:element name="БазаДляНачисленияСтраховыхВзносовНаОМС" type="ТипПоказательРасчетСумм" minOccurs="0"/>
+			<xs:element name="НачисленоНаОМС" type="ТипПоказательРасчетСумм" minOccurs="0"/>
+			<xs:element name="КоличествоФЛвсего" type="ТипПоказательЧисленность" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ТипРасчетНачисленныхСтраховыхВзносовПоДополнительномуТарифуС2014">
+		<xs:annotation>
+			<xs:documentation>Тип данных Расчет Начисленных Страховых Взносов По Дополнительному Тарифу с 2014</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="СуммаВыплатИвознагражденийПоДопТарифу" type="ТипПоказательРасчетСумм" minOccurs="0"/>
+			<xs:element name="НеПодлежащиеОбложениюПоДопТарифу" type="ТипПоказательРасчетСумм" minOccurs="0"/>
+			<xs:element name="БазаДляНачисленияСтраховыхВзносовПоДопТарифу" type="ТипПоказательРасчетСумм" minOccurs="0"/>
+			<xs:element name="НачисленоПоДопТарифу" type="ТипПоказательРасчетСумм" minOccurs="0"/>
+			<xs:element name="КоличествоФЛпоДопТарифу" type="ТипПоказательЧисленность" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ТипРасчетНачисленныхИУплаченныхСтраховыхВзносовПоДополнительномуТарифу">
+		<xs:annotation>
+			<xs:documentation>Тип данных Расчет Начисленных И Уплаченных Страховых Взносов По Дополнительному Тарифу</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="СуммаВыплатИвознагражденийПоДопТарифу" type="ТипПоказательРасчетСумм" minOccurs="0"/>
+			<xs:element name="НеПодлежащиеОбложениюПоДопТарифу" type="ТипПоказательРасчетСумм" minOccurs="0"/>
+			<xs:element name="СуммаРасходовПринимаемыхКвычетуПоДопТарифу" type="ТипПоказательРасчетСумм" minOccurs="0"/>
+			<xs:element name="БазаДляНачисленияСтраховыхВзносовПоДопТарифу" type="ТипПоказательРасчетСумм" minOccurs="0"/>
+			<xs:element name="НачисленоПоДопТарифу" type="ТипПоказательРасчетСумм"/>
+			<xs:element name="УплаченоПоДопТарифу" type="ТипПоказательРасчетСумм"/>
+			<xs:element name="КоличествоФЛпоДопТарифу" type="ТипПоказательЧисленность"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ТипОтчетныйПериод">
+		<xs:annotation>
+			<xs:documentation>Тип данных Отчетный период</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Квартал" type="ТипКодОтчетногоПериода"/>
+			<xs:element name="Год">
+				<xs:simpleType>
+					<xs:restriction base="xs:gYear"/>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="Название" type="ТипНазвание" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ТипОтчетныйПериодКор">
+		<xs:annotation>
+			<xs:documentation>Тип данных Отчетный период</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Квартал" type="ТипКодОтчетногоПериодаКор"/>
+			<xs:element name="Год">
+				<xs:simpleType>
+					<xs:restriction base="xs:gYear"/>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="Название" type="ТипНазвание" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ТипПоказательУдельныйВес">
+		<xs:annotation>
+			<xs:documentation>Тип данных Показатель-УдельныйВес</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="КодСтроки">
+				<xs:simpleType>
+					<xs:restriction base="ТипКодСтроки">
+						<xs:enumeration value="323"/>
+						<xs:enumeration value="333"/>
+						<xs:enumeration value="336"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="УдельныйВес_Всего" type="Число"/>
+			<xs:element name="УдельныйВес_1месяц" type="Число" minOccurs="0"/>
+			<xs:element name="УдельныйВес_2месяц" type="Число" minOccurs="0"/>
+			<xs:element name="УдельныйВес_3месяц" type="Число" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ТипСуммаДоходовПоИтогамПериодов">
+		<xs:annotation>
+			<xs:documentation>Тип данных Сумма Доходов По Итогам Периодов</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="КодСтроки">
+				<xs:simpleType>
+					<xs:restriction base="ТипКодСтроки">
+						<xs:enumeration value="341"/>
+						<xs:enumeration value="342"/>
+						<xs:enumeration value="371"/>
+						<xs:enumeration value="372"/>
+						<xs:enumeration value="373"/>
+						<xs:enumeration value="374"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="СуммаДоходаПоПредшествующему" type="Деньги"/>
+			<xs:element name="СуммаДоходаПоТекущему" type="Деньги"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ТипЧисленностьРаботниковПоИтогамПериодов">
+		<xs:annotation>
+			<xs:documentation>Тип данных Численность Работников По Итогам Периодов</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="КодСтроки">
+				<xs:simpleType>
+					<xs:restriction base="ТипКодСтроки">
+						<xs:enumeration value="344"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="КоличествоЗЛпоПредшествующему" type="ТипКоличество6"/>
+			<xs:element name="КоличествоЗЛпоТекущему" type="ТипКоличество6"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ТипДоляДоходовПоИтогамПериодов">
+		<xs:annotation>
+			<xs:documentation>Тип данных Доля Доходов По Итогам Периодов</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="КодСтроки">
+				<xs:simpleType>
+					<xs:restriction base="ТипКодСтроки">
+						<xs:enumeration value="343"/>
+						<xs:enumeration value="375"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="ДоляДоходаПоПредшествующему" type="Число"/>
+			<xs:element name="ДоляДоходаПоТекущему" type="Число"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ТипСуммаДоходаСНачалаОтчетногоПериода">
+		<xs:annotation>
+			<xs:documentation>Тип данных Сумма Дохода С Начала Отчетного Периода</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="КодСтроки">
+				<xs:simpleType>
+					<xs:restriction base="ТипКодСтроки">
+						<xs:enumeration value="361"/>
+						<xs:enumeration value="362"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="СуммаДохода" type="Деньги"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ТипОрганизация">
+		<xs:annotation>
+			<xs:documentation>Тип данных Организация</xs:documentation>
+		</xs:annotation>
+	</xs:complexType>
+	<xs:complexType name="ТипСведенияИзРеестра">
+		<xs:annotation>
+			<xs:documentation>Тип данных Запись В Реестре</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="КодСтроки">
+				<xs:simpleType>
+					<xs:restriction base="ТипКодСтроки">
+						<xs:enumeration value="345"/>
+						<xs:enumeration value="351"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="ДатаЗаписиВреестре" type="ТипДата"/>
+			<xs:element name="НомерЗаписиВреестре" type="ТипНомер"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ТипРасчетПоНачисленнымИуплаченнымС2010-2013">
+		<xs:annotation>
+			<xs:documentation>Тип данных Расчет По Начисленным И уплаченным С 2010-2013</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="КодСтроки" type="ТипКодСтроки"/>
+			<xs:element name="СтраховыеВзносыОПС" type="Деньги"/>
+			<xs:element name="ВзносыПоДопТарифу1" type="Деньги"/>
+			<xs:element name="ВзносыПоДопТарифу2_18" type="Деньги"/>
+			<xs:element name="СтраховыеВзносыОМС" type="Деньги"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ТипНачисленоУплаченоЗаПериоды2010-2013">
+		<xs:annotation>
+			<xs:documentation>Тип данных Начислено-Уплачено За Периоды 2010-2013</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="ВсегоСначалаРасчетногоПериода2014" type="ТипРасчетПоНачисленнымИуплаченнымС2010-2013"/>
+			<xs:element name="ПоследниеТриМесяца1с2014" type="ТипРасчетПоНачисленнымИуплаченнымС2010-2013"/>
+			<xs:element name="ПоследниеТриМесяца2с2014" type="ТипРасчетПоНачисленнымИуплаченнымС2010-2013"/>
+			<xs:element name="ПоследниеТриМесяца3с2014" type="ТипРасчетПоНачисленнымИуплаченнымС2010-2013"/>
+			<xs:element name="ПоследниеТриМесяцаИтого2014" type="ТипРасчетПоНачисленнымИуплаченнымС2010-2013"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ТипДоначисленоСтраховыхВзносовСначалаРасчетногоПериодаСсуммПревышающихБазу">
+		<xs:annotation>
+			<xs:documentation>Тип данных Доначислено страховых взносов с начала расчетного периода, в том числе с сумм, превышающих предельную базу</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="КодСтроки">
+				<xs:simpleType>
+					<xs:restriction base="ТипКодСтроки">
+						<xs:enumeration value="121"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="СтраховыеВзносыОПС" type="Деньги" minOccurs="0"/>
+			<xs:element name="ОПСстраховаяЧасть" type="Деньги" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ТипРасчетПоНачисленнымС2014">
+		<xs:annotation>
+			<xs:documentation>Тип данных Расчет по начисленным  с 2014</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="КодСтроки">
+				<xs:simpleType>
+					<xs:restriction base="ТипКодСтроки">
+						<xs:enumeration value="110"/>
+						<xs:enumeration value="111"/>
+						<xs:enumeration value="112"/>
+						<xs:enumeration value="113"/>
+						<xs:enumeration value="114"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="СтраховыеВзносыОПС" type="Деньги" minOccurs="0"/>
+			<xs:element name="ОПСстраховаяЧасть" type="Деньги" minOccurs="0"/>
+			<xs:element name="ОПСнакопительнаяЧасть" type="Деньги" minOccurs="0"/>
+			<xs:element name="ВзносыПоДопТарифу1" type="Деньги" minOccurs="0"/>
+			<xs:element name="ВзносыПоДопТарифу2_18" type="Деньги" minOccurs="0"/>
+			<xs:element name="СтраховыеВзносыОМС" type="Деньги" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ТипНачисленоСтраховыхВзносовСНачалаРасчетногоПериода">
+		<xs:annotation>
+			<xs:documentation>Тип данных Начислено страховых взносов с начала расчетного периода</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="ВсегоСначалаРасчетногоПериода2014" type="ТипРасчетПоНачисленнымС2014"/>
+			<xs:element name="ПоследниеТриМесяца1с2014" type="ТипРасчетПоНачисленнымС2014"/>
+			<xs:element name="ПоследниеТриМесяца2с2014" type="ТипРасчетПоНачисленнымС2014"/>
+			<xs:element name="ПоследниеТриМесяца3с2014" type="ТипРасчетПоНачисленнымС2014"/>
+			<xs:element name="ПоследниеТриМесяцаИтого2014" type="ТипРасчетПоНачисленнымС2014"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ТипНачисленоСтраховыхВзносовСНачалаРасчетногоПериода2015">
+		<xs:annotation>
+			<xs:documentation>Тип данных Начислено страховых взносов с начала расчетного периода</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="ВсегоСначалаРасчетногоПериода" type="ТипРасчетПоНачисленнымС2014"/>
+			<xs:element name="ПоследниеТриМесяца1" type="ТипРасчетПоНачисленнымС2014"/>
+			<xs:element name="ПоследниеТриМесяца2" type="ТипРасчетПоНачисленнымС2014"/>
+			<xs:element name="ПоследниеТриМесяца3" type="ТипРасчетПоНачисленнымС2014"/>
+			<xs:element name="ПоследниеТриМесяцаИтого" type="ТипРасчетПоНачисленнымС2014"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:annotation>
+		<xs:documentation>Простые типы данных</xs:documentation>
+	</xs:annotation>
+	<xs:annotation>
+		<xs:documentation>Базовые типы</xs:documentation>
+	</xs:annotation>
+	<xs:simpleType name="Деньги">
+		<xs:annotation>
+			<xs:documentation>Тип данных Деньги (15,2)</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:pattern value="((\+|-)?\d{1,15}(\.\d{0,2})?)|((\+|-)?\d{1,15})|((\+|-)?\.\d{1,2})"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="Число">
+		<xs:annotation>
+			<xs:documentation>Тип данных Число(8,5)</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:pattern value="((\+|-)?\d{1,8}(\.\d{0,5})?)|((\+|-)?\d{1,8})|((\+|-)?\.\d{1,5})"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="СтрокаЦифр">
+		<xs:annotation>
+			<xs:documentation>Тип данных Строка из цифр</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:pattern value="\d+"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="ТипДата">
+		<xs:annotation>
+			<xs:documentation>Тип данных Дата в формате dd.mm.yyyy (с контролем високосных лет и длины каждого месяца)</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:pattern value="(((0[1-9]|[12]\d|3[01])\.(0[13578]|1[02])\.((19|[2-9]\d)\d{2}))|((0[1-9]|[12]\d|30)\.(0[13456789]|1[012])\.((19|[2-9]\d)\d{2}))|((0[1-9]|1\d|2[0-8])\.02\.((19|[2-9]\d)\d{2}))|(29\.02\.((1[6-9]|[2-9]\d)(0[48]|[2468][048]|[13579][26])|((16|[2468][048]|[3579][26])00))))"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:annotation>
+		<xs:documentation>Пользовательские типы данных</xs:documentation>
+	</xs:annotation>
+	<xs:simpleType name="ТипТипСтроки">
+		<xs:annotation>
+			<xs:documentation>Тип данных тип строки</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:length value="4"/>
+			<xs:enumeration value="МЕСЦ"/>
+			<xs:enumeration value="ИТОГ"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="ТипИмяФайла">
+		<xs:annotation>
+			<xs:documentation>Имя файла</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="100"/>
+			<xs:pattern value="PFR-700-Y-\d{4}-ORG-\d{3}-\d{3}-\d{6}-DCK-\d{5}-DPT-\d{6}-DCK-\d{5}.XML"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="ТипРегНомер">
+		<xs:annotation>
+			<xs:documentation>Тип данных Регистрационный номер Плательщика</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:pattern value="\d{3}-\d{3}-\d{6}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="ТипСтрока40">
+		<xs:annotation>
+			<xs:documentation>Строка до 40 символов</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="40"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="ТипСтрока40Н">
+		<xs:annotation>
+			<xs:documentation>Тип данных Строка до 40 символов не обязательная</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="40"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="ТипКодТарифа">
+		<xs:annotation>
+			<xs:documentation>Тип данных Код Тарифа</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:length value="2"/>
+			<xs:enumeration value="01"/>
+			<xs:enumeration value="03"/>
+			<xs:enumeration value="04"/>
+			<xs:enumeration value="06"/>
+			<xs:enumeration value="07"/>
+			<xs:enumeration value="08"/>
+			<xs:enumeration value="09"/>
+			<xs:enumeration value="10"/>
+			<xs:enumeration value="11"/>
+			<xs:enumeration value="12"/>
+			<xs:enumeration value="13"/>
+			<xs:enumeration value="15"/>
+			<xs:enumeration value="16"/>
+			<xs:enumeration value="18"/>
+			<xs:enumeration value="19"/>
+			<xs:enumeration value="20"/>
+			<xs:enumeration value="36"/>
+			<xs:enumeration value="52"/>
+			<xs:enumeration value="53"/>
+			<xs:enumeration value="23"/>
+			<xs:enumeration value="24"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="ТипКодПоОКВЭД">
+		<xs:annotation>
+			<xs:documentation>Тип данных код ОКВЭД</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="8"/>
+			<xs:pattern value="\d{2}\.\d{2}\.\d{2}|\d{2}\.\d{2}\.\d{1}|\d{2}\.\d{2}|\d{2}\.\d{1}|\d{2}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="ТипКодСтроки">
+		<xs:annotation>
+			<xs:documentation>Тип данных Код Строки</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="СтрокаЦифр">
+			<xs:length value="3"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="ТипКоличество">
+		<xs:annotation>
+			<xs:documentation>Тип данных КОличество</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:unsignedLong">
+			<xs:totalDigits value="3"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="ТипКоличество6">
+		<xs:annotation>
+			<xs:documentation>Тип данных КОличество 6</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:unsignedLong">
+			<xs:totalDigits value="6"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="ТипНазвание">
+		<xs:annotation>
+			<xs:documentation>Тип данных Название</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="30"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="ТипКодОтчетногоПериода">
+		<xs:annotation>
+			<xs:documentation>Тип данных Код отчетного периода</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="1"/>
+			<xs:minLength value="1"/>
+			<xs:enumeration value="3"/>
+			<xs:enumeration value="6"/>
+			<xs:enumeration value="9"/>
+			<xs:enumeration value="0"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="ТипКодОтчетногоПериодаКор">
+		<xs:annotation>
+			<xs:documentation>Тип данных Код отчетного периода корректировка</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="1"/>
+			<xs:minLength value="1"/>
+			<xs:enumeration value="1"/>
+			<xs:enumeration value="2"/>
+			<xs:enumeration value="3"/>
+			<xs:enumeration value="4"/>
+			<xs:enumeration value="6"/>
+			<xs:enumeration value="9"/>
+			<xs:enumeration value="0"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="ТипНаименованиеОрганизации">
+		<xs:annotation>
+			<xs:documentation>Тип данных Наименование Организации</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="100"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="ТипНомер">
+		<xs:annotation>
+			<xs:documentation>Тип данных Номер</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="20"/>
+		</xs:restriction>
+	</xs:simpleType>
+</xs:schema>

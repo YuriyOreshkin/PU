@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema version="2.0" xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           xmlns="http://пф.рф/ЗАГС/РСОС/2016-01-01"
+		   xmlns:ЗАГС="http://пф.рф/ЗАГС/типы/2016-01-01"
+           xmlns:УТ="http://пф.рф/унифицированныеТипы/2014-01-01"
+           xmlns:АФ="http://пф.рф/АФ"
+           targetNamespace="http://пф.рф/ЗАГС/РСОС/2016-01-01"
+           elementFormDefault="qualified">
+
+	<xs:import namespace="http://пф.рф/ЗАГС/типы/2016-01-01" schemaLocation="ТипыЗАГС_2016-01-01.XSD"/>
+	<xs:import namespace="http://www.w3.org/2000/09/xmldsig#" schemaLocation="../../xmldsig_core_schema.xsd"/>
+	<xs:annotation>
+		<xs:documentation>Сведения о государственной регистрации смерти</xs:documentation>
+	</xs:annotation>
+	<xs:element name="ЭДПФР">
+		<xs:complexType>
+			<xs:sequence>					
+				<xs:element name="РСОС">
+					<xs:annotation>
+						<xs:documentation>Список граждан, на которых передаются сведения о государственной регистрации смерти</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:sequence>													
+
+							<xs:element name="СведенияОСмерти" maxOccurs="unbounded">
+								<xs:annotation>
+									<xs:documentation>Информация об одном гражданине, на которого подаются сведения</xs:documentation>
+								</xs:annotation>	
+								<xs:complexType>
+									<xs:sequence>
+
+										<xs:element name="Умерший" type="УТ:ТипАнкетаНеобяз">
+											<xs:annotation>
+												<xs:documentation>Анкетные данные умершего гражданина(Блоки "Гражданство","Адрес регистрации", "Адрес фактический", "Телефон" не заполняются)</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+
+										<xs:element name="ДатаСмерти" type="xs:date">
+											<xs:annotation>
+												<xs:documentation>Дата смерти</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+
+										<xs:element name="МестоСмерти" type="УТ:ТипАдрес" minOccurs="0">
+											<xs:annotation>
+												<xs:documentation>Место смерти</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+
+										<xs:element name="ПоследнееМестоЖительства" type="УТ:ТипАдрес" minOccurs="0">
+											<xs:annotation>
+												<xs:documentation>Последнее место жительства(заполняются только реквизиты: город, район, населенный пункт, регион)</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+
+										<xs:element name="Акт" type="ЗАГС:ТипАкт">
+											<xs:annotation>
+												<xs:documentation>Реквизиты записи акта о смерти (номер, дата составления, наименование органа записи актов гражданского состояния)</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+										
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>								
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="ЭлектроннаяПодпись" xmlns="http://www.w3.org/2000/09/xmldsig#" type="SignatureType" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Электронная подпись (ЭП) в соответствии со спецификацией XMLDsig</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="СлужебнаяИнформация" type="ЗАГС:ТипСлужебнаяИнформацияЗАГС">
+					<xs:annotation>
+						<xs:documentation>Служебная информация об электронном документе</xs:documentation>
+					</xs:annotation>
+				</xs:element>								
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

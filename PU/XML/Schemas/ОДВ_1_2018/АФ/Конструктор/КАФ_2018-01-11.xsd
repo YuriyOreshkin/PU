@@ -1,0 +1,1097 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema version="2.0" xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" xmlns="http://пф.рф/КАФ/2018-01-11" xmlns:УТ2="http://пф.рф/УТ/2017-08-21" xmlns:ОАФ="http://пф.рф/ОАФ/2017-06-01" xmlns:КАФ="http://пф.рф/КАФ/2018-01-11"
+           xmlns:АФ4="http://пф.рф/АФ/2017-08-21" targetNamespace="http://пф.рф/КАФ/2018-01-11">
+
+	<xs:import namespace="http://пф.рф/УТ/2017-08-21" schemaLocation="../../УнифТипы_2017-08-21.xsd"/>
+	<xs:import namespace="http://пф.рф/АФ/2017-08-21" schemaLocation="../../ТипыАФ_2017-08-21.xsd"/>
+	<xs:import namespace="http://пф.рф/ОАФ/2017-06-01" schemaLocation="../ТипыОАФ_2017-06-01.xsd"/>
+
+	<xs:annotation>
+		<xs:documentation>Схема к конструктору Альбома форматов</xs:documentation>
+	</xs:annotation>
+	<xs:element name="КАФ">
+		<xs:annotation>
+			<xs:documentation>Корневой элемент конструктора альбома форматов</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="Наименование" type="УТ2:ТипНепустаяСтрока">
+					<xs:annotation>
+						<xs:documentation>Полное наименование альбома форматов</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="Составитель" type="ТипСоставитель" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Наименование составителя (разработчика) Альбома форматов</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="Утверждено" type="ТипНормативныйДокумент" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Информация об утверждении Альбома форматов: наименование документа (указывается в родительном падеже), № и дата</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="ШапкаТитульногоЛиста" type="ТипТекст" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Шапка для титульного листа</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="Описание" type="ТипТекст" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Описание к альбому форматов</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="ОписаниеПеречняДокументов" type="ТипТекст" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Описание к перечню документов</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="ПереченьCокращений" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Перечень сокращений, используемый в Альбоме форматов</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="Сокращение" maxOccurs="unbounded">
+								<xs:annotation>
+									<xs:documentation>Сокращение (Аббревиатура и значение)</xs:documentation>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="Название" type="УТ2:ТипНепустаяСтрока">
+											<xs:annotation>
+												<xs:documentation>Аббревиатура</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="Расшифровка" type="УТ2:ТипНепустаяСтрока">
+											<xs:annotation>
+												<xs:documentation>Значение</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="ПереченьТерминов" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Перечень терминов, используемый в Альбоме форматов</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="Термин" maxOccurs="unbounded">
+								<xs:annotation>
+									<xs:documentation>Термин (термин-определение)</xs:documentation>
+								</xs:annotation>
+
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="Название" type="УТ2:ТипНепустаяСтрока">
+											<xs:annotation>
+												<xs:documentation>Сам термин</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="Определение" type="УТ2:ТипНепустаяСтрока">
+											<xs:annotation>
+												<xs:documentation>Определение термина</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="Разделы" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Перечисление поименованных разделов, которые будут отражены после таблиц с перечнями сокращений и терминов, но до Информационных обменов. Сюда может быть включен, например, раздел "Введение"</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="Раздел" type="ТипРаздел" maxOccurs="unbounded">
+								<xs:annotation>
+									<xs:documentation>Раздел АФ.</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="ТипыДанных" type="ТипТипыДанных" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Список общих в рамках всего АФ типов данных</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="Классификаторы" type="ТипКлассификаторы" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Перечисление классификаторов, используемых в проверках документов всех информационных обменов.</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="СУППпоУмолчанию" type="АФ4:XMLФайл" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Путь до XML-файла с описаниями сценария создания УПП (СУПП), который будет использоваться по умолчанию для всех нижележащих форматов и типов документов. Указывается относительно файла-конструктора.</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="Преобразования" minOccurs="0" type="ТипПреобразования">
+					<xs:annotation>
+						<xs:documentation>Список xslt-преобразований, общих для всех типов документов АФ</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="СписокИнформационныхОбменов">
+					<xs:annotation>
+						<xs:documentation>Перечисление информационных обменов. Предполагается, что информационные обмены независимы друг от друга. Т.е. типы, определенные в одном ИО, не могут быть использованы в другом ссылочным методом</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="ИнформационныйОбмен" type="ТипИнформационныйОбмен" maxOccurs="unbounded">
+								<xs:annotation>
+									<xs:documentation>Описание информационного обмена</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+					<xs:unique name="UniqueIOCode">
+						<xs:selector xpath="КАФ:ИнформационныйОбмен"/>
+						<xs:field xpath="@Код"/>
+					</xs:unique>
+				</xs:element>
+				<xs:element name="КартаПроверок" type="ТипКартаПроверок" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Карта блоков проверок,с распределением всех имеющихся блоков по категориям. Разные блоки проверок могут использоваться в разных типах документов, но при этом относится к одной смысловой категории: например, проверки ФИО могут быть как общими для группы документов, так и специфичными для конкретного типа документа, в таком случае они выносятся в 2 разных блока проверок, однако, могут быть объединены в одну смысловую категорию "Проверки анкетных данных", вместе с проверками СНИЛС, дат рождения и т.д. Карта проверок выполняет объединение всех различных блоков в категории.</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:choice>
+					<xs:annotation>
+						<xs:documentation>Указывается либо ссылка на лист изменений, либо номер и дата версии</xs:documentation>
+					</xs:annotation>
+					<xs:element name="ЛистИзменений" type="АФ4:XMLФайл">
+						<xs:annotation>
+							<xs:documentation>Путь до конструктора листа изменений к альбому форматов</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="Версия" type="УТ2:ТипРеквизитыДокумента">
+						<xs:annotation>
+							<xs:documentation>Дата и номер версии полного пакета Альбома форматов</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:choice>
+				<xs:element name="ППФ" type="АФ4:XMLФайл" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Путь до файла преобразований проверяемого файла (ППФ)</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="СлужебныеФайлы">
+					<xs:annotation>
+						<xs:documentation>Блок служебных файлов, которые должны быть скопированы вместе с основной библиотекой. Обязательны к указанию схемы к КАФ, ЛИ, СПАФ, ППВАФ, УПП. Требуются для валидации соответствующих файлов при формировании пакета (сборки) и генерации файла-конфигурации для модуля проверок.</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="КАФ" type="АФ4:XSDСхема">
+								<xs:annotation>
+									<xs:documentation>Путь до XSD-схемы КАФ</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="ЛИАФ" type="АФ4:XSDСхема">
+								<xs:annotation>
+									<xs:documentation>Путь до XSD-схемы ЛИАФ</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="СПАФ" type="АФ4:XSDСхема">
+								<xs:annotation>
+									<xs:documentation>Путь до XSD-схемы СПАФ</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="ППВАФ" type="АФ4:XSDСхема">
+								<xs:annotation>
+									<xs:documentation>Путь до XSD-схемы ППВАФ</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="Файл" maxOccurs="unbounded" minOccurs="0">
+								<xs:annotation>
+									<xs:documentation>Путь до XSD-схемы, XML-файла или XLS-файла, который должен быть скопирован при сборке</xs:documentation>
+								</xs:annotation>
+								<xs:simpleType>
+									<xs:restriction base="УТ2:ТипНепустаяСтрока">
+										<xs:pattern value=".*\.[xX][sS][dD]"/>
+										<xs:pattern value=".*\.[xX][mM][lL]"/>
+										<xs:pattern value=".*\.[xX][lL][sS]"/>
+										<xs:pattern value=".*\.[xX][lL][sS][xX]"/>
+									</xs:restriction>
+								</xs:simpleType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+			<xs:attribute name="Код" type="УТ2:ТипНепустаяСтрока" use="required">
+				<xs:annotation>
+					<xs:documentation>Код Альбома форматов. Указывается код Альбома форматов для использования в качестве сокращения (например, АФ)</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:complexType name="ТипРаздел">
+		<xs:annotation>
+			<xs:documentation>Раздел</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="ТипТекст">
+				<xs:attribute name="Заголовок" type="УТ2:ТипНепустаяСтрока" use="optional">
+					<xs:annotation>
+						<xs:documentation>Заголовок раздела</xs:documentation>
+					</xs:annotation>
+				</xs:attribute>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="ТипТекст">
+		<xs:annotation>
+			<xs:documentation>Текстовое описание, разделенное на параграфы, списки и разделы</xs:documentation>
+		</xs:annotation>
+		<xs:choice maxOccurs="unbounded">
+			<xs:element name="Параграф" type="ТипПараграф" maxOccurs="unbounded" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Текст, выделяемый в отдельный абзац</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="НумерованыйСписок" type="ТипСписок" maxOccurs="unbounded" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Список, нумерованный арабскими цифрами 1,2,3...</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="МаркированныйСписок" type="ТипСписок" maxOccurs="unbounded" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Список маркированный</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="БуквенныйСписок" maxOccurs="unbounded" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Буквенный список (латинские, русские буквы)</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:complexContent>
+						<xs:extension base="ТипСписок">
+							<xs:attribute name="Тип" use="required">
+								<xs:annotation>
+									<xs:documentation>Тип букв, используемых в списке (латинские, русские буквы). Возможные значения:
+							en - латинские буквы;
+							ru - русские буквы.</xs:documentation>
+								</xs:annotation>
+								<xs:simpleType>
+									<xs:restriction base="УТ2:ТипНепустаяСтрока">
+										<xs:enumeration value="en"/>
+										<xs:enumeration value="ru"/>
+									</xs:restriction>
+								</xs:simpleType>
+							</xs:attribute>
+						</xs:extension>
+					</xs:complexContent>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="Раздел" type="ТипРаздел" maxOccurs="unbounded" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Новый раздел</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Таблица" type="ТипТаблица" maxOccurs="unbounded" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Текстовая информация в виде таблицы</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:choice>
+	</xs:complexType>
+	<xs:complexType name="ТипПараграф" mixed="1">
+		<xs:annotation>
+			<xs:documentation>Параграф</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="b" type="ТипBold" maxOccurs="unbounded" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Жирный текст</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="Выравнивание" default="Ш" use="optional">
+			<xs:annotation>
+				<xs:documentation>Выравнивание параграфа. Возможные значения:
+					Л - по левому краю,
+					П - по правому краю,
+					Ц - по центру,
+					Ш - по ширине.</xs:documentation>
+			</xs:annotation>
+			<xs:simpleType>
+				<xs:restriction base="УТ2:ТипНепустаяСтрока">
+					<xs:enumeration value="Л"/>
+					<xs:enumeration value="П"/>
+					<xs:enumeration value="Ц"/>
+					<xs:enumeration value="Ш"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="Отступ" default="35.0" type="xs:decimal" use="optional">
+			<xs:annotation>
+				<xs:documentation>Отступ параграфа.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:complexType name="ТипСписок">
+		<xs:annotation>
+			<xs:documentation>Список (нумерованный/маркированный), который может содержать вложенный список</xs:documentation>
+		</xs:annotation>
+		<xs:choice maxOccurs="unbounded">
+			<xs:element name="Параграф" type="ТипПараграф" maxOccurs="unbounded" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Элемент списка</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="НумерованыйСписок" type="ТипСписок" maxOccurs="unbounded" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Список, нумерованный арабскими цифрами 1,2,3...</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="МаркированныйСписок" type="ТипСписок" maxOccurs="unbounded" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Список маркированный</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="БуквенныйСписок" maxOccurs="unbounded" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Буквенный список (латинские, русские буквы)</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:complexContent>
+						<xs:extension base="ТипСписок">
+							<xs:attribute name="Тип" use="required">
+								<xs:annotation>
+									<xs:documentation>Тип букв, используемых в списке (латинские, русские буквы). Возможные значения:
+							en - латинские буквы;
+							ru - русские буквы.</xs:documentation>
+								</xs:annotation>
+								<xs:simpleType>
+									<xs:restriction base="УТ2:ТипНепустаяСтрока">
+										<xs:enumeration value="en"/>
+										<xs:enumeration value="ru"/>
+									</xs:restriction>
+								</xs:simpleType>
+							</xs:attribute>
+						</xs:extension>
+					</xs:complexContent>
+				</xs:complexType>
+			</xs:element>
+		</xs:choice>
+	</xs:complexType>
+
+	<xs:complexType name="ТипВидаДокумента">
+		<xs:annotation>
+			<xs:documentation>Тип для описания типа (вида) документа (документооборота). Виды документов могут быть бесконечно вложенны друг в друга</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="УтверждениеФормы" type="ТипУтверждениеФормы" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Сведения об утверждении формы документа, соответствующей данному формату: нормативный документ, дата утверждения, период действия печатной формы. Выводятся, если не указаны сведения утверждения формы непосредственно у формата</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Описание" type="ТипТекст" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Текстовое описание к форме документа, относящееся к текущему формату документа. Добавляется после описания, указанного у типа документа.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:choice>
+				<xs:annotation>
+					<xs:documentation>Указывается либо сведения описывающие Тип документа, либо ссылка на уже существующий ИО/группу документов/документ</xs:documentation>
+				</xs:annotation>
+				<xs:sequence>
+					<xs:annotation>
+						<xs:documentation>Последовательность элементов описывающая Тип документа, и (или) содержащая вложенные типы документов</xs:documentation>
+					</xs:annotation>
+					<xs:element name="ТипыДанных" type="ТипТипыДанных" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Перечисление типов данных, используемых в рамках документооборота</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="СУППпоУмолчанию" type="АФ4:XMLФайл" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Путь до XML-файла с описаниями сценария создания УПП (СУПП), который будет использоваться по умолчанию для всех нижележащих форматов и типов документов. Указывается относительно файла-конструктора.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="Преобразования" minOccurs="0" type="ТипПреобразования">
+						<xs:annotation>
+							<xs:documentation>Список xslt-преобразований, общих для всех типов документов группы документов</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="ТипДокумента" type="ТипВидаДокумента" minOccurs="0" maxOccurs="unbounded">
+						<xs:annotation>
+							<xs:documentation>Документ/документооборот в составе текущего документа/документооборота</xs:documentation>
+						</xs:annotation>
+						<xs:unique name="UniqueDocTypeCode">
+							<xs:selector xpath="КАФ:ТипДокумента"/>
+							<xs:field xpath="@Код"/>
+						</xs:unique>
+					</xs:element>
+					<xs:element name="Форматы" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Перечень форматов, относящихся к данной форме документа.</xs:documentation>
+						</xs:annotation>
+						<xs:complexType>
+							<xs:sequence>
+								<xs:element name="Формат" type="ТипФорматДокумента" maxOccurs="unbounded">
+									<xs:annotation>
+										<xs:documentation>Описание формата документа</xs:documentation>
+									</xs:annotation>
+								</xs:element>
+							</xs:sequence>
+						</xs:complexType>
+					</xs:element>
+				</xs:sequence>
+				<xs:element name="Ссылка" type="УТ2:ТипНепустаяСтрока">
+					<xs:annotation>
+						<xs:documentation>Ссылка на Раздел Информационного обмена конструктора. Должна иметь формат "{КОД_ИО}\{КОД_ТипаДокумента_1}\...\{КОД_ТипаДокумента_N}". Может использоваться для формирования ссылки на раздел с описанием Типа документа или Информационный обмен в целом в виде "см. {Название_раздела}"</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+			</xs:choice>
+		</xs:sequence>
+		<xs:attribute name="Код" type="УТ2:ТипНепустаяСтрока" use="required">
+			<xs:annotation>
+				<xs:documentation>Код документа/документооборота</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="Наименование" type="УТ2:ТипНепустаяСтрока" use="required">
+			<xs:annotation>
+				<xs:documentation>Наименование документа/документооборота</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="Заголовок" type="УТ2:ТипНепустаяСтрока" use="optional">
+			<xs:annotation>
+				<xs:documentation>Заголовок документа, который может быть использован на титульном листе при формировании документа по экспликации</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:complexType name="ТипВидаДанных">
+		<xs:annotation>
+			<xs:documentation>Тип для описания типов (вида) данных.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Описание" type="ТипТекст" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Описание к типам данных</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Схемы">
+				<xs:annotation>
+					<xs:documentation>XSD схемы</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="Схема" type="АФ4:XSDСхема" minOccurs="0" maxOccurs="unbounded">
+							<xs:annotation>
+								<xs:documentation>Путь до XSD-схемы с описанием типов данных, относительно файла-конструктора</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="Наименование" type="УТ2:ТипНепустаяСтрока" use="required">
+			<xs:annotation>
+				<xs:documentation>Общее название типов</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="КодТипа" type="УТ2:ТипНепустаяСтрока" use="optional">
+			<xs:annotation>
+				<xs:documentation>Код типа данных</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:complexType name="ТипТипыДанных">
+		<xs:annotation>
+			<xs:documentation>Тип для описания типов данных</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Описание" type="ТипТекст" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Описание к списку типов данных</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ТипДанных" type="ТипВидаДанных" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Тип данных</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ТипИнформационныйОбмен">
+		<xs:annotation>
+			<xs:documentation>Информационный обмен (документооборот)</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Описание" type="ТипТекст" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Текстовое описание информационного обмена</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ТипыДанных" type="ТипТипыДанных" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Список общих в рамках ИО типов данных</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Классификаторы" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Перечисление классификаторов, используемых в проверках документов.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="СУППпоУмолчанию" type="АФ4:XMLФайл" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Путь до XML-файла с описаниями сценария создания УПП (СУПП), который будет использоваться по умолчанию для всех нижележащих форматов и типов документов. Указывается относительно файла-конструктора.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Преобразования" minOccurs="0" type="ТипПреобразования">
+				<xs:annotation>
+					<xs:documentation>Список xslt-преобразований, общих для всех типов документов информационного обмена</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ТипыДокументов" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Список типов/групп документов в рамках ИО</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="ТипДокумента" type="ТипВидаДокумента" minOccurs="0" maxOccurs="unbounded">
+							<xs:annotation>
+								<xs:documentation>Тип/Группа документов в рамках ИО</xs:documentation>
+							</xs:annotation>
+							<xs:unique name="UniqueDocDocTypeCode">
+								<xs:selector xpath="КАФ:ТипДокумента"/>
+								<xs:field xpath="@Код"/>
+							</xs:unique>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+				<xs:unique name="UniqueDocTypeIOCode">
+					<xs:selector xpath="КАФ:ТипДокумента"/>
+					<xs:field xpath="@Код"/>
+				</xs:unique>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="Код" type="УТ2:ТипНепустаяСтрока">
+			<xs:annotation>
+				<xs:documentation>Код ИО</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="Наименование" type="УТ2:ТипНепустаяСтрока">
+			<xs:annotation>
+				<xs:documentation>Назавние ИО</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+
+	<xs:complexType name="ТипВалидация">
+		<xs:annotation>
+			<xs:documentation>Тип Валидация</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Описание" type="ТипТекст" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Описание к блоку валидации</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ОпределениеДокумента" type="УТ2:ТипНепустаяСтрока" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Xpath выражение, применяемое к xml документу,
+					определяющее, является ли документ типом, описываемым в родительском элементе, возвращает 1 или 0</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+
+			<xs:element name="Классификаторы" type="ТипКлассификаторы" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Перечисление классификаторов, используемых в проверках документов.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Схема" type="АФ4:XSDСхема" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Путь до XSD-схемы, указывается относительно файла-конструктора</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+
+			<xs:element name="ЛогическиеПроверки" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Список xml-файлов с описаниями правил проверок, преобразуемыми в Xquery код</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="Сценарий" type="АФ4:XMLФайл" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation>Путь до XML-файла с описаниями сценария правил проверок. Указывается относительно файла-конструктора.</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="СУПП" type="АФ4:XMLФайл" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation>Путь до XML-файла с описаниями сценария создания УПП (СУПП). Указывается относительно файла-конструктора.</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+
+
+
+	<xs:complexType name="ТипТаблица">
+		<xs:annotation>
+			<xs:documentation>Тип для описания табличной информации</xs:documentation>
+		</xs:annotation>
+
+		<xs:sequence>
+			<xs:element name="Шапка" type="ТипБлокТаблицы" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Шапка таблицы</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Тело" type="ТипБлокТаблицы" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Тело таблицы</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="Название" type="УТ2:ТипНепустаяСтрока">
+			<xs:annotation>
+				<xs:documentation>Название таблицы</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:complexType name="ТипСтрока">
+		<xs:annotation>
+			<xs:documentation>Строка таблицы</xs:documentation>
+		</xs:annotation>
+
+		<xs:sequence>
+			<xs:element name="Столбец" type="ТипСтолбец" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Столбец таблицы</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ТипСтолбец">
+		<xs:annotation>
+			<xs:documentation>Столбец таблицы</xs:documentation>
+		</xs:annotation>
+
+		<xs:simpleContent>
+			<xs:extension base="УТ2:ТипНепустаяСтрока">
+				<xs:attribute name="Ширина" type="xs:integer" default="1">
+					<xs:annotation>
+						<xs:documentation>Ширина столбца</xs:documentation>
+					</xs:annotation>
+				</xs:attribute>
+				<xs:attribute name="C" type="xs:integer">
+					<xs:annotation>
+						<xs:documentation>С в цвете CMYK - задает цвет ячейки</xs:documentation>
+					</xs:annotation>
+				</xs:attribute>
+				<xs:attribute name="M" type="xs:integer">
+					<xs:annotation>
+						<xs:documentation>M в цвете CMYK- задает цвет ячейки</xs:documentation>
+					</xs:annotation>
+				</xs:attribute>
+				<xs:attribute name="Y" type="xs:integer">
+					<xs:annotation>
+						<xs:documentation>Y в цвете CMYK- задает цвет ячейки</xs:documentation>
+					</xs:annotation>
+				</xs:attribute>
+				<xs:attribute name="K" type="xs:integer">
+					<xs:annotation>
+						<xs:documentation>K в цвете CMYK- задает цвет ячейки</xs:documentation>
+					</xs:annotation>
+				</xs:attribute>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+
+	<xs:complexType name="ТипБлокТаблицы">
+		<xs:annotation>
+			<xs:documentation>Блок строк в таблице (шапка/тело)</xs:documentation>
+		</xs:annotation>
+
+		<xs:sequence>
+			<xs:element name="Строка" type="ТипСтрока" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Строка таблицы</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="ТипBold" mixed="1">
+		<xs:annotation>
+			<xs:documentation>Жирный шрифт</xs:documentation>
+		</xs:annotation>
+		<xs:simpleContent>
+			<xs:extension base="УТ2:ТипНепустаяСтрока">
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:complexType name="ТипКартаПроверок">
+		<xs:annotation>
+			<xs:documentation>Тип для описания карты проверок</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Категория" type="ТипГруппаПроверок" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Список блоков проверок, относящихся к одной смысловой категории</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ТипГруппаПроверок">
+		<xs:annotation>
+			<xs:documentation>Тип для описания блока проверок</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Наименование" type="УТ2:ТипНепустаяСтрока">
+				<xs:annotation>
+					<xs:documentation>Наименование категории</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="СписокБлоков">
+				<xs:annotation>
+					<xs:documentation>Путь до XML-файла с блоками проверок</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="Файл" type="АФ4:XMLФайл" maxOccurs="unbounded">
+							<xs:annotation>
+								<xs:documentation>Путь до XML-файла с блоками проверок</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="Код" use="required">
+			<xs:annotation>
+				<xs:documentation>Код классификатора</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:complexType name="ТипСоставитель">
+		<xs:annotation>
+			<xs:documentation>Информация о составителе Альбома форматов</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="ПолноеНаименование" type="УТ2:ТипНепустаяСтрока">
+				<xs:annotation>
+					<xs:documentation>Полное наименование составителя Альбома форматов, формируется в верхний колонтитул титульной страницы печатной формы АФ</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="КраткоеНаименование" type="УТ2:ТипНепустаяСтрока">
+				<xs:annotation>
+					<xs:documentation>Краткое наименование составителя Альбома форматов, формируется в нижний колонтитул титульной страницы печатной формы АФ</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ТипНормативныйДокумент">
+		<xs:annotation>
+			<xs:documentation>Информация о нормативном документе: наименование документа, № и дата</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Наименование" type="УТ2:ТипНепустаяСтрока">
+				<xs:annotation>
+					<xs:documentation>Наименование документа</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Реквизиты" type="УТ2:ТипРеквизитыДокумента" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Дата и номер нормативного документа</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="ТипУтверждение">
+		<xs:annotation>
+			<xs:documentation>Тип для представления сведений об утверждении документ/форма/формат и т.д. с указанием периода действия</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="НормативныйДокумент" type="ТипНормативныйДокумент" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Нормативный документ, которым утверждается документ/форма/формат и т.д.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ПериодДействия" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Период действия документа/формы/формата и т.д., где Дата или Год "С" - дата вступления в силу, а Дата "По" или год "По" - дата окончания действия формы</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:group ref="ОАФ:ГрВременнойПериод">
+							<xs:annotation>
+								<xs:documentation>Период действия документа/формы/формата и т.д.</xs:documentation>
+							</xs:annotation>
+						</xs:group>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="ТипФорматДокумента">
+		<xs:annotation>
+			<xs:documentation>Тип для представления сведений о формате формы документа: утверждающем документе, периоде действия, соответствующему блоку валидации</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="УтверждениеФормы" type="ТипУтверждениеФормы" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Сведения об утверждении формы документа, соответствующей данному формату: нормативный документ, дата утверждения, период действия печатной формы.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ДатаРазработки" type="xs:date" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Дата фактической разработки формата</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:choice>
+				<xs:annotation>
+					<xs:documentation>Версия формата, которая может быть представлена либо датой, либо текстовым значением</xs:documentation>
+				</xs:annotation>
+				<xs:element name="ДатаФормата" type="xs:date">
+					<xs:annotation>
+						<xs:documentation>Дата формата. Как правило это дата, использованная в формате в составе ПИ и имени файла. Однозначно идентифицирует формат документа. Как правило, В качестве даты формата указывается либо дата вступления в силу печатной формы, если она существует, либо дата фактической разработки формата, если дата вступления в силу печатной формы отсутствует, но может и отличаться от этих двух дат.</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="ВерсияФормата" type="УТ2:ТипНепустаяСтрока">
+					<xs:annotation>
+						<xs:documentation>Версия формата</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+			</xs:choice>
+			<xs:element name="УтверждениеФормата" type="ТипУтверждение" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Сведения об утверждении формата документа: нормативный документ, дата утверждения, период действия формата.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Описание" type="ТипТекст" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Текстовое описание к форме документа, относящееся к текущему формату документа. Добавляется после описания, указанного у типа документа.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ТипыДанных" type="ТипТипыДанных" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Список типов данных, использующихся в формате</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="СУППпоУмолчанию" type="АФ4:XMLФайл" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Путь до XML-файла с описаниями сценария создания УПП (СУПП), который будет использоваться по умолчанию для всех нижележащих форматов и типов документов. Указывается относительно файла-конструктора.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Валидация" type="ТипВалидация">
+				<xs:annotation>
+					<xs:documentation>Блок проверок для документа, содержит XSD-схемы и описания проверок XQuery</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Примеры" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Список примеров электронных документов в формате xml-файла</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="Пример" maxOccurs="unbounded">
+							<xs:annotation>
+								<xs:documentation>Путь до примера электронного документа в формате xml-файла</xs:documentation>
+							</xs:annotation>
+							<xs:complexType>
+								<xs:simpleContent>
+									<xs:extension base="АФ4:XMLФайл">
+										<xs:attribute name="Наименование" type="УТ2:ТипНепустаяСтрока" use="required">
+											<xs:annotation>
+												<xs:documentation>Наименование примера</xs:documentation>
+											</xs:annotation>
+										</xs:attribute>
+									</xs:extension>
+								</xs:simpleContent>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="Формы" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Список примеров электронных документов в формате xls-файла</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="Форма" maxOccurs="unbounded">
+							<xs:annotation>
+								<xs:documentation>Путь до файла с формой электронного документа в формате xls-файла</xs:documentation>
+							</xs:annotation>
+							<xs:complexType>
+								<xs:simpleContent>
+									<xs:extension base="АФ4:XLSФайл">
+										<xs:attribute name="Наименование" type="УТ2:ТипНепустаяСтрока" use="required">
+											<xs:annotation>
+												<xs:documentation>Наименование формы</xs:documentation>
+											</xs:annotation>
+										</xs:attribute>
+									</xs:extension>
+								</xs:simpleContent>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="Преобразования" type="ТипПреобразования" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Список xslt-преобразований</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Тест" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Путь до файла-описателя теста</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:simpleContent>
+						<xs:extension base="АФ4:XMLФайл">
+							<xs:attribute name="Наименование" type="УТ2:ТипНепустаяСтрока" use="required">
+								<xs:annotation>
+									<xs:documentation>Наименование теста</xs:documentation>
+								</xs:annotation>
+							</xs:attribute>
+						</xs:extension>
+					</xs:simpleContent>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="Статус" use="required">
+			<xs:annotation>
+				<xs:documentation>Статус формата:
+				Проект - формат находится в разработке, не используется в системах,
+				Действующий - формат запущен в эксплуатацию,
+				Устарел - формат выведен из эксплуатации</xs:documentation>
+			</xs:annotation>
+			<xs:simpleType>
+				<xs:restriction base="УТ2:ТипНепустаяСтрока">
+					<xs:enumeration value="Проект"/>
+					<xs:enumeration value="Действующий"/>
+					<xs:enumeration value="Устарел"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="ПоУмолчанию" type="xs:boolean" use="optional" default="1">
+			<xs:annotation>
+				<xs:documentation>Признак «выводить в АФ по умолчанию»: в случае если у документа несколько форматов в одном статусе, то по умолчанию документатор выводит тот, у которого стоит признак «выводить в АФ по умолчанию». Т.о. у документа может быть только один формат одного статуса, отмеченный признаком "по умолчанию"</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:complexType name="ТипУтверждениеФормы">
+		<xs:complexContent>
+			<xs:extension base="ТипУтверждение">
+				<xs:sequence>
+					<xs:element name="ДополнительныеСведения" type="УТ2:ТипНепустаяСтрока" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Дополнительные сведения, имеющие отношение к утверждению формы и(или) периоду действия документа. Например, может быть указано, какая дата должна попадать в указанный период, чтобы определить, что документ должен предоставляться в той или иной форме, либо любые иные сведения</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="ТипКлассификаторы">
+		<xs:sequence>
+			<xs:element name="Классификатор" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Описание информационного обмена</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:annotation>
+						<xs:documentation>Тип для описания классификаторов</xs:documentation>
+					</xs:annotation>
+					<xs:sequence>
+						<xs:element name="Описание" type="ТипТекст" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation>Текстовое описание к классификатору</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="Файл" type="АФ4:XMLФайл" minOccurs="0" maxOccurs="unbounded">
+							<xs:annotation>
+								<xs:documentation>Путь до XML-файла с классификатора</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+					<xs:attribute name="КодКлассификатора" type="УТ2:ТипНепустаяСтрока">
+						<xs:annotation>
+							<xs:documentation>Код классификатора</xs:documentation>
+						</xs:annotation>
+					</xs:attribute>
+					<xs:attribute name="Наименование" type="УТ2:ТипНепустаяСтрока">
+						<xs:annotation>
+							<xs:documentation>Наименование классификатора</xs:documentation>
+						</xs:annotation>
+					</xs:attribute>
+					<xs:attribute name="Дополнительный" type="xs:boolean" use="optional">
+						<xs:annotation>
+							<xs:documentation>Признак дополнительности классификатора. Если установлен в 1, то такой классификатор напрямую не используется и не должен отражаться в итоговом документе.</xs:documentation>
+						</xs:annotation>
+					</xs:attribute>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:simpleType name="ТипФайлXSLTПреобразований">
+		<xs:annotation>
+			<xs:documentation>Тип, представляющий правило заполенения пути к файлу xslt-преобразования</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:pattern value=".*\.[xX][sS][lL][tT]?"/>
+			<xs:pattern value=".*\.[fF][oO]"/>
+			<xs:pattern value=".*\.[cC][sS][sS]"/>
+			<xs:pattern value=".*\.[pP][nN][gG]"/>
+			<xs:pattern value=".*\.[gG][iI][fF]"/>
+			<xs:pattern value=".*\.[jJ][pP][eE]?[gG]"/>
+			<xs:pattern value=".*\.[bB][mM][pP]"/>
+			<xs:pattern value=".*\.[sS][vV][gG]"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="ТипXSLTПреобразование">
+		<xs:simpleContent>
+			<xs:extension base="ТипФайлXSLTПреобразований">
+				<xs:attribute name="Тип" use="required">
+					<xs:annotation>
+						<xs:documentation>Тип преобразования (файла)</xs:documentation>
+					</xs:annotation>
+					<xs:simpleType>
+						<xs:restriction base="УТ2:ТипНепустаяСтрока">
+							<xs:enumeration value="pdf"/>
+							<xs:enumeration value="rtf"/>
+							<xs:enumeration value="html"/>
+							<xs:enumeration value="img"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:attribute>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:complexType name="ТипПреобразования">
+		<xs:annotation>
+			<xs:documentation>Список xslt-преобразований</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Преобразование" type="ТипXSLTПреобразование" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Путь до файла xslt-преобразования</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ДополнительныйФайл" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Путь до дополнительных файлов, используемых при попадании в сборку xslt-преобразований текущего уровня или уровня ниже</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:pattern value=".*\.[aA-zZ]+"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>

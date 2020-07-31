@@ -1,0 +1,647 @@
+<?xml version="1.0" encoding="Windows-1251"?>
+<!-- edited with XMLSpy v2012 rel. 2 sp1 (http://www.altova.com) by Sauronix (Branch of the  Pension Fund of the Russian Federation on  Republic Bashkortostan) -->
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	<xsd:annotation>
+		<xsd:documentation xml:lang="ru">XML-подсхема для проверки документов - Типы данных для СЗВ-4 </xsd:documentation>
+	</xsd:annotation>
+	<xsd:include schemaLocation="Types.XSD"/>
+	<xsd:include schemaLocation="Types_INDS.XSD"/>
+	<!--Тип Код Категории для СПВ -->
+	<xsd:simpleType name="ТипКодКатегорииСПВ">
+		<xsd:restriction base="xsd:string">
+			<xsd:minLength value="1"/>
+			<xsd:maxLength value="4"/>
+			<xsd:enumeration value="НР"/>
+			<xsd:enumeration value="СХ"/>
+			<xsd:enumeration value="ОЗОИ"/>
+			<xsd:enumeration value="ЕСХН"/>
+			<xsd:enumeration value="УСЕН"/>
+			<xsd:enumeration value="ФЛ"/>
+			<xsd:enumeration value="БЕЗР"/>
+			<xsd:enumeration value="ДП"/>
+			<xsd:enumeration value="ХМН"/>
+			<xsd:enumeration value="ООИ"/>
+			<xsd:enumeration value="ХО"/>
+			<xsd:enumeration value="ТВЭЗ"/>
+			<xsd:enumeration value="ОДИТ"/>
+			<xsd:enumeration value="СМИ"/>
+			<xsd:enumeration value="ПНЭД"/>
+			<xsd:enumeration value="ИЦС"/>
+			<xsd:enumeration value="АСБ"/>
+			<xsd:enumeration value="ЧЭС"/>
+			<xsd:enumeration value="ИНЖУ"/>
+			<xsd:enumeration value="ВПИЖ"/>
+			<xsd:enumeration value="ВПНР"/>
+			<xsd:enumeration value="ВПСХ"/>
+			<xsd:enumeration value="ВПЕН"/>
+			<xsd:enumeration value="ВПМН"/>
+			<xsd:enumeration value="ВПОИ"/>
+			<xsd:enumeration value="ВПХО"/>
+			<xsd:enumeration value="ВПТЗ"/>
+			<xsd:enumeration value="ВПИТ"/>
+			<xsd:enumeration value="ВПСИ"/>
+			<xsd:enumeration value="ВПЭД"/>
+			<xsd:enumeration value="ВПЦС"/>
+			<xsd:enumeration value="ВПСБ"/>
+			<xsd:enumeration value="ВПЭС"/>
+			<xsd:enumeration value="ВЖИЖ"/>
+			<xsd:enumeration value="ВЖНР"/>
+			<xsd:enumeration value="ВЖСХ"/>
+			<xsd:enumeration value="ВЖЕН"/>
+			<xsd:enumeration value="ВЖМН"/>
+			<xsd:enumeration value="ВЖОИ"/>
+			<xsd:enumeration value="ВЖХО"/>
+			<xsd:enumeration value="ВЖТЗ"/>
+			<xsd:enumeration value="ВЖИТ"/>
+			<xsd:enumeration value="ВЖСИ"/>
+			<xsd:enumeration value="ВЖЭД"/>
+			<xsd:enumeration value="ВЖЦС"/>
+			<xsd:enumeration value="ВЖСБ"/>
+			<xsd:enumeration value="ВЖЭС"/>
+			<xsd:enumeration value="АВИА"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="ТипКодКатегорииСПВ2">
+		<xsd:restriction base="xsd:string">
+			<xsd:minLength value="1"/>
+			<xsd:maxLength value="4"/>
+			<xsd:enumeration value="НР"/>
+			<xsd:enumeration value="СХ"/>
+			<xsd:enumeration value="ОЗОИ"/>
+			<xsd:enumeration value="ЕСХН"/>
+			<xsd:enumeration value="УСЕН"/>
+			<xsd:enumeration value="ФЛ"/>
+			<xsd:enumeration value="СДП"/>
+			<xsd:enumeration value="БЕЗР"/>
+			<xsd:enumeration value="ХМН"/>
+			<xsd:enumeration value="ООИ"/>
+			<xsd:enumeration value="ХО"/>
+			<xsd:enumeration value="ТВЭЗ"/>
+			<xsd:enumeration value="ОДИТ"/>
+			<xsd:enumeration value="СМИ"/>
+			<xsd:enumeration value="ПНЭД"/>
+			<xsd:enumeration value="ИЦС"/>
+			<xsd:enumeration value="АСБ"/>
+			<xsd:enumeration value="ЧЭС"/>
+			<xsd:enumeration value="ИНЖУ"/>
+			<xsd:enumeration value="ВПИЖ"/>
+			<xsd:enumeration value="ВПНР"/>
+			<xsd:enumeration value="ВПСХ"/>
+			<xsd:enumeration value="ВПЕН"/>
+			<xsd:enumeration value="ВПМН"/>
+			<xsd:enumeration value="ВПОИ"/>
+			<xsd:enumeration value="ВПХО"/>
+			<xsd:enumeration value="ВПТЗ"/>
+			<xsd:enumeration value="ВПИТ"/>
+			<xsd:enumeration value="ВПСИ"/>
+			<xsd:enumeration value="ВПЭД"/>
+			<xsd:enumeration value="ВПЦС"/>
+			<xsd:enumeration value="ВПСБ"/>
+			<xsd:enumeration value="ВПЭС"/>
+			<xsd:enumeration value="ВЖИЖ"/>
+			<xsd:enumeration value="ВЖНР"/>
+			<xsd:enumeration value="ВЖСХ"/>
+			<xsd:enumeration value="ВЖЕН"/>
+			<xsd:enumeration value="ВЖМН"/>
+			<xsd:enumeration value="ВЖОИ"/>
+			<xsd:enumeration value="ВЖХО"/>
+			<xsd:enumeration value="ВЖТЗ"/>
+			<xsd:enumeration value="ВЖИТ"/>
+			<xsd:enumeration value="ВЖСИ"/>
+			<xsd:enumeration value="ВЖЭД"/>
+			<xsd:enumeration value="ВЖЦС"/>
+			<xsd:enumeration value="ВЖСБ"/>
+			<xsd:enumeration value="ВЖЭС"/>
+			<xsd:enumeration value="АВИА"/>
+			<xsd:enumeration value="КРС"/>
+			<xsd:enumeration value="ВЖКС"/>
+			<xsd:enumeration value="ВПКС"/>
+			<xsd:enumeration value="ТОР"/>
+			<xsd:enumeration value="ВЖТР"/>
+			<xsd:enumeration value="ВПТР"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:complexType name="ТипОтчетныйПериодСПВ">
+		<xsd:sequence>
+			<xsd:element name="Квартал">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:integer">
+						<xsd:totalDigits value="1"/>
+						<xsd:minInclusive value="0"/>
+						<xsd:maxInclusive value="4"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="Год">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:gYear">
+						<xsd:minInclusive value="2010"/>
+						<xsd:maxInclusive value="2013"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="Название" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="Тип30Н">
+						<xsd:enumeration value="С 01.01.2010 ПО 30.06.2010"/>
+						<xsd:enumeration value="С 01.07.2010 ПО 31.12.2010"/>
+						<xsd:enumeration value="С 01.01.2010 ПО 31.12.2010"/>
+						<xsd:enumeration value="С 01.01.2011 ПО 31.03.2011"/>
+						<xsd:enumeration value="С 01.04.2011 ПО 30.06.2011"/>
+						<xsd:enumeration value="С 01.07.2011 ПО 30.09.2011"/>
+						<xsd:enumeration value="С 01.10.2011 ПО 31.12.2011"/>
+						<xsd:enumeration value="С 01.01.2012 ПО 31.12.2012"/>
+						<xsd:enumeration value="С 01.01.2012 ПО 31.03.2012"/>
+						<xsd:enumeration value="С 01.04.2012 ПО 30.06.2012"/>
+						<xsd:enumeration value="С 01.07.2012 ПО 30.09.2012"/>
+						<xsd:enumeration value="С 01.10.2012 ПО 31.12.2012"/>
+						<xsd:enumeration value="С 01.01.2012 ПО 31.12.2012"/>
+						<xsd:enumeration value="С 01.01.2013 ПО 31.12.2013"/>
+						<xsd:enumeration value="С 01.01.2013 ПО 31.03.2013"/>
+						<xsd:enumeration value="С 01.04.2013 ПО 30.06.2013"/>
+						<xsd:enumeration value="С 01.07.2013 ПО 30.09.2013"/>
+						<xsd:enumeration value="С 01.10.2013 ПО 31.12.2013"/>
+						<xsd:enumeration value="С 01.01.2013 ПО 31.12.2013"/>
+						<xsd:enumeration value="С 01.01.2014 ПО 31.03.2014"/>
+						<xsd:enumeration value="С 01.01.2014 ПО 30.06.2014"/>
+						<xsd:enumeration value="С 01.01.2014 ПО 30.09.2014"/>
+						<xsd:enumeration value="С 01.01.2014 ПО 31.12.2014"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="ТипОтчетныйПериодСПВ2">
+		<xsd:sequence>
+			<xsd:element name="Квартал">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:integer">
+						<xsd:totalDigits value="1"/>
+						<xsd:enumeration value="0"/>
+						<xsd:enumeration value="3"/>
+						<xsd:enumeration value="6"/>
+						<xsd:enumeration value="9"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="Год">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:gYear">
+						<xsd:minInclusive value="2014"/>
+						<xsd:maxInclusive value="2015"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="Название" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="Тип30Н">
+						<xsd:enumeration value="С 01.01.2014 ПО 31.03.2014"/>
+						<xsd:enumeration value="С 01.01.2014 ПО 30.06.2014"/>
+						<xsd:enumeration value="С 01.01.2014 ПО 30.09.2014"/>
+						<xsd:enumeration value="С 01.01.2014 ПО 31.12.2014"/>
+						<xsd:enumeration value="С 01.01.2015 ПО 31.03.2015"/>
+						<xsd:enumeration value="С 01.01.2015 ПО 30.06.2015"/>
+						<xsd:enumeration value="С 01.01.2015 ПО 30.09.2015"/>
+						<xsd:enumeration value="С 01.01.2015 ПО 31.12.2015"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="ТипОтчетныйПериодКорр">
+		<xsd:sequence>
+			<xsd:element name="Квартал">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:integer">
+						<xsd:totalDigits value="1"/>
+						<xsd:enumeration value="0"/>
+						<xsd:enumeration value="1"/>
+						<xsd:enumeration value="2"/>
+						<xsd:enumeration value="3"/>
+						<xsd:enumeration value="4"/>
+						<xsd:enumeration value="6"/>
+						<xsd:enumeration value="9"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="Год">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:gYear">
+						<xsd:minInclusive value="2010"/>
+						<xsd:maxInclusive value="2015"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="Название" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="Тип30Н">
+						<xsd:enumeration value="С 01.01.2010 ПО 30.06.2010"/>
+						<xsd:enumeration value="С 01.07.2010 ПО 31.12.2010"/>
+						<xsd:enumeration value="С 01.01.2010 ПО 31.12.2010"/>
+						<xsd:enumeration value="С 01.01.2011 ПО 31.03.2011"/>
+						<xsd:enumeration value="С 01.04.2011 ПО 30.06.2011"/>
+						<xsd:enumeration value="С 01.07.2011 ПО 30.09.2011"/>
+						<xsd:enumeration value="С 01.10.2011 ПО 31.12.2011"/>
+						<xsd:enumeration value="С 01.01.2012 ПО 31.12.2012"/>
+						<xsd:enumeration value="С 01.01.2012 ПО 31.03.2012"/>
+						<xsd:enumeration value="С 01.04.2012 ПО 30.06.2012"/>
+						<xsd:enumeration value="С 01.07.2012 ПО 30.09.2012"/>
+						<xsd:enumeration value="С 01.10.2012 ПО 31.12.2012"/>
+						<xsd:enumeration value="С 01.01.2012 ПО 31.12.2012"/>
+						<xsd:enumeration value="С 01.01.2013 ПО 31.12.2013"/>
+						<xsd:enumeration value="С 01.01.2013 ПО 31.03.2013"/>
+						<xsd:enumeration value="С 01.04.2013 ПО 30.06.2013"/>
+						<xsd:enumeration value="С 01.07.2013 ПО 30.09.2013"/>
+						<xsd:enumeration value="С 01.10.2013 ПО 31.12.2013"/>
+						<xsd:enumeration value="С 01.01.2013 ПО 31.12.2013"/>
+						<xsd:enumeration value="С 01.01.2014 ПО 31.03.2014"/>
+						<xsd:enumeration value="С 01.01.2014 ПО 30.06.2014"/>
+						<xsd:enumeration value="С 01.01.2014 ПО 30.09.2014"/>
+						<xsd:enumeration value="С 01.01.2014 ПО 31.12.2014"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:simpleType name="ТипТипСведенийСПВ">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="ИСХОДНАЯ"/>
+			<xsd:enumeration value="КОРРЕКТИРУЮЩАЯ"/>
+			<xsd:enumeration value="ОТМЕНЯЮЩАЯ"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:complexType name="ТипСуммаВзносовНаЧастьПенсии">
+		<xsd:sequence>
+			<xsd:element name="Начислено" type="ТипДеньги" minOccurs="0"/>
+			<xsd:element name="Уплачено" type="ТипДеньги" minOccurs="0"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:simpleType name="ТипВидФормыСПВ">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="СПВ-1"/>
+			<xsd:enumeration value="СЗВ-6-1"/>
+			<xsd:enumeration value="СЗВ-6-2"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<!-- Тип ОсобенностиУчета  -->
+	<xsd:complexType name="ТипОсобенностиУчетаСПВ">
+		<xsd:sequence>
+			<xsd:element name="ТерриториальныеУсловия" type="ТипТерриториальныеУсловияСПВ" minOccurs="0"/>
+			<xsd:element name="ОсобыеУсловияТруда" type="ТипОсобыеУсловияТрудаСПВ" minOccurs="0"/>
+			<xsd:element name="ИсчисляемыйСтаж" type="ТипИсчисляемыйСтажСПВ" minOccurs="0"/>
+			<xsd:element name="ДекретДети" type="ТипДекретДетиСПВ" minOccurs="0"/>
+			<xsd:element name="ВыслугаЛет" type="ТипВыслугаЛетСПВ" minOccurs="0"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:simpleType name="ТипДекретДетиСПВ">
+		<xsd:restriction base="xsd:string">
+			<xsd:maxLength value="10"/>
+			<xsd:enumeration value="ДЕКРЕТ"/>
+			<xsd:enumeration value="ДЕТИ"/>
+			<xsd:enumeration value="ДОГОВОР"/>
+			<xsd:enumeration value="ДЛОТПУСК"/>
+			<xsd:enumeration value="АДМИНИСТР"/>
+			<xsd:enumeration value="ВРНЕТРУД"/>
+			<xsd:enumeration value="ДЛДЕТИ"/>
+			<xsd:enumeration value="ЧАЭС"/>
+			<xsd:enumeration value="НЕОПЛ"/>
+			<xsd:enumeration value="ВАХТА"/>
+			<xsd:enumeration value="МЕСЯЦ"/>
+			<xsd:enumeration value="КВАЛИФ"/>
+			<xsd:enumeration value="ОБЩЕСТ"/>
+			<xsd:enumeration value="СДКРОВ"/>
+			<xsd:enumeration value="ОТСТРАН"/>
+			<xsd:enumeration value="ПРОСТОЙ"/>
+			<xsd:enumeration value="УЧОТПУСК"/>
+			<xsd:enumeration value="МЕДНЕТРУД"/>
+			<xsd:enumeration value="НЕОПЛДОГ"/>
+			<xsd:enumeration value="НЕОПЛАВТ"/>
+			<xsd:enumeration value="ДОПВЫХ"/>
+			<xsd:enumeration value="ДЕТИПРЛ"/>			
+			<xsd:enumeration value=""/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<!-- Тип ТерриториальныеУсловия  -->
+	<xsd:complexType name="ТипТерриториальныеУсловияСПВ">
+		<xsd:sequence>
+			<xsd:element name="ОснованиеТУ">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:maxLength value="4"/>
+						<xsd:enumeration value="РКСМ"/>
+						<xsd:enumeration value="МКСР"/>
+						<xsd:enumeration value="РКС"/>
+						<xsd:enumeration value="МКС"/>
+						<xsd:enumeration value="Ч31"/>
+						<xsd:enumeration value="Ч33"/>
+						<xsd:enumeration value="Ч34"/>
+						<xsd:enumeration value="Ч35"/>
+						<xsd:enumeration value="Ч36"/>
+						<xsd:enumeration value="СЕЛО"/>						
+						<xsd:enumeration value=""/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="Коэффициент" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:decimal">
+						<xsd:fractionDigits value="2"/>
+						<xsd:totalDigits value="3"/>
+						<xsd:minInclusive value="0.00"/>
+						<xsd:maxInclusive value="1.00"/>
+						<xsd:pattern value="\d{1}\.\d{2}"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<!-- Тип ОсобыеУсловияТруда  -->
+	<xsd:complexType name="ТипОсобыеУсловияТрудаСПВ">
+		<xsd:sequence>
+			<xsd:element name="ОснованиеОУТ">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:maxLength value="6"/>
+						<xsd:enumeration value="27-1"/>
+						<xsd:enumeration value="27-2"/>
+						<xsd:enumeration value="27-3"/>
+						<xsd:enumeration value="27-4"/>
+						<xsd:enumeration value="27-5"/>
+						<xsd:enumeration value="27-6"/>
+						<xsd:enumeration value="27-7"/>
+						<xsd:enumeration value="27-8"/>
+						<xsd:enumeration value="27-9"/>
+						<xsd:enumeration value="27-10"/>
+						<xsd:enumeration value="28-ОС"/>
+						<xsd:enumeration value="28-ПЖ"/>
+						<xsd:enumeration value="28-СЕВ"/>
+						<xsd:enumeration value="27-ОС"/>
+						<xsd:enumeration value="27-ПЖ"/>
+						<xsd:enumeration value=""/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="ПозицияСписка" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:maxLength value="20"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<!-- Тип ИсчисляемыйСтаж  -->
+	<xsd:complexType name="ТипИсчисляемыйСтажСПВ">
+		<xsd:sequence>
+			<xsd:element name="ОснованиеИС" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:maxLength value="7"/>
+						<xsd:enumeration value="СЕЗОН"/>
+						<xsd:enumeration value="УИК104"/>
+						<xsd:enumeration value="ВОДОЛАЗ"/>
+						<xsd:enumeration value="ЛЕПРО"/>
+						<xsd:enumeration value="ПОЛЕ"/>							
+						<xsd:enumeration value=""/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:choice>
+				<xsd:element name="ВыработкаВчасах" type="ТипВыработкаВчасах" minOccurs="0"/>
+				<xsd:element name="ВыработкаКалендарная" type="ТипВыработкаКалендарная" minOccurs="0"/>
+			</xsd:choice>
+		</xsd:sequence>
+	</xsd:complexType>
+	<!-- Тип ВыслугаЛет  -->
+	<xsd:complexType name="ТипВыслугаЛетСПВ">
+		<xsd:sequence>
+			<xsd:element name="ОснованиеВЛ" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:maxLength value="8"/>
+						<xsd:enumeration value="27-11ГР"/>
+						<xsd:enumeration value="27-11ВП"/>
+						<xsd:enumeration value="27-12"/>
+						<xsd:enumeration value="28-СП"/>
+						<xsd:enumeration value="28-ПД"/>
+						<xsd:enumeration value="28-ПДРК"/>
+						<xsd:enumeration value="28-ГД"/>
+						<xsd:enumeration value="28-СМ"/>
+						<xsd:enumeration value="28-ГДХР"/>
+						<xsd:enumeration value="28-СМХР"/>
+						<xsd:enumeration value="27-СП"/>
+						<xsd:enumeration value="27-ПД"/>
+						<xsd:enumeration value="27-ПДРК"/>
+						<xsd:enumeration value="27-ГД"/>
+						<xsd:enumeration value="27-СМ"/>
+						<xsd:enumeration value="27-ГДХР"/>
+						<xsd:enumeration value="27-СМХР"/>
+						<xsd:enumeration value="ТВОРЧ15"/>
+						<xsd:enumeration value="ТВОРЧ20"/>
+						<xsd:enumeration value="ТВОРЧ25"/>
+						<xsd:enumeration value="ТВОРЧ30"/>
+						<xsd:enumeration value="САМОЛЕТ"/>
+						<xsd:enumeration value="СПЕЦАВ"/>
+						<xsd:enumeration value="СПАСАВ"/>
+						<xsd:enumeration value="УЧЛЕТ"/>
+						<xsd:enumeration value="ВЫСШПИЛ"/>
+						<xsd:enumeration value="НОРМАПР"/>
+						<xsd:enumeration value="НОРМСП"/>
+						<xsd:enumeration value="РЕАКТИВН"/>
+						<xsd:enumeration value="ЛЕТРАБ"/>
+						<xsd:enumeration value="ЛЕТИСП"/>
+						<xsd:enumeration value="ОПЫТИСП"/>
+						<xsd:enumeration value="ИСПКЛС1"/>
+						<xsd:enumeration value="ИТСИСП"/>
+						<xsd:enumeration value="ИТСМАВ"/>
+						<xsd:enumeration value="ИНСПЕКТ"/>
+						<xsd:enumeration value="27-14"/>
+						<xsd:enumeration value="27-15"/>
+						<xsd:enumeration value=""/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:choice>
+				<xsd:element name="ВыработкаВчасах" type="ТипВыработкаВчасах" minOccurs="0"/>
+				<xsd:element name="ВыработкаКалендарная" type="ТипВыработкаКалендарная" minOccurs="0"/>
+			</xsd:choice>
+			<xsd:element name="ДоляСтавки" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:decimal">
+						<xsd:minInclusive value="0.00"/>
+						<xsd:maxInclusive value="2.00"/>
+						<xsd:fractionDigits value="2"/>
+						<xsd:totalDigits value="3"/>
+						<xsd:pattern value="\d{1}\.\d{2}"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="ТипЛьготныйСтажСПВ">
+		<xsd:sequence>
+			<xsd:element name="НомерСтроки">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:integer">
+						<xsd:minInclusive value="1"/>
+						<xsd:totalDigits value="3"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="ОсобенностиУчета" type="ТипОсобенностиУчетаСПВ"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="ТипСтажевыйПериод">
+		<xsd:sequence>
+			<xsd:element name="НомерСтроки">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:integer">
+						<xsd:minInclusive value="1"/>
+						<xsd:totalDigits value="3"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="ДатаНачалаПериода" type="ТипДата"/>
+			<xsd:element name="ДатаКонцаПериода" type="ТипДата"/>
+			<xsd:element name="КоличествоЛьготныхСоставляющих" type="ТипКоличество" minOccurs="0"/>
+			<xsd:element name="ЛьготныйСтаж" type="ТипЛьготныйСтажСПВ" minOccurs="0" maxOccurs="99"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:simpleType name="ТипТипДоговора">
+		<xsd:restriction base="xsd:string">
+			<xsd:maxLength value="20"/>
+			<xsd:enumeration value="ТРУДОВОЙ"/>
+			<xsd:enumeration value="ГРАЖДАНСКО-ПРАВОВОЙ"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="ТипОтчетныйГод">
+		<xsd:restriction base="xsd:gYear">
+			<xsd:minInclusive value="2010"/>
+			<xsd:maxInclusive value="2013"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:complexType name="ТипСуммаВыплатИвознаграждений">
+		<xsd:sequence>
+			<xsd:element name="ТипСтроки">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:maxLength value="14"/>
+						<xsd:enumeration value="МЕСЯЦ"/>
+						<xsd:enumeration value="ИТОГО"/>
+						<xsd:enumeration value="ИТОГО ПО ПАЧКЕ"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="Месяц" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:unsignedInt">
+						<xsd:minInclusive value="1"/>
+						<xsd:maxInclusive value="12"/>
+						<xsd:totalDigits value="2"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="СуммаВыплатВсего" type="ТипДеньги"/>
+			<xsd:element name="СуммаВыплатНачисленыСтраховыеВзносы" type="ТипДеньги"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<!-- Стажевый период для РСВ-1 -->
+	<xsd:complexType name="ТипСтажевыйПериодРСВ">
+		<xsd:sequence>
+			<xsd:element name="НомерСтроки">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:integer">
+						<xsd:minInclusive value="1"/>
+						<xsd:totalDigits value="3"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="ДатаНачалаПериода" type="ТипДата"/>
+			<xsd:element name="ДатаКонцаПериода" type="ТипДата"/>
+			<xsd:element name="КоличествоЛьготныхСоставляющих" type="ТипКоличество" minOccurs="0"/>
+			<xsd:element name="ЛьготныйСтаж" type="ТипЛьготныйСтажРСВ" minOccurs="0" maxOccurs="99"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<!-- Тип ОсобенностиУчета  -->
+	<xsd:complexType name="ТипОсобенностиУчетаРСВ">
+		<xsd:sequence>
+			<xsd:element name="ТерриториальныеУсловия" type="ТипТерриториальныеУсловияСПВ" minOccurs="0"/>
+			<xsd:element name="ОсобыеУсловияТруда" type="ТипОсобыеУсловияТрудаСПВ" minOccurs="0"/>
+			<xsd:element name="ИсчисляемыйСтаж" type="ТипИсчисляемыйСтажСПВ" minOccurs="0"/>
+			<xsd:element name="ДекретДети" type="ТипДекретДетиСПВ" minOccurs="0"/>
+			<xsd:element name="ВыслугаЛет" type="ТипВыслугаЛетРСВ" minOccurs="0"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="ТипЛьготныйСтажРСВ">
+		<xsd:sequence>
+			<xsd:element name="НомерСтроки">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:integer">
+						<xsd:minInclusive value="1"/>
+						<xsd:totalDigits value="3"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="ОсобенностиУчета" type="ТипОсобенностиУчетаРСВ"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<!-- Тип ВыслугаЛет  для РСВ-1 -->
+	<xsd:complexType name="ТипВыслугаЛетРСВ">
+		<xsd:sequence>
+			<xsd:element name="ОснованиеВЛ">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:maxLength value="8"/>
+						<xsd:enumeration value="27-11ГР"/>
+						<xsd:enumeration value="27-11ВП"/>
+						<xsd:enumeration value="27-12"/>
+						<xsd:enumeration value="27-СП"/>
+						<xsd:enumeration value="27-ПД"/>
+						<xsd:enumeration value="27-ПДРК"/>
+						<xsd:enumeration value="27-ГД"/>
+						<xsd:enumeration value="27-СМ"/>
+						<xsd:enumeration value="27-ГДХР"/>
+						<xsd:enumeration value="27-СМХР"/>
+						<xsd:enumeration value="ТВОРЧ15"/>
+						<xsd:enumeration value="ТВОРЧ20"/>
+						<xsd:enumeration value="ТВОРЧ25"/>
+						<xsd:enumeration value="ТВОРЧ30"/>
+						<xsd:enumeration value="САМОЛЕТ"/>
+						<xsd:enumeration value="СПЕЦАВ"/>
+						<xsd:enumeration value="СПАСАВ"/>
+						<xsd:enumeration value="УЧЛЕТ"/>
+						<xsd:enumeration value="ВЫСШПИЛ"/>
+						<xsd:enumeration value="НОРМАПР"/>
+						<xsd:enumeration value="НОРМСП"/>
+						<xsd:enumeration value="РЕАКТИВН"/>
+						<xsd:enumeration value="ЛЕТРАБ"/>
+						<xsd:enumeration value="ЛЕТИСП"/>
+						<xsd:enumeration value="ОПЫТИСП"/>
+						<xsd:enumeration value="ИСПКЛС1"/>
+						<xsd:enumeration value="ИТСИСП"/>
+						<xsd:enumeration value="ИТСМАВ"/>
+						<xsd:enumeration value="ИНСПЕКТ"/>
+						<xsd:enumeration value="27-14"/>
+						<xsd:enumeration value="27-15"/>
+						<xsd:enumeration value=""/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:choice>
+				<xsd:element name="ВыработкаВчасах" type="ТипВыработкаВчасах" minOccurs="0"/>
+				<xsd:element name="ВыработкаКалендарная" type="ТипВыработкаКалендарная" minOccurs="0"/>
+			</xsd:choice>
+			<xsd:element name="ДоляСтавки" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:decimal">
+						<xsd:minInclusive value="0.00"/>
+						<xsd:maxInclusive value="2.00"/>
+						<xsd:fractionDigits value="2"/>
+						<xsd:totalDigits value="3"/>
+						<xsd:pattern value="\d{1}\.\d{2}"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+</xsd:schema>

@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema version="2.0" elementFormDefault="qualified" xmlns="http://пф.рф/АФ" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://пф.рф/АФ">
+	
+
+	<!--
+	xmlns:ds="http://www.w3.org/2000/09/xmldsig#" 
+	<xs:import namespace="http://www.w3.org/2000/09/xmldsig#" schemaLocation="xmldsig_core_schema.xsd"/>
+	<xs:complexType name="ТипЭДПФР">
+		<xs:annotation>
+			<xs:documentation>Базовый для всех электронных документов информационного обмена ПФР тип</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:any namespace="http://пф.рф/ ##targetNamespace" processContents="strict">
+				<xs:annotation>
+					<xs:documentation>Содержимое формы документа. В качестве имени элемента используется код формы помещаемой в электронный документ в качестве содержимого.</xs:documentation>
+				</xs:annotation>
+			</xs:any>
+			<xs:element name="ЭлектроннаяПодпись" type="ds:SignatureType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Электронная подпись (ЭП). Электронный документ, для которого законодательством Российской Федерации предусмотрена юридически значимая подпись, должен быть подписан усиленной квалифицированной электронной подписью в соответствии со спецификацией XMLDSig</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Вложения" type="ТипВложения" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Тип для представления блока вложений к электронному документу. Блок вложений может содержать одно или более вложений электронных документов в виде бинарных неструктурированных данных в кодировке Base64. Может отсутствовать.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="СлужебнаяИнформация" type="ТипСлужебнаяИнформация">
+				<xs:annotation>
+					<xs:documentation>Служебная информация об электронном документе</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+-->
+	<xs:complexType name="ТипПакетПФР">
+		<xs:annotation>
+			<xs:documentation>Базовый для всех электронных документов информационного обмена ПФР тип</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="ЗаголовокПакета" type="ТипЗаголовокПакета"/>
+			<xs:element name="СоставПакета" type="ТипСоставПакета"/>
+		</xs:sequence>
+		<xs:attributeGroup ref="АтрибутыКорневогоЭлемента"/>
+	</xs:complexType>
+
+	<xs:complexType name="ТипЗаголовокПакета" abstract="true">
+		<xs:annotation>
+			<xs:documentation>Абстрактный тип заголовка пакета. Напрямую не применяется, является базовым типом для заголовков форм</xs:documentation>
+		</xs:annotation>
+		<xs:sequence/>
+		<xs:attribute name="ДатаВремя" type="xs:dateTime" use="required">
+			<xs:annotation>
+				<xs:documentation>Дата и время формирования пакета/документа</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+
+	<xs:complexType name="ТипСлужебнаяИнформация">
+		<xs:annotation>
+			<xs:documentation>Тип для представления служебной информации о составителе, дате и времени составления, идентификационной и иной информации об электронном документе.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="GUID" type="ТипGUID">
+				<xs:annotation>
+					<xs:documentation>Глобальный идентификатор электронного документа, присваиваемый составителем. Относится к зоне идентификации документа. Реализация спецификации стандарта http://www.ietf.org/rfc/rfc4122.txt</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ВОтветНа" type="ТипGUID" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Глобальный идентификатор электронного документа, в ответ на который сформирован документ. Относится к зоне идентификации документа. Реализация спецификации стандарта http://www.ietf.org/rfc/rfc4122.txt</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ДатаВремя" type="xs:dateTime">
+				<xs:annotation>
+					<xs:documentation>Дата и время формирования электронного документа</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ТипВложения">
+		<xs:annotation>
+			<xs:documentation>Тип для представления блока вложений к электронному документу. Блок вложений может содержать одно или более вложений электронных документов в виде бинарных неструктурированных данных в кодировке Base64.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Вложение" type="xs:base64Binary" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Вложение электронного документа в виде бинарных неструктурированных данных в кодировке Base64</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ТипСоставПакета" abstract="true">
+		<xs:annotation>
+			<xs:documentation>Абстрактный тип содержимого пакета. Напрямую не применяется, является базовым типом для содержимого форм</xs:documentation>
+		</xs:annotation>
+		<xs:sequence/>
+	</xs:complexType>
+
+	<xs:attributeGroup name="АтрибутыКорневогоЭлемента">
+		<xs:annotation>
+			<xs:documentation>Атрибуты корневого элемента.</xs:documentation>
+			<xs:documentation>Группа атрибутов для корневого элемента применяется в отношении корневых элементов для всех форм документов ПФР</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="ВерсияАФ" type="xs:string" use="required" fixed="2.0">
+			<xs:annotation>
+				<xs:documentation>Версия альбома форматов ПФР</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attributeGroup ref="АтрибутыGUID"/>
+	</xs:attributeGroup>
+
+	<xs:attributeGroup name="АтрибутыGUID">
+		<xs:annotation>
+			<xs:documentation>Атрибуты идентификации.</xs:documentation>
+			<xs:documentation>Группа атрибутов, относящаяся к зоне идентификации пакета или документа в пакете. Содержит GUIDы</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="GUID" type="ТипGUID" use="required">
+			<xs:annotation>
+				<xs:documentation>Глобальный уникальный идентификатор пакета/документа, присваиваемый составителем. Реализация спецификации стандарта http://www.ietf.org/rfc/rfc4122.txt</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="ВОтветНа" type="ТипGUID" use="optional">
+			<xs:annotation>
+				<xs:documentation>Глобальный уникальный идентификатор пакета/документа, в ответ на который сформирован пакет/документ. Реализация спецификации стандарта http://www.ietf.org/rfc/rfc4122.txt</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:attributeGroup>
+
+	<xs:complexType name="ТипДокументПФР">
+		<xs:annotation>
+			<xs:documentation>Тип, использующийся для представления электронных документов ПФР. Содержит сведения, позволяющие идентифицировать документ (атрибуты идентификации)</xs:documentation>
+		</xs:annotation>
+		<xs:sequence/>
+		<xs:attributeGroup ref="АтрибутыGUID"/>
+	</xs:complexType>
+
+	<xs:simpleType name="ТипGUID">
+		<xs:annotation>
+			<xs:documentation>Тип, используемый для представления правила заполнения глобального идентификатора из пространства http://microsoft.com/wsdl/types/. Реализация спецификации стандарта http://www.ietf.org/rfc/rfc4122.txt</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:pattern value="([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12})|(\{[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}\})"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="ТипНомерВерсии">
+		<xs:annotation>
+			<xs:documentation>Номер версии</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="20"/>
+			<xs:pattern value="\d*(\.\d{1,3})*"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="XMLФайл">
+		<xs:annotation>
+			<xs:documentation>Тип, представляющий правило заполенения пути к xml-файлу</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:pattern value=".*\.[xX][mM][lL]"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="XLSФайл">
+		<xs:annotation>
+			<xs:documentation>Тип, представляющий правило заполенения пути к xls(x)-файлу</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:pattern value=".*\.[xX][lL][sS]"/>
+			<xs:pattern value=".*\.[xX][lL][sS][xX]"/>
+		</xs:restriction>
+	</xs:simpleType>
+    <xs:simpleType name="ТипКодРезультата">
+        <xs:annotation>
+            <xs:documentation>Код результата проверки</xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:maxLength value="2"/>
+            <xs:pattern value="\d{2}"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:complexType name="ТипОписаниеПеременной">
+        <xs:annotation>
+            <xs:documentation>Тип, используемый для описания переменной</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="Описание" type="xs:string">
+                <xs:annotation>
+                    <xs:documentation>Краткое описание для чего вводится переменная</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Декларация" type="xs:string" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Принимаемое переменной значение</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
+</xs:schema>

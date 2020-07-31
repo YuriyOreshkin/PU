@@ -1,0 +1,255 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema version="2.0" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://пф.рф/АФ/УПП/типы" xmlns:УТ="http://пф.рф/унифицированныеТипы/2014-01-01" xmlns:АФ="http://пф.рф/АФ" targetNamespace="http://пф.рф/АФ/УПП/типы"
+           elementFormDefault="qualified">
+
+	<xs:import namespace="http://пф.рф/унифицированныеТипы/2014-01-01" schemaLocation="../../УнифТипы_2014-01-01.xsd"/>
+	<xs:import namespace="http://пф.рф/АФ" schemaLocation="../../ТипыОбщие.xsd"/>
+
+	<xs:annotation>
+		<xs:documentation>Типы данных для унифицированного протокола проверок</xs:documentation>
+		<xs:documentation>Рекомендуемый префикс для пространства имен http://пф.рф/АФ/УПП/типы - УПП</xs:documentation>
+	</xs:annotation>
+
+	<xs:complexType name="ТипУПП">
+		<xs:annotation>
+			<xs:documentation>Тип для описания унифицированного протокола проверок</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="ПроверяемыйДокумент" type="ТипПроверяемыйДокумент">
+				<xs:annotation>
+					<xs:documentation>Сведения о проверяемом документе</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ПроверочныйМодуль" type="ТипПроверочныйМодуль" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Сведения о результатах работы проверочного модуля</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="ТипПроверяемыйДокумент">
+		<xs:annotation>
+			<xs:documentation>Состав проверяемого документа в электронной форме. Документ может быть представлен одним или несколькими файлами</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Файл" type="ТипФайл" minOccurs="1" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Список проверяемых файлов</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="КодФормы" type="xs:string">
+			<xs:annotation>
+				<xs:documentation>Код формы проверемого документа по альбому форматов</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+
+	<xs:complexType name="ТипФайл">
+		<xs:annotation>
+			<xs:documentation>Реультат проверки проверочными модулями файла, содержащего часть документа</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Результат" type="ТипРезультат" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Результат проверки</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="ИмяФайла" type="xs:NCName" use="required">
+			<xs:annotation>
+				<xs:documentation>Валидное имя файла</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="Тип" type="xs:string">
+			<xs:annotation>
+				<xs:documentation>Тип проверяемого документа. В дальнейшем будет классификатор документов по АФ2</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+
+	<xs:complexType name="ТипПроверочныйМодуль">
+		<xs:annotation>
+			<xs:documentation>Результат работы проверочного модуля</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="ПроверкаФайлов" type="ТипПроверкаФайлов" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Блок проверки файлов</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="Наименование" type="xs:string">
+			<xs:annotation>
+				<xs:documentation>Наименование модуля проверки</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="ДатаВремяНачала" type="xs:dateTime">
+			<xs:annotation>
+				<xs:documentation>Дата и время начала работы модуля</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="ДатаВремяОкончания" type="xs:dateTime">
+			<xs:annotation>
+				<xs:documentation>Дата и время окончания работы модуля</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+
+	<xs:complexType name="ТипПроверкаФайлов">
+		<xs:annotation>
+			<xs:documentation>Блок описания одного или нескольких файлов документа подлежащих проверке</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Файл" type="ТипФайл" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Имя файла документа, подлежащиего проверке</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="ТипБлокПроверокПротокола">
+		<xs:annotation>
+			<xs:documentation>Тип для Блока проверок, который рекурсивно может содержать другие блоки проверок и проверки своего уровня</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="БлокПроверок" type="ТипБлокПроверокПротокола" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Список проверок, объединенных в одну группу по своей семантике</xs:documentation>
+				</xs:annotation>
+				<xs:unique name="UniqueID">
+					<xs:annotation>
+						<xs:documentation>Идентифиаторы блоков проверок не должны повторяться</xs:documentation>
+					</xs:annotation>
+					<xs:selector xpath="БлокПроверок"/>
+					<xs:field xpath="@ID"/>
+				</xs:unique>
+				<xs:unique name="UniqueIDRule">
+					<xs:annotation>
+						<xs:documentation>Идентификаторы правил не должны повторяться</xs:documentation>
+					</xs:annotation>
+					<xs:selector xpath="Проверка"/>
+					<xs:field xpath="@ID"/>
+				</xs:unique>
+			</xs:element>
+
+			<xs:element name="Проверка" type="ТипПроверкаПротокола" maxOccurs="unbounded" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Информация о проверке: описание, код результата, список ошибок</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="ID" type="xs:integer">
+			<xs:annotation>
+				<xs:documentation>Уникальный идентификатор проверки из классификатора проверок</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="Название" type="xs:string">
+			<xs:annotation>
+				<xs:documentation>Название проверки</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+
+	<xs:complexType name="ТипПроверкаПротокола" mixed="1">
+		<xs:annotation>
+			<xs:documentation>Тип для описания проверки и ее результата</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="ОписаниеПроверки" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Текстовое описание проверки</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="КодРезультата" type="АФ:ТипКодРезультата">
+				<xs:annotation>
+					<xs:documentation>Код результата, возвращенный проверкой. Код "00"- означает успешную проверку</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Ошибки" type="ТипОшибки" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Список ошибок по результатам проверки</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="ID" type="xs:string" use="required">
+			<xs:annotation>
+				<xs:documentation>Идентификатор проверки</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+
+	<xs:complexType name="ТипОшибки">
+		<xs:annotation>
+			<xs:documentation>Список ошибок, содержащий номера строк в проверяемом файле, значения которых не прошли проверку</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Ошибка" type="ТипОшибка" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Список ошибок</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="ТипОшибка">
+		<xs:annotation>
+			<xs:documentation>Ошибка, содержащая номер строки в проверяемом файле, в которой находится элемент, не прошедший проверку, и путь до этого элемента</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Строка" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Номер строки в проверемом файле, приведенного к канонической форме, в которой находится элемент, не прошедший проверку. Используется для визуального контроля человеком</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ПутьДоЭлемента" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Xpath-путь до элемента, не прошедшего проверку.Используется для программной навигации по проверяемому документу для отработк ошибок</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ОжидаемоеЗначение" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Ожидаемое значение. Заполняется проверочным модулем для проверок, в которых такое ожидаемое значение возможно вычислить. Необязателен</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Объект" type="ТипОбъектОшибки" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Идентификатор объекта, в котором обнаружена ошибка</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="ТипРезультат">
+		<xs:annotation>
+			<xs:documentation>Тип данных: Результат проверок</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="БлокПроверок" type="ТипБлокПроверокПротокола" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Список проверок, объединенных в одну группу по своей семантике</xs:documentation>
+				</xs:annotation>
+				<xs:unique name="UniqueMainID">
+					<xs:selector xpath="БлокПроверок"/>
+					<xs:field xpath="@ID"/>
+				</xs:unique>
+				<xs:unique name="UniqueMainIDRule">
+					<xs:selector xpath="Проверка"/>
+					<xs:field xpath="@ID"/>
+				</xs:unique>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="ТипОбъектОшибки">
+		<xs:annotation>
+			<xs:documentation>Идентификатор объекта, в элементах которого обнаружена ошибка</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Наименование" type="xs:string" minOccurs="0"/>
+			<xs:element name="Значение" type="xs:string"/>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>

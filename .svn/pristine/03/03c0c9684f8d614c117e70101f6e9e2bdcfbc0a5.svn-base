@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="Windows-1251"?>
+<xs:schema version="1.0"  xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+
+	<xs:include schemaLocation="../Типы.XSD"/>
+	<xs:include schemaLocation="../Входящие/ТипыВХОДЯЩИЕ_ДОКУМЕНТЫ.XSD"/>
+
+	<xs:complexType name="ТипИсходящийДокумент">
+		<xs:annotation>
+			<xs:documentation>Абстрактный блок «Исходящий документ». Допустимые атрибуты блока Исходящий документ: «Окружение». Данный атрибут является допустимым также для всех расширений блока Исходящий документ</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="СистемныйИсходящий" type="ТипСистемныйНомерИсходящий">
+				<xs:annotation>
+					<xs:documentation>Системный номер исходящий</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ПородившийДокумент" type="ТипСистемныйНомер">
+				<xs:annotation>
+					<xs:documentation>Системный номер входящий породившего документа</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="СостояниеИсходящего" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Состояние исходящего документа.Отсутствуют при значении атрибута «Окружение» = «В составе Выписки»</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="Состояние">
+							<xs:annotation>
+								<xs:documentation>Состояние</xs:documentation>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:maxLength value="20"/>
+									<xs:enumeration value="ВРУЧЕН"/>
+									<xs:enumeration value="ОЖИДАЕТ ВРУЧЕНИЯ"/>
+									<xs:enumeration value="НЕ ВРУЧЕН"/>
+									<xs:enumeration value="ПЕРЕДАН РАБОТОДАТЕЛЮ"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+						<xs:element name="ПричинаНевручения">
+							<xs:annotation>
+								<xs:documentation>Причина невручения</xs:documentation>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:maxLength value="20"/>
+									<xs:enumeration value="УВОЛЬНЕНИЕ"/>
+									<xs:enumeration value="КОМАНДИРОВКА"/>
+									<xs:enumeration value="ПРОЧЕЕ"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+						<xs:element name="ДатаРаспечатки" type="ТипДата">
+							<xs:annotation>
+								<xs:documentation>Дата распечатки</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="ДатаВручения" type="ТипДата">
+							<xs:annotation>
+								<xs:documentation>Дата вручения</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="Окружение" use="optional">
+			<xs:annotation>
+				<xs:documentation>Для файлов, представляемых страхователями, допускается только значение «В составе файла»</xs:documentation>
+			</xs:annotation>
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:enumeration value="Единичный запрос"/>
+					<xs:enumeration value="В составе файла"/>
+					<xs:enumeration value="В составе выписки"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+	</xs:complexType>
+
+	<xs:complexType name="ТипСистемныйИсходящий">
+		<xs:annotation>
+			<xs:documentation>Системный номер исходящий</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="КодПодразделения" type="ТипКодПодразделения"/>
+			<xs:element name="ИсходящийНомер" type="ТипИсходящийНомер"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:simpleType name="ТипИсходящийНомер">
+		<xs:annotation>
+			<xs:documentation>Тип ИсходящийНомер</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:integer">
+			<xs:totalDigits value="6"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="ТипПолИсх">
+		<xs:annotation>
+			<xs:documentation>Классификатор пола для исходящих документов</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="10"/>
+			<xs:enumeration value="МУЖСКОЙ"/>
+			<xs:enumeration value="ЖЕНСКИЙ"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="ТипТипМестаРождения">
+		<xs:annotation>
+			<xs:documentation>Классификатор типа места рождения</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="15"/>
+			<xs:enumeration value="ОСОБОЕ"/>
+			<xs:enumeration value="СТАНДАРТНОЕ"/>
+		</xs:restriction>
+	</xs:simpleType>
+</xs:schema>

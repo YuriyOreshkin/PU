@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="Windows-1251"?>
+<xs:schema version="1.0"  xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+
+	<xs:include schemaLocation="../Типы.XSD"/>
+	<xs:include schemaLocation="ТипыИСХОДЯЩИЕ_ДОКУМЕНТЫ.XSD"/>
+
+	<xs:complexType name="ТипАДИ-5">
+		<xs:annotation>
+			<xs:documentation>Форма АДИ-5 (Сопроводительная ведомость, входит в состав пачки исходящих документов)</xs:documentation>
+		</xs:annotation>
+
+		<xs:complexContent>
+			<xs:extension base="ТипИсходящийДокумент">
+				<xs:sequence>
+					<xs:element name="СоставительПачки" type="ТипОрганизация">
+						<xs:annotation>
+							<xs:documentation>Составитель пачки</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="СоставДокументов" type="ТипСоставДокументов">
+						<xs:annotation>
+							<xs:documentation>Состав документов</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+</xs:schema>

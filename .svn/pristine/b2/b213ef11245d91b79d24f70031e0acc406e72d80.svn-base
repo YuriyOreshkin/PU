@@ -1,0 +1,271 @@
+<?xml version="1.0"?>
+<xs:schema version="1.0" targetNamespace="http://пф.рф/АФ" xmlns="http://пф.рф/АФ" xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+
+	<xs:include schemaLocation="../../ТипыОбщие.xsd"/>
+	<xs:annotation>
+		<xs:documentation>Схема Описаний сценария проверок форматов ПФР</xs:documentation>
+	</xs:annotation>
+	<xs:element name="СценарийПроверок">
+		<xs:annotation>
+			<xs:documentation>Корневой элемент. Описание последовательности выполнения базовых логических проверок для документа определенного формата</xs:documentation></xs:annotation>
+		<xs:complexType>
+			<xs:annotation>
+				<xs:documentation>Тип описания проверок</xs:documentation>
+			</xs:annotation>
+			<xs:sequence>
+				<xs:element name="ПроверяемыйФормат" type="xs:string">
+					<xs:annotation>
+						<xs:documentation>Наименование формата, для которого описываются логические проверки</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="Описание" type="xs:string">
+					<xs:annotation>
+						<xs:documentation>Краткое описание для всех проверок</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="КодИнформационногоОбмена" type="xs:string">
+					<xs:annotation>
+						<xs:documentation>Код информационного обмена формата, для которого описываются логические проверки. Используется при формировании кода проверки.</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="КодДокумента" type="xs:string">
+					<xs:annotation>
+						<xs:documentation>Код документа формата, для которого описываются логические проверки. Используется при формировании кода проверки.</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="Версия">
+					<xs:annotation>
+						<xs:documentation>Версия правил проверок</xs:documentation>
+					</xs:annotation>
+					<xs:simpleType>
+						<xs:restriction base="ТипНомерВерсии"/>
+					</xs:simpleType>
+				</xs:element>
+				<xs:element name="ДатаАктуальности" type="xs:date">
+					<xs:annotation>
+						<xs:documentation>Дата актуальности составления правил проверок</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+
+				<xs:element name="ПространстваИмен" type="ТипВсеПространстваИмен">
+					<xs:annotation>
+						<xs:documentation>Список всех пространств имен в проверяемом файле</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+
+				<xs:element name="Переменные" type="ТипВсеПеременные">
+					<xs:annotation>
+						<xs:documentation>Описание внешних, передаваемых в качестве аргументов для XQuery, и глобальных в рамках всех проверок, описываемых в данном файле, переменных, как правило используемых в нескольких проверках одновременно</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="Проверки" type="ТипВсеПроверкиСценария">
+					<xs:annotation>
+						<xs:documentation>Описание функций (глобальных в рамках всех проверок, описываемых в данном файле), как правило используемых в нескольких проверках одновременно</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
+
+	<xs:complexType name="ТипВсеПеременные">
+		<xs:annotation>
+			<xs:documentation>Список всех переменных</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Переменная" type="ТипПеременнаяСценария" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Описание переменной со всеми возможными значениями</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ТипПеременнаяСценария">
+		<xs:annotation>
+			<xs:documentation>Тип для блока Переменные</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Значения" type="ТипВсеЗначенияПеременной">
+				<xs:annotation>
+					<xs:documentation>Список возможных значений переменной в рамках документа</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="Наименование" type="xs:string" use="required">
+			<xs:annotation>
+				<xs:documentation>Имя переменной  на XQuery</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="Тип" type="xs:string" use="optional">
+			<xs:annotation>
+				<xs:documentation>Тип переменной  на XQuery. Указывается только для внешних переменных, для внутренних может быть не указан</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="Внешняя" type="xs:boolean" use="optional">
+			<xs:annotation>
+				<xs:documentation>Признак, является ли переменная внешней для XQuery или локальной. Если не указано - по умолчанию считается, что переменная внутренняя</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+
+	<xs:complexType name="ТипВсеЗначенияПеременной">
+		<xs:annotation>
+			<xs:documentation>Тип для блока Переменные</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Значение" type="ТипЗначениеПеременной" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Список переменных XQuery</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ТипЗначениеПеременной">
+		<xs:annotation>
+			<xs:documentation>Описание переменной</xs:documentation>
+		</xs:annotation>
+        <xs:complexContent>
+            <xs:extension base="ТипОписаниеПеременной" >
+                <xs:attribute name="ID" type="xs:integer" use="required">
+                    <xs:annotation>
+                        <xs:documentation>Идентификатор значения переменной</xs:documentation>
+                    </xs:annotation>
+                </xs:attribute>
+            </xs:extension>
+        </xs:complexContent>
+	</xs:complexType>
+
+
+
+	<xs:complexType name="ТипВсеПроверкиСценария">
+		<xs:annotation>
+			<xs:documentation>Тип</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Проверка" type="ТипПроверкаСценария" maxOccurs="unbounded" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Описание правила проверки</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="ТипПроверкаСценария">
+		<xs:annotation>
+			<xs:documentation>Проверка</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Описание" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Текстовое описание проверки.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+
+
+			<xs:element name="Файл" type="XMLФайл">
+				<xs:annotation>
+					<xs:documentation>Файл с базовыми проверками в формате описания проверок XQuery</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:choice minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Может быть указан либо список включаемых проверок из файла, либо список исключаемых проверок</xs:documentation>
+				</xs:annotation>
+				<xs:element name="ВключаемыеПроверки" type="ТипВключаемыеИсключаемыеПроверки">
+					<xs:annotation>
+						<xs:documentation>Список идентификаторов проверок, которые необходимо включить в сценарий проверок</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="ИсключаемыеПроверки" type="ТипВключаемыеИсключаемыеПроверки">
+					<xs:annotation>
+						<xs:documentation>Список идентификаторов проверок, которые необходимо исключить из сценария проверок</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+			</xs:choice>
+			<xs:element name="ИспользуемыеПеременные" type="ТипИспользуемыеПеременные" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Список переменных, передаваемых в базовые проверки</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="Протоколируемая" type="xs:boolean" use="optional">
+			<xs:annotation>
+				<xs:documentation>Признак, нужно ли заносить в протокол проверок результаты проверок данного лока. Если не указано - по умолчанию считается, что нужно</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+
+	<xs:complexType name="ТипВключаемыеИсключаемыеПроверки">
+		<xs:annotation>
+			<xs:documentation>Тип включаемые исключаемые проверки</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Проверка" type="xs:string" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Идентификатор проверки, которую нужно включить в сценарий/исключить из сценария</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="ТипИспользуемыеПеременные">
+		<xs:annotation>
+			<xs:documentation>Тип используемые переменные</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Переменная" type="ТипИспользуемаяПеременная" maxOccurs="unbounded" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Описание правила проверки</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ТипИспользуемаяПеременная">
+		<xs:annotation>
+			<xs:documentation>Тип используемые переменные</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="Наименование" type="xs:string" use="required">
+			<xs:annotation>
+				<xs:documentation>Имя переменной из блока "Переменные"</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="ID" type="xs:integer" use="required">
+			<xs:annotation>
+				<xs:documentation>Идентификатор значения переменной</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+
+	<xs:complexType name="ТипПространствоИмен">
+		<xs:annotation>
+			<xs:documentation>Пространство имен в проверяемом файле</xs:documentation>
+		</xs:annotation>
+		<xs:simpleContent>
+			<xs:extension base="xs:string">
+				<xs:attribute name="Префикс" type="xs:string" use="optional">
+					<xs:annotation>
+						<xs:documentation>Префикс пространства имен</xs:documentation>
+					</xs:annotation>
+				</xs:attribute>
+				<xs:attribute name="ПоУмолчанию" default="true" use="optional">
+					<xs:annotation>
+						<xs:documentation>Является пространством имен по-умолчанию</xs:documentation>
+					</xs:annotation>
+				</xs:attribute>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+
+	<xs:complexType name="ТипВсеПространстваИмен">
+		<xs:annotation>
+			<xs:documentation>Список всех пространств имен в проверяемом файле</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="ПространствоИмен" type="ТипПространствоИмен" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Пространство имен в проверяемом файле</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>

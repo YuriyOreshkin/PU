@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema version="2.0"
+		   elementFormDefault="qualified"
+		   xmlns="http://пф.рф/АФ/УПП/РСВ"
+		   xmlns:xs="http://www.w3.org/2001/XMLSchema"
+		   xmlns:УПП="http://пф.рф/АФ/УПП/типы"
+		   xmlns:АФ="http://пф.рф/АФ"
+		   xmlns:УТ="http://пф.рф/унифицированныеТипы/2014-01-01"
+		   targetNamespace="http://пф.рф/АФ/УПП/РСВ">
+	<xs:annotation>
+		<xs:documentation>XML-схема для формирования XML для учета ошибок и предупреждений цикла проверок проверочного модуля ПК БПИ для отчетности страхователей</xs:documentation>
+	</xs:annotation>
+
+	<xs:import namespace="http://пф.рф/АФ" schemaLocation="../../ТипыОбщие.xsd"/>
+	<xs:import namespace="http://пф.рф/унифицированныеТипы/2014-01-01" schemaLocation="../../УнифТипы_2014-01-01.xsd"/>
+	<xs:import namespace="http://пф.рф/АФ/УПП/типы" schemaLocation="ТипыУПП.xsd"/>
+	<xs:import namespace="http://www.w3.org/2000/09/xmldsig#" schemaLocation="../../xmldsig_core_schema.xsd"/>
+
+	<xs:element name="ЭДПФР">
+		<xs:annotation>
+			<xs:documentation>Корневой элемент. Электронный документ УПП (Унифицированный протокол проверок проверочного модуля ПК БПИ для отчетности страхователей). Содержит сведения самого документа и служебную информацию об электронном документе.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="УПП" type="УПП:ТипУПП">
+					<xs:annotation>
+						<xs:documentation>Унифицированный протокол проверок</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="ЭлектроннаяПодпись" xmlns="http://www.w3.org/2000/09/xmldsig#" type="SignatureType" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Электронная подпись (ЭП). Электронный документ, для которого законодательством Российской Федерации предусмотрена юридически значимая подпись, должен быть подписан усиленной квалифицированной электронной подписью в соответствии со спецификацией XMLDSig</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="СлужебнаяИнформация">
+					<xs:annotation>
+						<xs:documentation>Служебная информация об электронном документе</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:complexContent>
+							<xs:extension base="АФ:ТипСлужебнаяИнформация">
+								<xs:sequence>
+									<xs:element name="Страхователь" type="УТ:ТипОрганизация">
+										<xs:annotation>
+											<xs:documentation>Сведения о страхователе</xs:documentation>
+										</xs:annotation>
+									</xs:element>
+									<xs:element name="ОтчетныйГод" type="xs:gYear">
+										<xs:annotation>
+											<xs:documentation>Отчетный год, за который предоставлен РСВ</xs:documentation>
+										</xs:annotation>
+									</xs:element>
+									<xs:element name="ОтчетныйПериод" type="УТ:ТипКодОтчетногоПериода">
+										<xs:annotation>
+											<xs:documentation>Отчетный период, за который предосталвен РСВ</xs:documentation>
+										</xs:annotation>
+									</xs:element>
+									<xs:element name="НомерКорректировки" type="xs:positiveInteger" minOccurs="0">
+										<xs:annotation>
+											<xs:documentation>Номер корректировки РСВ</xs:documentation>
+										</xs:annotation>
+									</xs:element>
+									<xs:element name="КоличествоЗЛ" type="xs:positiveInteger" minOccurs="0">
+										<xs:annotation>
+											<xs:documentation>Количество застрахованных лиц согласно РСВ</xs:documentation>
+										</xs:annotation>
+									</xs:element>
+								</xs:sequence>
+							</xs:extension>
+						</xs:complexContent>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

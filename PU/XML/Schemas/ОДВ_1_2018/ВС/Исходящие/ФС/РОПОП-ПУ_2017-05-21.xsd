@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema version="2.0" xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" xmlns="http://пф.рф/ВС/ФС/РОПОП-ПУ/2017-05-21" xmlns:УТ="http://пф.рф/унифицированныеТипы/2014-01-01" xmlns:АФ="http://пф.рф/АФ"
+           xmlns:ФС="http://пф.рф/ВС/ФС/типы/2017-05-21" targetNamespace="http://пф.рф/ВС/ФС/РОПОП-ПУ/2017-05-21">
+
+	<xs:import namespace="http://пф.рф/унифицированныеТипы/2014-01-01" schemaLocation="../../../УнифТипы_2014-01-01.xsd"/>
+	<xs:import namespace="http://пф.рф/АФ" schemaLocation="../../../ТипыОбщие.xsd"/>
+	<xs:import namespace="http://пф.рф/ВС/ФС/типы/2017-05-21" schemaLocation="ТипыФС_2017-05-21.xsd"/>
+	<xs:import namespace="http://www.w3.org/2000/09/xmldsig#" schemaLocation="../../../xmldsig_core_schema.xsd"/>
+
+	<xs:annotation>
+		<xs:documentation>Решение об отказе в привлечении страхователя к ответственности за правонарушения в сфере законодательства РФ о ПУ в системе ОПС</xs:documentation>
+	</xs:annotation>
+
+	<xs:element name="ЭДПФР">
+		<xs:annotation>
+			<xs:documentation>Корневой элемент. Электронный документ РОПОП-ПУ (Решение об отказе в привлечении страхователя к ответственности за правонарушения в сфере законодательства РФ о ПУ в системе ОПС). Содержит сведения самого документа и служебную информацию об электронном документе.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="РОПОП-ПУ">
+					<xs:annotation>
+						<xs:documentation>Решение об отказе в привлечении страхователя к ответственности за правонарушения в сфере законодательства РФ о ПУ в системе ОПС</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="ТерриториальныйОрганПФР" type="ФС:ТипСведенияТОПФР">
+								<xs:annotation>
+									<xs:documentation>Сведения о территориальном органе ПФР, в котором принималось решение</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="Реквизиты" type="УТ:ТипРеквизитыДокумента">
+								<xs:annotation>
+									<xs:documentation>Дата и номер решения об отказе в привлечении страхователя к ответственности</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="РуководительТОПФР" type="УТ:ТипДолжностноеЛицо">
+								<xs:annotation>
+									<xs:documentation>ФИО и должность руководителя (заместителя руководителя) территориального органа ПФР</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="РеквизитыАкта" type="УТ:ТипРеквизитыДокумента">
+								<xs:annotation>
+									<xs:documentation>Дата составления и номер акта, на основании рассмотрения которого было вынесено решение</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="Страхователь" type="ФС:ТипСтрахователь">
+								<xs:annotation>
+									<xs:documentation>Данные о привлекаемом о к ответственности юридическом или физическом лице (страхователе)</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="МатериалыПроверки" minOccurs="0">
+								<xs:annotation>
+									<xs:documentation>Другие материалы проверки и иные документы, имеющиеся у территориального органа ПФР. Указываются конкретные документы и иные материалы</xs:documentation>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="Документ" type="УТ:ТипНепустаяСтрока" maxOccurs="unbounded">
+											<xs:annotation>
+												<xs:documentation>Сведения о материале проверки или ином документе, рассматриваемом при вынесении решения</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="Возражения" minOccurs="0">
+								<xs:annotation>
+									<xs:documentation>Возражения привлекаемого к ответственности страхователя. Указываются письменные возражения страхователя, в отношении которого проводилась проверка (его уполномоченного представителя)</xs:documentation>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="Возражение" type="УТ:ТипНепустаяСтрока" maxOccurs="unbounded">
+											<xs:annotation>
+												<xs:documentation>Возражения привлекаемого к ответственности страхователя</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="УчастиеЛица" type="xs:boolean" minOccurs="0">
+								<xs:annotation>
+									<xs:documentation>Признак участия или отсутствия проверяемого лица при принятии решения. Возможные значения: 
+									1 - решение принято при участии привлекаемого к ответственности лица,
+									0 - решение принято при отсутствии привлекаемого к ответственности лица</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="Руководитель" type="УТ:ТипДолжностноеЛицо" minOccurs="0">
+								<xs:annotation>
+									<xs:documentation>ФИО и должность руководителя, привлекаемого к ответственности юридического лица (обособленного подразделения)</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="Представитель" type="УТ:ТипФИО" minOccurs="0">
+								<xs:annotation>
+									<xs:documentation>ФИО уполномоченного представителя индивидуального предпринимателя, физического лица, привлекаемого к ответственности</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="Нарушения" minOccurs="0">
+								<xs:annotation>
+									<xs:documentation>Факты правонарушения. Указываются документально подтвержденные факты нарушения законодательства РФ об индивидуальном (персонифицированном) учете в системе ОПС, со ссылкой на документы и иные сведения, подтверждающие обстоятельства</xs:documentation>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="Нарушение" type="УТ:ТипНепустаяСтрока" maxOccurs="unbounded">
+											<xs:annotation>
+												<xs:documentation>Документально подтвержденный факт нарушения законодательства РФ об индивидуальном (персонифицированном) учете в системе ОПС</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="ОбстоятельстваОтказа" minOccurs="0">
+								<xs:annotation>
+									<xs:documentation>Обстоятельства отказа в привлечении страхователя к ответственности. Указываются обстоятельства отказа в привлечении страхователя к ответственности за совершение нарушения законодательства РФ об индивидуальном (персонифицированном) учете в системе ОПС</xs:documentation>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="Обстоятельство" type="УТ:ТипНепустаяСтрока" maxOccurs="unbounded">
+											<xs:annotation>
+												<xs:documentation>Обстоятельство отказа в привлечении страхователя к ответственности</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="НеобходимоУточнить" type="xs:boolean" minOccurs="0">
+								<xs:annotation>
+									<xs:documentation>Признак необходимости предоставить уточненные сведения. Возможные значения:
+									1 - внести необходимые исправления в документы кадрового учета и представить уточненные (исправленные) сведения в территориальный орган ПФР.
+									0 - нет необходимости предоставить уточненные сведения и внести исправления</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="ИныеПредложения" minOccurs="0">
+								<xs:annotation>
+									<xs:documentation>Иные предложения ПФР по урегулированию правонарушений</xs:documentation>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="Предложение" type="УТ:ТипНепустаяСтрока" maxOccurs="unbounded">
+											<xs:annotation>
+												<xs:documentation>Предложение ПФР по урегулированию правонарушений</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="ВышестоящийТОПФР" minOccurs="0">
+								<xs:annotation>
+									<xs:documentation>Сведения о вышестоящем органе ПФР для обжалования решения</xs:documentation>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="Наименование" type="УТ:ТипНепустаяСтрока">
+											<xs:annotation>
+												<xs:documentation>Наименование органа ПФР</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="Адрес" type="УТ:ТипРоссийскийАдрес">
+											<xs:annotation>
+												<xs:documentation>Адрес органа ПФР</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="ДатаВручения" type="xs:date" minOccurs="0">
+								<xs:annotation>
+									<xs:documentation>Дата вручения решения страхователю</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="ЭлектроннаяПодпись" xmlns="http://www.w3.org/2000/09/xmldsig#" type="SignatureType" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Электронная подпись (ЭП) в соответствии со спецификацией XMLDsig</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="СлужебнаяИнформация" type="АФ:ТипСлужебнаяИнформация">
+					<xs:annotation>
+						<xs:documentation>Служебная информация об электронном документе</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

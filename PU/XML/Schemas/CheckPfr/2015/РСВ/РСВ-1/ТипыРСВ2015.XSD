@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="Windows-1251"?>
+<xs:schema version="1.0" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+	<xs:annotation>
+		<xs:documentation xml:lang="ru">XML-подсхема для проверки документов - Типы данных РСВ 2015</xs:documentation>
+	</xs:annotation>
+	<xs:include schemaLocation="ТипыРСВ2014.XSD"/>
+
+	<xs:complexType name="ТипРасчетПоНачисленнымИУплаченным2015">
+		<xs:annotation>
+			<xs:documentation>По сравнению с 2014 г изменились наименования граф 6 и 7</xs:documentation>
+		</xs:annotation>
+
+		<xs:sequence>
+			<xs:element name="КодСтроки" type="ТипКодСтроки">
+				<xs:annotation>
+					<xs:documentation>Код строки. Графа 2</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="СтраховыеВзносыОПС" type="ТипДеньги" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Сумма страховых взносов на ОПС с 2014. Графа 3</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ОПСстраховаяЧасть" type="ТипДеньги" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Страховые взносы на ОПС страховая пенсия. Графа 4</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ОПСнакопительнаяЧасть" type="ТипДеньги" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Страховые взносы на ОПС накопительная пенсия. Графа 5</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ВзносыПоДопТарифу1" type="ТипДеньги" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Сумма взносов по дополнительному тарифу для отдельных категорий плательщиков страховых взносов в отношении выплат и иных вознаграждений в пользу физических лиц, занятых на видах работ, указанных в пункте 1 части 1 статьи 30 Федерального закона от 28 декабря 2013 года  № 400-ФЗ "О страховых пенсиях". Графа 6</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ВзносыПоДопТарифу2_18" type="ТипДеньги" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Сумма взносов по дополнительному тарифу для отдельных категорий плательщиков страховых взносов в отношении выплат и иных вознаграждений в пользу физических лиц, занятых на видах работ, указанных в пунктах 2 - 18 части 1 статьи 30 Федерального закона от 28 декабря 2013 года  № 400-ФЗ "О страховых пенсиях". Графа 7</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="СтраховыеВзносыОМС" type="ТипДеньги" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Страховые взносы ОМС. Графа 8</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ТипРасчетСтраховыхВзносовПоТарифу2015">
+		<xs:annotation>
+			<xs:documentation>Раздел 2.1. Расчет страховых взносов по тарифу. Представляется плательщиками страховых взносов отдельно по каждому тарифу, применяемому в отношении выплат застрахованным лицам.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="КодТарифа" type="ТипКодТарифа">
+				<xs:annotation>
+					<xs:documentation>Код тарифа</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="НаОбязательноеПенсионноеСтрахование2014" type="ТипНаОПС2014">
+				<xs:annotation>
+					<xs:documentation>Расчет страховых взносов по тарифу 2014 на обязательное пенсионное страхование 2014</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="НаОбязательноеМедицинскоеСтрахование" type="ТипНаОМС2015">
+				<xs:annotation>
+					<xs:documentation>Расчет страховых взносов по тарифу 2014 на обязательное медицинское страхование</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ТипРасчетПоНачисленным2015">
+		<xs:sequence>
+			<xs:element name="КодСтроки" type="ТипКодСтроки">
+				<xs:annotation>
+					<xs:documentation>Код строки</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="СтраховыеВзносыОПС" type="ТипДеньги" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Сумма страховых взносов на ОПС с 2014</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ВзносыПоДопТарифу1" type="ТипДеньги" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Сумма взносов по дополнительному тарифу для отдельных категорий плательщиков страховых взносовв отношении выплат и иных вознаграждений в пользу физических лиц, занятых на видах работ, указанных в пункте 1 части 1 статьи 30 Федерального закона от 28 декабря 2013 года  № 400-ФЗ "О страховых пенсиях"</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ВзносыПоДопТарифу2_18" type="ТипДеньги" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Сумма взносов по дополнительному тарифу для отдельных категорий плательщиков страховых взносов  в отношении выплат и иных вознаграждений в пользу физических лиц, занятых на видах работ, указанных в пунктах 2 - 18 части 1 статьи 30 Федерального закона от 28 декабря 2013 года  № 400-ФЗ "О страховых пенсиях"</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="СтраховыеВзносыОМС" type="ТипДеньги" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Страховые взносы ОМС</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ТипНаОМС2015">
+		<xs:sequence>
+			<xs:element name="СуммаВыплатИвознаграждений" type="ТипПоказательРасчетСумм" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Сумма выплат и иных вознаграждений, начисленных в пользу физических лиц в соответствии со статьей 7 Федерального закона от 24 июля 2009 г. № 212-ФЗ и в соответствии с международными договорами</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="НеПодлежащиеОбложению" type="ТипПоказательРасчетСумм" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Суммы, не подлежащие обложению страховыми взносами в соответствии с частями 1, 2 статьи 9 Федерального закона от 24 июля 2009 г. № 212-ФЗ и в соответствии с международными договорами</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="СуммаРасходовПринимаемыхКвычету" type="ТипПоказательРасчетСумм" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Сумма расходов, принимаемых к вычету в соответствии с частью 7 статьи 8 Федерального закона от 24 июля 2009 г. № 212-ФЗ</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="БазаДляНачисленияСтраховыхВзносовНаОМС" type="ТипПоказательРасчетСумм" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>База для начисления страховых взносов на ОМС</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="НачисленоНаОМС" type="ТипПоказательРасчетСумм" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Начислено страховых взносов на ОМС</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="КоличествоФЛвсего" type="ТипПоказательЧисленность" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Количество физических лиц всего</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>

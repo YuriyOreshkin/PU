@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema version="2.0" xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" xmlns:УТ="http://пф.рф/унифицированныеТипы/2014-01-01" xmlns="http://пф.рф/ОВАФ/2016-11-02" xmlns:ОВАФ="http://пф.рф/ОВАФ/2016-11-02"
+           xmlns:КАФ6="http://пф.рф/КАФ/2016-11-02" xmlns:АФ="http://пф.рф/АФ" targetNamespace="http://пф.рф/ОВАФ/2016-11-02">
+
+	<xs:import namespace="http://пф.рф/АФ" schemaLocation="../../ТипыОбщие.xsd"/>
+	<xs:import namespace="http://пф.рф/унифицированныеТипы/2014-01-01" schemaLocation="../../УнифТипы_2014-01-01.xsd"/>
+	<xs:import namespace="http://пф.рф/КАФ/2016-11-02" schemaLocation="КАФ_2016-11-02.xsd"/>
+	<xs:annotation>
+		<xs:documentation>Схема к описанию версии Альбома форматов (экспликации Альбома форматов)</xs:documentation>
+	</xs:annotation>
+	<xs:element name="ЭДПФР">
+		<xs:annotation>
+			<xs:documentation>Корневой элемент. Электронный документ ОВАФ (Описание версии Альбома форматов (экспликации Альбома форматов)). Содержит сведения самого документа и служебную информацию об электронном документе.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="ОВАФ">
+					<xs:annotation>
+						<xs:documentation>Корневой элемент описания версии Альбома форматов (экспликации Альбома форматов)</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="Версия" type="УТ:ТипРеквизитыДокумента">
+								<xs:annotation>
+									<xs:documentation>Номер и дата версии</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="Аннотация" type="xs:string">
+								<xs:annotation>
+									<xs:documentation>Аннотация к версии</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="ПереченьДокументов">
+								<xs:annotation>
+									<xs:documentation>Перечень документов, включенных в версию</xs:documentation>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="Документ" maxOccurs="unbounded">
+											<xs:annotation>
+												<xs:documentation>Сведения о документе, включенном в версию</xs:documentation>
+											</xs:annotation>
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element name="Код" type="xs:string">
+														<xs:annotation>
+															<xs:documentation>Код документа</xs:documentation>
+														</xs:annotation>
+													</xs:element>
+													<xs:element name="Наименование" type="xs:string">
+														<xs:annotation>
+															<xs:documentation>Код документа</xs:documentation>
+														</xs:annotation>
+													</xs:element>
+													<xs:group ref="КАФ6:ГрВременнойПериод">
+														<xs:annotation>
+															<xs:documentation>Сведения о периоде действия документа:</xs:documentation>
+														</xs:annotation>
+													</xs:group>
+													<xs:element name="СтатусФормата">
+														<xs:annotation>
+															<xs:documentation>Статус формата документа:
+				Проект - формат находится в разработке, не используется в системах,
+				Действующий - формат запущен в эксплуатацию,
+				Устарел - формат выведен из эксплуатации</xs:documentation>
+														</xs:annotation>
+														<xs:simpleType>
+															<xs:restriction base="xs:string">
+																<xs:enumeration value="Проект"/>
+																<xs:enumeration value="Действующий"/>
+																<xs:enumeration value="Устарел"/>
+															</xs:restriction>
+														</xs:simpleType>
+													</xs:element>
+												</xs:sequence>
+											</xs:complexType>
+										</xs:element>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="СлужебнаяИнформация" type="АФ:ТипСлужебнаяИнформация">
+					<xs:annotation>
+						<xs:documentation>Служебная информация об электронном документе</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

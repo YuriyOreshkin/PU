@@ -1,0 +1,370 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="pfrXMLModel.Store" Alias="Self" Provider="System.Data.SQLite" ProviderManifestToken="ISO8601" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+        <EntityContainer Name="pfrXMLModelStoreContainer">
+          <EntitySet Name="rsw2014" EntityType="pfrXMLModel.Store.rsw2014" store:Type="Tables" />
+          <EntitySet Name="StaffList" EntityType="pfrXMLModel.Store.StaffList" store:Type="Tables" />
+          <EntitySet Name="xmlFile" EntityType="pfrXMLModel.Store.xmlFile" store:Type="Tables" />
+          <EntitySet Name="xmlInfo" EntityType="pfrXMLModel.Store.xmlInfo" store:Type="Tables" />
+          <AssociationSet Name="FK_rsw2014_0_0" Association="pfrXMLModel.Store.FK_rsw2014_0_0">
+            <End Role="xmlInfo" EntitySet="xmlInfo" />
+            <End Role="rsw2014" EntitySet="rsw2014" />
+          </AssociationSet>
+          <AssociationSet Name="FK_StaffList_0_0" Association="pfrXMLModel.Store.FK_StaffList_0_0">
+            <End Role="xmlInfo" EntitySet="xmlInfo" />
+            <End Role="StaffList" EntitySet="StaffList" />
+          </AssociationSet>
+          <AssociationSet Name="FK_xmlFile_0_0" Association="pfrXMLModel.Store.FK_xmlFile_0_0">
+            <End Role="xmlInfo" EntitySet="xmlInfo" />
+            <End Role="xmlFile" EntitySet="xmlFile" />
+          </AssociationSet>
+          <AssociationSet Name="FK_xmlInfo_0_0" Association="pfrXMLModel.Store.FK_xmlInfo_0_0">
+            <End Role="xmlInfo" EntitySet="xmlInfo" />
+            <End Role="xmlInfo1" EntitySet="xmlInfo" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="rsw2014">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="integer" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="xmlInfo_ID" Type="integer" />
+          <Property Name="RSW_2_5_1_2" Type="decimal" Precision="15" Scale="2" />
+          <Property Name="RSW_2_5_1_3" Type="decimal" Precision="15" Scale="2" />
+          <Property Name="RSW_2_5_2_4" Type="decimal" Precision="15" Scale="2" />
+          <Property Name="RSW_2_5_2_5" Type="decimal" Precision="15" Scale="2" />
+          <Property Name="RSW_2_5_2_6" Type="decimal" Precision="15" Scale="2" />
+        </EntityType>
+        <EntityType Name="StaffList">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="integer" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Num" Type="integer" />
+          <Property Name="FIO" Type="varchar" />
+          <Property Name="InsuranceNum" Type="varchar" />
+          <Property Name="InfoType" Type="varchar" />
+          <Property Name="DateCreate" Type="datetime" />
+          <Property Name="XmlInfoID" Type="integer" />
+          <Property Name="StaffID" Type="integer" />
+          <Property Name="FormsRSW_6_1_ID" Type="integer" />
+        </EntityType>
+        <EntityType Name="xmlFile">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="integer" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="XmlContent" Type="varchar" />
+          <Property Name="XmlInfoID" Type="integer" />
+        </EntityType>
+        <EntityType Name="xmlInfo">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="integer" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Num" Type="integer" />
+          <Property Name="CountDoc" Type="integer" />
+          <Property Name="CountStaff" Type="integer" />
+          <Property Name="DocType" Type="varchar" />
+          <Property Name="Year" Type="smallint" />
+          <Property Name="Quarter" Type="tinyint" />
+          <Property Name="YearKorr" Type="smallint" />
+          <Property Name="QuarterKorr" Type="tinyint" />
+          <Property Name="UserName" Type="varchar" />
+          <Property Name="DateCreate" Type="datetime" />
+          <Property Name="FileName" Type="varchar" />
+          <Property Name="ParentID" Type="integer" />
+          <Property Name="SourceID" Type="integer" />
+          <Property Name="UniqGUID" Type="uniqueidentifier" />
+          <Property Name="InsurerID" Type="integer" />
+          <Property Name="FormatType" Type="varchar" />
+        </EntityType>
+        <Association Name="FK_rsw2014_0_0">
+          <End Role="xmlInfo" Type="pfrXMLModel.Store.xmlInfo" Multiplicity="0..1" />
+          <End Role="rsw2014" Type="pfrXMLModel.Store.rsw2014" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="xmlInfo">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="rsw2014">
+              <PropertyRef Name="xmlInfo_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_StaffList_0_0">
+          <End Role="xmlInfo" Type="pfrXMLModel.Store.xmlInfo" Multiplicity="0..1" />
+          <End Role="StaffList" Type="pfrXMLModel.Store.StaffList" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="xmlInfo">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="StaffList">
+              <PropertyRef Name="XmlInfoID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_xmlFile_0_0">
+          <End Role="xmlInfo" Type="pfrXMLModel.Store.xmlInfo" Multiplicity="0..1" />
+          <End Role="xmlFile" Type="pfrXMLModel.Store.xmlFile" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="xmlInfo">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="xmlFile">
+              <PropertyRef Name="XmlInfoID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_xmlInfo_0_0">
+          <End Role="xmlInfo" Type="pfrXMLModel.Store.xmlInfo" Multiplicity="0..1" />
+          <End Role="xmlInfo1" Type="pfrXMLModel.Store.xmlInfo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="xmlInfo">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="xmlInfo1">
+              <PropertyRef Name="ParentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="pfrXMLModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+        <EntityContainer Name="pfrXMLEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="StaffList" EntityType="pfrXMLModel.StaffList" />
+          <EntitySet Name="xmlFile" EntityType="pfrXMLModel.xmlFile" />
+          <EntitySet Name="rsw2014" EntityType="pfrXMLModel.rsw2014" />
+          <EntitySet Name="xmlInfo" EntityType="pfrXMLModel.xmlInfo" />
+          <AssociationSet Name="FK_rsw2014_0_0" Association="pfrXMLModel.FK_rsw2014_0_0">
+            <End Role="xmlInfo" EntitySet="xmlInfo" />
+            <End Role="rsw2014" EntitySet="rsw2014" />
+          </AssociationSet>
+          <AssociationSet Name="FK_StaffList_0_0" Association="pfrXMLModel.FK_StaffList_0_0">
+            <End Role="xmlInfo" EntitySet="xmlInfo" />
+            <End Role="StaffList" EntitySet="StaffList" />
+          </AssociationSet>
+          <AssociationSet Name="FK_xmlFile_0_0" Association="pfrXMLModel.FK_xmlFile_0_0">
+            <End Role="xmlInfo" EntitySet="xmlInfo" />
+            <End Role="xmlFile" EntitySet="xmlFile" />
+          </AssociationSet>
+          <AssociationSet Name="FK_xmlInfo_0_0" Association="pfrXMLModel.FK_xmlInfo_0_0">
+            <End Role="xmlInfo" EntitySet="xmlInfo" />
+            <End Role="xmlInfo1" EntitySet="xmlInfo" />
+          </AssociationSet>
+          </EntityContainer>
+        <EntityType Name="StaffList">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Int64" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int64" Name="Num" />
+          <Property Type="String" Name="FIO" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="InsuranceNum" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="InfoType" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Type="DateTime" Name="DateCreate" Precision="3" />
+          <Property Type="Int64" Name="XmlInfoID" />
+          <Property Type="Int64" Name="StaffID" />
+          <Property Type="Int64" Name="FormsRSW_6_1_ID" />
+          <NavigationProperty Name="xmlInfo" Relationship="pfrXMLModel.FK_StaffList_0_0" FromRole="StaffList" ToRole="xmlInfo" />
+        </EntityType>
+        <EntityType Name="xmlFile">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Int64" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="XmlContent" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Type="Int64" Name="XmlInfoID" />
+          <NavigationProperty Name="xmlInfo" Relationship="pfrXMLModel.FK_xmlFile_0_0" FromRole="xmlFile" ToRole="xmlInfo" />
+        </EntityType>
+        <EntityType Name="rsw2014">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Int64" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int64" Name="xmlInfo_ID" />
+          <Property Type="Decimal" Name="RSW_2_5_1_2" Precision="15" Scale="2" />
+          <Property Type="Decimal" Name="RSW_2_5_1_3" Precision="15" Scale="2" />
+          <Property Type="Decimal" Name="RSW_2_5_2_4" Precision="15" Scale="2" />
+          <Property Type="Decimal" Name="RSW_2_5_2_5" Precision="15" Scale="2" />
+          <Property Type="Decimal" Name="RSW_2_5_2_6" Precision="15" Scale="2" />
+          <NavigationProperty Name="xmlInfo" Relationship="pfrXMLModel.FK_rsw2014_0_0" FromRole="rsw2014" ToRole="xmlInfo" />
+        </EntityType>
+        <EntityType Name="xmlInfo">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Int64" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int64" Name="Num" />
+          <Property Type="Int64" Name="CountDoc" />
+          <Property Type="Int64" Name="CountStaff" />
+          <Property Type="String" Name="DocType" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Type="Int16" Name="Year" />
+          <Property Type="Byte" Name="Quarter" />
+          <Property Type="Int16" Name="YearKorr" />
+          <Property Type="Byte" Name="QuarterKorr" />
+          <Property Type="String" Name="UserName" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Type="DateTime" Name="DateCreate" Precision="3" />
+          <Property Type="String" Name="FileName" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Type="Int64" Name="ParentID" />
+          <Property Type="Int64" Name="SourceID" />
+          <Property Type="Guid" Name="UniqGUID" />
+          <Property Type="Int64" Name="InsurerID" />
+          <Property Type="String" Name="FormatType" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="rsw2014" Relationship="pfrXMLModel.FK_rsw2014_0_0" FromRole="xmlInfo" ToRole="rsw2014" />
+          <NavigationProperty Name="StaffList" Relationship="pfrXMLModel.FK_StaffList_0_0" FromRole="xmlInfo" ToRole="StaffList" />
+          <NavigationProperty Name="xmlFile" Relationship="pfrXMLModel.FK_xmlFile_0_0" FromRole="xmlInfo" ToRole="xmlFile" />
+          <NavigationProperty Name="xmlInfo1" Relationship="pfrXMLModel.FK_xmlInfo_0_0" FromRole="xmlInfo" ToRole="xmlInfo1" />
+          <NavigationProperty Name="xmlInfo2" Relationship="pfrXMLModel.FK_xmlInfo_0_0" FromRole="xmlInfo1" ToRole="xmlInfo" />
+        </EntityType>
+        <Association Name="FK_rsw2014_0_0">
+          <End Type="pfrXMLModel.xmlInfo" Role="xmlInfo" Multiplicity="0..1" />
+          <End Type="pfrXMLModel.rsw2014" Role="rsw2014" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="xmlInfo">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="rsw2014">
+              <PropertyRef Name="xmlInfo_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_StaffList_0_0">
+          <End Type="pfrXMLModel.xmlInfo" Role="xmlInfo" Multiplicity="0..1" />
+          <End Type="pfrXMLModel.StaffList" Role="StaffList" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="xmlInfo">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="StaffList">
+              <PropertyRef Name="XmlInfoID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_xmlFile_0_0">
+          <End Type="pfrXMLModel.xmlInfo" Role="xmlInfo" Multiplicity="0..1" />
+          <End Type="pfrXMLModel.xmlFile" Role="xmlFile" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="xmlInfo">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="xmlFile">
+              <PropertyRef Name="XmlInfoID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_xmlInfo_0_0">
+          <End Type="pfrXMLModel.xmlInfo" Role="xmlInfo" Multiplicity="0..1" />
+          <End Type="pfrXMLModel.xmlInfo" Role="xmlInfo1" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="xmlInfo">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="xmlInfo1">
+              <PropertyRef Name="ParentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="pfrXMLModelStoreContainer" CdmEntityContainer="pfrXMLEntities">
+          <EntitySetMapping Name="StaffList">
+            <EntityTypeMapping TypeName="pfrXMLModel.StaffList">
+              <MappingFragment StoreEntitySet="StaffList">
+                <ScalarProperty Name="FormsRSW_6_1_ID" ColumnName="FormsRSW_6_1_ID" />
+                <ScalarProperty Name="StaffID" ColumnName="StaffID" />
+                <ScalarProperty Name="XmlInfoID" ColumnName="XmlInfoID" />
+                <ScalarProperty Name="DateCreate" ColumnName="DateCreate" />
+                <ScalarProperty Name="InfoType" ColumnName="InfoType" />
+                <ScalarProperty Name="InsuranceNum" ColumnName="InsuranceNum" />
+                <ScalarProperty Name="FIO" ColumnName="FIO" />
+                <ScalarProperty Name="Num" ColumnName="Num" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="xmlFile">
+            <EntityTypeMapping TypeName="pfrXMLModel.xmlFile">
+              <MappingFragment StoreEntitySet="xmlFile">
+                <ScalarProperty Name="XmlInfoID" ColumnName="XmlInfoID" />
+                <ScalarProperty Name="XmlContent" ColumnName="XmlContent" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="rsw2014">
+            <EntityTypeMapping TypeName="pfrXMLModel.rsw2014">
+              <MappingFragment StoreEntitySet="rsw2014">
+                <ScalarProperty Name="RSW_2_5_2_6" ColumnName="RSW_2_5_2_6" />
+                <ScalarProperty Name="RSW_2_5_2_5" ColumnName="RSW_2_5_2_5" />
+                <ScalarProperty Name="RSW_2_5_2_4" ColumnName="RSW_2_5_2_4" />
+                <ScalarProperty Name="RSW_2_5_1_3" ColumnName="RSW_2_5_1_3" />
+                <ScalarProperty Name="RSW_2_5_1_2" ColumnName="RSW_2_5_1_2" />
+                <ScalarProperty Name="xmlInfo_ID" ColumnName="xmlInfo_ID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="xmlInfo">
+            <EntityTypeMapping TypeName="pfrXMLModel.xmlInfo">
+              <MappingFragment StoreEntitySet="xmlInfo">
+                <ScalarProperty Name="FormatType" ColumnName="FormatType" />
+                <ScalarProperty Name="InsurerID" ColumnName="InsurerID" />
+                <ScalarProperty Name="UniqGUID" ColumnName="UniqGUID" />
+                <ScalarProperty Name="SourceID" ColumnName="SourceID" />
+                <ScalarProperty Name="ParentID" ColumnName="ParentID" />
+                <ScalarProperty Name="FileName" ColumnName="FileName" />
+                <ScalarProperty Name="DateCreate" ColumnName="DateCreate" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="QuarterKorr" ColumnName="QuarterKorr" />
+                <ScalarProperty Name="YearKorr" ColumnName="YearKorr" />
+                <ScalarProperty Name="Quarter" ColumnName="Quarter" />
+                <ScalarProperty Name="Year" ColumnName="Year" />
+                <ScalarProperty Name="DocType" ColumnName="DocType" />
+                <ScalarProperty Name="CountStaff" ColumnName="CountStaff" />
+                <ScalarProperty Name="CountDoc" ColumnName="CountDoc" />
+                <ScalarProperty Name="Num" ColumnName="Num" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams>
+      <Diagram Name="xmlContainer">
+        <EntityTypeShape EntityType="pfrXMLModel.StaffList" Width="1.5" PointX="0.27981975128865788" PointY="4.0873821396787564" />
+        <EntityTypeShape EntityType="pfrXMLModel.xmlFile" Width="1.5" PointX="6.75" PointY="7.875" />
+        <EntityTypeShape EntityType="pfrXMLModel.rsw2014" Width="1.5" PointX="2.6627032936842663" PointY="27.012588334741345" />
+        <EntityTypeShape EntityType="pfrXMLModel.xmlInfo" Width="1.5" PointX="3.75" PointY="5.25" />
+        <AssociationConnector Association="pfrXMLModel.FK_rsw2014_0_0" />
+        <AssociationConnector Association="pfrXMLModel.FK_StaffList_0_0" />
+        <AssociationConnector Association="pfrXMLModel.FK_xmlFile_0_0" />
+        <AssociationConnector Association="pfrXMLModel.FK_xmlInfo_0_0" />
+      </Diagram>
+    </Diagrams>
+  </Designer>
+</edmx:Edmx>

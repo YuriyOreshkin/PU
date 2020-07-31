@@ -1,0 +1,349 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema version="2.0" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://пф.рф/ВС/РВ-3/2015-01-01" xmlns:УТ="http://пф.рф/унифицированныеТипы/2014-01-01" xmlns:АФ="http://пф.рф/АФ" xmlns:РВ="http://пф.рф/ВС/типыРВ/2014-01-01"
+           targetNamespace="http://пф.рф/ВС/РВ-3/2015-01-01" xmlns:ВС="http://пф.рф/ВС/типы/2014-01-01"   elementFormDefault="qualified">
+
+	<xs:import namespace="http://пф.рф/унифицированныеТипы/2014-01-01" schemaLocation="../../../УнифТипы_2014-01-01.xsd"/>
+	<xs:import namespace="http://пф.рф/ВС/типыРВ/2014-01-01" schemaLocation="ТипыРВ_2014-01-01.xsd"/>
+	<xs:import namespace="http://пф.рф/АФ" schemaLocation="../../../ТипыОбщие.xsd"/>
+	<xs:import namespace="http://пф.рф/ВС/типы/2014-01-01" schemaLocation="../../ТипыВС_2014-01-01.xsd"/>
+	<xs:import namespace="http://www.w3.org/2000/09/xmldsig#" schemaLocation="../../../xmldsig_core_schema.xsd"/>
+
+	<xs:annotation>
+		<xs:documentation>РВ-3 Расчет по начисленным и уплаченным взносам в Пенсионный фонд Российской Федерации, применяемый при осуществлении контроля за уплатой взносов для работодателей, уплачивающих взносы на дополнительное социальное обеспечение</xs:documentation>
+	</xs:annotation>
+
+	<xs:element name="ЭДПФР">
+		<xs:annotation>
+			<xs:documentation>Корневой элемент. Электронный документ РВ-3 (Расчет по начисленным и уплаченным взносам в ПФР). Содержит сведения самого документа и служебную информацию об электронном документе.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="РВ-3">
+					<xs:annotation>
+						<xs:documentation>РВ-3 Расчет по начисленным и уплаченным взносам в Пенсионный фонд Российской Федерации, применяемый при осуществлении контроля за уплатой взносов для работодателей, уплачивающих взносы на дополнительное социальное обеспечение</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="РегНомерПФР" type="УТ:ТипРегНомер">
+								<xs:annotation>
+									<xs:documentation>Регистрационный номер плательщика взносов в соответствии с выданным при регистрации (учете) в территориальном органе Пенсионного фонда Российской Федерации извещением (уведомлением) страхователя по месту постановки на учет</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="НомерУточнения" type="РВ:ТипНомерУточнения">
+								<xs:annotation>
+									<xs:documentation>Номер уточнения принимает следующие значения:
+                                                                    при представлении первичного Расчета - код «000»;
+                                                                    при представлении в территориальный орган ПФР Расчета, в котором отражены изменения, указывается номер, указывающий, какой по счету Расчет с учетом внесенных изменений и дополнений представляется страхователем в территориальный орган ПФР (например: 001, 002, 003,...010 и т.д.)</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="КодОтчПериода" type="ВС:ТипКодОтчПериода">
+								<xs:annotation>
+									<xs:documentation>Период, за который представляется Расчет</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="КалендарныйГод">
+								<xs:annotation>
+									<xs:documentation>Календарный год, за отчетный период которого представляется Расчет</xs:documentation>
+								</xs:annotation>
+								<xs:simpleType>
+									<xs:restriction base="xs:gYear">
+										<xs:minInclusive value="2015"/>
+									</xs:restriction>
+								</xs:simpleType>
+							</xs:element>
+							<xs:element name="ПрекращениеДеятельности" minOccurs="0" type="РВ:ТипПрекращениеДеятельности">
+								<xs:annotation>
+									<xs:documentation>Признак прекращения деятельности организации в связи с ликвидацией</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="НаименованиеОрганизации" type="xs:normalizedString">
+								<xs:annotation>
+									<xs:documentation>Наименование организации в соответствии с учредительными документами либо наименование отделения иностранной организации, осуществляющей деятельность на территории Российской Федерации, обособленного подразделения</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="ИНН" type="УТ:ТипИНН">
+								<xs:annotation>
+									<xs:documentation>Идентификационный номер налогоплательщика</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="КПП" type="УТ:ТипКПП">
+								<xs:annotation>
+									<xs:documentation>Код причины постановки на учет по месту нахождения организации</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="КодПоОКВЭД" type="УТ:ТипКодПоОКВЭД">
+								<xs:annotation>
+									<xs:documentation>Код согласно Общероссийскому классификатору видов экономической деятельности по основному виду экономической деятельности плательщика</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="Телефон">
+								<xs:annotation>
+									<xs:documentation>Номер контактного телефона</xs:documentation>
+								</xs:annotation>
+								<xs:simpleType>
+									<xs:restriction base="УТ:ТипКонтактныйТелефон">
+										<xs:maxLength value="15"/>
+									</xs:restriction>
+								</xs:simpleType>
+							</xs:element>
+							<xs:element name="КодТарифа">
+								<xs:annotation>
+									<xs:documentation>Код тарифа взносов для РВ-3</xs:documentation>
+								</xs:annotation>
+								<xs:simpleType>
+									<xs:restriction base="xs:integer">
+										<xs:enumeration value="21">
+											<xs:annotation>
+												<xs:documentation>Организации, использующие труд членов летных экипажей воздушных судов гражданской авиации</xs:documentation>
+											</xs:annotation>
+										</xs:enumeration>
+										<xs:enumeration value="22">
+											<xs:annotation>
+												<xs:documentation>Организации угольной промышленности</xs:documentation>
+											</xs:annotation>
+										</xs:enumeration>
+									</xs:restriction>
+								</xs:simpleType>
+							</xs:element>
+							<xs:element name="СтраницФормы" type="xs:positiveInteger">
+								<xs:annotation>
+									<xs:documentation>Количество страниц формы</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="ЛистовПриложения" type="xs:positiveInteger" minOccurs="0">
+								<xs:annotation>
+									<xs:documentation>Количество листов приложения к форме</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="ПодтверждениеСведений" type="РВ:ТипПодтверждениеСведений">
+								<xs:annotation>
+									<xs:documentation>Лицо, подтверждающее достоверность и полноту сведений, содержащихся в Расчете: плательщик страховых взносов, представитель плательщика страховых взносов или правопреемник</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="ДатаЗаполнения" type="xs:date">
+								<xs:annotation>
+									<xs:documentation>Дата заполнения формы</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="Раздел1">
+								<xs:annotation>
+									<xs:documentation>Раздел 1. Расчет по начисленным и уплаченным взносам на дополнительное социальное обеспечение</xs:documentation>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="Строка" minOccurs="14" maxOccurs="14">
+											<xs:annotation>
+												<xs:documentation>Строка раздела 1</xs:documentation>
+											</xs:annotation>
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element name="Код">
+														<xs:annotation>
+															<xs:documentation>Код строки раздела 1</xs:documentation>
+														</xs:annotation>
+														<xs:simpleType>
+															<xs:restriction base="xs:integer">
+																<xs:enumeration value="100"/>
+																<xs:enumeration value="110"/>
+																<xs:enumeration value="111"/>
+																<xs:enumeration value="112"/>
+																<xs:enumeration value="113"/>
+																<xs:enumeration value="114"/>
+																<xs:enumeration value="120"/>
+																<xs:enumeration value="130"/>
+																<xs:enumeration value="140"/>
+																<xs:enumeration value="141"/>
+																<xs:enumeration value="142"/>
+																<xs:enumeration value="143"/>
+																<xs:enumeration value="144"/>
+																<xs:enumeration value="150"/>
+															</xs:restriction>
+														</xs:simpleType>
+													</xs:element>
+													<xs:element name="Взносы" type="УТ:ТипДеньги">
+														<xs:annotation>
+															<xs:documentation>Взносы на дополнительное социальное обеспечение</xs:documentation>
+														</xs:annotation>
+													</xs:element>
+												</xs:sequence>
+											</xs:complexType>
+										</xs:element>
+									</xs:sequence>
+								</xs:complexType>
+								<xs:unique name="УникальныйКодСтрокиРаздел1">
+									<xs:selector xpath="Строка"/>
+									<xs:field xpath="Код"/>
+								</xs:unique>
+							</xs:element>
+							<xs:element name="Раздел2">
+								<xs:annotation>
+									<xs:documentation>Раздел 2. Расчет базы для начисления взносов на дополнительное социальное обеспечение</xs:documentation>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="Строка" minOccurs="3" maxOccurs="3">
+											<xs:annotation>
+												<xs:documentation>Строка раздела 2 (200, 210, 220)</xs:documentation>
+											</xs:annotation>
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element name="Код">
+														<xs:annotation>
+															<xs:documentation>Код строки раздела 2</xs:documentation>
+														</xs:annotation>
+														<xs:simpleType>
+															<xs:restriction base="xs:integer">
+																<xs:enumeration value="200"/>
+																<xs:enumeration value="210"/>
+																<xs:enumeration value="220"/>
+															</xs:restriction>
+														</xs:simpleType>
+													</xs:element>
+													<xs:element name="Всего" type="УТ:ТипДеньги">
+														<xs:annotation>
+															<xs:documentation>Всего с начала расчетного периода</xs:documentation>
+														</xs:annotation>
+													</xs:element>
+													<xs:element name="Месяц1" type="УТ:ТипДеньги">
+														<xs:annotation>
+															<xs:documentation>За первый месяц из последних трех отчетного периода</xs:documentation>
+														</xs:annotation>
+													</xs:element>
+													<xs:element name="Месяц2" type="УТ:ТипДеньги">
+														<xs:annotation>
+															<xs:documentation>За второй месяц из последних трех отчетного периода</xs:documentation>
+														</xs:annotation>
+													</xs:element>
+													<xs:element name="Месяц3" type="УТ:ТипДеньги">
+														<xs:annotation>
+															<xs:documentation>За третий месяц из последних трех отчетного периода</xs:documentation>
+														</xs:annotation>
+													</xs:element>
+												</xs:sequence>
+											</xs:complexType>
+										</xs:element>
+										<xs:element name="Строка230">
+											<xs:annotation>
+												<xs:documentation>Строка с кодом 230 раздела 2 (Количество физических лиц, с выплат  которым начислены взносы в соответствии с тарифом, всего (чел.))</xs:documentation>
+											</xs:annotation>
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element name="Всего" type="УТ:ТипЧислоЗЛ">
+														<xs:annotation>
+															<xs:documentation>Количество физических лиц, с выплат  которым начислены взносы в соответствии с тарифом, всего с начала расчетного периода</xs:documentation>
+														</xs:annotation>
+													</xs:element>
+													<xs:element name="Месяц1" type="УТ:ТипЧислоЗЛ">
+														<xs:annotation>
+															<xs:documentation>Количество физических лиц, с выплат  которым начислены взносы в соответствии с тарифом, за первый из последних трех месяцев отчетного периода</xs:documentation>
+														</xs:annotation>
+													</xs:element>
+													<xs:element name="Месяц2" type="УТ:ТипЧислоЗЛ">
+														<xs:annotation>
+															<xs:documentation>Количество физических лиц, с выплат  которым начислены взносы в соответствии с тарифом, за второй из последних трех месяцев отчетного периода</xs:documentation>
+														</xs:annotation>
+													</xs:element>
+													<xs:element name="Месяц3" type="УТ:ТипЧислоЗЛ">
+														<xs:annotation>
+															<xs:documentation>Количество физических лиц, с выплат  которым начислены взносы в соответствии с тарифом, за третий из последних трех месяцев отчетного периода</xs:documentation>
+														</xs:annotation>
+													</xs:element>
+												</xs:sequence>
+											</xs:complexType>
+										</xs:element>
+									</xs:sequence>
+								</xs:complexType>
+								<xs:unique name="УникальныйКодСтрокиРаздел2">
+									<xs:selector xpath="Строка"/>
+									<xs:field xpath="Код"/>
+								</xs:unique>
+							</xs:element>
+							<xs:element name="Раздел3" minOccurs="0">
+								<xs:annotation>
+									<xs:documentation>Раздел 3. Суммы перерасчета взносов на дополнительное социальное обеспечение с начала расчетного периода</xs:documentation>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="Перерасчет" maxOccurs="unbounded">
+											<xs:annotation>
+												<xs:documentation>Суммы перерасчета взносов на дополнительное социальное обеспечение с начала расчетного периода</xs:documentation>
+											</xs:annotation>
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element name="НомерПП" type="xs:positiveInteger">
+														<xs:annotation>
+															<xs:documentation>Номер по порядку</xs:documentation>
+														</xs:annotation>
+													</xs:element>
+													<xs:element name="Основание">
+														<xs:annotation>
+															<xs:documentation>Основание для перерасчета взносов на дополнительное социальное обеспечение:
+                                                                                            1 - в случае доначисления (излишнего начисления) по актам камеральных проверок, в том числе по которым в отчетном периоде вступили в силу решения о привлечении (в отказе к привлечению) к ответственности плательщика взносов на дополнительное социальное обеспечение;
+                                                                                            2 - в случае доначисления (излишнего начисления) по актам выездных проверок, в том числе по которым в отчетном периоде вступили в силу решения о привлечении (отказе в привлечении) к  ответственности плательщика взносов на дополнительное социальное обеспечение;
+                                                                                            3 - в случае если плательщиком взносов на дополнительное социальное обеспечение самостоятельно в отчетном периоде доначислены взносы в случае выявления факта неотражения или неполноты отражения сведений, а также ошибок, приводящих к занижению суммы взносов на дополнительное социальное обеспечение, подлежащей уплате за предыдущие отчетные периоды;
+                                                                                            4 - в случае корректировки плательщиком взносов на дополнительное социальное обеспечение базы для начисления взносов на дополнительное социальное обеспечение  предшествующих отчетных (расчетных) периодов, не признаваемой ошибкой;</xs:documentation>
+														</xs:annotation>
+														<xs:simpleType>
+															<xs:restriction base="xs:integer">
+																<xs:enumeration value="1"/>
+																<xs:enumeration value="2"/>
+																<xs:enumeration value="3"/>
+																<xs:enumeration value="4"/>
+															</xs:restriction>
+														</xs:simpleType>
+													</xs:element>
+													<xs:element name="Год" type="xs:gYear">
+														<xs:annotation>
+															<xs:documentation>Период, за который производится перерасчет взносов на дополнительное социальное обеспечение (Год)</xs:documentation>
+														</xs:annotation>
+													</xs:element>
+													<xs:element name="Месяц">
+														<xs:annotation>
+															<xs:documentation>Период, за который производится перерасчет взносов на дополнительное социальное обеспечение (Месяц)</xs:documentation>
+														</xs:annotation>
+														<xs:simpleType>
+															<xs:restriction base="УТ:ТипМесяц">
+																<xs:minInclusive value="1"/>
+															</xs:restriction>
+														</xs:simpleType>
+													</xs:element>
+													<xs:element name="Сумма" type="УТ:ТипДеньги">
+														<xs:annotation>
+															<xs:documentation>Суммы перерасчета взносов на дополнительное социальное обеспечение</xs:documentation>
+														</xs:annotation>
+													</xs:element>
+												</xs:sequence>
+											</xs:complexType>
+										</xs:element>
+										<xs:element name="Итого" type="УТ:ТипДеньги">
+											<xs:annotation>
+												<xs:documentation>Итого сумма перерасчета взносов на дополнительное социальное обеспечение с начала расчетного периода</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+									</xs:sequence>
+								</xs:complexType>
+								<xs:unique name="УникальныйНомерПП">
+									<xs:annotation>
+										<xs:documentation>Номер по порядку не должен повторяться</xs:documentation>
+									</xs:annotation>
+									<xs:selector xpath="Перерасчет"/>
+									<xs:field xpath="НомерПП"/>
+								</xs:unique>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			<xs:element name="ЭлектроннаяПодпись"  xmlns="http://www.w3.org/2000/09/xmldsig#"  type="SignatureType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Электронная подпись (ЭП). Электронный документ, для которого законодательством Российской Федерации предусмотрена юридически значимая подпись, должен быть подписан усиленной квалифицированной электронной подписью в соответствии со спецификацией XMLDSig</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+				<xs:element name="СлужебнаяИнформация" type="АФ:ТипСлужебнаяИнформация">
+					<xs:annotation>
+						<xs:documentation>Служебная информация об электронном документе</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

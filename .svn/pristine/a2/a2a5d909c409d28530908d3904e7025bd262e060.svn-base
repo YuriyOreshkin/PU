@@ -1,0 +1,2398 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{1BFE517F-34D4-467B-993E-3EE3F760C4A2}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>PU</RootNamespace>
+    <AssemblyName>PU</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkProfile>
+    </TargetFrameworkProfile>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>
+    </SccProjectName>
+    <SccLocalPath>
+    </SccLocalPath>
+    <SccAuxPath>
+    </SccAuxPath>
+    <SccProvider>
+    </SccProvider>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <PublishUrl>C:\work\PU_Inst\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <TargetCulture>ru-RU</TargetCulture>
+    <ProductName>ДОКУМЕНТЫ ПУ 5 new</ProductName>
+    <PublisherName>ГУ ОПФР ПО РК</PublisherName>
+    <ApplicationRevision>3</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <PublishWizardCompleted>true</PublishWizardCompleted>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>
+    </DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <RunCodeAnalysis>false</RunCodeAnalysis>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestCertificateThumbprint>200EF812D78874A54B76CAD29E3C4AA5E50C5933</ManifestCertificateThumbprint>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestKeyFile>PU_TemporaryKey.pfx</ManifestKeyFile>
+  </PropertyGroup>
+  <PropertyGroup>
+    <GenerateManifests>false</GenerateManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignManifests>true</SignManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>pfr_logo_256px.ico</ApplicationIcon>
+  </PropertyGroup>
+  <PropertyGroup />
+  <PropertyGroup>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
+  </PropertyGroup>
+  <PropertyGroup>
+    <TargetZone>LocalIntranet</TargetZone>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="DevExpress.Data.v13.1, Version=13.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.Sparkline.v13.1.Core, Version=13.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.Utils.v13.1, Version=13.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.XtraEditors.v13.1, Version=13.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.6.1.1\lib\net40\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer">
+      <HintPath>..\packages\EntityFramework.6.1.1\lib\net40\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Ionic.Zip">
+      <HintPath>..\packages\DotNetZip.1.9.3\lib\net20\Ionic.Zip.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.JScript" />
+    <Reference Include="RadControlSpy, Version=2017.1.221.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
+      <HintPath>..\lib\RCWF\2017.1.221.40\RadControlSpy.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="ShiftReduceParser">
+      <HintPath>..\packages\ShiftReduceParser.dll</HintPath>
+    </Reference>
+    <Reference Include="SQLite.Designer, Version=1.0.89.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\SQLite.Designer.dll</HintPath>
+    </Reference>
+    <Reference Include="SQLiteParser">
+      <HintPath>..\packages\SQLiteParser.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.Composition" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Data.Entity">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Data.SQLite, Version=1.0.94.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\System.Data.SQLite.Core.1.0.94.0\lib\net40\System.Data.SQLite.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Data.SQLite.EF6">
+      <HintPath>..\packages\System.Data.SQLite.EF6.1.0.94.0\lib\net40\System.Data.SQLite.EF6.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Data.SQLite.Linq, Version=1.0.94.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\System.Data.SQLite.Linq.1.0.94.0\lib\net40\System.Data.SQLite.Linq.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Linq.Dynamic">
+      <HintPath>..\packages\System.Linq.Dynamic.1.0.4\lib\net40\System.Linq.Dynamic.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Xaml" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Telerik.Reporting, Version=10.0.16.204, Culture=neutral, PublicKeyToken=a9d7983dfcc261be">
+      <Private>True</Private>
+      <SpecificVersion>True</SpecificVersion>
+    </Reference>
+    <Reference Include="Telerik.ReportViewer.WinForms, Version=10.0.16.204, Culture=neutral, PublicKeyToken=a9d7983dfcc261be">
+      <Private>True</Private>
+      <SpecificVersion>True</SpecificVersion>
+    </Reference>
+    <Reference Include="Telerik.WinControls, Version=2017.1.221.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
+      <HintPath>..\lib\RCWF\2017.1.221.40\Telerik.WinControls.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Telerik.WinControls.GridView, Version=2017.1.221.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
+      <HintPath>..\lib\RCWF\2017.1.221.40\Telerik.WinControls.GridView.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Telerik.WinControls.PdfViewer, Version=2017.1.221.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
+      <HintPath>..\lib\RCWF\2017.1.221.40\Telerik.WinControls.PdfViewer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Telerik.WinControls.RadDock, Version=2017.1.221.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
+      <HintPath>..\lib\RCWF\2017.1.221.40\Telerik.WinControls.RadDock.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Telerik.WinControls.RadMarkupEditor, Version=2017.1.221.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
+      <HintPath>..\lib\RCWF\2017.1.221.40\Telerik.WinControls.RadMarkupEditor.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Telerik.WinControls.RichTextEditor, Version=2017.1.221.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
+      <HintPath>..\lib\RCWF\2017.1.221.40\Telerik.WinControls.RichTextEditor.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Telerik.WinControls.Themes.HighContrastBlack, Version=2017.1.221.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
+      <HintPath>..\lib\RCWF\2017.1.221.40\Telerik.WinControls.Themes.HighContrastBlack.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Telerik.WinControls.Themes.Office2013Light, Version=2017.1.221.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
+      <HintPath>..\lib\RCWF\2017.1.221.40\Telerik.WinControls.Themes.Office2013Light.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Telerik.WinControls.Themes.TelerikMetro, Version=2017.1.221.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
+      <HintPath>..\lib\RCWF\2017.1.221.40\Telerik.WinControls.Themes.TelerikMetro.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Telerik.WinControls.Themes.TelerikMetroBlue, Version=2017.1.221.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
+      <HintPath>..\lib\RCWF\2017.1.221.40\Telerik.WinControls.Themes.TelerikMetroBlue.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Telerik.WinControls.Themes.VisualStudio2012Light, Version=2017.1.221.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
+      <HintPath>..\lib\RCWF\2017.1.221.40\Telerik.WinControls.Themes.VisualStudio2012Light.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Telerik.WinControls.Themes.Windows7, Version=2017.1.221.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
+      <HintPath>..\lib\RCWF\2017.1.221.40\Telerik.WinControls.Themes.Windows7.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Telerik.WinControls.Themes.Windows8, Version=2017.1.221.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
+      <HintPath>..\lib\RCWF\2017.1.221.40\Telerik.WinControls.Themes.Windows8.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Telerik.WinControls.UI, Version=2017.1.221.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
+      <HintPath>..\lib\RCWF\2017.1.221.40\Telerik.WinControls.UI.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="TelerikCommon, Version=2017.1.221.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
+      <HintPath>..\lib\RCWF\2017.1.221.40\TelerikCommon.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="TelerikData, Version=2017.1.221.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
+      <HintPath>..\lib\RCWF\2017.1.221.40\TelerikData.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Classes\UpdateDictionaries.cs" />
+    <Compile Include="Dictionaries\TariffCodeRW3Edit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dictionaries\TariffCodeRW3Edit.Designer.cs">
+      <DependentUpon>TariffCodeRW3Edit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dictionaries\TariffCodeRW3Frm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dictionaries\TariffCodeRW3Frm.Designer.cs">
+      <DependentUpon>TariffCodeRW3Frm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Export\ExportDBF.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Export\ExportDBF.Designer.cs">
+      <DependentUpon>ExportDBF.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormsADW1\AddressEditor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormsADW1\AddressEditor.Designer.cs">
+      <DependentUpon>AddressEditor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormsADW1\CreateXmlPack_ADW1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormsADW1\CreateXmlPack_ADW1.Designer.cs">
+      <DependentUpon>CreateXmlPack_ADW1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormsADW1\FormsADW1_List.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormsADW1\FormsADW1_List.Designer.cs">
+      <DependentUpon>FormsADW1_List.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormsADW1\FormsADW1_Print.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormsADW1\FormsADW1_Print.Designer.cs">
+      <DependentUpon>FormsADW1_Print.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormsADW1\Report\ADW1_Report.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="FormsADW1\Report\ADW1_Report.Designer.cs">
+      <DependentUpon>ADW1_Report.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormsADW2\AddressEditor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormsADW2\AddressEditor.Designer.cs">
+      <DependentUpon>AddressEditor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormsADW2\CreateXmlPack_ADW2.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormsADW2\CreateXmlPack_ADW2.Designer.cs">
+      <DependentUpon>CreateXmlPack_ADW2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormsADW2\FormsADW2_List.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormsADW2\FormsADW2_List.Designer.cs">
+      <DependentUpon>FormsADW2_List.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormsADW2\FormsADW2_Print.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormsADW2\FormsADW2_Print.Designer.cs">
+      <DependentUpon>FormsADW2_Print.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormsADW2\Report\ADW2_Report.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="FormsADW2\Report\ADW2_Report.Designer.cs">
+      <DependentUpon>ADW2_Report.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormsADW2\FormsADW2_Edit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormsADW2\FormsADW2_Edit.Designer.cs">
+      <DependentUpon>FormsADW2_Edit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormsADW3\AddressEditor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormsADW3\AddressEditor.Designer.cs">
+      <DependentUpon>AddressEditor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormsADW3\CreateXmlPack_ADW3.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormsADW3\CreateXmlPack_ADW3.Designer.cs">
+      <DependentUpon>CreateXmlPack_ADW3.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormsADW3\FormsADW3_Edit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormsADW3\FormsADW3_Edit.Designer.cs">
+      <DependentUpon>FormsADW3_Edit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormsADW3\FormsADW3_List.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormsADW3\FormsADW3_List.Designer.cs">
+      <DependentUpon>FormsADW3_List.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormsADW3\FormsADW3_Print.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormsADW3\FormsADW3_Print.Designer.cs">
+      <DependentUpon>FormsADW3_Print.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormsADW3\Report\ADW3_Report.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="FormsADW3\Report\ADW3_Report.Designer.cs">
+      <DependentUpon>ADW3_Report.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormsADW3\Report\ADW3_Report_page_2.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="FormsADW3\Report\ADW3_Report_page_2.Designer.cs">
+      <DependentUpon>ADW3_Report_page_2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormsDSW3\DSW3_Copy.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormsDSW3\DSW3_Copy.Designer.cs">
+      <DependentUpon>DSW3_Copy.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormsDSW3\DSW3_CreateXML.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormsDSW3\DSW3_CreateXML.Designer.cs">
+      <DependentUpon>DSW3_CreateXML.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormsDSW3\DSW3_Edit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormsDSW3\DSW3_Edit.Designer.cs">
+      <DependentUpon>DSW3_Edit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormsDSW3\DSW3_EditStaff.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormsDSW3\DSW3_EditStaff.Designer.cs">
+      <DependentUpon>DSW3_EditStaff.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormsDSW3\DSW3_FillStaff.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormsDSW3\DSW3_FillStaff.Designer.cs">
+      <DependentUpon>DSW3_FillStaff.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormsDSW3\DSW3_List.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormsDSW3\DSW3_List.Designer.cs">
+      <DependentUpon>DSW3_List.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormsDSW3\DSW3_Print.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormsDSW3\DSW3_Print.Designer.cs">
+      <DependentUpon>DSW3_Print.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormsDSW3\Report\DSW3_Report.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="FormsDSW3\Report\DSW3_Report.Designer.cs">
+      <DependentUpon>DSW3_Report.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormsODV1\ODV1_CreateXML.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormsODV1\ODV1_CreateXML.Designer.cs">
+      <DependentUpon>ODV1_CreateXML.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormsODV1\ODV1_Edit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormsODV1\ODV1_Edit.Designer.cs">
+      <DependentUpon>ODV1_Edit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormsODV1\ODV1_List.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormsODV1\ODV1_List.Designer.cs">
+      <DependentUpon>ODV1_List.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormsODV1\ODV1_Print.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormsODV1\ODV1_Print.Designer.cs">
+      <DependentUpon>ODV1_Print.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormsODV1\ODV_1_4_Edit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormsODV1\ODV_1_4_Edit.Designer.cs">
+      <DependentUpon>ODV_1_4_Edit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormsODV1\ODV_1_5_Edit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormsODV1\ODV_1_5_Edit.Designer.cs">
+      <DependentUpon>ODV_1_5_Edit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormsODV1\ODV_1_5_OUT_Edit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormsODV1\ODV_1_5_OUT_Edit.Designer.cs">
+      <DependentUpon>ODV_1_5_OUT_Edit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormsODV1\Report\FormsODV1_Rep.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="FormsODV1\Report\FormsODV1_Rep.Designer.cs">
+      <DependentUpon>FormsODV1_Rep.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormsRSW1_2014\ADV_Print.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormsRSW1_2014\ADV_Print.Designer.cs">
+      <DependentUpon>ADV_Print.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormsRSW1_2014\DopFunc\CopyStaj.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormsRSW1_2014\DopFunc\CopyStaj.Designer.cs">
+      <DependentUpon>CopyStaj.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormsRSW1_2014\DopFunc\DeleteIndSved.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormsRSW1_2014\DopFunc\DeleteIndSved.Designer.cs">
+      <DependentUpon>DeleteIndSved.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormsRSW1_2014\DopFunc\GridResults\ProsmotrStajGrid.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormsRSW1_2014\DopFunc\GridResults\ProsmotrStajGrid.Designer.cs">
+      <DependentUpon>ProsmotrStajGrid.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormsRSW1_2014\DopFunc\PereschetItogSum.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormsRSW1_2014\DopFunc\PereschetItogSum.Designer.cs">
+      <DependentUpon>PereschetItogSum.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormsRSW1_2014\DopFunc\PereschetNachVznos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormsRSW1_2014\DopFunc\PereschetNachVznos.Designer.cs">
+      <DependentUpon>PereschetNachVznos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormsRSW1_2014\DopFunc\ProsmotrStaj.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormsRSW1_2014\DopFunc\ProsmotrStaj.Designer.cs">
+      <DependentUpon>ProsmotrStaj.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormsRSW1_2014\DopFunc\ProsmotrVyplat.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormsRSW1_2014\DopFunc\ProsmotrVyplat.Designer.cs">
+      <DependentUpon>ProsmotrVyplat.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormsRSW1_2014\DopFunc\GridResults\NachVznosy.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormsRSW1_2014\DopFunc\GridResults\NachVznosy.Designer.cs">
+      <DependentUpon>NachVznosy.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormsRSW1_2014\DopFunc\ProverkaNalStaj.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormsRSW1_2014\DopFunc\ProverkaNalStaj.Designer.cs">
+      <DependentUpon>ProverkaNalStaj.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormsRSW1_2014\DopFunc\RaschDonachSum.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormsRSW1_2014\DopFunc\RaschDonachSum.Designer.cs">
+      <DependentUpon>RaschDonachSum.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormsRSW1_2014\Report\ADV_Report.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="FormsRSW1_2014\Report\ADV_Report.Designer.cs">
+      <DependentUpon>ADV_Report.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormsRSW1_2014\Report\Staff_Report.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="FormsRSW1_2014\Report\Staff_Report.Designer.cs">
+      <DependentUpon>Staff_Report.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormsRSW1_2014\Report\RSW2014_Re1_2015.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="FormsRSW1_2014\Report\RSW2014_Re1_2015.Designer.cs">
+      <DependentUpon>RSW2014_Re1_2015.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormsRSW1_2014\Report\RSW2014_Re21_2015.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="FormsRSW1_2014\Report\RSW2014_Re21_2015.Designer.cs">
+      <DependentUpon>RSW2014_Re21_2015.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormsRSW1_2014\Staff_Print.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormsRSW1_2014\Staff_Print.Designer.cs">
+      <DependentUpon>Staff_Print.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormsRW_3_2015\CreateXmlPack_RW3_2015.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormsRW_3_2015\CreateXmlPack_RW3_2015.Designer.cs">
+      <DependentUpon>CreateXmlPack_RW3_2015.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormsRW_3_2015\Report\RW3_2015_Re1.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="FormsRW_3_2015\Report\RW3_2015_Re1.Designer.cs">
+      <DependentUpon>RW3_2015_Re1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormsRW_3_2015\Report\RW3_2015_Re3.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="FormsRW_3_2015\Report\RW3_2015_Re3.Designer.cs">
+      <DependentUpon>RW3_2015_Re3.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormsRW_3_2015\Report\RW3_2015_ReTitle.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="FormsRW_3_2015\Report\RW3_2015_ReTitle.Designer.cs">
+      <DependentUpon>RW3_2015_ReTitle.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormsRW_3_2015\RW3_2015_Print.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormsRW_3_2015\RW3_2015_Print.Designer.cs">
+      <DependentUpon>RW3_2015_Print.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormsRW_3_2015\RW3_2015_3_Edit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormsRW_3_2015\RW3_2015_3_Edit.Designer.cs">
+      <DependentUpon>RW3_2015_3_Edit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormsRW_3_2015\RW3_2015_Edit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormsRW_3_2015\RW3_2015_Edit.Designer.cs">
+      <DependentUpon>RW3_2015_Edit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormsRW_3_2015\RW3_2015_List.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormsRW_3_2015\RW3_2015_List.Designer.cs">
+      <DependentUpon>RW3_2015_List.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormsSPW2_2014\Report\SPW2_Report.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="FormsSPW2_2014\Report\SPW2_Report.Designer.cs">
+      <DependentUpon>SPW2_Report.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormsSPW2_2014\SPW2_Print.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormsSPW2_2014\SPW2_Print.Designer.cs">
+      <DependentUpon>SPW2_Print.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AboutBox.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AboutBox.Designer.cs">
+      <DependentUpon>AboutBox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormsSZVM_2016\CreateXmlPack_SZV_M_2016.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormsSZVM_2016\CreateXmlPack_SZV_M_2016.Designer.cs">
+      <DependentUpon>CreateXmlPack_SZV_M_2016.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormsSZVM_2016\Report\SZVM_Report.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="FormsSZVM_2016\Report\SZVM_Report.Designer.cs">
+      <DependentUpon>SZVM_Report.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormsSZVM_2016\SZV_M_2016_Copy.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormsSZVM_2016\SZV_M_2016_Copy.Designer.cs">
+      <DependentUpon>SZV_M_2016_Copy.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormsSZVM_2016\SZV_M_2016_Edit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormsSZVM_2016\SZV_M_2016_Edit.Designer.cs">
+      <DependentUpon>SZV_M_2016_Edit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormsSZVM_2016\SZV_M_2016_EditStaff.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormsSZVM_2016\SZV_M_2016_EditStaff.Designer.cs">
+      <DependentUpon>SZV_M_2016_EditStaff.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormsSZVM_2016\SZV_M_2016_FillStaff.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormsSZVM_2016\SZV_M_2016_FillStaff.Designer.cs">
+      <DependentUpon>SZV_M_2016_FillStaff.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormsSZVM_2016\SZV_M_2016_List.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormsSZVM_2016\SZV_M_2016_List.Designer.cs">
+      <DependentUpon>SZV_M_2016_List.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormsSZVM_2016\SZV_M_2016_Print.cs" />
+    <Compile Include="FormsSZV_6_2010\Report\SZV_6_1_Re1.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="FormsSZV_6_2010\Report\SZV_6_1_Re1.Designer.cs">
+      <DependentUpon>SZV_6_1_Re1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormsSZV_6_2010\Report\SZV_6_2_Re1.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="FormsSZV_6_2010\Report\SZV_6_2_Re1.Designer.cs">
+      <DependentUpon>SZV_6_2_Re1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormsSZV_6_4_2013\DopFunc\RaschDonachSumSZV64.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormsSZV_6_4_2013\DopFunc\RaschDonachSumSZV64.Designer.cs">
+      <DependentUpon>RaschDonachSumSZV64.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormsSZV_6_4_2013\Report\SZV_6_4_Re1.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="FormsSZV_6_4_2013\Report\SZV_6_4_Re1.Designer.cs">
+      <DependentUpon>SZV_6_4_Re1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormsSZV_6_4_2013\Report\SZV_6_4_Re2.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="FormsSZV_6_4_2013\Report\SZV_6_4_Re2.Designer.cs">
+      <DependentUpon>SZV_6_4_Re2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormsSZV_ISH\Report\SZV_ISH_Rep.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="FormsSZV_ISH\Report\SZV_ISH_Rep.Designer.cs">
+      <DependentUpon>SZV_ISH_Rep.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormsSZV_ISH\SZV_ISH_4_Edit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormsSZV_ISH\SZV_ISH_4_Edit.Designer.cs">
+      <DependentUpon>SZV_ISH_4_Edit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormsSZV_ISH\SZV_ISH_7_Edit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormsSZV_ISH\SZV_ISH_7_Edit.Designer.cs">
+      <DependentUpon>SZV_ISH_7_Edit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormsSZV_ISH\SZV_ISH_Edit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormsSZV_ISH\SZV_ISH_Edit.Designer.cs">
+      <DependentUpon>SZV_ISH_Edit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormsSZV_KORR\Report\SZV_KORR_Rep.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="FormsSZV_KORR\Report\SZV_KORR_Rep.Designer.cs">
+      <DependentUpon>SZV_KORR_Rep.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormsSZV_KORR\SZV_KORR_4_Edit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormsSZV_KORR\SZV_KORR_4_Edit.Designer.cs">
+      <DependentUpon>SZV_KORR_4_Edit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormsSZV_KORR\SZV_KORR_5_Edit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormsSZV_KORR\SZV_KORR_5_Edit.Designer.cs">
+      <DependentUpon>SZV_KORR_5_Edit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormsSZV_KORR\SZV_KORR_Edit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormsSZV_KORR\SZV_KORR_Edit.Designer.cs">
+      <DependentUpon>SZV_KORR_Edit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormsSZV_STAJ\Report\SZV_STAJ_Rep.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="FormsSZV_STAJ\Report\SZV_STAJ_Rep.Designer.cs">
+      <DependentUpon>SZV_STAJ_Rep.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormsSZV_STAJ\SZV_STAJ_5_Edit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormsSZV_STAJ\SZV_STAJ_5_Edit.Designer.cs">
+      <DependentUpon>SZV_STAJ_5_Edit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormsSZV_STAJ\SZV_STAJ_CreateSZVKORR.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormsSZV_STAJ\SZV_STAJ_CreateSZVKORR.Designer.cs">
+      <DependentUpon>SZV_STAJ_CreateSZVKORR.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormsSZV_STAJ\SZV_STAJ_Edit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormsSZV_STAJ\SZV_STAJ_Edit.Designer.cs">
+      <DependentUpon>SZV_STAJ_Edit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormsSZV_STAJ\SZV_STAJ_FillStaff.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormsSZV_STAJ\SZV_STAJ_FillStaff.Designer.cs">
+      <DependentUpon>SZV_STAJ_FillStaff.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Model.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\DopFunc\SvedBaseOPS_Rep.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\DopFunc\SvedBaseOPS_Rep.Designer.cs">
+      <DependentUpon>SvedBaseOPS_Rep.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\DopFunc\SvedDop_Rep.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\DopFunc\SvedDop_Rep.Designer.cs">
+      <DependentUpon>SvedDop_Rep.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\DopFunc\SvedKorr_Rep.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\DopFunc\SvedKorr_Rep.Designer.cs">
+      <DependentUpon>SvedKorr_Rep.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\DopFunc\SvedNachVznos_Rep.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\DopFunc\SvedNachVznos_Rep.Designer.cs">
+      <DependentUpon>SvedNachVznos_Rep.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\DopFunc\SvedVypl_Rep.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\DopFunc\SvedVypl_Rep.Designer.cs">
+      <DependentUpon>SvedVypl_Rep.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Insurer_Rep.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Insurer_Rep.Designer.cs">
+      <DependentUpon>Insurer_Rep.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\PrintEmptyForms_Frm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Reports\PrintEmptyForms_Frm.Designer.cs">
+      <DependentUpon>PrintEmptyForms_Frm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\ReportMethods.cs" />
+    <Compile Include="Reports\StaffLgot_Rep.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\StaffLgot_Rep.Designer.cs">
+      <DependentUpon>StaffLgot_Rep.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Staff_Rep.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Staff_Rep.Designer.cs">
+      <DependentUpon>Staff_Rep.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Service\Administration.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Service\Administration.Designer.cs">
+      <DependentUpon>Administration.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Service\AdministrationEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Service\AdministrationEdit.Designer.cs">
+      <DependentUpon>AdministrationEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Service\BackupRestoreDB.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Service\BackupRestoreDB.Designer.cs">
+      <DependentUpon>BackupRestoreDB.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Service\CheckFiles\CheckFilesList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Service\CheckFiles\CheckFilesList.Designer.cs">
+      <DependentUpon>CheckFilesList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Service\CheckFiles\CheckFilesQuestion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Service\CheckFiles\CheckFilesQuestion.Designer.cs">
+      <DependentUpon>CheckFilesQuestion.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Service\CheckFiles\XmlViewer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Service\CheckFiles\XmlViewer.Designer.cs">
+      <DependentUpon>XmlViewer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Service\ObjectsToForms.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Service\ObjectsToForms.Designer.cs">
+      <DependentUpon>ObjectsToForms.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Service\UpdateDict.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Service\UpdateDict.Designer.cs">
+      <DependentUpon>UpdateDict.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Service\UserToObjects.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Service\UserToObjects.Designer.cs">
+      <DependentUpon>UserToObjects.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SQLiteCompare\BlobReaderWriter.cs" />
+    <Compile Include="SQLiteCompare\ChangeScriptBuilder.cs" />
+    <Compile Include="SQLiteCompare\CompareParams.cs" />
+    <Compile Include="SQLiteCompare\CompareSqlite.cs" />
+    <Compile Include="FormsRSW1_2014\CreateXmlPack_RSW2014.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormsRSW1_2014\CreateXmlPack_RSW2014.Designer.cs">
+      <DependentUpon>CreateXmlPack_RSW2014.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormsRSW1_2014\Razd_2\RSW2014_2_5_List.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormsRSW1_2014\Razd_2\RSW2014_2_5_List.Designer.cs">
+      <DependentUpon>RSW2014_2_5_List.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormsRSW1_2014\rsw2014packs.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormsRSW1_2014\rsw2014packs.Designer.cs">
+      <DependentUpon>rsw2014packs.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormsRSW2_2014\CreateXmlPack_RSW2_2014.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormsRSW2_2014\CreateXmlPack_RSW2_2014.Designer.cs">
+      <DependentUpon>CreateXmlPack_RSW2_2014.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormsRSW2_2014\Report\RSW2_2014_Re1.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="FormsRSW2_2014\Report\RSW2_2014_Re1.Designer.cs">
+      <DependentUpon>RSW2_2014_Re1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormsRSW2_2014\Report\RSW2_2014_Re2.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="FormsRSW2_2014\Report\RSW2_2014_Re2.Designer.cs">
+      <DependentUpon>RSW2_2014_Re2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormsRSW2_2014\Report\RSW2_2014_Re3.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="FormsRSW2_2014\Report\RSW2_2014_Re3.Designer.cs">
+      <DependentUpon>RSW2_2014_Re3.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormsRSW2_2014\Report\RSW2_2014_ReTitle.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="FormsRSW2_2014\Report\RSW2_2014_ReTitle.Designer.cs">
+      <DependentUpon>RSW2_2014_ReTitle.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormsRSW2_2014\RSW2_2014_2_Edit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormsRSW2_2014\RSW2_2014_2_Edit.Designer.cs">
+      <DependentUpon>RSW2_2014_2_Edit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormsRSW2_2014\RSW2_2014_Edit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormsRSW2_2014\RSW2_2014_Edit.Designer.cs">
+      <DependentUpon>RSW2_2014_Edit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormsRSW2_2014\RSW2_2014_List.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormsRSW2_2014\RSW2_2014_List.Designer.cs">
+      <DependentUpon>RSW2_2014_List.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormsRSW2_2014\RSW2_2014_3_Edit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormsRSW2_2014\RSW2_2014_3_Edit.Designer.cs">
+      <DependentUpon>RSW2_2014_3_Edit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormsRSW2_2014\RSW2_2014_Print.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormsRSW2_2014\RSW2_2014_Print.Designer.cs">
+      <DependentUpon>RSW2_2014_Print.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormsSPW2_2014\CreateXmlPack_SPW2_2014.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormsSPW2_2014\CreateXmlPack_SPW2_2014.Designer.cs">
+      <DependentUpon>CreateXmlPack_SPW2_2014.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SQLiteCompare\CompareWorker.cs" />
+    <Compile Include="SQLiteCompare\IWorker.cs" />
+    <Compile Include="SQLiteCompare\ProgressEventArgs.cs" />
+    <Compile Include="SQLiteCompare\SchemaComparisonItem.cs" />
+    <Compile Include="SQLiteCompare\SyncWorker.cs" />
+    <Compile Include="SQLiteCompare\TableChangeItem.cs" />
+    <Compile Include="SQLiteCompare\TableChanges.cs" />
+    <Compile Include="SQLiteCompare\TableCompareWorker.cs" />
+    <Compile Include="SQLiteParsers\SQLiteCreateTableStatement.cs" />
+    <Compile Include="SQLiteParsers\SQLiteDdlStatement.cs" />
+    <Compile Include="StaffAnketaEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="StaffAnketaEdit.Designer.cs">
+      <DependentUpon>StaffAnketaEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="StaffPrint.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="StaffPrint.Designer.cs">
+      <DependentUpon>StaffPrint.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Staj\StajList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Staj\StajList.Designer.cs">
+      <DependentUpon>StajList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormsSZV_6_4_2013\SZV_6_4_Edit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormsSZV_6_4_2013\SZV_6_4_Edit.Designer.cs">
+      <DependentUpon>SZV_6_4_Edit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormsSZV_6_4_2013\SZV_6_4_List.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormsSZV_6_4_2013\SZV_6_4_List.Designer.cs">
+      <DependentUpon>SZV_6_4_List.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Import\ImportXML.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Import\ImportXML.Designer.cs">
+      <DependentUpon>ImportXML.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Models\xmlContainer.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>xmlContainer.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Service\BaseManager.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Service\BaseManager.Designer.cs">
+      <DependentUpon>BaseManager.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Classes\Props.cs" />
+    <Compile Include="Classes\RadGridLocalizationProvider.cs" />
+    <Compile Include="Classes\Utils.cs" />
+    <Compile Include="DepartmentsEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DepartmentsEdit.Designer.cs">
+      <DependentUpon>DepartmentsEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dictionaries\Diction.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dictionaries\Diction.Designer.cs">
+      <DependentUpon>Diction.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dictionaries\DictionEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dictionaries\DictionEdit.Designer.cs">
+      <DependentUpon>DictionEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dictionaries\DocTypes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dictionaries\DocTypes.Designer.cs">
+      <DependentUpon>DocTypes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dictionaries\DocTypesEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dictionaries\DocTypesEdit.Designer.cs">
+      <DependentUpon>DocTypesEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dictionaries\DolgnFrm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dictionaries\DolgnFrm.Designer.cs">
+      <DependentUpon>DolgnFrm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dictionaries\DopTariffFrm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dictionaries\DopTariffFrm.Designer.cs">
+      <DependentUpon>DopTariffFrm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dictionaries\DopTariffFrmEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dictionaries\DopTariffFrmEdit.Designer.cs">
+      <DependentUpon>DopTariffFrmEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dictionaries\KodVred.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dictionaries\KodVred.Designer.cs">
+      <DependentUpon>KodVred.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dictionaries\MROTEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dictionaries\MROTEdit.Designer.cs">
+      <DependentUpon>MROTEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dictionaries\MROTFrm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dictionaries\MROTFrm.Designer.cs">
+      <DependentUpon>MROTFrm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dictionaries\PlatCategoryFrm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dictionaries\PlatCategoryFrm.Designer.cs">
+      <DependentUpon>PlatCategoryFrm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dictionaries\PlatCategoryFrmEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dictionaries\PlatCategoryFrmEdit.Designer.cs">
+      <DependentUpon>PlatCategoryFrmEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dictionaries\RaschetPeriodFrm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dictionaries\RaschetPeriodFrm.Designer.cs">
+      <DependentUpon>RaschetPeriodFrm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dictionaries\RaschetPeriodFrmEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dictionaries\RaschetPeriodFrmEdit.Designer.cs">
+      <DependentUpon>RaschetPeriodFrmEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dictionaries\SpecOcenkaDopTariff.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dictionaries\SpecOcenkaDopTariff.Designer.cs">
+      <DependentUpon>SpecOcenkaDopTariff.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dictionaries\SpecOcenkaDopTariffEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dictionaries\SpecOcenkaDopTariffEdit.Designer.cs">
+      <DependentUpon>SpecOcenkaDopTariffEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dictionaries\TariffCodeEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dictionaries\TariffCodeEdit.Designer.cs">
+      <DependentUpon>TariffCodeEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dictionaries\TariffCodeFrm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dictionaries\TariffCodeFrm.Designer.cs">
+      <DependentUpon>TariffCodeFrm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dictionaries\TariffPlatFrm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dictionaries\TariffPlatFrm.Designer.cs">
+      <DependentUpon>TariffPlatFrm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dictionaries\TariffPlatFrmEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dictionaries\TariffPlatFrmEdit.Designer.cs">
+      <DependentUpon>TariffPlatFrmEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormsRSW1_2014\Report\RSW2014_Re1.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="FormsRSW1_2014\Report\RSW2014_Re1.Designer.cs">
+      <DependentUpon>RSW2014_Re1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormsRSW1_2014\Report\RSW2014_Re21.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="FormsRSW1_2014\Report\RSW2014_Re21.Designer.cs">
+      <DependentUpon>RSW2014_Re21.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormsRSW1_2014\Report\RSW2014_Re22.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="FormsRSW1_2014\Report\RSW2014_Re22.Designer.cs">
+      <DependentUpon>RSW2014_Re22.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormsRSW1_2014\Report\RSW2014_Re24.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="FormsRSW1_2014\Report\RSW2014_Re24.Designer.cs">
+      <DependentUpon>RSW2014_Re24.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormsRSW1_2014\Report\RSW2014_Re25.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="FormsRSW1_2014\Report\RSW2014_Re25.Designer.cs">
+      <DependentUpon>RSW2014_Re25.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormsRSW1_2014\Report\RSW2014_Re31.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="FormsRSW1_2014\Report\RSW2014_Re31.Designer.cs">
+      <DependentUpon>RSW2014_Re31.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormsRSW1_2014\Report\RSW2014_Re33.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="FormsRSW1_2014\Report\RSW2014_Re33.Designer.cs">
+      <DependentUpon>RSW2014_Re33.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormsRSW1_2014\Report\RSW2014_Re35.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="FormsRSW1_2014\Report\RSW2014_Re35.Designer.cs">
+      <DependentUpon>RSW2014_Re35.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormsRSW1_2014\Report\RSW2014_Re4.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="FormsRSW1_2014\Report\RSW2014_Re4.Designer.cs">
+      <DependentUpon>RSW2014_Re4.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormsRSW1_2014\Report\RSW2014_Re5.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="FormsRSW1_2014\Report\RSW2014_Re5.Designer.cs">
+      <DependentUpon>RSW2014_Re5.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormsRSW1_2014\Report\RSW2014_Re6.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="FormsRSW1_2014\Report\RSW2014_Re6.Designer.cs">
+      <DependentUpon>RSW2014_Re6.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormsRSW1_2014\Report\RSW2014_ReTitle.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="FormsRSW1_2014\Report\RSW2014_ReTitle.Designer.cs">
+      <DependentUpon>RSW2014_ReTitle.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormsRSW1_2014\RSW2014_Filling.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormsRSW1_2014\RSW2014_Filling.Designer.cs">
+      <DependentUpon>RSW2014_Filling.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormsRSW1_2014\RSW2014_6_Copy_Wait.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormsRSW1_2014\RSW2014_6_Copy_Wait.Designer.cs">
+      <DependentUpon>RSW2014_6_Copy_Wait.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormsRSW1_2014\RSW2014_Copy.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormsRSW1_2014\RSW2014_Copy.Designer.cs">
+      <DependentUpon>RSW2014_Copy.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormsRSW1_2014\Razd_2\RSW2014_2_1_Edit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormsRSW1_2014\Razd_2\RSW2014_2_1_Edit.Designer.cs">
+      <DependentUpon>RSW2014_2_1_Edit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormsRSW1_2014\Razd_2\RSW2014_2_1_Filling.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormsRSW1_2014\Razd_2\RSW2014_2_1_Filling.Designer.cs">
+      <DependentUpon>RSW2014_2_1_Filling.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormsRSW1_2014\Razd_2\RSW2014_2_1_Filling_Wait.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormsRSW1_2014\Razd_2\RSW2014_2_1_Filling_Wait.Designer.cs">
+      <DependentUpon>RSW2014_2_1_Filling_Wait.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormsRSW1_2014\Razd_2\RSW2014_2_4_Edit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormsRSW1_2014\Razd_2\RSW2014_2_4_Edit.Designer.cs">
+      <DependentUpon>RSW2014_2_4_Edit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormsRSW1_2014\Razd_3\RSW2014_3_4_Edit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormsRSW1_2014\Razd_3\RSW2014_3_4_Edit.Designer.cs">
+      <DependentUpon>RSW2014_3_4_Edit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormsRSW1_2014\Razd_4\RSW2014_4_Edit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormsRSW1_2014\Razd_4\RSW2014_4_Edit.Designer.cs">
+      <DependentUpon>RSW2014_4_Edit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormsRSW1_2014\Razd_5\RSW2014_5_Edit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormsRSW1_2014\Razd_5\RSW2014_5_Edit.Designer.cs">
+      <DependentUpon>RSW2014_5_Edit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormsRSW1_2014\Razd_6\RSW2014_6.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormsRSW1_2014\Razd_6\RSW2014_6.Designer.cs">
+      <DependentUpon>RSW2014_6.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormsRSW1_2014\Razd_6\RSW2014_6_4_Edit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormsRSW1_2014\Razd_6\RSW2014_6_4_Edit.Designer.cs">
+      <DependentUpon>RSW2014_6_4_Edit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormsRSW1_2014\Razd_6\RSW2014_6_6_Edit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormsRSW1_2014\Razd_6\RSW2014_6_6_Edit.Designer.cs">
+      <DependentUpon>RSW2014_6_6_Edit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormsRSW1_2014\Razd_6\RSW2014_6_7_Edit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormsRSW1_2014\Razd_6\RSW2014_6_7_Edit.Designer.cs">
+      <DependentUpon>RSW2014_6_7_Edit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Staj\StajLgotFrm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Staj\StajLgotFrm.Designer.cs">
+      <DependentUpon>StajLgotFrm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Staj\StajOsnFrm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Staj\StajOsnFrm.Designer.cs">
+      <DependentUpon>StajOsnFrm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormsRSW1_2014\DopFunc\RSW2014_6_Copy.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormsRSW1_2014\DopFunc\RSW2014_6_Copy.Designer.cs">
+      <DependentUpon>RSW2014_6_Copy.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormsRSW1_2014\RSW2014_Edit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormsRSW1_2014\RSW2014_Edit.Designer.cs">
+      <DependentUpon>RSW2014_Edit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormsRSW1_2014\RSW2014_List.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormsRSW1_2014\RSW2014_List.Designer.cs">
+      <DependentUpon>RSW2014_List.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormsRSW1_2014\RSW2014_Print.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormsRSW1_2014\RSW2014_Print.Designer.cs">
+      <DependentUpon>RSW2014_Print.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormsSPW2_2014\SPW2_Edit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormsSPW2_2014\SPW2_Edit.Designer.cs">
+      <DependentUpon>SPW2_Edit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormsSPW2_2014\SPW2_List.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormsSPW2_2014\SPW2_List.Designer.cs">
+      <DependentUpon>SPW2_List.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Import\ImportMain.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Import\ImportMain.designer.cs">
+      <DependentUpon>ImportMain.cs</DependentUpon>
+    </Compile>
+    <Compile Include="InsurerFrm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="InsurerFrm.Designer.cs">
+      <DependentUpon>InsurerFrm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="InsurerEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="InsurerEdit.Designer.cs">
+      <DependentUpon>InsurerEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MainForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MainForm.Designer.cs">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Containers.cs" />
+    <Compile Include="DepartmentsFrm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DepartmentsFrm.Designer.cs">
+      <DependentUpon>DepartmentsFrm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Models\MethodsNonStatic.cs" />
+    <Compile Include="Models\Methods.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Service\BaseManagerEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Service\BaseManagerEdit.Designer.cs">
+      <DependentUpon>BaseManagerEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="StaffEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="StaffEdit.Designer.cs">
+      <DependentUpon>StaffEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="StaffFrm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="StaffFrm.Designer.cs">
+      <DependentUpon>StaffFrm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormsSZV_6_2010\SZV_6_Edit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormsSZV_6_2010\SZV_6_Edit.Designer.cs">
+      <DependentUpon>SZV_6_Edit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormsSZV_6_2010\SZV_6_List.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormsSZV_6_2010\SZV_6_List.Designer.cs">
+      <DependentUpon>SZV_6_List.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserAccess\LoginFrm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UserAccess\LoginFrm.Designer.cs">
+      <DependentUpon>LoginFrm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserAccess\xaccessModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>xaccessModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="ZAGS\Zags_Born\Born_List.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ZAGS\Zags_Born\Born_List.Designer.cs">
+      <DependentUpon>Born_List.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ZAGS\Zags_Born\Born_Edit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ZAGS\Zags_Born\Born_Edit.Designer.cs">
+      <DependentUpon>Born_Edit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ZAGS\Zags_Born\CreateXmlPack_Born.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ZAGS\Zags_Born\CreateXmlPack_Born.Designer.cs">
+      <DependentUpon>CreateXmlPack_Born.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ZAGS\Zags_Death\CreateXmlPack_Death.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ZAGS\Zags_Death\CreateXmlPack_Death.Designer.cs">
+      <DependentUpon>CreateXmlPack_Death.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ZAGS\Zags_Death\Death_Edit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ZAGS\Zags_Death\Death_Edit.Designer.cs">
+      <DependentUpon>Death_Edit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ZAGS\Zags_Death\Death_List.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ZAGS\Zags_Death\Death_List.Designer.cs">
+      <DependentUpon>Death_List.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="Dictionaries\TariffCodeRW3Edit.resx">
+      <DependentUpon>TariffCodeRW3Edit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dictionaries\TariffCodeRW3Frm.resx">
+      <DependentUpon>TariffCodeRW3Frm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Export\ExportDBF.resx">
+      <DependentUpon>ExportDBF.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormsADW1\AddressEditor.resx">
+      <DependentUpon>AddressEditor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormsADW1\CreateXmlPack_ADW1.resx">
+      <DependentUpon>CreateXmlPack_ADW1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormsADW1\FormsADW1_List.resx">
+      <DependentUpon>FormsADW1_List.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormsADW1\FormsADW1_Print.resx">
+      <DependentUpon>FormsADW1_Print.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormsADW1\Report\ADW1_Report.resx">
+      <DependentUpon>ADW1_Report.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormsADW2\AddressEditor.resx">
+      <DependentUpon>AddressEditor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormsADW2\CreateXmlPack_ADW2.resx">
+      <DependentUpon>CreateXmlPack_ADW2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormsADW2\FormsADW2_List.resx">
+      <DependentUpon>FormsADW2_List.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormsADW2\FormsADW2_Print.resx">
+      <DependentUpon>FormsADW2_Print.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormsADW2\Report\ADW2_Report.resx">
+      <DependentUpon>ADW2_Report.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormsADW2\FormsADW2_Edit.resx">
+      <DependentUpon>FormsADW2_Edit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormsADW3\AddressEditor.resx">
+      <DependentUpon>AddressEditor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormsADW3\CreateXmlPack_ADW3.resx">
+      <DependentUpon>CreateXmlPack_ADW3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormsADW3\FormsADW3_Edit.resx">
+      <DependentUpon>FormsADW3_Edit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormsADW3\FormsADW3_List.resx">
+      <DependentUpon>FormsADW3_List.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormsADW3\FormsADW3_Print.resx">
+      <DependentUpon>FormsADW3_Print.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormsADW3\Report\ADW3_Report.resx">
+      <DependentUpon>ADW3_Report.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormsADW3\Report\ADW3_Report_page_2.resx">
+      <DependentUpon>ADW3_Report_page_2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormsDSW3\DSW3_Copy.resx">
+      <DependentUpon>DSW3_Copy.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormsDSW3\DSW3_CreateXML.resx">
+      <DependentUpon>DSW3_CreateXML.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormsDSW3\DSW3_Edit.resx">
+      <DependentUpon>DSW3_Edit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormsDSW3\DSW3_EditStaff.resx">
+      <DependentUpon>DSW3_EditStaff.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormsDSW3\DSW3_FillStaff.resx">
+      <DependentUpon>DSW3_FillStaff.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormsDSW3\DSW3_List.resx">
+      <DependentUpon>DSW3_List.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormsDSW3\DSW3_Print.resx">
+      <DependentUpon>DSW3_Print.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormsDSW3\Report\DSW3_Report.resx">
+      <DependentUpon>DSW3_Report.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormsODV1\ODV1_CreateXML.resx">
+      <DependentUpon>ODV1_CreateXML.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormsODV1\ODV1_Edit.resx">
+      <DependentUpon>ODV1_Edit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormsODV1\ODV1_List.resx">
+      <DependentUpon>ODV1_List.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormsODV1\ODV1_Print.resx">
+      <DependentUpon>ODV1_Print.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormsODV1\ODV_1_4_Edit.resx">
+      <DependentUpon>ODV_1_4_Edit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormsODV1\ODV_1_5_Edit.resx">
+      <DependentUpon>ODV_1_5_Edit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormsODV1\ODV_1_5_OUT_Edit.resx">
+      <DependentUpon>ODV_1_5_OUT_Edit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormsODV1\Report\FormsODV1_Rep.resx">
+      <DependentUpon>FormsODV1_Rep.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormsRSW1_2014\ADV_Print.resx">
+      <DependentUpon>ADV_Print.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormsRSW1_2014\CreateXmlPack_RSW2014.resx">
+      <DependentUpon>CreateXmlPack_RSW2014.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormsRSW1_2014\DopFunc\CopyStaj.resx">
+      <DependentUpon>CopyStaj.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormsRSW1_2014\DopFunc\DeleteIndSved.resx">
+      <DependentUpon>DeleteIndSved.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormsRSW1_2014\DopFunc\GridResults\ProsmotrStajGrid.resx">
+      <DependentUpon>ProsmotrStajGrid.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormsRSW1_2014\DopFunc\PereschetItogSum.resx">
+      <DependentUpon>PereschetItogSum.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormsRSW1_2014\DopFunc\PereschetNachVznos.resx">
+      <DependentUpon>PereschetNachVznos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormsRSW1_2014\DopFunc\ProsmotrStaj.resx">
+      <DependentUpon>ProsmotrStaj.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormsRSW1_2014\DopFunc\ProsmotrVyplat.resx">
+      <DependentUpon>ProsmotrVyplat.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormsRSW1_2014\DopFunc\GridResults\NachVznosy.resx">
+      <DependentUpon>NachVznosy.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormsRSW1_2014\DopFunc\ProverkaNalStaj.resx">
+      <DependentUpon>ProverkaNalStaj.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormsRSW1_2014\DopFunc\RaschDonachSum.resx">
+      <DependentUpon>RaschDonachSum.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormsRSW1_2014\Razd_2\RSW2014_2_5_List.resx">
+      <DependentUpon>RSW2014_2_5_List.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormsRSW1_2014\Report\ADV_Report.resx">
+      <DependentUpon>ADV_Report.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormsRSW1_2014\Report\Staff_Report.resx">
+      <DependentUpon>Staff_Report.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormsRSW1_2014\Report\RSW2014_Re1_2015.resx">
+      <DependentUpon>RSW2014_Re1_2015.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormsRSW1_2014\Report\RSW2014_Re21_2015.resx">
+      <DependentUpon>RSW2014_Re21_2015.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormsRSW1_2014\rsw2014packs.resx">
+      <DependentUpon>rsw2014packs.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormsRSW1_2014\Staff_Print.resx">
+      <DependentUpon>Staff_Print.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormsRSW2_2014\CreateXmlPack_RSW2_2014.resx">
+      <DependentUpon>CreateXmlPack_RSW2_2014.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormsRSW2_2014\Report\RSW2_2014_Re1.resx">
+      <DependentUpon>RSW2_2014_Re1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormsRSW2_2014\Report\RSW2_2014_Re2.resx">
+      <DependentUpon>RSW2_2014_Re2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormsRSW2_2014\Report\RSW2_2014_Re3.resx">
+      <DependentUpon>RSW2_2014_Re3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormsRSW2_2014\Report\RSW2_2014_ReTitle.resx">
+      <DependentUpon>RSW2_2014_ReTitle.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormsRSW2_2014\RSW2_2014_2_Edit.resx">
+      <DependentUpon>RSW2_2014_2_Edit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormsRSW2_2014\RSW2_2014_Edit.resx">
+      <DependentUpon>RSW2_2014_Edit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormsRSW2_2014\RSW2_2014_List.resx">
+      <DependentUpon>RSW2_2014_List.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormsRSW2_2014\RSW2_2014_3_Edit.resx">
+      <DependentUpon>RSW2_2014_3_Edit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormsRSW2_2014\RSW2_2014_Print.resx">
+      <DependentUpon>RSW2_2014_Print.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormsRW_3_2015\CreateXmlPack_RW3_2015.resx">
+      <DependentUpon>CreateXmlPack_RW3_2015.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormsRW_3_2015\Report\RW3_2015_Re1.resx">
+      <DependentUpon>RW3_2015_Re1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormsRW_3_2015\Report\RW3_2015_Re3.resx">
+      <DependentUpon>RW3_2015_Re3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormsRW_3_2015\Report\RW3_2015_ReTitle.resx">
+      <DependentUpon>RW3_2015_ReTitle.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormsRW_3_2015\RW3_2015_Print.resx">
+      <DependentUpon>RW3_2015_Print.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormsRW_3_2015\RW3_2015_3_Edit.resx">
+      <DependentUpon>RW3_2015_3_Edit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormsRW_3_2015\RW3_2015_Edit.resx">
+      <DependentUpon>RW3_2015_Edit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormsRW_3_2015\RW3_2015_List.resx">
+      <DependentUpon>RW3_2015_List.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormsSPW2_2014\CreateXmlPack_SPW2_2014.resx">
+      <DependentUpon>CreateXmlPack_SPW2_2014.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormsSPW2_2014\Report\SPW2_Report.resx">
+      <DependentUpon>SPW2_Report.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormsSPW2_2014\SPW2_Print.resx">
+      <DependentUpon>SPW2_Print.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AboutBox.resx">
+      <DependentUpon>AboutBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormsSZVM_2016\CreateXmlPack_SZV_M_2016.resx">
+      <DependentUpon>CreateXmlPack_SZV_M_2016.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormsSZVM_2016\Report\SZVM_Report.resx">
+      <DependentUpon>SZVM_Report.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormsSZVM_2016\SZV_M_2016_Copy.resx">
+      <DependentUpon>SZV_M_2016_Copy.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormsSZVM_2016\SZV_M_2016_Edit.resx">
+      <DependentUpon>SZV_M_2016_Edit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormsSZVM_2016\SZV_M_2016_EditStaff.resx">
+      <DependentUpon>SZV_M_2016_EditStaff.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormsSZVM_2016\SZV_M_2016_FillStaff.resx">
+      <DependentUpon>SZV_M_2016_FillStaff.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormsSZVM_2016\SZV_M_2016_List.resx">
+      <DependentUpon>SZV_M_2016_List.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormsSZV_6_2010\Report\SZV_6_1_Re1.resx">
+      <DependentUpon>SZV_6_1_Re1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormsSZV_6_2010\Report\SZV_6_2_Re1.resx">
+      <DependentUpon>SZV_6_2_Re1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormsSZV_6_4_2013\DopFunc\RaschDonachSumSZV64.resx">
+      <DependentUpon>RaschDonachSumSZV64.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormsSZV_6_4_2013\Report\SZV_6_4_Re1.resx">
+      <DependentUpon>SZV_6_4_Re1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormsSZV_6_4_2013\Report\SZV_6_4_Re2.resx">
+      <DependentUpon>SZV_6_4_Re2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormsSZV_ISH\Report\SZV_ISH_Rep.resx">
+      <DependentUpon>SZV_ISH_Rep.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormsSZV_ISH\SZV_ISH_4_Edit.resx">
+      <DependentUpon>SZV_ISH_4_Edit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormsSZV_ISH\SZV_ISH_7_Edit.resx">
+      <DependentUpon>SZV_ISH_7_Edit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormsSZV_ISH\SZV_ISH_Edit.resx">
+      <DependentUpon>SZV_ISH_Edit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormsSZV_KORR\Report\SZV_KORR_Rep.resx">
+      <DependentUpon>SZV_KORR_Rep.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormsSZV_KORR\SZV_KORR_4_Edit.resx">
+      <DependentUpon>SZV_KORR_4_Edit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormsSZV_KORR\SZV_KORR_5_Edit.resx">
+      <DependentUpon>SZV_KORR_5_Edit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormsSZV_KORR\SZV_KORR_Edit.resx">
+      <DependentUpon>SZV_KORR_Edit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormsSZV_STAJ\Report\SZV_STAJ_Rep.resx">
+      <DependentUpon>SZV_STAJ_Rep.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormsSZV_STAJ\SZV_STAJ_5_Edit.resx">
+      <DependentUpon>SZV_STAJ_5_Edit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormsSZV_STAJ\SZV_STAJ_CreateSZVKORR.resx">
+      <DependentUpon>SZV_STAJ_CreateSZVKORR.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormsSZV_STAJ\SZV_STAJ_Edit.resx">
+      <DependentUpon>SZV_STAJ_Edit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormsSZV_STAJ\SZV_STAJ_FillStaff.resx">
+      <DependentUpon>SZV_STAJ_FillStaff.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\licenses.licx" />
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\DopFunc\SvedBaseOPS_Rep.resx">
+      <DependentUpon>SvedBaseOPS_Rep.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\DopFunc\SvedDop_Rep.resx">
+      <DependentUpon>SvedDop_Rep.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\DopFunc\SvedKorr_Rep.resx">
+      <DependentUpon>SvedKorr_Rep.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\DopFunc\SvedNachVznos_Rep.resx">
+      <DependentUpon>SvedNachVznos_Rep.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\DopFunc\SvedVypl_Rep.resx">
+      <DependentUpon>SvedVypl_Rep.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Insurer_Rep.resx">
+      <DependentUpon>Insurer_Rep.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\PrintEmptyForms_Frm.resx">
+      <DependentUpon>PrintEmptyForms_Frm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\StaffLgot_Rep.resx">
+      <DependentUpon>StaffLgot_Rep.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Staff_Rep.resx">
+      <DependentUpon>Staff_Rep.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Service\Administration.resx">
+      <DependentUpon>Administration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Service\AdministrationEdit.resx">
+      <DependentUpon>AdministrationEdit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Service\BackupRestoreDB.resx">
+      <DependentUpon>BackupRestoreDB.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Service\CheckFiles\CheckFilesList.resx">
+      <DependentUpon>CheckFilesList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Service\CheckFiles\CheckFilesQuestion.resx">
+      <DependentUpon>CheckFilesQuestion.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Service\CheckFiles\XmlViewer.resx">
+      <DependentUpon>XmlViewer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Service\ObjectsToForms.resx">
+      <DependentUpon>ObjectsToForms.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Service\UpdateDict.resx">
+      <DependentUpon>UpdateDict.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Service\UserToObjects.resx">
+      <DependentUpon>UserToObjects.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="StaffAnketaEdit.resx">
+      <DependentUpon>StaffAnketaEdit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="StaffPrint.resx">
+      <DependentUpon>StaffPrint.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Staj\StajList.resx">
+      <DependentUpon>StajList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormsSZV_6_4_2013\SZV_6_4_Edit.resx">
+      <DependentUpon>SZV_6_4_Edit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormsSZV_6_4_2013\SZV_6_4_List.resx">
+      <DependentUpon>SZV_6_4_List.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Import\ImportXML.resx">
+      <DependentUpon>ImportXML.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Service\BaseManager.resx">
+      <DependentUpon>BaseManager.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DepartmentsEdit.resx">
+      <DependentUpon>DepartmentsEdit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dictionaries\Diction.resx">
+      <DependentUpon>Diction.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dictionaries\DictionEdit.resx">
+      <DependentUpon>DictionEdit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dictionaries\DocTypes.resx">
+      <DependentUpon>DocTypes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dictionaries\DocTypesEdit.resx">
+      <DependentUpon>DocTypesEdit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dictionaries\DolgnFrm.resx">
+      <DependentUpon>DolgnFrm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dictionaries\DopTariffFrm.resx">
+      <DependentUpon>DopTariffFrm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dictionaries\DopTariffFrmEdit.resx">
+      <DependentUpon>DopTariffFrmEdit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dictionaries\KodVred.resx">
+      <DependentUpon>KodVred.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dictionaries\MROTEdit.resx">
+      <DependentUpon>MROTEdit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dictionaries\MROTFrm.resx">
+      <DependentUpon>MROTFrm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dictionaries\PlatCategoryFrm.resx">
+      <DependentUpon>PlatCategoryFrm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dictionaries\PlatCategoryFrmEdit.cs.resx">
+      <DependentUpon>PlatCategoryFrmEdit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dictionaries\PlatCategoryFrmEdit.resx">
+      <DependentUpon>PlatCategoryFrmEdit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dictionaries\RaschetPeriodFrm.resx">
+      <DependentUpon>RaschetPeriodFrm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dictionaries\RaschetPeriodFrmEdit.resx">
+      <DependentUpon>RaschetPeriodFrmEdit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dictionaries\SpecOcenkaDopTariff.resx">
+      <DependentUpon>SpecOcenkaDopTariff.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dictionaries\SpecOcenkaDopTariffEdit.resx">
+      <DependentUpon>SpecOcenkaDopTariffEdit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dictionaries\TariffCodeEdit.resx">
+      <DependentUpon>TariffCodeEdit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dictionaries\TariffCodeFrm.resx">
+      <DependentUpon>TariffCodeFrm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dictionaries\TariffPlatFrm.resx">
+      <DependentUpon>TariffPlatFrm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dictionaries\TariffPlatFrmEdit.resx">
+      <DependentUpon>TariffPlatFrmEdit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormsRSW1_2014\Report\RSW2014_Re1.resx">
+      <DependentUpon>RSW2014_Re1.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormsRSW1_2014\Report\RSW2014_Re21.resx">
+      <DependentUpon>RSW2014_Re21.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormsRSW1_2014\Report\RSW2014_Re22.resx">
+      <DependentUpon>RSW2014_Re22.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormsRSW1_2014\Report\RSW2014_Re24.resx">
+      <DependentUpon>RSW2014_Re24.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormsRSW1_2014\Report\RSW2014_Re25.resx">
+      <DependentUpon>RSW2014_Re25.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormsRSW1_2014\Report\RSW2014_Re31.resx">
+      <DependentUpon>RSW2014_Re31.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormsRSW1_2014\Report\RSW2014_Re33.resx">
+      <DependentUpon>RSW2014_Re33.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormsRSW1_2014\Report\RSW2014_Re35.resx">
+      <DependentUpon>RSW2014_Re35.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormsRSW1_2014\Report\RSW2014_Re4.resx">
+      <DependentUpon>RSW2014_Re4.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormsRSW1_2014\Report\RSW2014_Re5.resx">
+      <DependentUpon>RSW2014_Re5.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormsRSW1_2014\Report\RSW2014_Re6.resx">
+      <DependentUpon>RSW2014_Re6.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormsRSW1_2014\Report\RSW2014_ReTitle.resx">
+      <DependentUpon>RSW2014_ReTitle.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormsRSW1_2014\RSW2014_Filling.resx">
+      <DependentUpon>RSW2014_Filling.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormsRSW1_2014\RSW2014_6_Copy_Wait.resx">
+      <DependentUpon>RSW2014_6_Copy_Wait.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormsRSW1_2014\RSW2014_Copy.resx">
+      <DependentUpon>RSW2014_Copy.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormsRSW1_2014\Razd_2\RSW2014_2_1_Edit.resx">
+      <DependentUpon>RSW2014_2_1_Edit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormsRSW1_2014\Razd_2\RSW2014_2_1_Filling.resx">
+      <DependentUpon>RSW2014_2_1_Filling.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormsRSW1_2014\Razd_2\RSW2014_2_1_Filling_Wait.resx">
+      <DependentUpon>RSW2014_2_1_Filling_Wait.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormsRSW1_2014\Razd_2\RSW2014_2_4_Edit.resx">
+      <DependentUpon>RSW2014_2_4_Edit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormsRSW1_2014\Razd_3\RSW2014_3_4_Edit.resx">
+      <DependentUpon>RSW2014_3_4_Edit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormsRSW1_2014\Razd_4\RSW2014_4_Edit.resx">
+      <DependentUpon>RSW2014_4_Edit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormsRSW1_2014\Razd_5\RSW2014_5_Edit.resx">
+      <DependentUpon>RSW2014_5_Edit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormsRSW1_2014\Razd_6\RSW2014_6.resx">
+      <DependentUpon>RSW2014_6.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormsRSW1_2014\Razd_6\RSW2014_6_4_Edit.resx">
+      <DependentUpon>RSW2014_6_4_Edit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormsRSW1_2014\Razd_6\RSW2014_6_6_Edit.resx">
+      <DependentUpon>RSW2014_6_6_Edit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormsRSW1_2014\Razd_6\RSW2014_6_7_Edit.resx">
+      <DependentUpon>RSW2014_6_7_Edit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Staj\StajLgotFrm.resx">
+      <DependentUpon>StajLgotFrm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Staj\StajOsnFrm.resx">
+      <DependentUpon>StajOsnFrm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormsRSW1_2014\DopFunc\RSW2014_6_Copy.resx">
+      <DependentUpon>RSW2014_6_Copy.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormsRSW1_2014\RSW2014_Edit.resx">
+      <DependentUpon>RSW2014_Edit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormsRSW1_2014\RSW2014_List.resx">
+      <DependentUpon>RSW2014_List.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormsRSW1_2014\RSW2014_Print.resx">
+      <DependentUpon>RSW2014_Print.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormsSPW2_2014\SPW2_Edit.resx">
+      <DependentUpon>SPW2_Edit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormsSPW2_2014\SPW2_List.resx">
+      <DependentUpon>SPW2_List.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Import\ImportMain.resx">
+      <DependentUpon>ImportMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="InsurerFrm.resx">
+      <DependentUpon>InsurerFrm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="InsurerEdit.resx">
+      <DependentUpon>InsurerEdit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainForm.resx">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DepartmentsFrm.resx">
+      <DependentUpon>DepartmentsFrm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Service\BaseManagerEdit.resx">
+      <DependentUpon>BaseManagerEdit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="StaffEdit.resx">
+      <DependentUpon>StaffEdit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="StaffFrm.resx">
+      <DependentUpon>StaffFrm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormsSZV_6_2010\SZV_6_Edit.resx">
+      <DependentUpon>SZV_6_Edit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormsSZV_6_2010\SZV_6_List.resx">
+      <DependentUpon>SZV_6_List.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserAccess\LoginFrm.resx">
+      <DependentUpon>LoginFrm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ZAGS\Zags_Born\Born_List.resx">
+      <DependentUpon>Born_List.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ZAGS\Zags_Born\Born_Edit.resx">
+      <DependentUpon>Born_Edit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ZAGS\Zags_Born\CreateXmlPack_Born.resx">
+      <DependentUpon>CreateXmlPack_Born.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ZAGS\Zags_Death\CreateXmlPack_Death.resx">
+      <DependentUpon>CreateXmlPack_Death.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ZAGS\Zags_Death\Death_Edit.resx">
+      <DependentUpon>Death_Edit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ZAGS\Zags_Death\Death_List.resx">
+      <DependentUpon>Death_List.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="App.Config">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="app.manifest">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="App_Data\pfrXML.db" />
+    <None Include="App_Data\pu5.db3" />
+    <EntityDeploy Include="Models\xmlContainer.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>xmlContainer.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="Base_emp\pu6_emp.db3" />
+    <EntityDeploy Include="Models\Model.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>Model.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="packages.config" />
+    <None Include="Properties\DataSources\PU.Models.pfrXMLEntities.datasource" />
+    <None Include="Properties\DataSources\PU.Models.pu5Entities.datasource" />
+    <None Include="Properties\DataSources\PU.UserAccess.xaccessEntities.datasource" />
+    <None Include="Properties\DataSources\pu5Entities.datasource" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <None Include="PU_TemporaryKey.pfx" />
+    <EntityDeploy Include="UserAccess\xaccessModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>xaccessModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="XML\Schemas\CheckPfr\ADV_1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="XML\Schemas\CheckPfr\ADV_2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="XML\Schemas\CheckPfr\ADV_3.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="XML\Schemas\CheckPfr\DSV_3.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="XML\Schemas\CheckPfr\SPV_2.XSD">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="XML\Schemas\CheckPfr\Szv_6.XSD">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="XML\Schemas\CheckPfr\Szv_6_4.XSD">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="XML\Schemas\CheckPfr\Types.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="XML\Schemas\CheckPfr\TypesData.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="XML\Schemas\CheckPfr\Types_INDS.XSD">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="XML\Schemas\CheckPfr\Types_SPV.XSD">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="XML\Schemas\CheckPfr\РСВ2014.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="XML\Schemas\CheckPfr\РСВ2014_Раздел6.XSD">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="XML\Schemas\CheckPfr\РСВ2015.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="XML\Schemas\CheckXml\ВСЗЛ\РСВ\РСВ-2\РСВ-2_2014.XSD">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="XML\Schemas\CheckXml\ВСЗЛ\РСВ\РСВ-2\РСВ-2_2015.XSD">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="XML\Schemas\CheckXml\ВСЗЛ\РСВ\РСВ-2\ТипыРСВ2с2014.XSD">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="XML\Schemas\CheckXml\ВСЗЛ\РСВ\ТипыРСВ.XSD">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="XML\Schemas\CheckXml\ВСЗЛ\Типы.XSD">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="XML\Schemas\CheckXml\док_РАСЧЕТ_ПО_СТРАХОВЫМ_ВЗНОСАМ_НА_ОПС_И_ОМС_ПЛАТЕЛЬЩИКАМИ_ПРОИЗВОДЯЩИМИ_ВЫПЛАТЫ_ФЛ_2014.XSD">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="XML\Schemas\CheckXml\док_СВЕДЕНИЯ_О_СТРАХОВОМ_СТАЖЕ_ЗЛ_ДЛЯ_УСТАНОВЛЕНИЯ_ПЕНСИИ.XSD">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="XML\Schemas\CheckXml\опись_СВЕДЕНИЯ_О_СТРАХОВЫХ_ВЗНОСАХ_И_СТРАХОВОМ_СТАЖЕ_ЗЛ.XSD">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="XML\Schemas\CheckXml\опись_СВЕДЕНИЯ_О_СУММЕ_ВЫПЛАТ_И_СТРАХОВОМ_СТАЖЕ_ЗЛ.XSD">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="XML\Schemas\CheckXml\опись_СВЕДЕНИЯ_О_СУММЕ_ВЫПЛАТ_О_СТРАХОВЫХ_ВЗНОСАХ_И_СТРАХОВОМ_СТАЖЕ_ЗЛ.XSD">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="XML\Schemas\CheckXml\Типы.XSD">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="XML\Schemas\CheckXml\ТипыИНДС.XSD">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="XML\Schemas\CheckXml\ТипыРСВ.XSD">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="XML\Schemas\CheckXml\ТипыРСВ2014.XSD">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="XML\Schemas\CheckXml\ТипыСПВ.XSD">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="XML\Schemas\ЗАГС\xmldsig_core_schema.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="XML\Schemas\ЗАГС\ВсВО\ЗАГС\СведенияОРождении_2016-01-01.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="XML\Schemas\ЗАГС\ВсВО\ЗАГС\СведенияОСмерти_2016-01-01.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="XML\Schemas\ЗАГС\ВсВО\ЗАГС\ТипыЗАГС_2016-01-01.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="XML\Schemas\ЗАГС\ТипыОбщие.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="XML\Schemas\ЗАГС\УнифТипы_2014-01-01.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="XML\Schemas\ОДВ_1_2017\xmldsig_core_schema.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="XML\Schemas\ОДВ_1_2017\ВС\Входящие\ИС2017\ОДВ-1_2017-01-01.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="XML\Schemas\ОДВ_1_2017\ВС\Входящие\ИС2017\СЗВ-ИСХ_2017-01-01.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="XML\Schemas\ОДВ_1_2017\ВС\Входящие\ИС2017\СЗВ-КОРР_2017-01-01.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="XML\Schemas\ОДВ_1_2017\ВС\Входящие\ИС2017\СЗВ-СТАЖ_2017-01-01.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="XML\Schemas\ОДВ_1_2017\ВС\Входящие\ИС2017\ТипыИС_2017-01-01.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="XML\Schemas\ОДВ_1_2017\ВС\Входящие\РСВ\ТипыРВ_2014-01-01.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="XML\Schemas\ОДВ_1_2017\ВС\ТипыВС_2014-01-01.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="XML\Schemas\ОДВ_1_2017\ТипыВС_2014-01-01.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="XML\Schemas\ОДВ_1_2017\ТипыАФ_2016-06-21.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="XML\Schemas\ОДВ_1_2017\ТипыОбщие.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="XML\Schemas\ОДВ_1_2017\УнифТипы_2014-01-01.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="XML\Schemas\РВ3_2015\xmldsig_core_schema.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="XML\Schemas\РВ3_2015\ВС\Входящие\РСВ\РВ-3_2015-01-01.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="XML\Schemas\РВ3_2015\ВС\Входящие\РСВ\ТипыРВ_2014-01-01.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="XML\Schemas\РВ3_2015\ВС\ТипыВС_2014-01-01.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="XML\Schemas\РВ3_2015\ТипыОбщие.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="XML\Schemas\РВ3_2015\УнифТипы_2014-01-01.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="XML\Schemas\РСВ_2_2015\xmldsig_core_schema.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="XML\Schemas\РСВ_2_2015\ВС\Входящие\РСВ\РСВ-2_2015-01-01.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="XML\Schemas\РСВ_2_2015\ВС\Входящие\РСВ\ТипыРВ_2014-01-01.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="XML\Schemas\РСВ_2_2015\ТипыОбщие.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="XML\Schemas\РСВ_2_2015\УнифТипы_2014-01-01.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="XML\Schemas\СЗВ_М_2016\xmldsig_core_schema.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="XML\Schemas\СЗВ_М_2016\АФ\Классификаторы\КВАФ.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="XML\Schemas\СЗВ_М_2016\АФ\Конструктор\КАФ.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="XML\Schemas\СЗВ_М_2016\АФ\Конструктор\ЛИ.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="XML\Schemas\СЗВ_М_2016\АФ\Правила проверок\ППВАФ.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="XML\Schemas\СЗВ_М_2016\АФ\Правила проверок\ППФ.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="XML\Schemas\СЗВ_М_2016\АФ\Правила проверок\СПАФ.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="XML\Schemas\СЗВ_М_2016\АФ\УПП\ТипыУПП.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="XML\Schemas\СЗВ_М_2016\АФ\УПП\УПП.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="XML\Schemas\СЗВ_М_2016\АФ\УПП\УПП_РСВ.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="XML\Schemas\СЗВ_М_2016\ВС\Входящие\СЗВ-М_2016-04-01.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="XML\Schemas\СЗВ_М_2016\ТипыАФ_2016-06-21.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="XML\Schemas\СЗВ_М_2016\ТипыОбщие.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="XML\Schemas\СЗВ_М_2016\УнифТипы_2014-01-01.xsd">
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.0">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4 %28x86 и x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>Клиентский профиль .NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.3.1">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 3.1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="history.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="pfr_logo_256px.ico" />
+    <None Include="Resources\pfr_logo.png" />
+    <Content Include="XML\Schemas\СЗВ_М_2016\Справочники.xml" />
+    <None Include="Service\Resources\pfr_logo.png" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="..\packages\System.Data.SQLite.Core.1.0.94.0\build\net40\System.Data.SQLite.Core.targets" Condition="Exists('..\packages\System.Data.SQLite.Core.1.0.94.0\build\net40\System.Data.SQLite.Core.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>Данный проект ссылается на пакеты NuGet, отсутствующие на этом компьютере. Включите восстановление пакетов NuGet, чтобы загрузить их. Дополнительные сведения см. по адресу: http://go.microsoft.com/fwlink/?LinkID=322105. Отсутствует следующий файл: {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\System.Data.SQLite.Core.1.0.94.0\build\net40\System.Data.SQLite.Core.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\System.Data.SQLite.Core.1.0.94.0\build\net40\System.Data.SQLite.Core.targets'))" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

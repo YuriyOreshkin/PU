@@ -1,0 +1,355 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema version="2.0" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://пф.рф/ВС/РСВ-2/2014-01-01" xmlns:ВС="http://пф.рф/ВС/типы/2014-01-01" xmlns:АФ="http://пф.рф/АФ" xmlns:УТ="http://пф.рф/унифицированныеТипы/2014-01-01" xmlns:РВ="http://пф.рф/ВС/типыРВ/2014-01-01" targetNamespace="http://пф.рф/ВС/РСВ-2/2014-01-01" elementFormDefault="qualified">
+
+	<xs:import namespace="http://пф.рф/унифицированныеТипы/2014-01-01" schemaLocation="../../../УнифТипы_2014-01-01.xsd"/>
+	<xs:import namespace="http://пф.рф/ВС/типыРВ/2014-01-01" schemaLocation="ТипыРВ_2014-01-01.xsd"/>
+	<xs:import namespace="http://пф.рф/ВС/типы/2014-01-01" schemaLocation="../../ТипыВС_2014-01-01.xsd"/>
+	<xs:import namespace="http://пф.рф/АФ" schemaLocation="../../../ТипыОбщие.xsd"/>
+	<xs:import namespace="http://www.w3.org/2000/09/xmldsig#" schemaLocation="../../../xmldsig_core_schema.xsd"/>
+
+	<xs:annotation>
+		<xs:documentation>РCВ-2 Расчет по начисленным и уплаченным страховым взносам на обязательное пенсионное страхование в Пенсионный фонд Российской Федерации и страховым взносам на обязательное медицинское страхование в Федеральный фонд обязательного медицинского страхования главами крестьянских (фермерских) хозяйств</xs:documentation>
+	</xs:annotation>
+
+	<xs:element name="ЭДПФР">
+		<xs:annotation>
+			<xs:documentation>Корневой элемент. Содержит сведения самого документа и служебную информацию об электронном документе.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="РСВ-2">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="РегистрационныйНомерПФР" type="УТ:ТипРегНомер">
+								<xs:annotation>
+									<xs:documentation>Регистрационный номер в ПФР</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="НомерКорректировки" type="РВ:ТипНомерУточнения">
+								<xs:annotation>
+									<xs:documentation>Номер корректировки. При представлении первичного Расчета - код 000</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="КалендарныйГод" minOccurs="1">
+								<xs:annotation>
+									<xs:documentation>Календарный год</xs:documentation>
+								</xs:annotation>
+								<xs:simpleType>
+									<xs:restriction base="xs:gYear">
+										<xs:minInclusive value="2014"/>
+									</xs:restriction>
+								</xs:simpleType>
+							</xs:element>
+							<xs:element name="ПрекращениеДеятельности" minOccurs="0" type="РВ:ТипПрекращениеДеятельности">
+								<xs:annotation>
+									<xs:documentation>Признак прекращения деятельности организации в связи с ликвидацией либо прекращения деятельности в качестве индивидуального предпринимателя</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="ФИОплательщика" type="УТ:ТипФИОРожд">
+								<xs:annotation>
+									<xs:documentation>ФИО плательщика страховых взносов</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="ИНН" type="УТ:ТипИНН" minOccurs="0">
+								<xs:annotation>
+									<xs:documentation>ИНН</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="КодПоОКВЭД" type="УТ:ТипКодПоОКВЭД">
+								<xs:annotation>
+									<xs:documentation>Код по ОКВЭД</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="ГодРождения" type="xs:gYear">
+								<xs:annotation>
+									<xs:documentation>Год рождения главы крестьянского (фермерского) хозяйства</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="КоличествоЧленовФХ" type="xs:unsignedInt" minOccurs="0">
+								<xs:annotation>
+									<xs:documentation>Численность членов КФХ в расчетном периоде, включая главу</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="Телефон" type="УТ:ТипНомерТелефона" minOccurs="0">
+								<xs:annotation>
+									<xs:documentation>Телефон</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="СтраховойНомер" type="УТ:ТипСтраховойНомер">
+								<xs:annotation>
+									<xs:documentation>Страховой номер</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="КоличествоСтраниц" type="xs:unsignedShort">
+								<xs:annotation>
+									<xs:documentation>Количество страниц</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="КоличествоЛистовПриложения" type="xs:unsignedShort" minOccurs="0">
+								<xs:annotation>
+									<xs:documentation>Количество листов приложения</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="РасчетПоСтраховымВзносамНачисленнымИуплаченным">
+								<xs:annotation>
+									<xs:documentation>Расчет по страховым взносам (начисленным и уплаченным)</xs:documentation>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="ОстатокЗадолженностиНаНачалоРасчетногоПериода" type="ТипРасчетПоНачисленнымИуплаченнымРСВ2" minOccurs="0">
+											<xs:annotation>
+												<xs:documentation>Остаток задолженности на начало расчетного периода</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="НачисленоВзносовСначалаРасчетногоПериода" type="ТипРасчетПоНачисленнымИуплаченнымРСВ2">
+											<xs:annotation>
+												<xs:documentation>Начислено взносов с начала расчетного периода</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="ДоначисленоСначалаРасчетногоПериода" type="ТипРасчетПоНачисленнымИуплаченнымРСВ2" minOccurs="0">
+											<xs:annotation>
+												<xs:documentation>Доначислено с начала расчетного периода</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="ВсегоКуплате" type="ТипРасчетПоНачисленнымИуплаченнымРСВ2">
+											<xs:annotation>
+												<xs:documentation>Всего к уплате</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="УплаченоВзносовСначалаРасчетногоПериода" type="ТипРасчетПоНачисленнымИуплаченнымРСВ2">
+											<xs:annotation>
+												<xs:documentation>Уплачено взносов с начала расчетного периода</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="ОстатокЗадолженностиНаКонецРасчетногоПериода" type="ТипРасчетПоНачисленнымИуплаченнымРСВ2" minOccurs="0">
+											<xs:annotation>
+												<xs:documentation>Остаток задолженности на конец расчетного периода</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="РасчетНачисленийСтраховыхВзносовЗаЧленовФХ">
+								<xs:annotation>
+									<xs:documentation>Расчет начислений страховых взносов за членов фермерского хозяйства</xs:documentation>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="РасчетНачисленийСтраховыхВзносовЗаЧленаФХ" maxOccurs="unbounded">
+											<xs:annotation>
+												<xs:documentation>Расчет начислений страховых взносов за члена фермерского хозяйства</xs:documentation>
+											</xs:annotation>
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element name="АнкетныеДанные" type="УТ:ТипАнкетаСНИЛС">
+														<xs:annotation>
+															<xs:documentation>Анкетные данные</xs:documentation>
+														</xs:annotation>
+													</xs:element>
+													<xs:element name="ДатаНачалаПериода" type="xs:date">
+														<xs:annotation>
+															<xs:documentation>Дата начала периода</xs:documentation>
+														</xs:annotation>
+													</xs:element>
+													<xs:element name="ДатаКонцаПериода" type="xs:date">
+														<xs:annotation>
+															<xs:documentation>Дата конца периода</xs:documentation>
+														</xs:annotation>
+													</xs:element>
+													<xs:element name="СуммаНачисленыхСтраховыхВзносов" type="ТипРасчетСуммРСВ2">
+														<xs:annotation>
+															<xs:documentation>Сумма начисленных страховых взносов</xs:documentation>
+														</xs:annotation>
+													</xs:element>
+												</xs:sequence>
+											</xs:complexType>
+										</xs:element>
+										<xs:element name="ИтогоНачислено" type="ТипРасчетСуммРСВ2">
+											<xs:annotation>
+												<xs:documentation>Итого начислено</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="СуммыДоначисленныхСВсНачалаРасчетногоПериода" minOccurs="0" maxOccurs="1">
+								<xs:annotation>
+									<xs:documentation>Суммы доначисленных страховых взносов с начала расчетного периода за главу и членов КФХ. Заполняется и представляется главами КФХ, заполнившими строку 120 Раздела 1 Расчета</xs:documentation>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="СуммаДоначисленныхВзносовЗаПериод" maxOccurs="unbounded">
+											<xs:annotation>
+												<xs:documentation>Сумма доначисленных страховых взносов за члена КФХ</xs:documentation>
+											</xs:annotation>
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element name="АнкетныеДанные" type="УТ:ТипАнкетаСНИЛС">
+														<xs:annotation>
+															<xs:documentation>Анкетные данные</xs:documentation>
+														</xs:annotation>
+													</xs:element>
+													<xs:element name="ДатаНачалаПериода" type="xs:date">
+														<xs:annotation>
+															<xs:documentation>Дата начала периода</xs:documentation>
+														</xs:annotation>
+													</xs:element>
+													<xs:element name="ДатаКонцаПериода" type="xs:date">
+														<xs:annotation>
+															<xs:documentation>Дата конца периода</xs:documentation>
+														</xs:annotation>
+													</xs:element>
+													<xs:element name="СуммаДоначисленныхВзносов" type="ТипСуммаДоначисленныхВзносов">
+														<xs:annotation>
+															<xs:documentation>Дата конца периода</xs:documentation>
+														</xs:annotation>
+													</xs:element>
+												</xs:sequence>
+											</xs:complexType>
+										</xs:element>
+										<xs:element name="ИтогоДоначислено" type="ТипСуммаДоначисленныхВзносов">
+											<xs:annotation>
+												<xs:documentation>Итого доначислено</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="ПодтверждениеСведений" type="РВ:ТипПодтверждениеСведений">
+								<xs:annotation>
+									<xs:documentation>Лицо, подтверждающее достоверность и полноту сведений, содержащихся в Расчете: плательщик страховых взносов, представитель плательщика страховых взносов или правопреемник</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="ДатаЗаполнения" type="xs:date">
+								<xs:annotation>
+									<xs:documentation>Дата заполнения</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="ЭлектроннаяПодпись"  xmlns="http://www.w3.org/2000/09/xmldsig#"  type="SignatureType" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Электронная подпись (ЭП) в соответствии со спецификацией XMLDsig</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="СлужебнаяИнформация">
+					<xs:annotation>
+						<xs:documentation>Служебная информация об электронном документе</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:complexContent>
+							<xs:extension base="АФ:ТипСлужебнаяИнформация">
+								<xs:sequence>
+									<xs:element name="СпособПередачи">
+										<xs:annotation>
+											<xs:documentation>Способ передачи документа:
+												ЛИЧНО - Документ подан при личном обращении в территориальный орган ПФР.
+												ПОЧТА - Документ подан в территориальный орган ПФР по почте.
+												МФЦ - Документ подан через многофункциональный центр предоставления государственных и муниципальных услуг.
+												ТКС - Документ подан посредством телекоммуникационных каналов связи.
+											</xs:documentation>
+										</xs:annotation>
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:enumeration value="ЛИЧНО"/>
+												<xs:enumeration value="ПОЧТА"/>
+												<xs:enumeration value="МФЦ"/>
+												<xs:enumeration value="ТКС"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+									<xs:element name="Составитель" type="УТ:ТипОрганизация">
+										<xs:annotation>
+											<xs:documentation>Сведения о составителе документа</xs:documentation>
+										</xs:annotation>
+									</xs:element>
+								</xs:sequence>
+							</xs:extension>
+						</xs:complexContent>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:complexType name="ТипРасчетПоНачисленнымИуплаченнымРСВ2">
+		<xs:annotation>
+			<xs:documentation>Тип Расчет по начисленным и уплаченным</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="КодСтроки" type="xs:integer">
+				<xs:annotation>
+					<xs:documentation>Код строки</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ОПСстраховаяЧасть" type="УТ:ТипДеньги">
+				<xs:annotation>
+					<xs:documentation>Страховые взносы на обязательное пенсионное страхование за периоды 2010 - 2013 гг., страховая часть</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ОПСнакопительнаяЧасть" type="УТ:ТипДеньги">
+				<xs:annotation>
+					<xs:documentation>Страховые взносы на обязательное пенсионное страхование за периоды 2010 - 2013 гг., накопительная часть</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="СтраховыеВзносыОПС" type="УТ:ТипДеньги">
+				<xs:annotation>
+					<xs:documentation>Страховые взносы на обязательное пенсионное страхование за за периоды начиная с 2014 г.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="СтраховыеВзносыОМС" type="УТ:ТипДеньги">
+				<xs:annotation>
+					<xs:documentation>Страховые взносы на обязательное медицинское страхование</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="ТипРасчетСуммРСВ2">
+		<xs:annotation>
+			<xs:documentation>Тип Расчет сумм РСВ2</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="СтраховыеВзносыОПС" type="УТ:ТипДеньги">
+				<xs:annotation>
+					<xs:documentation>Страховые взносы на ОПС начиная с 2014</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="СтраховыеВзносыОМС" type="УТ:ТипДеньги">
+				<xs:annotation>
+					<xs:documentation>Страховые взносы на ОМС</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="ТипСуммаДоначисленныхВзносов">
+		<xs:annotation>
+			<xs:documentation>Тип Сумма доначисленных взносов</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="ОПСстраховаяЧасть" type="УТ:ТипДеньги">
+				<xs:annotation>
+					<xs:documentation>Страховые взносы на ОПС страховая часть до 2014 года</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ОПСнакопительнаяЧасть" type="УТ:ТипДеньги">
+				<xs:annotation>
+					<xs:documentation>Страховые взносы на ОПС накопительная часть до 2014 года</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="СтраховыеВзносыОПС" type="УТ:ТипДеньги">
+				<xs:annotation>
+					<xs:documentation>Страховые взносы на ОПС начиная с 2014</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="СтраховыеВзносыОМС" type="УТ:ТипДеньги">
+				<xs:annotation>
+					<xs:documentation>Страховые взносы на ОМС</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+
+</xs:schema>

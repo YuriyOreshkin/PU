@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="Windows-1251"?>
+<xs:schema version="1.0" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+	<xs:include schemaLocation="ТипыРаздел6_РСВ1_2014.XSD"/>
+
+	
+	<xs:simpleType name="КодКатегорииС2015">
+		<xs:restriction base="xs:normalizedString">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="4"/>
+			<xs:enumeration value="НР"/>
+			<xs:enumeration value="ФЛ"/>
+			<xs:enumeration value="ХО"/>
+			<xs:enumeration value="ТВЭЗ"/>
+			<xs:enumeration value="ОДИТ"/>
+			<xs:enumeration value="ИЦС"/>
+			<xs:enumeration value="АСБ"/>
+			<xs:enumeration value="ЧЭС"/>
+			<xs:enumeration value="ПНЭД"/>
+			<xs:enumeration value="СДП"/>
+			<xs:enumeration value="ДП"/>
+			<xs:enumeration value="КРС"/>
+			<xs:enumeration value="ТОР"/>
+			<xs:enumeration value="ВЖНР"/>
+			<xs:enumeration value="ВЖХО"/>
+			<xs:enumeration value="ВЖТЗ"/>
+			<xs:enumeration value="ВЖИТ"/>
+			<xs:enumeration value="ВЖЦС"/>
+			<xs:enumeration value="ВЖСБ"/>
+			<xs:enumeration value="ВЖЭС"/>
+			<xs:enumeration value="ВЖЭД"/>
+			<xs:enumeration value="ВЖКС"/>
+			<xs:enumeration value="ВЖТР"/>
+			<xs:enumeration value="ВПНР"/>
+			<xs:enumeration value="ВПХО"/>
+			<xs:enumeration value="ВПТЗ"/>
+			<xs:enumeration value="ВПИТ"/>
+			<xs:enumeration value="ВПЦС"/>
+			<xs:enumeration value="ВПСБ"/>
+			<xs:enumeration value="ВПЭС"/>
+			<xs:enumeration value="ВПЭД"/>
+			<xs:enumeration value="ВПКС"/>
+			<xs:enumeration value="ВПТР"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="ТипСведенияОсуммеВыплатИвознагражденийВпользуЗЛ2015">
+		<xs:sequence>
+			<xs:sequence>
+				<xs:element name="НомерСтроки" type="ТипНомерСтроки">
+					<xs:annotation>
+						<xs:documentation>Номер строки</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="ТипСтроки" type="ТипТипСтроки">
+					<xs:annotation>
+						<xs:documentation>Тип строки</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="Месяц" minOccurs="0" type="ТипМесяц">
+					<xs:annotation>
+						<xs:documentation>Месяц</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="КодСтроки">
+					<xs:annotation>
+						<xs:documentation>Код строки</xs:documentation>
+					</xs:annotation>
+					<xs:simpleType>
+						<xs:restriction base="ТипКодСтроки">
+							<xs:minInclusive value="400"/>
+							<xs:maxInclusive value="499"/>
+							<xs:totalDigits value="3"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+				<xs:element name="КодКатегории" type="КодКатегорииС2015">
+					<xs:annotation>
+						<xs:documentation>Код категории</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="СуммаВыплатИныхВознаграждений" type="ТипДеньги" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Сумма выплат и иных вознаграждений</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="НеПревышающиеВсего" type="ТипДеньги" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Сумма выплат в том числе, не превышающую предельную величину базы для начисления страховых взносов: Всего</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="НеПревышающиеПоДоговорам" type="ТипДеньги" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Сумма выплат в том числе, не превышающую предельную величину базы для начисления страховых взносов: В том числе по гражданско-правовым договорам</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="ПревышающиеПредельную" type="ТипДеньги" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Сумма выплат в том числе, превышающую предельную величину базы для начисления страховых взносов</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+			</xs:sequence>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:group name="ГрСведенияЗЛc2015">
+		<xs:annotation>
+			<xs:documentation>6.1. Сведения о застрахованном лице</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:group ref="ГрСведенияЗЛ">
+				<xs:annotation>
+					<xs:documentation>6.1. Сведения о застрахованном лице</xs:documentation>
+				</xs:annotation>
+			</xs:group>
+			<xs:element name="СведенияОбУвольнении" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>об увольнении застрахованного лица</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:normalizedString">
+						<xs:maxLength value="3"/>
+						<xs:enumeration value="ДА"/>
+						<xs:enumeration value="НЕТ"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+		</xs:sequence>
+	</xs:group>
+</xs:schema>

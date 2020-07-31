@@ -1,0 +1,1618 @@
+<?xml version="1.0" encoding="Windows-1251"?>
+<xsd:schema targetNamespace="http://schema.pfr.ru" elementFormDefault="qualified" version="2.01 от 23.03.2012" xmlns="http://schema.pfr.ru" xmlns:pfr="http://schema.pfr.ru" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	<xsd:annotation>
+		<xsd:documentation xml:lang="ru">XML-подсхема для проверки документов - Типы данных РСВ </xsd:documentation>
+	</xsd:annotation>
+	<xsd:include schemaLocation="Типы.XSD"/>
+
+	<xsd:complexType name="ТипРАСЧЕТ_ПО_СТРАХОВЫМ_ВЗНОСАМ_НА_ОПС_И_ОМС_ПЛАТЕЛЬЩИКАМИ_СВ_ПРОИЗВОДЯЩИМИ_ВЫПЛАТЫ_ФЛ_НАЧИНАЯ_С_2013_ГОДА">
+	    <xsd:sequence>
+	        <xsd:element name="НомерВпачке">
+	            <xsd:simpleType>
+	                <xsd:restriction base="xsd:integer">
+	                    <xsd:enumeration value="1"/>
+	                    <xsd:totalDigits value="3"/>
+	                </xsd:restriction>
+	            </xsd:simpleType>
+	        </xsd:element>
+	        <xsd:element name="РегистрационныйНомерПФР" type="pfr:ТипРегНомер"/>
+	        <xsd:element name="НомерКорректировки" type="pfr:ТипНомерКорректировки">
+	        </xsd:element>
+	        <xsd:element name="КодОтчетногоПериода" type="pfr:ТипКодОтчетногоПериода">
+	        </xsd:element>
+	        <xsd:element name="КалендарныйГод">
+	            <xsd:simpleType>
+	                <xsd:restriction base="xsd:gYear">
+	                    <xsd:minInclusive value="2013"/>
+	                    <xsd:maxInclusive value="2013"/>
+	                </xsd:restriction>
+	            </xsd:simpleType>
+	        </xsd:element>
+	        <xsd:element name="ПрекращениеДеятельности" type="pfr:ТипПрекращениеДеятельности" minOccurs="0"/>
+	        <xsd:choice>
+	            <xsd:sequence>
+	                <xsd:element name="НаименованиеОрганизации" type="pfr:ТипНаименованиеОрганизации">
+	                </xsd:element>
+	                <xsd:element name="ИНН" type="pfr:ТипИННсимв">
+	                </xsd:element>
+	                <xsd:element name="КПП" minOccurs="0" type="pfr:ТипКППсимв">
+	                </xsd:element>
+	                <xsd:element name="ОГРН" type="pfr:ТипОГРНсимв" minOccurs="0"/>
+	                <xsd:element name="КодПоОКАТО" type="pfr:ТипКодПоОКАТО" minOccurs="0"/>
+	                <xsd:element name="КодПоОКВЭД" type="pfr:ТипКодПоОКВЭД" minOccurs="0"/>
+	            </xsd:sequence>
+	            <xsd:sequence>
+	                <xsd:element name="ФИОфизическогоЛица" type="pfr:ТипФИО"/>
+	                <xsd:element name="ИНН" type="pfr:ТипИННсимв"/>
+	                <xsd:element name="ОГРНИП" minOccurs="0" type="pfr:ТипОГРНИПсимв"/>
+	                <xsd:element name="КодПоОКАТО" type="pfr:ТипКодПоОКАТО" minOccurs="0"/>
+	                <xsd:element name="КодПоОКВЭД" type="pfr:ТипКодПоОКВЭД" minOccurs="0"/>
+	            </xsd:sequence>
+	        </xsd:choice>
+	        <xsd:element name="Телефон" type="pfr:Тип40Н" minOccurs="0"/>
+	        <xsd:element name="АдресРегистрации" type="pfr:ТипАдресОбщий"/>
+	        <xsd:element name="КоличествоЗЛ">
+	            <xsd:simpleType>
+	                <xsd:restriction base="pfr:ТипЧислоЗЛ">
+	                    <xsd:minInclusive value="0"/>
+	                </xsd:restriction>
+	            </xsd:simpleType>
+	        </xsd:element>
+	        <xsd:element name="СреднесписочнаяЧисленность">
+	            <xsd:simpleType>
+	                <xsd:restriction base="pfr:ТипЧислоЗЛ">
+	                    <xsd:minInclusive value="0"/>
+	                </xsd:restriction>
+	            </xsd:simpleType>
+	        </xsd:element>
+	        <xsd:element name="КоличествоСтраниц">
+	            <xsd:simpleType>
+	                <xsd:restriction base="pfr:ТипКоличество">
+	                    <xsd:minInclusive value="1"/>
+	                </xsd:restriction>
+	            </xsd:simpleType>
+	        </xsd:element>
+	        <xsd:element name="КоличествоЛистовПриложения" type="pfr:ТипКоличество" minOccurs="0"/>
+	        <xsd:element name="Раздел1РасчетПоНачисленнымУплаченным">
+	            <xsd:complexType>
+	                <xsd:sequence>
+	                    <xsd:element name="ОстатокЗадолженностиНаНачалоРасчетногоПериода2013" minOccurs="0" type="pfr:ТипРасчетПоНачисленнымИуплаченным2013"/>
+	                    <xsd:element name="НачисленоСначалаРасчетногоПериода2013" type="pfr:ТипНачисленоУплачено2013"/>
+	                    <xsd:element name="ДоначисленоСначалаРасчетногоПериода2013" minOccurs="0">
+	                        <xsd:complexType>
+	                            <xsd:sequence>
+	                                <xsd:element name="ВсегоСначалаРасчетногоПериода2013" type="pfr:ТипРасчетПоНачисленнымИуплаченным2013"/>
+	                                <xsd:element name="СсуммПревышающихПредельнуюВеличинуБазы" type="pfr:ТипРасчетПоНачисленнымИуплаченным2013Н"/>
+	                            </xsd:sequence>
+	                        </xsd:complexType>
+	                    </xsd:element>
+	                    <xsd:element name="ВсегоКуплате2013" type="pfr:ТипРасчетПоНачисленнымИуплаченным2013"/>
+	                    <xsd:element name="УплаченоСначалаРасчетногоПериода2013" type="pfr:ТипНачисленоУплачено2013"/>
+	                    <xsd:element name="ВтомЧислеЗаПредыдущиеРасчетныеПериоды2013" minOccurs="0" type="pfr:ТипРасчетПоНачисленнымИуплаченным2013"/>
+	                    <xsd:element name="ОстатокЗадолженностиНаКонецРасчетногоПериода2013" minOccurs="0" type="pfr:ТипРасчетПоНачисленнымИуплаченным2013"/>
+	                </xsd:sequence>
+	            </xsd:complexType>
+	        </xsd:element>
+	        <xsd:element name="Раздел2РасчетПоТарифуДопТарифу">
+	            <xsd:complexType>
+	                <xsd:sequence>
+	                    <xsd:element name="Раздел2_1_РасчетСВпоТарифу" maxOccurs="unbounded">
+	                        <xsd:complexType>
+	                            <xsd:sequence>
+	                                <xsd:element name="КодТарифа" type="pfr:ТипКодУстановленногоТарифа"/>
+	                                <xsd:element name="НаОбязательноеПенсионноеСтрахование">
+	                                    <xsd:complexType>
+	                                        <xsd:sequence>
+	                                            <xsd:element name="ВыплатыИвознаграждения_1966старше" minOccurs="0" type="pfr:ТипПоказательРасчетСумм"/>
+	                                            <xsd:element name="ВыплатыИвознаграждения_1967моложе" minOccurs="0" type="pfr:ТипПоказательРасчетСумм"/>
+	                                            <xsd:element name="ВыплатыИвознаграждения_ВременноИГ" minOccurs="0" type="pfr:ТипПоказательРасчетСумм"/>
+	                                            <xsd:element name="НеПодлежащиеОбложению_1966старше" minOccurs="0" type="pfr:ТипПоказательРасчетСумм"/>
+	                                            <xsd:element name="НеПодлежащиеОбложению_1967моложе" minOccurs="0" type="pfr:ТипПоказательРасчетСумм"/>
+	                                            <xsd:element name="НеПодлежащиеОбложению_ВременноИГ" minOccurs="0" type="pfr:ТипПоказательРасчетСумм"/>
+	                                            <xsd:element name="СуммаРасходовПринимаемыхКвычету_1966старше" minOccurs="0" type="pfr:ТипПоказательРасчетСумм"/>
+	                                            <xsd:element name="СуммаРасходовПринимаемыхКвычету_1967моложе" minOccurs="0" type="pfr:ТипПоказательРасчетСумм"/>
+	                                            <xsd:element name="СуммаРасходовПринимаемыхКвычету_ВременноИГ" minOccurs="0" type="pfr:ТипПоказательРасчетСумм"/>
+	                                            <xsd:element name="ПревышающиеПредельнуюВеличинуБазы_1966старше" minOccurs="0" type="pfr:ТипПоказательРасчетСумм"/>
+	                                            <xsd:element name="ПревышающиеПредельнуюВеличинуБазы_1967моложе" minOccurs="0" type="pfr:ТипПоказательРасчетСумм"/>
+	                                            <xsd:element name="ПревышающиеПредельнуюВеличинуБазы_ВременноИГ" minOccurs="0" type="pfr:ТипПоказательРасчетСумм"/>
+	                                            <xsd:element name="БазаДляНачисленияСтраховыхВзносовНаОПСстраховая" minOccurs="0" type="pfr:ТипПоказательРасчетСумм"/>
+	                                            <xsd:element name="БазаДляНачисленияСтраховыхВзносовНаОПСнакопительная" minOccurs="0" type="pfr:ТипПоказательРасчетСумм"/>
+	                                            <xsd:element name="НачисленоНаОПСстраховая" minOccurs="0" type="pfr:ТипПоказательРасчетСумм"/>
+	                                            <xsd:element name="НачисленоНаОПСнакопительная" minOccurs="0" type="pfr:ТипПоказательРасчетСумм"/>
+	                                            <xsd:element name="НачисленоНаОПСсСуммПревышающих" minOccurs="0" type="pfr:ТипПоказательРасчетСумм"/>
+	                                            <xsd:element name="КоличествоФЛпоТарифу" minOccurs="0" type="pfr:ТипПоказательЧисленность"/>
+	                                            <xsd:element name="КоличествоФЛпоКоторымБазаПревысилаПредел" minOccurs="0" type="pfr:ТипПоказательЧисленность"/>
+	                                        </xsd:sequence>
+	                                    </xsd:complexType>
+	                                </xsd:element>
+	                                <xsd:element name="НаОбязательноеМедицинскоеСтрахование">
+	                                    <xsd:complexType>
+	                                        <xsd:sequence>
+	                                            <xsd:element name="СуммаВыплатИвознаграждений" minOccurs="0" type="pfr:ТипПоказательРасчетСумм"/>
+	                                            <xsd:element name="НеПодлежащиеОбложению" minOccurs="0" type="pfr:ТипПоказательРасчетСумм"/>
+	                                            <xsd:element name="СуммаРасходовПринимаемыхКвычету" minOccurs="0" type="pfr:ТипПоказательРасчетСумм"/>
+	                                            <xsd:element name="ПревышающиеПредельнуюВеличинуБазы" minOccurs="0" type="pfr:ТипПоказательРасчетСумм"/>
+	                                            <xsd:element name="БазаДляНачисленияСтраховыхВзносовНаОМС" minOccurs="0" type="pfr:ТипПоказательРасчетСумм"/>
+	                                            <xsd:element name="НачисленоНаОМС" minOccurs="0" type="pfr:ТипПоказательРасчетСумм"/>
+	                                        </xsd:sequence>
+	                                    </xsd:complexType>
+	                                </xsd:element>
+	                            </xsd:sequence>
+	                        </xsd:complexType>
+	                    </xsd:element>
+	                    <xsd:element name="Раздел2_2_РасчетСВпоДопТарифуЧ_1" minOccurs="0" type="pfr:ТипРасчетСтраховыхВзносовПоДопТар">
+	                    </xsd:element>
+	                    <xsd:element name="Раздел2_3_РасчетСВпоДопТарифуЧ_2" minOccurs="0" type="pfr:ТипРасчетСтраховыхВзносовПоДопТар"/>
+	                </xsd:sequence>
+	            </xsd:complexType>
+	        </xsd:element>
+	        <xsd:element name="Раздел3РасчетНаПравоПримененияПониженногоТарифа" minOccurs="0">
+	            <xsd:complexType>
+	                <xsd:sequence>
+	                    <xsd:element name="Раздел3_1_СведенияДляПримененияПониженногоТарифа" minOccurs="0" type="pfr:ТипСведенияДляПримененияПониженногоТарифа2013"/>
+	                    <xsd:element name="Раздел3_2_ДляОбщественныхОрганизацийИнвалидов" minOccurs="0" type="pfr:ТипДляОбщественныхОрганизацийИнвалидов"/>
+	                    <xsd:element name="Раздел3_3_ДляОрганизацийУставныйКапиталСостоитИзВкладовОбщОргИнвалидов" minOccurs="0" type="pfr:ТипДляОрганизацийУставныйКапиталСостоитИзВкладовОбщОргИнвалидов"/>
+	                    <xsd:element name="Раздел3_4_ДляОрганизацийИТ" minOccurs="0" type="pfr:ТипДляОрганизацийИТ"/>
+	                    <xsd:element name="Раздел3_5_ДляОрганизацийСМИ" minOccurs="0" type="pfr:ТипДляОрганизацийСМИ"/>
+	                    <xsd:element name="Раздел3_6_ДляОрганизацийПрименяющихУСН" minOccurs="0" type="pfr:ТипРасчетСоответствияУсловийНаПравоПримененияПонижТарифаОтдКатегориямиПлательщиковУСН"/>
+	                    <xsd:element name="Раздел3_7_ДляНекоммерческихОрганизацийПрименяющихУСН" minOccurs="0" type="pfr:ТипДляНекоммерческихОрганизацийПрименяющихУСН"/>
+	                    <xsd:element name="Раздел3_8_ДляОрганизацийОказывающихИнжиниринговыеУслуги" minOccurs="0" type="pfr:ТипДляОрганизацийОказывающихИнжиниринговыеУслуги"/>
+	                </xsd:sequence>
+	            </xsd:complexType>
+	        </xsd:element>
+	        <xsd:element name="Раздел4СуммыДоначисленныхСтраховыхВзносов" minOccurs="0">
+	            <xsd:complexType>
+	                <xsd:sequence>
+	                    <xsd:element name="СуммаДоначисленныхВзносовЗаПериод" maxOccurs="unbounded" minOccurs="0">
+	                        <xsd:complexType>
+	                            <xsd:sequence>
+	                                <xsd:element name="НомерПП" type="pfr:ТипНомерПоПорядку"/>
+	                                <xsd:element name="ОснованиеДляДоначисленияСВ">
+	                                	<xsd:simpleType>
+	                                		<xsd:restriction base="xsd:positiveInteger">
+	                                			<xsd:totalDigits value="1"/>
+	                                			<xsd:enumeration value="1"/>
+	                                			<xsd:enumeration value="2"/>
+	                                		</xsd:restriction>
+	                                	</xsd:simpleType>
+	                                </xsd:element>
+	                                <xsd:element name="Год">
+	                                    <xsd:simpleType>
+	                                        <xsd:restriction base="xsd:gYear">
+	                                            <xsd:minInclusive value="2010"/>
+	                                        </xsd:restriction>
+	                                    </xsd:simpleType>
+	                                </xsd:element>
+	                                <xsd:element name="Месяц">
+	                                    <xsd:simpleType>
+	                                        <xsd:restriction base="xsd:unsignedLong">
+	                                            <xsd:totalDigits value="2"/>
+	                                            <xsd:minInclusive value="1"/>
+	                                            <xsd:maxInclusive value="12"/>
+	                                        </xsd:restriction>
+	                                    </xsd:simpleType>
+	                                </xsd:element>
+	                                <xsd:element name="СуммаДоначисленныхСтраховыхВзносов" type="pfr:ТипРасчетСуммДоначисленныхСтраховыхВзносов"/>
+	                            </xsd:sequence>
+	                        </xsd:complexType>
+	                    </xsd:element>
+	                    <xsd:element name="ИтогоДоначислено" type="pfr:ТипРасчетСуммДоначисленныхСтраховыхВзносов">
+	                    </xsd:element>
+	                </xsd:sequence>
+	            </xsd:complexType>
+	        </xsd:element>
+	        <xsd:element name="Раздел5СведенияОВыплатахВпользуОбучающихся" minOccurs="0">
+	            <xsd:complexType>
+	                <xsd:sequence>
+	                    <xsd:element name="КоличествоОбучающихся" type="pfr:ТипКоличество"/>
+	                    <xsd:element name="СведенияОбОбучающемся" maxOccurs="unbounded">
+	                        <xsd:complexType>
+	                            <xsd:sequence>
+	                                <xsd:element name="НомерПП" type="pfr:ТипНомерПоПорядку"/>
+	                                <xsd:element name="ФИО" type="pfr:ТипФИО"/>
+	                                <xsd:element name="НомерСправкиОчленствеВстудОтряде" minOccurs="0" type="pfr:ТипНомер"/>
+	                                <xsd:element name="ДатаВыдачиСправкиОчленствеВстудОтряде" minOccurs="0" type="pfr:ТипДата"/>
+	                                <xsd:element name="НомерСправкиОбОчномОбучении" minOccurs="0" type="pfr:ТипНомер"/>
+	                                <xsd:element name="ДатаВыдачиСправкиОбОчномОбучении" minOccurs="0" type="pfr:ТипДата"/>
+	                                <xsd:element name="СуммыВыплатИвознаграждений" type="pfr:ТипРасчетСумм"/>
+	                            </xsd:sequence>
+	                        </xsd:complexType>
+	                    </xsd:element>
+	                    <xsd:element name="ИтогоВыплат" type="pfr:ТипРасчетСумм"/>
+	                    <xsd:element name="СведенияИзРеестраМДОО">
+	                        <xsd:complexType>
+	                            <xsd:sequence>
+	                                <xsd:element name="КодСтроки" type="pfr:ТипКодСтроки"/>
+	                                <xsd:element name="РеквизитыЗаписиВреестре" maxOccurs="unbounded">
+	                                    <xsd:complexType>
+	                                        <xsd:sequence>
+	                                            <xsd:element name="ДатаЗаписиВреестре" type="pfr:ТипДата"/>
+	                                            <xsd:element name="НомерЗаписиВреестре" type="pfr:ТипНомер"/>
+	                                        </xsd:sequence>
+	                                    </xsd:complexType>
+	                                </xsd:element>
+	                            </xsd:sequence>
+	                        </xsd:complexType>
+	                    </xsd:element>
+	                </xsd:sequence>
+	            </xsd:complexType>
+	        </xsd:element>
+	        <xsd:element name="ЛицоПодтверждающееСведения">
+	            <xsd:simpleType>
+	                <xsd:restriction base="xsd:unsignedInt">
+	                    <xsd:minInclusive value="1"/>
+	                    <xsd:maxInclusive value="3"/>
+	                    <xsd:totalDigits value="1"/>
+	                </xsd:restriction>
+	            </xsd:simpleType>
+	        </xsd:element>
+	        <xsd:element name="ФИОлицаПодтверждающегоСведения" type="pfr:ТипФИО"/>
+	        <xsd:element name="НаименованиеОрганизацииПредставителя" minOccurs="0" type="pfr:ТипНаименованиеОрганизации"/>
+	        <xsd:element name="ДокументПодтверждающийПолномочияПредставителя" minOccurs="0" type="pfr:ТипДокумент"/>
+	        <xsd:element name="ДатаЗаполнения" type="ТипДата"/>
+	    </xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="ТипРасчетСтраховыхВзносовПоДопТар">
+	    <xsd:sequence>
+	        <xsd:element name="СуммаВыплатИвознаграждений" type="pfr:ТипПоказательРасчетСумм"/>
+	        <xsd:element name="НеПодлежащиеОбложению" type="pfr:ТипПоказательРасчетСумм"/>
+	        <xsd:element name="СуммаРасходовПринимаемыхКвычету" type="pfr:ТипПоказательРасчетСумм"/>
+	        <xsd:element name="БазаДляНачисленияСтраховыхВзносовПоДопТарифу" type="pfr:ТипПоказательРасчетСумм"/>
+	        <xsd:element name="НачисленоПоДопТарифу" type="pfr:ТипПоказательРасчетСумм"/>
+	        <xsd:element name="КоличествоФЛПоКоторымСВначисленыПоДопТарифу" type="pfr:ТипПоказательЧисленность"/>
+	    </xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="ТипРАСЧЕТ_ПО_СТРАХОВЫМ_ВЗНОСАМ_НА_ОПС_И_ОМС_ГЛАВАМИ_КФХ">
+	    <xsd:sequence>
+	        <xsd:element name="НомерВпачке">
+	            <xsd:simpleType>
+	                <xsd:restriction base="xsd:integer">
+	                    <xsd:enumeration value="1"/>
+	                    <xsd:totalDigits value="3"/>
+	                </xsd:restriction>
+	            </xsd:simpleType>
+	        </xsd:element>
+	        <xsd:element name="РегистрационныйНомерПФР" type="pfr:ТипРегНомер"/>
+	        <xsd:element name="НомерКорректировки" type="pfr:ТипНомерКорректировки">
+	        </xsd:element>
+	        <xsd:element name="КалендарныйГод">
+	            <xsd:simpleType>
+	                <xsd:restriction base="xsd:positiveInteger">
+	                    <xsd:minInclusive value="2010"/>
+	                    <xsd:maxInclusive value="2015"/>
+	                    <xsd:totalDigits value="4"/>
+	                </xsd:restriction>
+	            </xsd:simpleType>
+	        </xsd:element>
+	        <xsd:element name="ПрекращениеДеятельности" minOccurs="0" type="pfr:ТипПрекращениеДеятельности"/>
+	        <xsd:element name="ФИОплательщика" type="pfr:ТипФИО"/>
+	        <xsd:element name="ИНН" type="pfr:ТипИНН" minOccurs="0"/>
+	        <xsd:element name="ОГРНИП" minOccurs="0" type="pfr:ТипКодЕГРИП"/>
+	        <xsd:element name="КодПоОКАТО" type="pfr:ТипКодПоОКАТО" minOccurs="1"/>
+	        <xsd:element name="КодПоОКВЭД" type="pfr:ТипКодПоОКВЭД" minOccurs="1"/>
+	        <xsd:element name="ГодРождения">
+	            <xsd:simpleType>
+	                <xsd:restriction base="xsd:gYear">
+	                    <xsd:minInclusive value="1900"/>
+	                </xsd:restriction>
+	            </xsd:simpleType>
+	        </xsd:element>
+	        <xsd:element name="КоличествоЧленовФХ" type="pfr:ТипЧислоЗЛ" minOccurs="0"/>
+	        <xsd:element name="Телефон" type="pfr:Тип40Н" minOccurs="0"/>
+	        <xsd:element name="АдресРегистрации" type="pfr:ТипАдресОбщий"/>
+	        <xsd:element name="СтраховойНомер" type="pfr:ТипСтраховойНомер"/>
+	        <xsd:element name="КоличествоСтраниц">
+	            <xsd:simpleType>
+	                <xsd:restriction base="pfr:ТипКоличество">
+	                    <xsd:minInclusive value="1"/>
+	                </xsd:restriction>
+	            </xsd:simpleType>
+	        </xsd:element>
+	        <xsd:element name="КоличествоЛистовПриложения" type="pfr:ТипКоличество" minOccurs="0"/>
+	        <xsd:element name="РасчетПоСтраховымВзносамНачисленнымИуплаченным" minOccurs="1">
+	        	<xsd:complexType>
+	        		<xsd:sequence>
+				        <xsd:element name="ОстатокЗадолженностиНаНачалоРасчетногоПериода" type="pfr:ТипРасчетПоНачисленнымИуплаченным2013РСВ2" minOccurs="0"/>
+				        <xsd:element name="НачисленоВзносовСначалаРасчетногоПериода" type="pfr:ТипРасчетПоНачисленнымИуплаченным2013РСВ2" minOccurs="1"/>
+				        <xsd:element name="ДоначисленоСначалаРасчетногоПериода" type="pfr:ТипРасчетПоНачисленнымИуплаченным2013РСВ2" minOccurs="0"/>
+				        <xsd:element name="ВсегоКуплате" type="pfr:ТипРасчетПоНачисленнымИуплаченным2013РСВ2"/>
+				        <xsd:element name="УплаченоВзносовСначалаРасчетногоПериода" type="pfr:ТипРасчетПоНачисленнымИуплаченным2013РСВ2"/>
+				        <xsd:element name="ВтомЧислеЗаПредыдущиеРасчетныеПериоды2013" type="pfr:ТипРасчетПоНачисленнымИуплаченным2013РСВ2" minOccurs="0"/>
+				        <xsd:element name="ОстатокЗадолженностиНаКонецРасчетногоПериода" type="pfr:ТипРасчетПоНачисленнымИуплаченным2013РСВ2" minOccurs="0"/>
+	        		</xsd:sequence>
+	        	</xsd:complexType>
+	        </xsd:element>
+	        <xsd:element name="РасчетНачисленийСтраховыхВзносовЗаЧленовФХ">
+	        	<xsd:complexType>
+	        		<xsd:sequence>
+	        			<xsd:element name="КоличествоЧленовФХ" type="pfr:ТипЧислоЗЛ"/>
+	        			<xsd:element name="РасчетНачисленийСтраховыхВзносовЗаЧленаФХ" maxOccurs="unbounded">
+	        				<xsd:complexType>
+	        					<xsd:sequence>
+							        <xsd:element name="НомерПП" type="pfr:ТипНомерПоПорядку"/>
+							        <xsd:element name="ФИО" type="pfr:ТипФИО"/>
+							        <xsd:element name="СтраховойНомер" type="pfr:ТипСтраховойНомер"/>
+							        <xsd:element name="ГодРождения">
+							            <xsd:simpleType>
+							                <xsd:restriction base="xsd:gYear">
+							                    <xsd:minInclusive value="1900"/>
+							                </xsd:restriction>
+							            </xsd:simpleType>
+							        </xsd:element>
+							        <xsd:element name="ДатаНачалаПериода" type="pfr:ТипДата"/>
+							        <xsd:element name="ДатаКонцаПериода" type="pfr:ТипДата"/>
+							        <xsd:element name="СуммаНачисленыхСтраховыхВзносов" type="pfr:ТипРасчетСумм2013РСВ2"/>
+
+	        					</xsd:sequence>
+	        				</xsd:complexType>
+	        			</xsd:element>
+	        			<xsd:element name="ИтогоНачислено" type="pfr:ТипРасчетСумм2013РСВ2"/>
+	        		</xsd:sequence>
+	        	</xsd:complexType>
+	        </xsd:element>
+	        <xsd:element name="СуммыДоначисленныхСВсНачалаРасчетногоПериода" minOccurs="0" maxOccurs="1">
+	            <xsd:complexType>
+	                <xsd:sequence>
+	                    <xsd:element name="СуммаДоначисленныхВзносовЗаПериод" maxOccurs="unbounded">
+	                    	<xsd:complexType>
+	                    		<xsd:sequence>
+	                    			<xsd:element name="НомерПП" type="pfr:ТипНомерПоПорядку"/>
+	                    			<xsd:element name="Период">
+	                    				<xsd:simpleType>
+	                    					<xsd:restriction base="xsd:gYear">
+	                    						<xsd:minInclusive value="2010"/>
+	                    					</xsd:restriction>
+	                    				</xsd:simpleType>
+	                    			</xsd:element>
+	                    			<xsd:element name="СуммаДоначисленныхСтраховыхВзносов" type="pfr:ТипРасчетСумм2013РСВ2"/>
+	                    		</xsd:sequence>
+	                    	</xsd:complexType>
+	                    </xsd:element>
+	                    <xsd:element name="ИтогоДоначислено" type="pfr:ТипРасчетСумм2013РСВ2"/>
+	                </xsd:sequence>
+	            </xsd:complexType>
+	        </xsd:element>
+	        <xsd:element name="ЛицоПодтверждающееСведения" type="pfr:ТипЛицоПодтверждающееСведения" minOccurs="1"/>
+	        <xsd:element name="ФИОлицаПодтверждающегоСведения" type="pfr:ТипФИО" minOccurs="1"/>
+	        <xsd:element name="НаименованиеОрганизацииПредставителя" type="pfr:Тип100Н" minOccurs="0"/>
+	        <xsd:element name="ДокументПодтверждающийПолномочияПредставителя" type="pfr:ТипДокумент" minOccurs="0"/>
+	        <xsd:element name="ДатаЗаполнения" type="ТипДата"/>
+	    </xsd:sequence>
+	</xsd:complexType>
+
+
+	<xsd:complexType name="ТипРАСЧЕТ_ПО_ВЗНОСАМ_ПО_ДОПОЛНИТЕЛЬНОМУ_ТАРИФУ_ЛЭВС">
+		<xsd:sequence>
+			<xsd:element name="НомерВпачке" minOccurs="0">
+			    <xsd:simpleType>
+			        <xsd:restriction base="xsd:integer">
+			            <xsd:enumeration value="1"/>
+			            <xsd:totalDigits value="3"/>
+			        </xsd:restriction>
+			    </xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="РегистрационныйНомерПФР" type="pfr:ТипРегНомер"/>
+			<xsd:element name="НомерКорректировки" type="pfr:ТипНомерКорректировки">
+			</xsd:element>
+			<xsd:element name="КодОтчетногоПериода" type="pfr:ТипКодОтчетногоПериода">
+			</xsd:element>
+			<xsd:element name="КалендарныйГод">
+			    <xsd:simpleType>
+			        <xsd:restriction base="xsd:positiveInteger">
+			            <xsd:minInclusive value="2010"/>
+			            <xsd:maxInclusive value="2014"/>
+			            <xsd:totalDigits value="4"/>
+			        </xsd:restriction>
+			    </xsd:simpleType>
+			</xsd:element>
+		    <xsd:element name="НаименованиеОрганизации" type="pfr:ТипНаименованиеОрганизации">			    
+		    </xsd:element>			    
+		    <xsd:element name="ИНН" type="pfr:ТипИНН"/>			    
+		    <xsd:element name="КПП" type="pfr:ТипКПП" minOccurs="0"/>			    
+		    <xsd:element name="ОГРН" type="pfr:ТипКодОГРН" minOccurs="0"/>			    
+		    <xsd:element name="КодПоОКАТО" type="pfr:ТипКодПоОКАТО" minOccurs="1"/>			    
+		    <xsd:element name="КодПоОКВЭД" type="pfr:ТипКодПоОКВЭД" minOccurs="1"/>			    
+		    <xsd:element name="КодПоОКПО" type="pfr:ТипКодПоОКПО" minOccurs="1"/>			    
+		    <xsd:element name="КодПоОКОПФ" type="pfr:ТипКодПоОКОПФ" minOccurs="0"/>			    
+		    <xsd:element name="КодПоОКФС" type="pfr:ТипКодПоОКФС" minOccurs="0"/>			    
+			<xsd:element name="Телефон" type="pfr:Тип40Н" minOccurs="0"/>
+			<xsd:element name="АдресРегистрации" type="pfr:ТипАдресОбщий"/>
+			<xsd:element name="КоличествоЗЛ">
+			    <xsd:simpleType>
+			        <xsd:restriction base="pfr:ТипЧислоЗЛ">
+			            <xsd:minInclusive value="1"/>
+			        </xsd:restriction>
+			    </xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="КодУстановленногоТарифа" type="pfr:ТипКодУстановленногоТарифа"/>
+			<xsd:element name="КоличествоСтраниц">
+			    <xsd:simpleType>
+			        <xsd:restriction base="pfr:ТипКоличество">
+			            <xsd:minInclusive value="1"/>
+			        </xsd:restriction>
+			    </xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="КоличествоЛистовПриложения" type="pfr:ТипКоличество" minOccurs="0"/>
+			<xsd:element name="РасчетПоНачисленнымИуплаченнымВзносам" type="pfr:ТипРасчетПоНачисленнымИуплаченнымВзносамЛЭВС" minOccurs="1"/>
+			<xsd:element name="РасчетБазыДляНачисленияВзносовПоДополнительномуТарифу" type="pfr:ТипРасчетБазы"/>
+			<xsd:element name="СведенияОзадолженностиПоВзносамПоДополнительномуТарифуПоСостояниюНа31.12.2009" type="pfr:ТипСведенияОзадолженностиПоВзносамПоДополнительномуТарифуПоСостояниюНа31.12.2009" minOccurs="0"/>
+			<xsd:element name="ЛицоПодтверждающееСведения" type="pfr:ТипЛицоПодтверждающееСведения" minOccurs="1"/>
+			<xsd:element name="ФИОлицаПодтверждающегоСведения" type="pfr:ТипФИО" minOccurs="1"/>
+			<xsd:element name="ДокументПодтверждающийПолномочияПредставителя" type="pfr:ТипДокумент" minOccurs="0"/>
+			<xsd:element name="ДатаЗаполнения" type="ТипДата"/>
+		</xsd:sequence>
+	</xsd:complexType>
+
+
+	<xsd:complexType name="ТипРАСЧЕТ_ПО_СТРАХОВЫМ_ВЗНОСАМ_НА_ОПС_И_ОМС_ПЛАТЕЛЬЩИКАМИ_НЕ_ПРОИЗВОДЯЩИМИ_ВЫПЛАТЫ_ФЛ">
+		<xsd:sequence>
+			<xsd:element name="НомерВпачке">
+			    <xsd:simpleType>
+			        <xsd:restriction base="xsd:integer">
+			            <xsd:enumeration value="1"/>
+			            <xsd:totalDigits value="3"/>
+			        </xsd:restriction>
+			    </xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="РегистрационныйНомерПФР" type="pfr:ТипРегНомер"/>
+			<xsd:element name="НомерКорректировки" type="pfr:ТипНомерКорректировки">
+			</xsd:element>
+			<xsd:element name="КалендарныйГод" type="pfr:ТипКалендарныйГод">
+			</xsd:element>
+			<xsd:element name="ФИОплательщика" type="pfr:ТипФИО"/>
+			<xsd:element name="РегистрационныйНомерТФОМС" type="pfr:ТипРегистрационныйНомерТФОМС" minOccurs="0">
+			</xsd:element>
+			<xsd:element name="ИНН" type="pfr:ТипИНН" minOccurs="0"/>
+			<xsd:element name="ОГРНИП" minOccurs="0" type="pfr:ТипКодЕГРИП"/>
+			<xsd:element name="КодПоОКАТО" type="pfr:ТипКодПоОКАТО" minOccurs="1"/>
+			<xsd:element name="КодПоОКВЭД" type="pfr:ТипКодПоОКВЭД" minOccurs="1"/>
+			<xsd:element name="ГодРождения">
+			    <xsd:simpleType>
+			        <xsd:restriction base="xsd:gYear">
+			            <xsd:minInclusive value="1900"/>
+			        </xsd:restriction>
+			    </xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="КоличествоЧленовФХ" type="pfr:ТипЧислоЗЛ" minOccurs="0"/>
+			<xsd:element name="Телефон" type="pfr:Тип40Н" minOccurs="0"/>
+			<xsd:element name="АдресРегистрации" type="pfr:ТипАдресОбщий"/>
+			<xsd:element name="СтраховойНомер" type="pfr:ТипСтраховойНомер"/>
+			<xsd:element name="КоличествоСтраниц">
+			    <xsd:simpleType>
+			        <xsd:restriction base="pfr:ТипКоличество">
+			            <xsd:minInclusive value="1"/>
+			        </xsd:restriction>
+			    </xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="КоличествоЛистовПриложения" type="pfr:ТипКоличество" minOccurs="0"/>
+			<xsd:element name="РасчетПоСтраховымВзносамНачисленнымИуплаченным" type="pfr:ТипРасчетПоСтраховымВзносамНачисленнымИуплаченным" minOccurs="1"/>
+			<xsd:element name="ДанныеДляРасчетаСуммНачисленныхСтраховыхВзносов" type="pfr:ТипДанныеДляРасчетаСуммНачисленныхСтраховыхВзносов" minOccurs="1"/>
+			<xsd:element name="СведенияОзадолженностиПоСтраховымВзносамНаОПСпоСостояниюНа31.12.2009" type="pfr:ТипСведенияОзадолженностиПоСтраховымВзносамНаОПСпоСостояниюНа31.12.2009" minOccurs="0"/>
+			<xsd:element name="ЛицоПодтверждающееСведения" type="pfr:ТипЛицоПодтверждающееСведения" minOccurs="1"/>
+			<xsd:element name="ФИОлицаПодтверждающегоСведения" type="pfr:ТипФИО" minOccurs="1"/>
+			<xsd:element name="ДокументПодтверждающийПолномочияПредставителя" type="pfr:ТипДокумент" minOccurs="0"/>
+			<xsd:element name="ДатаЗаполнения" type="ТипДата"/>
+		</xsd:sequence>
+	</xsd:complexType>
+
+	<xsd:complexType name="ТипРАСЧЕТ_ПО_СТРАХОВЫМ_ВЗНОСАМ_НА_ОПС_И_ОМС_ПЛАТЕЛЬЩИКАМИ_ПРОИЗВОДЯЩИМИ_ВЫПЛАТЫ_ФЛ">
+		<xsd:sequence>
+			<xsd:element name="НомерВпачке">
+			    <xsd:simpleType>
+			        <xsd:restriction base="xsd:integer">
+			            <xsd:enumeration value="1"/>
+			            <xsd:totalDigits value="3"/>
+			        </xsd:restriction>
+			    </xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="РегистрационныйНомерПФР" type="pfr:ТипРегНомер"/>
+			<xsd:element name="НомерКорректировки" type="pfr:ТипНомерКорректировки">
+			</xsd:element>
+			<xsd:element name="КодОтчетногоПериода" type="pfr:ТипКодОтчетногоПериода">
+			</xsd:element>
+			<xsd:element name="КалендарныйГод">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:gYear">
+						<xsd:minInclusive value="2010"/>
+						<xsd:maxInclusive value="2011"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:choice>			    
+				<xsd:sequence>			    
+				    <xsd:element name="НаименованиеОрганизации" type="pfr:ТипНаименованиеОрганизации">			    
+				    </xsd:element>			    
+				    <xsd:element name="РегистрационныйНомерТФОМС" type="pfr:ТипРегистрационныйНомерТФОМС" minOccurs="0">			    
+				    </xsd:element>			    
+				    <xsd:element name="ИНН" type="pfr:ТипИНН"/>			    
+				    <xsd:element name="КПП" type="pfr:ТипКПП" minOccurs="0"/>			    
+				    <xsd:element name="ОГРН" type="pfr:ТипКодОГРН" minOccurs="0"/>			    
+				    <xsd:element name="КодПоОКАТО" type="pfr:ТипКодПоОКАТО" minOccurs="1"/>			    
+				    <xsd:element name="КодПоОКВЭД" type="pfr:ТипКодПоОКВЭД" minOccurs="1"/>			    
+				    <xsd:element name="КодПоОКПО" type="pfr:ТипКодПоОКПО" minOccurs="0"/>			    
+				    <xsd:element name="КодПоОКОПФ" type="pfr:ТипКодПоОКОПФ" minOccurs="0"/>			    
+				    <xsd:element name="КодПоОКФС" type="pfr:ТипКодПоОКФС" minOccurs="0"/>			    
+				</xsd:sequence>			    
+				<xsd:sequence>			    
+				    <xsd:element name="ФИОфизическогоЛица" type="pfr:ТипФИО"/>			    
+				    <xsd:element name="РегистрационныйНомерТФОМС" type="pfr:ТипРегистрационныйНомерТФОМС" minOccurs="0">			    
+				    </xsd:element>			    
+				    <xsd:element name="ИНН" type="pfr:ТипИНН"/>			    
+				    <xsd:element name="ОГРНИП" minOccurs="0" type="pfr:ТипКодЕГРИП"/>			    
+				    <xsd:element name="КодПоОКАТО" type="pfr:ТипКодПоОКАТО" minOccurs="1"/>			    
+				    <xsd:element name="КодПоОКВЭД" type="pfr:ТипКодПоОКВЭД" minOccurs="1"/>			    
+				    <xsd:element name="КодПоОКПО" type="pfr:ТипКодПоОКПО" minOccurs="0"/>			    
+				    <xsd:element name="КодПоОКОПФ" type="pfr:ТипКодПоОКОПФ" minOccurs="0"/>			    
+				    <xsd:element name="КодПоОКФС" type="pfr:ТипКодПоОКФС" minOccurs="0"/>			    
+				</xsd:sequence>
+			</xsd:choice>
+			<xsd:element name="Телефон" type="pfr:Тип40Н" minOccurs="0"/>
+			<xsd:element name="АдресРегистрации" type="pfr:ТипАдресОбщий"/>
+			<xsd:element name="КоличествоЗЛ">
+			    <xsd:simpleType>
+			        <xsd:restriction base="pfr:ТипЧислоЗЛ">
+			            <xsd:minInclusive value="0"/>
+			        </xsd:restriction>
+			    </xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="СреднесписочнаяЧисленность">
+			    <xsd:simpleType>
+			        <xsd:restriction base="pfr:ТипЧислоЗЛ">
+			            <xsd:minInclusive value="0"/>
+			        </xsd:restriction>
+			    </xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="КодУстановленногоТарифа" type="pfr:ТипКодУстановленногоТарифа"/>
+			<xsd:element name="КоличествоСтраниц">
+			    <xsd:simpleType>
+			        <xsd:restriction base="pfr:ТипКоличество">
+			            <xsd:minInclusive value="1"/>
+			        </xsd:restriction>
+			    </xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="КоличествоЛистовПриложения" type="pfr:ТипКоличество" minOccurs="0"/>
+			<xsd:element name="РасчетПоНачисленнымИуплаченнымСтраховымВзносам" type="pfr:ТипРасчетПоНачисленнымИуплаченнымСтраховымВзносам" minOccurs="1"/>
+			<xsd:element name="РасчетСтраховыхВзносовПоУстановленномуТарифу" type="pfr:ТипРасчетСтраховыхВзносовПоУстановленномуТарифу" minOccurs="1" maxOccurs="99"/>
+			<xsd:element name="РасчетСтраховыхВзносовПоПониженномуТарифу" type="pfr:ТипРасчетСтраховыхВзносовПоПониженномуТарифу" minOccurs="0"/>
+			<xsd:element name="ОснованияДляПримененияПониженногоТарифа" type="pfr:ТипОснованияДляПримененияПониженногоТарифа" minOccurs="0"/>
+			<xsd:element name="СведенияОзадолженностиПоСтраховымВзносамНаОПСпоСостояниюНа31.12.2009" type="pfr:ТипСведенияОзадолженностиПоСтраховымВзносамНаОПСпоСостояниюНа31.12.2009" minOccurs="0"/>
+			<xsd:element name="ЛицоПодтверждающееСведения" type="pfr:ТипЛицоПодтверждающееСведения" minOccurs="1"/>
+			<xsd:element name="ФИОлицаПодтверждающегоСведения" type="pfr:ТипФИО" minOccurs="1"/>
+			<xsd:element name="ДокументПодтверждающийПолномочияПредставителя" type="pfr:ТипДокумент" minOccurs="0"/>
+			<xsd:element name="ДатаЗаполнения" type="ТипДата"/>
+		</xsd:sequence>
+	</xsd:complexType>
+
+	<xsd:complexType name="ТипРАСЧЕТ_ПО_ВЗНОСАМ_НА_ДОПОЛНИТЕЛЬНОЕ_СОЦИАЛЬНОЕ_ОБЕСПЕЧЕНИЕ">
+	    <xsd:sequence>
+	        <xsd:element name="НомерВпачке" minOccurs="0">
+	            <xsd:simpleType>
+	                <xsd:restriction base="xsd:integer">
+	                    <xsd:enumeration value="1"/>
+	                    <xsd:totalDigits value="3"/>
+	                </xsd:restriction>
+	            </xsd:simpleType>
+	        </xsd:element>
+	        <xsd:element name="РегистрационныйНомерПФР" type="pfr:ТипРегНомер"/>
+	        <xsd:element name="НомерКорректировки" type="pfr:ТипНомерКорректировки">
+	        </xsd:element>
+	        <xsd:element name="КодОтчетногоПериода" type="pfr:ТипКодОтчетногоПериода">
+	        </xsd:element>
+	        <xsd:element name="КалендарныйГод" minOccurs="1">
+	            <xsd:simpleType>
+	                <xsd:restriction base="xsd:positiveInteger">
+	                    <xsd:minInclusive value="2010"/>
+	                    <xsd:maxInclusive value="2014"/>
+	                    <xsd:totalDigits value="4"/>
+	                </xsd:restriction>
+	            </xsd:simpleType>
+	        </xsd:element>
+	        <xsd:element name="НаименованиеОрганизации" type="pfr:ТипНаименованиеОрганизации">
+	        </xsd:element>
+	        <xsd:element name="ИНН" type="pfr:ТипИНН"/>
+	        <xsd:element name="КПП" type="pfr:ТипКПП" minOccurs="0"/>
+	        <xsd:element name="ОГРН" type="pfr:ТипКодОГРН" minOccurs="0"/>
+	        <xsd:element name="КодПоОКАТО" type="pfr:ТипКодПоОКАТО" minOccurs="0"/>
+	        <xsd:element name="КодПоОКВЭД" type="pfr:ТипКодПоОКВЭД" minOccurs="0"/>
+	        <xsd:element name="Телефон" type="pfr:Тип40Н" minOccurs="0"/>
+	        <xsd:element name="АдресРегистрации" type="pfr:ТипАдресОбщий"/>
+	        <xsd:element name="КоличествоЗЛ">
+	            <xsd:simpleType>
+	                <xsd:restriction base="pfr:ТипЧислоЗЛ">
+	                    <xsd:minInclusive value="1"/>
+	                </xsd:restriction>
+	            </xsd:simpleType>
+	        </xsd:element>
+	        <xsd:element name="КодТарифа" type="pfr:ТипКодУстановленногоТарифа"/>
+	        <xsd:element name="КоличествоСтраниц">
+	            <xsd:simpleType>
+	                <xsd:restriction base="pfr:ТипКоличество">
+	                    <xsd:minInclusive value="1"/>
+	                </xsd:restriction>
+	            </xsd:simpleType>
+	        </xsd:element>
+	        <xsd:element name="КоличествоЛистовПриложения" type="pfr:ТипКоличество" minOccurs="0"/>
+	        <xsd:element name="РасчетПоНачисленнымИуплаченнымВзносам" type="pfr:ТипРасчетПоНачисленнымИуплаченнымВзносам" minOccurs="1"/>
+	        <xsd:element name="РасчетБазыДляНачисленияВзносовНаДополнительноеСоциальноеОбеспечение">
+	            <xsd:complexType>
+	                <xsd:sequence>
+	                    <xsd:element name="СуммаВыплатИиныхВознагражденийНачисленных" type="pfr:ТипРасчетБазы"/>
+	                    <xsd:element name="СуммыНеПодлежащиеОбложениюСтраховымиВзносами" type="pfr:ТипРасчетБазы"/>
+	                    <xsd:element name="БазаДляНачисленияВзносов" type="pfr:ТипРасчетБазы"/>
+	                </xsd:sequence>
+	            </xsd:complexType>
+	        </xsd:element>
+	        <xsd:element name="ЛицоПодтверждающееСведения" type="pfr:ТипЛицоПодтверждающееСведения" minOccurs="1"/>
+	        <xsd:element name="ФИОлицаПодтверждающегоСведения" type="pfr:ТипФИО" minOccurs="1"/>
+	        <xsd:element name="НаименованиеОрганизацииПредставителя" type="pfr:ТипНаименованиеОрганизации" minOccurs="0"/>
+	        <xsd:element name="ДокументПодтверждающийПолномочияПредставителя" type="pfr:ТипДокумент" minOccurs="0"/>
+	        <xsd:element name="ДатаЗаполнения" type="ТипДата"/>
+	    </xsd:sequence>
+	</xsd:complexType>
+
+	<xsd:complexType name="ТипРАСЧЕТ_ПО_СТРАХОВЫМ_ВЗНОСАМ_НА_ОПС_И_ОМС_ПЛАТЕЛЬЩИКАМИ_СВ_ПРОИЗВОДЯЩИМИ_ВЫПЛАТЫ_ФЛ_НАЧИНАЯ_С_2012_ГОДА">
+		<xsd:sequence>
+			<xsd:element name="НомерВпачке">
+			    <xsd:simpleType>
+			        <xsd:restriction base="xsd:integer">
+			            <xsd:enumeration value="1"/>
+			            <xsd:totalDigits value="3"/>
+			        </xsd:restriction>
+			    </xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="РегистрационныйНомерПФР" type="pfr:ТипРегНомер"/>
+			<xsd:element name="НомерКорректировки" type="pfr:ТипНомерКорректировки">
+			</xsd:element>
+			<xsd:element name="КодОтчетногоПериода" type="pfr:ТипКодОтчетногоПериода">
+			</xsd:element>
+			<xsd:element name="КалендарныйГод">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:gYear">
+						<xsd:minInclusive value="2012"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="ПрекращениеДеятельности" type="pfr:ТипПрекращениеДеятельности" minOccurs="0"/>
+			<xsd:choice>			    
+				<xsd:sequence>			    
+				    <xsd:element name="НаименованиеОрганизации" type="pfr:ТипНаименованиеОрганизации">			    
+				    </xsd:element>			    
+				    <xsd:element name="РегистрационныйНомерТФОМС" type="pfr:ТипРегистрационныйНомерТФОМС" minOccurs="0">			    
+				    </xsd:element>			    
+				    <xsd:element name="ИНН" type="pfr:ТипИННсимв">			    
+				    </xsd:element>			    
+				    <xsd:element name="КПП" minOccurs="0" type="pfr:ТипКППсимв">			    
+				    </xsd:element>			    
+				    <xsd:element name="ОГРН" type="pfr:ТипОГРНсимв" minOccurs="0"/>			    
+				    <xsd:element name="КодПоОКАТО" type="pfr:ТипКодПоОКАТО" minOccurs="0"/>			    
+				    <xsd:element name="КодПоОКВЭД" type="pfr:ТипКодПоОКВЭД" minOccurs="0"/>			    
+				</xsd:sequence>			    
+				<xsd:sequence>			    
+				    <xsd:element name="ФИОфизическогоЛица" type="pfr:ТипФИО"/>			    
+				    <xsd:element name="РегистрационныйНомерТФОМС" type="pfr:ТипРегистрационныйНомерТФОМС" minOccurs="0">			    
+				    </xsd:element>			    
+				    <xsd:element name="ИНН" type="pfr:ТипИННсимв"/>			    
+				    <xsd:element name="ОГРНИП" minOccurs="0" type="pfr:ТипОГРНИПсимв"/>			    
+				    <xsd:element name="КодПоОКАТО" type="pfr:ТипКодПоОКАТО" minOccurs="0"/>			    
+				    <xsd:element name="КодПоОКВЭД" type="pfr:ТипКодПоОКВЭД" minOccurs="0"/>			    
+				</xsd:sequence>
+			</xsd:choice>
+			<xsd:element name="Телефон" type="pfr:Тип40Н" minOccurs="0"/>
+			<xsd:element name="АдресРегистрации" type="pfr:ТипАдресОбщий"/>
+			<xsd:element name="КоличествоЗЛ">
+			    <xsd:simpleType>
+			        <xsd:restriction base="pfr:ТипЧислоЗЛ">
+			            <xsd:minInclusive value="0"/>
+			        </xsd:restriction>
+			    </xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="СреднесписочнаяЧисленность">
+			    <xsd:simpleType>
+			        <xsd:restriction base="pfr:ТипЧислоЗЛ">
+			            <xsd:minInclusive value="0"/>
+			        </xsd:restriction>
+			    </xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="КоличествоСтраниц">
+			    <xsd:simpleType>
+			        <xsd:restriction base="pfr:ТипКоличество">
+			            <xsd:minInclusive value="1"/>
+			        </xsd:restriction>
+			    </xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="КоличествоЛистовПриложения" type="pfr:ТипКоличество" minOccurs="0"/>
+			<xsd:element name="Раздел1РасчетПоНачисленнымУплаченным">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="ОстатокЗадолженностиНаНачалоРасчетногоПериода2012" minOccurs="0" type="pfr:ТипРасчетПоНачисленнымИуплаченным2012">
+						</xsd:element>
+						<xsd:element name="НачисленоСначалаРасчетногоПериода2012" type="pfr:ТипНачисленоУплачено2012"/>
+						<xsd:element name="ДоначисленоСначалаРасчетногоПериода2012" minOccurs="0" type="pfr:ТипРасчетПоНачисленнымИуплаченным2012"/>
+						<xsd:element name="ВсегоКуплате2012" type="pfr:ТипРасчетПоНачисленнымИуплаченным2012"/>
+						<xsd:element name="УплаченоСначалаРасчетногоПериода2012" type="pfr:ТипНачисленоУплачено2012"/>
+						<xsd:element name="ВтомЧислеЗаПредыдущиеРасчетныеПериоды2012" minOccurs="0" type="pfr:ТипРасчетПоНачисленнымИуплаченным2012"/>
+						<xsd:element name="ОстатокЗадолженностиНаКонецРасчетногоПериода2012" minOccurs="0" type="pfr:ТипРасчетПоНачисленнымИуплаченным2012"/>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="Раздел2РасчетПоТарифу" maxOccurs="99">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="КодТарифа" type="pfr:ТипКодУстановленногоТарифа"/>
+						<xsd:element name="НаОбязательноеПенсионноеСтрахование">
+							<xsd:complexType>
+								<xsd:sequence>
+									<xsd:element name="ВыплатыИвознаграждения_1966старше" minOccurs="0" type="pfr:ТипПоказательРасчетСумм"/>
+									<xsd:element name="ВыплатыИвознаграждения_1967моложе" minOccurs="0" type="pfr:ТипПоказательРасчетСумм"/>
+									<xsd:element name="ВыплатыИвознаграждения_ВременноИГ" minOccurs="0" type="pfr:ТипПоказательРасчетСумм"/>
+									<xsd:element name="НеПодлежащиеОбложению_1966старше" minOccurs="0" type="pfr:ТипПоказательРасчетСумм"/>
+									<xsd:element name="НеПодлежащиеОбложению_1967моложе" minOccurs="0" type="pfr:ТипПоказательРасчетСумм"/>
+									<xsd:element name="НеПодлежащиеОбложению_ВременноИГ" minOccurs="0" type="pfr:ТипПоказательРасчетСумм"/>
+									<xsd:element name="СуммаРасходовПринимаемыхКвычету_1966старше" minOccurs="0" type="pfr:ТипПоказательРасчетСумм"/>
+									<xsd:element name="СуммаРасходовПринимаемыхКвычету_1967моложе" minOccurs="0" type="pfr:ТипПоказательРасчетСумм"/>
+									<xsd:element name="СуммаРасходовПринимаемыхКвычету_ВременноИГ" minOccurs="0" type="pfr:ТипПоказательРасчетСумм"/>
+									<xsd:element name="ПревышающиеПредельнуюВеличинуБазы_1966старше" minOccurs="0" type="pfr:ТипПоказательРасчетСумм"/>
+									<xsd:element name="ПревышающиеПредельнуюВеличинуБазы_1967моложе" minOccurs="0" type="pfr:ТипПоказательРасчетСумм"/>
+									<xsd:element name="ПревышающиеПредельнуюВеличинуБазы_ВременноИГ" minOccurs="0" type="pfr:ТипПоказательРасчетСумм"/>
+									<xsd:element name="БазаДляНачисленияСтраховыхВзносовНаОПС_1966старше" minOccurs="0" type="pfr:ТипПоказательРасчетСумм"/>
+									<xsd:element name="БазаДляНачисленияСтраховыхВзносовНаОПС_1967моложе" minOccurs="0" type="pfr:ТипПоказательРасчетСумм"/>
+									<xsd:element name="НачисленоНаОПСстраховая" minOccurs="0" type="pfr:ТипПоказательРасчетСумм"/>
+									<xsd:element name="НачисленоНаОПСнакопительная" minOccurs="0" type="pfr:ТипПоказательРасчетСумм"/>
+									<xsd:element name="НачисленоНаОПСсСуммПревышающих" minOccurs="0" type="pfr:ТипПоказательРасчетСумм"/>
+									<xsd:element name="КоличествоФЛпоКоторымБазаПревысилаПредел" minOccurs="0" type="pfr:ТипПоказательЧисленность"/>
+								</xsd:sequence>
+							</xsd:complexType>
+						</xsd:element>
+						<xsd:element name="НаОбязательноеМедицинскоеСтрахование">
+							<xsd:complexType>
+								<xsd:sequence>
+									<xsd:element name="СуммаВыплатИвознаграждений" minOccurs="0" type="pfr:ТипПоказательРасчетСумм"/>
+									<xsd:element name="НеПодлежащиеОбложению" minOccurs="0" type="pfr:ТипПоказательРасчетСумм"/>
+									<xsd:element name="СуммаРасходовПринимаемыхКвычету" minOccurs="0" type="pfr:ТипПоказательРасчетСумм"/>
+									<xsd:element name="ПревышающиеПредельнуюВеличинуБазы" minOccurs="0" type="pfr:ТипПоказательРасчетСумм"/>
+									<xsd:element name="БазаДляНачисленияСтраховыхВзносовНаОМС" minOccurs="0" type="pfr:ТипПоказательРасчетСумм"/>
+									<xsd:element name="НачисленоНаОМС" minOccurs="0" type="pfr:ТипПоказательРасчетСумм"/>
+								</xsd:sequence>
+							</xsd:complexType>
+						</xsd:element>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="Раздел3РасчетНаПравоПримененияПониженногоТарифа" minOccurs="0">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="Раздел3_1_СведенияДляПримененияПониженногоТарифа_ФЛ_Инвалиду" minOccurs="0" type="pfr:ТипСведенияДляПримененияПониженногоТарифа"/>
+						<xsd:element name="Раздел3_2_ДляОбщественныхОрганизацийИнвалидов" minOccurs="0" type="pfr:ТипДляОбщественныхОрганизацийИнвалидов"/>
+						<xsd:element name="Раздел3_3_ДляОрганизацийУставныйКапиталСостоитИзВкладовОбщОргИнвалидов" minOccurs="0" type="pfr:ТипДляОрганизацийУставныйКапиталСостоитИзВкладовОбщОргИнвалидов"/>
+						<xsd:element name="Раздел3_4_ДляОрганизацийИТ" minOccurs="0" type="pfr:ТипДляОрганизацийИТ"/>
+						<xsd:element name="Раздел3_5_ДляОрганизацийСМИ" minOccurs="0" type="pfr:ТипДляОрганизацийСМИ"/>
+						<xsd:element name="Раздел3_6_ДляОрганизацийПрименяющихУСН" minOccurs="0" type="pfr:ТипРасчетСоответствияУсловийНаПравоПримененияПонижТарифаОтдКатегориямиПлательщиковУСН"/>
+						<xsd:element name="Раздел3_7_ДляНекоммерческихОрганизацийПрименяющихУСН" minOccurs="0" type="pfr:ТипДляНекоммерческихОрганизацийПрименяющихУСН"/>
+						<xsd:element name="Раздел3_8_ДляОрганизацийОказывающихИнжиниринговыеУслуги" minOccurs="0" type="pfr:ТипДляОрганизацийОказывающихИнжиниринговыеУслуги"/>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="Раздел4СуммыДоначисленныхСтраховыхВзносов" minOccurs="0">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="СуммаДоначисленныхВзносовЗаПериод" maxOccurs="unbounded" minOccurs="0">
+							<xsd:complexType>
+								<xsd:sequence>
+									<xsd:element name="НомерПП" type="pfr:ТипНомерПоПорядку"/>
+									<xsd:element name="Год">
+										<xsd:simpleType>
+											<xsd:restriction base="xsd:gYear">
+												<xsd:minInclusive value="2010"/>
+											</xsd:restriction>
+										</xsd:simpleType>
+									</xsd:element>
+									<xsd:element name="Месяц">
+										<xsd:simpleType>
+											<xsd:restriction base="xsd:unsignedLong">
+												<xsd:totalDigits value="2"/>
+												<xsd:minInclusive value="1"/>
+												<xsd:maxInclusive value="12"/>
+											</xsd:restriction>
+										</xsd:simpleType>
+									</xsd:element>
+									<xsd:element name="ОПСстраховаяЧасть" type="pfr:ТипДеньги"/>
+									<xsd:element name="ОПСнакопительнаяЧасть" type="pfr:ТипДеньги"/>
+									<xsd:element name="СтраховыеВзносыОМС" type="pfr:ТипДеньги"/>
+								</xsd:sequence>
+							</xsd:complexType>
+						</xsd:element>
+						<xsd:element name="ИтогоДоначислено">
+							<xsd:complexType>
+								<xsd:sequence>
+									<xsd:element name="ОПСстраховаяЧасть" type="pfr:ТипДеньги"/>
+									<xsd:element name="ОПСнакопительнаяЧасть" type="pfr:ТипДеньги"/>
+									<xsd:element name="СтраховыеВзносыОМС" type="pfr:ТипДеньги"/>
+								</xsd:sequence>
+							</xsd:complexType>
+						</xsd:element>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="Раздел5СведенияОВыплатахВпользуОбучающихся" minOccurs="0">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="КоличествоОбучающихся" type="pfr:ТипКоличество"/>
+						<xsd:element name="СведенияОбОбучающемся" maxOccurs="unbounded">
+							<xsd:complexType>
+								<xsd:sequence>
+									<xsd:element name="НомерПП" type="pfr:ТипНомерПоПорядку"/>
+									<xsd:element name="ФИО" type="pfr:ТипФИО"/>
+									<xsd:element name="НомерСправкиОчленствеВстудОтряде" minOccurs="0" type="pfr:ТипНомер"/>
+									<xsd:element name="ДатаВыдачиСправкиОчленствеВстудОтряде" minOccurs="0" type="pfr:ТипДата"/>
+									<xsd:element name="НомерСправкиОбОчномОбучении" minOccurs="0" type="pfr:ТипНомер"/>
+									<xsd:element name="ДатаВыдачиСправкиОбОчномОбучении" minOccurs="0" type="pfr:ТипДата"/>
+									<xsd:element name="СуммыВыплатИвознаграждений" type="pfr:ТипРасчетСумм"/>
+								</xsd:sequence>
+							</xsd:complexType>
+						</xsd:element>
+						<xsd:element name="ИтогоВыплат" type="pfr:ТипРасчетСумм"/>
+						<xsd:element name="СведенияИзРеестраМДОО">
+							<xsd:complexType>
+								<xsd:sequence>
+									<xsd:element name="КодСтроки" type="pfr:ТипКодСтроки"/>
+									<xsd:element name="РеквизитыЗаписиВреестре" maxOccurs="unbounded">
+										<xsd:complexType>
+											<xsd:sequence>
+												<xsd:element name="ДатаЗаписиВреестре" type="pfr:ТипДата"/>
+												<xsd:element name="НомерЗаписиВреестре" type="pfr:ТипНомер"/>
+											</xsd:sequence>
+										</xsd:complexType>
+									</xsd:element>
+								</xsd:sequence>
+							</xsd:complexType>
+						</xsd:element>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="ЛицоПодтверждающееСведения">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:unsignedInt">
+						<xsd:minInclusive value="1"/>
+						<xsd:maxInclusive value="3"/>
+						<xsd:totalDigits value="1"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="ФИОлицаПодтверждающегоСведения" type="pfr:ТипФИО"/>
+			<xsd:element name="НаименованиеОрганизацииПредставителя" minOccurs="0" type="pfr:ТипНаименованиеОрганизации"/>
+			<xsd:element name="ДокументПодтверждающийПолномочияПредставителя" minOccurs="0" type="pfr:ТипДокумент"/>
+			<xsd:element name="ДатаЗаполнения" type="ТипДата"/>
+		</xsd:sequence>
+	</xsd:complexType>
+
+	<xsd:complexType name="ТипРасчетПоНачисленнымИуплаченнымСтраховымВзносам">
+	    <xsd:sequence>
+	        <xsd:element name="ОстатокЗадолженностиНаНачалоРасчетногоПериода" minOccurs="0" type="pfr:ТипРасчетПоНачисленнымИуплаченным">
+	        </xsd:element>
+	        <xsd:element name="НачисленоСначалаРасчетногоПериода" type="pfr:ТипНачисленоУплачено" minOccurs="1"/>
+	        <xsd:element name="ДоначисленоСначалаРасчетногоПериода" type="pfr:ТипРасчетПоНачисленнымИуплаченным" minOccurs="0"/>
+	        <xsd:element name="ВсегоКуплате" type="pfr:ТипРасчетПоНачисленнымИуплаченным" minOccurs="1"/>
+	        <xsd:element name="УплаченоСначалаРасчетногоПериода" type="pfr:ТипНачисленоУплачено" minOccurs="1"/>
+	        <xsd:element name="ОстатокЗадолженностиНаКонецРасчетногоПериода" type="pfr:ТипРасчетПоНачисленнымИуплаченным" minOccurs="0"/>
+	    </xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="ТипРасчетСтраховыхВзносовПоУстановленномуТарифу">
+	    <xsd:sequence>
+	        <xsd:element name="КодТарифа" type="pfr:ТипКодУстановленногоТарифа"/>
+	        <xsd:element name="РасчетПоТарифу" type="pfr:ТипРасчетПоТарифу"/>
+	        <xsd:element name="НачисленоСтраховыхВзносовПоТарифу" type="pfr:ТипНачисленоСтраховыхВзносовПоТарифу"/>
+	    </xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="ТипРасчетСтраховыхВзносовПоПониженномуТарифу">
+	    <xsd:sequence>
+	        <xsd:element name="РасчетПоВыплатамРаботникамИнвалидам" type="pfr:ТипРасчетПоТарифу" minOccurs="0"/>
+	        <xsd:element name="НачисленоСтраховыхВзносовВпользуРаботниковИнвалидов" type="pfr:ТипНачисленоСтраховыхВзносовПоТарифу" minOccurs="0"/>
+	        <xsd:element name="РасчетПоВыплатамРаботникамЕНВД" type="pfr:ТипРасчетПоТарифу" minOccurs="0"/>
+	        <xsd:element name="НачисленоСтраховыхВзносовВпользуРаботниковЕНВД" type="pfr:ТипНачисленоСтраховыхВзносовПоТарифу" minOccurs="0"/>
+	    </xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="ТипОснованияДляПримененияПониженногоТарифа">
+	    <xsd:sequence minOccurs="0">
+	        <xsd:element name="СведенияДляПримененияПониженногоТарифа" type="pfr:ТипСведенияДляПримененияПониженногоТарифа" minOccurs="0"/>
+	        <xsd:choice minOccurs="0">
+	            <xsd:element name="РасчетСоответствияУсловийНаПравоПримененияПониженногоТарифа" type="pfr:ТипРасчетСоответствияУсловийНаПравоПримененияПониженногоТарифа" minOccurs="0"/>
+	            <xsd:sequence maxOccurs="1" minOccurs="0">
+	                <xsd:element name="РасчетСоответствияУсловийНаПравоПримененияПониженногоТарифаПоСтатьям57и58" type="pfr:ТипРасчетСоответствияУсловийНаПравоПримененияПониженногоТарифа" minOccurs="0"/>
+	                <xsd:element name="РасчетСоответствияУсловийНаПравоПримененияПониженногоТарифаПоСтатье57" minOccurs="0" type="pfr:ТипРасчетСоответствияУсловийНаПравоПримененияПониженногоТарифаПоСтатье57"/>
+	                <xsd:element name="РасчетСоответствияУсловийНаПравоПримененияПонижТарифаОтдКатегориямиПлательщиковУСН" minOccurs="0" type="pfr:ТипРасчетСоответствияУсловийНаПравоПримененияПонижТарифаОтдКатегориямиПлательщиковУСН"/>
+	            </xsd:sequence>
+	        </xsd:choice>
+	    </xsd:sequence>
+	</xsd:complexType>
+
+
+	<xsd:complexType name="ТипРасчетПоСтраховымВзносамНачисленнымИуплаченным">
+	    <xsd:sequence>
+	        <xsd:element name="ОстатокЗадолженностиНаНачалоРасчетногоПериода" type="pfr:ТипРасчетПоНачисленнымИуплаченным" minOccurs="0"/>
+	        <xsd:element name="НачисленоВзносовСначалаРасчетногоПериода" type="pfr:ТипРасчетПоНачисленнымИуплаченным" minOccurs="1"/>
+	        <xsd:element name="ДоначисленоСначалаРасчетногоПериода" type="pfr:ТипРасчетПоНачисленнымИуплаченным" minOccurs="0"/>
+	        <xsd:element name="ВсегоКуплате" type="pfr:ТипРасчетПоНачисленнымИуплаченным"/>
+	        <xsd:element name="УплаченоВзносовСначалаРасчетногоПериода" type="pfr:ТипРасчетПоНачисленнымИуплаченным"/>
+	        <xsd:element name="ОстатокЗадолженностиНаКонецРасчетногоПериода" type="pfr:ТипРасчетПоНачисленнымИуплаченным" minOccurs="0"/>
+	    </xsd:sequence>
+	</xsd:complexType>
+
+	<xsd:complexType name="ТипДанныеДляРасчетаСуммНачисленныхСтраховыхВзносов">
+	    <xsd:sequence>
+	        <xsd:sequence maxOccurs="1" minOccurs="0">
+	            <xsd:element name="КоличествоПериодов" type="pfr:ТипКоличество" minOccurs="0"/>
+	            <xsd:element name="ПериодИндивидуальнойТрудовойДеятельности" type="pfr:ТипПериодИндивидуальнойТрудовойДеятельности" maxOccurs="99" minOccurs="0"/>
+	            <xsd:element name="КоличествоЧленовФХ" type="pfr:ТипЧислоЗЛ" minOccurs="0"/>
+	            <xsd:element name="РасчетНачисленийСтраховыхВзносовЗаЧленаФХ" type="pfr:ТипРасчетНачисленийСтраховыхВзносовЗаЧленаФХ" minOccurs="0" maxOccurs="unbounded"/>
+	            <xsd:element name="ИтогоОПСстраховаяЧасть" type="pfr:ТипДеньги" minOccurs="0"/>
+	            <xsd:element name="ИтогоОПСнакопительнаяЧасть" type="pfr:ТипДеньги" minOccurs="0"/>
+	            <xsd:element name="ИтогоСтраховыеВзносыФФОМС" type="pfr:ТипДеньги" minOccurs="0"/>
+	            <xsd:element name="ИтогоСтраховыеВзносыТФОМС" type="pfr:ТипДеньги" minOccurs="0"/>
+	        </xsd:sequence>
+	    </xsd:sequence>
+	</xsd:complexType>
+
+
+	<xsd:complexType name="ТипРасчетВзносов">
+	    <xsd:sequence>
+	        <xsd:element name="КодСтроки" type="pfr:ТипКодСтроки"/>
+	        <xsd:element name="СуммаВзноса" type="pfr:ТипДеньги"/>
+	    </xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="ТипНачисленоУплаченоВзносовЛЭВС">
+	    <xsd:sequence>
+	        <xsd:element name="ВсегоСначалаРасчетногоПериода" type="pfr:ТипРасчетВзносов"/>
+	        <xsd:element name="ПоследниеТриМесяца1" type="pfr:ТипРасчетВзносов"/>
+	        <xsd:element name="ПоследниеТриМесяца2" type="pfr:ТипРасчетВзносов"/>
+	        <xsd:element name="ПоследниеТриМесяца3" type="pfr:ТипРасчетВзносов"/>
+	        <xsd:element name="ПоследниеТриМесяцаИтого" type="pfr:ТипРасчетВзносов"/>
+	    </xsd:sequence>
+	</xsd:complexType>
+
+	<xsd:complexType name="ТипНачисленоУплаченоВзносов">
+	    <xsd:sequence>
+	        <xsd:element name="ВсегоСначалаРасчетногоПериода" type="pfr:ТипРасчетВзносов"/>
+	        <xsd:element name="ПоследниеТриМесяца1" type="pfr:ТипРасчетВзносов"/>
+	        <xsd:element name="ПоследниеТриМесяца2" type="pfr:ТипРасчетВзносов"/>
+	        <xsd:element name="ПоследниеТриМесяца3" type="pfr:ТипРасчетВзносов"/>
+	    </xsd:sequence>
+	</xsd:complexType>
+
+
+	<xsd:complexType name="ТипРасчетПоНачисленнымИуплаченнымВзносамЛЭВС">
+	    <xsd:sequence>
+	        <xsd:element name="ОстатокВзносовНаНачалоРасчетногоПериода" minOccurs="0" type="pfr:ТипРасчетВзносов">
+	        </xsd:element>
+	        <xsd:element name="НачисленоСначалаРасчетногоПериода" type="pfr:ТипНачисленоУплаченоВзносовЛЭВС" minOccurs="1"/>
+	        <xsd:element name="ДоначисленоСначалаРасчетногоПериода" type="pfr:ТипРасчетВзносов" minOccurs="0"/>
+	        <xsd:element name="ВсегоКуплате" type="pfr:ТипРасчетВзносов" minOccurs="1"/>
+	        <xsd:element name="УплаченоСначалаРасчетногоПериода" type="pfr:ТипНачисленоУплаченоВзносовЛЭВС" minOccurs="1"/>
+	        <xsd:element name="ОстатокВзносовНаКонецРасчетногоПериода" type="pfr:ТипРасчетВзносов" minOccurs="0"/>
+	    </xsd:sequence>
+	</xsd:complexType>
+
+	<xsd:complexType name="ТипРасчетПоНачисленнымИуплаченнымВзносам">
+	    <xsd:sequence>
+	        <xsd:element name="ОстатокВзносовНаНачалоРасчетногоПериода" minOccurs="0" type="pfr:ТипРасчетВзносов">
+	        </xsd:element>
+	        <xsd:element name="НачисленоСначалаРасчетногоПериода" type="pfr:ТипНачисленоУплаченоВзносов" minOccurs="1"/>
+	        <xsd:element name="ИтогоПоследниеТриМесяца" type="pfr:ТипРасчетВзносов" minOccurs="0"/>
+	        <xsd:element name="ВсегоКуплатеСначалаРасчетногоПериода" type="pfr:ТипРасчетВзносов" minOccurs="1"/>
+	        <xsd:element name="УплаченоСначалаРасчетногоПериода" type="pfr:ТипНачисленоУплаченоВзносов" minOccurs="1"/>
+	        <xsd:element name="ОстатокВзносовНаКонецРасчетногоПериода" type="pfr:ТипРасчетВзносов" minOccurs="0"/>
+	    </xsd:sequence>
+	</xsd:complexType>
+
+	<xsd:complexType name="ТипРасчетБазы">
+	    <xsd:sequence>
+	        <xsd:element name="КодСтроки" type="pfr:ТипКодСтроки"/>
+	        <xsd:element name="СуммаВсегоСначалаРасчетногоПериода" type="pfr:ТипДеньги"/>
+	        <xsd:element name="СуммаПоследние1месяц" type="pfr:ТипДеньги"/>
+	        <xsd:element name="СуммаПоследние2месяц" type="pfr:ТипДеньги"/>
+	        <xsd:element name="СуммаПоследние3месяц" type="pfr:ТипДеньги"/>
+	    </xsd:sequence>
+	</xsd:complexType>
+
+	<xsd:complexType name="ТипРасчетБазыДляНачисленияВзносовНаДополнительноеСоциальноеОбеспечение">
+	    <xsd:sequence>
+	        <xsd:element name="СуммаВыплатИиныхВознагражденийНачисленных"/>
+	        <xsd:element name="СуммыНеПодлежащиеОбложениюСтраховымиВзносами"/>
+	        <xsd:element name="БазаДляНачисленияВзносов"/>
+	    </xsd:sequence>
+	</xsd:complexType>
+
+	<xsd:complexType name="ТипСведенияОзадолженностиПоВзносамПоДополнительномуТарифуПоСостояниюНа31.12.2009">
+	    <xsd:sequence>
+	        <xsd:element name="ОстатокЗадолженностиНаНачалоРасчетногоПериода" type="pfr:ТипРасчетВзносов"/>
+	        <xsd:element name="УплаченоВотчетномПериоде" type="pfr:ТипРасчетВзносов"/>
+	        <xsd:element name="ОстатокЗадолженностиНаКонецРасчетногоПериода" type="pfr:ТипРасчетВзносов"/>
+	    </xsd:sequence>
+	</xsd:complexType>
+
+
+
+	<xsd:simpleType name="ТипНомерКорректировки">
+        <xsd:restriction base="xsd:integer">
+            <xsd:totalDigits value="3"/>
+            <xsd:minInclusive value="0"/>
+        </xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="ТипКодОтчетногоПериода">
+        <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="03"/>
+            <xsd:enumeration value="3"/>
+            <xsd:enumeration value="06"/>
+            <xsd:enumeration value="6"/>
+            <xsd:enumeration value="09"/>
+            <xsd:enumeration value="9"/>
+            <xsd:enumeration value="12"/>
+            <xsd:maxLength value="2"/></xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="ТипКалендарныйГод">
+        <xsd:restriction base="xsd:gYear">
+            <xsd:minInclusive value="2010"/>
+            <xsd:maxInclusive value="2013"/>
+        </xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="ТипНаименованиеОрганизации">
+        <xsd:restriction base="xsd:normalizedString">
+            <xsd:maxLength value="160"/>
+            <xsd:minLength value="1"/>
+        </xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="ТипРегистрационныйНомерТФОМС">
+        <xsd:restriction base="xsd:normalizedString">
+            <xsd:maxLength value="15"/>
+            <xsd:pattern value="[0-9]*"/>
+        </xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="ТипКодПоОКАТО">
+        <xsd:restriction base="xsd:normalizedString">
+            <xsd:maxLength value="11"/>
+            <xsd:pattern value="[0-9]*"/></xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="ТипКодПоОКВЭД">
+	    <xsd:restriction base="xsd:string">
+	        <xsd:maxLength value="8"/>
+	        <xsd:pattern value="\d{2}\.\d{2}\.\d{2}"/>
+	        <xsd:pattern value="\d{2}\.\d{2}\.\d{1}"/>
+	        <xsd:pattern value="\d{2}\.\d{2}"/>
+	        <xsd:pattern value="\d{2}\.\d{1}"/>
+	        <xsd:pattern value="\d{2}"/>
+	    </xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="ТипКодПоОКПО">
+	    <xsd:restriction base="xsd:normalizedString">
+	        <xsd:maxLength value="10"/>
+	        <xsd:pattern value="[0-9]*"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="ТипКодПоОКОПФ">
+	    <xsd:restriction base="xsd:normalizedString">
+	        <xsd:maxLength value="2"/>
+	        <xsd:pattern value="\d{2}"/>
+	        <xsd:pattern value=""/>
+	    </xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="ТипКодПоОКФС">
+	    <xsd:restriction base="xsd:normalizedString">
+	        <xsd:maxLength value="2"/>
+	        <xsd:pattern value="\d{2}"/>
+	        <xsd:pattern value=""/>
+	    </xsd:restriction>
+	</xsd:simpleType>
+
+	<xsd:simpleType name="ТипКодОГРН">
+		<xsd:restriction base="xsd:string">
+            <xsd:maxLength value="15"/>
+            <xsd:pattern value="\d{13}"/>
+            <xsd:pattern value="\d{15}"/>
+            <xsd:pattern value="0"/>
+            <xsd:pattern value=""/>
+        </xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="ТипЛицоПодтверждающееСведения">
+	    <xsd:restriction base="xsd:integer">
+	        <xsd:totalDigits value="1"/>
+	        <xsd:enumeration value="1"/>
+	        <xsd:enumeration value="2"/>
+	    </xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="ТипКодУстановленногоТарифа">
+	    <xsd:restriction base="xsd:integer">
+	        <xsd:pattern value="\d{2}"/>
+	        <xsd:totalDigits value="2"/>
+	        <xsd:minInclusive value="0"/>
+	        <xsd:maxInclusive value="99"/>
+	    </xsd:restriction>
+	</xsd:simpleType>
+<!--
+	<xsd:simpleType name="ТипКодСтроки">
+	    <xsd:restriction base="xsd:integer">
+	        <xsd:totalDigits value="3"/>
+	        <xsd:minInclusive value="0"/>
+	        <xsd:maxInclusive value="999"/>
+	    </xsd:restriction>
+	</xsd:simpleType>
+-->
+	<xsd:complexType name="ТипРасчетПоНачисленнымИуплаченным">
+	    <xsd:sequence>
+	        <xsd:element name="КодСтроки" type="pfr:ТипКодСтроки"/>
+	        <xsd:element name="ОПСстраховаяЧасть" type="pfr:ТипДеньги"/>
+	        <xsd:element name="ОПСнакопительнаяЧасть" type="pfr:ТипДеньги"/>
+	        <xsd:element name="СтраховыеВзносыФФОМС" type="pfr:ТипДеньги"/>
+	        <xsd:element name="СтраховыеВзносыТФОМС" type="pfr:ТипДеньги"/>
+	    </xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="ТипРасчетПоНачисленнымИуплаченным2012">
+	    <xsd:sequence>
+	        <xsd:element name="КодСтроки" type="pfr:ТипКодСтроки"/>
+	        <xsd:element name="ОПСстраховаяЧасть" type="pfr:ТипДеньги"/>
+	        <xsd:element name="ОПСнакопительнаяЧасть" type="pfr:ТипДеньги"/>
+	        <xsd:element name="СтраховыеВзносыОМС" type="pfr:ТипДеньги"/>
+	    </xsd:sequence>
+	</xsd:complexType>
+
+	<xsd:complexType name="ТипРасчетПоНачисленнымИуплаченным2013">
+	    <xsd:sequence>
+	        <xsd:element name="КодСтроки" type="pfr:ТипКодСтроки"/>
+	        <xsd:element name="ОПСстраховаяЧасть" type="pfr:ТипДеньги"/>
+	        <xsd:element name="ОПСнакопительнаяЧасть" type="pfr:ТипДеньги" minOccurs="1"/>
+	        <xsd:element name="ОПСстраховаяЧастьПоДопТар1" type="pfr:ТипДеньги" minOccurs="0"/>
+	        <xsd:element name="ОПСстраховаяЧастьПоДопТар2" type="pfr:ТипДеньги" minOccurs="0"/>
+	        <xsd:element name="СтраховыеВзносыОМС" type="pfr:ТипДеньги" minOccurs="0"/>
+	    </xsd:sequence>
+	</xsd:complexType>
+
+	<xsd:complexType name="ТипРасчетПоНачисленнымИуплаченным2013РСВ2">
+	    <xsd:sequence>
+	        <xsd:element name="КодСтроки" type="pfr:ТипКодСтроки"/>
+	        <xsd:element name="ОПСстраховаяЧасть" type="pfr:ТипДеньги"/>
+	        <xsd:element name="ОПСнакопительнаяЧасть" type="pfr:ТипДеньги" minOccurs="1"/>
+	        <xsd:element name="СтраховыеВзносыОМС" type="pfr:ТипДеньги" minOccurs="0"/>
+	    </xsd:sequence>
+	</xsd:complexType>
+
+	<xsd:complexType name="ТипРасчетПоНачисленнымИуплаченным2013Н">
+	    <xsd:sequence>
+	        <xsd:element name="КодСтроки" type="pfr:ТипКодСтроки"/>
+	        <xsd:element name="ОПСстраховаяЧасть" type="pfr:ТипДеньги" minOccurs="0"/>
+	        <xsd:element name="ОПСнакопительнаяЧасть" type="pfr:ТипДеньги" minOccurs="0"/>
+	        <xsd:element name="ОПСстраховаяЧастьПоДопТар1" type="pfr:ТипДеньги" minOccurs="0"/>
+	        <xsd:element name="ОПСстраховаяЧастьПоДопТар2" type="pfr:ТипДеньги" minOccurs="0"/>
+	        <xsd:element name="СтраховыеВзносыОМС" type="pfr:ТипДеньги" minOccurs="0"/>
+	    </xsd:sequence>
+	</xsd:complexType>
+
+	<xsd:complexType name="ТипРасчетПоНачисленнымИуплаченнымЗадолженность">
+	    <xsd:sequence>
+	        <xsd:element name="КодСтроки" type="pfr:ТипКодСтроки"/>
+	        <xsd:element name="ОПСстраховаяЧасть" type="pfr:ТипДеньги"/>
+	        <xsd:element name="ОПСнакопительнаяЧасть" type="pfr:ТипДеньги"/>
+	    </xsd:sequence>
+	</xsd:complexType>
+	<xsd:simpleType name="ТипУдельныйВес">
+	    <xsd:restriction base="xsd:decimal">
+	        <xsd:totalDigits value="8"/>
+	        <xsd:fractionDigits value="5"/>
+	        <xsd:pattern value="\+?[0-9]+\.\d{5}"/>
+	        <xsd:pattern value="\+?[0-9]+\.\d{2}"/>
+
+	    </xsd:restriction>
+	</xsd:simpleType>
+	<xsd:complexType name="ТипПоказательУдельныйВес">
+	    <xsd:sequence>
+	        <xsd:element name="КодСтроки" type="pfr:ТипКодСтроки" minOccurs="1" maxOccurs="1"/>
+	        <xsd:element name="УдельныйВес_Всего" type="pfr:ТипУдельныйВес"/>
+	        <xsd:element name="УдельныйВес_1месяц" type="pfr:ТипУдельныйВес" minOccurs="0"/>
+	        <xsd:element name="УдельныйВес_2месяц" type="pfr:ТипУдельныйВес" minOccurs="0"/>
+	        <xsd:element name="УдельныйВес_3месяц" type="pfr:ТипУдельныйВес" minOccurs="0"/>
+	    </xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="ТипПоказательЧисленность">
+	    <xsd:sequence>
+	        <xsd:element name="КодСтроки" type="pfr:ТипКодСтроки"/>
+	        <xsd:element name="КоличествоЗЛ_Всего" type="pfr:ТипЧислоЗЛ"/>
+	        <xsd:element name="КоличествоЗЛ_1месяц" type="pfr:ТипЧислоЗЛ" minOccurs="0"/>
+	        <xsd:element name="КоличествоЗЛ_2месяц" type="pfr:ТипЧислоЗЛ" minOccurs="0"/>
+	        <xsd:element name="КоличествоЗЛ_3месяц" type="pfr:ТипЧислоЗЛ" minOccurs="0"/>
+	    </xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="ТипРасчетСумм">
+	    <xsd:sequence>
+	        <xsd:element name="СуммаВсегоСначалаРасчетногоПериода" type="pfr:ТипДеньги"/>
+	        <xsd:element name="СуммаПоследние1месяц" type="pfr:ТипДеньги" minOccurs="0"/>
+	        <xsd:element name="СуммаПоследние2месяц" type="pfr:ТипДеньги" minOccurs="0"/>
+	        <xsd:element name="СуммаПоследние3месяц" type="pfr:ТипДеньги" minOccurs="0"/>
+	    </xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="ТипПоказательРасчетСумм">
+	    <xsd:sequence>
+	        <xsd:element name="КодСтроки" type="pfr:ТипКодСтроки"/>
+	        <xsd:element name="РасчетСумм" type="pfr:ТипРасчетСумм"/>
+	    </xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="ТипНачисленоСтраховыхВзносовПоТарифу">
+	    <xsd:sequence>
+	        <xsd:element name="НачисленоНаОПСстраховая" type="pfr:ТипПоказательРасчетСумм"/>
+	        <xsd:element name="НачисленоНаОПСнакопительная" type="pfr:ТипПоказательРасчетСумм"/>
+	        <xsd:element name="НачисленоФФОМС" type="pfr:ТипПоказательРасчетСумм"/>
+	        <xsd:element name="НачисленоТФОМС" type="pfr:ТипПоказательРасчетСумм"/>
+	    </xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="ТипНачисленоУплачено">
+	    <xsd:sequence>
+	        <xsd:element name="ВсегоСначалаРасчетногоПериода" type="pfr:ТипРасчетПоНачисленнымИуплаченным"/>
+	        <xsd:element name="ПоследниеТриМесяца1" type="pfr:ТипРасчетПоНачисленнымИуплаченным"/>
+	        <xsd:element name="ПоследниеТриМесяца2" type="pfr:ТипРасчетПоНачисленнымИуплаченным"/>
+	        <xsd:element name="ПоследниеТриМесяца3" type="pfr:ТипРасчетПоНачисленнымИуплаченным"/>
+	        <xsd:element name="ПоследниеТриМесяцаИтого" type="pfr:ТипРасчетПоНачисленнымИуплаченным"/>
+	    </xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="ТипНачисленоУплачено2012">
+	    <xsd:sequence>
+	        <xsd:element name="ВсегоСначалаРасчетногоПериода2012" type="pfr:ТипРасчетПоНачисленнымИуплаченным2012"/>
+	        <xsd:element name="ПоследниеТриМесяца1с2012" type="pfr:ТипРасчетПоНачисленнымИуплаченным2012"/>
+	        <xsd:element name="ПоследниеТриМесяца2с2012" type="pfr:ТипРасчетПоНачисленнымИуплаченным2012"/>
+	        <xsd:element name="ПоследниеТриМесяца3с2012" type="pfr:ТипРасчетПоНачисленнымИуплаченным2012"/>
+	        <xsd:element name="ПоследниеТриМесяцаИтого2012" type="pfr:ТипРасчетПоНачисленнымИуплаченным2012"/>
+	    </xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="ТипНачисленоУплачено2013">
+	    <xsd:sequence>
+	        <xsd:element name="ВсегоСначалаРасчетногоПериода2013" type="pfr:ТипРасчетПоНачисленнымИуплаченным2013"/>
+	        <xsd:element name="ПоследниеТриМесяца1с2013" type="pfr:ТипРасчетПоНачисленнымИуплаченным2013"/>
+	        <xsd:element name="ПоследниеТриМесяца2с2013" type="pfr:ТипРасчетПоНачисленнымИуплаченным2013"/>
+	        <xsd:element name="ПоследниеТриМесяца3с2013" type="pfr:ТипРасчетПоНачисленнымИуплаченным2013"/>
+	        <xsd:element name="ПоследниеТриМесяцаИтого2013" type="pfr:ТипРасчетПоНачисленнымИуплаченным2013"/>
+	    </xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="ТипРасчетПоТарифу">
+	    <xsd:sequence>
+	        <xsd:element name="ВыплатыИвознаграждения_Всего" type="pfr:ТипПоказательРасчетСумм" minOccurs="0"/>
+	        <xsd:element name="ВыплатыИвознаграждения_1966старше" type="pfr:ТипПоказательРасчетСумм" minOccurs="0"/>
+	        <xsd:element name="ВыплатыИвознаграждения_1967моложе" type="pfr:ТипПоказательРасчетСумм" minOccurs="0"/>
+	        <xsd:element name="НеПодлежащиеОбложениюПоЧ1Ч2Ст9_Всего" type="pfr:ТипПоказательРасчетСумм" minOccurs="0"/>
+	        <xsd:element name="НеПодлежащиеОбложениюПоЧ1Ч2Ст9_1966старше" type="pfr:ТипПоказательРасчетСумм" minOccurs="0"/>
+	        <xsd:element name="НеПодлежащиеОбложениюПоЧ1Ч2Ст9_1967моложе" type="pfr:ТипПоказательРасчетСумм" minOccurs="0"/>
+	        <xsd:element name="НеПодлежащиеОбложениюПоП1Ч3Ст9_1966старше" type="pfr:ТипПоказательРасчетСумм" minOccurs="0"/>
+	        <xsd:element name="НеПодлежащиеОбложениюПоП1Ч3Ст9_1967моложе" type="pfr:ТипПоказательРасчетСумм" minOccurs="0"/>
+	        <xsd:element name="НеПодлежащиеОбложениюПоСт8_Всего" type="pfr:ТипПоказательРасчетСумм" minOccurs="0"/>
+	        <xsd:element name="НеПодлежащиеОбложениюПоСт8_1966старше" type="pfr:ТипПоказательРасчетСумм" minOccurs="0"/>
+	        <xsd:element name="НеПодлежащиеОбложениюПоСт8_1967моложе" type="pfr:ТипПоказательРасчетСумм" minOccurs="0"/>
+	        <xsd:element name="БазаДляНачисленияСтраховыхВзносовНаОПС_1966старше" type="pfr:ТипПоказательРасчетСумм" minOccurs="0"/>
+	        <xsd:element name="БазаДляНачисленияСтраховыхВзносовНаОПС_1967моложе" type="pfr:ТипПоказательРасчетСумм" minOccurs="0"/>
+	        <xsd:element name="БазаДляНачисленияСтраховыхВзносовНаОМС" type="pfr:ТипПоказательРасчетСумм" minOccurs="0"/>
+	    </xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="ТипСведенияДляПримененияПониженногоТарифа">
+	    <xsd:sequence>
+	        <xsd:element name="КоличествоРаботниковИнвалидов" type="pfr:ТипЧислоЗЛ"/>
+	        <xsd:element name="СведенияОработникеИнвалиде" type="pfr:ТипСведенияОработникеИнвалиде" minOccurs="1" maxOccurs="unbounded"/>
+	        <xsd:element name="ИтогоВыплат" type="pfr:ТипРасчетСумм" minOccurs="1"/>
+	    </xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="ТипСведенияДляПримененияПониженногоТарифа2013">
+	    <xsd:sequence>
+	        <xsd:element name="КоличествоРаботниковИнвалидов" type="pfr:ТипЧислоЗЛ"/>
+	        <xsd:element name="СведенияОработникеИнвалиде" minOccurs="1" maxOccurs="unbounded">
+	            <xsd:complexType>
+	                <xsd:sequence>
+				        <xsd:element name="НомерПП" type="pfr:ТипНомерПоПорядку"/>
+				        <xsd:element name="ФИО" type="pfr:ТипФИО"/>
+						<xsd:element name="СведенияИзСправки" maxOccurs="5">
+						    <xsd:complexType>
+						        <xsd:sequence>
+							        <xsd:element name="ДатаВыдачиСправки" type="pfr:ТипДата"/>
+							        <xsd:element name="ДатаОкончанияДействия" type="pfr:ТипДатаН" minOccurs="0"/>
+						        </xsd:sequence>
+						    </xsd:complexType>
+						</xsd:element>
+				        <xsd:element name="СуммыВыплатИвознаграждений" type="pfr:ТипРасчетСумм"/>
+	                </xsd:sequence>
+	            </xsd:complexType>
+	        </xsd:element>
+	        <xsd:element name="ИтогоВыплат" type="pfr:ТипРасчетСумм" minOccurs="1"/>
+	    </xsd:sequence>
+	</xsd:complexType>
+	<xsd:simpleType name="ТипНомерПоПорядку">
+	    <xsd:restriction base="xsd:unsignedLong">
+	        <xsd:totalDigits value="6"/>
+	        <xsd:maxInclusive value="999999"/>
+	        <xsd:minInclusive value="1"/>
+	    </xsd:restriction>
+	</xsd:simpleType>
+	<xsd:complexType name="ТипСведенияОработникеИнвалиде">
+	    <xsd:sequence>
+	        <xsd:element name="НомерПП" type="pfr:ТипНомерПоПорядку"/>
+	        <xsd:element name="ФИО" type="pfr:ТипФИО"/>
+	        <xsd:element name="ДатаВыдачиСправки" type="pfr:ТипДата"/>
+	        <xsd:element name="ДатаОкончанияДействия" type="pfr:ТипДатаН" minOccurs="0"/>
+	        <xsd:element name="СуммыВыплатИвознаграждений" type="pfr:ТипРасчетСумм"/>
+	    </xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="ТипДляОбщественныхОрганизацийИнвалидов">
+	    <xsd:sequence>
+	        <xsd:element name="ЧисленностьЧленовОрганизации" type="pfr:ТипПоказательЧисленность"/>
+	        <xsd:element name="ЧисленностьИнвалидов" type="pfr:ТипПоказательЧисленность"/>
+	        <xsd:element name="УдельныйВесЧисленности" type="pfr:ТипПоказательУдельныйВес"/>
+	    </xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="ТипДляОрганизацийУставныйКапиталСостоитИзВкладовОбщОргИнвалидов">
+	    <xsd:sequence>
+	        <xsd:element name="СреднесписочнаяЧисленность" type="pfr:ТипПоказательЧисленность"/>
+	        <xsd:element name="СреднесписочнаяЧисленностьИнвалидов" type="pfr:ТипПоказательЧисленность"/>
+	        <xsd:element name="УдельныйВесЧисленности" type="pfr:ТипПоказательУдельныйВес"/>
+	        <xsd:element name="ФондОплатыТруда" type="pfr:ТипПоказательРасчетСумм"/>
+	        <xsd:element name="ЗарплатаИнвалидов" type="pfr:ТипПоказательРасчетСумм"/>
+	        <xsd:element name="УдельныйВесЗарплатыИнвалидов" type="pfr:ТипПоказательУдельныйВес"/>
+	    </xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="ТипДляОрганизацийИТ">
+		<xsd:sequence>
+			<xsd:element name="СуммаДоходовПоНКвсего" type="pfr:ТипСуммаДоходовПоИтогамПериодов"/>
+			<xsd:element name="СуммаДоходовИТизНих" type="pfr:ТипСуммаДоходовПоИтогамПериодов"/>
+			<xsd:element name="ДоляДоходовИТ" type="pfr:ТипДоляДоходовПоИтогамПериодов"/>
+			<xsd:element name="ЧисленностьРаботниковИТ" type="pfr:ТипЧисленностьРаботниковПоИтогамПериодов"/>
+			<xsd:element name="СведенияОвыпискеИзРеестраИТорганизаций" type="pfr:ТипСведенияИзРеестра"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="ТипДляОрганизацийСМИ">
+		<xsd:sequence>
+			<xsd:element name="СведенияПоВидуДеятельности" maxOccurs="unbounded">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="НомерПП" type="pfr:ТипНомерПоПорядку"/>
+						<xsd:element name="НаименованиеВидаЭД">
+							<xsd:simpleType>
+								<xsd:restriction base="xsd:normalizedString">
+									<xsd:maxLength value="250"/>
+									<xsd:minLength value="1"/>
+								</xsd:restriction>
+							</xsd:simpleType>
+						</xsd:element>
+						<xsd:element name="КодПоОКВЭД" type="pfr:ТипКодПоОКВЭД"/>
+						<xsd:element name="ДоходыПоВидуЭД" type="pfr:ТипДеньги"/>
+						<xsd:element name="ДоляДохода" type="pfr:ТипДоляДохода"/>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="ИтогоПоВсемВидамДеятельности" type="pfr:ТипДеньги"/>
+			<xsd:element name="СведенияИзРеестраСМИ" type="pfr:ТипСведенияИзРеестра"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="ТипДляНекоммерческихОрганизацийПрименяющихУСН">
+		<xsd:sequence>
+			<xsd:element name="СуммаДоходовВсего" type="pfr:ТипСуммаДоходовПоИтогамПериодов"/>
+			<xsd:element name="СуммаДоходовВвидеЦелевыхПоступлений" type="pfr:ТипСуммаДоходовПоИтогамПериодов"/>
+			<xsd:element name="СуммаДоходовВвидеГрантов" type="pfr:ТипСуммаДоходовПоИтогамПериодов"/>
+			<xsd:element name="СуммаДоходовОтОсуществленияОпределенныхВЭД" type="pfr:ТипСуммаДоходовПоИтогамПериодов"/>
+			<xsd:element name="ДоляДоходов" type="pfr:ТипДоляДоходовПоИтогамПериодов"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="ТипДляОрганизацийОказывающихИнжиниринговыеУслуги">
+		<xsd:sequence>
+			<xsd:element name="СуммаДоходовПоНКвсего" type="pfr:ТипСуммаДоходовПоИтогамПериодов"/>
+			<xsd:element name="СуммаДоходовОтИнжинирингаИзНих" type="pfr:ТипСуммаДоходовПоИтогамПериодов"/>
+			<xsd:element name="ДоляДоходовИнжиниринг" type="pfr:ТипДоляДоходовПоИтогамПериодов"/>
+			<xsd:element name="СредняяЧисленностьРаботниковИнжиниринг" type="pfr:ТипЧисленностьРаботниковПоИтогамПериодов"/>
+			<xsd:element name="СведенияОполученииЗаключенияПоТВОЭЗ">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="КодСтроки" type="pfr:ТипКодСтроки"/>
+						<xsd:element name="ДатаПолученияПоложЗаключения" type="pfr:ТипДата"/>
+						<xsd:element name="НомерЗаключения" type="pfr:ТипНомер"/>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="ТипРасчетСоответствияУсловийНаПравоПримененияПониженногоТарифа">
+	    <xsd:sequence>
+	        <xsd:element name="ДляОбщественныхОрганизацийИнвалидов" type="pfr:ТипДляОбщественныхОрганизацийИнвалидов" minOccurs="0"/>
+	        <xsd:element name="ДляОрганизацийУставныйКапиталСостоитИзВкладовОбщОргИнвалидов" type="pfr:ТипДляОрганизацийУставныйКапиталСостоитИзВкладовОбщОргИнвалидов" minOccurs="0"/>
+	    </xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="ТипРасчетСоответствияУсловийНаПравоПримененияПониженногоТарифаПоСтатье57">
+	    <xsd:sequence>
+	        <xsd:element name="СуммаДоходаПоСтатье248НКвсего">
+	            <xsd:complexType>
+	                <xsd:sequence>
+	                    <xsd:element name="КодСтроки" type="pfr:ТипКодСтроки"/>
+	                    <xsd:element name="СуммаДохода" type="pfr:ТипДеньги"/>
+	                </xsd:sequence>
+	            </xsd:complexType>
+	        </xsd:element>
+	        <xsd:element name="СуммаДоходаПоСтатье57ИзНих">
+	            <xsd:complexType>
+	                <xsd:sequence>
+	                    <xsd:element name="КодСтроки" type="pfr:ТипКодСтроки"/>
+	                    <xsd:element name="СуммаДохода" type="pfr:ТипДеньги"/>
+	                </xsd:sequence>
+	            </xsd:complexType>
+	        </xsd:element>
+	        <xsd:element name="ДоляДоходаПоСтатье57">
+	            <xsd:complexType>
+	                <xsd:sequence>
+	                    <xsd:element name="КодСтроки" type="pfr:ТипКодСтроки"/>
+	                    <xsd:element name="ДоляДохода" type="pfr:ТипУдельныйВес"/>
+	                </xsd:sequence>
+	            </xsd:complexType>
+	        </xsd:element>
+	        <xsd:element name="СредняяЧисленностьРаботников">
+	            <xsd:complexType>
+	                <xsd:sequence>
+	                    <xsd:element name="КодСтроки" type="pfr:ТипКодСтроки"/>
+	                    <xsd:element name="КоличествоЗЛ" type="pfr:ТипЧислоЗЛ"/>
+	                </xsd:sequence>
+	            </xsd:complexType>
+	        </xsd:element>
+	        <xsd:element name="СведенияОвыпискеИзРеестраИТорганизаций" type="pfr:ТипСведенияИзРеестра">
+	        </xsd:element>
+	    </xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="ТипРасчетСоответствияУсловийНаПравоПримененияПонижТарифаОтдКатегориямиПлательщиковУСН">
+	    <xsd:sequence>
+	        <xsd:element name="СуммаДоходаПоСтатье346_15НКвсего">
+	            <xsd:complexType>
+	                <xsd:sequence>
+	                    <xsd:element name="КодСтроки" type="pfr:ТипКодСтроки"/>
+	                    <xsd:element name="СуммаДохода" type="pfr:ТипДеньги"/>
+	                </xsd:sequence>
+	            </xsd:complexType>
+	        </xsd:element>
+	        <xsd:element name="СуммаДоходаПоСтатье58ИзНих">
+	            <xsd:complexType>
+	                <xsd:sequence>
+	                    <xsd:element name="КодСтроки" type="pfr:ТипКодСтроки"/>
+	                    <xsd:element name="СуммаДохода" type="pfr:ТипДеньги"/>
+	                </xsd:sequence>
+	            </xsd:complexType>
+	        </xsd:element>
+	        <xsd:element name="ДоляДоходаПоСтатье58">
+	            <xsd:complexType>
+	                <xsd:sequence>
+	                    <xsd:element name="КодСтроки" type="pfr:ТипКодСтроки"/>
+	                    <xsd:element name="ДоляДохода" type="pfr:ТипУдельныйВес"/>
+	                </xsd:sequence>
+	            </xsd:complexType>
+	        </xsd:element>
+	    </xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="ТипПериодИндивидуальнойТрудовойДеятельности">
+	    <xsd:sequence>
+	        <xsd:element name="НомерПП" type="pfr:ТипНомерПоПорядку"/>
+	        <xsd:element name="ДатаНачалаПериода" type="pfr:ТипДата"/>
+	        <xsd:element name="ДатаКонцаПериода" type="pfr:ТипДата"/>
+	    </xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="ТипРасчетНачисленийСтраховыхВзносовЗаЧленаФХ">
+	    <xsd:sequence>
+	        <xsd:element name="НомерПП" type="pfr:ТипНомерПоПорядку"/>
+	        <xsd:element name="ФИО" type="pfr:ТипФИО"/>
+	        <xsd:element name="СтраховойНомер" type="pfr:ТипСтраховойНомер"/>
+	        <xsd:element name="ГодРождения">
+	            <xsd:simpleType>
+	                <xsd:restriction base="xsd:gYear">
+	                    <xsd:minInclusive value="1900"/>
+	                </xsd:restriction>
+	            </xsd:simpleType>
+	        </xsd:element>
+	        <xsd:element name="ДатаНачалаПериода" type="pfr:ТипДата"/>
+	        <xsd:element name="ДатаКонцаПериода" type="pfr:ТипДата"/>
+	        <xsd:element name="ОПСстраховаяЧасть" type="pfr:ТипДеньги"/>
+	        <xsd:element name="ОПСнакопительнаяЧасть" type="pfr:ТипДеньги"/>
+	        <xsd:element name="СтраховыеВзносыФФОМС" type="pfr:ТипДеньги"/>
+	        <xsd:element name="СтраховыеВзносыТФОМС" type="pfr:ТипДеньги"/>
+	    </xsd:sequence>
+	</xsd:complexType>
+
+	<xsd:complexType name="ТипСведенияОзадолженностиПоСтраховымВзносамНаОПСпоСостояниюНа31.12.2009">
+	    <xsd:sequence>
+	        <xsd:element name="ОстатокЗадолженностиНаНачалоРасчетногоПериода" type="pfr:ТипРасчетПоНачисленнымИуплаченнымЗадолженность" minOccurs="1"/>
+	        <xsd:element name="УплаченоВотчетномПериоде" type="pfr:ТипРасчетПоНачисленнымИуплаченнымЗадолженность" minOccurs="1"/>
+	        <xsd:element name="ОстатокЗадолженностиНаКонецРасчетногоПериода" type="pfr:ТипРасчетПоНачисленнымИуплаченнымЗадолженность" minOccurs="1"/>
+	    </xsd:sequence>
+	</xsd:complexType>
+
+	<xsd:simpleType name="ТипПрекращениеДеятельности">
+		<xsd:restriction base="xsd:normalizedString">
+			<xsd:enumeration value="Л"/>
+			<xsd:enumeration value=""/>
+			<xsd:maxLength value="1"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+
+	<xsd:simpleType name="ТипИННсимв">
+		<xsd:restriction base="xsd:normalizedString">
+			<xsd:pattern value="\d{10}--"/>
+			<xsd:pattern value="\d{12}"/>
+			<xsd:pattern value="\d{10}"/>
+			<xsd:minLength value="10"/>
+			<xsd:maxLength value="12"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+
+	<xsd:simpleType name="ТипКППсимв">
+		<xsd:restriction base="xsd:normalizedString">
+			<xsd:length value="9"/>
+			<xsd:pattern value="\d{9}"/>
+			<xsd:pattern value="---------"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+
+	<xsd:simpleType name="ТипОГРНсимв">
+		<xsd:restriction base="xsd:normalizedString">
+			<xsd:pattern value="\d{13}\-\-"/>
+			<xsd:pattern value="---------------"/>
+			<xsd:pattern value="\d{13}"/>
+			<xsd:pattern value="\d{15}"/>
+			<xsd:minLength value="13"/>
+			<xsd:maxLength value="15"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+
+	<xsd:simpleType name="ТипОГРНИПсимв">
+		<xsd:restriction base="xsd:normalizedString">
+			<xsd:length value="15"/>
+			<xsd:pattern value="\d{15}"/>
+			<xsd:pattern value="---------------"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:complexType name="ТипННсимв">
+		<xsd:sequence>
+			<xsd:element name="ИНН" type="pfr:ТипИННсимв"/>
+			<xsd:element name="КПП" type="pfr:ТипКППсимв"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="ТипСуммаДоходовПоИтогамПериодов">
+		<xsd:sequence>
+			<xsd:element name="КодСтроки" type="pfr:ТипКодСтроки"/>
+			<xsd:element name="СуммаДоходаПоПредшествующему" type="pfr:ТипДеньги"/>
+			<xsd:element name="СуммаДоходаПоТекущему" type="pfr:ТипДеньги"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="ТипДоляДоходовПоИтогамПериодов">
+		<xsd:sequence>
+			<xsd:element name="КодСтроки" type="pfr:ТипКодСтроки"/>
+			<xsd:element name="ДоляДоходаПоПредшествующему" type="pfr:ТипДоляДохода"/>
+			<xsd:element name="ДоляДоходаПоТекущему" type="pfr:ТипДоляДохода"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:simpleType name="ТипДоляДохода">
+		<xsd:restriction base="pfr:ТипУдельныйВес"/>
+	</xsd:simpleType>
+	<xsd:complexType name="ТипЧисленностьРаботниковПоИтогамПериодов">
+		<xsd:sequence>
+			<xsd:element name="КодСтроки" type="pfr:ТипКодСтроки"/>
+			<xsd:element name="КоличествоЗЛпоПредшествующему" type="pfr:ТипЧислоЗЛ"/>
+			<xsd:element name="КоличествоЗЛпоТекущему" type="pfr:ТипЧислоЗЛ"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="ТипСведенияИзРеестра">
+            <xsd:sequence>
+                <xsd:element name="КодСтроки" type="pfr:ТипКодСтроки"/>
+                <xsd:element name="ДатаЗаписиВреестре" type="pfr:ТипДата"/>
+                <xsd:element name="НомерЗаписиВреестре " type="pfr:ТипНомер"/>
+            </xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="ТипРасчетСуммДоначисленныхСтраховыхВзносов">
+	    <xsd:sequence>
+            <xsd:element name="ОПСстраховаяЧасть" type="pfr:ТипДеньги"/>
+            <xsd:element name="ОПСстраховаяЧастьСвышеПределаБазы" type="pfr:ТипДеньги"/>
+            <xsd:element name="ОПСнакопительнаяЧасть" type="pfr:ТипДеньги"/>
+            <xsd:element name="ОПСстраховаяЧастьПоДопТар1" type="pfr:ТипДеньги" minOccurs="0"/>
+            <xsd:element name="ОПСстраховаяЧастьПоДопТар2" type="pfr:ТипДеньги" minOccurs="0"/>
+            <xsd:element name="СтраховыеВзносыОМС" type="pfr:ТипДеньги"/>
+	    </xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="ТипРасчетСумм2013РСВ2">
+	    <xsd:sequence>
+            <xsd:element name="ОПСстраховаяЧасть" type="pfr:ТипДеньги"/>
+            <xsd:element name="ОПСнакопительнаяЧасть" type="pfr:ТипДеньги"/>
+            <xsd:element name="СтраховыеВзносыОМС" type="pfr:ТипДеньги"/>
+	    </xsd:sequence>
+	</xsd:complexType>
+
+</xsd:schema>
+

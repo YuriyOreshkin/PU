@@ -1,0 +1,774 @@
+<?xml version="1.0" encoding="Windows-1251"?>
+<xs:schema version="1.0" elementFormDefault="qualified"  xmlns:xs="http://www.w3.org/2001/XMLSchema">
+	<xs:annotation>
+		<xs:documentation xml:lang="ru">XML-подсхема для проверки документов - Типы данных для СЗВ-4</xs:documentation>
+	</xs:annotation>
+	<xs:include schemaLocation="../Типы.XSD"/>
+	<!--Тип Тариф -->
+	<xs:complexType name="ТипТариф">
+		<xs:sequence>
+			<xs:element name="КодКатегории" minOccurs="1">
+				<xs:simpleType>
+					<xs:restriction base="xs:normalizedString">
+						<xs:minLength value="1"/>
+						<xs:maxLength value="4"/>
+						<xs:enumeration value="НР"/>
+						<xs:enumeration value="СХ"/>
+						<xs:enumeration value="СДП"/>
+						<xs:enumeration value="ДП"/>
+						<xs:enumeration value="БЕЗР"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="КодДополнительногоТарифа" minOccurs="0">
+				<xs:simpleType>
+					<xs:restriction base="xs:normalizedString">
+						<xs:maxLength value="4"/>
+						<xs:enumeration value="АВИА"/>
+						<xs:enumeration value=""/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="НазваниеКатегории" minOccurs="0">
+				<xs:simpleType>
+					<xs:restriction base="xs:normalizedString">
+						<xs:maxLength value="20"/>
+						<xs:enumeration value="НАЕМ/РАБОТНИК"/>
+						<xs:enumeration value="С/Х ПРЕДПРИЯТИЕ"/>
+						<xs:enumeration value="С/Х ОРГАНИЗАЦИЯ"/>
+						<xs:enumeration value="СТАЖ/ДОБРОВ/ПРАВООТН"/>
+						<xs:enumeration value="ДОБРОВ/ПРАВООТН"/>
+						<xs:enumeration value="БЕЗРАБОТНЫЙ"/>
+						<xs:enumeration value=""/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="НазваниеДополнительногоТарифа" minOccurs="0">
+				<xs:simpleType>
+					<xs:restriction base="xs:normalizedString">
+						<xs:maxLength value="20"/>
+						<xs:enumeration value="ЧЛЕН ЛЭВС"/>
+						<xs:enumeration value=""/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+
+
+	<!-- Тип Взносы   -->
+	<xs:complexType name="ТипСтраховыеВзносы">
+		<xs:sequence maxOccurs="1" minOccurs="0">
+			<xs:element name="Страховые" type="ТипДеньги" minOccurs="0">
+			</xs:element>
+			<xs:element name="Накопительные" type="ТипДеньги" minOccurs="0">
+			</xs:element>
+			<xs:element name="Дополнительные" type="ТипДеньги" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<!-- Тип ВыработкаКалендарная  -->
+	<xs:complexType name="ТипВыработкаКалендарная">
+		<xs:sequence minOccurs="0">
+			<xs:element name="ВсеГоды" minOccurs="0" maxOccurs="1">
+				<xs:simpleType>
+					<xs:restriction base="xs:integer">
+						<xs:minInclusive value="0"/>
+						<xs:maxInclusive value="99"/>
+						<xs:totalDigits value="2"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="ВсеМесяцы" minOccurs="0">
+				<xs:simpleType>
+					<xs:restriction base="xs:integer">
+						<xs:minInclusive value="0"/>
+						<xs:maxInclusive value="12"/>
+						<xs:totalDigits value="2"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="ВсеДни" minOccurs="0">
+				<xs:simpleType>
+					<xs:restriction base="xs:integer">
+						<xs:minInclusive value="0"/>
+						<xs:maxInclusive value="29"/>
+						<xs:totalDigits value="2"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<!-- Тип ВыработкаКалендарная  -->
+	<xs:complexType name="ТипВыработкаКалендарнаяОдинГод">
+		<xs:sequence minOccurs="0">
+			<xs:element name="ВсеМесяцы" minOccurs="0">
+				<xs:simpleType>
+					<xs:restriction base="xs:integer">
+						<xs:minInclusive value="0"/>
+						<xs:maxInclusive value="12"/>
+						<xs:totalDigits value="2"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="ВсеДни" minOccurs="0">
+				<xs:simpleType>
+					<xs:restriction base="xs:integer">
+						<xs:minInclusive value="0"/>
+						<xs:maxInclusive value="29"/>
+						<xs:totalDigits value="2"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+
+	<!-- Тип ВыработкаВчасах  -->
+	<xs:complexType name="ТипВыработкаВчасах">
+		<xs:sequence>
+			<xs:element name="Часы" minOccurs="0">
+				<xs:simpleType>
+					<xs:restriction base="xs:integer">
+						<xs:minInclusive value="0"/>
+						<xs:totalDigits value="5"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="Минуты" minOccurs="0">
+				<xs:simpleType>
+					<xs:restriction base="xs:integer">
+						<xs:minInclusive value="0"/>
+						<xs:maxInclusive value="59"/>
+						<xs:totalDigits value="2"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+
+	<!-- Тип ТерриториальныеУсловия  -->
+	<xs:complexType name="ТипТерриториальныеУсловия">
+		<xs:sequence>
+			<xs:element name="ОснованиеТУ">
+				<xs:simpleType>
+					<xs:restriction base="xs:normalizedString">
+						<xs:maxLength value="3"/>
+						<xs:enumeration value="РКС"/>
+						<xs:enumeration value="МКС"/>
+						<xs:enumeration value="Ч31"/>
+						<xs:enumeration value="Ч33"/>
+						<xs:enumeration value="Ч34"/>
+						<xs:enumeration value="Ч35"/>
+						<xs:enumeration value="Ч36"/>
+						<xs:enumeration value=""/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="Коэффициент" minOccurs="0">
+				<xs:simpleType>
+					<xs:restriction base="xs:decimal">
+						<xs:fractionDigits value="2"/>
+						<xs:totalDigits value="3"/>
+						<xs:minInclusive value="0.00"/>
+						<xs:maxInclusive value="2.00"/>
+						<xs:pattern value="\d{1}\.\d{2}"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<!-- Тип ОсобыеУсловияТруда  -->
+	<xs:complexType name="ТипОсобыеУсловияТруда">
+		<xs:sequence>
+			<xs:element name="ОснованиеОУТ" minOccurs="0">
+				<xs:simpleType>
+					<xs:restriction base="xs:normalizedString">
+						<xs:maxLength value="6"/>	
+						<xs:enumeration value="27-1"/>
+						<xs:enumeration value="27-2"/>
+						<xs:enumeration value="27-3"/>
+						<xs:enumeration value="27-4"/>
+						<xs:enumeration value="27-5"/>
+						<xs:enumeration value="27-6"/>
+						<xs:enumeration value="27-7"/>
+						<xs:enumeration value="27-8"/>
+						<xs:enumeration value="27-9"/>
+						<xs:enumeration value="27-10"/>
+						<xs:enumeration value="28-ОС"/>
+						<xs:enumeration value="28-ПЖ"/>
+						<xs:enumeration value="28-СЕВ"/>
+						<xs:enumeration value=""/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="ПозицияСписка" minOccurs="0">
+				<xs:simpleType>
+					<xs:restriction base="xs:normalizedString">
+						<xs:maxLength value="20"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+
+	
+	<!-- Тип ИсчисляемыйСтаж  -->
+	<xs:complexType name="ТипИсчисляемыйСтаж">
+		<xs:sequence>
+			<xs:element name="ОснованиеИС" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Основание ИС</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:normalizedString">
+						<xs:maxLength value="7"/>
+						<xs:enumeration value="СЕЗОН"/>
+						<xs:enumeration value="УИК104"/>
+						<xs:enumeration value="ВОДОЛАЗ"/>
+						<xs:enumeration value="ЛЕПРО"/>
+
+						<xs:enumeration value="ИТК38"/>
+						<xs:enumeration value="ПОЛЕ"/>
+
+						<xs:enumeration value=""/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:choice>
+				<xs:element name="ВыработкаВчасах" type="ТипВыработкаВчасах" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Выработка в часах</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="ВыработкаКалендарная" type="ТипВыработкаКалендарная" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Выработка календарная</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+			</xs:choice>
+		</xs:sequence>
+	</xs:complexType>
+	<!-- Тип ТипИсчисляемыйСтаж Один Год  -->
+	<xs:complexType name="ТипИсчисляемыйСтажОдинГод">
+		<xs:sequence>
+			<xs:element name="ОснованиеИС" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Основание ИС</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:normalizedString">
+						<xs:maxLength value="7"/>
+						<xs:enumeration value="СЕЗОН"/>
+						<xs:enumeration value="УИК104"/>
+						<xs:enumeration value="ВОДОЛАЗ"/>
+						<xs:enumeration value="ЛЕПРО"/>
+
+						<xs:enumeration value="ИТК38"/>
+						<xs:enumeration value="ПОЛЕ"/>
+
+						<xs:enumeration value=""/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:choice>
+				<xs:element name="ВыработкаВчасах" type="ТипВыработкаВчасах" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Выработка в часах</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="ВыработкаКалендарная" type="ТипВыработкаКалендарнаяОдинГод" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Выработка календарная (один год)</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+			</xs:choice>
+		</xs:sequence>
+	</xs:complexType>
+	<!-- Тип ВыслугаЛет  -->
+	<xs:complexType name="ТипВыслугаЛет">
+		<xs:sequence>
+			<xs:element name="ОснованиеВЛ" minOccurs="0">
+				<xs:simpleType>
+					<xs:restriction base="xs:normalizedString">
+						<xs:maxLength value="8"/>
+						<xs:enumeration value="27-11ГР"/>
+						<xs:enumeration value="27-11ВП"/>
+						<xs:enumeration value="27-12"/>
+						<xs:enumeration value="28-СП"/>
+						<xs:enumeration value="28-ПД"/>
+						<xs:enumeration value="28-ПДРК"/>
+						<xs:enumeration value="28-ГД"/>
+						<xs:enumeration value="28-СМ"/>
+						<xs:enumeration value="28-ГДХР"/>
+						<xs:enumeration value="28-СМХР"/>
+
+						<xs:enumeration value="27-СП"/>
+						<xs:enumeration value="27-ПД"/>
+						<xs:enumeration value="27-ПДРК"/>
+						<xs:enumeration value="27-ГД"/>
+						<xs:enumeration value="27-СМ"/>
+						<xs:enumeration value="27-ГДХР"/>
+						<xs:enumeration value="27-СМХР"/>
+
+
+						<xs:enumeration value="ТВОРЧ15"/>
+						<xs:enumeration value="ТВОРЧ20"/>
+						<xs:enumeration value="ТВОРЧ25"/>
+						<xs:enumeration value="ТВОРЧ30"/>
+						<xs:enumeration value="САМОЛЕТ"/>
+						<xs:enumeration value="СПЕЦАВ"/>
+						<xs:enumeration value="СПАСАВ"/>
+						<xs:enumeration value="УЧЛЕТ"/>
+						<xs:enumeration value="ВЫСШПИЛ"/>
+						<xs:enumeration value="НОРМАПР"/>
+						<xs:enumeration value="НОРМСП"/>
+						<xs:enumeration value="РЕАКТИВН"/>
+						<xs:enumeration value="ЛЕТРАБ"/>
+						<xs:enumeration value="ЛЕТИСП"/>
+						<xs:enumeration value="ОПЫТИСП"/>
+						<xs:enumeration value="ИСПКЛС1"/>
+						<xs:enumeration value="ИТСИСП"/>
+						<xs:enumeration value="ИТСМАВ"/>
+						<xs:enumeration value="ИНСПЕКТ"/>
+						<xs:enumeration value="27-14"/>
+						<xs:enumeration value="27-15"/>
+
+						<xs:enumeration value=""/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:choice>
+				<xs:element name="ВыработкаВчасах" type="ТипВыработкаВчасах" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Выработка в часах</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="ВыработкаКалендарная" type="ТипВыработкаКалендарная" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Выработка календарная</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+			</xs:choice>
+			<xs:element name="КодИсчисления" minOccurs="0">
+				<xs:simpleType>
+					<xs:restriction base="xs:normalizedString">
+						<xs:enumeration value=""/>
+						<xs:enumeration value="463"/>
+						<xs:enumeration value="1067"/>
+						<xs:enumeration value="781"/>
+						<xs:enumeration value="464"/>
+						<xs:enumeration value="1066"/>
+						<xs:enumeration value="0"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="ДоляСтавки" minOccurs="0">
+				<xs:simpleType>
+					<xs:restriction base="xs:decimal">
+						<xs:minInclusive value="0.00"/>
+						<xs:maxInclusive value="2.00"/>
+						<xs:fractionDigits value="2"/>
+						<xs:totalDigits value="3"/>
+						<xs:pattern value="\d{1}\.\d{2}"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ТипВыслугаЛетОдинГод">
+		<xs:annotation>
+			<xs:documentation>Выслуга лет (один год)</xs:documentation>
+		</xs:annotation>
+
+		<xs:sequence>
+			<xs:element name="ОснованиеВЛ" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Основание ВЛ</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:normalizedString">
+						<xs:maxLength value="8"/>
+						<xs:enumeration value="27-11ГР"/>
+						<xs:enumeration value="27-11ВП"/>
+						<xs:enumeration value="27-12"/>
+						<xs:enumeration value="28-СП"/>
+						<xs:enumeration value="28-ПД"/>
+						<xs:enumeration value="28-ПДРК"/>
+						<xs:enumeration value="28-ГД"/>
+						<xs:enumeration value="28-СМ"/>
+						<xs:enumeration value="28-ГДХР"/>
+						<xs:enumeration value="28-СМХР"/>
+
+						<xs:enumeration value="27-СП"/>
+						<xs:enumeration value="27-ПД"/>
+						<xs:enumeration value="27-ПДРК"/>
+						<xs:enumeration value="27-ГД"/>
+						<xs:enumeration value="27-СМ"/>
+						<xs:enumeration value="27-ГДХР"/>
+						<xs:enumeration value="27-СМХР"/>
+
+
+						<xs:enumeration value="ТВОРЧ15"/>
+						<xs:enumeration value="ТВОРЧ20"/>
+						<xs:enumeration value="ТВОРЧ25"/>
+						<xs:enumeration value="ТВОРЧ30"/>
+						<xs:enumeration value="САМОЛЕТ"/>
+						<xs:enumeration value="СПЕЦАВ"/>
+						<xs:enumeration value="СПАСАВ"/>
+						<xs:enumeration value="УЧЛЕТ"/>
+						<xs:enumeration value="ВЫСШПИЛ"/>
+						<xs:enumeration value="НОРМАПР"/>
+						<xs:enumeration value="НОРМСП"/>
+						<xs:enumeration value="РЕАКТИВН"/>
+						<xs:enumeration value="ЛЕТРАБ"/>
+						<xs:enumeration value="ЛЕТИСП"/>
+						<xs:enumeration value="ОПЫТИСП"/>
+						<xs:enumeration value="ИСПКЛС1"/>
+						<xs:enumeration value="ИТСИСП"/>
+						<xs:enumeration value="ИТСМАВ"/>
+						<xs:enumeration value="ИНСПЕКТ"/>
+						<xs:enumeration value="27-14"/>
+						<xs:enumeration value="27-15"/>
+
+						<xs:enumeration value=""/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:choice>
+				<xs:element name="ВыработкаВчасах" type="ТипВыработкаВчасах" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Выработка в часах</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="ВыработкаКалендарная" type="ТипВыработкаКалендарнаяОдинГод" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Выработка календарная (один год)</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+			</xs:choice>
+			<xs:element name="ДоляСтавки" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Доля Ставки</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:decimal">
+						<xs:minInclusive value="0.00"/>
+						<xs:maxInclusive value="2.00"/>
+						<xs:fractionDigits value="2"/>
+						<xs:totalDigits value="3"/>
+						<xs:pattern value="\d{1}\.\d{2}"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+
+	<!-- Тип ОсобенностиУчета  -->
+	<xs:complexType name="ТипОсобенностиУчета">
+		<xs:annotation>
+			<xs:documentation>Особенности учета</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="ТерриториальныеУсловия" type="ТипТерриториальныеУсловия" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Территориальные условия</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ОсобыеУсловияТруда" type="ТипОсобыеУсловияТруда" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Особые условия труда</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ИсчисляемыйСтаж" type="ТипИсчисляемыйСтаж" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Исчисляемый стаж</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ДекретДети" minOccurs="0" type="ТипДекретДети">
+				<xs:annotation>
+					<xs:documentation>Декрет-Дети</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ВыслугаЛет" type="ТипВыслугаЛет" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Выслуга лет</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ПрофессияДолжность" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Профессия или должность</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="100"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="ОтметкаОценщика" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Отметка оценщика пенсионных прав. 
+«ПРНТ» (Период трудовой деятельно-сти принят), 
+«КОРР» (Период трудовой деятельности откорректирован), 
+«ИСКЛ» (Период трудовой деятельно-сти исключен)</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="4"/>
+						<xs:enumeration value="ПРНТ"/>
+						<xs:enumeration value="КОРР"/>
+						<xs:enumeration value="ИСКЛ"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<!-- Тип ОсобенностиУчета без оценки  -->
+	<xs:complexType name="ТипОсобенностиУчетаБезОценки">
+		<xs:annotation>
+			<xs:documentation>Особенности учета (без оценки)</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="ТерриториальныеУсловия" type="ТипТерриториальныеУсловия" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Территориальные условия</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ОсобыеУсловияТруда" type="ТипОсобыеУсловияТруда" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Особые условия труда</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ИсчисляемыйСтаж" type="ТипИсчисляемыйСтажОдинГод" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Исчисляемый стаж (один год)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ДекретДети" minOccurs="0" type="ТипДекретДети">
+				<xs:annotation>
+					<xs:documentation>Декрет-Дети</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ВыслугаЛет" type="ТипВыслугаЛетОдинГод" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Выслуга лет (один год)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:simpleType name="ТипТипСведений">
+		<xs:restriction base="xs:normalizedString">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="15"/>
+			<xs:enumeration value="ИСХОДНАЯ"/>
+			<xs:enumeration value="ПЕНСИОННАЯ"/>
+			<xs:enumeration value="КОРРЕКТИРУЮЩАЯ"/>
+			<xs:enumeration value="ОТМЕНЯЮЩАЯ"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="ТипВидКорректировки">
+		<xs:restriction base="xs:normalizedString">
+			<xs:maxLength value="20"/>
+			<xs:enumeration value="КОРРЕКТИРУЮЩАЯ"/>
+			<xs:enumeration value="ОТМЕНЯЮЩАЯ"/>
+			<xs:enumeration value=""/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="ТипДекретДети">
+		<xs:restriction base="xs:normalizedString">
+			<xs:enumeration value="ДЕКРЕТ"/>
+			<xs:enumeration value="ДЕТИ"/>
+			<xs:enumeration value="ДОГОВОР"/>
+			<xs:enumeration value="УВПЕРИОД"/>
+			<xs:enumeration value="ДЛОТПУСК"/>
+			<xs:enumeration value="АДМИНИСТ"/>
+			<xs:enumeration value="АДМИНИСТР"/>
+			<xs:enumeration value=""/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="ТипЗаработок">
+		<xs:sequence>
+			<xs:element name="ТипСтроки">
+				<xs:simpleType>
+					<xs:restriction base="xs:normalizedString">
+						<xs:enumeration value="ИТОГ"/>
+						<xs:enumeration value="МЕСЦ"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="Год" type="xs:gYear" minOccurs="0"/>
+			<xs:element name="Месяц" minOccurs="0">
+				<xs:simpleType>
+					<xs:restriction base="xs:unsignedLong">
+						<xs:minInclusive value="1"/>
+						<xs:maxInclusive value="12"/>
+						<xs:totalDigits value="2"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="НачисленоВсего" type="ТипДеньги" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="ТипВсеПериодыРаботы">
+		<xs:sequence maxOccurs="1">
+			<xs:element name="Количество" type="ТипКоличество" maxOccurs="1" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Количество</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ПериодРаботы" maxOccurs="99" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Период работы</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="ОсновнаяСтрока">
+							<xs:annotation>
+								<xs:documentation>Основная строка</xs:documentation>
+							</xs:annotation>
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element name="НомерСтроки">
+										<xs:annotation>
+											<xs:documentation>Номер строки</xs:documentation>
+										</xs:annotation>
+										<xs:simpleType>
+											<xs:restriction base="xs:integer">
+												<xs:totalDigits value="2"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+									<xs:element name="ДатаНачалаПериода" type="ТипДата">
+										<xs:annotation>
+											<xs:documentation>Дата начала периода</xs:documentation>
+										</xs:annotation>
+									</xs:element>
+									<xs:element name="ДатаКонцаПериода" type="ТипДата">
+										<xs:annotation>
+											<xs:documentation>Дата конца периода</xs:documentation>
+										</xs:annotation>
+									</xs:element>
+									<xs:element name="ОсобенностиУчета" type="ТипОсобенностиУчета" minOccurs="0">
+										<xs:annotation>
+											<xs:documentation>Особенности учета</xs:documentation>
+										</xs:annotation>
+									</xs:element>
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+						<xs:element name="ДополнительныеСтроки" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation>Дополнительные строки</xs:documentation>
+							</xs:annotation>
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element name="Количество">
+										<xs:annotation>
+											<xs:documentation>Количество</xs:documentation>
+										</xs:annotation>
+										<xs:simpleType>
+											<xs:restriction base="ТипКоличество">
+												<xs:minInclusive value="1"/>
+												<xs:maxInclusive value="12"/>
+												<xs:totalDigits value="2"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+									<xs:element name="ОсобенностиУчета" type="ТипОсобенностиУчета" maxOccurs="10">
+										<xs:annotation>
+											<xs:documentation>Особенности учета</xs:documentation>
+										</xs:annotation>
+									</xs:element>
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="ТипОтчетныйПериод">
+		<xs:sequence>
+			<xs:element name="Квартал">
+				<xs:simpleType>
+					<xs:restriction base="xs:integer">
+						<xs:totalDigits value="1"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="Год">
+				<xs:simpleType>
+					<xs:restriction base="xs:gYear">
+						<xs:minInclusive value="1996"/>
+						<xs:maxInclusive value="2001"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="Название" minOccurs="0" type="Тип30Н"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="ТипОтчетныйПериодАДВ-3">
+		<xs:sequence>
+			<xs:element name="Квартал">
+				<xs:simpleType>
+					<xs:restriction base="xs:integer">
+						<xs:totalDigits value="1"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="Год" type="xs:gYear"/>				
+			<xs:element name="Название" minOccurs="0" type="Тип30Н"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="ТипДоговор">
+		<xs:sequence>
+			<xs:element name="Номер" type="ТипНомер" minOccurs="0"/>
+			<xs:element name="ДатаЗаключения" type="ТипДата"/>
+			<xs:element name="КодВидаВыплаты">
+				<xs:simpleType>
+					<xs:restriction base="xs:normalizedString">
+						<xs:maxLength value="6"/>
+						<xs:enumeration value="АВАНС"/>
+						<xs:enumeration value="ПРОЧЕЕ"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="НазваниеВидаВыплаты" minOccurs="0">
+				<xs:simpleType>
+					<xs:restriction base="xs:normalizedString">
+						<xs:maxLength value="20"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+
+
+	<xs:complexType name="ТипСтрокаЗаработка">
+		<xs:sequence>
+			<xs:element name="ТипСтроки">
+				<xs:simpleType>
+					<xs:restriction base="xs:normalizedString">
+						<xs:enumeration value="МЕСЯЦ"/>
+						<xs:enumeration value="ИТОГО"/>
+						<xs:maxLength value="5"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="Месяц" minOccurs="0">
+				<xs:simpleType>
+					<xs:restriction base="xs:integer">
+						<xs:minInclusive value="1"/>
+						<xs:maxInclusive value="12"/>
+						<xs:totalDigits value="2"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="НачисленоВсего" type="ТипДеньги"/>
+			<xs:element name="НачисленоПоБольничным" type="ТипДеньги" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>

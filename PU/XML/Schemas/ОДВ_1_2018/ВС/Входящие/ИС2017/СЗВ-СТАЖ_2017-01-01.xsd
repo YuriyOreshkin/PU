@@ -1,0 +1,250 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema version="2.0" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://пф.рф/ВС/СЗВ-СТАЖ/2017-01-01" xmlns:УТ="http://пф.рф/унифицированныеТипы/2014-01-01" xmlns:АФ="http://пф.рф/АФ" xmlns:АФ2="http://пф.рф/АФ/2016-06-21"
+           targetNamespace="http://пф.рф/ВС/СЗВ-СТАЖ/2017-01-01" xmlns:ВС="http://пф.рф/ВС/типы/2014-01-01" xmlns:РВ="http://пф.рф/ВС/типыРВ/2014-01-01" xmlns:ИС="http://пф.рф/ВС/типыИС/2017-01-01" elementFormDefault="qualified">
+
+	<xs:import namespace="http://пф.рф/унифицированныеТипы/2014-01-01" schemaLocation="../../../УнифТипы_2014-01-01.xsd"/>
+	<xs:import namespace="http://пф.рф/ВС/типы/2014-01-01" schemaLocation="../../ТипыВС_2014-01-01.xsd"/>
+	<xs:import namespace="http://пф.рф/ВС/типыРВ/2014-01-01" schemaLocation="../РСВ/ТипыРВ_2014-01-01.xsd"/>
+	<xs:import namespace="http://пф.рф/ВС/типыИС/2017-01-01" schemaLocation="ТипыИС_2017-01-01.xsd"/>
+	<xs:import namespace="http://пф.рф/АФ" schemaLocation="../../../ТипыОбщие.xsd"/>
+	<xs:import namespace="http://пф.рф/АФ/2016-06-21" schemaLocation="../../../ТипыАФ_2016-06-21.xsd"/>
+	<xs:import namespace="http://www.w3.org/2000/09/xmldsig#" schemaLocation="../../../xmldsig_core_schema.xsd"/>
+
+	<xs:annotation>
+		<xs:documentation>СЗВ-СТАЖ Сведения о страховом стаже застрахованного лица</xs:documentation>
+	</xs:annotation>
+
+	<xs:element name="ЭДПФР">
+		<xs:annotation>
+			<xs:documentation>Корневой элемент. Электронный документ СЗВ-СТАЖ (Сведения о страховом стаже застрахованного лица). Содержит сведения самого документа и служебную информацию об электронном документе.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="ЭлектроннаяПодпись" xmlns="http://www.w3.org/2000/09/xmldsig#" type="SignatureType" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Электронная подпись (ЭП). Электронный документ, для которого законодательством Российской Федерации предусмотрена юридически значимая подпись, должен быть подписан усиленной квалифицированной электронной подписью в соответствии со спецификацией XMLDSig.</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="СлужебнаяИнформация" type="АФ2:ТипСлужебнаяИнформация">
+					<xs:annotation>
+						<xs:documentation>Служебная информация об электронном документе.</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="ОДВ-1">
+					<xs:annotation>
+						<xs:documentation>Сведения по страхователю, передаваемые в ПФР для ведения индивидуального (персонифицированного) учета (ОДВ-1).</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="Тип">
+								<xs:annotation>
+									<xs:documentation>Тип сведений ОДВ-1. Возможные значения: 
+									0 - исходная, 
+									1 - корректирующая,
+									2 - отменяющая.</xs:documentation>
+								</xs:annotation>
+								<xs:simpleType>
+									<xs:restriction base="xs:integer">
+										<xs:enumeration value="0"/>
+									</xs:restriction>
+								</xs:simpleType>
+							</xs:element>
+							<xs:element name="Страхователь" type="ИС:ТипСтраховательИС">
+								<xs:annotation>
+									<xs:documentation>Данные о страхователе (плательщике страховых взносов).</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="ОтчетныйПериод" type="ОтчетныйПериодСЗВ-СТАЖ">
+								<xs:annotation>
+									<xs:documentation>Отчетный период, за который представляются сведения.</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="КоличествоЗЛ" type="xs:positiveInteger">
+								<xs:annotation>
+									<xs:documentation>Количество застрахованных лиц, на которых представлены сведения СЗВ-СТАЖ, чел.</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="ОснованияДНП" type="ИС:ТипСведенияДНП2017" minOccurs="0" maxOccurs="unbounded">
+								<xs:annotation>
+									<xs:documentation>Блок сведений об основании для отражения данных о периодах работы застрахованного лица в условиях, дающих право на досрочное назначение пенсии в соответствии со статьей 30 Федерального закона от 28.12.2013 № 400–ФЗ «О страховых пенсиях».</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="Руководитель">
+								<xs:annotation>
+									<xs:documentation>Должность и ФИО руководителя организации-страхователя.</xs:documentation>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="Должность" type="УТ:ТипНепустаяСтрока">
+											<xs:annotation>
+												<xs:documentation>Наименование должности руководителя организации-страхователя.</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="ФИО" type="УТ:ТипФИО">
+											<xs:annotation>
+												<xs:documentation>ФИО руководителя организации-страхователя.</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="ДатаЗаполнения" type="xs:date">
+								<xs:annotation>
+									<xs:documentation>Дата заполнения документа.</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="СЗВ-СТАЖ">
+					<xs:annotation>
+						<xs:documentation>Сведения о страховом стаже застрахованного лица</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="Страхователь" type="ИС:ТипСтраховательИС">
+								<xs:annotation>
+									<xs:documentation>Данные о страхователе (плательщике страховых взносов).</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="Тип">
+								<xs:annotation>
+									<xs:documentation>Тип сведений. Возможные значения: 
+									0 - исходная, 
+									1 - дополняющая,
+									2 - назначение пенсии.</xs:documentation>
+								</xs:annotation>
+								<xs:simpleType>
+									<xs:restriction base="xs:integer">
+										<xs:enumeration value="0"/>
+										<xs:enumeration value="1"/>
+										<xs:enumeration value="2"/>
+									</xs:restriction>
+								</xs:simpleType>
+							</xs:element>
+							<xs:element name="ОтчетныйПериод" type="ОтчетныйПериодСЗВ-СТАЖ">
+								<xs:annotation>
+									<xs:documentation>Отчетный период, за который представляются сведения.</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="ЗЛ" maxOccurs="unbounded">
+								<xs:annotation>
+									<xs:documentation>Сведения о периодах работы по одному застрахованному лицу.</xs:documentation>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="ФИО" type="УТ:ТипФИО">
+											<xs:annotation>
+												<xs:documentation>Фамилия, имя, отчество застрахованного лица, на которого представляются данные, без сокращений, в соответствии с документом, удостоверяющим личность.</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="СНИЛС" type="УТ:ТипСтраховойНомер">
+											<xs:annotation>
+												<xs:documentation>Cтраховой номер индивидуального лицевого счета застрахованного лица в системе персонифицированного учета ПФР.</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="СтажевыйПериод" type="ИС:ТипСтажевыйПериод2017" maxOccurs="unbounded">
+											<xs:annotation>
+												<xs:documentation>Блок сведений о корректировке периодов работы застрахованного лица.</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="ДатаУвольнения" minOccurs="0">
+											<xs:annotation>
+												<xs:documentation>Сведения об увольнении застрахованного лица 31 декабря. Возможные варианты: либо «XXXX-12-31» (31 декабря), где ХХХХ - год отчетного периода, либо не заполняется</xs:documentation>
+											</xs:annotation>
+											<xs:simpleType>
+												<xs:restriction base="xs:date">
+													<xs:pattern value="2\d{3}-12-31"/>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:element>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="СВ" minOccurs="0">
+								<xs:annotation>
+									<xs:documentation>Сведения о начислении страховых взносов. Заполняется в случае если значение поля «Тип сведений» = 'Назначение пенсии'</xs:documentation>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="НачисленыНаОПС" type="xs:boolean" minOccurs="0">
+											<xs:annotation>
+												<xs:documentation>Сведения о начислении страховых взносов на обязательное пенсионное страхование за период, указанный в графе "Период работы". Заполняется в случае если значение поля «Тип сведений» = 'Назначение пенсии'. Возможные значения:
+												 1 - да,
+												 0 - нет.</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="НачисленыПоДТ" type="xs:boolean" minOccurs="0">
+											<xs:annotation>
+												<xs:documentation>Сведения о начислении страховых взносов по дополнительному тарифу за период, указанный в графе "Период работы". Заполняется в случае если значение поля «Тип сведений» = 'Назначение пенсии'. Возможные значения:
+												 1 - да,
+												 0 - нет.</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="Уплата" minOccurs="0" maxOccurs="unbounded">
+								<xs:annotation>
+									<xs:documentation>Блок сведений об уплаченных пенсионных взносах в соответствии с пенсионными договорами досрочного негосударственного пенсионного обеспечения. Заполняется в случае если значение поля «Тип сведений» = 'Назначение пенсии'</xs:documentation>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="Период" type="УТ:ТипВременнойПериод">
+											<xs:annotation>
+												<xs:documentation>Период, за который предоставляются сведений об уплате пенсионных взносов</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="Уплачено" type="xs:boolean">
+											<xs:annotation>
+												<xs:documentation>Отметка об уплате. Возможные значения:
+												 1 - да,
+												 0 - нет.</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+					<xs:unique name="УникальныйСНИЛС">
+						<xs:annotation>
+							<xs:documentation>СНИЛС в блоке "Сведения о периодах работы по одному застрахованному лицу" (блок "ЗЛ") не должен повторяться</xs:documentation>
+						</xs:annotation>
+						<xs:selector xpath="ЗЛ"/>
+						<xs:field xpath="СНИЛС"/>
+					</xs:unique>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:complexType name="ОтчетныйПериодСЗВ-СТАЖ">
+		<xs:annotation>
+			<xs:documentation>Отчетный период, за который представляются сведения СЗВ-СТАЖ.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Код" default="0">
+				<xs:annotation>
+					<xs:documentation>Код отчетного периода. Допустимое значение:
+												0 - год</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:integer">
+						<xs:enumeration value="0"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="Год">
+				<xs:annotation>
+					<xs:documentation>Год отчетного периода</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:gYear">
+						<xs:minInclusive value="2017"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>

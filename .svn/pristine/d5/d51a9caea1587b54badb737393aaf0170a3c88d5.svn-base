@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="Windows-1251"?>
+<xsd:schema xmlns="http://schema.pfr.ru" xmlns:pfr="http://schema.pfr.ru" xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="http://schema.pfr.ru" elementFormDefault="qualified" version="2.01 от 07.07.2004">
+	<xsd:annotation>
+		<xsd:documentation xml:lang="ru">XML-подсхема для проверки Описи</xsd:documentation>
+	</xsd:annotation>
+	<xsd:include schemaLocation="Типы.XSD"/>
+	<xsd:include schemaLocation="ТипыИНДС.XSD" />
+	<xsd:include schemaLocation="ТипыСПВ.XSD" />
+
+	<xsd:element name="СВЕДЕНИЯ_ПО_ПАЧКЕ_ДОКУМЕНТОВ_РАЗДЕЛА_6">
+	    <xsd:complexType>
+	        <xsd:sequence>
+	            <xsd:element name="НомерВпачке">
+	                <xsd:simpleType>
+	                    <xsd:restriction base="xsd:integer">
+	                        <xsd:enumeration value="1"/>
+	                        <xsd:totalDigits value="1"/>
+	                    </xsd:restriction>
+	                </xsd:simpleType>
+	            </xsd:element>
+	            <xsd:any namespace="##any" processContents="skip"/>
+	            <xsd:any namespace="##any" processContents="skip"/>
+	            <xsd:any namespace="##any" processContents="skip"/>
+	            <xsd:element name="СоставДокументов">
+	                <xsd:complexType>
+	                    <xsd:sequence>
+	                        <xsd:element name="Количество">
+	                            <xsd:simpleType>
+	                                <xsd:restriction base="xsd:integer">
+	                                    <xsd:enumeration value="1"/>
+	                                </xsd:restriction>
+	                            </xsd:simpleType>
+	                        </xsd:element>
+	                        <xsd:element name="НаличиеДокументов">
+	                            <xsd:complexType>
+	                                <xsd:sequence>
+	                                    <xsd:element name="ТипДокумента">
+	                                        <xsd:simpleType>
+	                                            <xsd:restriction base="xsd:string">
+	                                                <xsd:enumeration value="СВЕДЕНИЯ_О_СУММЕ_ВЫПЛАТ_И_СТРАХОВОМ_СТАЖЕ_ЗЛ"/>
+	                                            </xsd:restriction>
+	                                        </xsd:simpleType>
+	                                    </xsd:element>
+	                                    <xsd:element name="Количество">
+	                                        <xsd:simpleType>
+	                                            <xsd:restriction base="xsd:positiveInteger">
+	                                                <xsd:maxInclusive value="200"/>
+	                                            </xsd:restriction>
+	                                        </xsd:simpleType>
+	                                    </xsd:element>
+	                                </xsd:sequence>
+	                                <xsd:attribute name="Вариант" type="xsd:string"/>
+	                            </xsd:complexType>
+	                        </xsd:element>
+	                    </xsd:sequence>
+	                </xsd:complexType>
+	            </xsd:element>
+	            <xsd:element name="ДатаСоставления" type="ТипДата"/>
+	            <xsd:element name="ТипСведений" type="pfr:ТипТипСведенийСПВ">
+	            </xsd:element>
+	            <xsd:element name="ОтчетныйПериод" type="pfr:ТипОтчетныйПериод14"/>
+	            <xsd:element name="КорректируемыйОтчетныйПериод" type="pfr:ТипОтчетныйПериод14" minOccurs="0"/>
+	            <xsd:element name="БазаДляНачисленияСтраховыхВзносовНеПревышающаяПредельную" minOccurs="0" type="pfr:ТипДеньги"/>
+	            <xsd:element name="СтраховыхВзносовОПС" minOccurs="0" type="pfr:ТипДеньги"/>
+				
+	        </xsd:sequence>
+	    </xsd:complexType>
+	</xsd:element>
+</xsd:schema>

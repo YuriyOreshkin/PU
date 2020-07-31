@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema version="2.0" xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" xmlns="http://пф.рф/ВС/ФС/УУОН-ПУ/2017-05-21" xmlns:УТ="http://пф.рф/унифицированныеТипы/2014-01-01" xmlns:АФ="http://пф.рф/АФ"
+           xmlns:ФС="http://пф.рф/ВС/ФС/типы/2017-05-21" targetNamespace="http://пф.рф/ВС/ФС/УУОН-ПУ/2017-05-21">
+
+	<xs:import namespace="http://пф.рф/унифицированныеТипы/2014-01-01" schemaLocation="../../../УнифТипы_2014-01-01.xsd"/>
+	<xs:import namespace="http://пф.рф/АФ" schemaLocation="../../../ТипыОбщие.xsd"/>
+	<xs:import namespace="http://пф.рф/ВС/ФС/типы/2017-05-21" schemaLocation="ТипыФС_2017-05-21.xsd"/>
+	<xs:import namespace="http://www.w3.org/2000/09/xmldsig#" schemaLocation="../../../xmldsig_core_schema.xsd"/>
+
+	<xs:annotation>
+		<xs:documentation>Уведомление об устранении ошибок и (или) несоответствий между представленными страхователем сведениями и сведениями, имеющимися у ПФР</xs:documentation>
+	</xs:annotation>
+
+	<xs:element name="ЭДПФР">
+		<xs:annotation>
+			<xs:documentation>Корневой элемент. Электронный документ УУОН-ПУ (Уведомление об устранении ошибок и (или) несоответствий между представленными страхователем сведениями и сведениями, имеющимися у ПФР). Содержит сведения самого документа и служебную информацию об электронном документе.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="УУОН-ПУ">
+					<xs:annotation>
+						<xs:documentation>Уведомление об устранении ошибок и (или) несоответствий между представленными страхователем сведениями и сведениями, имеющимися у ПФР</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="ТерриториальныйОрганПФР" type="ФС:ТипСведенияТОПФР">
+								<xs:annotation>
+									<xs:documentation>Сведения о территориальном органе ПФР, который направляет требование</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="Страхователь" type="ФС:ТипСтрахователь">
+								<xs:annotation>
+									<xs:documentation>Данные юридическом или физическом лице (страхователе), которому направляется уведомление</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="ДатаПолучения" type="xs:date" minOccurs="0">
+								<xs:annotation>
+									<xs:documentation>Дата получения уведомления страхователем или его уполномоченным представителем</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="Руководитель" type="УТ:ТипФИО" minOccurs="0">
+								<xs:annotation>
+									<xs:documentation>ФИО руководителя юридического лица (обособленного подразделения), которому предъявляется требование</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="Представитель" type="УТ:ТипФИО" minOccurs="0">
+								<xs:annotation>
+									<xs:documentation>ФИО уполномоченного представителя индивидуального предпринимателя, физического лица</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="ДокументПодтверждающийПолномочия" type="УТ:ТипПодтверждающийДокумент" minOccurs="0">
+								<xs:annotation>
+									<xs:documentation>Документ, подтверждающий полномочия представителя. Указываются наименование и иные реквизиты документа, подтверждающего полномочия представителя</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="ДатаФормирования" type="xs:date">
+								<xs:annotation>
+									<xs:documentation>Дата формирования уведомления</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="ЭлектроннаяПодпись" xmlns="http://www.w3.org/2000/09/xmldsig#" type="SignatureType" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Электронная подпись (ЭП) в соответствии со спецификацией XMLDsig</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="СлужебнаяИнформация" type="АФ:ТипСлужебнаяИнформация">
+					<xs:annotation>
+						<xs:documentation>Служебная информация об электронном документе</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

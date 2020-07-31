@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="Windows-1251"?>
+<xsd:schema xmlns="http://schema.pfr.ru" xmlns:pfr="http://schema.pfr.ru" xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="http://schema.pfr.ru" elementFormDefault="qualified" version="2.01 от 07.07.2004">
+	<xsd:annotation>
+		<xsd:documentation xml:lang="ru">XML-подсхема для проверки входящих документов</xsd:documentation>
+	</xsd:annotation>
+	<xsd:include schemaLocation="ТипыРСВ2014.XSD" />
+	<xsd:element name="РАСЧЕТ_ПО_СТРАХОВЫМ_ВЗНОСАМ_НА_ОПС_И_ОМС_ПЛАТЕЛЬЩИКАМИ_ПРОИЗВОДЯЩИМИ_ВЫПЛАТЫ_ФЛ_2014" type="pfr:ТипРАСЧЕТ_ПО_СТРАХОВЫМ_ВЗНОСАМ_НА_ОПС_И_ОМС_ПЛАТЕЛЬЩИКАМИ_ПРОИЗВОДЯЩИМИ_ВЫПЛАТЫ_ФЛ_2014"/>
+</xsd:schema>

@@ -1,0 +1,127 @@
+<?xml version="1.0"?>
+<xs:schema version="1.0" targetNamespace="http://пф.рф/АФ" elementFormDefault="qualified" xmlns="http://пф.рф/АФ" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+	<xs:annotation>
+		<xs:documentation>Схема к листу изменений для конструктора Альбома форматов</xs:documentation>
+	</xs:annotation>
+	<xs:element name="ЛистИзменений">
+		<xs:annotation>
+			<xs:documentation>Корневой элемент листа изменений</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="Наименование" type="xs:string">
+					<xs:annotation>
+						<xs:documentation>Полное наименование листа изменений</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="Версии" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Список выпущенных версий</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="Версия" maxOccurs="unbounded">
+								<xs:annotation>
+									<xs:documentation>Версия АФ со списком изменений</xs:documentation>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="НаборыИзменений" minOccurs="0">
+											<xs:annotation>
+												<xs:documentation>Перечень наборов изменений, с которыми осуществлялись выпуски сервис-паков до релиза версии. Изменения указанные в этих наборах считаются относящимися к сервис-пакам предыдущей версии.</xs:documentation>
+											</xs:annotation>
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element name="НаборИзменений" maxOccurs="unbounded" type="ТипНаборИзменений">
+														<xs:annotation>
+															<xs:documentation>Набор изменений в версии</xs:documentation>
+														</xs:annotation>
+													</xs:element>
+												</xs:sequence>
+											</xs:complexType>
+										</xs:element>
+										<xs:element name="НаборИзмененийРелиза" minOccurs="0" type="ТипНаборИзменений">
+											<xs:annotation>
+												<xs:documentation>Набор изменений релиза версии. Изменения указанные в этом наборе считаются относящимися к самой версии, а не к сервис-пакам предыдущей версии. Версия считается выпущенной и завершенной, если присутствует этот элемент.</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+									</xs:sequence>
+
+									<xs:attribute name="Номер" type="xs:string" use="required">
+										<xs:annotation>
+											<xs:documentation>Номер версии</xs:documentation>
+										</xs:annotation>
+									</xs:attribute>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:complexType name="ТипНаборИзменений">
+		<xs:annotation>
+			<xs:documentation>Набор изменений в версии</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Изменение" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Описание изменения</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="Описание" type="xs:string">
+							<xs:annotation>
+								<xs:documentation>Краткое описание внесенного изменения</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="СписокИО" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation>Список информационных обменов, к которым относится изменение. Элемент может быть пропущен, если изменения касаются всех информационных обменов или альбома форматов в целом</xs:documentation>
+							</xs:annotation>
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element name="ИО" maxOccurs="unbounded">
+										<xs:annotation>
+											<xs:documentation>Информационный обмен, к которому относится изменение. Если изменение касается отдельно взятых документов информационного обмена, то их следует конкретизировать во вложенных элементах "Документ"</xs:documentation>
+										</xs:annotation>
+										<xs:complexType>
+											<xs:sequence>
+												<xs:element name="Код" type="xs:string">
+													<xs:annotation>
+														<xs:documentation>Код информационного обмена</xs:documentation>
+													</xs:annotation>
+												</xs:element>
+												<xs:element name="СписокДокументов" minOccurs="0">
+													<xs:annotation>
+														<xs:documentation>Перечень документов информационного обмена, к которым относится изменение</xs:documentation>
+													</xs:annotation>
+													<xs:complexType>
+														<xs:sequence>
+															<xs:element name="Документ" maxOccurs="unbounded">
+																<xs:annotation>
+																	<xs:documentation>Код документа внутри информационного обмена, к которому относится изменение - указывается, если изменение касается конкретных документов, если изменение касается всего информационного обмена - элемент опускается</xs:documentation>
+																</xs:annotation>
+															</xs:element>
+														</xs:sequence>
+													</xs:complexType>
+												</xs:element>
+											</xs:sequence>
+										</xs:complexType>
+									</xs:element>
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="Дата" type="xs:date" use="required">
+			<xs:annotation>
+				<xs:documentation>Дата выпуска набора изменений. Если это дата выпуска релизного набора изменений, то она считается датой выпуска версии</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+</xs:schema>

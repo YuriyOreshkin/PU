@@ -1,0 +1,687 @@
+<?xml version="1.0" encoding="Windows-1251"?>
+<!-- edited with XMLSpy v2010 rel. 3 (http://www.altova.com) by MESMERiZE (MSM) -->
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	<!--                         ТИПЫ ДАННЫХ                                    -->
+	<!--Тип Дата -->
+	<xsd:simpleType name="ТипДата">
+		<xsd:restriction base="xsd:string">
+			<xsd:pattern value="\d{2}\.\d{2}\.\d{4}"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="ТипДатаН">
+		<xsd:restriction base="xsd:string">
+			<xsd:pattern value="\d{2}\.\d{2}\.\d{4}|"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="ТипМесяц">
+		<xsd:restriction base="xsd:integer">
+			<xsd:minInclusive value="1"/>
+			<xsd:maxInclusive value="12"/>
+			<xsd:totalDigits value="2"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<!--Тип Дата Особая-->
+	<xsd:complexType name="ТипДатаОсобая">
+		<xsd:sequence>
+			<xsd:element name="День" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:integer">
+						<xsd:minInclusive value="0"/>
+						<xsd:maxInclusive value="31"/>
+						<xsd:totalDigits value="2"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="Месяц" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:integer">
+						<xsd:minInclusive value="0"/>
+						<xsd:maxInclusive value="12"/>
+						<xsd:totalDigits value="2"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="Год" type="xsd:gYear"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<!--Тип ФИО -->
+	<xsd:complexType name="ТипФИО">
+		<xsd:sequence>
+			<xsd:element name="Фамилия" type="Тип40"/>
+			<xsd:element name="Имя" type="Тип40"/>
+			<xsd:element name="Отчество" type="Тип40Н" minOccurs="0"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="ТипФИОН">
+		<xsd:sequence>
+			<xsd:element name="Фамилия" type="Тип40Н" minOccurs="0"/>
+			<xsd:element name="Имя" type="Тип40Н" minOccurs="0"/>
+			<xsd:element name="Отчество" type="Тип40Н" minOccurs="0"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:simpleType name="ТипПол">
+		<xsd:restriction base="ТипПолН">
+			<xsd:minLength value="1"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="ТипПолН">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="МУЖСКОЙ"/>
+			<xsd:enumeration value="ЖЕНСКИЙ"/>
+			<xsd:enumeration value="М"/>
+			<xsd:enumeration value="Ж"/>
+			<xsd:enumeration value=""/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<!--Тип СтраховойНомер -->
+	<xsd:simpleType name="ТипСтраховойНомер">
+		<xsd:restriction base="ТипСтраховойНомерН">
+			<xsd:minLength value="14"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="ТипСтраховойНомерН">
+		<xsd:restriction base="xsd:string">
+			<xsd:pattern value="\d{3}-\d{3}-\d{3} \d{2}"/>
+			<xsd:pattern value="\d{3}-\d{3}-\d{3}-\d{2}|"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<!--Тип Регистрационный Номер -->
+	<xsd:simpleType name="ТипРегНомер">
+		<xsd:restriction base="xsd:string">
+			<xsd:pattern value="\d{3}-\d{3}-\d{6}"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<!--Тип КПП -->
+	<xsd:simpleType name="ТипКПП">
+		<xsd:restriction base="xsd:string">
+			<xsd:pattern value="\d{9}|\d{12}|"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<!--Тип НН налоговый номер -->
+	<xsd:complexType name="ТипНН">
+		<xsd:sequence>
+			<xsd:element name="ИНН" type="ТипИНН"/>
+			<xsd:element name="КПП" type="ТипКПП" minOccurs="0"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<!--Тип Номер документа в пачке 1..999 -->
+	<xsd:simpleType name="ТипНомерВПачке">
+		<xsd:restriction base="xsd:integer">
+			<xsd:minInclusive value="1"/>
+			<xsd:maxInclusive value="999"/>
+			<xsd:totalDigits value="3"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<!--Тип имя файла -->
+	<xsd:simpleType name="ТипИмяФайла">
+		<xsd:restriction base="xsd:string">
+			<xsd:pattern value="PFR-700-Y-\d{4}-ORG-\d{3}-\d{3}-\d{6}-DCK-\d{5}-DPT-\d{6}-DCK-\d{5}.XML"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<!--Тип дата для печати -->
+	<xsd:simpleType name="Тип21">
+		<xsd:restriction base="xsd:string">
+			<xsd:minLength value="8"/>
+			<xsd:maxLength value="21"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<!--Тип Наименование портфеля -->
+	<xsd:simpleType name="Тип100Н">
+		<xsd:restriction base="xsd:string">
+			<xsd:maxLength value="100"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="ТипНомер">
+		<xsd:restriction base="xsd:string">
+			<xsd:maxLength value="20"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="Тип200Н">
+		<xsd:restriction base="xsd:string">
+			<xsd:maxLength value="200"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<!--Тип Номер пачки -->
+	<xsd:simpleType name="ТипНомерПачки">
+		<xsd:restriction base="xsd:positiveInteger">
+			<xsd:maxInclusive value="99999"/>
+			<xsd:totalDigits value="5"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="Тип40">
+		<xsd:restriction base="xsd:string">
+			<xsd:minLength value="1"/>
+			<xsd:maxLength value="40"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="Тип30">
+		<xsd:restriction base="xsd:string">
+			<xsd:minLength value="1"/>
+			<xsd:maxLength value="30"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="Тип200">
+		<xsd:restriction base="xsd:string">
+			<xsd:minLength value="1"/>
+			<xsd:maxLength value="200"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="Тип40Н">
+		<xsd:restriction base="xsd:string">
+			<xsd:maxLength value="40"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="Тип30Н">
+		<xsd:restriction base="xsd:string">
+			<xsd:maxLength value="30"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<!-- Тип Подразделение -->
+	<xsd:complexType name="ТипПодразделение">
+		<xsd:sequence>
+			<xsd:element name="НаименованиеПодразделения">
+				<xsd:simpleType>
+					<xsd:restriction base="Тип100Н">
+						<xsd:maxLength value="100"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="НомерПодразделения">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:minLength value="1"/>
+						<xsd:maxLength value="6"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:element name="НаименованиеПодразделения">
+		<xsd:annotation>
+			<xsd:documentation>50 символов из за РМ Оператора</xsd:documentation>
+		</xsd:annotation>
+		<xsd:simpleType>
+			<xsd:restriction base="Тип100Н">
+				<xsd:maxLength value="50"/>
+			</xsd:restriction>
+		</xsd:simpleType>
+	</xsd:element>
+	<xsd:element name="НомерПодразделения">
+		<xsd:simpleType>
+			<xsd:restriction base="xsd:string">
+				<xsd:minLength value="1"/>
+				<xsd:maxLength value="6"/>
+			</xsd:restriction>
+		</xsd:simpleType>
+	</xsd:element>
+	<!--Тип Наименование организации -->
+	<xsd:simpleType name="ТипИмяОрг">
+		<xsd:restriction base="xsd:string">
+			<xsd:minLength value="1"/>
+			<xsd:maxLength value="100"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<!--Тип ИНН -->
+	<xsd:simpleType name="ТипИНН">
+		<xsd:restriction base="xsd:string">
+			<xsd:pattern value="\d{10}|\d{12}"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="ТипКодЕГРИП">
+		<xsd:restriction base="xsd:string">
+			<xsd:maxLength value="15"/>
+			<xsd:pattern value="\d{15}|0|"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="ТипКодЕГРЮЛ">
+		<xsd:restriction base="xsd:string">
+			<xsd:maxLength value="13"/>
+			<xsd:pattern value="\d{13}|0|"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<!-- Тип Организация -->
+	<xsd:complexType name="ТипОрганизация">
+		<xsd:sequence>
+			<xsd:element name="НалоговыйНомер" type="ТипНН" minOccurs="0"/>
+			<xsd:element name="КодЕГРИП" type="ТипКодЕГРИП" minOccurs="0"/>
+			<xsd:element name="КодЕГРЮЛ" type="ТипКодЕГРЮЛ" minOccurs="0"/>
+			<xsd:element name="Форма" type="Тип40Н" minOccurs="0"/>
+			<xsd:element name="НаименованиеОрганизации" type="Тип100Н" minOccurs="0"/>
+			<xsd:element name="НаименованиеКраткое" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="Тип100Н">
+						<xsd:maxLength value="50"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="РегистрационныйНомер" type="ТипРегНомер"/>
+			<xsd:element name="Подразделение" type="ТипПодразделение" minOccurs="0"/>
+			<xsd:element name="НомерЛицензии" type="xsd:string" minOccurs="0"/>
+			<xsd:element name="ДатаВыдачиЛицензии" type="ТипДата" minOccurs="0"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:element name="НалоговыйНомер" type="ТипНН"/>
+	<xsd:element name="КодЕГРИП" type="ТипКодЕГРИП"/>
+	<xsd:element name="КодЕГРЮЛ" type="ТипКодЕГРЮЛ"/>
+	<xsd:element name="Форма" type="Тип40Н"/>
+	<xsd:element name="НаименованиеОрганизации" type="Тип100Н"/>
+	<xsd:element name="НаименованиеКраткое" type="Тип100Н"/>
+	<xsd:element name="РегистрационныйНомер" type="ТипРегНомер"/>
+	<xsd:element name="Подразделение" type="ТипПодразделение"/>
+	<xsd:element name="НомерЛицензии" type="xsd:string"/>
+	<xsd:element name="ДатаВыдачиЛицензии" type="ТипДата"/>
+	<!--Тип Текст -->
+	<xsd:simpleType name="Тип100">
+		<xsd:restriction base="xsd:string">
+			<xsd:minLength value="1"/>
+			<xsd:maxLength value="100"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<!--Тип НомерПоЖурналу -->
+	<xsd:simpleType name="ТипНомерПоЖурналу">
+		<xsd:restriction base="xsd:string">
+			<xsd:minLength value="0"/>
+			<xsd:maxLength value="20"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<!--Тип НомерУведомления -->
+	<xsd:simpleType name="ТипНомерУведомления">
+		<xsd:restriction base="xsd:string">
+			<xsd:minLength value="1"/>
+			<xsd:maxLength value="20"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="ТипАнкетные">
+		<xsd:restriction base="Тип40Н">
+			<xsd:maxLength value="40"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:complexType name="ТипАдресОбщий">
+		<xsd:sequence>
+			<xsd:element name="ТипАдреса" type="ТипТипАдреса"/>
+			<xsd:element name="Индекс" type="ТипИндекс" minOccurs="0"/>
+			<xsd:choice>
+				<xsd:element name="РоссийскийАдрес">
+					<xsd:complexType>
+						<xsd:sequence>
+							<xsd:element name="СостояниеАдреса" minOccurs="0">
+								<xsd:simpleType>
+									<xsd:restriction base="xsd:string">
+										<xsd:maxLength value="20"/>
+										<xsd:enumeration value="ПРАВИЛЬНЫЙ"/>
+										<xsd:enumeration value="ОШИБОЧНЫЙ"/>
+									</xsd:restriction>
+								</xsd:simpleType>
+							</xsd:element>
+							<xsd:element name="Регион" type="ТипГеография" minOccurs="0"/>
+							<xsd:element name="Район" type="ТипГеография" minOccurs="0"/>
+							<xsd:element name="Город" type="ТипГеография" minOccurs="0"/>
+							<xsd:element name="НаселенныйПункт" type="ТипГеография" minOccurs="0"/>
+							<xsd:element name="Улица" type="ТипГеография" minOccurs="0"/>
+							<xsd:element name="Дом" type="ТипНумерация" minOccurs="0"/>
+							<xsd:element name="Корпус" type="ТипНумерация" minOccurs="0"/>
+							<xsd:element name="Квартира" type="ТипНумерация" minOccurs="0"/>
+						</xsd:sequence>
+					</xsd:complexType>
+				</xsd:element>
+				<xsd:element name="ИностранныйАдрес">
+					<xsd:complexType>
+						<xsd:sequence>
+							<xsd:element name="КодСтраны">
+								<xsd:simpleType>
+									<xsd:restriction base="xsd:positiveInteger">
+										<xsd:minInclusive value="1"/>
+										<xsd:maxInclusive value="999"/>
+									</xsd:restriction>
+								</xsd:simpleType>
+							</xsd:element>
+							<xsd:element name="НазваниеСтраны" type="Тип100"/>
+							<xsd:element name="Адрес" type="Тип200Н"/>
+						</xsd:sequence>
+					</xsd:complexType>
+				</xsd:element>
+				<xsd:element name="НеструктурированныйАдрес">
+					<xsd:complexType>
+						<xsd:sequence>
+							<xsd:element name="Адрес" type="Тип200Н"/>
+						</xsd:sequence>
+					</xsd:complexType>
+				</xsd:element>
+			</xsd:choice>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:simpleType name="ТипТипАдреса">
+		<xsd:restriction base="Тип40">
+			<xsd:enumeration value="РОССИЙСКИЙ"/>
+			<xsd:enumeration value="НЕСТРУКТУРИРОВАННЫЙ"/>
+			<xsd:enumeration value="ИНОСТРАННЫЙ"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="ТипИндекс">
+		<xsd:restriction base="xsd:string">
+			<xsd:pattern value="\d{6}"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:complexType name="ТипГеография">
+		<xsd:sequence>
+			<xsd:element name="ГеографическоеНазвание" type="Тип200Н" minOccurs="0"/>
+			<xsd:element name="Сокращение" type="Тип30Н" minOccurs="0"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="ТипНумерация">
+		<xsd:sequence>
+			<xsd:element name="Сокращение" type="Тип30Н" minOccurs="0"/>
+			<xsd:element name="Номер" type="ТипНомер" minOccurs="0"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="ТипМестоРождения">
+		<xsd:sequence>
+			<xsd:element name="ТипМестаРождения">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:minLength value="1"/>
+						<xsd:maxLength value="15"/>
+						<xsd:enumeration value="ОСОБОЕ"/>
+						<xsd:enumeration value="СТАНДАРТНОЕ"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="ГородРождения" type="Тип200Н" minOccurs="0"/>
+			<xsd:element name="РайонРождения" type="Тип200Н" minOccurs="0"/>
+			<xsd:element name="РегионРождения" type="Тип200Н" minOccurs="0"/>
+			<xsd:element name="СтранаРождения" type="Тип200Н" minOccurs="0"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="ТипДокумент">
+		<xsd:sequence>
+			<xsd:element name="НаименованиеУдостоверяющего">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:maxLength value="80"/>
+						<xsd:minLength value="1"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="СерияРимскиеЦифры" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:maxLength value="8"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="СерияРусскиеБуквы" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:maxLength value="8"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="НомерУдостоверяющего" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:unsignedLong">
+						<xsd:minInclusive value="0"/>
+						<xsd:maxInclusive value="99999999"/>
+						<xsd:totalDigits value="8"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="ДатаВыдачи" type="ТипДата"/>
+			<xsd:element name="КемВыдан" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:maxLength value="80"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:element name="НаименованиеУдостоверяющего">
+		<xsd:simpleType>
+			<xsd:restriction base="xsd:string">
+				<xsd:maxLength value="80"/>
+				<xsd:minLength value="1"/>
+			</xsd:restriction>
+		</xsd:simpleType>
+	</xsd:element>
+	<xsd:element name="СерияРимскиеЦифры">
+		<xsd:simpleType>
+			<xsd:restriction base="xsd:string">
+				<xsd:maxLength value="8"/>
+			</xsd:restriction>
+		</xsd:simpleType>
+	</xsd:element>
+	<xsd:element name="СерияРусскиеБуквы">
+		<xsd:simpleType>
+			<xsd:restriction base="xsd:string">
+				<xsd:maxLength value="8"/>
+			</xsd:restriction>
+		</xsd:simpleType>
+	</xsd:element>
+	<xsd:element name="НомерУдостоверяющего">
+		<xsd:simpleType>
+			<xsd:restriction base="xsd:unsignedLong">
+				<xsd:minInclusive value="0"/>
+				<xsd:maxInclusive value="99999999"/>
+				<xsd:totalDigits value="8"/>
+			</xsd:restriction>
+		</xsd:simpleType>
+	</xsd:element>
+	<xsd:element name="ДатаВыдачи" type="ТипДата"/>
+	<xsd:element name="КемВыдан">
+		<xsd:simpleType>
+			<xsd:restriction base="xsd:string">
+				<xsd:maxLength value="80"/>
+			</xsd:restriction>
+		</xsd:simpleType>
+	</xsd:element>
+	<xsd:complexType name="ТипУдостоверяющийДокумент">
+		<xsd:sequence>
+			<xsd:element name="ТипУдостоверяющего">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:maxLength value="14"/>
+						<xsd:enumeration value="ПАСПОРТ"/>
+						<xsd:enumeration value="ЗГПАСПОРТ"/>
+						<xsd:enumeration value="СВИД О РОЖД"/>
+						<xsd:enumeration value="УДОСТ ОФИЦЕРА"/>
+						<xsd:enumeration value="СПРАВКА ОБ ОСВ"/>
+						<xsd:enumeration value="ПАСПОРТ МОРФЛТ"/>
+						<xsd:enumeration value="ВОЕННЫЙ БИЛЕТ"/>
+						<xsd:enumeration value="ДИППАСПОРТ РФ"/>
+						<xsd:enumeration value="ИНПАСПОРТ"/>
+						<xsd:enumeration value="СВИД БЕЖЕНЦА"/>
+						<xsd:enumeration value="ВИД НА ЖИТЕЛЬ"/>
+						<xsd:enumeration value="УДОСТ БЕЖЕНЦА"/>
+						<xsd:enumeration value="ВРЕМ УДОСТ"/>
+						<xsd:enumeration value="ПАСПОРТ РОССИИ"/>
+						<xsd:enumeration value="ЗГПАСПОРТ РФ"/>
+						<xsd:enumeration value="ПАСПОРТ МОРЯКА"/>
+						<xsd:enumeration value="ВОЕН БИЛЕТ ОЗ"/>
+						<xsd:enumeration value="ПРОЧЕЕ"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="Документ" type="ТипДокумент"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:element name="ТипУдостоверяющего">
+		<xsd:simpleType>
+			<xsd:restriction base="xsd:string">
+				<xsd:maxLength value="14"/>
+				<xsd:enumeration value="ПАСПОРТ"/>
+				<xsd:enumeration value="ЗГПАСПОРТ"/>
+				<xsd:enumeration value="СВИД О РОЖД"/>
+				<xsd:enumeration value="УДОСТ ОФИЦЕРА"/>
+				<xsd:enumeration value="СПРАВКА ОБ ОСВ"/>
+				<xsd:enumeration value="ПАСПОРТ МОРФЛТ"/>
+				<xsd:enumeration value="ВОЕННЫЙ БИЛЕТ"/>
+				<xsd:enumeration value="ДИППАСПОРТ РФ"/>
+				<xsd:enumeration value="ИНПАСПОРТ"/>
+				<xsd:enumeration value="СВИД БЕЖЕНЦА"/>
+				<xsd:enumeration value="ВИД НА ЖИТЕЛЬ"/>
+				<xsd:enumeration value="УДОСТ БЕЖЕНЦА"/>
+				<xsd:enumeration value="ВРЕМ УДОСТ"/>
+				<xsd:enumeration value="ПАСПОРТ РОССИИ"/>
+				<xsd:enumeration value="ЗГПАСПОРТ РФ"/>
+				<xsd:enumeration value="ПАСПОРТ МОРЯКА"/>
+				<xsd:enumeration value="ВОЕН БИЛЕТ ОЗ"/>
+				<xsd:enumeration value="ПРОЧЕЕ"/>
+			</xsd:restriction>
+		</xsd:simpleType>
+	</xsd:element>
+	<xsd:element name="Документ" type="ТипДокумент"/>
+	<xsd:complexType name="ТипАнкета">
+		<xsd:sequence>
+			<xsd:element name="ФИО" type="ТипФИО"/>
+			<xsd:element name="Пол" type="ТипПол"/>
+			<xsd:choice>
+				<xsd:element name="ДатаРождения" type="ТипДата"/>
+				<xsd:element name="ДатаРожденияОсобая" type="ТипДатаОсобая"/>
+			</xsd:choice>
+			<xsd:element name="МестоРождения" type="ТипМестоРождения"/>
+			<xsd:element name="Гражданство" type="Тип40Н" minOccurs="0"/>
+			<xsd:element name="АдресРегистрации" type="ТипАдресОбщий" minOccurs="0"/>
+			<xsd:element name="АдресФактический" type="ТипАдресОбщий" minOccurs="0"/>
+			<xsd:element name="Телефон" type="Тип40Н" minOccurs="0"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="ТипАнкетаН">
+		<xsd:sequence>
+			<xsd:element name="ФИО" type="ТипФИОН" minOccurs="0"/>
+			<xsd:element name="Пол" type="ТипПолН" minOccurs="0"/>
+			<xsd:choice minOccurs="0">
+				<xsd:element name="ДатаРождения" type="ТипДатаН" minOccurs="0"/>
+				<xsd:element name="ДатаРожденияОсобая" type="ТипДатаОсобая" minOccurs="0"/>
+			</xsd:choice>
+			<xsd:element name="МестоРождения" type="ТипМестоРождения" minOccurs="0"/>
+			<xsd:element name="Гражданство" type="Тип40Н" minOccurs="0"/>
+			<xsd:element name="АдресРегистрации" type="ТипАдресОбщий" minOccurs="0"/>
+			<xsd:element name="АдресФактический" type="ТипАдресОбщий" minOccurs="0"/>
+			<xsd:element name="Телефон" type="Тип40Н" minOccurs="0"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:simpleType name="ТипКодПодразделения">
+		<xsd:restriction base="xsd:unsignedLong">
+			<xsd:totalDigits value="6"/>
+			<xsd:maxInclusive value="999999"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:complexType name="ТипСотрудникПодразделения">
+		<xsd:sequence>
+			<xsd:element name="КодПодразделения" type="ТипКодПодразделения" minOccurs="0"/>
+			<xsd:element name="ТабельныйНомер" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:minLength value="0"/>
+						<xsd:maxLength value="10"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:simpleType name="ТипТипРодства">
+		<xsd:restriction base="xsd:string">
+			<xsd:maxLength value="15"/>
+			<xsd:enumeration value="РОЖДЕНИЕ"/>
+			<xsd:enumeration value="УСЫНОВЛЕНИЕ"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:complexType name="ТипРеквизитыСертификата">
+		<xsd:sequence>
+			<xsd:element name="СерияСертификата">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:maxLength value="7"/>
+						<xsd:minLength value="1"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="НомерСертификата">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:unsignedLong">
+						<xsd:minInclusive value="1"/>
+						<xsd:totalDigits value="7"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="ДатаВыдачиСертификата" type="ТипДата"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="ТипРеквизитыРешения">
+		<xsd:sequence>
+			<xsd:element name="НаименованиеТерриториальногоОрганаПФР" type="Тип100"/>
+			<xsd:element name="КодПодразделения" type="ТипКодПодразделения"/>
+			<xsd:element name="НомерРешения">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:maxLength value="20"/>
+						<xsd:minLength value="1"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="ДатаРешения" type="ТипДата"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="ТипСистемныйНомер">
+		<xsd:sequence>
+			<xsd:element name="КодПодразделения" type="ТипКодПодразделения"/>
+			<xsd:element name="ВходящийНомер">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:unsignedLong">
+						<xsd:minInclusive value="1"/>
+						<xsd:totalDigits value="11"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="НомерВпачке" type="ТипНомерВПачке"/>
+			<xsd:element name="Экземпляр">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:integer">
+						<xsd:totalDigits value="2"/>
+						<xsd:minInclusive value="1"/>
+						<xsd:maxInclusive value="99"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:simpleType name="ТипУдостоверитель">
+		<xsd:restriction base="xsd:string">
+			<xsd:maxLength value="20"/>
+			<xsd:enumeration value="НОТАРИУС"/>
+			<xsd:enumeration value="КОНСУЛ"/>
+			<xsd:enumeration value="ГОСПИТАЛЬ"/>
+			<xsd:enumeration value="ВОЕННАЯ ЧАСТЬ"/>
+			<xsd:enumeration value="УИН"/>
+			<xsd:enumeration value="УСЗН"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="ТипЧислоЗЛ">
+		<xsd:restriction base="xsd:unsignedLong">
+			<xsd:totalDigits value="6"/>
+			<xsd:minInclusive value="0"/>
+			<xsd:maxInclusive value="999999"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="ТипКоличество">
+		<xsd:restriction base="xsd:integer">
+			<xsd:minInclusive value="0"/>
+			<xsd:maxInclusive value="9999"/>
+			<xsd:totalDigits value="4"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="ТипДеньги">
+		<xsd:restriction base="xsd:decimal">
+			<xsd:fractionDigits value="2"/>
+			<xsd:totalDigits value="15"/>
+			<xsd:pattern value="\-?[0-9]+\.\d{2}|\-?[0-9]+"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="ТипДеньгиЦелые">
+		<xsd:restriction base="xsd:long">
+			<xsd:totalDigits value="13"/>
+			<xsd:minInclusive value="-9999999999999"/>
+			<xsd:maxInclusive value="9999999999999"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+</xsd:schema>

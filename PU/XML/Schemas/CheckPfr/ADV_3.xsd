@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="Windows-1251"?>
+<!-- edited with XMLSpy v2010 rel. 3 (http://www.altova.com) by MESMERiZE (MSM) -->
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	<xsd:annotation>
+		<xsd:documentation xml:lang="ru">XML-схема для проверки АДВ-3</xsd:documentation>
+	</xsd:annotation>
+	<xsd:include schemaLocation="Types.XSD"/>
+	<xsd:complexType name="ТипВходящая_опись">
+		<xsd:sequence>
+			<xsd:element name="НомерВпачке" type="ТипНомерВПачке"/>
+			<xsd:element name="ТипВходящейОписи">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:enumeration value="ОПИСЬ ПАЧКИ"/>
+						<xsd:enumeration value="ОПИСЬ РАСПИСОК"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="СоставительПачки" type="ТипОрганизация"/>
+			<xsd:element name="НомерПачки">
+				<xsd:complexType>
+					<xsd:choice>
+						<xsd:element name="Основной" type="ТипНомерПачки"/>
+						<xsd:element name="ПоПодразделению" type="ТипНомерПачки"/>
+					</xsd:choice>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="СоставДокументов">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="Количество">
+							<xsd:simpleType>
+								<xsd:restriction base="xsd:integer">
+									<xsd:enumeration value="1"/>
+								</xsd:restriction>
+							</xsd:simpleType>
+						</xsd:element>
+						<xsd:element name="НаличиеДокументов">
+							<xsd:complexType>
+								<xsd:sequence>
+									<xsd:element name="ТипДокумента">
+										<xsd:simpleType>
+											<xsd:restriction base="xsd:string">
+												<xsd:enumeration value="ЗАЯВЛЕНИЕ_О_ДУБЛИКАТЕ"/>
+											</xsd:restriction>
+										</xsd:simpleType>
+									</xsd:element>
+									<xsd:element name="Количество">
+										<xsd:simpleType>
+											<xsd:restriction base="xsd:positiveInteger">
+												<xsd:maxInclusive value="32766"/>
+											</xsd:restriction>
+										</xsd:simpleType>
+									</xsd:element>
+								</xsd:sequence>
+								<xsd:attribute name="Вариант" type="xsd:string"/>
+							</xsd:complexType>
+						</xsd:element>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="ДатаСоставления" type="ТипДата"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<!-- Входящая опись -->
+	<!--Дубликат-->
+	<xsd:complexType name="ТипЗАЯВЛЕНИЕ_О_ДУБЛИКАТЕ">
+		<xsd:sequence>
+			<xsd:element name="НомерВпачке" type="ТипНомерВПачке"/>
+			<xsd:element name="СтраховойНомер" type="ТипСтраховойНомерН" minOccurs="0"/>
+			<xsd:element name="ОтметкаОпредставленииСведений" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:maxLength value="20"/>
+						<xsd:enumeration value="ПРЕДСТАВЛЕНЫ РАНЕЕ"/>
+						<xsd:enumeration value="БУДУТ ПРЕДСТАВЛЕНЫ"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="ФИОизСтрахового" type="ТипФИО"/>
+			<xsd:element name="ПолИзСтрахового" type="ТипПол"/>
+			<xsd:choice>
+				<xsd:element name="ДатаРожденияИзСтрахового" type="ТипДата"/>
+				<xsd:element name="ДатаРожденияИзСтраховогоОсобая" type="ТипДатаОсобая"/>
+			</xsd:choice>
+			<xsd:element name="МестоРожденияИзСтрахового" type="ТипМестоРождения" minOccurs="0"/>
+			<xsd:element name="ИзменившиесяДанные" type="ТипАнкетаН" minOccurs="0"/>
+			<xsd:element name="ПризнакОтменыОтчества" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:maxLength value="20"/>
+						<xsd:enumeration value="ОТМЕНЕНО"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="ПризнакОтменыМестаРождения" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:maxLength value="20"/>
+						<xsd:enumeration value="ОТМЕНЕНО"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="УдостоверяющийДокумент" type="ТипУдостоверяющийДокумент"/>
+			<xsd:element name="ДатаЗаполнения" type="ТипДата"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<!--Дубликат-->
+	<!-- ВходящийДокумент  -->
+	<xsd:element name="ФайлПФР">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element name="ИмяФайла" type="ТипИмяФайла"/>
+				<xsd:element name="ЗаголовокФайла">
+					<xsd:complexType>
+						<xsd:sequence>
+							<xsd:element name="ВерсияФормата">
+								<xsd:simpleType>
+									<xsd:restriction base="xsd:string">
+										<xsd:enumeration value="07.00"/>
+									</xsd:restriction>
+								</xsd:simpleType>
+							</xsd:element>
+							<xsd:element name="ТипФайла">
+								<xsd:simpleType>
+									<xsd:restriction base="xsd:string">
+										<xsd:enumeration value="ВНЕШНИЙ"/>
+									</xsd:restriction>
+								</xsd:simpleType>
+							</xsd:element>
+							<xsd:element name="ПрограммаПодготовкиДанных">
+								<xsd:complexType>
+									<xsd:sequence>
+										<xsd:element name="НазваниеПрограммы" type="Тип40"/>
+										<xsd:element name="Версия">
+											<xsd:simpleType>
+												<xsd:restriction base="xsd:string">
+													<xsd:minLength value="1"/>
+													<xsd:maxLength value="10"/>
+												</xsd:restriction>
+											</xsd:simpleType>
+										</xsd:element>
+									</xsd:sequence>
+								</xsd:complexType>
+							</xsd:element>
+							<xsd:element name="ИсточникДанных">
+								<xsd:simpleType>
+									<xsd:restriction base="xsd:string">
+										<xsd:enumeration value="СТРАХОВАТЕЛЬ"/>
+										<xsd:enumeration value="ТРАНСФЕР-АГЕНТ"/>
+										<xsd:enumeration value="ОПФР-ЛИЧНО"/>
+										<xsd:enumeration value="ОПФР-ПРОЧЕЕ"/>
+										<xsd:enumeration value="НПФ"/>
+										<xsd:enumeration value="ПФР"/>
+										<xsd:enumeration value="ОРГАН_ЗАГС"/>
+									</xsd:restriction>
+								</xsd:simpleType>
+							</xsd:element>
+						</xsd:sequence>
+					</xsd:complexType>
+				</xsd:element>
+				<xsd:element name="ПачкаВходящихДокументов">
+					<xsd:complexType>
+						<xsd:sequence>
+							<xsd:element name="ВХОДЯЩАЯ_ОПИСЬ" type="ТипВходящая_опись"/>
+							<xsd:choice>
+								<xsd:element name="ЗАЯВЛЕНИЕ_О_ДУБЛИКАТЕ" type="ТипЗАЯВЛЕНИЕ_О_ДУБЛИКАТЕ" maxOccurs="200"/>
+							</xsd:choice>
+						</xsd:sequence>
+						<xsd:attribute name="Окружение" use="required">
+							<xsd:simpleType>
+								<xsd:restriction base="xsd:string">
+									<xsd:enumeration value="Единичный запрос"/>
+									<xsd:enumeration value="В составе файла"/>
+								</xsd:restriction>
+							</xsd:simpleType>
+						</xsd:attribute>
+						<xsd:attribute name="Стадия" use="optional">
+							<xsd:simpleType>
+								<xsd:restriction base="xsd:string">
+									<xsd:enumeration value="До обработки"/>
+									<xsd:enumeration value="После обработки"/>
+								</xsd:restriction>
+							</xsd:simpleType>
+						</xsd:attribute>
+					</xsd:complexType>
+				</xsd:element>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+</xsd:schema>

@@ -1,0 +1,319 @@
+<?xml version="1.0" encoding="Windows-1251"?>
+<xs:schema version="1.0" xmlns="http://schema.pfr.ru" xmlns:pfr="http://schema.pfr.ru" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://schema.pfr.ru" elementFormDefault="qualified">
+	<xs:annotation>
+		<xs:documentation>Формат РСВ-2 c 2014</xs:documentation>
+	</xs:annotation>
+	<xs:include schemaLocation="../../Типы.XSD"/>
+	<xs:include schemaLocation="../ТипыРСВ.XSD"/>
+
+	<xs:element name="ФайлПФР">
+		<xs:annotation>
+			<xs:documentation>Корневой элемент</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="ИмяФайла" type="ТипИмяФайла">
+					<xs:annotation>
+						<xs:documentation>Имя файла</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="РСВ2_2014">
+					<xs:annotation>
+						<xs:documentation>Расчет по страховым взносам на ОПС и ОМС страхования главами КФХ, начиная с 2014 года</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="РегНомерПФР" type="ТипРегНомер">
+								<xs:annotation>
+									<xs:documentation>Регистрационный номер в ПФР</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="НомерКорр" type="ТипНомерКорректировки">
+								<xs:annotation>
+									<xs:documentation>Номер корректировки. При представлении первичного Расчета - код 000</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="КалендарныйГод">
+								<xs:annotation>
+									<xs:documentation>Календарный год</xs:documentation>
+								</xs:annotation>
+								<xs:simpleType>
+									<xs:restriction base="xs:gYear">
+										<xs:minInclusive value="2014"/>
+									</xs:restriction>
+								</xs:simpleType>
+							</xs:element>
+							<xs:element name="ПрекращениеДеятельности" minOccurs="0" type="ТипПрекращениеДеятельности">
+								<xs:annotation>
+									<xs:documentation>Признак прекращения деятельности организации в связи с ликвидацией либо прекращения деятельности в качестве индивидуального предпринимателя</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="ФИО" type="ТипФИО">
+								<xs:annotation>
+									<xs:documentation>Фамилия, имя, отчество главы крестьянского (фермерского) хозяйства</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+
+							<xs:element name="ИНН" minOccurs="0">
+								<xs:annotation>
+									<xs:documentation>ИНН плательщика (главы КФХ)</xs:documentation>
+								</xs:annotation>
+								<xs:simpleType>
+									<xs:restriction base="ТипИНН">
+										<xs:pattern value="\d{12}"/>
+									</xs:restriction>
+								</xs:simpleType>
+							</xs:element>
+
+							<xs:element name="КодПоОКВЭД" type="ТипКодПоОКВЭД">
+								<xs:annotation>
+									<xs:documentation>Код по ОКВЭД</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="СтраховойНомер" type="ТипСтраховойНомер">
+								<xs:annotation>
+									<xs:documentation>Страховой номер индивидуального лицевого счета плательщика</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="Телефон" type="ТипКонтактныйТелефонН" minOccurs="0">
+								<xs:annotation>
+									<xs:documentation>Контактный телефон плательщика страховых взносов</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="ГодРождения" type="xs:gYear">
+								<xs:annotation>
+									<xs:documentation>Год рождения главы КФХ</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="ЧленовКФХ" type="ТипЧислоЗЛ" minOccurs="0">
+								<xs:annotation>
+									<xs:documentation>Количество членов КФX</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="СтраницФормы" type="ТипКоличество">
+								<xs:annotation>
+									<xs:documentation>Количество страниц формы</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="ЛистовПриложения" type="ТипКоличество" minOccurs="0">
+								<xs:annotation>
+									<xs:documentation>Количество листов приложения к форме</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="ПодтверждениеСведений" type="ТипПодтверждениеСведений">
+								<xs:annotation>
+									<xs:documentation>Сведения о лице, предоставившем форму в орган ПФР: плательщик страховых взносов или представитель плательщика страховых взносов</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="ДатаЗаполнения" type="xs:date">
+								<xs:annotation>
+									<xs:documentation>Дата заполнения формы</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="Раздел1" type="ТипРаздел1">
+								<xs:annotation>
+									<xs:documentation>Раздел 1. Расчет по начисленным и уплаченным страховым взносам</xs:documentation>
+								</xs:annotation>								
+								<xs:unique name="УникальныйКодСтроки">
+									<xs:selector xpath="pfr:СтрокаРаздела"/>
+									<xs:field xpath="pfr:КодСтроки"/>
+								</xs:unique>
+							</xs:element>
+
+							<xs:element name="Раздел2" type="ТипРаздел2">
+								<xs:annotation>
+									<xs:documentation>Раздел 2. Расчет начислений страховых взносов, подлежащих уплате за главу и членов КФХ</xs:documentation>
+								</xs:annotation>								
+								<xs:unique name="УникальныйНомерПП_Р2">
+									<xs:annotation>
+										<xs:documentation>Номер по порядку не должен повторяться</xs:documentation>
+									</xs:annotation>
+									<xs:selector xpath="pfr:ЧленКФХ"/>
+									<xs:field xpath="pfr:НомерПП"/>
+								</xs:unique>
+							</xs:element>
+
+							<xs:element name="Раздел3" type="ТипРаздел3" minOccurs="0" maxOccurs="1">
+								<xs:annotation>
+									<xs:documentation>Раздел3. Суммы доначисленных страховых взносов с начала 2014 года за главу и членов КФХ. Заполняется и представляется главами КФХ, заполнившими строку 120 Раздела 1 Расчета</xs:documentation>
+								</xs:annotation>								
+								<xs:unique name="УникальныйНомерПП_Р3">
+									<xs:annotation>
+										<xs:documentation>Номер по порядку не должен повторяться</xs:documentation>
+									</xs:annotation>
+									<xs:selector xpath="pfr:ЧленКФХ"/>
+									<xs:field xpath="pfr:НомерПП"/>
+								</xs:unique>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:group name="ГрЧленКФХ">
+		<xs:annotation>
+			<xs:documentation>Последовательность граф с 1 по 6 разделов 2 и 3</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="НомерПП" type="ТипЧислоЗЛ">
+				<xs:annotation>
+					<xs:documentation>Номер по порядку</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ФИО" type="ТипФИО">
+				<xs:annotation>
+					<xs:documentation>ФИО члена КФХ</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="СтраховойНомер" type="ТипСтраховойНомер">
+				<xs:annotation>
+					<xs:documentation>Страховой номер индивидуального лицевого счета</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ГодРождения" type="xs:gYear">
+				<xs:annotation>
+					<xs:documentation>Год рождения</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="НачалоПериода" type="xs:date">
+				<xs:annotation>
+					<xs:documentation>Дата начала расчетного периода</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="КонецПериода" type="xs:date">
+				<xs:annotation>
+					<xs:documentation>Дата окончания расчетного периода</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:group>
+
+	<xs:group name="ГрРасчетСумм2014">
+		<xs:annotation>
+			<xs:documentation>Последовательность граф 7 и 8 раздела 2</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="СуммаОПС" type="ТипДеньги" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Начислено страховых взносов на обязательное пенсионное страхование (руб. коп.) за периоды начиная с 2014 г.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="СуммаОМС" type="ТипДеньги" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Начислено страховых взносов на обязательное медицинское страхование (руб. коп.)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:group>
+
+	<xs:complexType name="ТипРаздел1">
+		<xs:annotation>
+			<xs:documentation>
+				Тип Раздел 1 (Расчет по начисленным и уплаченным страховым взносам)
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="СтрокаРаздела" minOccurs="6" maxOccurs="6">
+				<xs:annotation>
+					<xs:documentation>Строка раздела 1</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="КодСтроки">
+							<xs:annotation>
+								<xs:documentation>Код строки раздела 1</xs:documentation>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="ТипКодСтроки">
+									<xs:enumeration value="100"/>
+									<xs:enumeration value="110"/>
+									<xs:enumeration value="120"/>
+									<xs:enumeration value="130"/>
+									<xs:enumeration value="140"/>
+									<xs:enumeration value="150"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+						<xs:group ref="ГрСуммыСтраховыхВзносов"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	
+	<xs:complexType name="ТипРаздел2">
+		<xs:annotation>
+			<xs:documentation>
+				Тип Раздел 2 (Расчет начислений страховых взносов, подлежащих уплате за главу и членов КФХ)
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="ЧленКФХ" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Расчет начислений страховых взносов, подлежащих уплате за члена КФХ</xs:documentation>
+				</xs:annotation>	
+				<xs:complexType>
+					<xs:annotation>
+						<xs:documentation>
+							Тип Член КФХ для раздела 2
+						</xs:documentation>
+					</xs:annotation>
+					<xs:sequence>
+						<xs:group ref="ГрЧленКФХ"/>							
+						<xs:group ref="ГрРасчетСумм2014"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="Итого">
+				<xs:annotation>
+					<xs:documentation>Итого начислено по разделу 2</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:group ref="ГрРасчетСумм2014"/>
+					</xs:sequence>					
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="ТипРаздел3">
+		<xs:annotation>
+			<xs:documentation>
+				Тип Раздел 3 (Суммы доначисленных страховых взносов с начала 2014 года за главу и членов КФХ. Заполняется и представляется главами КФХ, заполнившими строку 120 Раздела 1 Расчета)
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="ЧленКФХ" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Сумма доначисленных страховых взносов за члена КФХ</xs:documentation>
+				</xs:annotation>				
+				<xs:complexType>
+					<xs:annotation>
+						<xs:documentation>
+							Тип Член КФХ для раздела 3
+						</xs:documentation>
+					</xs:annotation>
+					<xs:sequence>
+						<xs:group ref="ГрЧленКФХ"/>
+						<xs:group ref="ГрСуммыСтраховыхВзносов"/>
+					</xs:sequence>
+				</xs:complexType>
+	
+			</xs:element>
+			<xs:element name="Итого">
+				<xs:annotation>
+					<xs:documentation>Итого доначислено</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:group ref="ГрСуммыСтраховыхВзносов"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	
+</xs:schema>

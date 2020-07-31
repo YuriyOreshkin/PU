@@ -1,0 +1,84 @@
+<?xml version="1.0"?>
+<xs:schema version="1.0" targetNamespace="http://пф.рф/АФ" xmlns="http://пф.рф/АФ" xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	
+	<xs:include schemaLocation="ППВАФ.xsd"/>
+	<xs:annotation>
+		<xs:documentation>Схема описаний преобразований проверяемого файла</xs:documentation>
+	</xs:annotation>
+	<xs:element name="Преобразования">
+		<xs:annotation>
+			<xs:documentation>Корневой элемент. Список описаний преобразований на xquery</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="Преобразование" type="ТипПреобразование" maxOccurs="unbounded">
+					<xs:annotation>
+						<xs:documentation>Описание преобразования</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:complexType name="ТипПреобразование">
+		<xs:annotation>
+			<xs:documentation>Тип для блока Преобразование</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Переменные" type="ТипВсеПеременныеПреобразования">
+				<xs:annotation>
+					<xs:documentation>Описание переменных, используемых в преобразовании</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Функции" type="ТипФункции">
+				<xs:annotation>
+					<xs:documentation>Описание функций</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Код" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Код преобразования на XQuery</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="Код" type="xs:string" use="required">
+			<xs:annotation>
+				<xs:documentation>Код преобразования</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+
+	<xs:complexType name="ТипВсеПеременныеПреобразования">
+		<xs:annotation>
+			<xs:documentation>Список всех переменных</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Переменная" type="ТипПеременнаяПреобразования" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Описание переменной со всеми возможными значениями</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="ТипПеременнаяПреобразования">
+		<xs:annotation>
+			<xs:documentation>Тип для блока Переменные</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="Наименование" type="xs:string" use="required">
+			<xs:annotation>
+				<xs:documentation>Имя переменной  на XQuery</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="Тип" type="xs:string" use="required">
+			<xs:annotation>
+				<xs:documentation>Тип переменной  на XQuery</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="Последовательность" type="xs:string" use="required">
+			<xs:annotation>
+				<xs:documentation>Признак, является ли переменная последовательностью (sequence)</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+</xs:schema>

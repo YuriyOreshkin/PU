@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="Windows-1251"?>
+<xs:schema version="1.0"  xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+	<xs:annotation>
+		<xs:documentation xml:lang="ru">XML-подсхема для проверки Описи</xs:documentation>
+	</xs:annotation>
+	<xs:include schemaLocation="../../Типы.XSD" />
+	    <xs:complexType name="ТипСВЕДЕНИЯ_ПО_ПАЧКЕ_ДОКУМЕНТОВ_РАЗДЕЛА_6">
+	        <xs:sequence>
+	            <xs:element name="НомерВпачке" type="ТипНомерВПачке">
+					<xs:annotation>
+						<xs:documentation>Номер в пачке</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+	            <xs:element name="ТипВходящейОписи">
+					<xs:annotation>
+						<xs:documentation>Тип входящей описи</xs:documentation>
+					</xs:annotation>
+	                <xs:simpleType>
+	                    <xs:restriction base="xs:string">
+	                        <xs:enumeration value="ОПИСЬ ПАЧКИ"/>
+	                    </xs:restriction>
+	                </xs:simpleType>
+	            </xs:element>
+	            <xs:element name="СоставительПачки" type="ТипОрганизация">
+					<xs:annotation>
+						<xs:documentation>Составитель пачки</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+	            <xs:element name="НомерПачки" minOccurs="1">
+					<xs:annotation>
+						<xs:documentation>Номер пачки</xs:documentation>
+					</xs:annotation>
+	                <xs:complexType>
+	                    <xs:choice>
+	                        <xs:element name="Основной" type="ТипНомерПачки">
+								<xs:annotation>
+									<xs:documentation>Основной</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+	                        <xs:element name="ПоПодразделению" type="ТипНомерПачки">
+								<xs:annotation>
+									<xs:documentation>По подразделению</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+	                    </xs:choice>
+	                </xs:complexType>
+	            </xs:element>
+	            <xs:element name="СоставДокументов">
+					<xs:annotation>
+						<xs:documentation>Состав документов</xs:documentation>
+					</xs:annotation>					
+	                <xs:complexType>
+	                    <xs:sequence>
+	                        <xs:element name="Количество">
+								<xs:annotation>
+									<xs:documentation>Количество</xs:documentation>
+								</xs:annotation>
+	                            <xs:simpleType>
+	                                <xs:restriction base="xs:integer">
+	                                    <xs:enumeration value="1"/>
+	                                </xs:restriction>
+	                            </xs:simpleType>
+	                        </xs:element>
+	                        <xs:element name="НаличиеДокументов">
+								<xs:annotation>
+									<xs:documentation>Наличие документов</xs:documentation>
+								</xs:annotation>
+	                            <xs:complexType>
+	                                <xs:sequence>
+	                                    <xs:element name="ТипДокумента">
+											<xs:annotation>
+												<xs:documentation>Тип документа</xs:documentation>
+											</xs:annotation>
+	                                        <xs:simpleType>
+	                                            <xs:restriction base="xs:string">
+	                                                <xs:enumeration value="СВЕДЕНИЯ_О_СУММЕ_ВЫПЛАТ_И_СТРАХОВОМ_СТАЖЕ_ЗЛ"/>
+	                                            </xs:restriction>
+	                                        </xs:simpleType>
+	                                    </xs:element>
+	                                    <xs:element name="Количество">
+											<xs:annotation>
+												<xs:documentation>Количество</xs:documentation>
+											</xs:annotation>
+	                                        <xs:simpleType>
+	                                            <xs:restriction base="xs:positiveInteger">
+	                                                <xs:maxInclusive value="200"/>
+	                                                <xs:totalDigits value="3"/>
+	                                            </xs:restriction>
+	                                        </xs:simpleType>
+	                                    </xs:element>
+	                                </xs:sequence>
+	                                <xs:attribute name="Вариант" type="xs:string"/>
+	                            </xs:complexType>
+	                        </xs:element>
+	                    </xs:sequence>
+	                </xs:complexType>
+	            </xs:element>
+	            <xs:sequence>
+	                <xs:any namespace="##any" processContents="skip" maxOccurs="unbounded"/>
+	            </xs:sequence>
+
+	        </xs:sequence>
+	    </xs:complexType>
+
+
+</xs:schema>

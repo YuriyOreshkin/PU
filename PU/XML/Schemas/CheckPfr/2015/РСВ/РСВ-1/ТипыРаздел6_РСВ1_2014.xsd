@@ -1,0 +1,275 @@
+<?xml version="1.0" encoding="Windows-1251"?>
+<xs:schema version="1.0"  elementFormDefault="qualified"  xmlns:xs="http://www.w3.org/2001/XMLSchema">
+	<xs:include schemaLocation="../../Типы.XSD"/>
+	<xs:include schemaLocation="../../Входящие/ТипыИНДС.XSD"/>
+	<xs:include schemaLocation="../../Входящие/ТипыСПВ.XSD"/>
+	<xs:complexType name="ТипСВЕДЕНИЯ_О_СУММЕ_ВЫПЛАТ_И_СТРАХОВОМ_СТАЖЕ_ЗЛ">
+		<xs:sequence>
+			<xs:element name="НомерВпачке">
+				<xs:annotation>
+					<xs:documentation>Номер в пачке</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:integer">
+						<xs:minInclusive value="1"/>
+						<xs:maxInclusive value="201"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:group ref="ГрСведенияОбщие">
+				<xs:annotation>
+					<xs:documentation>Тип сведений и регистрационный номер в ПФР</xs:documentation>
+				</xs:annotation>
+			</xs:group>
+			<xs:group ref="ГрСведенияЗЛ">
+				<xs:annotation>
+					<xs:documentation>6.1. Сведения о застрахованном лице</xs:documentation>
+				</xs:annotation>
+			</xs:group>
+			<xs:group ref="ГрСведенияОтчетныйПериодИкоррПериод">
+				<xs:annotation>
+					<xs:documentation>6.2. Отчетный период, 6.3. Тип корректировки сведений</xs:documentation>
+				</xs:annotation>
+			</xs:group>
+			<xs:element name="СведенияОсуммеВыплатИвознагражденийВпользуЗЛ" minOccurs="0" maxOccurs="unbounded" type="ТипСведенияОсуммеВыплатИвознагражденийВпользуЗЛ">
+				<xs:annotation>
+					<xs:documentation>Сведения о сумме выплат и иных вознаграждений, начисленных в пользу физического лица</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="СуммаВзносовНаОПС" minOccurs="0" type="ТипДеньги">
+				<xs:annotation>
+					<xs:documentation>Сумма страховых взносов на ОПС</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="СведенияОкорректировках" maxOccurs="unbounded" minOccurs="0" type="ТипСведенияОкорректировках">
+			</xs:element>
+			<xs:element name="СведенияОсуммеВыплатИвознагражденийПоДопТарифу" type="ТипСведенияОсуммеВыплатИвознагражденийПоДопТарифу" minOccurs="0" maxOccurs="unbounded">
+			</xs:element>
+			<xs:element name="СтажевыйПериод" minOccurs="0" type="ТипСтажевыйПериод14" maxOccurs="99">
+				<xs:annotation>
+					<xs:documentation>Период работы за последние три месяца отчетного периода</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ДатаЗаполнения" type="ТипДата">
+				<xs:annotation>
+					<xs:documentation>Дата заполнения</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ТипСведенияОкорректировках">
+		<xs:annotation>
+			<xs:documentation>Информация о корректирующих сведениях</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="НомерСтроки" type="ТипНомерСтроки">
+				<xs:annotation>
+					<xs:documentation>Номер строки</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ТипСтроки" type="ТипТипСтроки">
+				<xs:annotation>
+					<xs:documentation>Тип строки</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Квартал" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Код отчетного периода</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:integer">
+						<xs:totalDigits value="1"/>
+						<xs:minInclusive value="0"/>
+						<xs:maxInclusive value="9"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="Год" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Год</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="ТипГод">
+						<xs:minInclusive value="2010"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="СуммаДоначисленныхВзносовОПС" minOccurs="0" type="ТипДеньги">
+				<xs:annotation>
+					<xs:documentation>Сумма доначисленных страховых взносов на ОПС на базу, не превышающую предельную</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="СуммаДоначисленныхВзносовНаСтраховую" minOccurs="0" type="ТипДеньги">
+				<xs:annotation>
+					<xs:documentation>Сумма доначисленных страховых взносов на страховую часть на базу, не превышающую предельную</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="СуммаДоначисленныхВзносовНаНакопительную" minOccurs="0" type="ТипДеньги">
+				<xs:annotation>
+					<xs:documentation>Сумма доначисленных страховых взносов на накопительную часть на базу, не превышающую предельную</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ТипСведенияОсуммеВыплатИвознагражденийПоДопТарифу">
+		<xs:annotation>
+			<xs:documentation>Сведения о сумме выплат и иных вознаграждений по дополнительному тарифу</xs:documentation>
+		</xs:annotation>
+
+		<xs:sequence>
+			<xs:element name="НомерСтроки" type="ТипНомерСтроки">
+				<xs:annotation>
+					<xs:documentation>Номер строки</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ТипСтроки" type="ТипТипСтроки">
+				<xs:annotation>
+					<xs:documentation>Тип строки</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Месяц" minOccurs="0" type="ТипМесяц">
+				<xs:annotation>
+					<xs:documentation>Месяц</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="КодСтроки">
+				<xs:annotation>
+					<xs:documentation>Код строки</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="ТипКодСтроки">
+						<xs:minInclusive value="700"/>
+						<xs:maxInclusive value="799"/>
+						<xs:totalDigits value="3"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="КодСпециальнойОценкиУсловийТруда" type="ТипКодСпециальнойОценкиУсловийТруда">
+				<xs:annotation>
+					<xs:documentation>Код специальной оценки условий труда</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="СуммаВыплатПоДопТарифу27-1" type="ТипДеньги" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Сумма выплат ЗЛ, занятому на работах с вредными условиями труда (27-1)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="СуммаВыплатПоДопТарифу27-2-18" type="ТипДеньги" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Сумма выплат ЗЛ, занятому на работах с особыми условиями труда (27-2-18)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:group name="ГрСведенияОбщие">
+		<xs:sequence>
+			<xs:element name="ТипСведений" type="ТипТипСведенийСПВ">
+				<xs:annotation>
+					<xs:documentation>Тип сведений</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="РегистрационныйНомер" type="ТипРегНомер">
+				<xs:annotation>
+					<xs:documentation>Регистрационный номер</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:group>
+	<xs:group name="ГрСведенияЗЛ">
+		<xs:annotation>
+			<xs:documentation>6.1. Сведения о застрахованном лице</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="СтраховойНомер" type="ТипСтраховойНомер">
+				<xs:annotation>
+					<xs:documentation>Страховой номер</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ФИО" type="ТипФИО">
+				<xs:annotation>
+					<xs:documentation>Фамилия, имя, отчество</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:group>
+	<xs:group name="ГрСведенияОтчетныйПериодИкоррПериод">
+		<xs:annotation>
+			<xs:documentation>6.2. Отчетный период, 6.3. Тип корректировки сведений</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="ОтчетныйПериод" type="ТипОтчетныйПериод14">
+				<xs:annotation>
+					<xs:documentation>Отчетный период</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="КорректируемыйОтчетныйПериод" type="ТипОтчетныйПериод14" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Сведения о корректируемом отчетном периоде</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="РегистрационныйНомерКорректируемогоПериода" type="ТипРегНомер" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Регистрационный номер в корректируемый период</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:group>
+	<xs:complexType name="ТипСведенияОсуммеВыплатИвознагражденийВпользуЗЛ">
+		<xs:sequence>
+			<xs:sequence>
+				<xs:element name="НомерСтроки" type="ТипНомерСтроки">
+					<xs:annotation>
+						<xs:documentation>Номер строки</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="ТипСтроки" type="ТипТипСтроки">
+					<xs:annotation>
+						<xs:documentation>Тип строки</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="Месяц" minOccurs="0" type="ТипМесяц">
+					<xs:annotation>
+						<xs:documentation>Месяц</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="КодСтроки">
+					<xs:annotation>
+						<xs:documentation>Код строки</xs:documentation>
+					</xs:annotation>
+					<xs:simpleType>
+						<xs:restriction base="ТипКодСтроки">
+							<xs:minInclusive value="400"/>
+							<xs:maxInclusive value="499"/>
+							<xs:totalDigits value="3"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+				<xs:element name="КодКатегории" type="ТипКодКатегории14">
+					<xs:annotation>
+						<xs:documentation>Код категории</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="СуммаВыплатИныхВознаграждений" type="ТипДеньги" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Сумма выплат и иных вознаграждений</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="НеПревышающиеВсего" type="ТипДеньги" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Сумма выплат в том числе, не превышающую предельную величину базы для начисления страховых взносов: Всего</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="НеПревышающиеПоДоговорам" type="ТипДеньги" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Сумма выплат в том числе, не превышающую предельную величину базы для начисления страховых взносов: В том числе по гражданско-правовым договорам</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="ПревышающиеПредельную" type="ТипДеньги" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Сумма выплат в том числе, превышающую предельную величину базы для начисления страховых взносов</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+			</xs:sequence>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>

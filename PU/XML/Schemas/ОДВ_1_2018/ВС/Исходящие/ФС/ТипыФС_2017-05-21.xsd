@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema version="2.0" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://пф.рф/ВС/ФС/типы/2017-05-21" xmlns:АФ="http://пф.рф/АФ" xmlns:УТ="http://пф.рф/унифицированныеТипы/2014-01-01" targetNamespace="http://пф.рф/ВС/ФС/типы/2017-05-21"
+           elementFormDefault="qualified">
+
+	<xs:import namespace="http://пф.рф/унифицированныеТипы/2014-01-01" schemaLocation="../../../УнифТипы_2014-01-01.xsd"/>
+	<xs:import namespace="http://пф.рф/АФ" schemaLocation="../../../ТипыОбщие.xsd"/>
+	<xs:import namespace="http://www.w3.org/2000/09/xmldsig#" schemaLocation="../../../xmldsig_core_schema.xsd"/>
+
+
+	<xs:complexType name="ТипСведенияТОПФР">
+		<xs:annotation>
+			<xs:documentation>Тип, использующийся для представления сведений о территориальном органе ПФР</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="КодРегиона">
+				<xs:annotation>
+					<xs:documentation>Код региона территориального органа Пенсионного фонда Российской Федерации</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:pattern value="\d{3}"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="Наименование" type="УТ:ТипНепустаяСтрока">
+				<xs:annotation>
+					<xs:documentation>Наименование территориального органа Пенсионного фонда Российской Федерации, который проводил проверку. Должно соответствовать одному из значений справочника «ТО ПФР»</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Адрес" type="УТ:ТипНепустаяСтрока">
+				<xs:annotation>
+					<xs:documentation>Адрес территориального органа ПФР</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Телефоны" type="УТ:ТипСписокТелефонов">
+				<xs:annotation>
+					<xs:documentation>Перечень контактных номеров телефона территориального органа Пенсионного фонда Российской Федерации</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+
+
+	<xs:complexType name="ТипСтрахователь">
+		<xs:annotation>
+			<xs:documentation>Тип данных для представления сведений о юридическом лице (обособленном подразделении) (если страхователь - организация), либо о физическом лице (если страхователь – индивидуальный предприниматель, либо в случае неуказания ИНН физическое лицо, не являющееся индивидуальным предпринимателем)</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:choice>
+				<xs:annotation>
+					<xs:documentation>Может указываться либо наименование страхователя (если страхователь - организация), либо ФИО страхователя (если страхователь – индивидуальный предприниматель, либо в случае неуказания ИНН физическим лицом, не являющимся индивидуальным предпринимателем)</xs:documentation>
+				</xs:annotation>
+				<xs:element name="Наименование" type="УТ:ТипНепустаяСтрока">
+					<xs:annotation>
+						<xs:documentation>Полное наименование проверяемого юридического лица (обособленного подразделения). Заполняется если страхователь - организация</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element ref="УТ:ФИО">
+					<xs:annotation>
+						<xs:documentation>ФИО проверяемого индивидуального предпринимателя или физического лица. Заполняется если страхователь – индивидуальный предприниматель, либо в случае неуказания ИНН физическим лицом, не являющимся индивидуальным предпринимателем</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+			</xs:choice>
+			<xs:element ref="УТ:РегНомер">
+				<xs:annotation>
+					<xs:documentation>Регистрационный номер в ПФР юридического лица (обособленного подразделения) или индивидуального предпринимателя, физического лица</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:group ref="УТ:ГрНН">
+				<xs:annotation>
+					<xs:documentation>ИНН и КПП юридического лица (обособленного подразделения) или индивидуального предпринимателя, физического лица</xs:documentation>
+				</xs:annotation>
+			</xs:group>
+			<xs:element name="Адрес" type="УТ:ТипАдресОбщий">
+				<xs:annotation>
+					<xs:documentation>Адрес места нахождения юридического лица (обособленного подразделения) или адрес регистрации индивидуального предпринимателя, физического лица</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>

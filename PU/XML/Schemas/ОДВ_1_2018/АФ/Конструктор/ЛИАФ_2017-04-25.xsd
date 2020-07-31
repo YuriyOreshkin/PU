@@ -1,0 +1,141 @@
+<?xml version="1.0"?>
+<xs:schema version="1.0" targetNamespace="http://пф.рф/ЛИАФ/2017-04-25" xmlns:АФ="http://пф.рф/АФ" xmlns:УТ="http://пф.рф/унифицированныеТипы/2014-01-01" elementFormDefault="qualified" xmlns="http://пф.рф/ЛИАФ/2017-04-25"
+           xmlns:xs="http://www.w3.org/2001/XMLSchema">
+	<xs:import namespace="http://пф.рф/унифицированныеТипы/2014-01-01" schemaLocation="../../УнифТипы_2014-01-01.xsd"/>
+	<xs:import namespace="http://пф.рф/АФ" schemaLocation="../../ТипыОбщие.xsd"/>
+
+	<xs:annotation>
+		<xs:documentation>Схема к листу изменений Альбома форматов</xs:documentation>
+	</xs:annotation>
+	<xs:element name="ЭДПФР">
+		<xs:annotation>
+			<xs:documentation>Корневой элемент. Электронный документ ЛИАФ (Лист изменений версии Альбома форматов (экспликации Альбома форматов)). Содержит сведения самого документа и служебную информацию об электронном документе.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="ЛИАФ">
+					<xs:annotation>
+						<xs:documentation>Лист изменений</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="Версия" type="УТ:ТипРеквизитыДокумента">
+								<xs:annotation>
+									<xs:documentation>Номер и дата версии (экспликации) АФ, к которой прилагается этот лист изменений</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="СоставВерсии" minOccurs="0">
+								<xs:annotation>
+									<xs:documentation>Перечень документов (групп документов), включенных в сформированный пакет, к которому прилагается этот лист изменений. Заполянется, в случае, если экспликация сформирована не по всем документам версии</xs:documentation>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="Документ" type="УТ:ТипНепустаяСтрока" maxOccurs="unbounded">
+											<xs:annotation>
+												<xs:documentation>Документ (группа документов), включенный(ая) в сформированный пакет, к которому прилагается этот лист изменений</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="ОсновнаяВерсия" type="УТ:ТипРеквизитыДокумента" minOccurs="0">
+								<xs:annotation>
+									<xs:documentation>Номер и дата версии полного пакета АФ, частью которого является экспликация</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="Версии">
+								<xs:annotation>
+									<xs:documentation>Список выпущенных версий</xs:documentation>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="Версия" maxOccurs="unbounded">
+											<xs:annotation>
+												<xs:documentation>Версия АФ со списком изменений</xs:documentation>
+											</xs:annotation>
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element name="Изменение" maxOccurs="unbounded">
+														<xs:annotation>
+															<xs:documentation>Описание изменения</xs:documentation>
+														</xs:annotation>
+														<xs:complexType>
+															<xs:sequence>
+																<xs:element name="НомерПП" type="xs:positiveInteger">
+																	<xs:annotation>
+																		<xs:documentation>Порядковый номер изменения в версии АФ</xs:documentation>
+																	</xs:annotation>
+																</xs:element>
+																<xs:element name="Описание" type="УТ:ТипНепустаяСтрока">
+																	<xs:annotation>
+																		<xs:documentation>Краткое описание внесенного изменения</xs:documentation>
+																	</xs:annotation>
+																</xs:element>
+																<xs:element name="СписокИО" minOccurs="0">
+																	<xs:annotation>
+																		<xs:documentation>Список информационных обменов, к которым относится изменение. Элемент может быть пропущен, если изменения касаются всех информационных обменов или альбома форматов в целом</xs:documentation>
+																	</xs:annotation>
+																	<xs:complexType>
+																		<xs:sequence>
+																			<xs:element name="ИО" maxOccurs="unbounded">
+																				<xs:annotation>
+																					<xs:documentation>Информационный обмен, к которому относится изменение. Если изменение касается отдельно взятых документов информационного обмена, то их следует конкретизировать во вложенных элементах "Документ"</xs:documentation>
+																				</xs:annotation>
+																				<xs:complexType>
+																					<xs:sequence>
+																						<xs:element name="Код" type="УТ:ТипНепустаяСтрока">
+																							<xs:annotation>
+																								<xs:documentation>Код информационного обмена</xs:documentation>
+																							</xs:annotation>
+																						</xs:element>
+																						<xs:element name="СписокДокументов" minOccurs="0">
+																							<xs:annotation>
+																								<xs:documentation>Перечень документов информационного обмена, к которым относится изменение</xs:documentation>
+																							</xs:annotation>
+																							<xs:complexType>
+																								<xs:sequence>
+																									<xs:element name="Документ" type="УТ:ТипНепустаяСтрока" maxOccurs="unbounded">
+																										<xs:annotation>
+																											<xs:documentation>Код документа внутри информационного обмена, к которому относится изменение - указывается, если изменение касается конкретных документов, если изменение касается всего информационного обмена - элемент опускается</xs:documentation>
+																										</xs:annotation>
+																									</xs:element>
+																								</xs:sequence>
+																							</xs:complexType>
+																						</xs:element>
+																					</xs:sequence>
+																				</xs:complexType>
+																			</xs:element>
+																		</xs:sequence>
+																	</xs:complexType>
+																</xs:element>
+															</xs:sequence>
+														</xs:complexType>
+													</xs:element>
+												</xs:sequence>
+												<xs:attribute name="Номер" type="УТ:ТипНепустаяСтрока" use="required">
+													<xs:annotation>
+														<xs:documentation>Номер версии</xs:documentation>
+													</xs:annotation>
+												</xs:attribute>
+												<xs:attribute name="Дата" type="xs:date" use="required">
+													<xs:annotation>
+														<xs:documentation>Дата выпуска версии.</xs:documentation>
+													</xs:annotation>
+												</xs:attribute>
+											</xs:complexType>
+										</xs:element>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="СлужебнаяИнформация" type="АФ:ТипСлужебнаяИнформация">
+					<xs:annotation>
+						<xs:documentation>Служебная информация об электронном документе</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

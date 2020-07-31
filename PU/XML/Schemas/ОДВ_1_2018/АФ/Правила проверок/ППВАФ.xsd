@@ -1,0 +1,250 @@
+<?xml version="1.0"?>
+<xs:schema version="1.0" targetNamespace="http://пф.рф/АФ" xmlns="http://пф.рф/АФ" xmlns:АФ="http://пф.рф/АФ" xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+
+	<xs:include schemaLocation="../../ТипыОбщие.xsd"/>
+	<xs:annotation>
+		<xs:documentation>Схема Описаний проверок форматов ПФР</xs:documentation>
+	</xs:annotation>
+	<xs:element name="ОписаниеПроверок">
+		<xs:annotation>
+			<xs:documentation>Корневой элемент. Описание логических проверок документа определенного формата</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:annotation>
+				<xs:documentation>Тип описания проверок</xs:documentation>
+			</xs:annotation>
+			<xs:sequence>
+				<xs:element name="Наименование" type="xs:string">
+					<xs:annotation>
+						<xs:documentation>Наименование группы проверок, перечисленных в этом файле. Например "Проверки Адреса" или "Проверки анкетных данных"</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="КодИнформационногоОбмена" type="xs:string">
+					<xs:annotation>
+						<xs:documentation>Код информационного обмена формата, для которого описываются логические проверки. Используется при формировании кода проверки.</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="КодБлокаПроверок" type="xs:string">
+					<xs:annotation>
+						<xs:documentation>Код блока проверок. Используется при формировании кода проверки</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="Функции" type="ТипФункции" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Описание функций (глобальных в рамках всех проверок, описываемых в данном файле), как правило используемых в нескольких проверках одновременно</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="БлокПроверок" type="ТипБлокПроверок" maxOccurs="unbounded">
+					<xs:annotation>
+						<xs:documentation>Список проверок, объединенных в одну группу по своей семантике</xs:documentation>
+					</xs:annotation>
+					<xs:unique name="UniqueMainID">
+						<xs:selector xpath="АФ:БлокПроверок"/>
+						<xs:field xpath="@ID"/>
+					</xs:unique>
+					<xs:unique name="UniqueMainIDRule">
+						<xs:selector xpath="АФ:Проверка"/>
+						<xs:field xpath="@ID"/>
+					</xs:unique>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+
+		<xs:unique name="UniqueIDBaseBlock">
+			<xs:selector xpath="АФ:БлокПроверок"/>
+			<xs:field xpath="@ID"/>
+		</xs:unique>
+	</xs:element>
+
+	<xs:complexType name="ТипФункции">
+		<xs:annotation>
+			<xs:documentation>Тип для блока Функции</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Функция" type="ТипФункция" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Функция XQuery</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="ТипФункция">
+		<xs:annotation>
+			<xs:documentation>Тип для блока Функция</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="ПространствоИмен" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Пространство имен (namespace), в котором объявляется функция</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+
+			<xs:element name="Описание" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Описание функции</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Параметры" type="ТипПараметры" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Список аргументов функции</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ТипВозвращаемогоЗначения" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Тип возвращаемого значения функция</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ТелоФункции" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Код XQuery</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="Наименование" type="xs:string" use="required">
+			<xs:annotation>
+				<xs:documentation>Имя функции</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+
+	<xs:complexType name="ТипПеременные">
+		<xs:annotation>
+			<xs:documentation>Тип для блока Переменные</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Переменная" type="ТипПеременная" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Список переменных XQuery</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="ТипПеременная">
+		<xs:annotation>
+			<xs:documentation>Описание переменной</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="ТипОписаниеПеременной">
+				<xs:attribute name="Наименование" type="xs:string" use="required">
+					<xs:annotation>
+						<xs:documentation>Имя переменной</xs:documentation>
+					</xs:annotation>
+				</xs:attribute>
+				<xs:attribute name="Тип" type="xs:string" use="optional">
+					<xs:annotation>
+						<xs:documentation>Тип переменной</xs:documentation>
+					</xs:annotation>
+				</xs:attribute>
+				<xs:attribute name="Внешняя" type="xs:boolean" fixed="1" use="optional">
+					<xs:annotation>
+						<xs:documentation>Признак, является ли переменная внешней для XQuery или локальной</xs:documentation>
+					</xs:annotation>
+				</xs:attribute>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+
+	<xs:complexType name="ТипПараметры">
+		<xs:annotation>
+			<xs:documentation>Список агрументов (параметров)</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Параметр" type="ТипПараметр" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Агрумент (параметр)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="ТипПараметр">
+		<xs:annotation>
+			<xs:documentation>Аргумент(Параметр)</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Описание" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Описание агрумента (параметра)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="Наименование" type="xs:string" use="required">
+			<xs:annotation>
+				<xs:documentation>Имя аргумента</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="Тип" type="xs:string">
+			<xs:annotation>
+				<xs:documentation>Тип агрумента</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+
+	<xs:complexType name="ТипБлокПроверок">
+		<xs:annotation>
+			<xs:documentation>Тип для Блока проверок, который рекурсивно может содержать другие блоки проверок и проверки своего уровня</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="БлокПроверок" type="ТипБлокПроверок" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Блок проверок в составе блока верхнего уровня</xs:documentation>
+				</xs:annotation>
+				<xs:unique name="UniqueID">
+					<xs:selector xpath="БлокПроверок"/>
+					<xs:field xpath="@ID"/>
+				</xs:unique>
+				<xs:unique name="UniqueIDRule">
+					<xs:selector xpath="Проверка"/>
+					<xs:field xpath="@ID"/>
+				</xs:unique>
+			</xs:element>
+			<xs:element name="Проверка" type="ТипПроверка" maxOccurs="unbounded" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Описание правила проверки</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="ID" type="xs:integer">
+			<xs:annotation>
+				<xs:documentation>ID блока проверки. Уникален в рамках 1 уровня.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="Название" type="xs:string">
+			<xs:annotation>
+				<xs:documentation>Наименование блока проверки.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+
+	<xs:complexType name="ТипПроверка">
+		<xs:annotation>
+			<xs:documentation>Проверка</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Описание" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Текстовое описание проверки.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+
+
+			<xs:element name="Запрос" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Запрос в XQuery</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="КодРезультата" type="ТипКодРезультата">
+				<xs:annotation>
+					<xs:documentation>Код результата, возвращаемый проверкой в случае ошибки</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="ID" type="xs:string">
+			<xs:annotation>
+				<xs:documentation>ID проверки. Уникален в рамках 1 уровня</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+</xs:schema>
