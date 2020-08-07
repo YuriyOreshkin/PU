@@ -68,14 +68,14 @@ namespace PU.FormsSZV_ISH
 
         private void radPanel1_Click(object sender, EventArgs e)
         {
-            PU.FormsRSW2014.Diction child = new PU.FormsRSW2014.Diction();
+            /*PU.Dictionaries.BaseDictionaryFormList child = new PU.Dictionaries.BaseDictionaryFormList();
             child.Owner = this;
             child.ThemeName = this.ThemeName;
             child.ShowInTaskbar = false;
             child.ocenka = ocenka;
             child.action = "selection";
             child.DictName = "SpecOcenkaUslTruda";
-            child.btnSelection.Visible = true;
+            child.radButtonSelect.Visible = true;
             child.ShowDialog();
             formData = null;
             formData = new FormsSZV_ISH_7_2017();
@@ -93,7 +93,7 @@ namespace PU.FormsSZV_ISH
                 radPanel1.Text = "Код специальной оценки труда - не определен... Нажмите для выбора";
             }
 
-            CalcTextBoxes(null, null);
+            CalcTextBoxes(null, null);*/
 
         }
 

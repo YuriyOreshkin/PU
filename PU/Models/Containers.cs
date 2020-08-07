@@ -78,14 +78,7 @@ namespace PU.Models
         public string KPP { get; set; }
     }
 
-    public class DictionContainer
-    {
-        public long ID { get; set; }
-        public string Code { get; set; }
-        public string Name { get; set; }
-        public DateTime? DateBegin { get; set; }
-        public DateTime? DateEnd { get; set; }
-    }
+ 
 
     public class RaschetPeriodContainer
     {

@@ -25,7 +25,8 @@ using System.Reflection;
 using Ionic.Zip;
 using Telerik.WinControls.UI.Docking;
 using System.Net;
-
+using Telerik.WinControls.UI;
+using PU.Models.Mapping;
 
 namespace PU
 {
@@ -591,25 +592,9 @@ INSERT INTO Users (Name, Login, Password, RoleID, SysAdmin ) VALUES ('Админ
         }
 
 
-        private void OpenDiction(string dictName)
-        {
-            Diction child = new Diction();
-            child.DictName = dictName;
-            child.Owner = this;
-            child.ThemeName = this.ThemeName;
-            child.ShowInTaskbar = false;
-            child.MaximumSize = child.Size;
-            child.ShowDialog();
-            child.WindowState = FormWindowState.Normal;
-            child.Dispose();
+       
 
-
-        }
-
-        private void radMenuItem11_Click(object sender, EventArgs e)
-        {
-            OpenDiction("SpecOcenkaUslTruda");
-        }
+      
 
         private void radMenuItem4_Click(object sender, EventArgs e)
         {
@@ -631,34 +616,37 @@ INSERT INTO Users (Name, Login, Password, RoleID, SysAdmin ) VALUES ('Админ
 
         }
 
-        private void radMenuItem6_Click(object sender, EventArgs e)
+        private void OpenDictionary(string classname ,string title)
         {
-            OpenDiction("TerrUsl");
+
+            Type formListType = Type.GetType("PU.Dictionaries." + classname + "FormList");
+            if (formListType == null)
+            {
+                formListType = Type.GetType("PU.Dictionaries.BaseDictionaryFormList");
+            }
+
+            Type viewType = Type.GetType(Mapping.FullModelViewPath(classname));
+            object view = Activator.CreateInstance(viewType);
+
+            RadForm child = (RadForm)Activator.CreateInstance(formListType);
+            child.Load += new EventHandler(delegate (object s, EventArgs args) { viewType.GetMethod("Load").Invoke(view, new object[] { child, classname }); });
+
+            child.Text = title;
+            child.Owner = this;
+            child.ThemeName = this.ThemeName;
+            child.ShowInTaskbar = false;
+            child.ShowDialog();
+            child.WindowState = FormWindowState.Normal;
+            child.Dispose();
+
+
         }
 
-        private void radMenuItem7_Click(object sender, EventArgs e)
-        {
-            OpenDiction("IschislStrahStajOsn");
-        }
 
-        private void radMenuItem8_Click(object sender, EventArgs e)
+        private void radMenuItemDictionary_Click(object sender, EventArgs e)
         {
-            OpenDiction("UslDosrNazn");
-        }
 
-        private void radMenuItem9_Click(object sender, EventArgs e)
-        {
-            OpenDiction("OsobUslTruda");
-        }
-
-        private void radMenuItem10_Click(object sender, EventArgs e)
-        {
-            OpenDiction("VidTrudDeyat");
-        }
-
-        private void radMenuItem12_Click(object sender, EventArgs e)
-        {
-            OpenDiction("IschislStrahStajDop");
+            OpenDictionary(((RadMenuItem)sender).Tag.ToString(), ((RadMenuItem)sender).Text);
         }
 
         private void radMenuItem13_Click(object sender, EventArgs e)

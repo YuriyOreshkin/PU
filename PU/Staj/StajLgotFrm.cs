@@ -234,13 +234,13 @@ namespace PU.Staj
 
         private void TerrUslBtnFind_Click(object sender, EventArgs e)
         {
-            Diction child = new Diction();
+            /*PU.Dictionaries.BaseDictionaryFormList child = new PU.Dictionaries.BaseDictionaryFormList();
             child.Owner = this;
             child.ThemeName = this.ThemeName;
             child.ShowInTaskbar = false;
             child.action = "selection";
             child.DictName = "TerrUsl";
-            child.btnSelection.Visible = true;
+            child.radButtonSelect.Visible = true;
             child.ShowDialog();
             if (child.item_id != 0)
             {
@@ -249,7 +249,7 @@ namespace PU.Staj
             }
             child = null;
             checkRules();
-
+            */
 
         }
         #endregion
@@ -323,13 +323,13 @@ namespace PU.Staj
 
         private void OsobUslBtnFind_Click(object sender, EventArgs e)
         {
-            Diction child = new Diction();
+           /* PU.Dictionaries.BaseDictionaryFormList child = new PU.Dictionaries.BaseDictionaryFormList();
             child.Owner = this;
             child.ThemeName = this.ThemeName;
             child.ShowInTaskbar = false;
             child.action = "selection";
             child.DictName = "OsobUslTruda";
-            child.btnSelection.Visible = true;
+            child.radButtonSelect.Visible = true;
             child.ShowDialog();
             if (child.item_id != 0)
             {
@@ -338,7 +338,7 @@ namespace PU.Staj
             }
             child = null;
             checkRules();
-
+            */
         }
         #endregion
 
@@ -432,13 +432,13 @@ namespace PU.Staj
 
         private void StrahStajBtnFind_Click(object sender, EventArgs e)
         {
-            Diction child = new Diction();
+           /* PU.Dictionaries.BaseDictionaryFormList child = new PU.Dictionaries.BaseDictionaryFormList();
             child.Owner = this;
             child.ThemeName = this.ThemeName;
             child.ShowInTaskbar = false;
             child.action = "selection";
             child.DictName = "IschislStrahStajOsn";
-            child.btnSelection.Visible = true;
+            child.radButtonSelect.Visible = true;
             child.ShowDialog();
             if (child.item_id != 0)
             {
@@ -446,7 +446,7 @@ namespace PU.Staj
                 StrahStajDDL.Items.FirstOrDefault(x => x.Value.ToString() == id.ToString()).Selected = true;
             }
             child = null;
-            checkRules();
+            checkRules();*/
 
         }
         #endregion
@@ -581,13 +581,13 @@ namespace PU.Staj
 
         private void StrahStaj3ParamBtnFind_Click(object sender, EventArgs e)
         {
-            Diction child = new Diction();
+            /*PU.Dictionaries.BaseDictionaryFormList child = new PU.Dictionaries.BaseDictionaryFormList();
             child.Owner = this;
             child.ThemeName = this.ThemeName;
             child.ShowInTaskbar = false;
             child.action = "selection";
             child.DictName = "IschislStrahStajDop";
-            child.btnSelection.Visible = true;
+            child.radButtonSelect.Visible = true;
             child.ShowDialog();
             if (child.item_id != 0)
             {
@@ -596,7 +596,7 @@ namespace PU.Staj
             }
             child = null;
             checkRules();
-
+            */
         }
         #endregion
 
@@ -633,13 +633,13 @@ namespace PU.Staj
 
         private void DosrPensBtnFind_Click(object sender, EventArgs e)
         {
-            Diction child = new Diction();
+           /* PU.Dictionaries.BaseDictionaryFormList child = new PU.Dictionaries.BaseDictionaryFormList();
             child.Owner = this;
             child.ThemeName = this.ThemeName;
             child.ShowInTaskbar = false;
             child.action = "selection";
             child.DictName = "UslDosrNazn";
-            child.btnSelection.Visible = true;
+            child.radButtonSelect.Visible = true;
             child.ShowDialog();
             if (child.item_id != 0)
             {
@@ -647,7 +647,7 @@ namespace PU.Staj
                 DosrPensDDL.Items.FirstOrDefault(x => x.Value.ToString() == id.ToString()).Selected = true;
             }
             child = null;
-
+            */
 
         }
         #endregion

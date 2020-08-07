@@ -73,14 +73,14 @@ namespace PU.FormsRSW2014
 
         private void radPanel1_Click(object sender, EventArgs e)
         {
-            Diction child = new Diction();
+            /*PU.Dictionaries.BaseDictionaryFormList child = new PU.Dictionaries.BaseDictionaryFormList();
             child.Owner = this;
             child.ThemeName = this.ThemeName;
             child.ShowInTaskbar = false;
             child.ocenka = ocenka;
             child.action = "selection";
             child.DictName = "SpecOcenkaUslTruda";
-            child.btnSelection.Visible = true;
+            child.radButtonSelect.Visible = true;
             child.ShowDialog();
             formData = null;
             formData = new FormsRSW2014_1_Razd_6_7();
@@ -99,7 +99,7 @@ namespace PU.FormsRSW2014
             }
             if (!autoCalc)
                 getPrevData();
-            CalcTextBoxes(null, null);
+            CalcTextBoxes(null, null);*/
 
         }
 

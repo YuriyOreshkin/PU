@@ -48,30 +48,30 @@ namespace PU.FormsODV1
 
         private void OsobUslTrudaCodeBtn_Click(object sender, EventArgs e)
         {
-            PU.FormsRSW2014.Diction child = new PU.FormsRSW2014.Diction();
+           /* PU.Dictionaries.BaseDictionaryFormList child = new PU.Dictionaries.BaseDictionaryFormList();
             child.Owner = this;
             child.ThemeName = this.ThemeName;
             child.ShowInTaskbar = false;
             child.action = "selection";
             child.DictName = "OsobUslTruda";
-            child.btnSelection.Visible = true;
+            child.radButtonSelect.Visible = true;
             child.ShowDialog();
             OsobUslTrudaCode.Text = child.Code;
-            child = null;
+            child = null;*/
         }
 
         private void UslDosrNaznCodeBtn_Click(object sender, EventArgs e)
         {
-            PU.FormsRSW2014.Diction child = new PU.FormsRSW2014.Diction();
+            /*PU.Dictionaries.BaseDictionaryFormList child = new PU.Dictionaries.BaseDictionaryFormList();
             child.Owner = this;
             child.ThemeName = this.ThemeName;
             child.ShowInTaskbar = false;
             child.action = "selection";
             child.DictName = "UslDosrNazn";
-            child.btnSelection.Visible = true;
+            child.radButtonSelect.Visible = true;
             child.ShowDialog();
             OsobUslTrudaCode.Text = child.Code;
-            child = null;
+            child = null;*/
         }
 
         private void CodePositionBtn_Click(object sender, EventArgs e)

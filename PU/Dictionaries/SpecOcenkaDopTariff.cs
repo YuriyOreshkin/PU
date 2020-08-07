@@ -12,7 +12,7 @@ using Telerik.WinControls.UI.Localization;
 using PU.Classes;
 using Telerik.WinControls.UI;
 
-namespace PU.FormsRSW2014
+namespace PU.Dictionaries
 {
     public partial class SpecOcenkaDopTariff : Telerik.WinControls.UI.RadForm
     {

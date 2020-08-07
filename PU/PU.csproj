@@ -233,6 +233,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Classes\UpdateDictionaries.cs" />
+    <Compile Include="Dictionaries\UslDosrNaznFormEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dictionaries\UslDosrNaznFormEdit.Designer.cs">
+      <DependentUpon>UslDosrNaznFormEdit.cs</DependentUpon>
+    </Compile>
     <Compile Include="Dictionaries\TariffCodeRW3Edit.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1063,6 +1069,17 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="Mapping\Mapping.cs" />
+    <Compile Include="Models\ModelViews\BaseDictionaryActions.cs" />
+    <Compile Include="Models\ModelViews\BaseDictionaryActionsEdit.cs" />
+    <Compile Include="Models\ModelViews\BaseDictionaryView.cs" />
+    <Compile Include="Models\ModelViews\CustomAttributes.cs" />
+    <Compile Include="Models\ModelViews\LookUp.cs" />
+    <Compile Include="Models\ModelViews\OsobUslTrudaView.cs" />
+    <Compile Include="Models\ModelViews\UslDosrNaznEdIzmView.cs" />
+    <Compile Include="Models\ModelViews\UslDosrNaznView.cs" />
+    <Compile Include="Models\ModelViews\VidTrudDeyatView.cs" />
+    <Compile Include="Models\ModelViews\TerrUslView.cs" />
     <Compile Include="Models\MROT.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
@@ -1421,17 +1438,17 @@
     <Compile Include="DepartmentsEdit.Designer.cs">
       <DependentUpon>DepartmentsEdit.cs</DependentUpon>
     </Compile>
-    <Compile Include="Dictionaries\Diction.cs">
+    <Compile Include="Dictionaries\BaseDictionaryFormList.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Dictionaries\Diction.Designer.cs">
-      <DependentUpon>Diction.cs</DependentUpon>
+    <Compile Include="Dictionaries\BaseDictionaryFormList.Designer.cs">
+      <DependentUpon>BaseDictionaryFormList.cs</DependentUpon>
     </Compile>
-    <Compile Include="Dictionaries\DictionEdit.cs">
+    <Compile Include="Dictionaries\BaseDictionaryFormEdit.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Dictionaries\DictionEdit.Designer.cs">
-      <DependentUpon>DictionEdit.cs</DependentUpon>
+    <Compile Include="Dictionaries\BaseDictionaryFormEdit.Designer.cs">
+      <DependentUpon>BaseDictionaryFormEdit.cs</DependentUpon>
     </Compile>
     <Compile Include="Dictionaries\DocTypes.cs">
       <SubType>Form</SubType>
@@ -1891,6 +1908,9 @@
     <Compile Include="ZAGS\Zags_Death\Death_List.Designer.cs">
       <DependentUpon>Death_List.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Dictionaries\UslDosrNaznFormEdit.resx">
+      <DependentUpon>UslDosrNaznFormEdit.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Dictionaries\TariffCodeRW3Edit.resx">
       <DependentUpon>TariffCodeRW3Edit.cs</DependentUpon>
     </EmbeddedResource>
@@ -2338,11 +2358,11 @@
     <EmbeddedResource Include="DepartmentsEdit.resx">
       <DependentUpon>DepartmentsEdit.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Dictionaries\Diction.resx">
-      <DependentUpon>Diction.cs</DependentUpon>
+    <EmbeddedResource Include="Dictionaries\BaseDictionaryFormList.resx">
+      <DependentUpon>BaseDictionaryFormList.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Dictionaries\DictionEdit.resx">
-      <DependentUpon>DictionEdit.cs</DependentUpon>
+    <EmbeddedResource Include="Dictionaries\BaseDictionaryFormEdit.resx">
+      <DependentUpon>BaseDictionaryFormEdit.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dictionaries\DocTypes.resx">
       <DependentUpon>DocTypes.cs</DependentUpon>
@@ -2566,7 +2586,6 @@
       <LastGenOutput>xmlContainer.Designer.cs</LastGenOutput>
     </EntityDeploy>
     <None Include="Base_emp\pu6_emp.db3" />
-    <None Include="ClassDiagram1.cd" />
     <EntityDeploy Include="Models\Model.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>Model.Designer.cs</LastGenOutput>

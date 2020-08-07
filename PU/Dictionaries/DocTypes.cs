@@ -25,6 +25,8 @@ namespace PU.FormsRSW2014
             SelfRef = this;
         }
 
+        
+
         /// <summary>
         /// Перехват нажатия на ESC для закрытия формы
         /// </summary>

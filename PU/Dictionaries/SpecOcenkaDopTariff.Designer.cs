@@ -1,4 +1,4 @@
-﻿namespace PU.FormsRSW2014
+﻿namespace PU.Dictionaries
 {
     partial class SpecOcenkaDopTariff
     {
