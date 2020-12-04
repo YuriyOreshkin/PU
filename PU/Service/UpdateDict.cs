@@ -150,7 +150,7 @@ namespace PU
             radWaitingBar1.StopWaiting();
             radWaitingBar1.Visible = false;
 
-            Methods.showAlert("Синхронизация завершена", "Успешно синхронизировано " + cntGood.ToString() + " из " + tablesGridView.RowCount.ToString() + " справочников.", this.ThemeName);
+            Messenger.showAlert(AlertType.Success, "Синхронизация завершена", "Успешно синхронизировано " + cntGood.ToString() + " из " + tablesGridView.RowCount.ToString() + " справочников.", this.ThemeName);
         }
 
         private void closeBtn_Click(object sender, EventArgs e)

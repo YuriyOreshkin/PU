@@ -435,17 +435,17 @@ namespace PU
 
                             }
                             restoreFlag = true;
-                            Methods.showAlert("Внимание", "Восстановление из резервной копии прошло успешно!", this.ThemeName);
+                            Messenger.showAlert(AlertType.Success, "Внимание", "Восстановление из резервной копии прошло успешно!", this.ThemeName);
                         }
                     }
                     catch { }
                 }
                 else
-                    Methods.showAlert("Ошибка восстановления", "Выбранный файл резервной копии не найден на диске!", this.ThemeName);
+                    Messenger.showAlert(AlertType.Error, "Ошибка восстановления", "Выбранный файл резервной копии не найден на диске!", this.ThemeName);
             }
             else
             {
-                Methods.showAlert("Ошибка восстановления", "Выбранный файл резервной копии не найден на диске!", this.ThemeName);
+                Messenger.showAlert(AlertType.Error, "Ошибка восстановления", "Выбранный файл резервной копии не найден на диске!", this.ThemeName);
             }
         }
 
@@ -490,7 +490,7 @@ namespace PU
                 }
                 else // Если такой архив уже есть в списке
                 {
-                    Methods.showAlert("Внимание", "Выбранный архив Базы данных уже есть в списке!", this.ThemeName);
+                    Messenger.showAlert(AlertType.Info, "Внимание", "Выбранный архив Базы данных уже есть в списке!", this.ThemeName);
                 }
 
             }

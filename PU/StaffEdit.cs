@@ -12,6 +12,7 @@ using Telerik.WinControls;
 using Telerik.WinControls.Enumerations;
 using Telerik.WinControls.UI;
 using PU.FormsRSW2014;
+using PU.Dictionaries;
 
 namespace PU
 {
@@ -487,18 +488,7 @@ namespace PU
 
         private void findDolgnBtn_Click(object sender, EventArgs e)
         {
-            DolgnFrm child = new DolgnFrm();
-            child.Owner = this;
-            child.ThemeName = this.ThemeName;
-            child.ShowInTaskbar = false;
-            child.action = "selection";
-            child.btnSelection.Visible = true;
-            child.ShowDialog();
-            if (child.dolgn != null)
-            {
-                this.DolgnTextBox.Text = child.dolgn.Name;
-            }
-            child = null;
+            Dictionaries.BaseDictionaryEvents.LookUp(this, DolgnTextBox, "Dolgn");
         }
 
         private void cleanDolgnBtn_Click(object sender, EventArgs e)

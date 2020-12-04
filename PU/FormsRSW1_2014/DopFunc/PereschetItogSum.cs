@@ -79,7 +79,7 @@ namespace PU.FormsRSW2014
             closeBtn.Enabled = true;
 
             this.child.Close();
-            Methods.showAlert("Внимание", "Перерасчет итоговых сумм выплат произведен!", this.ThemeName);
+            Messenger.showAlert(AlertType.Success, "Внимание", "Перерасчет итоговых сумм выплат произведен!", this.ThemeName);
             this.Close();
         }
 

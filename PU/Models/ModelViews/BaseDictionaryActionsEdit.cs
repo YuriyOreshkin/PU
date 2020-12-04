@@ -11,7 +11,7 @@ namespace PU.Models.ModelViews
 {
     public class BaseDictionaryActionsEdit
     {
-        protected void LoadForm(Form form, object item)
+        public virtual void LoadForm(Form form, object item)
         {
             ThemeResolutionService.ApplyThemeToControlTree(form, ((RadForm)form).ThemeName);
             Telerik.WinControls.RadMessageBox.SetThemeName(((RadForm)form).ThemeName);
@@ -19,7 +19,7 @@ namespace PU.Models.ModelViews
             Mapping.Mapping.ObjectControlsMap(form, item);
         }
 
-        protected void Save(Form form, object item)
+        public virtual void Save(Form form, object item)
         {
             Type type = item.GetType();
             object view = Activator.CreateInstance(type);
@@ -37,7 +37,7 @@ namespace PU.Models.ModelViews
             }
         }
 
-        protected bool isValidate(Form form, object obj)
+        public virtual bool isValidate(Form form, object obj)
         {
             var results = new List<ValidationResult>();
             var context = new ValidationContext(obj, null, null);
@@ -45,7 +45,6 @@ namespace PU.Models.ModelViews
             if (!Validator.TryValidateObject(obj, context, results, true))
             {
                 ErrorProvider errorProvider = new ErrorProvider();
-
 
                 foreach (var error in results)
                 {

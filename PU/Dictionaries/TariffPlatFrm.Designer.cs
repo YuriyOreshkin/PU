@@ -104,6 +104,7 @@ namespace PU.FormsRSW2014
             this.radGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.radGridView1.BeginEditMode = Telerik.WinControls.RadGridViewBeginEditMode.BeginEditOnF2;
             this.radGridView1.EnableCustomSorting = true;
             this.radGridView1.EnableHotTracking = false;
             this.radGridView1.Location = new System.Drawing.Point(9, 12);

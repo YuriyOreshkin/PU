@@ -519,7 +519,7 @@ namespace PU.ZAGS.Zags_Death
 
                         xDoc.Save(filePath);
 
-                        Methods.showAlert("Сохранение", "XML-файл успешно сохранен по указанному пути!", this.ThemeName);
+                        Messenger.showAlert(AlertType.Success, "Сохранение", "XML-файл успешно сохранен по указанному пути!", this.ThemeName);
 
                         if (!Options.hideDialogCheckFiles)
                         {
@@ -542,7 +542,7 @@ namespace PU.ZAGS.Zags_Death
                     }
                     catch (Exception ex)
                     {
-                        Methods.showAlert("Внимание!", "При формировании и сохранении файла произошла ошибка.\r\nКод ошибки: " + ex.Message, this.ThemeName);
+                        Messenger.showAlert(AlertType.Error, "Внимание!", "При формировании и сохранении файла произошла ошибка.\r\nКод ошибки: " + ex.Message, this.ThemeName);
                     }
                     finally
                     {

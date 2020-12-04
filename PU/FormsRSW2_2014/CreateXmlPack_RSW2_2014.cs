@@ -499,11 +499,11 @@ namespace PU.FormsRSW2_2014
                 }
 
                 packNumSpin.Value++;
-                Methods.showAlert("Сохранение", "XML-файл успешно сохранен по указанному пути!", this.ThemeName);
+                Messenger.showAlert(AlertType.Success, "Сохранение", "XML-файл успешно сохранен по указанному пути!", this.ThemeName);
             }
             catch (Exception ex)
             {
-                Methods.showAlert("Внимание!", "При формировании и сохранении файла произошла ошибка.\r\nКод ошибки: " + ex.Message, this.ThemeName);
+                Messenger.showAlert(AlertType.Error, "Внимание!", "При формировании и сохранении файла произошла ошибка.\r\nКод ошибки: " + ex.Message, this.ThemeName);
             }
         }
 
@@ -843,7 +843,7 @@ namespace PU.FormsRSW2_2014
             xDoc.Save(filePath);
 
             packNumSpin.Value++;
-            Methods.showAlert("Сохранение", "XML-файл успешно сохранен по указанному пути!", this.ThemeName);
+                Messenger.showAlert(AlertType.Success, "Сохранение", "XML-файл успешно сохранен по указанному пути!", this.ThemeName);
 
 
             if (!Options.hideDialogCheckFiles)
@@ -867,7 +867,7 @@ namespace PU.FormsRSW2_2014
             }
             catch (Exception ex)
             {
-                Methods.showAlert("Внимание!", "При формировании и сохранении файла произошла ошибка.\r\nКод ошибки: " + ex.Message, this.ThemeName);
+                Messenger.showAlert(AlertType.Error, "Внимание!", "При формировании и сохранении файла произошла ошибка.\r\nКод ошибки: " + ex.Message, this.ThemeName);
             }
         }
 

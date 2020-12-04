@@ -1,26 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data.Entity;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Windows.Forms;
-using PU.Models;
-using Telerik.WinControls;
+﻿using System.Windows.Forms;
 using Telerik.WinControls.UI;
-using System.IO;
-using PU.Classes;
-using System.Reflection;
-using System.Data.Entity.Core.Objects;
-using PU.Models.ModelViews;
-using PU.Models.Mapping;
 
 namespace PU.Dictionaries
 {
     partial class BaseDictionaryFormList : Telerik.WinControls.UI.RadForm
     {
-
 
         public BaseDictionaryFormList()
         {
@@ -43,5 +27,26 @@ namespace PU.Dictionaries
             return base.ProcessCmdKey(ref msg, keyData);
         }
 
+
+        private void radGridViewBaseDictionary_CreateRow(object sender, GridViewCreateRowEventArgs e)
+        {
+            if (e.RowType == typeof(GridDataRowElement))
+            {
+                e.RowType = typeof(CustomRowElement);
+            }
+            else if (e.RowType == typeof(GridTableHeaderRowElement))
+            {
+
+                e.RowType = typeof(CustomHeaderElement);
+
+            }
+            else if (e.RowType == typeof(GridFilterRowElement))
+            {
+                e.RowType = typeof(CustomGridFilterElement);
+            }
+             
+
+        }
+      
     }
 }

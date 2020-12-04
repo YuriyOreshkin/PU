@@ -67,7 +67,6 @@
             // 
             // typeDDL
             // 
-            this.typeDDL.AllowShowFocusCues = false;
             this.typeDDL.AutoCompleteDisplayMember = null;
             this.typeDDL.AutoCompleteValueMember = null;
             this.typeDDL.AutoSizeItems = true;
@@ -75,17 +74,14 @@
             radListDataItem1.Selected = true;
             radListDataItem1.Tag = "0";
             radListDataItem1.Text = "Спецоценка";
-            radListDataItem1.TextWrap = true;
             radListDataItem2.Tag = "1";
             radListDataItem2.Text = "Аттестация рабочих мест";
-            radListDataItem2.TextWrap = true;
             this.typeDDL.Items.Add(radListDataItem1);
             this.typeDDL.Items.Add(radListDataItem2);
             this.typeDDL.Location = new System.Drawing.Point(162, 12);
             this.typeDDL.Name = "typeDDL";
             this.typeDDL.Size = new System.Drawing.Size(221, 21);
             this.typeDDL.TabIndex = 1;
-            this.typeDDL.Text = "Спецоценка";
             this.typeDDL.ThemeName = "Office2013Light";
             ((Telerik.WinControls.UI.RadDropDownListElement)(this.typeDDL.GetChildAt(0))).DropDownStyle = Telerik.WinControls.RadDropDownStyle.DropDownList;
             ((Telerik.WinControls.UI.RadDropDownListElement)(this.typeDDL.GetChildAt(0))).AutoSizeMode = Telerik.WinControls.RadAutoSizeMode.FitToAvailableSize;

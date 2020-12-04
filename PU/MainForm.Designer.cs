@@ -43,7 +43,7 @@
             this.radMenuSeparatorItem1 = new Telerik.WinControls.UI.RadMenuSeparatorItem();
             this.radMenuItemDictionaries2 = new Telerik.WinControls.UI.RadMenuItem();
             this.radMenuItemDictionaries3 = new Telerik.WinControls.UI.RadMenuItem();
-            this.radMenuItemDictionaries4 = new Telerik.WinControls.UI.RadMenuItem();
+            this.radMenuItemDictionariesDopTariff = new Telerik.WinControls.UI.RadMenuItem();
             this.radMenuSeparatorItem2 = new Telerik.WinControls.UI.RadMenuSeparatorItem();
             this.radMenuItemDictionaries5 = new Telerik.WinControls.UI.RadMenuItem();
             this.radMenuItemDictionaries6 = new Telerik.WinControls.UI.RadMenuItem();
@@ -208,7 +208,7 @@
             this.radMenuSeparatorItem1,
             this.radMenuItemDictionaries2,
             this.radMenuItemDictionaries3,
-            this.radMenuItemDictionaries4,
+            this.radMenuItemDictionariesDopTariff,
             this.radMenuSeparatorItem2,
             this.radMenuItemDictionaries5,
             this.radMenuItemDictionaries6,
@@ -243,20 +243,23 @@
             // radMenuItemDictionaries2
             // 
             this.radMenuItemDictionaries2.Name = "radMenuItemDictionaries2";
+            this.radMenuItemDictionaries2.Tag = "PlatCategory";
             this.radMenuItemDictionaries2.Text = "Категории плательщиков";
-            this.radMenuItemDictionaries2.Click += new System.EventHandler(this.radMenuItem16_Click);
+            this.radMenuItemDictionaries2.Click += new System.EventHandler(this.radMenuItemDictionary_Click);
             // 
             // radMenuItemDictionaries3
             // 
             this.radMenuItemDictionaries3.Name = "radMenuItemDictionaries3";
+            this.radMenuItemDictionaries3.Tag = "TariffCode";
             this.radMenuItemDictionaries3.Text = "Коды тарифов страховых взносов";
-            this.radMenuItemDictionaries3.Click += new System.EventHandler(this.radMenuItem25_Click);
+            this.radMenuItemDictionaries3.Click += new System.EventHandler(this.radMenuItemDictionary_Click);
             // 
-            // radMenuItemDictionaries4
+            // radMenuItemDictionariesDopTariff
             // 
-            this.radMenuItemDictionaries4.Name = "radMenuItemDictionaries4";
-            this.radMenuItemDictionaries4.Text = "Доп. тарифы страховых взносов";
-            this.radMenuItemDictionaries4.Click += new System.EventHandler(this.radMenuItem14_Click);
+            this.radMenuItemDictionariesDopTariff.Name = "radMenuItemDictionariesDopTariff";
+            this.radMenuItemDictionariesDopTariff.Tag = "DopTariff";
+            this.radMenuItemDictionariesDopTariff.Text = "Доп. тарифы страховых взносов";
+            this.radMenuItemDictionariesDopTariff.Click += new System.EventHandler(this.radMenuItemDictionary_Click);
             // 
             // radMenuSeparatorItem2
             // 
@@ -269,14 +272,16 @@
             this.radMenuItemDictionaries5.AccessibleDescription = "МРОТ";
             this.radMenuItemDictionaries5.AccessibleName = "МРОТ";
             this.radMenuItemDictionaries5.Name = "radMenuItemDictionaries5";
+            this.radMenuItemDictionaries5.Tag = "MROT";
             this.radMenuItemDictionaries5.Text = "База для начисления страховых взносов и МРОТ";
-            this.radMenuItemDictionaries5.Click += new System.EventHandler(this.radMenuItem13_Click);
+            this.radMenuItemDictionaries5.Click += new System.EventHandler(this.radMenuItemDictionary_Click);
             // 
             // radMenuItemDictionaries6
             // 
             this.radMenuItemDictionaries6.Name = "radMenuItemDictionaries6";
+            this.radMenuItemDictionaries6.Tag = "CodeBaseRW3_2015";
             this.radMenuItemDictionaries6.Text = "Тарифы для взносов на дополнительное соц. обеспечение";
-            this.radMenuItemDictionaries6.Click += new System.EventHandler(this.radMenuItem27_Click_1);
+            this.radMenuItemDictionaries6.Click += new System.EventHandler(this.radMenuItemDictionary_Click);
             // 
             // radMenuSeparatorItem3
             // 
@@ -354,15 +359,16 @@
             // radMenuItemDictionaries15
             // 
             this.radMenuItemDictionaries15.Name = "radMenuItemDictionaries15";
+            this.radMenuItemDictionaries15.Tag = "Dolgn";
             this.radMenuItemDictionaries15.Text = "Справочник профессий и должностей";
-            this.radMenuItemDictionaries15.Click += new System.EventHandler(this.radMenuItem24_Click);
+            this.radMenuItemDictionaries15.Click += new System.EventHandler(this.radMenuItemDictionary_Click);
             // 
             // radMenuItemDictionariesDocTypes
             // 
             this.radMenuItemDictionariesDocTypes.Name = "radMenuItemDictionariesDocTypes";
-            this.radMenuItemDictionariesDocTypes.Tag = "DocTypes";
+            this.radMenuItemDictionariesDocTypes.Tag = "DocumentTypes";
             this.radMenuItemDictionariesDocTypes.Text = "Типы документов";
-            this.radMenuItemDictionariesDocTypes.Click += new System.EventHandler(this.radMenuItem5_Click);
+            this.radMenuItemDictionariesDocTypes.Click += new System.EventHandler(this.radMenuItemDictionary_Click);
             // 
             // radMenuItem20
             // 
@@ -1087,7 +1093,7 @@
         private Telerik.WinControls.UI.RadMenuItem radMenuItemDictionariesSpecOcenkaUslTruda;
         private Telerik.WinControls.UI.RadMenuItem radMenuItemDictionariesIschislStrahStajDop;
         private Telerik.WinControls.UI.RadMenuItem radMenuItemDictionaries5;
-        private Telerik.WinControls.UI.RadMenuItem radMenuItemDictionaries4;
+        private Telerik.WinControls.UI.RadMenuItem radMenuItemDictionariesDopTariff;
         private Telerik.WinControls.UI.RadMenuItem radMenuItemDictionaries2;
         private Telerik.WinControls.UI.RadMenuItem radMenuItemDictionaries1;
         private Telerik.WinControls.UI.RadMenuItem radMenuItem20;

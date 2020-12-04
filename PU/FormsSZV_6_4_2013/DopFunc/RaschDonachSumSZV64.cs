@@ -215,7 +215,7 @@ namespace PU.FormsSZV_6_4_2013.DopFunc
             closeBtn.Enabled = true;
 
             this.child.Close();
-            Methods.showAlert("Внимание", "Рассчет доначисленных взносов произведен!", this.ThemeName);
+            Messenger.showAlert(AlertType.Info, "Внимание", "Рассчет доначисленных взносов произведен!", this.ThemeName);
             //            this.Close();
         }
 

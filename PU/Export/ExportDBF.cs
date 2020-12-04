@@ -540,13 +540,13 @@ namespace PU
                     }
                     else
                     {
-                        Methods.showAlert("Ошибка", "При добавлении Отчетного периода приоизошла ошибка", this.ThemeName);
+                        Messenger.showAlert(AlertType.Error, "Ошибка", "При добавлении Отчетного периода приоизошла ошибка", this.ThemeName);
                     }
                 }
             }
             else
             {
-                Methods.showAlert("Ошибка", "При добавлении Отчетного периода приоизошла ошибка", this.ThemeName);
+                Messenger.showAlert(AlertType.Error, "Ошибка", "При добавлении Отчетного периода приоизошла ошибка", this.ThemeName);
             }
         }
 
@@ -808,19 +808,19 @@ namespace PU
             if (String.IsNullOrEmpty(pathBrowser.Value))
             {
                 result = false;
-                Methods.showAlert("Внимание!", "Необходимо указать Каталог для экспорта.", this.ThemeName);
+                Messenger.showAlert(AlertType.Info, "Внимание!", "Необходимо указать Каталог для экспорта.", this.ThemeName);
             }
 
             if (staffGridView.RowCount == 0)
             {
                 result = false;
-                Methods.showAlert("Внимание!", "Список Сотрудников для выгрузки пустой.", this.ThemeName);
+                Messenger.showAlert(AlertType.Info, "Внимание!", "Список Сотрудников для выгрузки пустой.", this.ThemeName);
             }
 
             if (!Utils.CheckVfpOleDb())
             {
                 result = false;
-                Methods.showAlert("Внимание!", "В системе не установлен драйвер VFPOLEDB необходимый для экспорта в DBF.", this.ThemeName);
+                Messenger.showAlert(AlertType.Error, "Внимание!", "В системе не установлен драйвер VFPOLEDB необходимый для экспорта в DBF.", this.ThemeName);
             }
 
             return result;

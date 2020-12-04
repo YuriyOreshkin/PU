@@ -225,7 +225,7 @@
             this.radPageView1.DefaultPage = this.radPageViewPage1;
             this.radPageView1.Location = new System.Drawing.Point(12, 12);
             this.radPageView1.Name = "radPageView1";
-            this.radPageView1.SelectedPage = this.radPageViewPage4;
+            this.radPageView1.SelectedPage = this.radPageViewPage5;
             this.radPageView1.Size = new System.Drawing.Size(574, 437);
             this.radPageView1.TabIndex = 17;
             this.radPageView1.ThemeName = "Office2013Light";

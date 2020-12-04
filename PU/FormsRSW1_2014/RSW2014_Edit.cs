@@ -14,6 +14,7 @@ using Telerik.WinControls.UI;
 using System.Data.Objects;
 using System.Data.Entity;
 using System.Reflection;
+using PU.Dictionaries;
 
 namespace PU.FormsRSW2014
 {
@@ -2516,22 +2517,7 @@ namespace PU.FormsRSW2014
 
         private void ConfirmDocTypeBtn_Click(object sender, EventArgs e)
         {
-            DocTypes child = new DocTypes();
-            child.Owner = this;
-            child.ThemeName = this.ThemeName;
-            child.ShowInTaskbar = false;
-            child.action = "selection";
-            if (ConfirmDocType.SelectedIndex > 0)
-            {
-                long id = long.Parse(ConfirmDocType.SelectedItem.Value.ToString());
-                child.DocType = db.DocumentTypes.FirstOrDefault(x => x.ID == id);
-            }
-            child.ShowDialog();
-            if (child.DocType != null)
-            {
-                ConfirmDocType.Items.FirstOrDefault(x => x.Value.ToString() == child.DocType.ID.ToString()).Selected = true;
-            }
-            child = null;
+            Dictionaries.BaseDictionaryEvents.LookUp(this, ConfirmDocType, "DocumentTypes");
         }
         #endregion
 

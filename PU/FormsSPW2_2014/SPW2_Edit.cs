@@ -412,7 +412,7 @@ namespace PU.FormsSPW2_2014
             else
             {
                 foreach (var item in errMessBox)
-                { Methods.showAlert("Ошибка заполнения", item.name, this.ThemeName, 100); }
+                { Messenger.showAlert(AlertType.Error, "Ошибка заполнения", item.name, this.ThemeName, 100); }
 
             }
 

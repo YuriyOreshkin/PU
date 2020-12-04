@@ -607,7 +607,7 @@ namespace PU.FormsPredPens
 
                         if (!String.IsNullOrEmpty(result))
                         {
-                            Methods.showAlert("Внимание!", "При удалении данных произошла ошибка. Код исключения: " + result, this.ThemeName, 200);
+                            Messenger.showAlert(AlertType.Error, "Внимание!", "При удалении данных произошла ошибка. Код исключения: " + result, this.ThemeName, 200);
                         }
 
                         db.ChangeTracker.DetectChanges();

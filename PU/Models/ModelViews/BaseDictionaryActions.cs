@@ -16,31 +16,39 @@ namespace PU.Models.ModelViews
 {
     public class BaseDictionaryActions: BaseDictionaryActionsEdit
     {
-        private DbContext db;
-        public BaseDictionaryActions(DbContext _db)
+        protected DbContext db;
+        public BaseDictionaryActions()
         {
-            db = _db;
+            db = new pu6Entities();
         }
 
-        [DisplayVisible(true)]
-        public virtual void Add(Form form, string classname) {
+        [DisplayVisible(IsVisible =true)]
+        [DisplayName("Добавить")]
+        public virtual void Add(Form form, RadGridView radGridView, string classname) {
 
-            RadGridView radGridView = form.Controls.OfType<RadGridView>().FirstOrDefault();
 
                 Type entityType = Type.GetType(Mapping.Mapping.FullModelPath(classname));
                 var  entity = Activator.CreateInstance(entityType, null);
-                var view = Mapping.Mapping.ModelClassViewMap(entity, classname);  
+                
+            
+                var view = Mapping.Mapping.ModelClassViewMap(entity, classname);
 
-                Type formEditType = Type.GetType("PU.Dictionaries." + classname + "FormEdit");
+                //Default by filter
+                DefaultValue(view, radGridView);
+
+
+            Type formEditType = Type.GetType("PU.Dictionaries." + classname + "FormEdit");
                 if (formEditType == null)
                 {
                     formEditType = Type.GetType("PU.Dictionaries.BaseDictionaryFormEdit");
                 }
+               
 
                 RadForm formEdit = (RadForm)Activator.CreateInstance(formEditType);
-                    formEdit.Load += new EventHandler(delegate (object s, EventArgs args) { this.LoadForm(formEdit, view); });
+                formEdit.Load += new EventHandler(delegate (object s, EventArgs args) { this.LoadForm(formEdit, view); });
 
-                formEdit.Text = "Добавление записи";
+
+                  formEdit.Text = "Добавление записи";
                 
                   Control saveAction = Mapping.Mapping.GetControlByTag(formEdit.Controls, "Save");
 
@@ -75,12 +83,24 @@ namespace PU.Models.ModelViews
             
         }
 
-        [DisplayVisible(true)]
-        public virtual void Edit(Form form, string classname) {
 
-            RadGridView radGridView = form.Controls.OfType<RadGridView>().FirstOrDefault();
+        //Default by filter
+        private static void DefaultValue(object view, RadGridView radGridView)
+        {
+            for (var i = 0; i < radGridView.FilterDescriptors.Count; i++)
+            {
+                view.GetType().GetProperty(radGridView.FilterDescriptors[i].PropertyName).SetValue(view, radGridView.FilterDescriptors[i].Value,null); 
+             }
+                    
+        }
+
+        [DisplayVisible(IsVisible =true)]
+        [DisplayName("Редактировать")]
+        public virtual void Edit(Form form, RadGridView radGridView,string classname) {
+          
+            //RadGridView radGridView = form.Controls.OfType<RadGridView>().FirstOrDefault();
             
-            if (radGridView != null && radGridView.SelectedRows.Count > 0)
+            if (radGridView != null && radGridView.CurrentRow != null)
             {
                 var selected = radGridView.SelectedRows[0].DataBoundItem;
                 Type formEditType = Type.GetType("PU.Dictionaries." + classname + "FormEdit");
@@ -119,12 +139,13 @@ namespace PU.Models.ModelViews
 
 
    
-        [DisplayVisible(true)]
-        public virtual void Delete(Form form, string classname)
+        [DisplayVisible(IsVisible =true)]
+        [DisplayName("Удалить")]
+        public virtual void Delete(Form form, RadGridView radGridView, string classname)
         {
-            RadGridView radGridView = form.Controls.OfType<RadGridView>().FirstOrDefault();
+            //RadGridView radGridView = form.Controls.OfType<RadGridView>().FirstOrDefault();
 
-            if (radGridView != null && radGridView.SelectedRows.Count > 0)
+            if (radGridView != null && radGridView.CurrentRow != null)
             {
                 if (RadMessageBox.Show(form, "Вы уверены в том, что желаете удалить данную запись?", "Внимание!", MessageBoxButtons.YesNo, RadMessageIcon.Question) == DialogResult.Yes)
                 {
@@ -142,23 +163,40 @@ namespace PU.Models.ModelViews
             }
         }
 
-
+        /// <summary>
+        /// Load form
+        /// </summary>
+        /// <param name="form"></param>
+        /// <param name="classname"></param>
         public virtual void Load(Form form, string classname)
         {
             ThemeResolutionService.ApplyThemeToControlTree(form, ((RadForm)form).ThemeName);
             Telerik.WinControls.RadMessageBox.SetThemeName(((RadForm)form).ThemeName);
 
             RadGridView radGridView = form.Controls.OfType<RadGridView>().FirstOrDefault();
-            radGridView.DoubleClick += new EventHandler((s, args) => { this.Edit(form, classname); });
+            //
+            radGridView.Tag = classname + "Grid";
 
-            FullDataSource(form, classname);
+            RadCommandBar commandBar = form.Controls.OfType<RadCommandBar>().FirstOrDefault();
+
+            commandBar.Tag = classname + "Actions";
+
+
+            radGridView.CellDoubleClick += new GridViewCellEventHandler((s, args) => {
+
+                this.Edit(form, radGridView, classname);
+            });
+
+            FullDataSource(form,classname);
 
             Mapping.Mapping.ActionsClassMap(form,this,classname);
         }
 
-        private void FullDataSource(Form form, string classname)
+
+        protected void FullDataSource(Form form, string classname)
         {
-            RadGridView radGridView = form.Controls.OfType<RadGridView>().FirstOrDefault();
+
+            RadGridView radGridView=(RadGridView)Mapping.Mapping.GetControlByTag(form.Controls, classname+"Grid");
             BindingSource b = new BindingSource();
             b.DataSource = Mapping.Mapping.DataSourceMap(classname);
             radGridView.DataSource = null;
@@ -167,9 +205,15 @@ namespace PU.Models.ModelViews
             Mapping.Mapping.GridViewClassMap(radGridView, classname);
         }
 
-
-        [DisplayVisible(true)]
-        public void Synchronization(Form form, string classname)
+        /// <summary>
+        /// Synchronization
+        /// </summary>
+        /// <param name="form"></param>
+        /// <param name="classname"></param>
+        
+        [DisplayVisible(IsVisible =true, Separator = Separator.Left)]
+        [DisplayName("Синхронизировать")]
+        public virtual void Synchronization(Form form, RadGridView radGridView, string classname)
         {
             var path = Path.Combine(Application.StartupPath, "Base_emp\\pu6_emp.db3");
             if (File.Exists(path))
@@ -180,7 +224,7 @@ namespace PU.Models.ModelViews
                 bw.WorkerReportsProgress = true;
                 bw.WorkerSupportsCancellation = true;
                 bool synchronized = false;
-                bw.DoWork += new System.ComponentModel.DoWorkEventHandler(delegate (object sender, DoWorkEventArgs e) { this.synchronizationDo(classname, path, form, ref synchronized); });
+                bw.DoWork += new System.ComponentModel.DoWorkEventHandler(delegate (object sender, DoWorkEventArgs e) { this.synchronization(classname, path, form, ref synchronized); });
                 bw.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(delegate (object sender, RunWorkerCompletedEventArgs e) { this.bw_RunWorkerCompleted(form, classname, ref synchronized); });
 
                 bw.RunWorkerAsync();
@@ -193,14 +237,9 @@ namespace PU.Models.ModelViews
         }
 
         
-        protected virtual void synchronizationDo(string classname, string path, Form form, ref bool result)
+        protected virtual void synchronization(string classname, string path, Form form, ref bool result)
         {
             result = UpdateDictionaries.updateTable(classname, path , ((RadForm)form).ThemeName, form);
-
-            /*if (DictName == "SpecOcenkaUslTruda" && synchResult)
-            {
-                synchResult = UpdateDictionaries.updateTable("SpecOcenkaUslTrudaDopTariff", path, this.ThemeName, this);
-            }*/
         }
 
         private void bw_RunWorkerCompleted(Form form, string classname, ref bool synchronized)
@@ -209,24 +248,15 @@ namespace PU.Models.ModelViews
             if (synchronized)
             {
                 FullDataSource(form, classname);
-                Methods.showAlert("Синхронизация завершена", "Данные успешно синхронизированы!", ((RadForm)form).ThemeName);
+                Messenger.showAlert(AlertType.Success, "Синхронизация завершена", "Данные успешно синхронизированы!", ((RadForm)form).ThemeName);
             }
-
-            /*  dataGrid_upd();
-              if (synchResult)
-              {
-                  Methods.showAlert("Синхронизация завершена", "Данные успешно синхронизированы!", this.ThemeName);
-              }
-              else
-              {
-                  //               Methods.showAlert("Синхронизация завершена", "Во время синхронизации произошла ошибка!", this.ThemeName);
-              }*/
         }
 
 
-
-        [DisplayVisible(true)]
-        public virtual void Close(Form form, string classname) {
+        
+        [DisplayVisible(IsVisible =true,Separator =Separator.Left)]
+        [DisplayName("Закрыть")]
+        public virtual void Close(Form form, RadGridView radGridView, string classname) {
 
             form.Close();
         }

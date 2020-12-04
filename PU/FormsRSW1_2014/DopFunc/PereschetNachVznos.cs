@@ -55,7 +55,7 @@ namespace PU.FormsRSW2014
             closeBtn.Enabled = true;
 
             this.child.Close();
-            Methods.showAlert("Внимание", "Перерасчет начисленных взносов в ПФР произведен!", this.ThemeName);
+            Messenger.showAlert(AlertType.Info, "Внимание", "Перерасчет начисленных взносов в ПФР произведен!", this.ThemeName);
             this.Close();
         }
 

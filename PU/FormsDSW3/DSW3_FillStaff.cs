@@ -221,7 +221,7 @@ namespace PU.FormsDSW3
                 }
                 else
                 {
-                    Methods.showAlert("Внимание!", "Для начала копирования необходимо выделить хотя бы одного сотрудника!", this.ThemeName);
+                    Messenger.showAlert(AlertType.Info, "Внимание!", "Для начала копирования необходимо выделить хотя бы одного сотрудника!", this.ThemeName);
                 }
             }
         }

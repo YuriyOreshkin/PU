@@ -149,7 +149,7 @@ namespace PU.FormsRSW2014
             closeBtn.Enabled = true;
 
             this.child.Close();
-            Methods.showAlert("Внимание", "Копирование Стажа завершено!", this.ThemeName);
+            Messenger.showAlert(AlertType.Success, "Внимание", "Копирование Стажа завершено!", this.ThemeName);
             this.Close();
         }
 

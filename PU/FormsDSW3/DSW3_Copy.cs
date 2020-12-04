@@ -265,7 +265,7 @@ namespace PU.FormsDSW3
 
                 db.FormsDSW_3.Add(DSW3Data);
                 db.SaveChanges();
-                Methods.showAlert("Успех", "Реестр ДСВ-3 успешно скопирован!", this.ThemeName);
+                Messenger.showAlert(AlertType.Success, "Успех", "Реестр ДСВ-3 успешно скопирован!", this.ThemeName);
                 this.Close();
             }
 
@@ -275,35 +275,35 @@ namespace PU.FormsDSW3
         {
             if (String.IsNullOrEmpty(NUMBERPAYMENT_New.Text.Trim()))
             {
-                Methods.showAlert("Внимание", "Необходимо указать номер поручения", this.ThemeName);
+                Messenger.showAlert(AlertType.Info, "Внимание", "Необходимо указать номер поручения", this.ThemeName);
                 return false;
             }
 
             if (DATEPAYMENT_New.Value == DATEPAYMENT_New.NullDate)
             {
-                Methods.showAlert("Внимание", "Необходимо указать дату поручения", this.ThemeName);
+                Messenger.showAlert(AlertType.Info, "Внимание", "Необходимо указать дату поручения", this.ThemeName);
                 return false;
             }
             if (DATEEXECUTPAYMENT_New.Value == DATEEXECUTPAYMENT_New.NullDate)
             {
-                Methods.showAlert("Внимание", "Необходимо указать дату исполнения", this.ThemeName);
+                Messenger.showAlert(AlertType.Info, "Внимание", "Необходимо указать дату исполнения", this.ThemeName);
                 return false;
             }
             if (DateFilling_New.Value == DateFilling_New.NullDate)
             {
-                Methods.showAlert("Внимание", "Необходимо указать дату заполнения Реестра", this.ThemeName);
+                Messenger.showAlert(AlertType.Info, "Внимание", "Необходимо указать дату заполнения Реестра", this.ThemeName);
                 return false;
             }
 
 
             if (Year.Value == Year_New.Value && NUMBERPAYMENT.Text.Trim() == NUMBERPAYMENT_New.Text.Trim() && DATEPAYMENT.Value == DATEPAYMENT_New.Value)
             {
-                Methods.showAlert("Внимание", "Реестр назначения не может совпадать с исходный реестром!", this.ThemeName);
+                Messenger.showAlert(AlertType.Info, "Внимание", "Реестр назначения не может совпадать с исходный реестром!", this.ThemeName);
                 return false;
             }
             if (db.FormsDSW_3.Any(x => x.InsurerID == Options.InsID && x.DepartmentID == DSW3source.DepartmentID && x.ID != DSW3source.ID && x.YEAR == Year_New.Value && x.NUMBERPAYMENT == NUMBERPAYMENT_New.Text.Trim() && x.DATEPAYMENT == DATEPAYMENT.Value))
             {
-                Methods.showAlert("Внимание", "Дублирование по ключу уникальности! Выберите другие параметры для реестра назначения!", this.ThemeName);
+                Messenger.showAlert(AlertType.Info, "Внимание", "Дублирование по ключу уникальности! Выберите другие параметры для реестра назначения!", this.ThemeName);
                 return false;
             }
 

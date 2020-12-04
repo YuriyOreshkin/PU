@@ -284,7 +284,7 @@ namespace PU.FormsRSW2014
                     }
                     catch (Exception ex)
                     {
-                        Methods.showAlert("Внимание!", "Не найдена форма РСВ-1 для которой были сформированы пачки XML. При попытке удаления пачек возникла ошибка! " + ex.Message, this.ThemeName);
+                        Messenger.showAlert(AlertType.Error, "Внимание!", "Не найдена форма РСВ-1 для которой были сформированы пачки XML. При попытке удаления пачек возникла ошибка! " + ex.Message, this.ThemeName);
                     }
 
                 }
@@ -2723,7 +2723,7 @@ namespace PU.FormsRSW2014
             }
             catch (Exception ex)
             {
-                Methods.showAlert("Ошибка!", "При выводе на печать Формы ПФР Инд.сведения Раздел 6 произошла ошибка! Код ошибки: " + ex.Message, this.ThemeName);
+                Messenger.showAlert(AlertType.Error, "Ошибка!", "При выводе на печать Формы ПФР Инд.сведения Раздел 6 произошла ошибка! Код ошибки: " + ex.Message, this.ThemeName);
             }
         }
 
@@ -3168,7 +3168,7 @@ namespace PU.FormsRSW2014
             }
             catch (Exception ex)
             {
-                Methods.showAlert("Ошибка!", "При выводе на печать Формы СЗВ-6-4 произошла ошибка! Код ошибки: " + ex.Message, this.ThemeName);
+                Messenger.showAlert(AlertType.Error, "Ошибка!", "При выводе на печать Формы СЗВ-6-4 произошла ошибка! Код ошибки: " + ex.Message, this.ThemeName);
             }
 
         }
@@ -3468,7 +3468,7 @@ namespace PU.FormsRSW2014
             }
             catch (Exception ex)
             {
-                Methods.showAlert("Ошибка!", "При выводе на печать Формы СЗВ-6-4 произошла ошибка! Код ошибки: " + ex.Message, this.ThemeName);
+                Messenger.showAlert(AlertType.Error, "Ошибка!", "При выводе на печать Формы СЗВ-6-4 произошла ошибка! Код ошибки: " + ex.Message, this.ThemeName);
             }
 
         }
@@ -4138,13 +4138,13 @@ namespace PU.FormsRSW2014
             }
             catch (Exception ex)
             {
-                this.Invoke(new Action(() => { Methods.showAlert("Внимание!", "При сохранении файлов произошла ошибка.\r\nКод ошибки: " + ex.Message, this.ThemeName); }));
+                this.Invoke(new Action(() => { Messenger.showAlert(AlertType.Error, "Внимание!", "При сохранении файлов произошла ошибка.\r\nКод ошибки: " + ex.Message, this.ThemeName); }));
 
 
                 return;
             }
 
-            this.Invoke(new Action(() => { Methods.showAlert("Сохранение", "Файлы были успешно сохранены!", this.ThemeName); }));
+            this.Invoke(new Action(() => { Messenger.showAlert(AlertType.Error, "Сохранение", "Файлы были успешно сохранены!", this.ThemeName); }));
         }
 
 
@@ -7055,7 +7055,7 @@ namespace PU.FormsRSW2014
                     }
                     catch (Exception ex)
                     {
-                        this.Invoke(new Action(() => { Methods.showAlert("Внимание!", "При сохранении СЗВ-СТАЖ произошла ошибка при обработке стажа.\r\nКод ошибки: " + ex.Message, this.ThemeName); }));
+                        this.Invoke(new Action(() => { Messenger.showAlert(AlertType.Error, "Внимание!", "При сохранении СЗВ-СТАЖ произошла ошибка при обработке стажа.\r\nКод ошибки: " + ex.Message, this.ThemeName); }));
                     }
 
                 }
@@ -7378,7 +7378,7 @@ namespace PU.FormsRSW2014
                 }
                 catch (Exception ex)
                 {
-                    this.Invoke(new Action(() => { Methods.showAlert("Внимание!", "При сохранении СЗВ-ИСХ произошла ошибка при обработке стажа.\r\nКод ошибки: " + ex.Message, this.ThemeName); }));
+                    this.Invoke(new Action(() => { Messenger.showAlert(AlertType.Error, "Внимание!", "При сохранении СЗВ-ИСХ произошла ошибка при обработке стажа.\r\nКод ошибки: " + ex.Message, this.ThemeName); }));
                 }
 
             }
@@ -7748,7 +7748,7 @@ namespace PU.FormsRSW2014
                 }
                 catch (Exception ex)
                 {
-                    this.Invoke(new Action(() => { Methods.showAlert("Внимание!", "При сохранении СЗВ-ИСХ произошла ошибка при обработке стажа.\r\nКод ошибки: " + ex.Message, this.ThemeName); }));
+                    this.Invoke(new Action(() => { Messenger.showAlert(AlertType.Error, "Внимание!", "При сохранении СЗВ-ИСХ произошла ошибка при обработке стажа.\r\nКод ошибки: " + ex.Message, this.ThemeName); }));
                 }
 
             }
@@ -9453,7 +9453,7 @@ namespace PU.FormsRSW2014
                 }
                 catch (Exception ex)
                 {
-                    this.Invoke(new Action(() => { Methods.showAlert("Внимание!", "При сохранении ПФР инд.сведений произошла ошибка при обработке Раздела 6.4.\r\nКод ошибки: " + ex.Message, this.ThemeName); }));
+                    this.Invoke(new Action(() => { Messenger.showAlert(AlertType.Error, "Внимание!", "При сохранении ПФР инд.сведений произошла ошибка при обработке Раздела 6.4.\r\nКод ошибки: " + ex.Message, this.ThemeName); }));
                 }
 
 
@@ -9520,7 +9520,7 @@ namespace PU.FormsRSW2014
                 }
                 catch (Exception ex)
                 {
-                    this.Invoke(new Action(() => { Methods.showAlert("Внимание!", "При сохранении ПФР инд.сведений произошла ошибка при обработке Раздела 6.6.\r\nКод ошибки: " + ex.Message, this.ThemeName); }));
+                    this.Invoke(new Action(() => { Messenger.showAlert(AlertType.Error, "Внимание!", "При сохранении ПФР инд.сведений произошла ошибка при обработке Раздела 6.6.\r\nКод ошибки: " + ex.Message, this.ThemeName); }));
                 }
 
 
@@ -9574,7 +9574,7 @@ namespace PU.FormsRSW2014
                 }
                 catch (Exception ex)
                 {
-                    this.Invoke(new Action(() => { Methods.showAlert("Внимание!", "При сохранении ПФР инд.сведений произошла ошибка при обработке Раздела 6.7.\r\nКод ошибки: " + ex.Message, this.ThemeName); }));
+                    this.Invoke(new Action(() => { Messenger.showAlert(AlertType.Error, "Внимание!", "При сохранении ПФР инд.сведений произошла ошибка при обработке Раздела 6.7.\r\nКод ошибки: " + ex.Message, this.ThemeName); }));
                 }
                 //                               var staj_osn_list = rsw61.StajOsn.OrderBy(x => x.Number.Value);
 
@@ -9593,7 +9593,7 @@ namespace PU.FormsRSW2014
                     }
                     catch (Exception ex)
                     {
-                        this.Invoke(new Action(() => { Methods.showAlert("Внимание!", "При сохранении ПФР инд.сведений произошла ошибка при обработке стажа.\r\nКод ошибки: " + ex.Message, this.ThemeName); }));
+                        this.Invoke(new Action(() => { Messenger.showAlert(AlertType.Error, "Внимание!", "При сохранении ПФР инд.сведений произошла ошибка при обработке стажа.\r\nКод ошибки: " + ex.Message, this.ThemeName); }));
                     }
 
                 }
@@ -10015,7 +10015,7 @@ namespace PU.FormsRSW2014
                         }
                         catch (Exception ex)
                         {
-                            this.Invoke(new Action(() => { Methods.showAlert("Внимание!", "При сохранении СЗВ-6-4 произошла ошибка при обработке стажа.\r\nКод ошибки: " + ex.Message, this.ThemeName); }));
+                            this.Invoke(new Action(() => { Messenger.showAlert(AlertType.Error, "Внимание!", "При сохранении СЗВ-6-4 произошла ошибка при обработке стажа.\r\nКод ошибки: " + ex.Message, this.ThemeName); }));
 
                         }
                     }
@@ -10326,7 +10326,7 @@ namespace PU.FormsRSW2014
                         }
                         catch (Exception ex)
                         {
-                            this.Invoke(new Action(() => { Methods.showAlert("Внимание!", "При сохранении СЗВ-6-1 произошла ошибка при обработке стажа.\r\nКод ошибки: " + ex.Message, this.ThemeName); }));
+                            this.Invoke(new Action(() => { Messenger.showAlert(AlertType.Error, "Внимание!", "При сохранении СЗВ-6-1 произошла ошибка при обработке стажа.\r\nКод ошибки: " + ex.Message, this.ThemeName); }));
                         }
                     }
                 }
@@ -10635,7 +10635,7 @@ namespace PU.FormsRSW2014
                         }
                         catch (Exception ex)
                         {
-                            this.Invoke(new Action(() => { Methods.showAlert("Внимание!", "При сохранении СЗВ-6-2 произошла ошибка при обработке стажа.\r\nКод ошибки: " + ex.Message, this.ThemeName); }));
+                            this.Invoke(new Action(() => { Messenger.showAlert(AlertType.Error, "Внимание!", "При сохранении СЗВ-6-2 произошла ошибка при обработке стажа.\r\nКод ошибки: " + ex.Message, this.ThemeName); }));
                         }
                     }
                 }
@@ -11033,7 +11033,7 @@ namespace PU.FormsRSW2014
                                             }
                                             catch (Exception ex)
                                             {
-                                                Methods.showAlert("Внимание!", "При обновлении Раздела 2.5.1 произошла ошибка! Код ошибки: " + ex.Message, this.ThemeName);
+                                                Messenger.showAlert(AlertType.Error, "Внимание!", "При обновлении Раздела 2.5.1 произошла ошибка! Код ошибки: " + ex.Message, this.ThemeName);
                                             }
                                         }
 
@@ -11050,7 +11050,7 @@ namespace PU.FormsRSW2014
                                             }
                                             catch (Exception ex)
                                             {
-                                                Methods.showAlert("Внимание!", "При обновлении Раздела 2.5.2 произошла ошибка! Код ошибки: " + ex.Message, this.ThemeName);
+                                                Messenger.showAlert(AlertType.Error, "Внимание!", "При обновлении Раздела 2.5.2 произошла ошибка! Код ошибки: " + ex.Message, this.ThemeName);
                                             }
                                         }
 

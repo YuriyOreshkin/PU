@@ -136,7 +136,7 @@ namespace PU.FormsRSW2014
 
             if (errList.Count == 0)  // если ошибок нет
             {
-                Methods.showAlert("Внимание", "Удаление данных по заданным параметрам произведено успешно!", this.ThemeName);
+                Messenger.showAlert(AlertType.Success, "Внимание", "Удаление данных по заданным параметрам произведено успешно!", this.ThemeName);
             }
             else   //  Если ошибки есть , то выводим и все в алерт
             {
@@ -149,7 +149,7 @@ namespace PU.FormsRSW2014
                     errText = errText + (i >= 2 ? "\r\n\r\n" : "") + item.name + "   Сообщение об ошибке: " + item.type;
                 }
 
-                Methods.showAlert("Ошибка", errText, this.ThemeName, 110 * errList.Count);
+                Messenger.showAlert(AlertType.Error, "Ошибка", errText, this.ThemeName, 110 * errList.Count);
             }
 
 

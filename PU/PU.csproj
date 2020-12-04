@@ -232,7 +232,100 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Classes\Messenger.cs" />
     <Compile Include="Classes\UpdateDictionaries.cs" />
+    <Compile Include="Dictionaries\BaseDictionaryEvents.cs" />
+    <Compile Include="Dictionaries\KODVREDFormTree.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dictionaries\KODVREDFormTree.Designer.cs">
+      <DependentUpon>KODVREDFormTree.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dictionaries\DepartmentFormTree.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dictionaries\DepartmentFormTree.Designer.cs">
+      <DependentUpon>DepartmentFormTree.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dictionaries\DopTariffFormEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dictionaries\DopTariffFormEdit.Designer.cs">
+      <DependentUpon>DopTariffFormEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dictionaries\TariffCodeFormEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dictionaries\TariffCodeFormEdit.Designer.cs">
+      <DependentUpon>TariffCodeFormEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dictionaries\SpecOcenkaUslTrudaDopTariffFormEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dictionaries\SpecOcenkaUslTrudaDopTariffFormEdit.Designer.cs">
+      <DependentUpon>SpecOcenkaUslTrudaDopTariffFormEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dictionaries\TariffCodeFormList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dictionaries\TariffCodeFormList.Designer.cs">
+      <DependentUpon>TariffCodeFormList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dictionaries\SpecOcenkaUslTrudaFormList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dictionaries\SpecOcenkaUslTrudaFormList.Designer.cs">
+      <DependentUpon>SpecOcenkaUslTrudaFormList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dictionaries\PlatCategoryFormList1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dictionaries\PlatCategoryFormList1.Designer.cs">
+      <DependentUpon>PlatCategoryFormList1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dictionaries\CodeBaseRW3_2015FormEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dictionaries\CodeBaseRW3_2015FormEdit.Designer.cs">
+      <DependentUpon>CodeBaseRW3_2015FormEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dictionaries\TariffPlatFormEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dictionaries\TariffPlatFormEdit.Designer.cs">
+      <DependentUpon>TariffPlatFormEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dictionaries\PlatCategoryFormEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dictionaries\PlatCategoryFormEdit.Designer.cs">
+      <DependentUpon>PlatCategoryFormEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dictionaries\PlatCategoryFormList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dictionaries\PlatCategoryFormList.Designer.cs">
+      <DependentUpon>PlatCategoryFormList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dictionaries\CustomRowElement.cs" />
+    <Compile Include="Dictionaries\MROTFormEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dictionaries\MROTFormEdit.Designer.cs">
+      <DependentUpon>MROTFormEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dictionaries\DolgnFormEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dictionaries\DolgnFormEdit.Designer.cs">
+      <DependentUpon>DolgnFormEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dictionaries\DocumentTypesFormEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dictionaries\DocumentTypesFormEdit.Designer.cs">
+      <DependentUpon>DocumentTypesFormEdit.cs</DependentUpon>
+    </Compile>
     <Compile Include="Dictionaries\UslDosrNaznFormEdit.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1064,20 +1157,34 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
+    <Compile Include="Mapping\Mapping.cs" />
     <Compile Include="Models\Model1.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
-    <Compile Include="Mapping\Mapping.cs" />
     <Compile Include="Models\ModelViews\BaseDictionaryActions.cs" />
     <Compile Include="Models\ModelViews\BaseDictionaryActionsEdit.cs" />
     <Compile Include="Models\ModelViews\BaseDictionaryView.cs" />
     <Compile Include="Models\ModelViews\CustomAttributes.cs" />
+    <Compile Include="Models\ModelViews\CodeBaseRW3_2015View.cs" />
+    <Compile Include="Models\ModelViews\DolgnView.cs" />
+    <Compile Include="Models\ModelViews\IschislStrahStajDopView.cs" />
+    <Compile Include="Models\ModelViews\IschislStrahStajOsnView.cs" />
     <Compile Include="Models\ModelViews\LookUp.cs" />
+    <Compile Include="Models\ModelViews\DopTariffView.cs" />
+    <Compile Include="Models\ModelViews\SpecOcenkaUslTrudaView.cs" />
+    <Compile Include="Models\ModelViews\SpecOcenkaUslTrudaDopTariffView.cs" />
+    <Compile Include="Models\ModelViews\TariffCodePlatCatView.cs" />
+    <Compile Include="Models\ModelViews\TariffCodeView.cs" />
+    <Compile Include="Models\ModelViews\TariffPlatView.cs" />
     <Compile Include="Models\ModelViews\OsobUslTrudaView.cs" />
+    <Compile Include="Models\ModelViews\DocumentTypesView.cs" />
+    <Compile Include="Models\ModelViews\MROTView.cs" />
+    <Compile Include="Models\ModelViews\PlatCategoryRaschPerView.cs" />
     <Compile Include="Models\ModelViews\UslDosrNaznEdIzmView.cs" />
     <Compile Include="Models\ModelViews\UslDosrNaznView.cs" />
+    <Compile Include="Models\ModelViews\PlatCategoryView.cs" />
     <Compile Include="Models\ModelViews\VidTrudDeyatView.cs" />
     <Compile Include="Models\ModelViews\TerrUslView.cs" />
     <Compile Include="Models\MROT.cs">
@@ -1432,10 +1539,10 @@
     <Compile Include="Classes\Props.cs" />
     <Compile Include="Classes\RadGridLocalizationProvider.cs" />
     <Compile Include="Classes\Utils.cs" />
-    <Compile Include="DepartmentsEdit.cs">
+    <Compile Include="Dictionaries\DepartmentsEdit.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="DepartmentsEdit.Designer.cs">
+    <Compile Include="Dictionaries\DepartmentsEdit.Designer.cs">
       <DependentUpon>DepartmentsEdit.cs</DependentUpon>
     </Compile>
     <Compile Include="Dictionaries\BaseDictionaryFormList.cs">
@@ -1450,53 +1557,11 @@
     <Compile Include="Dictionaries\BaseDictionaryFormEdit.Designer.cs">
       <DependentUpon>BaseDictionaryFormEdit.cs</DependentUpon>
     </Compile>
-    <Compile Include="Dictionaries\DocTypes.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Dictionaries\DocTypes.Designer.cs">
-      <DependentUpon>DocTypes.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Dictionaries\DocTypesEdit.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Dictionaries\DocTypesEdit.Designer.cs">
-      <DependentUpon>DocTypesEdit.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Dictionaries\DolgnFrm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Dictionaries\DolgnFrm.Designer.cs">
-      <DependentUpon>DolgnFrm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Dictionaries\DopTariffFrm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Dictionaries\DopTariffFrm.Designer.cs">
-      <DependentUpon>DopTariffFrm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Dictionaries\DopTariffFrmEdit.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Dictionaries\DopTariffFrmEdit.Designer.cs">
-      <DependentUpon>DopTariffFrmEdit.cs</DependentUpon>
-    </Compile>
     <Compile Include="Dictionaries\KodVred.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Dictionaries\KodVred.Designer.cs">
       <DependentUpon>KodVred.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Dictionaries\MROTEdit.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Dictionaries\MROTEdit.Designer.cs">
-      <DependentUpon>MROTEdit.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Dictionaries\MROTFrm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Dictionaries\MROTFrm.Designer.cs">
-      <DependentUpon>MROTFrm.cs</DependentUpon>
     </Compile>
     <Compile Include="Dictionaries\PlatCategoryFrm.cs">
       <SubType>Form</SubType>
@@ -1787,10 +1852,10 @@
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Models\Containers.cs" />
-    <Compile Include="DepartmentsFrm.cs">
+    <Compile Include="Dictionaries\DepartmentsFrm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="DepartmentsFrm.Designer.cs">
+    <Compile Include="Dictionaries\DepartmentsFrm.Designer.cs">
       <DependentUpon>DepartmentsFrm.cs</DependentUpon>
     </Compile>
     <Compile Include="Models\MethodsNonStatic.cs" />
@@ -1908,6 +1973,51 @@
     <Compile Include="ZAGS\Zags_Death\Death_List.Designer.cs">
       <DependentUpon>Death_List.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Dictionaries\KODVREDFormTree.resx">
+      <DependentUpon>KODVREDFormTree.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dictionaries\DepartmentFormTree.resx">
+      <DependentUpon>DepartmentFormTree.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dictionaries\DopTariffFormEdit.resx">
+      <DependentUpon>DopTariffFormEdit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dictionaries\TariffCodeFormEdit.resx">
+      <DependentUpon>TariffCodeFormEdit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dictionaries\SpecOcenkaUslTrudaDopTariffFormEdit.resx">
+      <DependentUpon>SpecOcenkaUslTrudaDopTariffFormEdit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dictionaries\TariffCodeFormList.resx">
+      <DependentUpon>TariffCodeFormList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dictionaries\SpecOcenkaUslTrudaFormList.resx">
+      <DependentUpon>SpecOcenkaUslTrudaFormList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dictionaries\PlatCategoryFormList1.resx">
+      <DependentUpon>PlatCategoryFormList1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dictionaries\CodeBaseRW3_2015FormEdit.resx">
+      <DependentUpon>CodeBaseRW3_2015FormEdit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dictionaries\TariffPlatFormEdit.resx">
+      <DependentUpon>TariffPlatFormEdit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dictionaries\PlatCategoryFormEdit.resx">
+      <DependentUpon>PlatCategoryFormEdit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dictionaries\PlatCategoryFormList.resx">
+      <DependentUpon>PlatCategoryFormList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dictionaries\MROTFormEdit.resx">
+      <DependentUpon>MROTFormEdit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dictionaries\DolgnFormEdit.resx">
+      <DependentUpon>DolgnFormEdit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dictionaries\DocumentTypesFormEdit.resx">
+      <DependentUpon>DocumentTypesFormEdit.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Dictionaries\UslDosrNaznFormEdit.resx">
       <DependentUpon>UslDosrNaznFormEdit.cs</DependentUpon>
     </EmbeddedResource>
@@ -2355,7 +2465,7 @@
     <EmbeddedResource Include="Service\BaseManager.resx">
       <DependentUpon>BaseManager.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="DepartmentsEdit.resx">
+    <EmbeddedResource Include="Dictionaries\DepartmentsEdit.resx">
       <DependentUpon>DepartmentsEdit.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dictionaries\BaseDictionaryFormList.resx">
@@ -2364,29 +2474,8 @@
     <EmbeddedResource Include="Dictionaries\BaseDictionaryFormEdit.resx">
       <DependentUpon>BaseDictionaryFormEdit.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Dictionaries\DocTypes.resx">
-      <DependentUpon>DocTypes.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Dictionaries\DocTypesEdit.resx">
-      <DependentUpon>DocTypesEdit.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Dictionaries\DolgnFrm.resx">
-      <DependentUpon>DolgnFrm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Dictionaries\DopTariffFrm.resx">
-      <DependentUpon>DopTariffFrm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Dictionaries\DopTariffFrmEdit.resx">
-      <DependentUpon>DopTariffFrmEdit.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Dictionaries\KodVred.resx">
       <DependentUpon>KodVred.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Dictionaries\MROTEdit.resx">
-      <DependentUpon>MROTEdit.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Dictionaries\MROTFrm.resx">
-      <DependentUpon>MROTFrm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dictionaries\PlatCategoryFrm.resx">
       <DependentUpon>PlatCategoryFrm.cs</DependentUpon>
@@ -2537,7 +2626,7 @@
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="DepartmentsFrm.resx">
+    <EmbeddedResource Include="Dictionaries\DepartmentsFrm.resx">
       <DependentUpon>DepartmentsFrm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Service\BaseManagerEdit.resx">

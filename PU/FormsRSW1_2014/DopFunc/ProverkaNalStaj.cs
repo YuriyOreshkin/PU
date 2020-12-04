@@ -114,7 +114,7 @@ namespace PU.FormsRSW2014
             closeBtn.Enabled = true;
 
             this.child.Close();
-            Methods.showAlert("Внимание", "Проверка на наличие Стажа завершена! Сотрудники у которых отсутствует Стаж за выбранный период были отмечены!", this.ThemeName);
+            Messenger.showAlert(AlertType.Info, "Внимание", "Проверка на наличие Стажа завершена! Сотрудники у которых отсутствует Стаж за выбранный период были отмечены!", this.ThemeName);
             this.Close();
         }
 

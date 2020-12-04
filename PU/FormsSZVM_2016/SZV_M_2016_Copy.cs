@@ -75,12 +75,12 @@ namespace PU.FormsSZVM_2016
 
             if (SZVMsource.YEAR == year && SZVMsource.MONTH == month && SZVMsource.TypeInfoID == typeinfo && typeinfo == 1)
             {
-                Methods.showAlert("Внимание", "Форма назначения не может совпадать с исходной формой!", this.ThemeName);
+                Messenger.showAlert(AlertType.Info, "Внимание", "Форма назначения не может совпадать с исходной формой!", this.ThemeName);
                 return;
             }
             if (db.FormsSZV_M_2016.Any(x => x.InsurerID == Options.InsID && x.ID != SZVMsource.ID && x.YEAR == year && x.MONTH == month && typeinfo == 1 && x.TypeInfoID == typeinfo))
             {
-                Methods.showAlert("Внимание", "Дублирование по ключу уникальности! Выберите другие параметры для формы назначения!", this.ThemeName);
+                Messenger.showAlert(AlertType.Info, "Внимание", "Дублирование по ключу уникальности! Выберите другие параметры для формы назначения!", this.ThemeName);
                 return;
             }
 
@@ -105,12 +105,12 @@ namespace PU.FormsSZVM_2016
 
                 db.FormsSZV_M_2016.Add(SZVMnew);
                 db.SaveChanges();
-                Methods.showAlert("Успех", "Форма СЗВ-М успешно скопирована!", this.ThemeName);
+                Messenger.showAlert(AlertType.Success, "Успех", "Форма СЗВ-М успешно скопирована!", this.ThemeName);
                 this.Close();
             }
             catch (Exception ex)
             {
-                Methods.showAlert("Ошибка", "Во время копирования формы СЗВ-М произошла ошибка. Код ошибки - " + ex.Message, this.ThemeName);
+                Messenger.showAlert(AlertType.Error, "Ошибка", "Во время копирования формы СЗВ-М произошла ошибка. Код ошибки - " + ex.Message, this.ThemeName);
             }
 
 

@@ -27,6 +27,7 @@ using Telerik.WinControls.UI.Docking;
 using System.Net;
 using Telerik.WinControls.UI;
 using PU.Models.Mapping;
+using PU.Models.ModelViews;
 
 namespace PU
 {
@@ -77,9 +78,9 @@ namespace PU
             }
 
             this.Cursor = Cursors.WaitCursor;
-            if (rd.MdiChildren.Any(x => x.GetType() == childForm.GetType()))
+            if (rd.MdiChildren.Any(x => x.Name == childForm.Name))
             {
-                rd.MdiChildren.First(x => x.GetType() == childForm.GetType()).Select();
+                rd.MdiChildren.First(x => x.Name == childForm.Name).Select();
 
             }
             else
@@ -225,13 +226,13 @@ INSERT INTO Users (Name, Login, Password, RoleID, SysAdmin ) VALUES ('Админ
                         com.ExecuteNonQuery();                  // Execute the query
                         con.Close();        // Close the connection to the database
 
-                        Methods.showAlert("Внимание!", "База данных с учетными записями не была найдена по пути - " + props.Fields.xaccessPath + "\r\n\r\nБыла создана база данных с учетными записями по умолчанию в каталоге с программой " + xaccessPath, this.ThemeName, 200);
+                        Messenger.showAlert(AlertType.Info, "Внимание!", "База данных с учетными записями не была найдена по пути - " + props.Fields.xaccessPath + "\r\n\r\nБыла создана база данных с учетными записями по умолчанию в каталоге с программой " + xaccessPath, this.ThemeName, 200);
                     }
                 }
             }
             catch (Exception ex)
             {
-                Methods.showAlert("Ошибка!", "База данных с учетными записями не была найдена по пути - " + props.Fields.xaccessPath + "\r\n\r\nПри попытке создания базы данных с учетными записями по умолчанию в каталоге с программой " + xaccessPath + " произошла ошибка! [ " + ex.InnerException != null ? ex.InnerException.Message : ex.Message + " ]", this.ThemeName, 250);
+                Messenger.showAlert(AlertType.Error, "Ошибка!", "База данных с учетными записями не была найдена по пути - " + props.Fields.xaccessPath + "\r\n\r\nПри попытке создания базы данных с учетными записями по умолчанию в каталоге с программой " + xaccessPath + " произошла ошибка! [ " + ex.InnerException != null ? ex.InnerException.Message : ex.Message + " ]", this.ThemeName, 250);
             }
 
         }
@@ -601,67 +602,27 @@ INSERT INTO Users (Name, Login, Password, RoleID, SysAdmin ) VALUES ('Админ
             this.Close();
         }
 
-        private void radMenuItem5_Click(object sender, EventArgs e)
-        {
-
-            DocTypes child = new DocTypes();
-            child.Owner = this;
-            child.ThemeName = this.ThemeName;
-            child.ShowInTaskbar = false;
-            child.MaximumSize = child.Size;
-            child.ShowDialog();
-            child.WindowState = FormWindowState.Normal;
-            child.Dispose();
-
-
-        }
-
-        private void OpenDictionary(string classname ,string title)
-        {
-
-            Type formListType = Type.GetType("PU.Dictionaries." + classname + "FormList");
-            if (formListType == null)
-            {
-                formListType = Type.GetType("PU.Dictionaries.BaseDictionaryFormList");
-            }
-
-            Type viewType = Type.GetType(Mapping.FullModelViewPath(classname));
-            object view = Activator.CreateInstance(viewType);
-
-            RadForm child = (RadForm)Activator.CreateInstance(formListType);
-            child.Load += new EventHandler(delegate (object s, EventArgs args) { viewType.GetMethod("Load").Invoke(view, new object[] { child, classname }); });
-
-            child.Text = title;
-            child.Owner = this;
-            child.ThemeName = this.ThemeName;
-            child.ShowInTaskbar = false;
-            child.ShowDialog();
-            child.WindowState = FormWindowState.Normal;
-            child.Dispose();
-
-
-        }
+       
 
 
         private void radMenuItemDictionary_Click(object sender, EventArgs e)
         {
-
-            OpenDictionary(((RadMenuItem)sender).Tag.ToString(), ((RadMenuItem)sender).Text);
+            var child =   Dictionaries.BaseDictionaryEvents.Dialog(this,((RadMenuItem)sender).Tag.ToString(), ((RadMenuItem)sender).Text);
+            ShowForm(child); 
+           
         }
 
-        private void radMenuItem13_Click(object sender, EventArgs e)
+        private void radMenuItemTest_Click(object sender, EventArgs e)
         {
-            MROTFrm child = new MROTFrm();
+            var child = new Dictionaries.PlatCategoryFormList1();
             child.Owner = this;
             child.ThemeName = this.ThemeName;
-            child.ShowInTaskbar = false;
-            child.MaximumSize = child.Size;
             child.ShowDialog();
             child.WindowState = FormWindowState.Normal;
             child.Dispose();
 
-
         }
+
 
         private void radMenuItem15_Click(object sender, EventArgs e)
         {
@@ -676,18 +637,6 @@ INSERT INTO Users (Name, Login, Password, RoleID, SysAdmin ) VALUES ('Админ
 
         }
 
-        private void radMenuItem14_Click(object sender, EventArgs e)
-        {
-            DopTariffFrm child = new DopTariffFrm();
-            child.Owner = this;
-            child.ThemeName = this.ThemeName;
-            child.ShowInTaskbar = false;
-            child.MaximumSize = child.Size;
-            child.ShowDialog();
-            child.WindowState = FormWindowState.Normal;
-            child.Dispose();
-
-        }
 
         private void radMenuItem16_Click(object sender, EventArgs e)
         {
@@ -821,17 +770,7 @@ INSERT INTO Users (Name, Login, Password, RoleID, SysAdmin ) VALUES ('Админ
             child.Dispose();
         }
 
-        private void radMenuItem24_Click(object sender, EventArgs e)
-        {
-            DolgnFrm child = new DolgnFrm();
-            child.Owner = this;
-            child.ThemeName = this.ThemeName;
-            child.ShowInTaskbar = false;
-            child.MaximumSize = child.Size;
-            child.ShowDialog();
-            child.WindowState = FormWindowState.Normal;
-            child.Dispose();
-        }
+       
 
         private void radMenuItem25_Click(object sender, EventArgs e)
         {
@@ -901,7 +840,7 @@ INSERT INTO Users (Name, Login, Password, RoleID, SysAdmin ) VALUES ('Админ
             string xaccessPath = checkExistXaccessDB();
             if (xaccessPath != props.Fields.xaccessPath)
             {
-                Methods.showAlert("Внимание!", "База данных с учетными записями не была найдена по пути - " + props.Fields.xaccessPath + "\r\n\r\nИспользуется база данных с учетными записями " + xaccessPath, this.ThemeName, 200);
+                Messenger.showAlert(AlertType.Info, "Внимание!", "База данных с учетными записями не была найдена по пути - " + props.Fields.xaccessPath + "\r\n\r\nИспользуется база данных с учетными записями " + xaccessPath, this.ThemeName, 200);
                 props.Fields.xaccessPath = xaccessPath;
                 props.WriteXml();
             }
@@ -933,7 +872,7 @@ INSERT INTO Users (Name, Login, Password, RoleID, SysAdmin ) VALUES ('Админ
                 string result = Methods.saveConfigFile(config, "xaccessEntities", true);
                 if (!String.IsNullOrEmpty(result))
                 {
-                    this.Invoke(new Action(() => { Methods.showAlert("Внимание", result, this.ThemeName); }));
+                    this.Invoke(new Action(() => { Messenger.showAlert(AlertType.Info, "Внимание", result, this.ThemeName); }));
                 }
                 //config.Save(ConfigurationSaveMode.Minimal);
 
@@ -1043,7 +982,7 @@ INSERT INTO Users (Name, Login, Password, RoleID, SysAdmin ) VALUES ('Админ
                     string result = Methods.saveConfigFile(config, "pu6Entities", true);
                     if (!String.IsNullOrEmpty(result))
                     {
-                        this.Invoke(new Action(() => { Methods.showAlert("Внимание", result, this.ThemeName); }));
+                        this.Invoke(new Action(() => { Messenger.showAlert(AlertType.Info, "Внимание", result, this.ThemeName); }));
                     }
 
                     //config.Save(ConfigurationSaveMode.Minimal);
@@ -1348,7 +1287,7 @@ INSERT INTO Users (Name, Login, Password, RoleID, SysAdmin ) VALUES ('Админ
                 }
                 catch (Exception ex)
                 {
-                    Methods.showAlert("Внимание!", "Во время очистки таблицы " + item + " произошла ошибка. Код ошибки: " + ex.Message, this.ThemeName);
+                    Messenger.showAlert(AlertType.Error, "Внимание!", "Во время очистки таблицы " + item + " произошла ошибка. Код ошибки: " + ex.Message, this.ThemeName);
                 }
             }
 
@@ -1358,7 +1297,7 @@ INSERT INTO Users (Name, Login, Password, RoleID, SysAdmin ) VALUES ('Админ
             }
             catch (Exception ex)
             {
-                Methods.showAlert("Внимание!", "Во время обновления поля Dismissed таблицы FormsSZV_KORR_2017 произошла ошибка. Код ошибки: " + ex.Message, this.ThemeName);
+                Messenger.showAlert(AlertType.Error, "Внимание!", "Во время обновления поля Dismissed таблицы FormsSZV_KORR_2017 произошла ошибка. Код ошибки: " + ex.Message, this.ThemeName);
             }
 
             try
@@ -1367,7 +1306,7 @@ INSERT INTO Users (Name, Login, Password, RoleID, SysAdmin ) VALUES ('Админ
             }
             catch (Exception ex)
             {
-                Methods.showAlert("Внимание!", "Во время обновления поля Dismissed таблицы FormsSZV_ISH_2017 произошла ошибка. Код ошибки: " + ex.Message, this.ThemeName);
+                Messenger.showAlert(AlertType.Error, "Внимание!", "Во время обновления поля Dismissed таблицы FormsSZV_ISH_2017 произошла ошибка. Код ошибки: " + ex.Message, this.ThemeName);
             }
 
 
@@ -1377,7 +1316,7 @@ INSERT INTO Users (Name, Login, Password, RoleID, SysAdmin ) VALUES ('Админ
 
             if (!UpdateDictionaries.updateTable("FormsSZV_TD_2020_TypesOfEvents", path, this.ThemeName, this))
             {
-                Methods.showAlert("Внимание!", "Во время обновления Справочника видов мероприятий Формы СЗВ-ТД произошла ошибка!", this.ThemeName);
+                Messenger.showAlert(AlertType.Error, "Внимание!", "Во время обновления Справочника видов мероприятий Формы СЗВ-ТД произошла ошибка!", this.ThemeName);
             }
 
 
@@ -1386,8 +1325,8 @@ INSERT INTO Users (Name, Login, Password, RoleID, SysAdmin ) VALUES ('Админ
 
             if (!db.MROT.Any(x => x.Year == 2017)) // если нет данных за 2016 год, то синхронизируем справочник
             {
-                MROTFrm child = new MROTFrm();
-                child.synchBtn_Click(null, null);
+                /*MROTView child = new MROTView();
+                child.Synchronization(null, null);*/
             }
 
             if (!db.CodeBaseRW3_2015.Any(x => x.Year == 2016)) // если нет данных за 2016 год, то синхронизируем справочник
@@ -1398,8 +1337,8 @@ INSERT INTO Users (Name, Login, Password, RoleID, SysAdmin ) VALUES ('Админ
 
             if (!db.DopTariff.Any(x => x.Year == 2016)) // если нет данных за 2016 год, то синхронизируем справочник
             {
-                DopTariffFrm child = new DopTariffFrm();
-                child.synchBtn_Click(null, null);
+                /*DopTariffFrm child = new DopTariffFrm();
+                child.synchBtn_Click(null, null);*/
             }
 
             if (!db.TariffPlat.Any(x => x.Year == 2016) || (!db.PlatCategory.Where(x => x.Code == "ТОР").Any(x => x.TariffPlat.Any(c => c.Year == 2016))) || !db.PlatCategory.Any(x => x.Code == "СПВЛ" || x.Code == "ВЖВЛ" || x.Code == "ВПВЛ") || !db.PlatCategory.Any(x => x.Code == "МС" || x.Code == "ВЖМС" || x.Code == "ВПМС")) // если нет данных за 2016 год, то синхронизируем справочник или если нет категорий По свободному порту Владивиосток (СПВЛ, ВЖВЛ, ВПВЛ)
@@ -1738,13 +1677,13 @@ INSERT INTO Users (Name, Login, Password, RoleID, SysAdmin ) VALUES ('Админ
                     string res = Methods.saveConfigFile(config, "pu6Entities", false);
                     if (!String.IsNullOrEmpty(res))
                     {
-                        this.Invoke(new Action(() => { Methods.showAlert("Внимание", res, this.ThemeName); }));
+                        this.Invoke(new Action(() => { Messenger.showAlert(AlertType.Info, "Внимание", res, this.ThemeName); }));
                     }
                 }
             }
             else
             {
-                this.Invoke(new Action(() => { Methods.showAlert("Внимание", "При создании базы данных: " + Path.GetFileName(pfrXMLPath) + " произошла ошибка.\r\nКод ошибки: " + result, this.ThemeName); }));
+                this.Invoke(new Action(() => { Messenger.showAlert(AlertType.Info, "Внимание", "При создании базы данных: " + Path.GetFileName(pfrXMLPath) + " произошла ошибка.\r\nКод ошибки: " + result, this.ThemeName); }));
             }
         }
 

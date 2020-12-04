@@ -62,7 +62,7 @@ namespace PU.FormsDSW3
         {
             if (dsw3Data == null)
             {
-                Methods.showAlert("Внимание!", "Не выбрана форма ДСВ-3!", this.ThemeName);
+                Messenger.showAlert(AlertType.Info, "Внимание!", "Не выбрана форма ДСВ-3!", this.ThemeName);
                 return;
             }
 
@@ -248,7 +248,7 @@ namespace PU.FormsDSW3
 
                 if (dbxml.xmlInfo.Any(x => x.UniqGUID == guid))
                 {
-                    Methods.showAlert("Информация", "Формирование пачек ДСВ-3 успешно завершено.", this.ThemeName);
+                    Messenger.showAlert(AlertType.Success, "Информация", "Формирование пачек ДСВ-3 успешно завершено.", this.ThemeName);
                     viewPacks_Click(null, null);
                 }
             }

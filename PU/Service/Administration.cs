@@ -162,14 +162,14 @@ namespace PU
             {
                 if (UsersRadGridView.RowCount == 1)
                 {
-                    Methods.showAlert("Ошибка", "Нельзя удалить единственного пользователя!", this.ThemeName);
+                    Messenger.showAlert(AlertType.Error, "Ошибка", "Нельзя удалить единственного пользователя!", this.ThemeName);
                 }
                 else
                 {
                     long id = Convert.ToInt64(UsersRadGridView.CurrentRow.Cells[0].Value);
                     if (id == Options.User.ID)
                     {
-                        Methods.showAlert("Ошибка", "Нельзя удалить пользователя под которым выполнен вход!", this.ThemeName);
+                        Messenger.showAlert(AlertType.Error, "Ошибка", "Нельзя удалить пользователя под которым выполнен вход!", this.ThemeName);
                     }
                     else
                     { 

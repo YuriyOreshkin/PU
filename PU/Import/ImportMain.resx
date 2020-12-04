@@ -139,7 +139,7 @@
     <value>importBtn</value>
   </data>
   <data name="&gt;&gt;importBtn.Type" xml:space="preserve">
-    <value>Telerik.WinControls.UI.RadButton, Telerik.WinControls.UI, Version=2017.1.221.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+    <value>Telerik.WinControls.UI.RadButton, Telerik.WinControls.UI, Version=2019.2.508.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
   </data>
   <data name="&gt;&gt;importBtn.Parent" xml:space="preserve">
     <value>$this</value>
@@ -166,7 +166,7 @@
     <value>radButton2</value>
   </data>
   <data name="&gt;&gt;radButton2.Type" xml:space="preserve">
-    <value>Telerik.WinControls.UI.RadButton, Telerik.WinControls.UI, Version=2017.1.221.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+    <value>Telerik.WinControls.UI.RadButton, Telerik.WinControls.UI, Version=2019.2.508.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
   </data>
   <data name="&gt;&gt;radButton2.Parent" xml:space="preserve">
     <value>$this</value>
@@ -196,7 +196,7 @@
     <value>radPanel1</value>
   </data>
   <data name="&gt;&gt;radPanel1.Type" xml:space="preserve">
-    <value>Telerik.WinControls.UI.RadPanel, Telerik.WinControls.UI, Version=2017.1.221.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+    <value>Telerik.WinControls.UI.RadPanel, Telerik.WinControls.UI, Version=2019.2.508.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
   </data>
   <data name="&gt;&gt;radPanel1.Parent" xml:space="preserve">
     <value>$this</value>
@@ -223,7 +223,7 @@
     <value>insChangeBtn</value>
   </data>
   <data name="&gt;&gt;insChangeBtn.Type" xml:space="preserve">
-    <value>Telerik.WinControls.UI.RadButton, Telerik.WinControls.UI, Version=2017.1.221.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+    <value>Telerik.WinControls.UI.RadButton, Telerik.WinControls.UI, Version=2019.2.508.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
   </data>
   <data name="&gt;&gt;insChangeBtn.Parent" xml:space="preserve">
     <value>$this</value>
@@ -259,7 +259,7 @@
     <value>secondPartLabel</value>
   </data>
   <data name="&gt;&gt;secondPartLabel.Type" xml:space="preserve">
-    <value>Telerik.WinControls.UI.RadLabel, Telerik.WinControls.UI, Version=2017.1.221.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+    <value>Telerik.WinControls.UI.RadLabel, Telerik.WinControls.UI, Version=2019.2.508.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
   </data>
   <data name="&gt;&gt;secondPartLabel.Parent" xml:space="preserve">
     <value>radProgressBar1</value>
@@ -282,14 +282,11 @@
   <data name="secondPartLabel_.Text" xml:space="preserve">
     <value>из</value>
   </data>
-  <data name="secondPartLabel_.TextAlignment" type="System.Drawing.ContentAlignment, System.Drawing">
-    <value>MiddleLeft</value>
-  </data>
   <data name="&gt;&gt;secondPartLabel_.Name" xml:space="preserve">
     <value>secondPartLabel_</value>
   </data>
   <data name="&gt;&gt;secondPartLabel_.Type" xml:space="preserve">
-    <value>Telerik.WinControls.UI.RadLabel, Telerik.WinControls.UI, Version=2017.1.221.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+    <value>Telerik.WinControls.UI.RadLabel, Telerik.WinControls.UI, Version=2019.2.508.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
   </data>
   <data name="&gt;&gt;secondPartLabel_.Parent" xml:space="preserve">
     <value>radProgressBar1</value>
@@ -322,7 +319,7 @@
     <value>firstPartLabel</value>
   </data>
   <data name="&gt;&gt;firstPartLabel.Type" xml:space="preserve">
-    <value>Telerik.WinControls.UI.RadLabel, Telerik.WinControls.UI, Version=2017.1.221.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+    <value>Telerik.WinControls.UI.RadLabel, Telerik.WinControls.UI, Version=2019.2.508.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
   </data>
   <data name="&gt;&gt;firstPartLabel.Parent" xml:space="preserve">
     <value>radProgressBar1</value>
@@ -355,7 +352,7 @@
     <value>firstPartLabel_</value>
   </data>
   <data name="&gt;&gt;firstPartLabel_.Type" xml:space="preserve">
-    <value>Telerik.WinControls.UI.RadLabel, Telerik.WinControls.UI, Version=2017.1.221.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+    <value>Telerik.WinControls.UI.RadLabel, Telerik.WinControls.UI, Version=2019.2.508.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
   </data>
   <data name="&gt;&gt;firstPartLabel_.Parent" xml:space="preserve">
     <value>radProgressBar1</value>
@@ -376,7 +373,7 @@
     <value>radProgressBar1</value>
   </data>
   <data name="&gt;&gt;radProgressBar1.Type" xml:space="preserve">
-    <value>Telerik.WinControls.UI.RadProgressBar, Telerik.WinControls.UI, Version=2017.1.221.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+    <value>Telerik.WinControls.UI.RadProgressBar, Telerik.WinControls.UI, Version=2019.2.508.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
   </data>
   <data name="&gt;&gt;radProgressBar1.Parent" xml:space="preserve">
     <value>$this</value>
@@ -400,7 +397,7 @@
     <value>updateStaj_DDL</value>
   </data>
   <data name="&gt;&gt;updateStaj_DDL.Type" xml:space="preserve">
-    <value>Telerik.WinControls.UI.RadDropDownList, Telerik.WinControls.UI, Version=2017.1.221.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+    <value>Telerik.WinControls.UI.RadDropDownList, Telerik.WinControls.UI, Version=2019.2.508.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
   </data>
   <data name="&gt;&gt;updateStaj_DDL.Parent" xml:space="preserve">
     <value>radGroupBox1</value>
@@ -424,7 +421,7 @@
     <value>radLabel3</value>
   </data>
   <data name="&gt;&gt;radLabel3.Type" xml:space="preserve">
-    <value>Telerik.WinControls.UI.RadLabel, Telerik.WinControls.UI, Version=2017.1.221.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+    <value>Telerik.WinControls.UI.RadLabel, Telerik.WinControls.UI, Version=2019.2.508.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
   </data>
   <data name="&gt;&gt;radLabel3.Parent" xml:space="preserve">
     <value>radGroupBox1</value>
@@ -451,7 +448,7 @@
     <value>updateStaff_DDL</value>
   </data>
   <data name="&gt;&gt;updateStaff_DDL.Type" xml:space="preserve">
-    <value>Telerik.WinControls.UI.RadDropDownList, Telerik.WinControls.UI, Version=2017.1.221.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+    <value>Telerik.WinControls.UI.RadDropDownList, Telerik.WinControls.UI, Version=2019.2.508.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
   </data>
   <data name="&gt;&gt;updateStaff_DDL.Parent" xml:space="preserve">
     <value>radGroupBox1</value>
@@ -475,7 +472,7 @@
     <value>radLabel4</value>
   </data>
   <data name="&gt;&gt;radLabel4.Type" xml:space="preserve">
-    <value>Telerik.WinControls.UI.RadLabel, Telerik.WinControls.UI, Version=2017.1.221.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+    <value>Telerik.WinControls.UI.RadLabel, Telerik.WinControls.UI, Version=2019.2.508.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
   </data>
   <data name="&gt;&gt;radLabel4.Parent" xml:space="preserve">
     <value>radGroupBox1</value>
@@ -487,7 +484,7 @@
     <value>300, 146</value>
   </data>
   <data name="testEncodeChkBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>121, 18</value>
+    <value>129, 19</value>
   </data>
   <data name="testEncodeChkBox.TabIndex" type="System.Int32, mscorlib">
     <value>28</value>
@@ -502,7 +499,7 @@
     <value>testEncodeChkBox</value>
   </data>
   <data name="&gt;&gt;testEncodeChkBox.Type" xml:space="preserve">
-    <value>Telerik.WinControls.UI.RadCheckBox, Telerik.WinControls.UI, Version=2017.1.221.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+    <value>Telerik.WinControls.UI.RadCheckBox, Telerik.WinControls.UI, Version=2019.2.508.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
   </data>
   <data name="&gt;&gt;testEncodeChkBox.Parent" xml:space="preserve">
     <value>radGroupBox1</value>
@@ -514,7 +511,7 @@
     <value>300, 47</value>
   </data>
   <data name="updateDateFilling.Size" type="System.Drawing.Size, System.Drawing">
-    <value>232, 18</value>
+    <value>244, 19</value>
   </data>
   <data name="updateDateFilling.TabIndex" type="System.Int32, mscorlib">
     <value>27</value>
@@ -526,7 +523,7 @@
     <value>updateDateFilling</value>
   </data>
   <data name="&gt;&gt;updateDateFilling.Type" xml:space="preserve">
-    <value>Telerik.WinControls.UI.RadCheckBox, Telerik.WinControls.UI, Version=2017.1.221.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+    <value>Telerik.WinControls.UI.RadCheckBox, Telerik.WinControls.UI, Version=2019.2.508.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
   </data>
   <data name="&gt;&gt;updateDateFilling.Parent" xml:space="preserve">
     <value>radGroupBox1</value>
@@ -550,7 +547,7 @@
     <value>updateIndSved_DDL</value>
   </data>
   <data name="&gt;&gt;updateIndSved_DDL.Type" xml:space="preserve">
-    <value>Telerik.WinControls.UI.RadDropDownList, Telerik.WinControls.UI, Version=2017.1.221.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+    <value>Telerik.WinControls.UI.RadDropDownList, Telerik.WinControls.UI, Version=2019.2.508.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
   </data>
   <data name="&gt;&gt;updateIndSved_DDL.Parent" xml:space="preserve">
     <value>radGroupBox1</value>
@@ -574,7 +571,7 @@
     <value>radLabel1</value>
   </data>
   <data name="&gt;&gt;radLabel1.Type" xml:space="preserve">
-    <value>Telerik.WinControls.UI.RadLabel, Telerik.WinControls.UI, Version=2017.1.221.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+    <value>Telerik.WinControls.UI.RadLabel, Telerik.WinControls.UI, Version=2019.2.508.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
   </data>
   <data name="&gt;&gt;radLabel1.Parent" xml:space="preserve">
     <value>radGroupBox1</value>
@@ -604,7 +601,7 @@
     <value>radGroupBox1</value>
   </data>
   <data name="&gt;&gt;radGroupBox1.Type" xml:space="preserve">
-    <value>Telerik.WinControls.UI.RadGroupBox, Telerik.WinControls.UI, Version=2017.1.221.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+    <value>Telerik.WinControls.UI.RadGroupBox, Telerik.WinControls.UI, Version=2019.2.508.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
   </data>
   <data name="&gt;&gt;radGroupBox1.Parent" xml:space="preserve">
     <value>$this</value>
@@ -634,7 +631,7 @@
     <value>abortBtn</value>
   </data>
   <data name="&gt;&gt;abortBtn.Type" xml:space="preserve">
-    <value>Telerik.WinControls.UI.RadButton, Telerik.WinControls.UI, Version=2017.1.221.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+    <value>Telerik.WinControls.UI.RadButton, Telerik.WinControls.UI, Version=2019.2.508.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
   </data>
   <data name="&gt;&gt;abortBtn.Parent" xml:space="preserve">
     <value>$this</value>
@@ -673,7 +670,7 @@
     <value>importFilesGrid</value>
   </data>
   <data name="&gt;&gt;importFilesGrid.Type" xml:space="preserve">
-    <value>Telerik.WinControls.UI.RadGridView, Telerik.WinControls.GridView, Version=2017.1.221.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+    <value>Telerik.WinControls.UI.RadGridView, Telerik.WinControls.GridView, Version=2019.2.508.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
   </data>
   <data name="&gt;&gt;importFilesGrid.Parent" xml:space="preserve">
     <value>$this</value>
@@ -700,7 +697,7 @@
     <value>selectFolderBtn</value>
   </data>
   <data name="&gt;&gt;selectFolderBtn.Type" xml:space="preserve">
-    <value>Telerik.WinControls.UI.RadButton, Telerik.WinControls.UI, Version=2017.1.221.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+    <value>Telerik.WinControls.UI.RadButton, Telerik.WinControls.UI, Version=2019.2.508.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
   </data>
   <data name="&gt;&gt;selectFolderBtn.Parent" xml:space="preserve">
     <value>$this</value>
@@ -727,7 +724,7 @@
     <value>selectFilesBtn</value>
   </data>
   <data name="&gt;&gt;selectFilesBtn.Type" xml:space="preserve">
-    <value>Telerik.WinControls.UI.RadButton, Telerik.WinControls.UI, Version=2017.1.221.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+    <value>Telerik.WinControls.UI.RadButton, Telerik.WinControls.UI, Version=2019.2.508.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
   </data>
   <data name="&gt;&gt;selectFilesBtn.Parent" xml:space="preserve">
     <value>$this</value>
@@ -754,7 +751,7 @@
     <value>radLabel2</value>
   </data>
   <data name="&gt;&gt;radLabel2.Type" xml:space="preserve">
-    <value>Telerik.WinControls.UI.RadLabel, Telerik.WinControls.UI, Version=2017.1.221.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+    <value>Telerik.WinControls.UI.RadLabel, Telerik.WinControls.UI, Version=2019.2.508.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
   </data>
   <data name="&gt;&gt;radLabel2.Parent" xml:space="preserve">
     <value>$this</value>
@@ -781,7 +778,7 @@
     <value>codeAutoRadioButton</value>
   </data>
   <data name="&gt;&gt;codeAutoRadioButton.Type" xml:space="preserve">
-    <value>Telerik.WinControls.UI.RadRadioButton, Telerik.WinControls.UI, Version=2017.1.221.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+    <value>Telerik.WinControls.UI.RadRadioButton, Telerik.WinControls.UI, Version=2019.2.508.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
   </data>
   <data name="&gt;&gt;codeAutoRadioButton.Parent" xml:space="preserve">
     <value>$this</value>
@@ -808,7 +805,7 @@
     <value>code866RadioButton</value>
   </data>
   <data name="&gt;&gt;code866RadioButton.Type" xml:space="preserve">
-    <value>Telerik.WinControls.UI.RadRadioButton, Telerik.WinControls.UI, Version=2017.1.221.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+    <value>Telerik.WinControls.UI.RadRadioButton, Telerik.WinControls.UI, Version=2019.2.508.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
   </data>
   <data name="&gt;&gt;code866RadioButton.Parent" xml:space="preserve">
     <value>$this</value>
@@ -835,7 +832,7 @@
     <value>code1251RadioButton</value>
   </data>
   <data name="&gt;&gt;code1251RadioButton.Type" xml:space="preserve">
-    <value>Telerik.WinControls.UI.RadRadioButton, Telerik.WinControls.UI, Version=2017.1.221.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+    <value>Telerik.WinControls.UI.RadRadioButton, Telerik.WinControls.UI, Version=2019.2.508.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
   </data>
   <data name="&gt;&gt;code1251RadioButton.Parent" xml:space="preserve">
     <value>$this</value>
@@ -865,7 +862,7 @@
     <value>radLabel5</value>
   </data>
   <data name="&gt;&gt;radLabel5.Type" xml:space="preserve">
-    <value>Telerik.WinControls.UI.RadLabel, Telerik.WinControls.UI, Version=2017.1.221.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+    <value>Telerik.WinControls.UI.RadLabel, Telerik.WinControls.UI, Version=2019.2.508.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
   </data>
   <data name="&gt;&gt;radLabel5.Parent" xml:space="preserve">
     <value>$this</value>
@@ -877,7 +874,7 @@
     <value>Bottom, Right</value>
   </data>
   <data name="transactionCount.Location" type="System.Drawing.Point, System.Drawing">
-    <value>564, 326</value>
+    <value>564, 324</value>
   </data>
   <data name="transactionCount.Size" type="System.Drawing.Size, System.Drawing">
     <value>84, 21</value>
@@ -889,7 +886,7 @@
     <value>transactionCount</value>
   </data>
   <data name="&gt;&gt;transactionCount.Type" xml:space="preserve">
-    <value>Telerik.WinControls.UI.RadSpinEditor, Telerik.WinControls.UI, Version=2017.1.221.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+    <value>Telerik.WinControls.UI.RadSpinEditor, Telerik.WinControls.UI, Version=2019.2.508.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
   </data>
   <data name="&gt;&gt;transactionCount.Parent" xml:space="preserve">
     <value>$this</value>
@@ -919,6 +916,6 @@
     <value>ImportMain</value>
   </data>
   <data name="&gt;&gt;$this.Type" xml:space="preserve">
-    <value>Telerik.WinControls.UI.RadForm, Telerik.WinControls.UI, Version=2017.1.221.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+    <value>Telerik.WinControls.UI.RadForm, Telerik.WinControls.UI, Version=2019.2.508.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
   </data>
 </root>

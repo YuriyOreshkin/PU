@@ -12,6 +12,7 @@ using Telerik.WinControls.UI.Localization;
 using PU.Classes;
 using Telerik.WinControls.UI;
 using System.Reflection;
+using PU.Dictionaries;
 
 namespace PU.FormsODV1
 {
@@ -118,18 +119,8 @@ namespace PU.FormsODV1
 
         private void ProfessionBtn_Click(object sender, EventArgs e)
         {
-            PU.FormsRSW2014.DolgnFrm child = new PU.FormsRSW2014.DolgnFrm();
-            child.Owner = this;
-            child.ThemeName = this.ThemeName;
-            child.ShowInTaskbar = false;
-            child.action = "selection";
-            child.btnSelection.Visible = true;
-            child.ShowDialog();
-            if (child.dolgn != null)
-            {
-                this.Profession.Text = child.dolgn.Name;
-            }
-            child = null;
+            Dictionaries.BaseDictionaryEvents.LookUp(this, Profession, "Dolgn");
+            
         }
 
         private void DepartmentBtn_Click(object sender, EventArgs e)

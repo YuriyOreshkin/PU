@@ -110,7 +110,7 @@ namespace PU.Classes
                     catch (Exception ex)
                     {
                         if (_parent != null)
-                            _parent.Invoke(new Action(() => { Methods.showAlert("Ошибка синхронизации", "При обновлении данных таблицы " + tableName + " произошла ошибка.\r\nКод ошибки: " + ex.Message.ToString(), ThemeName); }));
+                            _parent.Invoke(new Action(() => { Messenger.showAlert(AlertType.Error,"Ошибка синхронизации", "При обновлении данных таблицы " + tableName + " произошла ошибка.\r\nКод ошибки: " + ex.Message.ToString(), ThemeName); }));
 
                         result = false;
                     }
@@ -171,8 +171,8 @@ namespace PU.Classes
                     catch (Exception ex)
                     {
                         if (_parent != null)
-                            _parent.Invoke(new Action(() => { Methods.showAlert("Ошибка синхронизации", "При обновлении данных таблицы " + tableName + " произошла ошибка.\r\nКод ошибки: " + ex.Message.ToString(), ThemeName); }));
-
+                            _parent.Invoke(new Action(() => { Messenger.showAlert(AlertType.Error, "Ошибка синхронизации", "При обновлении данных таблицы " + tableName + " произошла ошибка.\r\nКод ошибки: " + ex.Message.ToString(), ThemeName); }));
+                      
                         result = false;
                     }
                     #endregion
@@ -223,7 +223,7 @@ namespace PU.Classes
                     catch (Exception ex)
                     {
                         if (_parent != null)
-                            _parent.Invoke(new Action(() => { Methods.showAlert("Ошибка синхронизации", "При обновлении данных таблицы " + tableName + " произошла ошибка.\r\nКод ошибки: " + ex.Message.ToString(), ThemeName); }));
+                            _parent.Invoke(new Action(() => { Messenger.showAlert(AlertType.Error, "Ошибка синхронизации", "При обновлении данных таблицы " + tableName + " произошла ошибка.\r\nКод ошибки: " + ex.Message.ToString(), ThemeName); }));
 
                         result = false;
                     }
@@ -276,7 +276,7 @@ namespace PU.Classes
                     catch (Exception ex)
                     {
                         if (_parent != null)
-                            _parent.Invoke(new Action(() => { Methods.showAlert("Ошибка синхронизации", "При обновлении данных таблицы " + tableName + " произошла ошибка.\r\nКод ошибки: " + ex.Message.ToString(), ThemeName); }));
+                            _parent.Invoke(new Action(() => { Messenger.showAlert(AlertType.Error, "Ошибка синхронизации", "При обновлении данных таблицы " + tableName + " произошла ошибка.\r\nКод ошибки: " + ex.Message.ToString(), ThemeName); }));
 
                         result = false;
                     }
@@ -349,7 +349,7 @@ namespace PU.Classes
                     catch (Exception ex)
                     {
                         if (_parent != null)
-                            _parent.Invoke(new Action(() => { Methods.showAlert("Ошибка синхронизации", "При обновлении данных таблицы " + tableName + " произошла ошибка.\r\nКод ошибки: " + ex.Message.ToString(), ThemeName); }));
+                            _parent.Invoke(new Action(() => { Messenger.showAlert(AlertType.Error, "Ошибка синхронизации", "При обновлении данных таблицы " + tableName + " произошла ошибка.\r\nКод ошибки: " + ex.Message.ToString(), ThemeName); }));
 
                         result = false;
                     }
@@ -418,7 +418,7 @@ namespace PU.Classes
                     catch (Exception ex)
                     {
                         if (_parent != null)
-                            _parent.Invoke(new Action(() => { Methods.showAlert("Ошибка синхронизации", "При обновлении данных таблицы " + tableName + " произошла ошибка.\r\nКод ошибки: " + ex.Message.ToString(), ThemeName); }));
+                            _parent.Invoke(new Action(() => { Messenger.showAlert(AlertType.Error, "Ошибка синхронизации", "При обновлении данных таблицы " + tableName + " произошла ошибка.\r\nКод ошибки: " + ex.Message.ToString(), ThemeName); }));
 
                         result = false;
                     }
@@ -468,7 +468,7 @@ namespace PU.Classes
                     catch (Exception ex)
                     {
                         if (_parent != null)
-                            _parent.Invoke(new Action(() => { Methods.showAlert("Ошибка синхронизации", "При обновлении данных таблицы " + tableName + " произошла ошибка.\r\nКод ошибки: " + ex.Message.ToString(), ThemeName); }));
+                            _parent.Invoke(new Action(() => { Messenger.showAlert(AlertType.Error, "Ошибка синхронизации", "При обновлении данных таблицы " + tableName + " произошла ошибка.\r\nКод ошибки: " + ex.Message.ToString(), ThemeName); }));
 
                         result = false;
                     }
@@ -576,7 +576,7 @@ namespace PU.Classes
                     catch (Exception ex)
                     {
                         if (_parent != null)
-                            _parent.Invoke(new Action(() => { Methods.showAlert("Ошибка синхронизации", "При обновлении данных таблицы " + tableName + " произошла ошибка.\r\nКод ошибки: " + ex.Message.ToString(), ThemeName); }));
+                            _parent.Invoke(new Action(() => { Messenger.showAlert(AlertType.Error, "Ошибка синхронизации", "При обновлении данных таблицы " + tableName + " произошла ошибка.\r\nКод ошибки: " + ex.Message.ToString(), ThemeName); }));
 
                         result = false;
                     }

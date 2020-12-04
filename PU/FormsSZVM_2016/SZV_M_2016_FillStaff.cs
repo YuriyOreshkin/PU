@@ -591,7 +591,7 @@ namespace PU.FormsSZVM_2016
                     }
                     catch (Exception ex)
                     {
-                        Methods.showAlert("Внимание!", "Ошибка при обновлении списка сотрудников Формы СЗВ-М! Код ошибки: " + ex.Message, this.ThemeName);
+                        Messenger.showAlert(AlertType.Error, "Внимание!", "Ошибка при обновлении списка сотрудников Формы СЗВ-М! Код ошибки: " + ex.Message, this.ThemeName);
                         Updated = false;
                         return;
                     }
@@ -619,7 +619,7 @@ namespace PU.FormsSZVM_2016
                 }
                 catch (Exception ex)
                 {
-                    Methods.showAlert("Внимание!", "Ошибка при сохранении Формы СЗВ-М! Код ошибки: " + ex.Message, this.ThemeName);
+                    Messenger.showAlert(AlertType.Error, "Внимание!", "Ошибка при сохранении Формы СЗВ-М! Код ошибки: " + ex.Message, this.ThemeName);
                     Updated = false;
                     return;
                 }
@@ -633,7 +633,7 @@ namespace PU.FormsSZVM_2016
                 }
                 catch (Exception ex)
                 {
-                    Methods.showAlert("Внимание!", "Во время удаления данных из формы СЗВ-М произошла ошибка! Код ошибки: " + ex.Message, this.ThemeName);
+                    Messenger.showAlert(AlertType.Error, "Внимание!", "Во время удаления данных из формы СЗВ-М произошла ошибка! Код ошибки: " + ex.Message, this.ThemeName);
                     Updated = false;
                     return;
                 }

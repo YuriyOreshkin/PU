@@ -489,7 +489,7 @@ namespace PU.FormsSPW2_2014
 
                 }
 
-                Methods.showAlert("Информация", "Предварительное формирование пачек СПВ-2 успешно завершено.", this.ThemeName);
+                Messenger.showAlert(AlertType.Success, "Информация", "Предварительное формирование пачек СПВ-2 успешно завершено.", this.ThemeName);
                 viewPacks_Click(null, null);
 
                 //foreach (var item in dbxml.xmlInfo.Where(x => x.UniqGUID == guid))
@@ -508,7 +508,7 @@ namespace PU.FormsSPW2_2014
             }
             catch (Exception ex)
             {
-                Methods.showAlert("Ошибка", "Во время формирования пачек СПВ-2 произошла ошибка. Код ошибки: " + ex.Message, this.ThemeName);
+                Messenger.showAlert(AlertType.Error, "Ошибка", "Во время формирования пачек СПВ-2 произошла ошибка. Код ошибки: " + ex.Message, this.ThemeName);
             }
             finally
             {

@@ -131,22 +131,8 @@ namespace PU.FormsADW3
 
         private void ConfirmDocTypeBtn_Click(object sender, EventArgs e)
         {
-            DocTypes child = new DocTypes();
-            child.Owner = this;
-            child.ThemeName = this.ThemeName;
-            child.ShowInTaskbar = false;
-            child.action = "selection";
-            if (ConfirmDocType.SelectedIndex > 0)
-            {
-                long id = long.Parse(ConfirmDocType.SelectedItem.Value.ToString());
-                child.DocType = db.DocumentTypes.FirstOrDefault(x => x.ID == id);
-            }
-            child.ShowDialog();
-            if (child.DocType != null)
-            {
-                ConfirmDocType.Items.FirstOrDefault(x => x.Value.ToString() == child.DocType.ID.ToString()).Selected = true;
-            }
-            child = null;
+            Dictionaries.BaseDictionaryEvents.LookUp(this, ConfirmDocType, "DocumentTypes");
+           
         }
 
         private void ConfirmDocDate_ValueChanged(object sender, EventArgs e)

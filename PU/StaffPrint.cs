@@ -356,7 +356,7 @@ namespace PU
                         }
                         else
                         {
-                            Methods.showAlert("Внимание!", "Нет данных для печати!", this.ThemeName);
+                            Messenger.showAlert(AlertType.Info, "Внимание!", "Нет данных для печати!", this.ThemeName);
                         }
                     }
                     else if (action == "lgot")
@@ -415,14 +415,14 @@ namespace PU
                         }
                         else
                         {
-                            Methods.showAlert("Внимание!", "Нет данных для печати!", this.ThemeName);
+                            Messenger.showAlert(AlertType.Info, "Внимание!", "Нет данных для печати!", this.ThemeName);
                         }
 
                     }
                 }
                 else
                 {
-                    Methods.showAlert("Внимание!", "Нет данных для печати!", this.ThemeName);
+                    Messenger.showAlert(AlertType.Info, "Внимание!", "Нет данных для печати!", this.ThemeName);
                 }
             }
             finally

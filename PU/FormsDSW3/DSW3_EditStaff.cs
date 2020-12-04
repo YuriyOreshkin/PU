@@ -296,7 +296,8 @@ namespace PU.FormsDSW3
                     }
                     catch (Exception ex)
                     {
-                        Methods.showAlert("Внимание!", "При сохранение данных о сотруднике произошла ошибка. Код ошибки: " + ex.Message, this.ThemeName);
+                        Messenger.showAlert(AlertType.Error, "Внимание!", "При сохранение данных о сотруднике произошла ошибка. Код ошибки: " + ex.Message, this.ThemeName);
+                        
                     }
                 }
 

@@ -12,19 +12,19 @@ namespace PU.Models
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
-
+    
     public partial class pu6Entities : DbContext
     {
         public pu6Entities()
             : base("name=pu6Entities")
         {
         }
-
+    
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             throw new UnintentionalCodeFirstException();
         }
-
+    
         public virtual DbSet<BackupDB_Info> BackupDB_Info { get; set; }
         public virtual DbSet<CodeBaseRW3_2015> CodeBaseRW3_2015 { get; set; }
         public virtual DbSet<Department> Department { get; set; }

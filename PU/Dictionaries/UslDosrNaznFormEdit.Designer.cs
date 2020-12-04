@@ -38,8 +38,11 @@
             this.radLabel7 = new Telerik.WinControls.UI.RadLabel();
             this.radDateTimePickerDateBegin = new Telerik.WinControls.UI.RadDateTimePicker();
             this.radDateTimePickerDateEnd = new Telerik.WinControls.UI.RadDateTimePicker();
-            this.radDropDownList1 = new Telerik.WinControls.UI.RadDropDownList();
+            this.radDropDownListEdIzm = new Telerik.WinControls.UI.RadDropDownList();
             this.radLabel4 = new Telerik.WinControls.UI.RadLabel();
+            this.radButtonSelectEdIzm = new Telerik.WinControls.UI.RadButton();
+            this.radButtonSetNULL = new Telerik.WinControls.UI.RadButton();
+            this.radMaskedEditBoxEdIzmID = new Telerik.WinControls.UI.RadMaskedEditBox();
             ((System.ComponentModel.ISupportInitialize)(this.radButtonCancel)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radButtonSave)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radTextBoxName)).BeginInit();
@@ -50,8 +53,11 @@
             ((System.ComponentModel.ISupportInitialize)(this.radLabel7)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radDateTimePickerDateBegin)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radDateTimePickerDateEnd)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radDropDownList1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radDropDownListEdIzm)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radButtonSelectEdIzm)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radButtonSetNULL)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radMaskedEditBoxEdIzmID)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             this.SuspendLayout();
             // 
@@ -59,7 +65,7 @@
             // 
             this.radButtonCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.radButtonCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.radButtonCancel.Location = new System.Drawing.Point(280, 161);
+            this.radButtonCancel.Location = new System.Drawing.Point(282, 173);
             this.radButtonCancel.Name = "radButtonCancel";
             this.radButtonCancel.Size = new System.Drawing.Size(110, 24);
             this.radButtonCancel.TabIndex = 6;
@@ -69,7 +75,7 @@
             // radButtonSave
             // 
             this.radButtonSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.radButtonSave.Location = new System.Drawing.Point(156, 161);
+            this.radButtonSave.Location = new System.Drawing.Point(156, 173);
             this.radButtonSave.Name = "radButtonSave";
             this.radButtonSave.Size = new System.Drawing.Size(110, 24);
             this.radButtonSave.TabIndex = 5;
@@ -91,17 +97,19 @@
             // 
             this.radTextBoxName.RootElement.StretchVertically = true;
             this.radTextBoxName.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.radTextBoxName.Size = new System.Drawing.Size(258, 27);
+            this.radTextBoxName.Size = new System.Drawing.Size(258, 39);
             this.radTextBoxName.TabIndex = 1;
             this.radTextBoxName.Tag = "Name";
             this.radTextBoxName.ThemeName = "Office2013Light";
             // 
             // radTextBoxCode
             // 
+            this.radTextBoxCode.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.radTextBoxCode.Location = new System.Drawing.Point(134, 10);
             this.radTextBoxCode.MaxLength = 10;
             this.radTextBoxCode.Name = "radTextBoxCode";
-            this.radTextBoxCode.Size = new System.Drawing.Size(92, 21);
+            this.radTextBoxCode.Size = new System.Drawing.Size(113, 21);
             this.radTextBoxCode.TabIndex = 0;
             this.radTextBoxCode.Tag = "Code";
             this.radTextBoxCode.ThemeName = "Office2013Light";
@@ -127,7 +135,7 @@
             // radLabel6
             // 
             this.radLabel6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.radLabel6.Location = new System.Drawing.Point(254, 81);
+            this.radLabel6.Location = new System.Drawing.Point(254, 93);
             this.radLabel6.Name = "radLabel6";
             this.radLabel6.Size = new System.Drawing.Size(21, 19);
             this.radLabel6.TabIndex = 49;
@@ -137,7 +145,7 @@
             // radLabel7
             // 
             this.radLabel7.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.radLabel7.Location = new System.Drawing.Point(12, 81);
+            this.radLabel7.Location = new System.Drawing.Point(12, 93);
             this.radLabel7.Name = "radLabel7";
             this.radLabel7.Size = new System.Drawing.Size(105, 19);
             this.radLabel7.TabIndex = 48;
@@ -148,7 +156,7 @@
             // 
             this.radDateTimePickerDateBegin.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.radDateTimePickerDateBegin.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.radDateTimePickerDateBegin.Location = new System.Drawing.Point(134, 80);
+            this.radDateTimePickerDateBegin.Location = new System.Drawing.Point(134, 92);
             this.radDateTimePickerDateBegin.Name = "radDateTimePickerDateBegin";
             this.radDateTimePickerDateBegin.Size = new System.Drawing.Size(113, 20);
             this.radDateTimePickerDateBegin.TabIndex = 2;
@@ -160,7 +168,7 @@
             // 
             this.radDateTimePickerDateEnd.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.radDateTimePickerDateEnd.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.radDateTimePickerDateEnd.Location = new System.Drawing.Point(282, 81);
+            this.radDateTimePickerDateEnd.Location = new System.Drawing.Point(282, 93);
             this.radDateTimePickerDateEnd.Name = "radDateTimePickerDateEnd";
             this.radDateTimePickerDateEnd.Size = new System.Drawing.Size(110, 20);
             this.radDateTimePickerDateEnd.TabIndex = 3;
@@ -168,35 +176,77 @@
             this.radDateTimePickerDateEnd.Tag = "DateEnd";
             this.radDateTimePickerDateEnd.Value = new System.DateTime(((long)(0)));
             // 
-            // radDropDownList1
+            // radDropDownListEdIzm
             // 
-            this.radDropDownList1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.radDropDownList1.AutoCompleteDisplayMember = null;
-            this.radDropDownList1.AutoCompleteValueMember = null;
-            this.radDropDownList1.DropDownStyle = Telerik.WinControls.RadDropDownStyle.DropDownList;
-            this.radDropDownList1.Location = new System.Drawing.Point(134, 112);
-            this.radDropDownList1.Name = "radDropDownList1";
-            this.radDropDownList1.Size = new System.Drawing.Size(258, 21);
-            this.radDropDownList1.TabIndex = 50;
-            this.radDropDownList1.Tag = "EdIzmID";
-            this.radDropDownList1.ThemeName = "Office2013Light";
+            this.radDropDownListEdIzm.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.radDropDownListEdIzm.AutoCompleteDisplayMember = null;
+            this.radDropDownListEdIzm.AutoCompleteValueMember = null;
+            this.radDropDownListEdIzm.DropDownStyle = Telerik.WinControls.RadDropDownStyle.DropDownList;
+            this.radDropDownListEdIzm.Location = new System.Drawing.Point(135, 124);
+            this.radDropDownListEdIzm.Name = "radDropDownListEdIzm";
+            this.radDropDownListEdIzm.Size = new System.Drawing.Size(199, 21);
+            this.radDropDownListEdIzm.TabIndex = 50;
+            this.radDropDownListEdIzm.Tag = "UslDosrNaznEdIzm";
+            this.radDropDownListEdIzm.ThemeName = "Office2013Light";
+            this.radDropDownListEdIzm.SelectedValueChanged += new System.EventHandler(this.radDropDownListEdIzm_SelectedValueChanged);
             // 
             // radLabel4
             // 
             this.radLabel4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.radLabel4.Location = new System.Drawing.Point(12, 112);
+            this.radLabel4.Location = new System.Drawing.Point(12, 124);
             this.radLabel4.Name = "radLabel4";
             this.radLabel4.Size = new System.Drawing.Size(120, 19);
             this.radLabel4.TabIndex = 51;
             this.radLabel4.Text = "Единица измерения";
             this.radLabel4.ThemeName = "Office2013Light";
             // 
+            // radButtonSelectEdIzm
+            // 
+            this.radButtonSelectEdIzm.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.radButtonSelectEdIzm.DisplayStyle = Telerik.WinControls.DisplayStyle.Text;
+            this.radButtonSelectEdIzm.Location = new System.Drawing.Point(364, 124);
+            this.radButtonSelectEdIzm.Name = "radButtonSelectEdIzm";
+            this.radButtonSelectEdIzm.Size = new System.Drawing.Size(27, 21);
+            this.radButtonSelectEdIzm.TabIndex = 52;
+            this.radButtonSelectEdIzm.Text = "...";
+            this.radButtonSelectEdIzm.ThemeName = "Office2013Light";
+            this.radButtonSelectEdIzm.Click += new System.EventHandler(this.radButtonSelectEdIzm_Click);
+            // 
+            // radButtonSetNULL
+            // 
+            this.radButtonSetNULL.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.radButtonSetNULL.Location = new System.Drawing.Point(335, 124);
+            this.radButtonSetNULL.Name = "radButtonSetNULL";
+            this.radButtonSetNULL.Size = new System.Drawing.Size(27, 21);
+            this.radButtonSetNULL.TabIndex = 53;
+            this.radButtonSetNULL.Text = "X";
+            this.radButtonSetNULL.ThemeName = "Office2013Light";
+            this.radButtonSetNULL.Click += new System.EventHandler(this.radButtonSetNULL_Click);
+            // 
+            // radMaskedEditBoxEdIzmID
+            // 
+            this.radMaskedEditBoxEdIzmID.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.radMaskedEditBoxEdIzmID.Location = new System.Drawing.Point(69, 151);
+            this.radMaskedEditBoxEdIzmID.MaskType = Telerik.WinControls.UI.MaskType.Numeric;
+            this.radMaskedEditBoxEdIzmID.Name = "radMaskedEditBoxEdIzmID";
+            this.radMaskedEditBoxEdIzmID.Size = new System.Drawing.Size(63, 21);
+            this.radMaskedEditBoxEdIzmID.TabIndex = 65;
+            this.radMaskedEditBoxEdIzmID.TabStop = false;
+            this.radMaskedEditBoxEdIzmID.Tag = "EdIzmID";
+            this.radMaskedEditBoxEdIzmID.Text = "0";
+            this.radMaskedEditBoxEdIzmID.ThemeName = "Office2013Light";
+            this.radMaskedEditBoxEdIzmID.Visible = false;
+            // 
             // UslDosrNaznFormEdit
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(404, 198);
-            this.Controls.Add(this.radDropDownList1);
+            this.ClientSize = new System.Drawing.Size(404, 210);
+            this.Controls.Add(this.radMaskedEditBoxEdIzmID);
+            this.Controls.Add(this.radButtonSetNULL);
+            this.Controls.Add(this.radButtonSelectEdIzm);
+            this.Controls.Add(this.radDropDownListEdIzm);
             this.Controls.Add(this.radLabel4);
             this.Controls.Add(this.radDateTimePickerDateEnd);
             this.Controls.Add(this.radDateTimePickerDateBegin);
@@ -228,8 +278,11 @@
             ((System.ComponentModel.ISupportInitialize)(this.radLabel7)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radDateTimePickerDateBegin)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radDateTimePickerDateEnd)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radDropDownList1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radDropDownListEdIzm)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radButtonSelectEdIzm)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radButtonSetNULL)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radMaskedEditBoxEdIzmID)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -248,7 +301,10 @@
         private Telerik.WinControls.UI.RadLabel radLabel7;
         private Telerik.WinControls.UI.RadDateTimePicker radDateTimePickerDateBegin;
         private Telerik.WinControls.UI.RadDateTimePicker radDateTimePickerDateEnd;
-        public Telerik.WinControls.UI.RadDropDownList radDropDownList1;
+        public Telerik.WinControls.UI.RadDropDownList radDropDownListEdIzm;
         public Telerik.WinControls.UI.RadLabel radLabel4;
+        private Telerik.WinControls.UI.RadButton radButtonSelectEdIzm;
+        private Telerik.WinControls.UI.RadButton radButtonSetNULL;
+        public Telerik.WinControls.UI.RadMaskedEditBox radMaskedEditBoxEdIzmID;
     }
 }

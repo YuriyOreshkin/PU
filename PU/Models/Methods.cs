@@ -121,7 +121,7 @@ namespace PU.Models
             catch (Exception ex)
             {
                 if (_parent != null)
-                    _parent.Invoke(new Action(() => { Methods.showAlert("Внимание", "При обновлении режима работы базы данных произошла ошибка!\r\nКод ошибки: " + ex.Message, ThemeName); }));
+                    _parent.Invoke(new Action(() => { Messenger.showAlert(AlertType.Error, "Внимание", "При обновлении режима работы базы данных произошла ошибка!\r\nКод ошибки: " + ex.Message, ThemeName); }));
             }
         }
 
@@ -420,14 +420,7 @@ namespace PU.Models
 
         }
 
-        public static void showAlert(string CaptionText, string ContentText, string ThemeName, int Height = 150)
-        {
-            Telerik.WinControls.UI.RadDesktopAlert alert = new Telerik.WinControls.UI.RadDesktopAlert { ThemeName = ThemeName, FadeAnimationFrames = 60, PopupAnimationFrames = 30, Opacity = 0.9F, PopupAnimationDirection = Telerik.WinControls.UI.RadDirection.Up, ShowOptionsButton = false, FixedSize = new Size(350, Height) };
-            alert.Popup.AlertElement.CaptionElement.CaptionGrip.BackColor = Color.Red;
-            alert.CaptionText = CaptionText;
-            alert.ContentText = ContentText;
-            alert.Show();
-        }
+      
 
         public static void HeaderChangeAllTabs()
         {

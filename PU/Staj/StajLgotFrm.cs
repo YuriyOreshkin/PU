@@ -247,9 +247,12 @@ namespace PU.Staj
                 long id = child.item_id;
                 TerrUslDDL.Items.FirstOrDefault(x => x.Value.ToString() == id.ToString()).Selected = true;
             }
-            child = null;
+            child = null;*/
+
+
+            Dictionaries.BaseDictionaryEvents.LookUp(this, TerrUslDDL, "TerrUsl");
             checkRules();
-            */
+            
 
         }
         #endregion
@@ -323,7 +326,7 @@ namespace PU.Staj
 
         private void OsobUslBtnFind_Click(object sender, EventArgs e)
         {
-           /* PU.Dictionaries.BaseDictionaryFormList child = new PU.Dictionaries.BaseDictionaryFormList();
+            /*PU.Dictionaries.BaseDictionaryFormList child = new PU.Dictionaries.BaseDictionaryFormList();
             child.Owner = this;
             child.ThemeName = this.ThemeName;
             child.ShowInTaskbar = false;
@@ -336,9 +339,10 @@ namespace PU.Staj
                 long id = child.item_id;
                 OsobUslDDL.Items.FirstOrDefault(x => x.Value.ToString() == id.ToString()).Selected = true;
             }
-            child = null;
+            child = null;*/
+            Dictionaries.BaseDictionaryEvents.LookUp(this, OsobUslDDL, "OsobUslTruda");
             checkRules();
-            */
+            
         }
         #endregion
 
@@ -656,18 +660,8 @@ namespace PU.Staj
 
         private void DolgnBtnFind_Click(object sender, EventArgs e)
         {
-            DolgnFrm child = new DolgnFrm();
-            child.Owner = this;
-            child.ThemeName = this.ThemeName;
-            child.ShowInTaskbar = false;
-            child.action = "selection";
-            child.btnSelection.Visible = true;
-            child.ShowDialog();
-            if (child.dolgn != null)
-            {
-                this.DolgnTextBox.Text = child.dolgn.Name;
-            }
-            child = null;
+
+            Dictionaries.BaseDictionaryEvents.LookUp(this, DolgnTextBox, "Dolgn");
 
         }
         #endregion

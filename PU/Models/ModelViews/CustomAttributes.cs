@@ -10,20 +10,10 @@ namespace PU.Models.ModelViews
     /// </summary>
     public class DisplayVisibleAttribute : Attribute
     {
-        private bool isVisible;
+        public Separator Separator { get; set; }
 
-        public DisplayVisibleAttribute(bool _isVisible)
-        {
-            isVisible = _isVisible;
-        }
-
-        public bool IsVisible
-        {
-            get
-            {
-                return isVisible;
-            }
-        }
+        public bool IsVisible { set; get; }
+      
     }
 
     /// <summary>
@@ -74,10 +64,58 @@ namespace PU.Models.ModelViews
         }
     }
 
+    /// <summary>
+    /// Look up field
+    /// </summary>
     public class LookUpAttribute : Attribute
     {
         public string DataSource { get; set; }
         public string ValueMember { get; set; }
         public string DisplayMember { get; set; }
     }
+
+    /// <summary>
+    ///  ReadOnly
+    /// </summary>
+    public class ReadOnlyAttribute : Attribute
+    {
+        private bool isReadOnly;
+
+        public ReadOnlyAttribute(bool _isReadOnly)
+        {
+            isReadOnly = _isReadOnly;
+        }
+
+        public bool IsReadOnly
+        {
+            get
+            {
+                return isReadOnly;
+            }
+        }
+    }
+
+    /// <summary>
+    /// DisplayFieldAttribute
+    /// </summary>
+    public class DisplayFieldAttribute : Attribute
+    {
+        private string fieldName;
+        public DisplayFieldAttribute(string _fieldName)
+        {
+            fieldName = _fieldName;
+        }
+
+        public string FieldName { get { return fieldName; } }
+    }
+
+    public enum Separator
+    {
+        None,
+        Left,
+        Right,
+        LeftRight
+    }
+
+   
 }

@@ -14,6 +14,7 @@ using Telerik.WinControls.UI;
 using PU.Reports;
 using Telerik.WinControls.Data;
 using System.Threading.Tasks;
+using PU.Dictionaries;
 
 namespace PU
 {
@@ -433,7 +434,7 @@ namespace PU
 
                     if (!String.IsNullOrEmpty(result))
                     {
-                        Methods.showAlert("Внимание!", "При удалении данных произошла ошибка. Код исключения: " + result, this.ThemeName, 200);
+                        Messenger.showAlert(AlertType.Error, "Внимание!", "При удалении данных произошла ошибка. Код исключения: " + result, this.ThemeName, 200);
                         InsID = 0;
                     }
 

@@ -216,7 +216,7 @@ namespace PU.FormsODV1
         {
             if (odv1Data == null)
             {
-                Methods.showAlert("Внимание!", "Не выбрана форма ОДВ-1!", this.ThemeName);
+                Messenger.showAlert(AlertType.Info, "Внимание!", "Не выбрана форма ОДВ-1!", this.ThemeName);
                 return;
             }
 
@@ -471,7 +471,7 @@ namespace PU.FormsODV1
 
                 if (dbxml.xmlInfo.Any(x => x.UniqGUID == guid))
                 {
-                    Methods.showAlert("Информация", "Формирование пачек ОДВ-1 успешно завершено.", this.ThemeName);
+                    Messenger.showAlert(AlertType.Success, "Информация", "Формирование пачек ОДВ-1 успешно завершено.", this.ThemeName);
                     viewPacks_Click(null, null);
                 }
             }

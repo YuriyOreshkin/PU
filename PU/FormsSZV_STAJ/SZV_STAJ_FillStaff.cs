@@ -305,12 +305,12 @@ namespace PU.FormsSZV_STAJ
                 }
                 else
                 {
-                    Methods.showAlert("Внимание!", "Для начала копирования необходимо выделить хотя бы одного сотрудника!", this.ThemeName);
+                    Messenger.showAlert(AlertType.Info, "Внимание!", "Для начала копирования необходимо выделить хотя бы одного сотрудника!", this.ThemeName);
                 }
             }
             else
             {
-                Methods.showAlert("Внимание!", "Нет данных о Форме ОДВ-1!", this.ThemeName);
+                Messenger.showAlert(AlertType.Info, "Внимание!", "Нет данных о Форме ОДВ-1!", this.ThemeName);
             }
         }
 

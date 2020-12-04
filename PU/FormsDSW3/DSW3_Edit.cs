@@ -9,6 +9,7 @@ using System.Windows.Forms;
 using System.Linq;
 using PU.Classes;
 using Telerik.WinControls;
+using PU.Dictionaries;
 
 namespace PU.FormsDSW3
 {
@@ -161,7 +162,7 @@ namespace PU.FormsDSW3
 
         private void selectDepBtn_Click(object sender, EventArgs e)
         {
-            PU.Models.DepartmentsFrm child = new PU.Models.DepartmentsFrm();
+            DepartmentsFrm child = new DepartmentsFrm();
             child.Owner = this;
             child.ThemeName = this.ThemeName;
             child.ShowInTaskbar = false;
@@ -292,7 +293,7 @@ namespace PU.FormsDSW3
             else
             {
                 foreach (var item in errMessBox)
-                { Methods.showAlert("Ошибка заполнения", item.name, this.ThemeName, 100); }
+                { Messenger.showAlert(AlertType.Error, "Ошибка заполнения", item.name, this.ThemeName, 100); }
             }
         }
 

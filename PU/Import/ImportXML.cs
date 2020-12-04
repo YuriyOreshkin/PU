@@ -841,7 +841,7 @@ namespace PU
 
                     if (!res)
                     {
-                        this.Invoke(new Action(() => { Methods.showAlert("Ошибка импорта", "В процессе импорта файла - " + XML_path + "  произошла ошибка.\r\nПри удалении Формы РСВ-1 произошла ошибка.", this.ThemeName); }));
+                        this.Invoke(new Action(() => { Messenger.showAlert(AlertType.Error, "Ошибка импорта", "В процессе импорта файла - " + XML_path + "  произошла ошибка.\r\nПри удалении Формы РСВ-1 произошла ошибка.", this.ThemeName); }));
                         return false;
                     }
                 }
@@ -859,7 +859,7 @@ namespace PU
 
                     if (!res)
                     {
-                        this.Invoke(new Action(() => { Methods.showAlert("Ошибка импорта", "В процессе импорта файла - " + XML_path + "  произошла ошибка.\r\nПри удалении Формы РСВ-1 произошла ошибка.", this.ThemeName); }));
+                        this.Invoke(new Action(() => { Messenger.showAlert(AlertType.Error, "Ошибка импорта", "В процессе импорта файла - " + XML_path + "  произошла ошибка.\r\nПри удалении Формы РСВ-1 произошла ошибка.", this.ThemeName); }));
                         return false;
                     }
                 }
@@ -1951,7 +1951,7 @@ namespace PU
             }
             catch (Exception ex)
             {
-                this.Invoke(new Action(() => { Methods.showAlert("Ошибка импорта", "В процессе импорта файла - " + XML_path + "  произошла ошибка.\r\n" + ex.Message, this.ThemeName); }));
+                this.Invoke(new Action(() => { Messenger.showAlert(AlertType.Error, "Ошибка импорта", "В процессе импорта файла - " + XML_path + "  произошла ошибка.\r\n" + ex.Message, this.ThemeName); }));
                 errList.Add(new ErrList { name = importFilesGrid.Rows[row.Index].Cells[2].Value.ToString(), control = "", type = ex.Message + "\r\n" });
                 bool res = Methods.DeleteRSW1(rsw);
 
@@ -2850,7 +2850,7 @@ namespace PU
             catch (Exception ex)
             {
                 errList.Add(new ErrList { name = importFilesGrid.Rows[row.Index].Cells[2].Value.ToString(), control = "", type = ex.Message + "\r\n" });
-                this.Invoke(new Action(() => { Methods.showAlert("Ошибка импорта", "В процессе импорта файла - " + XML_path + "  произошла ошибка.\r\n" + ex.Message, this.ThemeName); }));
+                this.Invoke(new Action(() => { Messenger.showAlert(AlertType.Error, "Ошибка импорта", "В процессе импорта файла - " + XML_path + "  произошла ошибка.\r\n" + ex.Message, this.ThemeName); }));
                 doc = null;
                 db.Dispose();
                 result = false;
@@ -3430,7 +3430,7 @@ namespace PU
             catch (Exception ex)
             {
                 errList.Add(new ErrList { name = importFilesGrid.Rows[row.Index].Cells[2].Value.ToString(), type = ex.Message + "\r\n" });
-                this.Invoke(new Action(() => { Methods.showAlert("Ошибка импорта", "В процессе импорта файла - " + XML_path + "  произошла ошибка.\r\n" + ex.Message, this.ThemeName); }));
+                this.Invoke(new Action(() => { Messenger.showAlert(AlertType.Error, "Ошибка импорта", "В процессе импорта файла - " + XML_path + "  произошла ошибка.\r\n" + ex.Message, this.ThemeName); }));
 
                 result = false;
             }
@@ -3594,7 +3594,7 @@ namespace PU
                     }
                     catch (Exception ex)
                     {
-                        this.Invoke(new Action(() => { Methods.showAlert("Ошибка импорта", "В процессе импорта файла - " + XML_path + "  произошла ошибка.\r\nПри удалении Формы РСВ-2 произошла ошибка. Ошибка: " + ex.Message, this.ThemeName); }));
+                        this.Invoke(new Action(() => { Messenger.showAlert(AlertType.Error, "Ошибка импорта", "В процессе импорта файла - " + XML_path + "  произошла ошибка.\r\nПри удалении Формы РСВ-2 произошла ошибка. Ошибка: " + ex.Message, this.ThemeName); }));
                         errList.Add(new ErrList { name = importFilesGrid.Rows[row.Index].Cells[2].Value.ToString(), control = "", type = "При удалении Формы РСВ-2 произошла ошибка. Ошибка: " + ex.Message + "\r\n" });
 
                         return false;
@@ -3807,7 +3807,7 @@ namespace PU
             catch (Exception ex)
             {
                 errList.Add(new ErrList { name = importFilesGrid.Rows[row.Index].Cells[2].Value.ToString(), control = "", type = ex.Message + "\r\n" });
-                this.Invoke(new Action(() => { Methods.showAlert("Ошибка импорта", "В процессе импорта файла - " + XML_path + "  произошла ошибка.\r\n" + ex.Message, this.ThemeName); }));
+                this.Invoke(new Action(() => { Messenger.showAlert(AlertType.Error, "Ошибка импорта", "В процессе импорта файла - " + XML_path + "  произошла ошибка.\r\n" + ex.Message, this.ThemeName); }));
                 result = false;
             }
 
@@ -3957,7 +3957,7 @@ namespace PU
                     }
                     catch (Exception ex)
                     {
-                        this.Invoke(new Action(() => { Methods.showAlert("Ошибка импорта", "В процессе импорта файла - " + XML_path + "  произошла ошибка.\r\nПри удалении Формы РСВ-2 произошла ошибка. Ошибка: " + ex.Message, this.ThemeName); }));
+                        this.Invoke(new Action(() => { Messenger.showAlert(AlertType.Error, "Ошибка импорта", "В процессе импорта файла - " + XML_path + "  произошла ошибка.\r\nПри удалении Формы РСВ-2 произошла ошибка. Ошибка: " + ex.Message, this.ThemeName); }));
                         errList.Add(new ErrList { name = importFilesGrid.Rows[row.Index].Cells[2].Value.ToString(), control = "", type = "При удалении Формы РСВ-2 произошла ошибка. Ошибка: " + ex.Message + "\r\n" });
 
                         return false;
@@ -4172,7 +4172,7 @@ namespace PU
             catch (Exception ex)
             {
                 errList.Add(new ErrList { name = importFilesGrid.Rows[row.Index].Cells[2].Value.ToString(), control = "", type = ex.Message + "\r\n" });
-                this.Invoke(new Action(() => { Methods.showAlert("Ошибка импорта", "В процессе импорта файла - " + XML_path + "  произошла ошибка.\r\n" + ex.Message, this.ThemeName); }));
+                this.Invoke(new Action(() => { Messenger.showAlert(AlertType.Error, "Ошибка импорта", "В процессе импорта файла - " + XML_path + "  произошла ошибка.\r\n" + ex.Message, this.ThemeName); }));
                 result = false;
             }
 
@@ -4337,7 +4337,7 @@ namespace PU
                     }
                     catch (Exception ex)
                     {
-                        this.Invoke(new Action(() => { Methods.showAlert("Ошибка импорта", "В процессе импорта файла - " + XML_path + "  произошла ошибка.\r\nПри удалении Формы РВ-3 2015 произошла ошибка. Ошибка: " + ex.Message, this.ThemeName); }));
+                        this.Invoke(new Action(() => { Messenger.showAlert(AlertType.Error, "Ошибка импорта", "В процессе импорта файла - " + XML_path + "  произошла ошибка.\r\nПри удалении Формы РВ-3 2015 произошла ошибка. Ошибка: " + ex.Message, this.ThemeName); }));
                         errList.Add(new ErrList { name = importFilesGrid.Rows[row.Index].Cells[2].Value.ToString(), control = "", type = "При удалении Формы РВ-3 2015 произошла ошибка. Ошибка: " + ex.Message + "\r\n" });
 
                         return false;
@@ -4508,7 +4508,7 @@ namespace PU
             catch (Exception ex)
             {
                 errList.Add(new ErrList { name = importFilesGrid.Rows[row.Index].Cells[2].Value.ToString(), control = "", type = ex.Message + "\r\n" });
-                this.Invoke(new Action(() => { Methods.showAlert("Ошибка импорта", "В процессе импорта файла - " + XML_path + "  произошла ошибка.\r\n" + ex.Message, this.ThemeName); }));
+                this.Invoke(new Action(() => { Messenger.showAlert(AlertType.Error, "Ошибка импорта", "В процессе импорта файла - " + XML_path + "  произошла ошибка.\r\n" + ex.Message, this.ThemeName); }));
 
                 result = false;
             }
@@ -4666,7 +4666,7 @@ namespace PU
                         }
                         catch (Exception ex)
                         {
-                            this.Invoke(new Action(() => { Methods.showAlert("Ошибка импорта", "В процессе импорта файла - " + XML_path + "  произошла ошибка.\r\nПри удалении Формы СЗВ-М 2016 произошла ошибка. Ошибка: " + ex.Message, this.ThemeName); }));
+                            this.Invoke(new Action(() => { Messenger.showAlert(AlertType.Error, "Ошибка импорта", "В процессе импорта файла - " + XML_path + "  произошла ошибка.\r\nПри удалении Формы СЗВ-М 2016 произошла ошибка. Ошибка: " + ex.Message, this.ThemeName); }));
                             errList.Add(new ErrList { name = importFilesGrid.Rows[row.Index].Cells[2].Value.ToString(), control = "", type = "При удалении Формы СЗВ-М 2016 произошла ошибка. Ошибка: " + ex.Message + "\r\n" });
 
                             return false;
@@ -4836,7 +4836,7 @@ namespace PU
             catch (Exception ex)
             {
                 errList.Add(new ErrList { name = importFilesGrid.Rows[row.Index].Cells[2].Value.ToString(), control = "", type = ex.Message + "\r\n" });
-                this.Invoke(new Action(() => { Methods.showAlert("Ошибка импорта", "В процессе импорта файла - " + XML_path + "  произошла ошибка.\r\n" + ex.Message, this.ThemeName); }));
+                this.Invoke(new Action(() => { Messenger.showAlert(AlertType.Error, "Ошибка импорта", "В процессе импорта файла - " + XML_path + "  произошла ошибка.\r\n" + ex.Message, this.ThemeName); }));
 
                 result = false;
             }
@@ -5169,7 +5169,7 @@ namespace PU
                         }
                         catch (Exception ex)
                         {
-                            this.Invoke(new Action(() => { Methods.showAlert("Ошибка сохранения", "При обновлении записи Формы ОДВ-1 произошла ошибка.\r\n" + ex.Message, this.ThemeName); }));
+                            this.Invoke(new Action(() => { Messenger.showAlert(AlertType.Error, "Ошибка сохранения", "При обновлении записи Формы ОДВ-1 произошла ошибка.\r\n" + ex.Message, this.ThemeName); }));
                         }
 
                         odv_id = odv1_old.ID;
@@ -5686,7 +5686,7 @@ namespace PU
             catch (Exception ex)
             {
                 errList.Add(new ErrList { name = importFilesGrid.Rows[row.Index].Cells[2].Value.ToString(), control = "", type = ex.Message + "\r\n" });
-                this.Invoke(new Action(() => { Methods.showAlert("Ошибка импорта", "В процессе импорта файла - " + XML_path + "  произошла ошибка.\r\n" + ex.Message, this.ThemeName); }));
+                this.Invoke(new Action(() => { Messenger.showAlert(AlertType.Error, "Ошибка импорта", "В процессе импорта файла - " + XML_path + "  произошла ошибка.\r\n" + ex.Message, this.ThemeName); }));
 
                 result = false;
             }
@@ -6580,7 +6580,7 @@ namespace PU
             catch (Exception ex)
             {
                 errList.Add(new ErrList { name = importFilesGrid.Rows[row.Index].Cells[2].Value.ToString(), control = "", type = ex.Message + "\r\n" });
-                this.Invoke(new Action(() => { Methods.showAlert("Ошибка импорта", "В процессе импорта файла - " + XML_path + "  произошла ошибка.\r\n" + ex.Message, this.ThemeName); }));
+                this.Invoke(new Action(() => { Messenger.showAlert(AlertType.Error, "Ошибка импорта", "В процессе импорта файла - " + XML_path + "  произошла ошибка.\r\n" + ex.Message, this.ThemeName); }));
 
                 result = false;
             }
@@ -7573,7 +7573,7 @@ namespace PU
             catch (Exception ex)
             {
                 errList.Add(new ErrList { name = importFilesGrid.Rows[row.Index].Cells[2].Value.ToString(), control = "", type = ex.Message + "\r\n" });
-                this.Invoke(new Action(() => { Methods.showAlert("Ошибка импорта", "В процессе импорта файла - " + XML_path + "  произошла ошибка.\r\n" + ex.Message, this.ThemeName); }));
+                this.Invoke(new Action(() => { Messenger.showAlert(AlertType.Error, "Ошибка импорта", "В процессе импорта файла - " + XML_path + "  произошла ошибка.\r\n" + ex.Message, this.ThemeName); }));
 
                 result = false;
             }
@@ -8340,7 +8340,7 @@ namespace PU
             catch (Exception ex)
             {
                 errList.Add(new ErrList { name = importFilesGrid.Rows[row.Index].Cells[2].Value.ToString(), control = "", type = ex.Message + "\r\n" });
-                this.Invoke(new Action(() => { Methods.showAlert("Ошибка импорта", "В процессе импорта файла - " + XML_path + "  произошла ошибка.\r\n" + ex.Message, this.ThemeName); }));
+                this.Invoke(new Action(() => { Messenger.showAlert(AlertType.Error, "Ошибка импорта", "В процессе импорта файла - " + XML_path + "  произошла ошибка.\r\n" + ex.Message, this.ThemeName); }));
 
                 result = false;
             }
@@ -8670,7 +8670,7 @@ namespace PU
             catch (Exception ex)
             {
                 errList.Add(new ErrList { name = importFilesGrid.Rows[row.Index].Cells[2].Value.ToString(), control = "", type = ex.Message + "\r\n" });
-                this.Invoke(new Action(() => { Methods.showAlert("Ошибка импорта", "В процессе импорта файла - " + XML_path + "  произошла ошибка.\r\n" + ex.Message, this.ThemeName); }));
+                this.Invoke(new Action(() => { Messenger.showAlert(AlertType.Error, "Ошибка импорта", "В процессе импорта файла - " + XML_path + "  произошла ошибка.\r\n" + ex.Message, this.ThemeName); }));
 
                 result = false;
             }
@@ -8992,7 +8992,7 @@ namespace PU
             catch (Exception ex)
             {
                 errList.Add(new ErrList { name = importFilesGrid.Rows[row.Index].Cells[2].Value.ToString(), control = "", type = ex.Message + "\r\n" });
-                this.Invoke(new Action(() => { Methods.showAlert("Ошибка импорта", "В процессе импорта файла - " + XML_path + "  произошла ошибка.\r\n" + ex.Message, this.ThemeName); }));
+                this.Invoke(new Action(() => { Messenger.showAlert(AlertType.Error, "Ошибка импорта", "В процессе импорта файла - " + XML_path + "  произошла ошибка.\r\n" + ex.Message, this.ThemeName); }));
 
                 result = false;
             }
@@ -9222,7 +9222,7 @@ namespace PU
                         }
                         catch (Exception ex)
                         {
-                            this.Invoke(new Action(() => { Methods.showAlert("Ошибка импорта", "В процессе импорта файла - " + XML_path + "  произошла ошибка.\r\nПри удалении Формы ДСВ-3 произошла ошибка. Ошибка: " + ex.Message, this.ThemeName); }));
+                            this.Invoke(new Action(() => { Messenger.showAlert(AlertType.Error, "Ошибка импорта", "В процессе импорта файла - " + XML_path + "  произошла ошибка.\r\nПри удалении Формы ДСВ-3 произошла ошибка. Ошибка: " + ex.Message, this.ThemeName); }));
                             errList.Add(new ErrList { name = importFilesGrid.Rows[row.Index].Cells[2].Value.ToString(), control = "", type = "При удалении Формы ДСВ-3 произошла ошибка. Ошибка: " + ex.Message + "\r\n" });
 
                             return false;
@@ -9390,7 +9390,7 @@ namespace PU
             catch (Exception ex)
             {
                 errList.Add(new ErrList { name = importFilesGrid.Rows[row.Index].Cells[2].Value.ToString(), control = "", type = ex.Message + "\r\n" });
-                this.Invoke(new Action(() => { Methods.showAlert("Ошибка импорта", "В процессе импорта файла - " + XML_path + "  произошла ошибка.\r\n" + ex.Message, this.ThemeName); }));
+                this.Invoke(new Action(() => { Messenger.showAlert(AlertType.Error, "Ошибка импорта", "В процессе импорта файла - " + XML_path + "  произошла ошибка.\r\n" + ex.Message, this.ThemeName); }));
 
                 result = false;
             }
@@ -10212,7 +10212,7 @@ namespace PU
             catch (Exception ex)
             {
                 errList.Add(new ErrList { name = importFilesGrid.Rows[row.Index].Cells[2].Value.ToString(), control = "", type = ex.Message + "\r\n" });
-                this.Invoke(new Action(() => { Methods.showAlert("Ошибка импорта", "В процессе импорта файла - " + XML_path + "  произошла ошибка.\r\n" + ex.Message, this.ThemeName); }));
+                this.Invoke(new Action(() => { Messenger.showAlert(AlertType.Error, "Ошибка импорта", "В процессе импорта файла - " + XML_path + "  произошла ошибка.\r\n" + ex.Message, this.ThemeName); }));
                 doc = null;
                 result = false;
             }
@@ -10828,7 +10828,7 @@ namespace PU
             catch (Exception ex)
             {
                 errList.Add(new ErrList { name = importFilesGrid.Rows[row.Index].Cells[2].Value.ToString(), control = "", type = ex.Message + "\r\n" });
-                this.Invoke(new Action(() => { Methods.showAlert("Ошибка импорта", "В процессе импорта файла - " + XML_path + "  произошла ошибка.\r\n" + ex.Message, this.ThemeName); }));
+                this.Invoke(new Action(() => { Messenger.showAlert(AlertType.Error, "Ошибка импорта", "В процессе импорта файла - " + XML_path + "  произошла ошибка.\r\n" + ex.Message, this.ThemeName); }));
                 doc = null;
                 result = false;
             }

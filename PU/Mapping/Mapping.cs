@@ -9,6 +9,7 @@ using System.ComponentModel.DataAnnotations;
 using PU.Models.ModelViews;
 using Telerik.WinControls.UI;
 using static System.Windows.Forms.Control;
+using System.ComponentModel;
 
 namespace PU.Models.Mapping
 {
@@ -44,12 +45,43 @@ namespace PU.Models.Mapping
 
             foreach (PropertyInfo property in viewType.GetProperties())
             {
+                var propentity = entity.GetType().GetProperty(property.Name);
+                if (propentity != null) {
+                    if (!IsSimple(property.PropertyType))
+                    {
+                        object valentity = propentity.GetValue(entity, null);
+                        if (valentity != null)
+                        {
+                            property.SetValue(view, ModelClassViewMap(valentity, property.Name), null);
+                        }
+                    }
+                    else {
 
-                property.SetValue(view, entity.GetType().GetProperty(property.Name).GetValue(entity, null), null);
-
+                        property.SetValue(view, propentity.GetValue(entity, null), null);
+                    }
+                }
             }
 
             return view;
+        }
+
+        private static bool IsSimple(Type type)
+        {
+            return type.IsPrimitive
+              || type.IsEnum
+              || type.Equals(typeof(string))
+              || type.Equals(typeof(decimal))
+              || type.Equals(typeof(decimal?))
+              || type.Equals(typeof(int))
+              || type.Equals(typeof(int?))
+              || type.Equals(typeof(short))
+              || type.Equals(typeof(short?))
+              || type.Equals(typeof(byte))
+              || type.Equals(typeof(byte?))
+              || type.Equals(typeof(long))
+              || type.Equals(typeof(long?))
+              || type.Equals(typeof(DateTime))
+              || type.Equals(typeof(DateTime?)); 
         }
 
 
@@ -71,7 +103,7 @@ namespace PU.Models.Mapping
         /// </summary>
         /// <param name="gridView"></param>
         /// <param name="classname"></param>
-        public static void GridViewClassMap(Telerik.WinControls.UI.RadGridView gridView, string classname)
+        public static void GridViewClassMap(RadGridView gridView, string classname)
         {
             Type viewType = Type.GetType(FullModelViewPath(classname));
 
@@ -117,50 +149,148 @@ namespace PU.Models.Mapping
                         gridView.Columns[property.Name].AllowFiltering = ((FiltrableAttribute)attribute).IsFiltrable;
 
                     }
-                }
 
-            }
-        }
-
-
-
-        public static void ActionsClassMap(Form form, object view,string classname)
-        {
-            
-            Control control = GetControlByTag(form.Controls, "Actions");
-
-            if (control != null && control is RadCommandBar)
-            {
-                foreach (var action in ((RadCommandBar)control).Rows[0].Strips[0].Items.OfType<CommandBarButton>())
-                {
-                    action.Visibility = Telerik.WinControls.ElementVisibility.Collapsed;
-
-                    foreach (MethodInfo method in view.GetType().GetMethods())
+                    //Field 
+                    if (attribute is DisplayFieldAttribute)
                     {
-                        if (action.Tag.ToString() == method.Name)
-                        {
-                            object[] attributes = method.GetCustomAttributes(true);
-                            foreach (object attribute in attributes)
-                            {
-                                //Set column visibility
-                                if (attribute is DisplayVisibleAttribute)
-                                {
-                                    if (((DisplayVisibleAttribute)attribute).IsVisible)
-                                    {
-                                        action.Visibility = Telerik.WinControls.ElementVisibility.Visible;
-                                        ((CommandBarButton)action).Click += new EventHandler(delegate (object s, EventArgs args) { method.Invoke(view, new object[] { form, classname }); });
-                                    }
-                                }
-                            }
 
-                        }
+                        gridView.Columns[property.Name].FieldName= ((DisplayFieldAttribute)attribute).FieldName;
 
+                    }
+
+                    //Column Order 
+                    if (attribute is DisplayAttribute)
+                    {
+                            var order = ((DisplayAttribute)attribute).GetOrder();
+                            if (order != null )  
+                                gridView.Columns.Move(gridView.Columns[property.Name].Index, (int)order);
                     }
                 }
 
             }
+        }
+
+
+        private static void ActionsCommandBarMap(Form form, RadCommandBar commandBar, RadGridView radGridView, object view, string classname)
+        {
+            /*
+            commandBar.Rows[0].Strips[0].OverflowButton.Visibility = Telerik.WinControls.ElementVisibility.Visible;
+            commandBar.Rows[0].Strips[0].OverflowButton.AddRemoveButtonsMenuItem.Visibility = Telerik.WinControls.ElementVisibility.Collapsed;
+            commandBar.Rows[0].Strips[0].OverflowButton.CustomizeButtonMenuItem.Visibility = Telerik.WinControls.ElementVisibility.Collapsed;
+            */
+
+            foreach (MethodInfo method in view.GetType().GetMethods())
+            {
+                object[] attributes = method.GetCustomAttributes(true);
+                foreach (object attribute in attributes)
+                {
+                 
+
+                    if (attribute is DisplayVisibleAttribute)
+                    {
+                       
+                        //Set action visibility
+                        if (((DisplayVisibleAttribute)attribute).IsVisible)
+                        {
+                            CommandBarButton action = CreateAction(attributes.Any(a => a is DisplayNameAttribute) ? ((DisplayNameAttribute)attributes.First(a => a is DisplayNameAttribute)).DisplayName : method.Name);
+                          
+                            //Set button click
+                            action.Click += new EventHandler(delegate (object s, EventArgs args) { method.Invoke(view, new object[] { form,radGridView, classname }); });
+
+                            if (((DisplayVisibleAttribute)attribute).Separator == Separator.Left || ((DisplayVisibleAttribute)attribute).Separator == Separator.LeftRight) 
+                            {
+                                //Separator Left
+                                commandBar.Rows[0].Strips[0].Items.Add(new CommandBarSeparator());
+                            }
+
+                            commandBar.Rows[0].Strips[0].Items.Add(action);
+
+                            if (((DisplayVisibleAttribute)attribute).Separator == Separator.Right || ((DisplayVisibleAttribute)attribute).Separator == Separator.LeftRight)
+                            {
+                                //Separator Right
+                                commandBar.Rows[0].Strips[0].Items.Add(new CommandBarSeparator());
+                            }
+                        }
+                        
+                    }
+                }
+            }
+        }
+       
+        private static void ActionsContextMenuMap(Form form, RadContextMenu contextMenu, RadGridView radGridView, object view, string classname)
+        {
+            foreach (MethodInfo method in view.GetType().GetMethods())
+            {
+                object[] attributes = method.GetCustomAttributes(true);
+                foreach (object attribute in attributes)
+                {
+                    
+                    if (attribute is DisplayVisibleAttribute)
+                    {
+                        //Set action visibility
+                        if (((DisplayVisibleAttribute)attribute).IsVisible)
+                        {
+                            RadMenuItem action = new RadMenuItem();
+                            action.Text = attributes.Any(a => a is DisplayNameAttribute) ? ((DisplayNameAttribute)attributes.First(a => a is DisplayNameAttribute)).DisplayName : method.Name;
+
+                            //Set button click
+                            action.Click += new EventHandler(delegate (object s, EventArgs args) { method.Invoke(view, new object[] { form,radGridView, classname }); });
+
+                            if (((DisplayVisibleAttribute)attribute).Separator == Separator.Left || ((DisplayVisibleAttribute)attribute).Separator == Separator.LeftRight)
+                            {
+                                //Separator Left
+                                contextMenu.Items.Add(new RadMenuSeparatorItem());
+                            }
+
+                            contextMenu.Items.Add(action);
+
+                            if (((DisplayVisibleAttribute)attribute).Separator == Separator.Right || ((DisplayVisibleAttribute)attribute).Separator == Separator.LeftRight)
+                            {
+                                //Separator Left
+                                contextMenu.Items.Add(new RadMenuSeparatorItem());
+                            }
+
+                        }
+                    }
+                }
+            }
+        }
+
+
+        private static CommandBarButton CreateAction(string text)
+        {
+            CommandBarButton action = new CommandBarButton();
+           
+            action.Image = null;
+            action.Text = text;
+            action.DrawText = true;
+            action.ToolTipText = text;
+            
+            return action;
+        }
+
+        public static void ActionsClassMap(Form form, object view, string classname)
+        {
+            RadGridView  radGridView = (RadGridView)Mapping.GetControlByTag(form.Controls, classname + "Grid");
+            RadCommandBar commandBar = (RadCommandBar)Mapping.GetControlByTag(form.Controls, classname+ "Actions");
+
+            if (commandBar != null)
+                 ActionsCommandBarMap(form, commandBar,radGridView, view, classname);
+
+            RadContextMenu contextMenu = new RadContextMenu();  
+            ActionsContextMenuMap(form, contextMenu,radGridView, view, classname);
+
+            radGridView.ContextMenuOpening +=new ContextMenuOpeningEventHandler((s,arg)=> {
+
+                GridFilterCellElement cell = arg.ContextMenuProvider as GridFilterCellElement;
+                if (cell == null)
+                {
+                    arg.ContextMenu = contextMenu.DropDown;
+                }
+            });
 
         }
+        
     
 
 
@@ -175,32 +305,43 @@ namespace PU.Models.Mapping
 
             foreach (PropertyInfo property in type.GetProperties())
             {
-                foreach (Control control in form.Controls)
-                {
-                    if (control.Tag != null && control.Tag.ToString() == property.Name)
+                Control control = GetControlByTag(form.Controls, property.Name); 
+                //foreach (Control control in form.Controls)
+                //{
+                //    if (control.Tag != null && control.Tag.ToString() == property.Name)
+                if (control != null)
                     {
-                       var attribute = property.GetCustomAttributes(true).FirstOrDefault(a => a is LookUpAttribute);
-                       object value = null;
+                        //LookUp field
+                       var attributes = property.GetCustomAttributes(true);
+                       object value = property.GetValue(item, null);
 
-                        if (attribute != null)
+                        foreach (var attribute in attributes)
                         {
-
-                            value = new LookUp()
+                            if (attribute is LookUpAttribute)
                             {
-                                DataSource = Mapping.DataSourceMap(((LookUpAttribute)attribute).DataSource),
-                                ValueMember = ((LookUpAttribute)attribute).ValueMember,
-                                DisplayMember = ((LookUpAttribute)attribute).DisplayMember,
-                                Value = property.GetValue(item, null)
-                            };
-                        }
-                        else {
 
-                            value = property.GetValue(item, null);
-                        }
+                                value = new LookUp()
+                                {
+                                    DataSource = Mapping.DataSourceMap(((LookUpAttribute)attribute).DataSource),
+                                    ValueMember = ((LookUpAttribute)attribute).ValueMember,
+                                    DisplayMember = ((LookUpAttribute)attribute).DisplayMember,
+                                    Value = value
+                                    
+                                };
+                            }
 
-                        ValueControlMap(control, value);
+                            //ReadOnly
+                            if (attribute is ModelViews.ReadOnlyAttribute)
+                            {
+                                ((RadTextBoxBase)control).ReadOnly = ((ModelViews.ReadOnlyAttribute)attribute).IsReadOnly;
+                            }
+
                     }
+                    
+                        ValueControlMap(control, value);
+                   
                 }
+                //}
             }
         }
 
@@ -226,7 +367,11 @@ namespace PU.Models.Mapping
             //Decimal, int
             if (control is RadSpinEditor)
             {
-                ((RadSpinEditor)control).Value = Convert.ToDecimal(value);
+                var val = Convert.ToDecimal(value);
+                if (val >= ((RadSpinEditor)control).Minimum && val <= ((RadSpinEditor)control).Maximum)
+                {
+                    ((RadSpinEditor)control).Value = val;
+                }
             }
 
             //bool
@@ -239,12 +384,24 @@ namespace PU.Models.Mapping
             if (control is RadDropDownList)
             {
                 var dropdownlist = ((RadDropDownList)control);
-                var lookup = (LookUp)value;
+                var lookup = value as LookUp;
+                if (lookup != null)
+                {
+                    dropdownlist.ValueMember = lookup.ValueMember;
+                    dropdownlist.DisplayMember = lookup.DisplayMember;
+                    dropdownlist.DataSource = lookup.DataSource;
+                    dropdownlist.SelectedValue = lookup.Value != null ? lookup.Value.GetType().GetProperty(lookup.ValueMember).GetValue(lookup.Value, null) : lookup.Value;
+                }
+                else {
 
-                dropdownlist.DataSource = lookup.DataSource;
-                dropdownlist.ValueMember = lookup.ValueMember;
-                dropdownlist.DisplayMember = lookup.DisplayMember;
-                dropdownlist.SelectedValue = lookup.Value;
+                    dropdownlist.SelectedValue = value;
+                }
+            }
+
+            //Masked
+            if (control is RadMaskedEditBox)
+            {
+                ((RadMaskedEditBox)control).Value = value;
             }
         }
 
@@ -257,68 +414,77 @@ namespace PU.Models.Mapping
         public static void ControlsObjectMap(Form form, object item)
         {
             Type type = item.GetType();
-            
-                foreach (Control control in form.Controls)
+
+            foreach (PropertyInfo property in type.GetProperties())
+            {
+                Control control = GetControlByTag(form.Controls, property.Name);
+                if (control != null)
                 {
-                    if (control.Tag != null)
-                    {
-                        PropertyInfo property = type.GetProperties().FirstOrDefault(name=>name.Name == control.Tag.ToString());
-                        if (property != null)
-                        {
-                            property.SetValue(item, ControlValueMap(control),null);
-                        }
+                    property.SetValue(item, ControlValueMap(property.PropertyType, control), null);
                 }
             }
+              
         }
 
-        private static object ControlValueMap(Control control)
+
+        private static object ConvertValueType(Type type, string value)
         {
-            //String
-            if (control is RadTextBox)
-            {
-               return ((RadTextBox)control).Text; 
-            }
+            if (String.IsNullOrEmpty(value))
+                return null;
 
-            //DateTime
-            if (control is RadDateTimePicker)
-            {
-                if (((RadDateTimePicker)control).Value == DateTime.MinValue)
-                {
-                    return null;
+            if (value == "0")
+                return null;
 
-                }
-                else {
+            if (type.Equals(typeof(string))) 
+                return (string)value;
 
-                    return ((RadDateTimePicker)control).Value;
-                }
-            }
+            if (type.Equals(typeof(int)) || type.Equals(typeof(int?)))
+                return int.Parse(value);
 
-            //Decimal, int
-            if (control is RadSpinEditor)
-            {
-                return ((RadSpinEditor)control).Value;
-            }
+            if (type.Equals(typeof(short)))
+                return short.Parse(value);
 
-            //bool
-            if (control is RadCheckBox)
-            {
-                return ((RadCheckBox)control).Checked;
-            }
+            if (type.Equals(typeof(long)) || type.Equals(typeof(long?)))
+                return long.Parse(value);
 
+            if (type.Equals(typeof(decimal?)) || type.Equals(typeof(decimal)))
+                return decimal.Parse(value);
+
+            if (type.Equals(typeof(DateTime)) || type.Equals(typeof(DateTime?)))
+                return  DateTime.Parse(value);
+
+            if (type.Equals(typeof(bool)))
+                return bool.Parse(value);
+
+            return value;
+        }
+
+        private static object ControlValueMap(Type type, Control control)
+        {
+
+           
             //LookUp
             if (control is RadDropDownList)
             {
-                return ((RadDropDownList)control).SelectedValue;
+                if (((RadDropDownList)control).SelectedItem != null)
+                    if (((RadDropDownList)control).SelectedItem.DataBoundItem != null)
+                    {
+                        return ((RadDropDownList)control).SelectedItem.DataBoundItem;
+                    }
+                    else {
+
+                        return ((RadDropDownList)control).SelectedItem.Text;
+                    }
             }
 
-            return null;
+
+            return ConvertValueType(type, control.Text);
         }
 
 
 
         public static Control GetControlByTag(ControlCollection controls, string tagname)
         {
-
 
             foreach (Control control in controls)
             {

@@ -28,8 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            Telerik.WinControls.UI.RadListDataItem radListDataItem3 = new Telerik.WinControls.UI.RadListDataItem();
-            Telerik.WinControls.UI.RadListDataItem radListDataItem4 = new Telerik.WinControls.UI.RadListDataItem();
+            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition1 = new Telerik.WinControls.UI.TableViewDefinition();
+            Telerik.WinControls.UI.RadListDataItem radListDataItem1 = new Telerik.WinControls.UI.RadListDataItem();
+            Telerik.WinControls.UI.RadListDataItem radListDataItem2 = new Telerik.WinControls.UI.RadListDataItem();
+            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition2 = new Telerik.WinControls.UI.TableViewDefinition();
             this.btnSelection = new Telerik.WinControls.UI.RadButton();
             this.btnClose = new Telerik.WinControls.UI.RadButton();
             this.radGridView1 = new Telerik.WinControls.UI.RadGridView();
@@ -77,7 +79,7 @@
             this.radGridView1.EnableCustomSorting = true;
             this.radGridView1.Location = new System.Drawing.Point(12, 39);
             // 
-            // radGridView1
+            // 
             // 
             this.radGridView1.MasterTemplate.AllowAddNewRow = false;
             this.radGridView1.MasterTemplate.AllowDeleteRow = false;
@@ -86,6 +88,7 @@
             this.radGridView1.MasterTemplate.EnableCustomSorting = true;
             this.radGridView1.MasterTemplate.EnableGrouping = false;
             this.radGridView1.MasterTemplate.ShowRowHeaderColumn = false;
+            this.radGridView1.MasterTemplate.ViewDefinition = tableViewDefinition1;
             this.radGridView1.Name = "radGridView1";
             this.radGridView1.ShowRowErrors = false;
             this.radGridView1.Size = new System.Drawing.Size(591, 247);
@@ -97,20 +100,17 @@
             // 
             // radDropDownList1
             // 
-            this.radDropDownList1.AllowShowFocusCues = false;
             this.radDropDownList1.AutoCompleteDisplayMember = null;
             this.radDropDownList1.AutoCompleteValueMember = null;
             this.radDropDownList1.DropDownStyle = Telerik.WinControls.RadDropDownStyle.DropDownList;
-            radListDataItem3.Tag = "1";
-            radListDataItem3.Text = "Список №1";
-            radListDataItem3.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
-            radListDataItem3.TextWrap = true;
-            radListDataItem4.Tag = "2";
-            radListDataItem4.Text = "Список №2";
-            radListDataItem4.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
-            radListDataItem4.TextWrap = true;
-            this.radDropDownList1.Items.Add(radListDataItem3);
-            this.radDropDownList1.Items.Add(radListDataItem4);
+            radListDataItem1.Tag = "1";
+            radListDataItem1.Text = "Список №1";
+            radListDataItem1.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+            radListDataItem2.Tag = "2";
+            radListDataItem2.Text = "Список №2";
+            radListDataItem2.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+            this.radDropDownList1.Items.Add(radListDataItem1);
+            this.radDropDownList1.Items.Add(radListDataItem2);
             this.radDropDownList1.Location = new System.Drawing.Point(270, 12);
             this.radDropDownList1.Name = "radDropDownList1";
             this.radDropDownList1.Size = new System.Drawing.Size(127, 21);
@@ -119,7 +119,6 @@
             // 
             // radDropDownList2
             // 
-            this.radDropDownList2.AllowShowFocusCues = false;
             this.radDropDownList2.AutoCompleteDisplayMember = null;
             this.radDropDownList2.AutoCompleteValueMember = null;
             this.radDropDownList2.DropDownStyle = Telerik.WinControls.RadDropDownStyle.DropDownList;
@@ -143,7 +142,7 @@
             // 
             this.radGridView2.Location = new System.Drawing.Point(12, 292);
             // 
-            // radGridView2
+            // 
             // 
             this.radGridView2.MasterTemplate.AllowAddNewRow = false;
             this.radGridView2.MasterTemplate.AllowDeleteRow = false;
@@ -152,6 +151,7 @@
             this.radGridView2.MasterTemplate.EnableGrouping = false;
             this.radGridView2.MasterTemplate.EnableSorting = false;
             this.radGridView2.MasterTemplate.ShowRowHeaderColumn = false;
+            this.radGridView2.MasterTemplate.ViewDefinition = tableViewDefinition2;
             this.radGridView2.Name = "radGridView2";
             this.radGridView2.ShowRowErrors = false;
             this.radGridView2.Size = new System.Drawing.Size(591, 159);

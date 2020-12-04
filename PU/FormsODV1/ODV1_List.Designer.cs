@@ -295,7 +295,7 @@
             this.fillSzvStajBtn,
             this.copyToSzvKorrBtn,
             this.copyToSzvStajDBtn});
-            this.SzvStajDDLBtn.Location = new System.Drawing.Point(790, 109);
+            this.SzvStajDDLBtn.Location = new System.Drawing.Point(801, 121);
             this.SzvStajDDLBtn.Name = "SzvStajDDLBtn";
             this.SzvStajDDLBtn.Size = new System.Drawing.Size(105, 24);
             this.SzvStajDDLBtn.TabIndex = 72;
@@ -323,7 +323,7 @@
             // printSZVSTAJBtn
             // 
             this.printSZVSTAJBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.printSZVSTAJBtn.Location = new System.Drawing.Point(790, 139);
+            this.printSZVSTAJBtn.Location = new System.Drawing.Point(801, 151);
             this.printSZVSTAJBtn.Margin = new System.Windows.Forms.Padding(3, 3, 3, 24);
             this.printSZVSTAJBtn.Name = "printSZVSTAJBtn";
             this.printSZVSTAJBtn.Size = new System.Drawing.Size(105, 24);
@@ -335,7 +335,7 @@
             // szv_stajAddBtn
             // 
             this.szv_stajAddBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.szv_stajAddBtn.Location = new System.Drawing.Point(790, 190);
+            this.szv_stajAddBtn.Location = new System.Drawing.Point(801, 202);
             this.szv_stajAddBtn.Name = "szv_stajAddBtn";
             this.szv_stajAddBtn.Size = new System.Drawing.Size(105, 24);
             this.szv_stajAddBtn.TabIndex = 59;
@@ -346,7 +346,7 @@
             // szv_stajDelBtn
             // 
             this.szv_stajDelBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.szv_stajDelBtn.Location = new System.Drawing.Point(790, 250);
+            this.szv_stajDelBtn.Location = new System.Drawing.Point(801, 262);
             this.szv_stajDelBtn.Name = "szv_stajDelBtn";
             this.szv_stajDelBtn.Size = new System.Drawing.Size(105, 24);
             this.szv_stajDelBtn.TabIndex = 61;
@@ -357,7 +357,7 @@
             // szv_stajEditBtn
             // 
             this.szv_stajEditBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.szv_stajEditBtn.Location = new System.Drawing.Point(790, 220);
+            this.szv_stajEditBtn.Location = new System.Drawing.Point(801, 232);
             this.szv_stajEditBtn.Name = "szv_stajEditBtn";
             this.szv_stajEditBtn.Size = new System.Drawing.Size(105, 24);
             this.szv_stajEditBtn.TabIndex = 60;
@@ -397,7 +397,7 @@
             this.szv_stajGridView.MasterTemplate.ViewDefinition = tableViewDefinition2;
             this.szv_stajGridView.Name = "szv_stajGridView";
             this.szv_stajGridView.ShowRowErrors = false;
-            this.szv_stajGridView.Size = new System.Drawing.Size(781, 274);
+            this.szv_stajGridView.Size = new System.Drawing.Size(792, 286);
             this.szv_stajGridView.TabIndex = 12;
             this.szv_stajGridView.ThemeName = "Office2013Light";
             this.szv_stajGridView.CellDoubleClick += new Telerik.WinControls.UI.GridViewCellEventHandler(this.szv_stajGridView_CellDoubleClick);

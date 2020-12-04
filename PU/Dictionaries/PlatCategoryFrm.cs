@@ -559,12 +559,12 @@ namespace PU.FormsRSW2014
             dataGrid_upd();
             if (synchResult)
             {
-                Methods.showAlert("Синхронизация завершена", "Данные успешно синхронизированы!", this.ThemeName);
+                Messenger.showAlert(AlertType.Success, "Синхронизация завершена", "Данные успешно синхронизированы!", this.ThemeName);
 
             }
             else
             {
-                Methods.showAlert("Синхронизация завершена", "Во время синхронизации произошла ошибка!", this.ThemeName);
+                Messenger.showAlert(AlertType.Error, "Синхронизация завершена", "Во время синхронизации произошла ошибка!", this.ThemeName);
             }
         }
 

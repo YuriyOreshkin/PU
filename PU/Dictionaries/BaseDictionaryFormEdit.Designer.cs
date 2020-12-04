@@ -55,7 +55,7 @@
             // 
             this.radButtonCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.radButtonCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.radButtonCancel.Location = new System.Drawing.Point(280, 130);
+            this.radButtonCancel.Location = new System.Drawing.Point(282, 153);
             this.radButtonCancel.Name = "radButtonCancel";
             this.radButtonCancel.Size = new System.Drawing.Size(110, 24);
             this.radButtonCancel.TabIndex = 6;
@@ -65,7 +65,7 @@
             // radButtonSave
             // 
             this.radButtonSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.radButtonSave.Location = new System.Drawing.Point(156, 130);
+            this.radButtonSave.Location = new System.Drawing.Point(158, 153);
             this.radButtonSave.Name = "radButtonSave";
             this.radButtonSave.Size = new System.Drawing.Size(110, 24);
             this.radButtonSave.TabIndex = 5;
@@ -87,17 +87,19 @@
             // 
             this.radTextBoxName.RootElement.StretchVertically = true;
             this.radTextBoxName.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.radTextBoxName.Size = new System.Drawing.Size(258, 27);
+            this.radTextBoxName.Size = new System.Drawing.Size(260, 50);
             this.radTextBoxName.TabIndex = 1;
             this.radTextBoxName.Tag = "Name";
             this.radTextBoxName.ThemeName = "Office2013Light";
             // 
             // radTextBoxCode
             // 
+            this.radTextBoxCode.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.radTextBoxCode.Location = new System.Drawing.Point(134, 10);
             this.radTextBoxCode.MaxLength = 10;
             this.radTextBoxCode.Name = "radTextBoxCode";
-            this.radTextBoxCode.Size = new System.Drawing.Size(92, 21);
+            this.radTextBoxCode.Size = new System.Drawing.Size(113, 21);
             this.radTextBoxCode.TabIndex = 0;
             this.radTextBoxCode.Tag = "Code";
             this.radTextBoxCode.ThemeName = "Office2013Light";
@@ -123,7 +125,7 @@
             // radLabel6
             // 
             this.radLabel6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.radLabel6.Location = new System.Drawing.Point(253, 78);
+            this.radLabel6.Location = new System.Drawing.Point(253, 101);
             this.radLabel6.Name = "radLabel6";
             this.radLabel6.Size = new System.Drawing.Size(21, 19);
             this.radLabel6.TabIndex = 49;
@@ -133,7 +135,7 @@
             // radLabel7
             // 
             this.radLabel7.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.radLabel7.Location = new System.Drawing.Point(12, 78);
+            this.radLabel7.Location = new System.Drawing.Point(12, 101);
             this.radLabel7.Name = "radLabel7";
             this.radLabel7.Size = new System.Drawing.Size(105, 19);
             this.radLabel7.TabIndex = 48;
@@ -144,7 +146,7 @@
             // 
             this.radDateTimePickerDateBegin.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.radDateTimePickerDateBegin.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.radDateTimePickerDateBegin.Location = new System.Drawing.Point(134, 77);
+            this.radDateTimePickerDateBegin.Location = new System.Drawing.Point(134, 100);
             this.radDateTimePickerDateBegin.Name = "radDateTimePickerDateBegin";
             this.radDateTimePickerDateBegin.Size = new System.Drawing.Size(113, 20);
             this.radDateTimePickerDateBegin.TabIndex = 2;
@@ -156,7 +158,7 @@
             // 
             this.radDateTimePickerDateEnd.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.radDateTimePickerDateEnd.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.radDateTimePickerDateEnd.Location = new System.Drawing.Point(282, 78);
+            this.radDateTimePickerDateEnd.Location = new System.Drawing.Point(282, 101);
             this.radDateTimePickerDateEnd.Name = "radDateTimePickerDateEnd";
             this.radDateTimePickerDateEnd.Size = new System.Drawing.Size(110, 20);
             this.radDateTimePickerDateEnd.TabIndex = 3;
@@ -168,7 +170,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(404, 163);
+            this.ClientSize = new System.Drawing.Size(406, 186);
             this.Controls.Add(this.radDateTimePickerDateEnd);
             this.Controls.Add(this.radDateTimePickerDateBegin);
             this.Controls.Add(this.radLabel6);

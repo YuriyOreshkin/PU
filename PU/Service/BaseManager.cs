@@ -253,7 +253,7 @@ namespace PU
                                 string result = Methods.saveConfigFile(config, "pu6Entities", true);
                                 if (!String.IsNullOrEmpty(result))
                                 {
-                                    this.Invoke(new Action(() => { Methods.showAlert("Внимание", result, this.ThemeName); }));
+                                    this.Invoke(new Action(() => { Messenger.showAlert(AlertType.Info, "Внимание", result, this.ThemeName); }));
                                 }
                                 //config.Save(ConfigurationSaveMode.Minimal);
                                 //PU.Properties.Settings.Default.Reload();
@@ -482,7 +482,7 @@ namespace PU
                 }
                 catch (Exception ex)
                 {
-                    Methods.showAlert("Внимание!", "Во время очистки таблицы " + item + " произошла ошибка. Код ошибки: " + ex.Message, this.ThemeName);
+                    Messenger.showAlert(AlertType.Error, "Внимание!", "Во время очистки таблицы " + item + " произошла ошибка. Код ошибки: " + ex.Message, this.ThemeName);
                 }
 
             }
@@ -498,7 +498,7 @@ namespace PU
                 }
                 catch (Exception ex)
                 {
-                    Methods.showAlert("Внимание!", "Во время очистки таблицы " + item + " произошла ошибка. Код ошибки: " + ex.Message, this.ThemeName);
+                    Messenger.showAlert(AlertType.Error, "Внимание!", "Во время очистки таблицы " + item + " произошла ошибка. Код ошибки: " + ex.Message, this.ThemeName);
                 }
             }
 
@@ -513,7 +513,7 @@ namespace PU
                 }
                 catch (Exception ex)
                 {
-                    Methods.showAlert("Внимание!", "Во время обслуживания таблицы " + item + " произошла ошибка. Код ошибки: " + ex.Message, this.ThemeName);
+                    Messenger.showAlert(AlertType.Error, "Внимание!", "Во время обслуживания таблицы " + item + " произошла ошибка. Код ошибки: " + ex.Message, this.ThemeName);
                 }
 
             }
@@ -570,7 +570,7 @@ namespace PU
             }
             catch (Exception ex)
             {
-                Methods.showAlert("Внимание!", "Во время операции VACUUM произошла ошибка. Код ошибки: " + ex.Message, this.ThemeName);
+                Messenger.showAlert(AlertType.Error, "Внимание!", "Во время операции VACUUM произошла ошибка. Код ошибки: " + ex.Message, this.ThemeName);
             }
             try
             {
@@ -578,7 +578,7 @@ namespace PU
             }
             catch (Exception ex)
             {
-                Methods.showAlert("Внимание!", "Во время операции REINDEX произошла ошибка. Код ошибки: " + ex.Message, this.ThemeName);
+                Messenger.showAlert(AlertType.Error, "Внимание!", "Во время операции REINDEX произошла ошибка. Код ошибки: " + ex.Message, this.ThemeName);
             }
             finally
             {

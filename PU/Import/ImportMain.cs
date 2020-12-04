@@ -141,13 +141,13 @@ namespace PU
                     }*/
             if (importFilesGrid.RowCount <= 0)
             {
-                Methods.showAlert("Внимание!", "Не выбраны файлы для импорта!", this.ThemeName);
+                Messenger.showAlert(AlertType.Info, "Внимание!", "Не выбраны файлы для импорта!", this.ThemeName);
                 return;
             }
 
             if (Options.InsID == 0)
             {
-                Methods.showAlert("Внимание!", "Не выбран Страхователь для импорта данных!", this.ThemeName);
+                Messenger.showAlert(AlertType.Info, "Внимание!", "Не выбран Страхователь для импорта данных!", this.ThemeName);
                 insChangeBtn.Focus();
                 return;
             }
@@ -246,7 +246,7 @@ namespace PU
                     }
                     catch (Exception ex)
                     {
-                        Methods.showAlert("Внимание!", "Во время сохранения данных формы СЗВ-СТАЖ произошла ошибка! Код ошибки - " + ex.Message, this.ThemeName);
+                        Messenger.showAlert(AlertType.Error, "Внимание!", "Во время сохранения данных формы СЗВ-СТАЖ произошла ошибка! Код ошибки - " + ex.Message, this.ThemeName);
                     }
 
 
@@ -259,7 +259,7 @@ namespace PU
                 }
                 catch (Exception ex)
                 {
-                    Methods.showAlert("Внимание!", "Во время сохранения данных формы СЗВ-СТАЖ произошла ошибка! Код ошибки - " + ex.Message, this.ThemeName);
+                    Messenger.showAlert(AlertType.Error, "Внимание!", "Во время сохранения данных формы СЗВ-СТАЖ произошла ошибка! Код ошибки - " + ex.Message, this.ThemeName);
                 }
             }
 
